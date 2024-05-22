@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class TransaksionalModel extends Model
+{
+    protected $table            = 'transaksional';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [];
+
+    // Dates
+    protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    // Validation
+    protected $validationRules      = [];
+    protected $validationMessages   = [];
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = true;
+
+    // Callbacks
+    protected $allowCallbacks = true;
+    protected $beforeInsert   = [];
+    protected $afterInsert    = [];
+    protected $beforeUpdate   = [];
+    protected $afterUpdate    = [];
+    protected $beforeFind     = [];
+    protected $afterFind      = [];
+    protected $beforeDelete   = [];
+    protected $afterDelete    = [];
+    public function getDataEntry($kd_data)
+    {
+        return $this->db->table('tb_data_entry')->select('*')
+            ->where('tb_data_entry', $kd_data)
+            ->get()
+            ->getLastRow();
+    }
+    public function koordinator($kd_data)
+    {
+        return $this->db->table('tb_fcr')
+            ->select('tb_fcr.kd_data, tb_fcr.nomor as nomor, tb_fcr_agunan.bukti_kepemilikan as bukti_kepemilikan, tb_fcr_usaha.lokasi_kantor as lokasi_kantor')
+            ->join('tb_fcr_agunan', 'tb_fcr.kd_data = tb_fcr_agunan.kd_data')
+            ->join('tb_fcr_usaha', 'tb_fcr.kd_data = tb_fcr_usaha.kd_data')
+            ->where('tb_fcr.kd_data', $kd_data)
+            ->get()
+            ->getLastRow();
+    }
+    public function FCR($kd_data)
+    {
+        return $this->db->table('tb_fcr')
+            ->select('tb_fcr.kd_data, tb_fcr.nomor as nomor, tb_fcr_agunan.bukti_kepemilikan as bukti_kepemilikan, tb_fcr_usaha.lokasi_kantor as lokasi_kantor')
+            ->join('tb_fcr_agunan', 'tb_fcr.kd_data = tb_fcr_agunan.kd_data')
+            ->join('tb_fcr_usaha', 'tb_fcr.kd_data = tb_fcr_usaha.kd_data')
+            ->where('tb_fcr.kd_data', $kd_data)
+            ->get()
+            ->getRowArray();
+    }
+    // public function getLatestRange()
+    // {
+    //     return $this->db->table('t_distribusi')->select('RANGE')
+    //         ->orderBy('ID', 'ASC') // Ganti 'id' dengan nama kolom yang merepresentasikan urutan data paling akhir.
+    //         ->where("APPROVER != ''")
+    //         ->orwhere("APPROVER != '-'")
+    //         ->get()
+    //         ->getLastRow();
+    // }
+
+}

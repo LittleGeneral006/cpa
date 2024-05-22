@@ -11,6 +11,7 @@ use CodeIgniter\Files\File;
 use DateTime;
 // Import namespace yang diperlukan
 use CodeIgniter\Validation\Rules;
+use App\Models\TransaksionalModel;
 
 class Transaksional extends BaseController
 {
@@ -25,7 +26,7 @@ class Transaksional extends BaseController
         $this->db = \Config\Database::connect();
         $this->email = \Config\Services::email();
         $this->now = date('Y-m-d H:i:s', now());
-        // $this->UsersModel = new UsersModel();
+        $this->TransaksionalModel = new TransaksionalModel();
         $this->session = session();
     }
     
@@ -219,6 +220,7 @@ class Transaksional extends BaseController
             $row[] = $aRow->scoring; //5
             $row[] = $aRow->sla; //6
             $row[] = $aRow->nama_unit; //7
+           
             //8
             if ($aRow->status == 'Aktif') {
                 $row[] = '<span class="label label-primary">' . $aRow->status . '</span>';
@@ -229,7 +231,8 @@ class Transaksional extends BaseController
             }
             // $row[] = '<button title="Edit" id="edit_unit" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>' . '<button title="Detail" id="detail_unit" class="btn btn-warning btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button>'; //6
             //9
-            $row[] = '<button title="Edit" id="edit_pengajuan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
+            $row[] = $aRow->kd_data; //9
+            // $row[] = '<button title="Edit" id="edit_pengajuan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
 
             // $row[] = $aRow->kd_unit; //
             // $row[] = $aRow->kd_induk_unit; //
@@ -239,11 +242,12 @@ class Transaksional extends BaseController
         }
         echo json_encode($output);
     }
-    public function tambah_pengajuan()
+    public function tambah_pengajuan($kd_data)
     {
         $hasil = $this->hak_akses();
         if ($hasil == true) {
             $data['title'] = 'Tambah Pengajuan Kredit Transaksional';
+            $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
             return view('backend/kredit_transaksional/pengajuan_kredit/v_tambah_pengajuan', $data);
         } else {
             return redirect()->to('/login');
@@ -660,6 +664,57 @@ class Transaksional extends BaseController
             $hasil = $this->db->query("SELECT kd_unit, nama_unit FROM tb_unit_kerja where aktif_unit = 'Aktif' and kd_unit ='" . session()->get('kd_unit_user') . "' ")->getResult();
         }
         $data['unit'] = $hasil;
+        echo json_encode($data);
+    }
+
+    public function edit($id)
+    {
+        //model initialize
+        // Ambil data dari tabel 1 berdasarkan id
+        $db = \Config\Database::connect();
+
+        // Ambil data dari tabel 1 berdasarkan id
+        $query_tabel1 = $db->table('tb_data_entry')->where('kd_data', $id)->get();
+        $data_tabel1 = $query_tabel1->getRow();
+
+        // Ambil data dari tabel 2 berdasarkan id dari tabel 1
+        $query_tabel2 = $db->table('tb_fcr_agunan')->where('kd_data', $data_tabel1->id)->get();
+        $data_tabel2 = $query_tabel2->getResult();
+
+        // Ambil data dari tabel 3 berdasarkan id dari tabel 2
+        $ids_tabel2 = array_column($data_tabel2, 'id');
+        $query_tabel3 = $db->table('tabel3')->whereIn('id_tabel2', $ids_tabel2)->get();
+        $data_tabel3 = $query_tabel3->getResult();
+
+        // Tutup koneksi database
+        $db->close();
+        // Kirim data ke view
+        return view('edit_data', [
+            'data_tabel1' => $data_tabel1,
+            'data_tabel2' => $data_tabel2,
+            'data_tabel3' => $data_tabel3,
+        ]);
+    }
+
+    public function getGlobal()
+    {
+        $kd_data = $this->request->getPost('kd_data');
+        $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['data_master'] = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['fcr'] = $this->db->query("SELECT * FROM tb_fcr WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['fcr_usaha'] = $this->db->query("SELECT * FROM tb_fcr_usaha WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['fcr_agunan'] = $this->db->query("SELECT * FROM tb_fcr_agunan WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['dok'] = $this->db->query("SELECT * FROM tb_dokumen WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['dok_cv'] = $this->db->query("SELECT * FROM tb_dokumen_cv WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['dok_pt'] = $this->db->query("SELECT * FROM tb_dokumen_pt WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['scoring'] = $this->db->query("SELECT * FROM tb_scoring WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['kirim'] = $this->db->query("SELECT * FROM tb_kirim WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+
+        $jenis_agunan = $this->db->query("SELECT jenis_agunan FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow()->jenis_agunan;
+        // Pecah string menjadi array berdasarkan delimiter ;
+        $array = explode(";", $jenis_agunan);
+        $data['jenis_agu'] = $array;
+
         echo json_encode($data);
     }
 }

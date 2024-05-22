@@ -60,7 +60,11 @@ function copyvalue2(id, target1, target2) {
 function hitungPP(angka) {
   let nilai =
     parseFloat($("#nilai_sebelum_ppn_pp_fak_data" + angka).val()) || 0;
-  let ppn = parseFloat($("#ppn_fak_modal" + angka).val()) || 0;
+  let ppn = parseFloat($("#ppn_pp_fak_data" + angka).val()) || 0;
+  let pembulatan_sebelumPPN =
+    parseFloat($("#pembulatan_nilai_sebelum_ppn_total_pp_fak_data").val()) || 0;
+  let pembulatan_sesudahPPN =
+    parseFloat($("#pembulatan_nilai_sesudah_ppn_total_pp_fak_data").val()) || 0;
   let hasil = nilai * (1 + ppn);
   $("#nilai_sesudah_ppn_pp_fak_data" + angka).val(hasil);
 
@@ -70,18 +74,67 @@ function hitungPP(angka) {
   inputs.each(function () {
     const nilai = parseFloat($(this).val()) || 0;
     total += nilai;
+    totalhasil = total + pembulatan_sebelumPPN;
   });
-  $("#nilai_sebelum_ppn_total_pp_fak_data").val(total);
+  // $("#nilai_sebelum_ppn_total_pp_fak_data").val(total);
+  $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(totalhasil);
+
   const inputs2 = $("input[name='nilai_sesudah_ppn_pp_fak_data[]']");
   let total2 = 0;
   inputs2.each(function () {
     const nilai2 = parseFloat($(this).val()) || 0;
     total2 += nilai2;
+    totalhasil2 = total2 + pembulatan_sesudahPPN;
   });
-  $("#nilai_sesudah_ppn_total_pp_fak_data").val(total2);
+  // $("#nilai_sesudah_ppn_total_pp_fak_data").val(total2);
+  $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(totalhasil2);
+}
+
+// function hitungPrakiraanTanggalTermijn(tgl_pelaksanaan_fak_data, lama_pelaksanaan_fak_data, progress,angka) {
+//   let tgl_pelaksanaan_fak_data = $("#tgl_pelaksanaan_fak_data").val() || 0;
+//   let lama_pelaksanaan_fak_data = parseFloat($("#lama_pelaksanaan_fak_data").val()) || 0;
+//   let progress = parseFloat($("#progress_pp_fak_data"+angka).val()) || 0;
+
+//   // Menghitung jumlah hari yang telah berlalu berdasarkan progress
+//   var elapsedDays = (lama_pelaksanaan_fak_data * progress);
+
+//   // Menentukan tanggal berdasarkan jumlah hari yang telah berlalu
+//   var progressDate = new Date(tgl_pelaksanaan_fak_data);
+//   progressDate.setDate(progressDate.getDate() + Math.floor(elapsedDays));
+
+//   $("#prakiraan_tgl_termijn_fak_data"+angka).val(progressDate);
+// }
+function hitungPrakiraanTanggalTermijn(angka) {
+  // Mendapatkan nilai dari elemen HTML
+  var tgl_pelaksanaan_fak_data = $("#tgl_pelaksanaan_fak_data").val() || 0;
+  let lama_pelaksanaan_fak_data =
+    parseFloat($("#lama_pelaksanaan_fak_data").val()) || 0;
+  let progressValue = parseFloat($("#progress_pp_fak_data" + angka).val()) || 0;
+
+  // Menghitung jumlah hari yang telah berlalu berdasarkan progress
+  if (progressValue === 0) {
+    var formattedDate = tgl_pelaksanaan_fak_data;
+  } else {
+    // Menghitung jumlah hari yang telah berlalu berdasarkan progress
+    var elapsedDays = lama_pelaksanaan_fak_data * progressValue;
+
+    console.log("elapsedDays:", elapsedDays);
+    // Menentukan tanggal berdasarkan jumlah hari yang telah berlalu
+    var progressDate = new Date(tgl_pelaksanaan_fak_data);
+    console.log("progressDate:", progressDate);
+
+    progressDate.setDate(progressDate.getDate() + Math.floor(elapsedDays));
+
+    // Format tanggal sesuai dengan format yang diterima oleh elemen input tanggal HTML5
+    var formattedDate = progressDate.toISOString().slice(0, 10);
+  }
+
+  // Menetapkan nilai ke elemen input tanggal prakiraan
+  $("#prakiraan_tgl_termijn_fak_data" + angka).val(formattedDate);
 }
 
 function hitungSemua() {
+  getFCR();
   hitungPP();
   hitungPersentase();
   hitungPPFAKM();
@@ -103,6 +156,18 @@ function hitungSemua() {
 
 // Fungsi untuk melakukan perhitungan
 //FAK Modal
+function hitungNilaiKontrak() {
+  let sesudah_ppn =
+    parseFloat($("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val()) || 0;
+  let profit_kontraktor =
+    parseFloat($("#profit_kontraktor_fak_data").val()) || 0;
+  let biaya_pemeliharaan =
+    parseFloat($("#biaya_pemeliharaan_fak_data").val()) || 0;
+  let hasil =
+    sesudah_ppn - sesudah_ppn * (profit_kontraktor + biaya_pemeliharaan);
+  $("#nilai_proyek_fak_modal").val(hasil);
+}
+
 function hitungPersentase() {
   let proyek = parseFloat($("#proyek_fak_modal").val()) || 0;
   let profit = parseFloat($("#profit_fak_modal").val()) || 0;
@@ -174,7 +239,7 @@ function hitungKreditBank() {
   copyvalue2(
     "penerimaan_uang_muka_fak_modal",
     "jumlah_penerimaan_uang_muka_fak_modal",
-    "penerimaan_uang_muka_fak_rl"
+    "penerimaan_uang_muka_fak_rl",
   );
 }
 
@@ -235,10 +300,10 @@ function hitungLabaUsaha() {
 
 function hitungLabaSebelumPajak() {
   const laba_usaha_fak_rl = parseFloat($("#laba_usaha_fak_rl").val()) || 0;
-  var angka = document.getElementById("jumlah_termijn_fak_data").value;
+  // var angka = document.getElementById("jumlah_termijn_fak_data").value;
   var tanggalElement = document.getElementById("tgl_pencairan_fak_data");
   var tanggal_termijnElement = document.getElementById(
-    "prakiraan_tgl_termijn_fak_data" + angka
+    "prakiraan_tgl_termijn_fak_data1",
   );
   let jumlah_pembiayaan_sendiri_fak_modal =
     parseFloat($("#jumlah_pembiayaan_sendiri_fak_modal").val()) || 0;
@@ -258,12 +323,12 @@ function hitungLabaSebelumPajak() {
     var millisecondsPerDay = 24 * 60 * 60 * 1000; // milidetik per hari
 
     var nilaiTanggal = Math.ceil(
-      (tanggal.getTime() - excelEpochInMilliseconds) / millisecondsPerDay + 2
+      (tanggal.getTime() - excelEpochInMilliseconds) / millisecondsPerDay + 2,
     );
     var nilaiTanggaltermijn = Math.ceil(
       (tanggal_termijn.getTime() - excelEpochInMilliseconds) /
         millisecondsPerDay +
-        2
+        2,
     );
     const fix =
       /* prettier-ignore */
@@ -278,7 +343,7 @@ function hitungLabaSebelumPajak() {
     // $("#return_of_equity_fak_rl").val(fix3);
   } else {
     console.error(
-      "Elemen HTML tidak ditemukan atau tidak memiliki properti 'value'."
+      "Elemen HTML tidak ditemukan atau tidak memiliki properti 'value'.",
     );
   }
 }
@@ -319,7 +384,7 @@ function hitungPenerimaanTermijn() {
   const fix = persentase_penerimaan_termijn_fak_rl * harga_borongan_fak_rl;
   $("#penerimaan_termijn_fak_rl").val(Math.round(fix));
   $("#persentase_penerimaan_termijn_pemeliharaan_fak_rl").val(
-    termijn_pemeliharaan
+    termijn_pemeliharaan,
   );
 }
 
@@ -388,43 +453,375 @@ function hitungPersentasePemotonganKreditBank() {
   $("#dibulatkan_fak_rl").val(fix2);
 }
 
-const operatorMap = {
-  "+": (numbers) => numbers.reduce((acc, curr) => acc + curr, 0),
-  "-": (numbers) => numbers.reduce((acc, curr) => acc - curr),
-  "*": (numbers) => numbers.reduce((acc, curr) => acc * curr, 1),
-  "/": (numbers) => numbers.reduce((acc, curr) => acc / curr),
-  "%": (numbers) => numbers.reduce((acc, curr) => acc % curr),
-  "^": (numbers) => numbers.reduce((acc, curr) => Math.pow(acc, curr)),
-  // Tambahkan operator lain sesuai kebutuhan
-};
+//
+//CEF
+//
 
-// Fungsi untuk melakukan perhitungan
-function hitung(inputIds, operators, place, event) {
-  const numbers = inputIds.map((id) => parseFloat($("#" + id).val()) || 0);
-
-  let result = numbers[0];
-
-  for (let i = 0; i < operators.length; i++) {
-    const operator = operators[i];
-    const number = numbers[i + 1];
-
-    if (operatorMap.hasOwnProperty(operator)) {
-      result = operatorMap[operator]([result, number]);
-    } else {
-      console.error("Operator tidak valid:", operator);
-      return NaN;
-    }
+function showValueCEFT(checkbox, angka, bobot) {
+  var display = document.getElementById("hasil" + angka + "ceft");
+  if (checkbox.checked) {
+    var hitungbobot = checkbox.value * bobot;
+    display.innerHTML += hitungbobot + "<br>";
+  } else {
+    var hitungbobot = checkbox.value * bobot;
+    display.innerHTML = display.innerHTML.replace(hitungbobot + "<br>", "");
   }
+  var hasil1ceft = parseFloat(
+    document.getElementById("hasil1ceft").innerText || 0,
+  );
+  var hasil2ceft = parseFloat(
+    document.getElementById("hasil2ceft").innerText || 0,
+  );
+  var hasil3ceft = parseFloat(
+    document.getElementById("hasil3ceft").innerText || 0,
+  );
+  var hasil4ceft = parseFloat(
+    document.getElementById("hasil4ceft").innerText || 0,
+  );
+  var hasil5ceft = parseFloat(
+    document.getElementById("hasil5ceft").innerText || 0,
+  );
+  var hasil6ceft = parseFloat(
+    document.getElementById("hasil6ceft").innerText || 0,
+  );
+  var hasil7ceft = parseFloat(
+    document.getElementById("hasil7ceft").innerText || 0,
+  );
+  var hasil8ceft = parseFloat(
+    document.getElementById("hasil8ceft").innerText || 0,
+  );
+  var hasil9ceft = parseFloat(
+    document.getElementById("hasil9ceft").innerText || 0,
+  );
 
-  $("#" + place).val(result);
+  total =
+    hasil1ceft +
+    hasil2ceft +
+    hasil3ceft +
+    hasil4ceft +
+    hasil5ceft +
+    hasil6ceft +
+    hasil7ceft +
+    hasil8ceft +
+    hasil9ceft;
 
-  event.preventDefault();
+  // Menampilkan total ke dalam elemen dengan id "hasiltotal"
+  document.getElementById("hasiltotalCEFT").innerText = total;
+}
+
+function showValueCEFB(checkbox, angka, bobot) {
+  var display = document.getElementById("hasil" + angka + "cefb");
+  if (checkbox.checked) {
+    var hitungbobot = checkbox.value * bobot;
+    display.innerHTML += hitungbobot + "<br>";
+  } else {
+    var hitungbobot = checkbox.value * bobot;
+    display.innerHTML = display.innerHTML.replace(hitungbobot + "<br>", "");
+  }
+  var hasil1cefb = parseFloat(
+    document.getElementById("hasil1cefb").innerText || 0,
+  );
+  var hasil2cefb = parseFloat(
+    document.getElementById("hasil2cefb").innerText || 0,
+  );
+  var hasil3cefb = parseFloat(
+    document.getElementById("hasil3cefb").innerText || 0,
+  );
+  var hasil4cefb = parseFloat(
+    document.getElementById("hasil4cefb").innerText || 0,
+  );
+  var hasil5cefb = parseFloat(
+    document.getElementById("hasil5cefb").innerText || 0,
+  );
+  var hasil6cefb = parseFloat(
+    document.getElementById("hasil6cefb").innerText || 0,
+  );
+  var hasil7cefb = parseFloat(
+    document.getElementById("hasil7cefb").innerText || 0,
+  );
+
+  total =
+    hasil1cefb +
+    hasil2cefb +
+    hasil3cefb +
+    hasil4cefb +
+    hasil5cefb +
+    hasil6cefb +
+    hasil7cefb;
+
+  // Menampilkan total ke dalam elemen dengan id "hasiltotal"
+  document.getElementById("hasiltotalCEFB").innerText = total;
 }
 
 jumlahisipp = 1;
 jumlahisitermijn = 1;
 
+function add_setting1() {
+  var inpitemppfakdataForm = document.getElementsByName("item_pp_fak_data[]");
+  var inpppnmppfakdataForm = document.getElementsByName("ppn_pp_fak_data[]");
+  var inpnilaisebelumppnppfakdataForm = document.getElementsByName(
+    "nilai_sebelum_ppn_pp_fak_data[]",
+  );
+  var inpnilaisesudahppnppfakdataForm = document.getElementsByName(
+    "nilai_sesudah_ppn_pp_fak_data[]",
+  );
+  let simpanitemppfakdataForm = "";
+  let simpanppnppfakdataForm = "";
+  let simpannilaisebelumppnppfakdataForm = "";
+  let simpannilaisesudahppnppfakdataForm = "";
+  var flagisi = false;
+  var flagjalan = true;
+
+  for (var i = 0; i < inpitemppfakdataForm.length; i++) {
+    var itemppfakdata = inpitemppfakdataForm[i];
+    var ppnppfakdata = inpppnmppfakdataForm[i];
+    var nilaisebelumppnppfakdata = inpnilaisebelumppnppfakdataForm[i];
+    var nilaisesudahppnppfakdata = inpnilaisesudahppnppfakdataForm[i];
+
+    if (itemppfakdata.value == "") {
+      continue; // Skip jika nilai itemppfakdata kosong
+    }
+
+    if (itemppfakdata.value.includes("|")) {
+      flagisi = true;
+      flagjalan = true;
+      simpanitemppfakdataForm += "|" + itemppfakdata.value;
+      simpanppnppfakdataForm += "|" + ppnppfakdata.value;
+      simpannilaisebelumppnppfakdataForm +=
+        "|" + nilaisebelumppnppfakdata.value;
+      simpannilaisesudahppnppfakdataForm +=
+        "|" + nilaisesudahppnppfakdata.value;
+    } else {
+      if (flagisi == true && flagjalan == false) {
+        flagisi = false;
+        simpanitemppfakdataForm += ";";
+        simpanppnppfakdataForm += ";";
+        simpannilaisebelumppnppfakdataForm += ";";
+        simpannilaisesudahppnppfakdataForm += ";";
+      }
+      if (i < inpitemppfakdataForm.length - 1) {
+        simpanitemppfakdataForm += itemppfakdata.value + ";";
+        simpanppnppfakdataForm += ppnppfakdata.value + ";";
+        simpannilaisebelumppnppfakdataForm +=
+          nilaisebelumppnppfakdata.value + ";";
+        simpannilaisesudahppnppfakdataForm +=
+          nilaisesudahppnppfakdata.value + ";";
+      } else {
+        simpanitemppfakdataForm += itemppfakdata.value;
+        simpanppnppfakdataForm += ppnppfakdata.value;
+        simpannilaisebelumppnppfakdataForm += nilaisebelumppnppfakdata.value;
+        simpannilaisesudahppnppfakdataForm += nilaisesudahppnppfakdata.value;
+      }
+    }
+  }
+
+  $('[name="itemppfakdata"]').val(simpanitemppfakdataForm);
+  $('[name="ppnppfakdata"]').val(simpanppnppfakdataForm);
+  $('[name="nilaisebelumppnppfakdata"]').val(
+    simpannilaisebelumppnppfakdataForm,
+  );
+  $('[name="nilaisesudahppnppfakdata"]').val(
+    simpannilaisesudahppnppfakdataForm,
+  );
+}
+
+function add_setting2() {
+  var inptermijnppfakdataForm =
+    document.getElementsByName("item_pp_fak_data[]");
+  var inpprogressppfakdataForm =
+    document.getElementsByName("ppn_pp_fak_data[]");
+  var inppersentasetermijnppfakdataForm = document.getElementsByName(
+    "nilai_sebelum_ppn_pp_fak_data[]",
+  );
+  var inpprakiraantgltermijnfakdataForm = document.getElementsByName(
+    "nilai_sesudah_ppn_pp_fak_data[]",
+  );
+  let simpanitemppfakdataForm = "";
+  let simpanprogressppfakdataForm = "";
+  let simpanpersentasetermijnppfakdataForm = "";
+  let simpanprakiraantgltermijnfakdataForm = "";
+  var flagisi = false;
+  var flagjalan = true;
+
+  for (var i = 0; i < inptermijnppfakdataForm.length; i++) {
+    var termijnppfakdata = inptermijnppfakdataForm[i];
+    var progressppfakdata = inpprogressppfakdataForm[i];
+    var persentasetermijnppfakdata = inppersentasetermijnppfakdataForm[i];
+    var prakiraantgltermijnfakdata = inpprakiraantgltermijnfakdataForm[i];
+
+    if (termijnppfakdata.value == "") {
+      continue; // Skip jika nilai termijnppfakdata kosong
+    }
+
+    if (termijnppfakdata.value.includes("|")) {
+      flagisi = true;
+      flagjalan = true;
+      simpanitemppfakdataForm += "|" + termijnppfakdata.value;
+      simpanprogressppfakdataForm += "|" + progressppfakdata.value;
+      simpanpersentasetermijnppfakdataForm +=
+        "|" + persentasetermijnppfakdata.value;
+      simpanprakiraantgltermijnfakdataForm +=
+        "|" + prakiraantgltermijnfakdata.value;
+    } else {
+      if (flagisi == true && flagjalan == false) {
+        flagisi = false;
+        simpanitemppfakdataForm += ";";
+        simpanprogressppfakdataForm += ";";
+        simpanpersentasetermijnppfakdataForm += ";";
+        simpanprakiraantgltermijnfakdataForm += ";";
+      }
+      if (i < inptermijnppfakdataForm.length - 1) {
+        simpanitemppfakdataForm += termijnppfakdata.value + ";";
+        simpanprogressppfakdataForm += progressppfakdata.value + ";";
+        simpanpersentasetermijnppfakdataForm +=
+          persentasetermijnppfakdata.value + ";";
+        simpanprakiraantgltermijnfakdataForm +=
+          prakiraantgltermijnfakdata.value + ";";
+      } else {
+        simpanitemppfakdataForm += termijnppfakdata.value;
+        simpanprogressppfakdataForm += progressppfakdata.value;
+        simpanpersentasetermijnppfakdataForm +=
+          persentasetermijnppfakdata.value;
+        simpanprakiraantgltermijnfakdataForm +=
+          prakiraantgltermijnfakdata.value;
+      }
+    }
+  }
+
+  $('[name="termijnppfakdata"]').val(simpanitemppfakdataForm);
+  $('[name="ppnppfakdata"]').val(simpanprogressppfakdataForm);
+  $('[name="persentasetermijnppfakdata"]').val(
+    simpanpersentasetermijnppfakdataForm,
+  );
+  $('[name="prakiraantgltermijnfakdata"]').val(
+    simpanprakiraantgltermijnfakdataForm,
+  );
+}
+
+function add_setting3() {
+  var inpitemppfakmodalForm = document.getElementsByName("item_pp_fak_modal[]");
+  var inpnilaippfakmodalForm = document.getElementsByName(
+    "nilai_pp_fak_modal[]",
+  );
+  let simpanitemppfakmodalForm = "";
+
+  let simpannilaippfakmodalForm = "";
+  var flagisi = false;
+  var flagjalan = true;
+
+  for (var i = 0; i < inpitemppfakmodalForm.length; i++) {
+    var itemppfakmodal = inpitemppfakmodalForm[i];
+    var nilaippfakmodal = inpnilaippfakmodalForm[i];
+
+    if (itemppfakmodal.value == "") {
+      continue; // Skip jika nilai itemppfakmodal kosong
+    }
+
+    if (itemppfakmodal.value.includes("|")) {
+      flagisi = true;
+      flagjalan = true;
+      simpanitemppfakmodalForm += "|" + itemppfakmodal.value;
+      simpannilaippfakmodalForm += "|" + nilaippfakmodal.value;
+    } else {
+      if (flagisi == true && flagjalan == false) {
+        flagisi = false;
+        simpanitemppfakmodalForm += ";";
+        simpannilaippfakmodalForm += ";";
+      }
+      if (i < inpitemppfakmodalForm.length - 1) {
+        simpanitemppfakmodalForm += itemppfakmodal.value + ";";
+        simpannilaippfakmodalForm += nilaippfakmodal.value + ";";
+      } else {
+        simpanitemppfakmodalForm += itemppfakmodal.value;
+        simpannilaippfakmodalForm += nilaippfakmodal.value;
+      }
+    }
+  }
+
+  $('[name="itemppfakmodal"]').val(simpanitemppfakmodalForm);
+  $('[name="nilaippfakmodal"]').val(simpannilaippfakmodalForm);
+}
+
 $(document).ready(function () {
+  var v = $("#form").validate({
+    // exclude it from validation
+    ignore: ":hidden:not(#summernote),.note-editable.card-block",
+  });
+
+  var myElement = $("#summernote");
+
+  myElement.summernote({
+    // See: http://summernote.org/deep-dive/
+    callbacks: {
+      onChange: function (contents, $editable) {
+        // Note that at this point, the value of the `textarea` is not the same as the one
+        // you entered into the summernote editor, so you have to set it yourself to make
+        // the validation consistent and in sync with the value.
+        myElement.val(myElement.summernote("isEmpty") ? "" : contents);
+
+        // You should re-validate your element after change, because the plugin will have
+        // no way to know that the value of your `textarea` has been changed if the change
+        // was done programmatically.
+        v.element(myElement);
+      },
+    },
+  });
+  // let htmlString = null;
+  // $(".summernote").summernote("destroy");
+
+  // $.extend($.summernote.plugins, {
+  //     'brenter': function(context) {
+  //         this.events = {
+  //             'summernote.enter': function(we, event) {
+  //                 document.execCommand('insertHTML', false, '<br><br>');
+  //                 event.preventDefault();
+  //             }
+  //         };
+  //     }
+  // });
+
+  // $('.summernote').summernote({
+  //     toolbar: [],
+  //     height: 188,
+  // });
+  // // TAB
+  // delete $.summernote.options.keyMap.pc['TAB'];
+  // delete $.summernote.options.keyMap.mac['TAB'];
+
+  // // SHIFT+TAB
+  // delete $.summernote.options.keyMap.pc['SHIFT+TAB'];
+  // delete $.summernote.options.keyMap.mac['SHIFT+TAB'];
+  // $(".summernote").summernote("code", htmlString);
+  //   function uploadImage(image) {
+  //       var data = new FormData();
+  //       data.append("image", image);
+  //       $.ajax({
+  //           url: "<?php echo site_url('post/upload_image')?>",
+  //           cache: false,
+  //           contentType: false,
+  //           processData: false,
+  //           data: data,
+  //           type: "POST",
+  //           success: function(url) {
+  //           $('#summernote').summernote("insertImage", url);
+  //           },
+  //           error: function(data) {
+  //               console.log(data);
+  //           }
+  //       });
+  //   }
+
+  //   function deleteImage(src) {
+  //       $.ajax({
+  //           data: {src : src},
+  //           type: "POST",
+  //           url: "<?php echo site_url('post/delete_image')?>",
+  //           cache: false,
+  //           success: function(response) {
+  //               console.log(response);
+  //           }
+  //       });
+  //   }
   $("body").on("click", ".tambah-field-pp", function () {
     if (jumlahisipp == 13) {
       swal({
@@ -444,7 +841,9 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="item_pp_fak_data' +
         angka +
-        '" name="item_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
+        '" name="item_pp_fak_data[]" onkeyup="copyvalue(this.id, \'item_pp_fak_modal' +
+        angka +
+        '\')" type="text" placeholder="" class="form-control">' +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
@@ -472,7 +871,9 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="nilai_sesudah_ppn_pp_fak_data' +
         angka +
-        '" name="nilai_sesudah_ppn_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
+        '" name="nilai_sesudah_ppn_pp_fak_data[]" type="text" placeholder="" onchange="copyvalue(this.id, \'nilai_pp_fak_modal' +
+        angka +
+        '\')" class="form-control">' +
         "</div>" +
         "</div>";
       $(".delete-btn-pp-fak-data").first().after(html11);
@@ -481,7 +882,7 @@ $(document).ready(function () {
       var html12 =
         '<div class="col-lg-12">' +
         '<label class="col-lg-6 control-label">Item</label>' +
-        '<div class="col-lg-12">' +
+        '<div class="col-lg-6">' +
         '<input id="item_pp_fak_modal' +
         angka +
         '" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control">' +
@@ -489,13 +890,16 @@ $(document).ready(function () {
         "</div>" +
         '<div class="col-lg-12">' +
         '<label class="col-lg-6 control-label">Nilai</label>' +
-        '<div class="col-lg-12">' +
+        '<div class="col-lg-6">' +
         '<input id="nilai_pp_fak_modal' +
         angka +
         '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control">' +
         "</div>" +
         "</div>";
       $(".delete-btn-pp-fak-modal").first().after(html12);
+      var ppnFakDataValue = $("#ppn_fak_data").val();
+      console.log(ppnFakDataValue);
+      $("#ppn_pp_fak_data" + angka).val(ppnFakDataValue);
       hitungPP(angka);
       angka++;
       jumlahisipp++;
@@ -519,20 +923,24 @@ $(document).ready(function () {
         timer: 1000,
       });
     } else {
-      $(".add-form-termijn-fak-data").after("<hr class='new mt-0 pt-0'>");
+      // $(".add-form-termijn-fak-data").append("<hr class='new mt-0 pt-0'>");
       var html1 = $(".copy-termijn").html();
-      $(".add-form-termijn-fak-modal").after(html1);
+      $(".add-form-termijn-fak-data").after(html1);
       var html11 =
         '<div class="col-lg-3">' +
         '<label class="col-lg-6 control-label">Termijn</label>' +
         '<div class="col-lg-12">' +
-        '<input id="termijn_pp_fak_data" name="termijn_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
+        '<input id="termijn_pp_fak_data' +
+        angkatermijninput +
+        '" name="termijn_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<label class="col-lg-6 control-label">Progress</label>' +
         '<div class="col-lg-12">' +
-        '<input id="progress_pp_fak_data" name="progress_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
+        '<input id="progress_pp_fak_data' +
+        angkatermijninput +
+        '" name="progress_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
@@ -540,6 +948,11 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="persentase_termijn_pp_fak_data" name="persentase_termijn_pp_fak_data[]" type="text" placeholder="" class="form-control">' +
         "</div>" +
+        "</div>" +
+        '<div class="col-lg-1">' +
+        ' <a class="btn btn-success btn-rounded m-t-n-xs" style="margin-top:30px" onclick="hitungPrakiraanTanggalTermijn(' +
+        angkatermijninput +
+        ')"><span>Hitung</span></a>' +
         "</div>" +
         '<div class="col-lg-3">' +
         '<label class="col-lg-12 control-label">Prakiraan Tanggal Termijn</label>' +
@@ -567,11 +980,12 @@ $(document).ready(function () {
           $("#total_termijn_fak_data").val(total_termijn);
           $("#setelah_masa_pemeliharaan_fak_data").val(fix);
           $("#pemeliharaan_fak_modal").val(fix);
-        }
+        },
       );
 
       angkatermijn++;
       angkatermijninput++;
+
       $("#jumlah_termijn_fak_data").val(angkatermijn);
       jumlahisitermijn++;
       resizeJquerySteps();
@@ -808,3 +1222,19 @@ $(document).ready(function () {
     },
   });
 });
+
+$(document).ready(function () {});
+
+// Contoh penggunaan fungsi untuk mencari tanggal progress 50%
+// var startDate = new Date('2024-01-23'); // Tanggal pelaksanaan
+// var durationDays = 30; // Lama pelaksanaan pekerjaan
+// var progressPercentage = 50; // Progress pekerjaan dalam persentase
+
+// var progressDate = calculateDate(startDate, durationDays, progressPercentage);
+// console.log(progressDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+// var startDate = new Date('2024-01-23'); // Tanggal pelaksanaan
+// var durationDays = 30; // Lama pelaksanaan pekerjaan
+// var progressPercentage = 50; // Progress pekerjaan dalam persentase
+
+// var progressDate = calculateDate(startDate, durationDays, progressPercentage);
+// console.log(progressDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));

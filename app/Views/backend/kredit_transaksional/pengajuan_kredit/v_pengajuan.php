@@ -381,11 +381,21 @@
                     "targets": 8,
                     "width": "15%"
                 },
+                // {
+                //     "targets": 9,
+                //     "width": "15%"
+                // },
                 {
                     "targets": 9,
-                    "width": "15%"
-                },
-
+                    "width": "15%",
+                    "className": "text-center",
+                    "render": function(data, type, row, meta) {
+                        var kd_data = row[9];
+                        return '<button class="btn btn-white btn-bitbucket btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit" onclick="koordinator(\'' +
+                            kd_data +
+                            '\')"><i class="fa fa-edit"></i></button>';
+                    }
+                }
 
             ],
             "aoColumns": [
@@ -406,7 +416,7 @@
             "lengthMenu": [
                 ['15', '25', '50', '100', '-1'],
                 ['15', '25', '50', '100', 'All'],
-			],
+            ],
             "buttons": [{
                     "extend": 'copy',
                     "exportOptions": {
@@ -450,70 +460,13 @@
 
         });
         $('#tabel_pengajuan tbody ').on('click', '#edit_pengajuan', function() {
-
-            document.getElementById("form_pengajuan_edit").reset();
             var data = table.row($(this).parents('tr')).data();
-            $("#modal_pengajuan_edit").modal('show')
 
             // baru
-            $.ajax({
-                url: "<?php echo base_url() ?>unit_kerja/get_tabel_pengajuan_by_id/" + data[5],
-                type: "get",
-                dataType: "JSON",
-                success: function(response) {
-                    // console.log(response)
-                    var data = response.data
-                    $('#kd_pengajuan_edit').val(data[5]);
-                    // $('#kd_induk_pengajuan_edit').val(data[6]);
-                    $('#nama_pengajuan_edit').val(data[7]);
-                    $('#alamat_pengajuan_edit').val(data[8]);
-                    $('#telpon_pengajuan_edit').val(data[9]);
-                    $('#aktif_pengajuan_edit').val(data[10]);
-
-                    var kd_induk = data[6];
-                    console.log(kd_induk);
-
-                    $.ajax({
-                        url: "<?php echo base_url('unit_kerja/get_pengajuan_tanpa_konsolidasi'); ?>",
-                        type: "get",
-                        dataType: "JSON",
-                        success: function(data) {
-                            var options = data.unit;
-                            var select = $('#kd_induk_pengajuan_edit');
-
-                            select.empty();
-                            // Tambahkan opsi "Pilih" yang dipilih dan dinonaktifkan
-                            var defaultOption = new Option('Pilih', '', true, true);
-                            $(defaultOption).prop('disabled', true);
-                            select.append(defaultOption);
-
-                            $.each(options, function(index, option) {
-                                var newOption = new Option(option.kd_pengajuan + ' - ' + option.nama_pengajuan, option.kd_pengajuan, false, false);
-                                if (option.kd_pengajuan === kd_induk) {
-                                    $(newOption).prop('selected', true);
-                                }
-                                select.append(newOption);
-                            });
-
-                            select.select2({
-                                placeholder: 'Pilih',
-                                dropdownParent: $('#kd_induk_pengajuan_edit').parent()
-                            });
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.log("Error get data");
-                        }
-                    });
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert("Gagal mendapatkan data");
-                }
-            });
+            window.location.href = "<?php echo base_url(); ?>tambah-pengajuan-kredit-transaksional";
             // batas baru
-
         });
-        
+
         $('#tabel_pengajuan tbody ').on('click', '#detail_pengajuan', function() {
             // newx_702 = 1;
             // document.getElementById("form_pengajuan_hapus").reset();
@@ -641,6 +594,11 @@
             })
         }
     });
+
+    function koordinator(kd_data) {
+        window.location.href = "<?php echo base_url(); ?>tambah-pengajuan-kredit-transaksional/" + kd_data;
+    }
+
 </script>
 
 <?= $this->endSection(); ?>

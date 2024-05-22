@@ -77,8 +77,14 @@ $routes->post('/otoritas/edit_otoritas', 'Otoritas::edit_otoritas');
 
 $routes->get('/pengajuan-kredit-transaksional', 'Transaksional::v_pengajuan');
 $routes->get('/pengajuan/tabel_pengajuan', 'Transaksional::tabel_pengajuan');
-$routes->get('/tambah-pengajuan-kredit-transaksional', 'Transaksional::tambah_pengajuan');
+$routes->get('/tambah-pengajuan-kredit-transaksional/(:any)', 'Transaksional::tambah_pengajuan/$1');
 
 $routes->get('/penarikan-kredit-transaksional', 'Transaksional::v_penarikan');
 $routes->get('/penarikan/tabel_penarikan', 'Transaksional::tabel_penarikan');
 $routes->get('/tambah-penarikan-kredit-transaksional', 'Transaksional::tambah_penarikan');
+
+//get-data
+$routes->get('/get-dataentry/(:any)', 'Transaksional::DataEntry/$1');
+$routes->get('/get-fcr/(:any)', 'GetData::FCR/$1');
+// $routes->get('/get-fcragunan/(:any)', 'GetData::FCRAgunan/$1');
+// $routes->get('/get-fcrusaha/(:any)', 'GetData::FCRUsaha/$1');
