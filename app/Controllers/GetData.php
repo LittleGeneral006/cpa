@@ -31,12 +31,12 @@ class GetData extends BaseController
         // header('Content-Type: application/json');
         // echo json_encode($dataTampil);
 
-        $item = $this->TransaksionalModel->FCR($kd_data);
+        $FCR = $this->TransaksionalModel->FCR($kd_data);
 
-        if (!$item) {
+        if (!$FCR) {
             return $this->failNotFound('Data tidak ditemukan');
         }
 
-        return $this->respond($item);
+        return $this->respond($FCR);
     }
 }
