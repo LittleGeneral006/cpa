@@ -5702,7 +5702,7 @@
                                                 FAK Data
                                             </td>
                                             <td>
-                                                <span id="scoring1">Oke</span> / <span id="scoring2">Not Oke</span>
+                                                <span id="fak_data1">Oke</span> / <span id="fak_data2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5713,7 +5713,7 @@
                                                 FAK Modal
                                             </td>
                                             <td>
-                                                <span id="data_entry1">Oke</span> / <span id="data_entry2">Not Oke</span>
+                                                <span id="fak_modal1">Oke</span> / <span id="fak_modal2">Not Oke</span>
                                             </td>
                                         </tr>
 
@@ -5742,7 +5742,7 @@
                                                 FAK Proyeksi RL
                                             </td>
                                             <td>
-                                                <span id="fcr1">Oke</span> / <span id="fcr2">Not Oke</span>
+                                                <span id="fak_rl1">Oke</span> / <span id="fak_rl2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5753,7 +5753,7 @@
                                                 Upload Laporan RL
                                             </td>
                                             <td>
-                                                <span id="fcr_usaha1">Oke</span> / <span id="fcr_usaha2">Not Oke</span>
+                                                <span id="lap_rl1">Oke</span> / <span id="lap_rl2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5764,7 +5764,7 @@
                                                 CEF
                                             </td>
                                             <td>
-                                                <span id="fcr_agunan1">Oke</span> / <span id="fcr_agunan2">Not Oke</span>
+                                                <span id="cef1">Oke</span> / <span id="cef2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5775,7 +5775,7 @@
                                                 FAA
                                             </td>
                                             <td>
-                                                <span id="dokumen1">Oke</span> / <span id="dokumen2">Not Oke</span>
+                                                <span id="faa1">Oke</span> / <span id="faa2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5786,7 +5786,7 @@
                                                 MAUK
                                             </td>
                                             <td>
-                                                <span id="scoring1">Oke</span> / <span id="scoring2">Not Oke</span>
+                                                <span id="mauk1">Oke</span> / <span id="mauk2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5797,7 +5797,7 @@
                                                 DCL Compliance
                                             </td>
                                             <td>
-                                                <span id="scoring1">Oke</span> / <span id="scoring2">Not Oke</span>
+                                                <span id="dcl1">Oke</span> / <span id="dcl2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5805,13 +5805,13 @@
                                                 14
                                             </td>
                                             <td>
-                                                Scoring
+                                                Scoring Koordinator
                                             </td>
                                             <td>
                                                 <span id="scoring1">Oke</span> / <span id="scoring2">Not Oke</span>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>
                                                 15
                                             </td>
@@ -5821,7 +5821,7 @@
                                             <td>
                                                 <span id="scoring1">Oke</span> / <span id="scoring2">Not Oke</span>
                                             </td>
-                                        </tr>
+                                        </tr> -->
 
                                     </table>
 
@@ -6387,17 +6387,17 @@
                     resizeJquerySteps();
                 } else if (currentIndex === 15) {
                     // tampil_button("recap");
-                    checkRecap('tb_data_entry', kd_data, 'data_entry')
-                    checkRecap('tb_fcr', kd_data, 'fcr')
-                    checkRecap('tb_fcr_agunan', kd_data, 'fcr_agunan')
-                    checkRecap('tb_fcr_usaha', kd_data, 'fcr_usaha')
-                    checkRecap('tb_scoring', kd_data, 'scoring')
-                    checkRecap('tb_fak_data', kd_data, 'fak_data')
-                    checkRecap('tb_fak_modal', kd_data, 'fak_modal')
-                    checkRecap('tb_fak_rl', kd_data, 'fak_rl')
-                    checkRecap('tb_lap_rl', kd_data, 'lap_rl')
-                    checkRecap('tb_mauk', kd_data, 'mauk')
-                    checkRecap('tb_dcl', kd_data, 'dcl')
+                    checkRecap('tb_data_entry', '<?php echo $data_entry->kd_data ?>', 'data_entry')
+                    checkRecap('tb_fcr', '<?php echo $data_entry->kd_data ?>', 'fcr')
+                    checkRecap('tb_fcr_agunan', '<?php echo $data_entry->kd_data ?>', 'fcr_agunan')
+                    checkRecap('tb_fcr_usaha', '<?php echo $data_entry->kd_data ?>', 'fcr_usaha')
+                    checkRecap('tb_scoring', '<?php echo $data_entry->kd_data ?>', 'scoring')
+                    checkRecap('tb_fak_data', '<?php echo $data_entry->kd_data ?>', 'fak_data')
+                    checkRecap('tb_fak_modal', '<?php echo $data_entry->kd_data ?>', 'fak_modal')
+                    checkRecap('tb_fak_rl', '<?php echo $data_entry->kd_data ?>', 'fak_rl')
+                    checkRecap('tb_lap_rl', '<?php echo $data_entry->kd_data ?>', 'lap_rl')
+                    checkRecap('tb_mauk', '<?php echo $data_entry->kd_data ?>', 'mauk')
+                    checkRecap('tb_dcl', '<?php echo $data_entry->kd_data ?>', 'dcl')
                     tampil_button('save_recap');
                     tampil_btn_finish('<?php echo $data_entry->kd_data ?>')
                     tampil_disposisi('<?php echo $data_entry->kd_data ?>')
