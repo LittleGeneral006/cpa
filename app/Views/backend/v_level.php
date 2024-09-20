@@ -6,14 +6,28 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-
+<?php // var_dump($permission); die; 
+?>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Setup Level</h2>
     </div>
     <div class="col-lg-2 text-right">
         <br>
-        <button id="tambah_level" class="btn-primary btn" onclick="tambah_level()"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Level</span></button>
+        <?php // foreach ($permission as $list_nama) { 
+        ?>
+        <?php // if ($list_nama->nama_permission == 'Tambah Level') { 
+        ?>
+        <!-- <button id="tambah_level" class="btn-primary btn" onclick="tambah_level()"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Level</span></button> -->
+        <?php //} 
+        ?>
+
+        <?php // } 
+        ?>
+
+        <?php if ($permission_tambah_level == true) { ?>
+            <button id="tambah_level" class="btn-primary btn" onclick="tambah_level()"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Level</span></button>
+        <?php } ?>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -82,7 +96,7 @@
 <div id="modal_level_edit" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-           
+
             <form id="form_level_edit" class="form-horizontal">
                 <div class="modal-body">
                     <div class="modal-header" style="padding:10px">

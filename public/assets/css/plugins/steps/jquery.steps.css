@@ -144,9 +144,10 @@
   border-radius: 5px;
 }
 
-.wizard-big.wizard > .content {
-  min-height: 320px;
-}
+/* .wizard-big.wizard > .content { */
+  /* min-height: 320px; */
+  /* min-height: 1700px; */
+/* } */
 .wizard.vertical > .content {
   display: inline;
   float: left;

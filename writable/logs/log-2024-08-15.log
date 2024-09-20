@@ -1,0 +1,1451 @@
+INFO - 2024-08-15 00:24:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:25:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:25:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:25:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:25:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:25:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 00:31:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2461.
+ 1 APPPATH\Controllers\Pengajuan.php(2461): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2463.
+ 1 APPPATH\Controllers\Pengajuan.php(2463): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2464.
+ 1 APPPATH\Controllers\Pengajuan.php(2464): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2465.
+ 1 APPPATH\Controllers\Pengajuan.php(2465): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2466.
+ 1 APPPATH\Controllers\Pengajuan.php(2466): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2467.
+ 1 APPPATH\Controllers\Pengajuan.php(2467): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2468.
+ 1 APPPATH\Controllers\Pengajuan.php(2468): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2469.
+ 1 APPPATH\Controllers\Pengajuan.php(2469): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2470.
+ 1 APPPATH\Controllers\Pengajuan.php(2470): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2471.
+ 1 APPPATH\Controllers\Pengajuan.php(2471): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2472.
+ 1 APPPATH\Controllers\Pengajuan.php(2472): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2473.
+ 1 APPPATH\Controllers\Pengajuan.php(2473): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2474.
+ 1 APPPATH\Controllers\Pengajuan.php(2474): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2475.
+ 1 APPPATH\Controllers\Pengajuan.php(2475): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2476.
+ 1 APPPATH\Controllers\Pengajuan.php(2476): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2477.
+ 1 APPPATH\Controllers\Pengajuan.php(2477): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2478.
+ 1 APPPATH\Controllers\Pengajuan.php(2478): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2479.
+ 1 APPPATH\Controllers\Pengajuan.php(2479): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2480.
+ 1 APPPATH\Controllers\Pengajuan.php(2480): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2481.
+ 1 APPPATH\Controllers\Pengajuan.php(2481): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2482.
+ 1 APPPATH\Controllers\Pengajuan.php(2482): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2483.
+ 1 APPPATH\Controllers\Pengajuan.php(2483): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2484.
+ 1 APPPATH\Controllers\Pengajuan.php(2484): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2485.
+ 1 APPPATH\Controllers\Pengajuan.php(2485): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2489.
+ 1 APPPATH\Controllers\Pengajuan.php(2489): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2490.
+ 1 APPPATH\Controllers\Pengajuan.php(2490): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2491.
+ 1 APPPATH\Controllers\Pengajuan.php(2491): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2492.
+ 1 APPPATH\Controllers\Pengajuan.php(2492): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2493.
+ 1 APPPATH\Controllers\Pengajuan.php(2493): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2494.
+ 1 APPPATH\Controllers\Pengajuan.php(2494): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2495.
+ 1 APPPATH\Controllers\Pengajuan.php(2495): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2496.
+ 1 APPPATH\Controllers\Pengajuan.php(2496): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2497.
+ 1 APPPATH\Controllers\Pengajuan.php(2497): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2498.
+ 1 APPPATH\Controllers\Pengajuan.php(2498): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2499.
+ 1 APPPATH\Controllers\Pengajuan.php(2499): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2500.
+ 1 APPPATH\Controllers\Pengajuan.php(2500): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2501.
+ 1 APPPATH\Controllers\Pengajuan.php(2501): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2502.
+ 1 APPPATH\Controllers\Pengajuan.php(2502): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2503.
+ 1 APPPATH\Controllers\Pengajuan.php(2503): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2504.
+ 1 APPPATH\Controllers\Pengajuan.php(2504): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2505.
+ 1 APPPATH\Controllers\Pengajuan.php(2505): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2506.
+ 1 APPPATH\Controllers\Pengajuan.php(2506): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2507.
+ 1 APPPATH\Controllers\Pengajuan.php(2507): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2508.
+ 1 APPPATH\Controllers\Pengajuan.php(2508): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2509.
+ 1 APPPATH\Controllers\Pengajuan.php(2509): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2510.
+ 1 APPPATH\Controllers\Pengajuan.php(2510): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2511.
+ 1 APPPATH\Controllers\Pengajuan.php(2511): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2512.
+ 1 APPPATH\Controllers\Pengajuan.php(2512): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2513.
+ 1 APPPATH\Controllers\Pengajuan.php(2513): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2514.
+ 1 APPPATH\Controllers\Pengajuan.php(2514): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2516.
+ 1 APPPATH\Controllers\Pengajuan.php(2516): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2517.
+ 1 APPPATH\Controllers\Pengajuan.php(2517): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2518.
+ 1 APPPATH\Controllers\Pengajuan.php(2518): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2526.
+ 1 APPPATH\Controllers\Pengajuan.php(2526): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2527.
+ 1 APPPATH\Controllers\Pengajuan.php(2527): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2528.
+ 1 APPPATH\Controllers\Pengajuan.php(2528): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2529.
+ 1 APPPATH\Controllers\Pengajuan.php(2529): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2530.
+ 1 APPPATH\Controllers\Pengajuan.php(2530): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2531.
+ 1 APPPATH\Controllers\Pengajuan.php(2531): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2532.
+ 1 APPPATH\Controllers\Pengajuan.php(2532): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2533.
+ 1 APPPATH\Controllers\Pengajuan.php(2533): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2534.
+ 1 APPPATH\Controllers\Pengajuan.php(2534): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2535.
+ 1 APPPATH\Controllers\Pengajuan.php(2535): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2536.
+ 1 APPPATH\Controllers\Pengajuan.php(2536): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2537.
+ 1 APPPATH\Controllers\Pengajuan.php(2537): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2538.
+ 1 APPPATH\Controllers\Pengajuan.php(2538): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2539.
+ 1 APPPATH\Controllers\Pengajuan.php(2539): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2540.
+ 1 APPPATH\Controllers\Pengajuan.php(2540): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2541.
+ 1 APPPATH\Controllers\Pengajuan.php(2541): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2542.
+ 1 APPPATH\Controllers\Pengajuan.php(2542): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2543.
+ 1 APPPATH\Controllers\Pengajuan.php(2543): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2544.
+ 1 APPPATH\Controllers\Pengajuan.php(2544): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2545.
+ 1 APPPATH\Controllers\Pengajuan.php(2545): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2546.
+ 1 APPPATH\Controllers\Pengajuan.php(2546): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2547.
+ 1 APPPATH\Controllers\Pengajuan.php(2547): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2548.
+ 1 APPPATH\Controllers\Pengajuan.php(2548): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-08-15 00:31:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2461.
+ 1 APPPATH\Controllers\Pengajuan.php(2461): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2463.
+ 1 APPPATH\Controllers\Pengajuan.php(2463): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2464.
+ 1 APPPATH\Controllers\Pengajuan.php(2464): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2465.
+ 1 APPPATH\Controllers\Pengajuan.php(2465): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2466.
+ 1 APPPATH\Controllers\Pengajuan.php(2466): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2467.
+ 1 APPPATH\Controllers\Pengajuan.php(2467): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2468.
+ 1 APPPATH\Controllers\Pengajuan.php(2468): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2469.
+ 1 APPPATH\Controllers\Pengajuan.php(2469): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2470.
+ 1 APPPATH\Controllers\Pengajuan.php(2470): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2471.
+ 1 APPPATH\Controllers\Pengajuan.php(2471): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2472.
+ 1 APPPATH\Controllers\Pengajuan.php(2472): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2473.
+ 1 APPPATH\Controllers\Pengajuan.php(2473): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2474.
+ 1 APPPATH\Controllers\Pengajuan.php(2474): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2475.
+ 1 APPPATH\Controllers\Pengajuan.php(2475): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2476.
+ 1 APPPATH\Controllers\Pengajuan.php(2476): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2477.
+ 1 APPPATH\Controllers\Pengajuan.php(2477): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2478.
+ 1 APPPATH\Controllers\Pengajuan.php(2478): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2479.
+ 1 APPPATH\Controllers\Pengajuan.php(2479): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2480.
+ 1 APPPATH\Controllers\Pengajuan.php(2480): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2481.
+ 1 APPPATH\Controllers\Pengajuan.php(2481): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2482.
+ 1 APPPATH\Controllers\Pengajuan.php(2482): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2483.
+ 1 APPPATH\Controllers\Pengajuan.php(2483): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2484.
+ 1 APPPATH\Controllers\Pengajuan.php(2484): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2485.
+ 1 APPPATH\Controllers\Pengajuan.php(2485): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2489.
+ 1 APPPATH\Controllers\Pengajuan.php(2489): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2490.
+ 1 APPPATH\Controllers\Pengajuan.php(2490): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2491.
+ 1 APPPATH\Controllers\Pengajuan.php(2491): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2492.
+ 1 APPPATH\Controllers\Pengajuan.php(2492): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2493.
+ 1 APPPATH\Controllers\Pengajuan.php(2493): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2494.
+ 1 APPPATH\Controllers\Pengajuan.php(2494): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2495.
+ 1 APPPATH\Controllers\Pengajuan.php(2495): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2496.
+ 1 APPPATH\Controllers\Pengajuan.php(2496): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2497.
+ 1 APPPATH\Controllers\Pengajuan.php(2497): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2498.
+ 1 APPPATH\Controllers\Pengajuan.php(2498): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2499.
+ 1 APPPATH\Controllers\Pengajuan.php(2499): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2500.
+ 1 APPPATH\Controllers\Pengajuan.php(2500): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2501.
+ 1 APPPATH\Controllers\Pengajuan.php(2501): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2502.
+ 1 APPPATH\Controllers\Pengajuan.php(2502): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2503.
+ 1 APPPATH\Controllers\Pengajuan.php(2503): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2504.
+ 1 APPPATH\Controllers\Pengajuan.php(2504): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2505.
+ 1 APPPATH\Controllers\Pengajuan.php(2505): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2506.
+ 1 APPPATH\Controllers\Pengajuan.php(2506): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2507.
+ 1 APPPATH\Controllers\Pengajuan.php(2507): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2508.
+ 1 APPPATH\Controllers\Pengajuan.php(2508): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2509.
+ 1 APPPATH\Controllers\Pengajuan.php(2509): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2510.
+ 1 APPPATH\Controllers\Pengajuan.php(2510): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2511.
+ 1 APPPATH\Controllers\Pengajuan.php(2511): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2512.
+ 1 APPPATH\Controllers\Pengajuan.php(2512): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2513.
+ 1 APPPATH\Controllers\Pengajuan.php(2513): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2514.
+ 1 APPPATH\Controllers\Pengajuan.php(2514): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2516.
+ 1 APPPATH\Controllers\Pengajuan.php(2516): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2517.
+ 1 APPPATH\Controllers\Pengajuan.php(2517): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2518.
+ 1 APPPATH\Controllers\Pengajuan.php(2518): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2526.
+ 1 APPPATH\Controllers\Pengajuan.php(2526): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2527.
+ 1 APPPATH\Controllers\Pengajuan.php(2527): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2528.
+ 1 APPPATH\Controllers\Pengajuan.php(2528): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2529.
+ 1 APPPATH\Controllers\Pengajuan.php(2529): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2530.
+ 1 APPPATH\Controllers\Pengajuan.php(2530): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2531.
+ 1 APPPATH\Controllers\Pengajuan.php(2531): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2532.
+ 1 APPPATH\Controllers\Pengajuan.php(2532): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2533.
+ 1 APPPATH\Controllers\Pengajuan.php(2533): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2534.
+ 1 APPPATH\Controllers\Pengajuan.php(2534): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2535.
+ 1 APPPATH\Controllers\Pengajuan.php(2535): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2536.
+ 1 APPPATH\Controllers\Pengajuan.php(2536): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2537.
+ 1 APPPATH\Controllers\Pengajuan.php(2537): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2538.
+ 1 APPPATH\Controllers\Pengajuan.php(2538): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2539.
+ 1 APPPATH\Controllers\Pengajuan.php(2539): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2540.
+ 1 APPPATH\Controllers\Pengajuan.php(2540): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2541.
+ 1 APPPATH\Controllers\Pengajuan.php(2541): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2542.
+ 1 APPPATH\Controllers\Pengajuan.php(2542): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2543.
+ 1 APPPATH\Controllers\Pengajuan.php(2543): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2544.
+ 1 APPPATH\Controllers\Pengajuan.php(2544): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2545.
+ 1 APPPATH\Controllers\Pengajuan.php(2545): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2546.
+ 1 APPPATH\Controllers\Pengajuan.php(2546): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2547.
+ 1 APPPATH\Controllers\Pengajuan.php(2547): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2548.
+ 1 APPPATH\Controllers\Pengajuan.php(2548): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-08-15 00:31:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2461.
+ 1 APPPATH\Controllers\Pengajuan.php(2461): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2463.
+ 1 APPPATH\Controllers\Pengajuan.php(2463): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2464.
+ 1 APPPATH\Controllers\Pengajuan.php(2464): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2465.
+ 1 APPPATH\Controllers\Pengajuan.php(2465): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2466.
+ 1 APPPATH\Controllers\Pengajuan.php(2466): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2467.
+ 1 APPPATH\Controllers\Pengajuan.php(2467): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2468.
+ 1 APPPATH\Controllers\Pengajuan.php(2468): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2469.
+ 1 APPPATH\Controllers\Pengajuan.php(2469): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2470.
+ 1 APPPATH\Controllers\Pengajuan.php(2470): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2471.
+ 1 APPPATH\Controllers\Pengajuan.php(2471): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2472.
+ 1 APPPATH\Controllers\Pengajuan.php(2472): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2473.
+ 1 APPPATH\Controllers\Pengajuan.php(2473): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2474.
+ 1 APPPATH\Controllers\Pengajuan.php(2474): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2475.
+ 1 APPPATH\Controllers\Pengajuan.php(2475): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2476.
+ 1 APPPATH\Controllers\Pengajuan.php(2476): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2477.
+ 1 APPPATH\Controllers\Pengajuan.php(2477): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2478.
+ 1 APPPATH\Controllers\Pengajuan.php(2478): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2479.
+ 1 APPPATH\Controllers\Pengajuan.php(2479): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2480.
+ 1 APPPATH\Controllers\Pengajuan.php(2480): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2481.
+ 1 APPPATH\Controllers\Pengajuan.php(2481): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2482.
+ 1 APPPATH\Controllers\Pengajuan.php(2482): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2483.
+ 1 APPPATH\Controllers\Pengajuan.php(2483): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2484.
+ 1 APPPATH\Controllers\Pengajuan.php(2484): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2485.
+ 1 APPPATH\Controllers\Pengajuan.php(2485): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2489.
+ 1 APPPATH\Controllers\Pengajuan.php(2489): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2490.
+ 1 APPPATH\Controllers\Pengajuan.php(2490): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2491.
+ 1 APPPATH\Controllers\Pengajuan.php(2491): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2492.
+ 1 APPPATH\Controllers\Pengajuan.php(2492): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2493.
+ 1 APPPATH\Controllers\Pengajuan.php(2493): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2494.
+ 1 APPPATH\Controllers\Pengajuan.php(2494): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2495.
+ 1 APPPATH\Controllers\Pengajuan.php(2495): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2496.
+ 1 APPPATH\Controllers\Pengajuan.php(2496): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2497.
+ 1 APPPATH\Controllers\Pengajuan.php(2497): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2498.
+ 1 APPPATH\Controllers\Pengajuan.php(2498): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2499.
+ 1 APPPATH\Controllers\Pengajuan.php(2499): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2500.
+ 1 APPPATH\Controllers\Pengajuan.php(2500): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2501.
+ 1 APPPATH\Controllers\Pengajuan.php(2501): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2502.
+ 1 APPPATH\Controllers\Pengajuan.php(2502): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2503.
+ 1 APPPATH\Controllers\Pengajuan.php(2503): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2504.
+ 1 APPPATH\Controllers\Pengajuan.php(2504): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2505.
+ 1 APPPATH\Controllers\Pengajuan.php(2505): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2506.
+ 1 APPPATH\Controllers\Pengajuan.php(2506): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2507.
+ 1 APPPATH\Controllers\Pengajuan.php(2507): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2508.
+ 1 APPPATH\Controllers\Pengajuan.php(2508): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2509.
+ 1 APPPATH\Controllers\Pengajuan.php(2509): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2510.
+ 1 APPPATH\Controllers\Pengajuan.php(2510): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2511.
+ 1 APPPATH\Controllers\Pengajuan.php(2511): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2512.
+ 1 APPPATH\Controllers\Pengajuan.php(2512): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2513.
+ 1 APPPATH\Controllers\Pengajuan.php(2513): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2514.
+ 1 APPPATH\Controllers\Pengajuan.php(2514): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2516.
+ 1 APPPATH\Controllers\Pengajuan.php(2516): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2517.
+ 1 APPPATH\Controllers\Pengajuan.php(2517): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2518.
+ 1 APPPATH\Controllers\Pengajuan.php(2518): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2526.
+ 1 APPPATH\Controllers\Pengajuan.php(2526): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2527.
+ 1 APPPATH\Controllers\Pengajuan.php(2527): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2528.
+ 1 APPPATH\Controllers\Pengajuan.php(2528): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2529.
+ 1 APPPATH\Controllers\Pengajuan.php(2529): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2530.
+ 1 APPPATH\Controllers\Pengajuan.php(2530): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2531.
+ 1 APPPATH\Controllers\Pengajuan.php(2531): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2532.
+ 1 APPPATH\Controllers\Pengajuan.php(2532): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2533.
+ 1 APPPATH\Controllers\Pengajuan.php(2533): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2534.
+ 1 APPPATH\Controllers\Pengajuan.php(2534): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2535.
+ 1 APPPATH\Controllers\Pengajuan.php(2535): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2536.
+ 1 APPPATH\Controllers\Pengajuan.php(2536): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2537.
+ 1 APPPATH\Controllers\Pengajuan.php(2537): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2538.
+ 1 APPPATH\Controllers\Pengajuan.php(2538): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2539.
+ 1 APPPATH\Controllers\Pengajuan.php(2539): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2540.
+ 1 APPPATH\Controllers\Pengajuan.php(2540): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2541.
+ 1 APPPATH\Controllers\Pengajuan.php(2541): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2542.
+ 1 APPPATH\Controllers\Pengajuan.php(2542): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2543.
+ 1 APPPATH\Controllers\Pengajuan.php(2543): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2544.
+ 1 APPPATH\Controllers\Pengajuan.php(2544): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2545.
+ 1 APPPATH\Controllers\Pengajuan.php(2545): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2546.
+ 1 APPPATH\Controllers\Pengajuan.php(2546): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2547.
+ 1 APPPATH\Controllers\Pengajuan.php(2547): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+WARNING - 2024-08-15 00:31:26 --> [DEPRECATED] explode(): Passing null to parameter #2 ($string) of type string is deprecated in APPPATH\Controllers\Pengajuan.php on line 2548.
+ 1 APPPATH\Controllers\Pengajuan.php(2548): explode(';', null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Pengajuan->get_perulangan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pengajuan))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-08-15 00:31:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-15 01:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

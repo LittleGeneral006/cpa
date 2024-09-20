@@ -26,10 +26,6 @@ class GetData extends BaseController
 
     public function FCR($kd_data)
     {
-        // $dataTampil['FCR'] = $this->TransaksionalModel->FCR($kd_data);
-        // // error_log(print_r($dataTampil, true));
-        // header('Content-Type: application/json');
-        // echo json_encode($dataTampil);
 
         $FCR = $this->TransaksionalModel->FCR($kd_data);
 
@@ -38,5 +34,17 @@ class GetData extends BaseController
         }
 
         return $this->respond($FCR);
+    }
+
+    public function DataEntry($kd_data)
+    {
+
+        $DataEntry = $this->TransaksionalModel->DataEntry($kd_data);
+
+        if (!$DataEntry) {
+            return $this->failNotFound('Data tidak ditemukan');
+        }
+
+        return $this->respond($DataEntry);
     }
 }

@@ -24,19 +24,13 @@ if (session()->get('sudah_login') == TRUE) {
     <link href="<?= base_url(); ?>public/assets/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/assets/css/plugins/select2/select2.min.css" rel="stylesheet">
     <style>
-        /* Style for the eye icon */
-        .fa-eye-slash {
-            cursor: pointer;
-        }
-    </style>
-    <style>
         .login,
         .image {
             min-height: 100vh;
         }
 
-        .bg-image {
-            /* background-image: url('<?= base_url(); ?>public/assets/img/penari.jpg'); */
+        .bg-image {                                                                             
+            background-image: url('<?= base_url(); ?>public/assets/img/login/blue.jpg');
             background-size: cover;
             background-position: center center;
         }
@@ -79,29 +73,15 @@ if (session()->get('sudah_login') == TRUE) {
                                     <img src="<?= base_url(); ?>public/assets/img/logo.png" alt="Bank Kalsel" width="200">
                                 </div>
                                 <h1 class="text-center text-secondary"><i><?= $setting->judul_web ?></i></h1>
-                                <p class="text-muted mb-4 text-center"><i>Login untuk lanjut</i></p>
+                                <p class="text-muted mb-4 text-center"><i>Please Log In to Continue</i></p>
                                 <form id="form_login" class="m" role="form" action="#" autocomplete="off">
                                     <div class="form-group mb-3">
                                         <input type="username" id="username" name="username" placeholder="Username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                     </div>
-                                    <!-- <div class="form-group mb-3">
-                                        <input id="password" name="password" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i id="togglePassword" class="fa fa-eye-slash"></i>
-                                            </span>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group mb-3">
-                                        <div class="input-group">
-                                            <input id="password" name="password" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i id="togglePassword" class="fa fa-eye-slash"></i>
-                                                </span>
-                                            </div>
-                                        </div>
+                                        <input id="password" name="password" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                     </div>
+
                                     <button type="submit" class="btn btn-secondary btn-block  mb-2 rounded-pill shadow-sm"><i>Log In</i></button>
                                     <div class="text-center text-muted mb-4">
                                         <p><i><?= $setting->copyright ?></i></p>
@@ -147,29 +127,8 @@ if (session()->get('sudah_login') == TRUE) {
     <!-- rechapcha google -->
     <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
     <script src="<?php echo base_url(); ?>public/assets/js/plugins/select2/select2.full.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.querySelector('#togglePassword');
-            const password = document.querySelector('#password');
-
-            togglePassword.addEventListener('click', function(e) {
-                // toggle icon
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-eye-slash');
-                icon.classList.toggle('fa-eye');
-
-                // toggle password field
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-            });
-        });
-    </script>
-
-
     <script>
         $(document).ready(function() {
-
 
         });
 
@@ -193,9 +152,7 @@ if (session()->get('sudah_login') == TRUE) {
                 })
             }
         });
-        // foto login
-        $(document).ready(function() {
-            // Lakukan AJAX call untuk mendapatkan URL gambar
+        function gambar_login(){
             $.ajax({
                 url: '<?= base_url('user/gambar_login'); ?>',
                 type: 'GET',
@@ -208,7 +165,23 @@ if (session()->get('sudah_login') == TRUE) {
                     console.error('AJAX error: ' + error);
                 }
             });
-        });
+        }
+        // foto login
+        // $(document).ready(function() {
+        //     // Lakukan AJAX call untuk mendapatkan URL gambar
+        //     $.ajax({
+        //         url: '<?= base_url('user/gambar_login'); ?>',
+        //         type: 'GET',
+        //         dataType: 'json',
+        //         success: function(response) {
+        //             // Ganti background-image dengan URL gambar yang didapatkan dari AJAX
+        //             $('.bg-image').css('background-image', 'url(' + response.image_url + ')');
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.error('AJAX error: ' + error);
+        //         }
+        //     });
+        // });
     </script>
 </body>
 

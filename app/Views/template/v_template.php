@@ -25,21 +25,6 @@ if (session()->get('sudah_login') == TRUE) {
 }
 
 ?>
-<?php
-
-// use App\Models\UsersModel;
-// use Config\Services;
-
-// $users = new UsersModel();
-// $resUser = $users->getSessionUsername(session()->get('username'));
-// $id_sesi = Services::request()->getCookie("session_id");
-
-// if ($id_sesi != $resUser->SESSION_ID) {
-//     session()->set('logged_in', FALSE);
-//     session()->setFlashdata('message', 'User sedang digunakan di perangkat lain!');
-//     echo ("<script>location='" . base_url('/login') . "';</script>");
-// }
-?>
 
 <head>
 
@@ -81,7 +66,13 @@ if (session()->get('sudah_login') == TRUE) {
         .nav-header {
             padding: 33px 25px;
             background-color: #1c84c6;
-            background-image: url("<?= base_url(); ?>public/assets/css/patterns/heer-profile-skin-1.png");
+            /* background-image: url("<?= base_url(); ?>public/assets/css/patterns/heer-profile-skin-1.png"); */
+        }
+        .disabled-link {
+            pointer-events: none;
+            /* color: gray; Opsional: Untuk mengubah tampilan link agar terlihat dinonaktifkan */
+            text-decoration: none; /* Opsional: Untuk menghapus underline */
+            /* background-color: #1c84c6; */
         }
 
         /* body {
@@ -178,7 +169,7 @@ if (session()->get('sudah_login') == TRUE) {
 
                 </nav>
             </div>
-
+            
 
             <?= $this->renderSection('content'); ?>
 
@@ -279,6 +270,7 @@ if (session()->get('sudah_login') == TRUE) {
     <script src="<?php echo base_url(); ?>public/assets/js/plugins/jQuery-Mask-Plugin-1.14.16/dist/jquery.mask.min.js"></script>
     <!-- Jquery Validate -->
     <script src="<?= base_url(); ?>public/assets/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/js/plugins/sha/CryptoJS-v3.1.2.js"></script>
 
     <?= $this->renderSection('script'); ?>
     <script>
@@ -331,7 +323,7 @@ if (session()->get('sudah_login') == TRUE) {
                 url: "<?php echo base_url('template/get_pengaturan'); ?>",
                 dataType: "json",
                 success: function(response) {
-                    console.log(response)
+                    // console.log(response)
                     if (response.status == 'success') {
                         $('#singkatan_web').text(response.message.singkatan_web);
                         $('#judul_web').text(response.message.judul_web);

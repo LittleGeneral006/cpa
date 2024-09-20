@@ -498,4 +498,16 @@ class Unit_kerja extends BaseController
         $data['unit'] = $hasil;
         echo json_encode($data);
     }
+    public function get_unit_by_id($kd_unit_kerja)
+    {
+        $query = $this->db->query("SELECT kd_unit, nama_unit FROM tb_unit_kerja where aktif_unit = 'Aktif' and kd_unit ='" . $kd_unit_kerja . "' ");
+        if ($query->getNumRows() > 0) {
+            $hasil = $query->getResult();
+        } else {
+            $query = $this->db->query("SELECT kd_unit, nama_unit FROM tb_unit_kerja where aktif_unit = 'Aktif' ")->getResult();
+        }
+
+        $data['unit'] = $hasil;
+        echo json_encode($data);
+    }
 }

@@ -31,8 +31,12 @@ class Level extends BaseController
     public function index()
     {
         $hasil = $this->hak_akses();
+        $permission = $this->permission();
+        $permission_tambah_level = $this->permission2('Tambah Level');
         if ($hasil == true) {
             $data['title'] = 'Setup Level';
+            $data['permission'] = $permission;
+            $data['permission_tambah_level'] = $permission_tambah_level;
             return view('backend/v_level', $data);
         } else {
             return redirect()->to('/login');
@@ -429,6 +433,65 @@ class Level extends BaseController
                     echo 'Edit Level Gagal';
                 }
             }
+        }
+    }
+    public function permission()
+    {
+        if (!empty(session()->get('kd_user'))) {
+            $kd_level_user = $this->db->query(
+                "SELECT kd_level_user 
+                FROM tb_user 
+                WHERE kd_user = '" . session()->get('kd_user') . "'
+                "
+            )->getRow()->kd_level_user;
+            $permission = $this->db->query(
+                "SELECT nama_permission 
+                FROM v_assign 
+                WHERE kd_level = '" . $kd_level_user . "'
+                AND aktif_assign = 'Aktif'"
+            )->getResult();
+            // foreach($permission as $nama_permission){
+            //     // echo json_encode($nama_permission->nama_permission);
+
+            // }
+            // var_dump($permission); die;
+            // echo json_encode($permission);
+            return $permission;
+        } else {
+            return redirect()->to('/login');
+        }
+    }
+    public function permission2($nama_permission)
+    {   
+        $hasil = false;
+        if (!empty(session()->get('kd_user'))) {
+            $kd_level_user = $this->db->query(
+                "SELECT kd_level_user 
+                FROM tb_user 
+                WHERE kd_user = '" . session()->get('kd_user') . "'
+                "
+            )->getRow()->kd_level_user;
+            $permission = $this->db->query(
+                "SELECT nama_permission 
+                FROM v_assign 
+                WHERE kd_level = '" . $kd_level_user . "'
+                AND nama_permission = '".$nama_permission."'
+                AND aktif_assign = 'Aktif'"
+            )->getNumRows();
+            // foreach($permission as $nama_permission){
+            //     // echo json_encode($nama_permission->nama_permission);
+
+            // }
+            // var_dump($permission); die;
+            // echo json_encode($permission);
+            if($permission > 0){
+                $hasil = true;
+            }else{
+                $hasil = false;
+            }
+            return $hasil;
+        } else {
+            return redirect()->to('/login');
         }
     }
 }

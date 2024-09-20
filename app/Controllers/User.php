@@ -7,8 +7,6 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\Files\File;
 
-use App\Models\UsersModel;
-
 // use CodeIgniter\I18n\Time;
 use DateTime;
 // Import namespace yang diperlukan
@@ -18,16 +16,14 @@ class User extends BaseController
 {
     private $now;
     public $db;
-    protected $users;
     public $session;
     public $email;
     public function __construct()
     {
         helper('date');
         // $this->Service = new ConfigServices();
-        // $this->UsersModel = new UsersModel();
         $this->db = \Config\Database::connect();
-        $this->email = Services::email();
+        $this->email = \Config\Services::email();
         $this->now = date('Y-m-d H:i:s', now());
         // $this->UsersModel = new UsersModel();
         $this->session = session();
@@ -62,17 +58,8 @@ class User extends BaseController
     }
     public function proses_login()
     {
-        $users = new UsersModel();
-
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
-
-        $ipAddress = $this->request->getIPAddress();
-
-        // Check the number of failed login attempts
-        $loginAttemptsModel = new \App\Models\LoginAttemptsModel(); // Sesuaikan dengan nama model yang sesuai di proyek Anda
-        $attempts = $loginAttemptsModel->getAttempts($username, $ipAddress);
-
         // $dataUser = $users->where([
         //     'username' => $username,
         // ])->first();
@@ -93,8 +80,7 @@ class User extends BaseController
                 }
             }
         }
-        $cek_blokir = $this->db->query("SELECT username_user from tb_user where username_user ='" . $username . "' and aktif_user = 'Ya' ")->getNumRows();
-        // $cek_blokir = $this->db->query("SELECT username_user from tb_user where username_user ='" . $username . "' and counter_blokir >= '3' ")->getNumRows();
+        $cek_blokir = $this->db->query("SELECT username_user from tb_user where username_user ='" . $username . "' and counter_blokir >= '3' ")->getNumRows();
         if ($cek_blokir > 0) {
             echo "Akun Anda Belum Aktif. Hubungi Divisi Terkait Untuk Mengaktifkan Akun";
         } else {
@@ -117,8 +103,6 @@ class User extends BaseController
                         } else {
                             $nama_unit = 'Nama unit belum ada';
                         }
-
-                        $loginAttemptsModel->resetAttempts($username, $ipAddress);
 
                         session()->set([
                             'kd_user' => $data_user->kd_user,
@@ -147,70 +131,45 @@ class User extends BaseController
                         $pengaruh = $this->db->affectedRows();
                         echo json_encode($pengaruh);
                     }
-                } else {
-                    $loginAttemptsModel->incrementAttempts($username, $ipAddress);
 
-                    if ($attempts < 3) {
-                        // Too many failed attempts, block the account
-                        echo "Username/Password salah";
-                    } else
-                    if ($attempts >= 3 && $attempts < 5) {
-                        // Too many failed attempts, block the account
-                        echo "Terlalu Banyak Percobaan Masuk. Harap Tunggu 1 Menit";
-                    } else
-                    if ($attempts >= 5 && $attempts < 7) {
-                        // Too many failed attempts, block the account
-                        echo "Terlalu Banyak Percobaan Masuk. Harap Tunggu 5 Menit";
+                    // echo "1";
+                } else {
+                    $cek_username = $this->db->query("SELECT username_user from tb_user where username_user ='" . $username . "' ")->getNumRows();
+
+                    if ($cek_username > 0) {
+                        $this->db->table('tb_user')->where('username_user', $username)->increment('counter_blokir', 1);
+                        $cek_counter = $this->db->query("SELECT counter_blokir from tb_user where username_user ='" . $username . "' ")->getRow()->counter_blokir;
                     }
-                    if ($attempts > 8) {
-                        // Too many failed attempts, block the account
-                        $aktif = 'Ya';
+
+                    if ($cek_counter == '1') {
+                        $session = session();
+                        $session->set('nama_tempdata', 'isi_tempdata');
+                        $session->markAsTempdata('nama_tempdata', 10800); // 3 jam
+
+                        echo "Password Salah. Sisa Percobaan Password 2";
+                    } else if ($cek_counter == '2') {
+                        $session = session();
+                        $session->set('nama_tempdata', 'isi_tempdata');
+                        $session->markAsTempdata('nama_tempdata', 10800); // 3 jam
+                        echo "Password Salah. Sisa Percobaan Password 1";
+                    } else if ($cek_counter == '3') {
+                        if ($cek_counter == '3') {
+                            $aktif = 'Ya';
+                        } else {
+                            $aktif = 'Tidak';
+                        }
                         $data = [
                             'aktif_user' => $aktif
                         ];
                         $this->db->table('tb_user')->where('username_user', $username)->update($data);
-                        echo "Akun Anda Telah Dinonaktifkan. Hubungi Divisi Terkait Untuk Mengaktifkan Akun";
+                        echo "Akun Anda Telah di Blokir. Hubungi Divisi Terkait Untuk Membuka Blokir Akun";
+                    } else {
+                        echo "Password Salah. Masukkan Password Yang Benar";
+                        // echo "10";
                     }
                 }
-
-                // echo "1";
-                // } else {
-                //     $cek_username = $this->db->query("SELECT username_user from tb_user where username_user ='" . $username . "' ")->getNumRows();
-
-                //     if ($cek_username > 0) {
-                //         $this->db->table('tb_user')->where('username_user', $username)->increment('counter_blokir', 1);
-                //         $cek_counter = $this->db->query("SELECT counter_blokir from tb_user where username_user ='" . $username . "' ")->getRow()->counter_blokir;
-                //     }
-
-                //     if ($cek_counter == '1') {
-                //         $session = session();
-                //         $session->set('nama_tempdata', 'isi_tempdata');
-                //         $session->markAsTempdata('nama_tempdata', 10800); // 3 jam
-
-                //         echo "Password Salah. Sisa Percobaan Password 2";
-                //     } else if ($cek_counter == '2') {
-                //         $session = session();
-                //         $session->set('nama_tempdata', 'isi_tempdata');
-                //         $session->markAsTempdata('nama_tempdata', 10800); // 3 jam
-                //         echo "Password Salah. Sisa Percobaan Password 1";
-                //     } else if ($cek_counter == '3') {
-                //         if ($cek_counter == '3') {
-                //             $aktif = 'Ya';
-                //         } else {
-                //             $aktif = 'Tidak';
-                //         }
-                //         $data = [
-                //             'aktif_user' => $aktif
-                //         ];
-                //         $this->db->table('tb_user')->where('username_user', $username)->update($data);
-                //         echo "Akun Anda Telah di Blokir. Hubungi Divisi Terkait Untuk Membuka Blokir Akun";
-                //     } else {
-                //         echo "Password Salah. Masukkan Password Yang Benar";
-                //         // echo "10";
-                //     }
-                // }
             } else {
-                echo "Masukkan Username/Password Yang Benar";
+                echo "Masukkan Username Yang Benar";
             }
         }
     }
