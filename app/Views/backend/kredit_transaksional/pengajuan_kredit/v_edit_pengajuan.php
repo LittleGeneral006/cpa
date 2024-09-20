@@ -5643,14 +5643,11 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>1</td>
+                                            <td>Data Entry</td>
                                             <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                Data Entry
-                                            </td>
-                                            <td>
-                                                <span id="data_entry1">Oke</span> / <span id="data_entry2">Not Oke</span>
+                                                <span id="data_entry1" style="display: none;">Oke</span> /
+                                                <span id="data_entry2" style="display: none;">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -6390,17 +6387,17 @@
                     resizeJquerySteps();
                 } else if (currentIndex === 15) {
                     // tampil_button("recap");
-                    // checkRecap('tb_data_entry',kd_data,'data_entry')
-                    // checkRecap('tb_fcr',kd_data,'fcr')
-                    // checkRecap('tb_fcr_agunan',kd_data,'fcr_agunan')
-                    // checkRecap('tb_fcr_usaha',kd_data,'fcr_usaha')
-                    // checkRecap('tb_scoring',kd_data,'scoring')
-                    // checkRecap('tb_fak_data',kd_data,'fak_data')
-                    // checkRecap('tb_fak_modal',kd_data,'fak_modal')
-                    // checkRecap('tb_fak_rl',kd_data,'fak_rl')
-                    // checkRecap('tb_lap_rl',kd_data,'lap_rl')
-                    // checkRecap('tb_mauk',kd_data,'mauk')
-                    // checkRecap('tb_dcl',kd_data,'dcl')
+                    checkRecap('tb_data_entry', kd_data, 'data_entry')
+                    checkRecap('tb_fcr', kd_data, 'fcr')
+                    checkRecap('tb_fcr_agunan', kd_data, 'fcr_agunan')
+                    checkRecap('tb_fcr_usaha', kd_data, 'fcr_usaha')
+                    checkRecap('tb_scoring', kd_data, 'scoring')
+                    checkRecap('tb_fak_data', kd_data, 'fak_data')
+                    checkRecap('tb_fak_modal', kd_data, 'fak_modal')
+                    checkRecap('tb_fak_rl', kd_data, 'fak_rl')
+                    checkRecap('tb_lap_rl', kd_data, 'lap_rl')
+                    checkRecap('tb_mauk', kd_data, 'mauk')
+                    checkRecap('tb_dcl', kd_data, 'dcl')
                     tampil_button('save_recap');
                     tampil_btn_finish('<?php echo $data_entry->kd_data ?>')
                     tampil_disposisi('<?php echo $data_entry->kd_data ?>')
@@ -6413,8 +6410,7 @@
                     // } else if (currentIndex == 7) {} else if (currentIndex == 8) {} else if (currentIndex == 9) {} else if (currentIndex == 10) {} else if (currentIndex == 11) {} else if (currentIndex == 12) {} else if (currentIndex == 13) {
                     //     tampil_button('save_scoring')
                     // refresh_scoring()
-                }
-                else {
+                } else {
                     // console.log('ini current index: '+ currentIndex)
                     tampil_button('save_data_entry')
                 }

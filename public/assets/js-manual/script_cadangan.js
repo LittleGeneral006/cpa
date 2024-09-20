@@ -3475,27 +3475,27 @@ function seeDokumen(param) {
   window.open(url, "_blank");
 }
 
-// function checkRecap(tabel, kd_data, id_kolom) {
-//   $.ajax({
-//     url: base_url + "recap/" + tabel,
-//     type: "POST",
-//     data: {
-//       kd_data: kd_data,
-//     },
-//     success: function (response) {
-//       if (response.status === "Oke") {
-//         $("#" + id_kolom + "1").show(); // Tampilkan Oke
-//         $("#" + id_kolom + "2").hide(); // Sembunyikan Not Oke
-//       } else {
-//         $("#" + id_kolom + "1").hide(); // Sembunyikan Oke
-//         $("#" + id_kolom + "2").show(); // Tampilkan Not Oke
-//       }
-//     },
-//     error: function () {
-//       alert("Terjadi kesalahan saat mengambil data.");
-//     },
-//   });
-// }
+function checkRecap(tabel, kd_data, id_kolom) {
+  $.ajax({
+    url: base_url + "recap/" + tabel,
+    type: "POST",
+    data: {
+      kd_data: kd_data,
+    },
+    success: function (response) {
+      if (response.status === "Oke") {
+        $("#" + id_kolom + "1").show(); // Tampilkan Oke
+        $("#" + id_kolom + "2").hide(); // Sembunyikan Not Oke
+      } else {
+        $("#" + id_kolom + "1").hide(); // Sembunyikan Oke
+        $("#" + id_kolom + "2").show(); // Tampilkan Not Oke
+      }
+    },
+    error: function () {
+      alert("Terjadi kesalahan saat mengambil data.");
+    },
+  });
+}
 
 function hitungSemua() {
   // getFCR();

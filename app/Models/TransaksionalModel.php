@@ -72,12 +72,24 @@ class TransaksionalModel extends Model
             ->get()
             ->getRowArray();
     }
+    // public function getDataFromTable($table, $kd_data)
+    // {
+    //     // Query ke tabel yang dinamis menggunakan kd_data
+    //     $builder = $this->db->table($table);
+    //     $query = $builder->where('kd_data', $kd_data)->get();
+    //     return $query->getRowArray();
+    // }
     public function getDataFromTable($table, $kd_data)
     {
-        // Query ke tabel yang dinamis menggunakan kd_data
         $builder = $this->db->table($table);
-        $query = $builder->where('kd_data', $kd_data)->get();
-        return $query->getRowArray();
+        $query = $builder
+        ->where('kd_data', $kd_data)
+        ->get();
+
+        $result = $query->getRowArray();
+
+        // Hapus kolom created_at, updated_at, deleted_at dari hasil
+        return $result;
     }
     // public function getLatestRange()
     // {
