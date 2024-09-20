@@ -5888,7 +5888,7 @@
                 </div>
             </div>
         </div>
-        <input type="text" name="kd_data" id="kd_data">
+        <input type="text" hiddenn name="kd_data" id="kd_data">
 
         <input type="text" hidden name="itemppfakdata" id="itemppfakdata">
         <input type="text" hidden name="ppnppfakdata" id="ppnppfakdata">
@@ -6390,7 +6390,20 @@
                     resizeJquerySteps();
                 } else if (currentIndex === 15) {
                     // tampil_button("recap");
+                    // checkRecap('tb_data_entry',kd_data,'data_entry')
+                    // checkRecap('tb_fcr',kd_data,'fcr')
+                    // checkRecap('tb_fcr_agunan',kd_data,'fcr_agunan')
+                    // checkRecap('tb_fcr_usaha',kd_data,'fcr_usaha')
+                    // checkRecap('tb_scoring',kd_data,'scoring')
+                    // checkRecap('tb_fak_data',kd_data,'fak_data')
+                    // checkRecap('tb_fak_modal',kd_data,'fak_modal')
+                    // checkRecap('tb_fak_rl',kd_data,'fak_rl')
+                    // checkRecap('tb_lap_rl',kd_data,'lap_rl')
+                    // checkRecap('tb_mauk',kd_data,'mauk')
+                    // checkRecap('tb_dcl',kd_data,'dcl')
                     tampil_button('save_recap');
+                    tampil_btn_finish('<?php echo $data_entry->kd_data ?>')
+                    tampil_disposisi('<?php echo $data_entry->kd_data ?>')
 
                     resizeJquerySteps();
                     // } else if (currentIndex == 6) {
@@ -6400,11 +6413,8 @@
                     // } else if (currentIndex == 7) {} else if (currentIndex == 8) {} else if (currentIndex == 9) {} else if (currentIndex == 10) {} else if (currentIndex == 11) {} else if (currentIndex == 12) {} else if (currentIndex == 13) {
                     //     tampil_button('save_scoring')
                     // refresh_scoring()
-                } else if (currentIndex == 16) {
-                    tampil_button('save_recap')
-                    tampil_btn_finish('<?php echo $data_entry->kd_data ?>')
-                    tampil_disposisi('<?php echo $data_entry->kd_data ?>')
-                } else {
+                }
+                else {
                     // console.log('ini current index: '+ currentIndex)
                     tampil_button('save_data_entry')
                 }

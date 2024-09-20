@@ -72,6 +72,13 @@ class TransaksionalModel extends Model
             ->get()
             ->getRowArray();
     }
+    public function getDataFromTable($table, $kd_data)
+    {
+        // Query ke tabel yang dinamis menggunakan kd_data
+        $builder = $this->db->table($table);
+        $query = $builder->where('kd_data', $kd_data)->get();
+        return $query->getRowArray();
+    }
     // public function getLatestRange()
     // {
     //     return $this->db->table('t_distribusi')->select('RANGE')

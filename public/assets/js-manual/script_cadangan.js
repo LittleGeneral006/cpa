@@ -1259,20 +1259,37 @@ function isi_dcl() {
         data.kolektibilitas_kredit_grup_dcl
       );
       let fasilitas_kredit_grup_dcl = data.fasilitas_kredit_grup_dcl.split(";");
-      let nama_debitur_kredit_grup_dcl = data.nama_debitur_kredit_grup_dcl.split(";");
-      let jatuh_tempo_kredit_grup_dcl = data.jatuh_tempo_kredit_grup_dcl.split(";");
-      let plafond_existing_kredit_grup_dcl = data.plafond_existing_kredit_grup_dcl.split(";");
-      let outstanding_kredit_grup_dcl = data.outstanding_kredit_grup_dcl.split(";");
-      let kolektibilitas_kredit_grup_dcl = data.kolektibilitas_kredit_grup_dcl.split(";");
+      let nama_debitur_kredit_grup_dcl =
+        data.nama_debitur_kredit_grup_dcl.split(";");
+      let jatuh_tempo_kredit_grup_dcl =
+        data.jatuh_tempo_kredit_grup_dcl.split(";");
+      let plafond_existing_kredit_grup_dcl =
+        data.plafond_existing_kredit_grup_dcl.split(";");
+      let outstanding_kredit_grup_dcl =
+        data.outstanding_kredit_grup_dcl.split(";");
+      let kolektibilitas_kredit_grup_dcl =
+        data.kolektibilitas_kredit_grup_dcl.split(";");
       for (var i = 1; i <= fasilitas_kredit_grup_dcl.length; i++) {
         if (i == 1) {
           // Untuk baris pertama
-          $("#fasilitas_kredit_grup_dcl" + i).val(fasilitas_kredit_grup_dcl[i - 1]);
-          $("#nama_debitur_kredit_grup_dcl" + i).val(nama_debitur_kredit_grup_dcl[i - 1]);
-          $("#jatuh_tempo_kredit_grup_dcl" + i).val(jatuh_tempo_kredit_grup_dcl[i - 1]);
-          $("#plafond_existing_kredit_grup_dcl" + i).val(plafond_existing_kredit_grup_dcl[i - 1]);
-          $("#outstanding_kredit_grup_dcl" + i).val(outstanding_kredit_grup_dcl[i - 1]);
-          $("#kolektibilitas_kredit_grup_dcl" + i).val(kolektibilitas_kredit_grup_dcl[i - 1]);
+          $("#fasilitas_kredit_grup_dcl" + i).val(
+            fasilitas_kredit_grup_dcl[i - 1]
+          );
+          $("#nama_debitur_kredit_grup_dcl" + i).val(
+            nama_debitur_kredit_grup_dcl[i - 1]
+          );
+          $("#jatuh_tempo_kredit_grup_dcl" + i).val(
+            jatuh_tempo_kredit_grup_dcl[i - 1]
+          );
+          $("#plafond_existing_kredit_grup_dcl" + i).val(
+            plafond_existing_kredit_grup_dcl[i - 1]
+          );
+          $("#outstanding_kredit_grup_dcl" + i).val(
+            outstanding_kredit_grup_dcl[i - 1]
+          );
+          $("#kolektibilitas_kredit_grup_dcl" + i).val(
+            kolektibilitas_kredit_grup_dcl[i - 1]
+          );
         } else {
           // Untuk baris kedua dan seterusnya
           var html1 = $(".copy-dcl6").html();
@@ -1338,26 +1355,34 @@ function isi_dcl() {
       $("#fasilitasbanklaindcl").val(data.fasilitas_bank_lain_dcl);
       $("#bankljkbanklaindcl").val(data.bank_ljk_bank_lain_dcl);
       $("#jatuhtempobanklaindcl").val(data.jatuh_tempo_bank_lain_dcl);
-      $("#plafondexistingbanklaindcl").val(
-        data.plafond_existing_bank_lain_dcl
-      );
+      $("#plafondexistingbanklaindcl").val(data.plafond_existing_bank_lain_dcl);
       $("#outstandingbanklaindcl").val(data.outstanding_bank_lain_dcl);
       $("#kolektibilitas_bank_lain_dcl").val(data.kolektibilitas_bank_lain_dcl);
       let fasilitas_bank_lain_dcl = data.fasilitas_bank_lain_dcl.split(";");
       let bank_ljk_bank_lain_dcl = data.bank_ljk_bank_lain_dcl.split(";");
       let jatuh_tempo_bank_lain_dcl = data.jatuh_tempo_bank_lain_dcl.split(";");
-      let plafond_existing_bank_lain_dcl = data.plafond_existing_bank_lain_dcl.split(";");
+      let plafond_existing_bank_lain_dcl =
+        data.plafond_existing_bank_lain_dcl.split(";");
       let outstanding_bank_lain_dcl = data.outstanding_bank_lain_dcl.split(";");
-      let kolektibilitas_bank_lain_dcl = data.kolektibilitas_bank_lain_dcl.split(";");
+      let kolektibilitas_bank_lain_dcl =
+        data.kolektibilitas_bank_lain_dcl.split(";");
       for (var i = 1; i <= fasilitas_bank_lain_dcl.length; i++) {
         if (i == 1) {
           // Untuk baris pertama
           $("#fasilitas_bank_lain_dcl" + i).val(fasilitas_bank_lain_dcl[i - 1]);
           $("#bank_ljk_bank_lain_dcl" + i).val(bank_ljk_bank_lain_dcl[i - 1]);
-          $("#jatuh_tempo_bank_lain_dcl" + i).val(jatuh_tempo_bank_lain_dcl[i - 1]);
-          $("#plafond_existing_bank_lain_dcl" + i).val(plafond_existing_bank_lain_dcl[i - 1]);
-          $("#outstanding_bank_lain_dcl" + i).val(outstanding_bank_lain_dcl[i - 1]);
-          $("#kolektibilitas_bank_lain_dcl" + i).val(kolektibilitas_bank_lain_dcl[i - 1]);
+          $("#jatuh_tempo_bank_lain_dcl" + i).val(
+            jatuh_tempo_bank_lain_dcl[i - 1]
+          );
+          $("#plafond_existing_bank_lain_dcl" + i).val(
+            plafond_existing_bank_lain_dcl[i - 1]
+          );
+          $("#outstanding_bank_lain_dcl" + i).val(
+            outstanding_bank_lain_dcl[i - 1]
+          );
+          $("#kolektibilitas_bank_lain_dcl" + i).val(
+            kolektibilitas_bank_lain_dcl[i - 1]
+          );
         } else {
           // Untuk baris kedua dan seterusnya
           var html1 = $(".copy-dcl7").html();
@@ -1480,14 +1505,20 @@ function isi_dcl() {
         data.checklist_pengujian_lainnya_dcl
       );
       let pengujian_lainnya_dcl = data.pengujian_lainnya_dcl.split(";");
-      let dasar_pengujian_lainnya_dcl = data.dasar_pengujian_lainnya_dcl.split(";");
-      let checklist_pengujian_lainnya_dcl = data.checklist_pengujian_lainnya_dcl.split(";");
+      let dasar_pengujian_lainnya_dcl =
+        data.dasar_pengujian_lainnya_dcl.split(";");
+      let checklist_pengujian_lainnya_dcl =
+        data.checklist_pengujian_lainnya_dcl.split(";");
       for (var i = 1; i <= pengujian_lainnya_dcl.length; i++) {
         if (i == 1) {
           // Untuk baris pertama
           $("#pengujian_lainnya_dcl" + i).val(pengujian_lainnya_dcl[i - 1]);
-          $("#dasar_pengujian_lainnya_dcl" + i).val(dasar_pengujian_lainnya_dcl[i - 1]);
-          $("#checklist_pengujian_lainnya_dcl" + i).val(checklist_pengujian_lainnya_dcl[i - 1]);
+          $("#dasar_pengujian_lainnya_dcl" + i).val(
+            dasar_pengujian_lainnya_dcl[i - 1]
+          );
+          $("#checklist_pengujian_lainnya_dcl" + i).val(
+            checklist_pengujian_lainnya_dcl[i - 1]
+          );
         } else {
           // Untuk baris kedua dan seterusnya
           var html1 = $(".copy-dcl8").html();
@@ -3444,6 +3475,28 @@ function seeDokumen(param) {
   window.open(url, "_blank");
 }
 
+// function checkRecap(tabel, kd_data, id_kolom) {
+//   $.ajax({
+//     url: base_url + "recap/" + tabel,
+//     type: "POST",
+//     data: {
+//       kd_data: kd_data,
+//     },
+//     success: function (response) {
+//       if (response.status === "Oke") {
+//         $("#" + id_kolom + "1").show(); // Tampilkan Oke
+//         $("#" + id_kolom + "2").hide(); // Sembunyikan Not Oke
+//       } else {
+//         $("#" + id_kolom + "1").hide(); // Sembunyikan Oke
+//         $("#" + id_kolom + "2").show(); // Tampilkan Not Oke
+//       }
+//     },
+//     error: function () {
+//       alert("Terjadi kesalahan saat mengambil data.");
+//     },
+//   });
+// }
+
 function hitungSemua() {
   // getFCR();
   hitungPP();
@@ -4367,5 +4420,4 @@ $(document).ready(function () {
     jumlahisidcl8--;
     resizeJquerySteps();
   });
-
 });

@@ -163,6 +163,7 @@ $routes->get('/pengajuan/generate_no_pak', 'Pengajuan::generate_no_pak');
 // generate dokumen
 $routes->get('/generate-dokumen/(:any)/(:any)', 'Pengajuan::cetak_dokumen/$1/$2');
 $routes->get('/pengajuan/generate_fcr/(:any)/(:any)', 'Pengajuan::generate_fcr/$1/$2');
+$routes->get('/recap/(:any)', 'Pengajuan::checkDataRecap/$1');
 
 // pemroses
 $routes->get('/pemroses', 'Pemroses::v_pemroses');

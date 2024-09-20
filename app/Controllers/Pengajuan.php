@@ -299,6 +299,27 @@ class Pengajuan extends BaseController
         }
     }
 
+    public function checkDataRecap($tabel)
+    {
+        $kd_data = $this->request->getPost('kd_data');
+        $transaksional = new TransaksionalModel();
+
+        // Ambil data berdasarkan kd_data
+        $recap = $transaksional->getDataFromTable($tabel, $kd_data);
+
+        // Cek apakah ada data kosong di baris
+        if ($recap) {
+            foreach ($recap as $column) {
+                if (empty($column)) {
+                    return $this->response->setJSON(['status' => 'Not Oke']);
+                }
+            }
+            return $this->response->setJSON(['status' => 'Oke']);
+        } else {
+            return $this->response->setJSON(['status' => 'Not Oke']);
+        }
+    }
+
     public function cek_agunan_kd_tepakai($kd_data)
     {
         $tanah = '';
