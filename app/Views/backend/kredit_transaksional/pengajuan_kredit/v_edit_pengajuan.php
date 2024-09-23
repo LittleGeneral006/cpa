@@ -5646,8 +5646,7 @@
                                             <td>1</td>
                                             <td>Data Entry</td>
                                             <td>
-                                                <span id="data_entry1" style="display: none;">Oke</span> /
-                                                <span id="data_entry2" style="display: none;">Not Oke</span>
+                                                <span id="data_entry1" style="display: none;">Oke</span><span id="data_entry2" style="display: none;">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5658,7 +5657,7 @@
                                                 Formulir Call Report (FCR)
                                             </td>
                                             <td>
-                                                <span id="fcr1">Oke</span> / <span id="fcr2">Not Oke</span>
+                                                <span id="fcr1">Oke</span><span id="fcr2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5669,7 +5668,7 @@
                                                 Lampiran FCR - Usaha
                                             </td>
                                             <td>
-                                                <span id="fcr_usaha1">Oke</span> / <span id="fcr_usaha2">Not Oke</span>
+                                                <span id="fcr_usaha1">Oke</span><span id="fcr_usaha2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5680,7 +5679,7 @@
                                                 Lampiran FCR - Agunan
                                             </td>
                                             <td>
-                                                <span id="fcr_agunan1">Oke</span> / <span id="fcr_agunan2">Not Oke</span>
+                                                <span id="fcr_agunan1">Oke</span><span id="fcr_agunan2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5691,7 +5690,7 @@
                                                 Document Pendukung
                                             </td>
                                             <td>
-                                                <span id="dokumen1">Oke</span> / <span id="dokumen2">Not Oke</span>
+                                                <span id="dokumen1">Oke</span><span id="dokumen2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5702,7 +5701,7 @@
                                                 FAK Data
                                             </td>
                                             <td>
-                                                <span id="fak_data1">Oke</span> / <span id="fak_data2">Not Oke</span>
+                                                <span id="fak_data1">Oke</span><span id="fak_data2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5713,7 +5712,7 @@
                                                 FAK Modal
                                             </td>
                                             <td>
-                                                <span id="fak_modal1">Oke</span> / <span id="fak_modal2">Not Oke</span>
+                                                <span id="fak_modal1">Oke</span><span id="fak_modal2">Not Oke</span>
                                             </td>
                                         </tr>
 
@@ -5742,7 +5741,7 @@
                                                 FAK Proyeksi RL
                                             </td>
                                             <td>
-                                                <span id="fak_rl1">Oke</span> / <span id="fak_rl2">Not Oke</span>
+                                                <span id="fak_rl1">Oke</span><span id="fak_rl2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5753,7 +5752,7 @@
                                                 Upload Laporan RL
                                             </td>
                                             <td>
-                                                <span id="lap_rl1">Oke</span> / <span id="lap_rl2">Not Oke</span>
+                                                <span id="lap_rl1">Oke</span><span id="lap_rl2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5764,7 +5763,7 @@
                                                 CEF
                                             </td>
                                             <td>
-                                                <span id="cef1">Oke</span> / <span id="cef2">Not Oke</span>
+                                                <span id="cef1">Oke</span><span id="cef2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5775,7 +5774,7 @@
                                                 FAA
                                             </td>
                                             <td>
-                                                <span id="faa1">Oke</span> / <span id="faa2">Not Oke</span>
+                                                <span id="faa1">Oke</span><span id="faa2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5786,7 +5785,7 @@
                                                 MAUK
                                             </td>
                                             <td>
-                                                <span id="mauk1">Oke</span> / <span id="mauk2">Not Oke</span>
+                                                <span id="mauk1">Oke</span><span id="mauk2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5797,7 +5796,7 @@
                                                 DCL Compliance
                                             </td>
                                             <td>
-                                                <span id="dcl1">Oke</span> / <span id="dcl2">Not Oke</span>
+                                                <span id="dcl1">Oke</span><span id="dcl2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5808,7 +5807,7 @@
                                                 Scoring Koordinator
                                             </td>
                                             <td>
-                                                <span id="scoring1">Oke</span> / <span id="scoring2">Not Oke</span>
+                                                <span id="scoring1">Oke</span><span id="scoring2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <!-- <tr>
