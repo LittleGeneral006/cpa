@@ -13,131 +13,6 @@ var angkadcl6 = 2;
 var angkadcl7 = 2;
 var angkadcl8 = 2;
 
-// function tampil_button(param) {
-//   if (param == "save_fak_data") {
-//     $("#save_fak_data").show();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_fak_modal") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").show();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_fak_rl") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").show();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_lap_rl") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").show();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_ceftb") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").show();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_faa") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").show();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_mauk") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").show();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_dcl") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").show();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").hide();
-//   } else if (param == "save_scoring_koor") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").show();
-//     $("#save_recap").hide();
-//   } else if (param == "save_recap") {
-//     $("#save_fak_data").hide();
-//     $("#save_fak_modal").hide();
-//     $("#save_fak_rl").hide();
-//     $("#save_lap_rl").hide();
-//     $("#save_ceftb").hide();
-//     $("#save_faa").hide();
-//     $("#save_mauk").hide();
-//     $("#save_dcl").hide();
-//     $("#save_scoring_koor").hide();
-//     $("#save_recap").show();
-//   } else {
-//     // $("#save_fak_data").show();
-//     // $("#save_fak_modal").hide();
-//     // $("#save_fak_rl").hide();
-//     // $("#save_lap_rl").hide();
-//     // $("#save_ceftb").hide();
-//     // $("#save_faa").hide();
-//     // $("#save_mauk").hide();
-//     // $("#save_dcl").hide();
-//     // $("#save_scoring_koor").hide();
-//     // $("#save_recap").hide();
-//   }
-// }
-
 function variabelGlobal(callback) {
   var kirim = {
     kd_data: kd_data_encrypt,
@@ -1910,8 +1785,6 @@ function ceftb() {
           ? TotalCEFB[counter_tanah_loop].split(";")
           : [];
 
-        console.log(pecahCheckBoxCEFT);
-
         // Proses data untuk 'Tanah/ Tanah dan Bangunan' sesuai kebutuhan
         var inputan_tanah =
           '<div class="form-group row">' +
@@ -1946,7 +1819,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[0] && pecahCheckBoxCEFT[0] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'1\',\'0.25\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -1958,7 +1831,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[1] && pecahCheckBoxCEFT[1] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'1\',\'0.25\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -1970,7 +1843,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[2] && pecahCheckBoxCEFT[2] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'1\',\'0.25\','+counter_tanah_loop+')"></td>' +
           "<td></td>" +
           "</tr>" +
           "<tr>" +
@@ -1982,7 +1855,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[3] && pecahCheckBoxCEFT[3] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'1\',\'0.25\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -1993,8 +1866,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[0] +
-          '" id="hasilceft1" style="display: inline-block; width: 45px; margin-left: 10px;" name="hasil_checkbox_ceft[]"></td>' +
+          (pecahHasilCEFT[0]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft1" style="display: inline-block; width: 45px; margin-left: 10px;" name="hasil_checkbox_ceft[]"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="5">2</td>' +
@@ -2013,7 +1886,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[4] && pecahCheckBoxCEFT[4] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2025,7 +1898,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[5] && pecahCheckBoxCEFT[5] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2037,7 +1910,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[6] && pecahCheckBoxCEFT[6] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2049,7 +1922,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[7] && pecahCheckBoxCEFT[7] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2060,8 +1933,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[1] +
-          '" id="hasilceft2" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[1]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft2" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="5">3</td>' +
@@ -2080,7 +1953,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[8] && pecahCheckBoxCEFT[8] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'3\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2092,7 +1965,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[9] && pecahCheckBoxCEFT[9] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'3\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2104,7 +1977,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[10] && pecahCheckBoxCEFT[10] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'3\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2116,7 +1989,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[11] && pecahCheckBoxCEFT[11] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'3\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2127,8 +2000,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[2] +
-          '" id="hasilceft3" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[2]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft3" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="5">4</td>' +
@@ -2147,7 +2020,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[12] && pecahCheckBoxCEFT[12] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'4\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2159,7 +2032,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[13] && pecahCheckBoxCEFT[13] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'4\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2171,7 +2044,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[14] && pecahCheckBoxCEFT[14] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'4\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2183,7 +2056,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[15] && pecahCheckBoxCEFT[15] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'4\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2194,8 +2067,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[3] +
-          '" id="hasilceft4" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[3]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft4" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="5">5</td>' +
@@ -2214,7 +2087,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[16] && pecahCheckBoxCEFT[16] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2226,7 +2099,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[17] && pecahCheckBoxCEFT[17] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2238,7 +2111,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[18] && pecahCheckBoxCEFT[18] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2250,7 +2123,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[19] && pecahCheckBoxCEFT[19] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2261,8 +2134,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[4] +
-          '" id="hasilceft5" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[4]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft5" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="5">6</td>' +
@@ -2281,7 +2154,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[20] && pecahCheckBoxCEFT[20] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2293,7 +2166,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[21] && pecahCheckBoxCEFT[21] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2305,7 +2178,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[22] && pecahCheckBoxCEFT[22] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2317,7 +2190,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[23] && pecahCheckBoxCEFT[23] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2328,8 +2201,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[5] +
-          '" id="hasilceft6" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[5]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft6" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="4">7</td>' +
@@ -2348,7 +2221,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[24] && pecahCheckBoxCEFT[24] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'7\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'7\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2360,7 +2233,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[25] && pecahCheckBoxCEFT[25] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'7\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'7\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2372,7 +2245,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[26] && pecahCheckBoxCEFT[26] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'7\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'7\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2383,8 +2256,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[6] +
-          '" id="hasilceft7" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[6]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft7" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="5">8</td>' +
@@ -2403,7 +2276,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[27] && pecahCheckBoxCEFT[27] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'8\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2415,7 +2288,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[28] && pecahCheckBoxCEFT[28] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'8\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2427,7 +2300,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[29] && pecahCheckBoxCEFT[29] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'8\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2439,7 +2312,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[30] && pecahCheckBoxCEFT[30] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'8\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2450,8 +2323,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[7] +
-          '" id="hasilceft8" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[7]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft8" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky" rowspan="3">9</td>' +
@@ -2470,7 +2343,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[31] && pecahCheckBoxCEFT[31] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'9\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'9\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2482,7 +2355,7 @@ function ceftb() {
           counter_tanah_loop +
           '" ' +
           (pecahCheckBoxCEFT[32] && pecahCheckBoxCEFT[32] !== "0" ? "checked" : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'9\',\'0.05\')"></td>' +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'9\',\'0.05\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2493,8 +2366,8 @@ function ceftb() {
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"><input  value="' +
-          pecahHasilCEFT[8] +
-          '" id="hasilceft9" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          (pecahHasilCEFT[8]|| "") +
+          '" id="hasil'+counter_tanah_loop+'ceft9" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
           '<td class="tg-0pky"></td>' +
@@ -2506,7 +2379,7 @@ function ceftb() {
           '<td class="tg-0pky"><input id="hasiltotalCEFT' +
           counter_tanah_loop +
           '" value="' +
-          TotalCEFT[counter_tanah_loop] +
+          (TotalCEFT[counter_tanah_loop]|| "") +
           '" name="hasiltotalceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "</tbody>" +
@@ -2544,7 +2417,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[0] && pecahCheckBoxCEFB[0] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'1\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'1\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2556,7 +2429,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[1] && pecahCheckBoxCEFB[1] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'1\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'1\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2568,7 +2441,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[2] && pecahCheckBoxCEFB[2] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'1\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'1\',\'0.2\','+counter_tanah_loop+')"></td>' +
           "<td></td>" +
           "</tr>" +
           "<tr>" +
@@ -2578,8 +2451,8 @@ function ceftb() {
           '<td class="tg-0pky">20%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb1" value="' +
-          pecahHasilCEFB[0] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb1" value="' +
+          (pecahHasilCEFB[0]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2599,7 +2472,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[3] && pecahCheckBoxCEFB[3] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2611,7 +2484,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[4] && pecahCheckBoxCEFB[4] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2623,7 +2496,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[5] && pecahCheckBoxCEFB[5] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2635,7 +2508,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[6] && pecahCheckBoxCEFB[6] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'2\',\'0.2\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2645,8 +2518,8 @@ function ceftb() {
           '<td class="tg-0pky">20%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb2" value="' +
-          pecahHasilCEFB[1] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb2" value="' +
+          (pecahHasilCEFB[1]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2666,7 +2539,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[7] && pecahCheckBoxCEFB[7] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'3\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2678,7 +2551,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[8] && pecahCheckBoxCEFB[8] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'3\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2690,7 +2563,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[9] && pecahCheckBoxCEFB[9] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'3\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2702,7 +2575,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[10] && pecahCheckBoxCEFB[10] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'3\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2712,8 +2585,8 @@ function ceftb() {
           '<td class="tg-0pky">15%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb3" value="' +
-          pecahHasilCEFB[2] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb3" value="' +
+          (pecahHasilCEFB[2]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2733,7 +2606,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[11] && pecahCheckBoxCEFB[11] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'4\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2745,7 +2618,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[12] && pecahCheckBoxCEFB[12] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'4\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2757,7 +2630,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[13] && pecahCheckBoxCEFB[13] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'4\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2769,7 +2642,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[14] && pecahCheckBoxCEFB[14] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'4\',\'0.15\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2779,8 +2652,8 @@ function ceftb() {
           '<td class="tg-0pky">15%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb4" value="' +
-          pecahHasilCEFB[3] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb4" value="' +
+          (pecahHasilCEFB[3]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2800,7 +2673,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[15] && pecahCheckBoxCEFB[15] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2812,7 +2685,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[16] && pecahCheckBoxCEFB[16] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2824,7 +2697,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[17] && pecahCheckBoxCEFB[17] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2836,7 +2709,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[18] && pecahCheckBoxCEFB[18] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'5\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2846,8 +2719,8 @@ function ceftb() {
           '<td class="tg-0pky">10%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb5" value="' +
-          pecahHasilCEFB[4] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb5" value="' +
+          (pecahHasilCEFB[4]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2867,7 +2740,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[19] && pecahCheckBoxCEFB[19] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2879,7 +2752,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[20] && pecahCheckBoxCEFB[20] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2891,7 +2764,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[21] && pecahCheckBoxCEFB[21] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2903,7 +2776,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[22] && pecahCheckBoxCEFB[22] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'6\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2913,8 +2786,8 @@ function ceftb() {
           '<td class="tg-0pky">10%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb6" value="' +
-          pecahHasilCEFB[5] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb6" value="' +
+          (pecahHasilCEFB[5]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2934,7 +2807,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[22] && pecahCheckBoxCEFB[22] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2946,7 +2819,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2958,7 +2831,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[24] && pecahCheckBoxCEFB[24] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2970,7 +2843,7 @@ function ceftb() {
           counter_tanah_loop +
           '"' +
           (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2980,8 +2853,8 @@ function ceftb() {
           '<td class="tg-0pky">10%</td>' +
           '<td class="tg-0pky"></td>' +
           '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasilcefb7" value="' +
-          pecahHasilCEFB[6] +
+          '<td class="tg-0pky"><input id="hasil'+counter_tanah_loop+'cefb7" value="' +
+          (pecahHasilCEFB[6]|| "") +
           '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "<tr>" +
@@ -2994,7 +2867,7 @@ function ceftb() {
           '<td class="tg-0pky"><input id="hasiltotalCEFB' +
           counter_tanah_loop +
           '" name="hasiltotalcefb[]" value="' +
-          TotalCEFB[counter_tanah_loop] +
+          (TotalCEFB[counter_tanah_loop] ||"") +
           '" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
           "</tr>" +
           "</tbody>" +
@@ -4239,23 +4112,24 @@ function hitungPersentasePemotonganKreditBank() {
 //CEF
 //
 
-function showValueCEFT(checkbox, angka, bobot) {
+function showValueCEFT(checkbox, angka, bobot, counter) {
   if (checkbox.checked) {
     var hitungbobot = checkbox.value * bobot;
-    $("#hasilceft" + angka).val(hitungbobot);
+    $("#hasil"+counter+"ceft" + angka).val(hitungbobot);
   } else {
     var hitungbobot = 0;
-    $("#hasilceft" + angka).val(hitungbobot);
+    $("#hasil"+counter+"ceft" + angka).val(hitungbobot);
   }
-  var hasil1ceft = parseFloat(document.getElementById("hasilceft1").value || 0);
-  var hasil2ceft = parseFloat(document.getElementById("hasilceft2").value || 0);
-  var hasil3ceft = parseFloat(document.getElementById("hasilceft3").value || 0);
-  var hasil4ceft = parseFloat(document.getElementById("hasilceft4").value || 0);
-  var hasil5ceft = parseFloat(document.getElementById("hasilceft5").value || 0);
-  var hasil6ceft = parseFloat(document.getElementById("hasilceft6").value || 0);
-  var hasil7ceft = parseFloat(document.getElementById("hasilceft7").value || 0);
-  var hasil8ceft = parseFloat(document.getElementById("hasilceft8").value || 0);
-  var hasil9ceft = parseFloat(document.getElementById("hasilceft9").value || 0);
+  console.log(counter);
+  var hasil1ceft = parseFloat(document.getElementById("hasil"+counter+"ceft1").value || 0);
+  var hasil2ceft = parseFloat(document.getElementById("hasil"+counter+"ceft2").value || 0);
+  var hasil3ceft = parseFloat(document.getElementById("hasil"+counter+"ceft3").value || 0);
+  var hasil4ceft = parseFloat(document.getElementById("hasil"+counter+"ceft4").value || 0);
+  var hasil5ceft = parseFloat(document.getElementById("hasil"+counter+"ceft5").value || 0);
+  var hasil6ceft = parseFloat(document.getElementById("hasil"+counter+"ceft6").value || 0);
+  var hasil7ceft = parseFloat(document.getElementById("hasil"+counter+"ceft7").value || 0);
+  var hasil8ceft = parseFloat(document.getElementById("hasil"+counter+"ceft8").value || 0);
+  var hasil9ceft = parseFloat(document.getElementById("hasil"+counter+"ceft9").value || 0);
 
   total =
     hasil1ceft +
@@ -4269,24 +4143,24 @@ function showValueCEFT(checkbox, angka, bobot) {
     hasil9ceft;
 
   // Menampilkan total ke dalam elemen dengan id "hasiltotal"
-  document.getElementById("hasiltotalCEFT").value = total;
+  document.getElementById("hasiltotalCEFT"+counter).value = total;
 }
 
-function showValueCEFB(checkbox, angka, bobot) {
+function showValueCEFB(checkbox, angka, bobot,counter) {
   if (checkbox.checked) {
     var hitungbobot = checkbox.value * bobot;
-    $("#hasilcefb" + angka).val(hitungbobot);
+    $("#hasil"+counter+"cefb" + angka).val(hitungbobot);
   } else {
     var hitungbobot = 0;
-    $("#hasilcefb" + angka).val(hitungbobot);
+    $("#hasil"+counter+"cefb" + angka).val(hitungbobot);
   }
-  var hasil1cefb = parseFloat(document.getElementById("hasilcefb1").value || 0);
-  var hasil2cefb = parseFloat(document.getElementById("hasilcefb2").value || 0);
-  var hasil3cefb = parseFloat(document.getElementById("hasilcefb3").value || 0);
-  var hasil4cefb = parseFloat(document.getElementById("hasilcefb4").value || 0);
-  var hasil5cefb = parseFloat(document.getElementById("hasilcefb5").value || 0);
-  var hasil6cefb = parseFloat(document.getElementById("hasilcefb6").value || 0);
-  var hasil7cefb = parseFloat(document.getElementById("hasilcefb7").value || 0);
+  var hasil1cefb = parseFloat(document.getElementById("hasil"+counter+"cefb1").value || 0);
+  var hasil2cefb = parseFloat(document.getElementById("hasil"+counter+"cefb2").value || 0);
+  var hasil3cefb = parseFloat(document.getElementById("hasil"+counter+"cefb3").value || 0);
+  var hasil4cefb = parseFloat(document.getElementById("hasil"+counter+"cefb4").value || 0);
+  var hasil5cefb = parseFloat(document.getElementById("hasil"+counter+"cefb5").value || 0);
+  var hasil6cefb = parseFloat(document.getElementById("hasil"+counter+"cefb6").value || 0);
+  var hasil7cefb = parseFloat(document.getElementById("hasil"+counter+"cefb7").value || 0);
 
   total =
     hasil1cefb +
@@ -4298,7 +4172,7 @@ function showValueCEFB(checkbox, angka, bobot) {
     hasil7cefb;
 
   // Menampilkan total ke dalam elemen dengan id "hasiltotal"
-  document.getElementById("hasiltotalCEFB").value = total;
+  document.getElementById("hasiltotalCEFB"+counter).value = total;
 }
 
 jumlahisipp = 1;
