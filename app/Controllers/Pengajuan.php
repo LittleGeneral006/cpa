@@ -276,12 +276,18 @@ class Pengajuan extends BaseController
             $data['permission'] = $permission;
             // $data['cek_agunan'] = $cek_agunan;
             $data['edit_pengajuan_kredit_transaksional'] = $this->permission2('Edit Pengajuan Kredit Transaksional');
+            $data['edit_pengajuan_kredit_transaksional_koordinator'] = $this->permission2('Edit Pengajuan Kredit Transaksional Koordinator');
             $data_master = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
             $data['data_master'] = $data_master;
             if ($data['edit_pengajuan_kredit_transaksional'] == true && $data_master->progress == 'Input') {
                 $data['edit_data'] = 'boleh edit';
             } else {
                 $data['edit_data'] = null;
+            }
+            if ($data['edit_pengajuan_kredit_transaksional_koordinator'] == true && $data_master->progress == 'Review') {
+                $data['edit_data_koordinator'] = 'boleh edit';
+            } else {
+                $data['edit_data_koordinator'] = null;
             }
 
             $data['save_edit_pengajuan_kredit_transaksional'] = $this->permission2('Save Edit Pengajuan Kredit Transaksional');
@@ -1246,17 +1252,22 @@ class Pengajuan extends BaseController
                                                         if ($tb_lap_rl == true) {
                                                             $tb_mauk = $this->insert_satuan('kd_data', 'tb_mauk', $data_insert['kd_data'], $data_insert);
                                                             if ($tb_mauk == true) {
-                                                                // $tb_faa = $this->insert_satuan('kd_data', 'tb_faa', $data_insert['kd_data'], $data_insert);
-                                                                // if ($tb_faa == true) {
-                                                                $tb_dcl = $this->insert_satuan('kd_data', 'tb_dcl', $data_insert['kd_data'], $data_insert);
-                                                                if ($tb_dcl == true) {
-                                                                    $hasil = true;
+                                                                $tb_faa = $this->insert_satuan('kd_data', 'tb_faa', $data_insert['kd_data'], $data_insert);
+                                                                if ($tb_faa == true) {
+                                                                    $tb_dcl = $this->insert_satuan('kd_data', 'tb_dcl', $data_insert['kd_data'], $data_insert);
+                                                                    if ($tb_dcl == true) {
+                                                                        $tb_scoring_koor = $this->insert_satuan('kd_data', 'tb_scoring_koor', $data_insert['kd_data'], $data_insert);
+                                                                        if ($tb_scoring_koor == true) {
+                                                                            $hasil = true;
+                                                                        } else {
+                                                                            $hasil = false;
+                                                                        }
+                                                                    } else {
+                                                                        $hasil = false;
+                                                                    }
                                                                 } else {
                                                                     $hasil = false;
                                                                 }
-                                                                // } else {
-                                                                //     $hasil = false;
-                                                                // }
                                                             } else {
                                                                 $hasil = false;
                                                             }
@@ -1515,7 +1526,7 @@ class Pengajuan extends BaseController
     }
     public function data_entry($hasil, $pemanggil)
     {
-        // $this->debug($hasil);
+
         $input = $this->request->getPost('jenis_agunan_tambah');
         $jenis_agunan = explode(";", $input);
         $jenis_agunan2 = $this->jenis_agunan($jenis_agunan);
@@ -1537,6 +1548,7 @@ class Pengajuan extends BaseController
                 'alamat_kantor' => $this->request->getPost('alamat_kantor_tambah'),
                 'alamat_gudang' => $this->request->getPost('alamat_gudang_tambah'),
                 'group_debitur' => $this->request->getPost('group_debitur_tambah'),
+                'npwp' => $this->request->getPost('npwp_tambah'),
 
                 'nama_proyek' => $this->request->getPost('nama_proyek_tambah'),
                 'nomor_spk' => $this->request->getPost('nomor_spk_tambah'),
@@ -1570,72 +1582,72 @@ class Pengajuan extends BaseController
                     $data_master['progress'] = 'Review';
                 }
                 // koord pemasar => kepala cabang
-                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] < 2000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] < 2000000001) {
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Approval';
                 }
-                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] >= 2000000000 && $data['plafond'] < 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Rekomendasi';
                 }
-                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] >= 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] >= 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Rekomendasi';
                 }
                 // kepala cabang => analis kredit
-                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] < 2000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] < 2000000001) {
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Approved';
                 }
-                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] >= 2000000000 && $data['plafond'] < 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
                     $data_master['posisi_progress'] = 'Analis Kredit';
                     $data_master['progress'] = 'Rekomendasi';
                 }
-                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] >= 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] >= 5000000001) {
                     $data_master['posisi_progress'] = 'Analis Kredit';
                     $data_master['progress'] = 'Rekomendasi';
                 }
                 // analis kredit => kepala bagian
-                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] < 2000000000) {
+                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Approval/ Approved';
                 }
-                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] >= 2000000000 && $data['plafond'] < 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Bagian';
                     $data_master['progress'] = 'Approval';
                 }
-                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] >= 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] >= 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Bagian';
                     $data_master['progress'] = 'Rekomendasi';
                 }
                 // kepala bagian => kepala divisi
-                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] < 2000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Approval/ Approved';
                 }
-                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] >= 2000000000 && $data['plafond'] < 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Bagian';
                     $data_master['progress'] = 'Approved';
                 }
-                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] >= 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] >= 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Divisi';
                     $data_master['progress'] = 'Approval'; //baru ku ubah dari rekomendasi ke approval 11 8 24
                 }
 
                 // kepala divisi
-                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] < 2000000000) {
+                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
                     $data_master['posisi_progress'] = 'Kepala Cabang';
                     $data_master['progress'] = 'Approval/ Approved';
                 }
-                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] >= 2000000000 && $data['plafond'] < 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
                     $data_master['posisi_progress'] = 'Kepala Bagian';
                     $data_master['progress'] = 'Approval/ Approved';
                 }
-                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] >= 5000000000) {
+                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] >= 5000000001) {
                     $data_master['posisi_progress'] = 'Kepala Divisi';
                     $data_master['progress'] = 'Approved';
                 }
@@ -1713,7 +1725,7 @@ class Pengajuan extends BaseController
             }
             // koord pemasar => kepala cabang
             if (session()->get('kd_level_user') == 'LVL23072023133934') {
-                if ($plafond_db < 2000000000 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval';
                     $data_kirim = [
@@ -1722,7 +1734,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kacab',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1731,7 +1743,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kacab',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1743,7 +1755,7 @@ class Pengajuan extends BaseController
             }
             // kepala cabang => analis kredit
             if (session()->get('kd_level_user') == 'LVL23072023131340') {
-                if ($plafond_db < 2000000000 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
+                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approved';
                     $data_kirim = [
@@ -1752,7 +1764,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Setujui/ Approve',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Analis Kredit';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1761,7 +1773,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Analis Kredit',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Analis Kredit';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1773,7 +1785,7 @@ class Pengajuan extends BaseController
             }
             // analis kredit => kepala bagian
             if (session()->get('kd_level_user') == 'LVL18092023101055') {
-                if ($plafond_db < 2000000000) {
+                if ($plafond_db < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -1783,7 +1795,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kacab/ Error',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Approval';
                     $data_kirim = [
@@ -1792,7 +1804,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kabag',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1804,7 +1816,7 @@ class Pengajuan extends BaseController
             }
             // kepala bagian => kepala divisi
             if (session()->get('kd_level_user') == 'LVL23072023134345') {
-                if ($plafond_db < 2000000000) {
+                if ($plafond_db < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -1814,7 +1826,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kacab/  Error',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Approved';
                     $data_kirim = [
@@ -1823,7 +1835,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Setujui/ Approve',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Kepala Divisi';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1836,7 +1848,7 @@ class Pengajuan extends BaseController
 
             // kepala divisi
             if (session()->get('kd_level_user') == 'LVL07112023100547') {
-                if ($plafond_db < 2000000000) {
+                if ($plafond_db < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -1846,7 +1858,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kacab/ Error',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000) {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -1856,7 +1868,7 @@ class Pengajuan extends BaseController
                         'judul_button' => 'Kirim ke Kabag/ Error',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
                     // $data_master['posisi_progress'] = 'Kepala Divisi';
                     // $data_master['progress'] = 'Approved';
                     $data_kirim = [
@@ -1909,7 +1921,7 @@ class Pengajuan extends BaseController
             }
             // koord pemasar => kepala cabang
             if (session()->get('kd_level_user') == 'LVL23072023133934') {
-                if ($plafond_db < 2000000000 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval';
                     $data_kirim = [
@@ -1923,7 +1935,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '1',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1937,7 +1949,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '1',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1954,7 +1966,7 @@ class Pengajuan extends BaseController
             }
             // kepala cabang => analis kredit
             if (session()->get('kd_level_user') == 'LVL23072023131340') {
-                if ($plafond_db < 2000000000 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
+                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approved';
                     $data_kirim = [
@@ -1968,7 +1980,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '1',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Analis Kredit';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1982,7 +1994,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '1',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Analis Kredit';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -1999,7 +2011,7 @@ class Pengajuan extends BaseController
             }
             // analis kredit => kepala bagian
             if (session()->get('kd_level_user') == 'LVL18092023101055') {
-                if ($plafond_db < 2000000000) {
+                if ($plafond_db < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -2014,7 +2026,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '0',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Approval';
                     $data_kirim = [
@@ -2028,7 +2040,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '1',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -2045,7 +2057,7 @@ class Pengajuan extends BaseController
             }
             // kepala bagian => kepala divisi
             if (session()->get('kd_level_user') == 'LVL23072023134345') {
-                if ($plafond_db < 2000000000) {
+                if ($plafond_db < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -2060,7 +2072,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '0',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Approved';
                     $data_kirim = [
@@ -2074,7 +2086,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '1',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
                     // $data_master['posisi_progress'] = 'Kepala Divisi';
                     // $data_master['progress'] = 'Rekomendasi';
                     $data_kirim = [
@@ -2092,7 +2104,7 @@ class Pengajuan extends BaseController
 
             // kepala divisi
             if (session()->get('kd_level_user') == 'LVL07112023100547') {
-                if ($plafond_db < 2000000000) {
+                if ($plafond_db < 2000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
                     // $data_master['posisi_progress'] = 'Kepala Cabang';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -2107,7 +2119,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '0',
                     ];
                 }
-                if ($plafond_db >= 2000000000 && $plafond_db < 5000000000) {
+                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001) {
                     // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
                     // $data_master['posisi_progress'] = 'Kepala Bagian';
                     // $data_master['progress'] = 'Approval/ Approved';
@@ -2122,7 +2134,7 @@ class Pengajuan extends BaseController
                         'tampil_btn_return' => '0',
                     ];
                 }
-                if ($plafond_db >= 5000000000 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
+                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
                     // $data_master['posisi_progress'] = 'Kepala Divisi';
                     // $data_master['progress'] = 'Approved';
                     $data_kirim = [
@@ -2282,7 +2294,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_reject()
+    public function edit_reject($jenis = '1')
     {
         if (!$this->validate([
 
@@ -2357,6 +2369,10 @@ class Pengajuan extends BaseController
                 'waktu_reject' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
 
             ];
+            if ($jenis == '1') {
+                $simpan_reject['jenis_kredit'] = 'Pengajuan Kredit Transaksional';
+                $edit_reject['jenis_kredit'] = 'Pengajuan Kredit Transaksional';
+            }
 
             $ada_master = $this->db->query("SELECT * from tb_data_master where kd_data = '" . $kd_data . "' ")->getNumRows();
             if ($ada_master > 0) {
@@ -2451,6 +2467,7 @@ class Pengajuan extends BaseController
         $data['fak_data'] = $this->db->query("SELECT * FROM tb_fak_data WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['fak_modal'] = $this->db->query("SELECT * FROM tb_fak_modal WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['fak_rl'] = $this->db->query("SELECT * FROM tb_fak_rl WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+        $data['faa'] = $this->db->query("SELECT * FROM tb_faa WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['ceftb'] = $this->db->query("SELECT * FROM tb_ceftb WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['mauk'] = $this->db->query("SELECT * FROM tb_mauk WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['dcl'] = $this->db->query("SELECT * FROM tb_dcl WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
@@ -7549,6 +7566,190 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
+    public function edit_scoring_koor()
+    {
+        // $cek = $this->request->getFile('upload_dokumen_tambah');
+        // var_dump($cek);
+        // die;
+        // echo json_encode($cek);
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+
+            'nama_pemohon_sc' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Pemohon Harus diisi',
+                ]
+            ],
+            // 'alamat_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Alamat Harus diisi',
+            //     ]
+            // ],
+            // 'plafond_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Plafond Harus diisi',
+            //     ]
+            // ],
+            // 'tujuan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Tujuan Harus diisi',
+            //     ]
+            // ],
+            'no_pak_sc' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'No PAK Harus diisi',
+                ]
+            ],
+
+            // 'pendirian_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Pendirian Harus diisi',
+            //     ]
+            // ],
+            // 'legalitas_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Legalitas Harus diisi',
+            //     ]
+            // ],
+            // 'hubungan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Hubungan Harus diisi',
+            //     ]
+            // ],
+
+            // 'pengelolaan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Pengelolaan Harus diisi',
+            //     ]
+            // ],
+            // 'jenis_agunan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Jenis Agunan Harus diisi',
+            //     ]
+            // ],
+            // 'bukti_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Bukti Harus diisi',
+            //     ]
+            // ],
+            // 'status_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Status Harus diisi',
+            //     ]
+            // ],
+            // 'marketable_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Marketable Harus diisi',
+            //     ]
+            // ],
+            // 'lending_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Lending Harus diisi',
+            //     ]
+            // ],
+            // 'pengalaman_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Pengalaman Harus diisi',
+            //     ]
+            // ],
+            // 'sumber_dana_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Sumber Dana Harus diisi',
+            //     ]
+            // ],
+            // 'lokasi_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Lokasi Harus diisi',
+            //     ]
+            // ],
+            // 'jenis_proyek_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Jenis Proyek Harus diisi',
+            //     ]
+            // ],
+            // 'bahan_baku_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Bahan Baku Harus diisi',
+            //     ]
+            // ],
+            // 'peralatan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Peralatan Harus diisi',
+            //     ]
+            // ],
+            // 'pembayaran_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Pembayaran Harus diisi',
+            //     ]
+            // ],
+            // 'dasar_penunjukan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Dasar Penunjukan Harus diisi',
+            //     ]
+            // ],
+            // 'prosentase_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Prosentase Harus diisi',
+            //     ]
+            // ],
+            // 'jangka_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Jangka Waktu Harus diisi',
+            //     ]
+            // ],
+            // 'agunan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Agunan Harus diisi',
+            //     ]
+            // ],
+            // 'penjaminan_sc' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Penjaminan Harus diisi',
+            //     ]
+            // ],
+
+
+
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            // Proses penyimpanan data
+            $hasil = $this->data_scoring_koor($hasil);
+        }
+        echo json_encode($hasil);
+    }
     public function data_scoring($hasil)
     {
         $data = [
@@ -7637,6 +7838,98 @@ class Pengajuan extends BaseController
             $hasil = [
                 'status' => 'error',
                 'message' => 'Edit scoring Gagal'
+            ];
+        }
+        return $hasil;
+    }
+    public function data_scoring_koor($hasil)
+    {
+        $data = [
+            'nama_pemohon' => $this->request->getPost('nama_pemohon_sc_koor'),
+            'alamat' => $this->request->getPost('alamat_sc_koor'),
+            'plafond' => $this->request->getPost('plafond_sc_koor'),
+            'tujuan' => $this->request->getPost('tujuan_sc_koor'),
+            'no_pak' => $this->request->getPost('no_pak_sc_koor'),
+
+            // 'pendirian_bu' => $this->request->getPost('pendirian_sc_koor'),
+            // 'legalitas' => $this->request->getPost('legalitas_sc_koor'),
+            // 'hubungan_funding' => $this->request->getPost('hubungan_sc_koor'),
+            // 'manajemen_usaha' => $this->request->getPost('pengelolaan_sc_koor'),
+            // 'jenis_agunan' => $this->request->getPost('jenis_agunan_sc_koor'),
+            // 'bukti_kepemilikan_agunan' => $this->request->getPost('bukti_sc_koor'),
+            // 'status_kepemilikan' => $this->request->getPost('status_sc_koor'),
+            // 'marketable_agunan' => $this->request->getPost('marketable_sc_koor'),
+            // 'hubungan_landing' => $this->request->getPost('lending_sc_koor'),
+            // 'pengalaman' => $this->request->getPost('pengalaman_sc_koor'),
+            // 'sumber_dana' => $this->request->getPost('sumber_dana_sc_koor'),
+            // 'lokasi_proyek' => $this->request->getPost('lokasi_sc_koor'),
+            // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor'),
+            // 'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor'),
+            // 'peralatan' => $this->request->getPost('peralatan_sc_koor'),
+            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor'),
+            // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor'),
+            // 'persentase_plafond' => $this->request->getPost('prosentase_sc_koor'),
+            // 'jangka_waktu' => $this->request->getPost('jangka_sc_koor'),
+            // 'persentase_agunan' => $this->request->getPost('agunan_sc_koor'),
+            // 'penjaminan_maskapai' => $this->request->getPost('penjaminan_sc_koor'),
+
+            'pendirian_bu' => $this->request->getPost('pendirian_sc_koor') ? $this->request->getPost('pendirian_sc_koor') : 0,
+            'legalitas' => $this->request->getPost('legalitas_sc_koor') ? $this->request->getPost('legalitas_sc_koor') : 0,
+            'hubungan_funding' => $this->request->getPost('hubungan_sc_koor') ? $this->request->getPost('hubungan_sc_koor') : 0,
+            'manajemen_usaha' => $this->request->getPost('pengelolaan_sc_koor') ? $this->request->getPost('pengelolaan_sc_koor') : 0,
+            'jenis_agunan' => $this->request->getPost('jenis_agunan_sc_koor') ? $this->request->getPost('jenis_agunan_sc_koor') : 0,
+            'bukti_kepemilikan_agunan' => $this->request->getPost('bukti_sc_koor') ? $this->request->getPost('bukti_sc_koor') : 0,
+            'status_kepemilikan' => $this->request->getPost('status_sc_koor') ? $this->request->getPost('status_sc_koor') : 0,
+            'marketable_agunan' => $this->request->getPost('marketable_sc_koor') ? $this->request->getPost('marketable_sc_koor') : 0,
+            'hubungan_landing' => $this->request->getPost('lending_sc_koor') ? $this->request->getPost('lending_sc_koor') : 0,
+            'pengalaman' => $this->request->getPost('pengalaman_sc_koor') ? $this->request->getPost('pengalaman_sc_koor') : 0,
+            'sumber_dana' => $this->request->getPost('sumber_dana_sc_koor') ? $this->request->getPost('sumber_dana_sc_koor') : 0,
+            'lokasi_proyek' => $this->request->getPost('lokasi_sc_koor') ? $this->request->getPost('lokasi_sc_koor') : 0,
+            'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor') ? $this->request->getPost('jenis_proyek_sc_koor') : 0,
+            'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor') ? $this->request->getPost('bahan_baku_sc_koor') : 0,
+            'peralatan' => $this->request->getPost('peralatan_sc_koor') ? $this->request->getPost('peralatan_sc_koor') : 0,
+            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
+            'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor') ? $this->request->getPost('dasar_penunjukan_sc_koor') : 0,
+            'persentase_plafond' => $this->request->getPost('prosentase_sc_koor') ? $this->request->getPost('prosentase_sc_koor') : 0,
+            'jangka_waktu' => $this->request->getPost('jangka_sc_koor') ? $this->request->getPost('jangka_sc_koor') : 0,
+            'persentase_agunan' => $this->request->getPost('agunan_sc_koor') ? $this->request->getPost('agunan_sc_koor') : 0,
+            'penjaminan_maskapai' => $this->request->getPost('penjaminan_sc_koor') ? $this->request->getPost('penjaminan_sc_koor') : 0,
+
+            // 'hasil_skoring' => '0',
+            // 'keterangan' => 'Belum dihitung',
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_pengubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
+            'kd_unit_pengubah' => session()->get('kd_unit_user'),
+        ];
+        $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
+            + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
+            + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
+            + $data['penjaminan_maskapai'];
+        if ($jumlah >= 325) {
+            $ket = 'Approv';
+        } else {
+            $ket = 'Reject';
+        }
+        $data['hasil_skoring'] = $jumlah;
+        $data['keterangan'] = $ket;
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_scoring_koordinator where kd_data = '" . $kd_data . "' ")->getNumRows();
+        if ($cek_kd_data > 0) {
+            $this->edit_scoring_master($kd_data, $data['hasil_skoring']);
+            $this->db->table('tb_scoring_koordinator')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit scoring koordinator berhasil'
+            ];
+        } else {
+            $hasil = [
+                'status' => 'error',
+                'message' => 'Edit scoring koordinator Gagal'
             ];
         }
         return $hasil;
@@ -7950,7 +8243,6 @@ class Pengajuan extends BaseController
             'message' => 'gagal input data'
         ];
         if (!$this->validate([
-
             'unit_kerja_tambah' => [
                 'rules' => 'required',
                 'errors' => [
@@ -8107,7 +8399,6 @@ class Pengajuan extends BaseController
                     'required' => 'Status Pengajuan Harus diisi',
                 ]
             ],
-
         ])) {
             $hasil = [
                 'status' => 'error',
@@ -8118,21 +8409,26 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
+
     public function cetak_dokumen($kd_data, $id_dok)
     {
         // Cetak Dokumen Pengajuan
         if ($id_dok == sha1('fcr_gen')) {
             $this->generate_fcr($kd_data, $id_dok);
         } else if ($id_dok == sha1('fcr_usaha_gen')) {
+            $this->generate_fcr_usaha($kd_data, $id_dok);
         } else if ($id_dok == sha1('fcr_agunan_gen')) {
         } else if ($id_dok == sha1('fcr_dok_ceklist_gen')) {
+            $this->generate_dokumen_ceklis($kd_data, $id_dok);
         } else if ($id_dok == sha1('fak_gen')) {
         } else if ($id_dok == sha1('faa_gen')) {
         } else if ($id_dok == sha1('mauk_gen')) {
         } else if ($id_dok == sha1('dcc_gen')) {
         } else if ($id_dok == sha1('scoring_gen')) {
         } else if ($id_dok == sha1('fkk_gen')) {
+            $this->generate_fkk($kd_data, $id_dok);
         } else if ($id_dok == sha1('mkk_gen')) {
+            $this->generate_mkk($kd_data, $id_dok);
         } else if ($id_dok == sha1('sp2k_gen')) {
         } else if ($id_dok == sha1('pk_gen')) {
         } else {
@@ -8142,52 +8438,85 @@ class Pengajuan extends BaseController
     public function generate_fcr($kd_data, $id_dok)
     {
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr where SHA1(kd_data) = '" . $kd_data . "' ");
-        if ($cek_ada->getNumRows() > 0) {
+        $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
+        $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
+
+        if ($cek_ada->getNumRows() > 0 && $ada_data_entry->getNumRows() > 0 && $ada_data_master->getNumRows() > 0) {
             $data = $cek_ada->getRow();
+            $data_entry = $ada_data_entry->getRow();
+            // $this->debug($data->kondisi_fisik_kantor);
+            $data_master = $ada_data_master->getRow();
+
+            $ada_nama_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $data_master->kd_unit_kerja . "' ");
+            if ($ada_nama_unit->getNumRows() > 0) {
+                $nama_unit = $ada_nama_unit->getRow()->nama_unit;
+            }
 
             // $row = array();
-            $nomor = $data->nomor; //
+            // $nomor = $data->nomor; //
             $tanggal = $this->atur_tanggal($data->tanggal); //
-            $nama_debitur = $data->nama_debitur; //
 
-            $alamat_kantor = $data->alamat_kantor; //
-            $alamat_gudang = $data->alamat_gudang; //
-            $group_debitur = $data->group_debitur; //
-            $contact_person = $data->contact_person; //
             $kunjungan_oleh = $this->pisah_koma($data->kunjungan_oleh);
-            $kunjungan_oleh1 = $kunjungan_oleh[0]; //
-            $kunjungan_oleh2 = $kunjungan_oleh[1]; //
-            // var_dump($kunjungan_oleh1);
-            // var_dump($kunjungan_oleh2);
-            // die;
-            $kd_unit_kerja = $this->nama_unit($data->kd_unit_kerja); //
-            $tanggal_kunjungan = $this->atur_tanggal($data->tanggal_kunjungan); //
-            $lokasi_yang_dikunjungi = $data->lokasi_yang_dikunjungi; //
-            $tujuan_kunjungan = $data->tujuan_kunjungan; //
-            $hasil_kunjungan = $data->hasil_kunjungan; //
-            $tindak_lanjut = $data->tindak_lanjut; //
+            // $this->debug($kunjungan_oleh);
+            $kunjungan_oleh2 = '';
+            foreach ($kunjungan_oleh as $list) {
+                $kunjungan_oleh3 = "- {$list}\line";
+                $kunjungan_oleh2 .= $kunjungan_oleh3;
+            }
+            $kunjungan_oleh4 = $kunjungan_oleh2 ? $kunjungan_oleh2 : '?kunjungan_oleh';
+            // $this->debug($kunjungan_oleh4);
 
-            // memanggil dan membaca template dokumen yang telah kita buat
+            $tanggal_kunjungan = $this->atur_tanggal($data->tanggal_kunjungan); //
+            // $this->debug($tanggal_kunjungan);
+
+            $lokasi_yang_dikunjungi = $this->pisah_koma($data->lokasi_yang_dikunjungi);
+            // $this->debug($lokasi_yang_dikunjungi);
+            $lokasi_yang_dikunjungi2 = '';
+            foreach ($lokasi_yang_dikunjungi as $list) {
+                $lokasi_yang_dikunjungi3 = "- {$list}\line";
+                $lokasi_yang_dikunjungi2 .= $lokasi_yang_dikunjungi3;
+            }
+            $lokasi_yang_dikunjungi4 = $lokasi_yang_dikunjungi2 ? $lokasi_yang_dikunjungi2 : '?lokasi_yang_dikunjungi';
+
+            $contact_person = $this->pisah_koma($data->contact_person);
+            // $this->debug($contact_person);
+            $contact_person2 = '';
+            foreach ($contact_person as $list) {
+                $contact_person3 = "- {$list}\line";
+                $contact_person2 .= $contact_person3;
+            }
+            $contact_person4 = $contact_person2 ? $contact_person2 : '?contact_person';
+
+            $clientIP = $this->request->getIPAddress(); // Mendapatkan IP pengunjung
+
+            // Cek jika diakses dari localhost atau IP lokal (127.0.0.1)
+            // if ($clientIP == '172.20.102.142') {
+            //     // memanggil dan membaca template dokumen yang telah kita buat
+            //     $document = file_get_contents("http://172.20.102.142/public/assets/doc/fcr.rtf");
+            // }else{
+            //     $document = file_get_contents(ROOTPATH . "public/assets/doc/fcr.rtf");
+
+            // }
             $document = file_get_contents(ROOTPATH . "public/assets/doc/fcr.rtf");
 
             // isi dokumen dinyatakan dalam bentuk string
-            $document = str_replace("VARNOMOR", $nomor, $document);
-            $document = str_replace("V_TANGGAL", $tanggal, $document);
-            $document = str_replace("NAMA", $nama_debitur, $document);
-            $document = str_replace("KANTOR", $alamat_kantor, $document);
-            $document = str_replace("V_ALAMAT_GUDANG", $alamat_gudang, $document);
-            $document = str_replace("V_GROUP_DEBITUR", $group_debitur, $document);
-            $document = str_replace("V_CP", $contact_person, $document);
-            $document = str_replace("SATU", $kunjungan_oleh1, $document);
-            $document = str_replace("DUA", $kunjungan_oleh2, $document);
-            $document = str_replace("V_UNIT_KERJA", $kd_unit_kerja, $document);
-            $document = str_replace("KUNJUNGAN", $tanggal_kunjungan, $document);
-            $document = str_replace("V_LOKASI", $lokasi_yang_dikunjungi, $document);
-            $document = str_replace("V_TUJUAN", $tujuan_kunjungan, $document);
-            $document = str_replace("V_HASIL", $hasil_kunjungan, $document);
-            $document = str_replace("V_TINDAK_LANJUT", $tindak_lanjut, $document);
+            $document = str_replace("?nomor", $data->nomor, $document);
+            $document = str_replace("?tanggal", $tanggal, $document);
+            $document = str_replace("?nama_debitur", $data_entry->nama_debitur, $document);
+            $document = str_replace("?kunjungan_oleh", $kunjungan_oleh4, $document);
+            $document = str_replace("?alamat_kantor", $data->alamat_kantor, $document);
+            $document = str_replace("?nama_unit", $nama_unit ? $nama_unit : '?nama_unit', $document);
+            $document = str_replace("?alamat_gudang", $data->alamat_gudang, $document);
+            $document = str_replace("?tgl_kunjungan", $tanggal_kunjungan, $document);
+            $document = str_replace("?group_debitur", $data->group_debitur, $document);
+            $document = str_replace("?lokasi_yang_dikunjungi", $lokasi_yang_dikunjungi4, $document);
+            $document = str_replace("?contact_person", $contact_person4, $document);
+            $document = str_replace("?tujuan_kunjungan", $data->tujuan_kunjungan, $document);
+            $document = str_replace("?hasil_kunjungan", $data->hasil_kunjungan, $document);
+            $document = str_replace("?pemasar", $data_entry->pemasar, $document);
+            $document = str_replace("?koordinator_pemasar", $data_entry->koordinator_pemasar, $document);
 
-            $nama_file = 'FCR ' . $nomor . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
+            $nama_file = 'FCR ' . $data_entry->nama_debitur . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
             header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             header("Content-disposition: attachment; filename=$nama_file.docx");
             header("Content-length: " . strlen($document));
@@ -8197,6 +8526,249 @@ class Pengajuan extends BaseController
         } else {
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
+    }
+    public function generate_fcr_usaha($kd_data, $id_dok)
+    {
+        $cek_ada = $this->db->query("SELECT * FROM tb_fcr_usaha where SHA1(kd_data) = '" . $kd_data . "' ");
+        $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
+        $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
+        if ($cek_ada->getNumRows() > 0 && $ada_data_entry->getNumRows() > 0 && $ada_data_master->getNumRows() > 0) {
+            $data = $cek_ada->getRow();
+
+            $data_entry = $ada_data_entry->getRow();
+            // $this->debug($data->kondisi_fisik_kantor);
+
+            $data_master = $ada_data_master->getRow();
+
+            $fcr = $this->db->query("SELECT * FROM tb_fcr where SHA1(kd_data) = '" . $kd_data . "' ");
+            $tanggal_fcr = !empty($fcr->getRow()->tanggal) ? $this->atur_tanggal($fcr->getRow()->tanggal) : '?tanggal_fcr';
+
+            $ada_nama_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $data_master->kd_unit_kerja . "' ");
+            if ($ada_nama_unit->getNumRows() > 0) {
+                $nama_unit = $ada_nama_unit->getRow()->nama_unit;
+            }
+
+            // $row = array();
+            // $kondisi_fisik_kantor = $data->kondisi_fisik_kantor; //
+            // $tanggal = $this->atur_tanggal($data->tanggal); //
+            // $kunjungan_oleh = $this->pisah_koma($data->kunjungan_oleh);
+            // $kd_unit_kerja = $this->nama_unit($data->kd_unit_kerja); //
+            // $tanggal_kunjungan = $this->atur_tanggal($data->tanggal_kunjungan); //
+
+            // memanggil dan membaca template dokumen yang telah kita buat
+            $document = file_get_contents(ROOTPATH . "public/assets/doc/fcr_usaha.rtf");
+
+            // isi dokumen dinyatakan dalam bentuk string
+            $document = str_replace("?kondisi_fisik_kantor", $data->kondisi_fisik_kantor, $document);
+            $document = str_replace("?luas_tanah_kantor", $data->luas_tanah_kantor, $document);
+            $document = str_replace("?luas_bangunan_kantor", $data->luas_bangunan_kantor, $document);
+            $document = str_replace("?fasilitas_kantor", $data->fasilitas_kantor, $document);
+            $document = str_replace("?lokasi_kantor", $data->lokasi_kantor, $document);
+            $document = str_replace("?kondisi_fisik_workshop", $data->kondisi_fisik_workshop, $document);
+            $document = str_replace("?luas_tanah_workshop", $data->luas_tanah_workshop, $document);
+            $document = str_replace("?luas_bangunan_workshop", $data->luas_bangunan_workshop, $document);
+            $document = str_replace("?fasilitas_workshop", $data->fasilitas_workshop, $document);
+            $document = str_replace("?lokasi_workshop", $data->lokasi_workshop, $document);
+            $document = str_replace("?fungsi_mesin_utama", $data->fungsi_mesin_utama, $document);
+            $document = str_replace("?fungsi_mesin_penunjang", $data->fungsi_mesin_penunjang, $document);
+            $document = str_replace("?kondisi", $data->kondisi, $document);
+            $document = str_replace("?kapasitas_mesin", $data->kapasitas_mesin, $document);
+            $document = str_replace("?peralatan_utama", $data->peralatan_utama, $document);
+            $document = str_replace("?peralatan_penunjang", $data->peralatan_penunjang, $document);
+            $document = str_replace("?kondisi_merk", $data->kondisi_merk, $document);
+            $document = str_replace("?lainnya", $data->lainnya, $document);
+            $document = str_replace("?fungsi_aab", $data->fungsi_aab, $document);
+            $document = str_replace("?merk_aab", $data->merk_aab, $document);
+            $document = str_replace("?kondisi_aab", $data->kondisi_aab, $document);
+            $document = str_replace("?lain_lain_aab", $data->lain_lain_aab, $document);
+            $document = str_replace("?fungsi_kend", $data->fungsi_kend, $document);
+            $document = str_replace("?merk_kend", $data->merk_kend, $document);
+            $document = str_replace("?kondisi_kend", $data->kondisi_kend, $document);
+            $document = str_replace("?lain_lain_kend", $data->lain_lain_kend, $document);
+            $document = str_replace("?lokasi", $data->lokasi, $document);
+            $document = str_replace("?luas_lokasi", $data->luas_lokasi, $document);
+            $document = str_replace("?kondisi_fisik", $data->kondisi_fisik, $document);
+            $document = str_replace("?bahan_baku", $data->bahan_baku, $document);
+            $document = str_replace("?bahan_setengah_jadi", $data->bahan_setengah_jadi, $document);
+            $document = str_replace("?persediaan_material", $data->persediaan_material, $document);
+
+            $document = str_replace("?nama_unit", $nama_unit ? $nama_unit : '?nama_unit', $document);
+            $document = str_replace("?pemasar", $data_entry->pemasar, $document);
+            $document = str_replace("?koordinator_pemasar", $data_entry->koordinator_pemasar, $document);
+            $document = str_replace("?tanggal_cetak", $tanggal_fcr, $document);
+
+            $nama_file = 'FCR Usaha ' . $data_entry->nama_debitur . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
+            header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            header("Content-disposition: attachment; filename=$nama_file.docx");
+            header("Content-length: " . strlen($document));
+
+            // Tampilkan isi dokumen untuk di-download
+            echo $document;
+        } else {
+            echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
+        }
+    }
+    public function generate_dokumen_ceklis($kd_data, $id_dok)
+    {
+        $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
+
+        if ($ada_data_entry->getNumRows() > 0) {
+            $data_entry = $ada_data_entry->getRow();
+            // $this->debug($data->kondisi_fisik_kantor);
+            $tb_dokumen = $this->db->query("SELECT jenis_badan_usaha FROM tb_dokumen where SHA1(kd_data) = '" . $kd_data . "' ");
+            $tb_dokumen_cv = $this->db->query("SELECT jenis_badan_usaha FROM tb_dokumen_cv where SHA1(kd_data) = '" . $kd_data . "' ");
+            $tb_dokumen_pt = $this->db->query("SELECT jenis_badan_usaha FROM tb_dokumen_pt where SHA1(kd_data) = '" . $kd_data . "' ");
+            if (!empty($tb_dokumen->getRow()->jenis_badan_usaha)) {
+                $jenis_badan_usaha = $tb_dokumen->getRow()->jenis_badan_usaha;
+            } else if (!empty($tb_dokumen_cv->getRow()->jenis_badan_usaha)) {
+                $jenis_badan_usaha = $tb_dokumen_cv->getRow()->jenis_badan_usaha;
+            } else if (!empty($tb_dokumen_pt->getRow()->jenis_badan_usaha)) {
+                $jenis_badan_usaha = $tb_dokumen_pt->getRow()->jenis_badan_usaha;
+            } else {
+                $jenis_badan_usaha = '?jenis_badan_usaha';
+            }
+            // $nomor = $data->nomor; //
+            $tanggal = $this->atur_tanggal(date('d-m-Y')); //
+
+            // memanggil dan membaca template dokumen yang telah kita buat
+            $document = file_get_contents(ROOTPATH . "public/assets/doc/dokumen_ceklis.rtf");
+
+            // isi dokumen dinyatakan dalam bentuk string
+            $document = str_replace("?nama_debitur", $data_entry->nama_debitur, $document);
+            $document = str_replace("?alamat_kantor", $data_entry->alamat_kantor, $document);
+            $document = str_replace("?bidang_usaha", $data_entry->bidang_usaha, $document);
+            $document = str_replace("?jenis_badan_usaha", $jenis_badan_usaha, $document);
+            $document = str_replace("?tanggal", $tanggal, $document);
+            $document = str_replace("?pemasar", $data_entry->pemasar, $document);
+
+            $nama_file = 'Dokumen Checklist ' . $data_entry->nama_debitur . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
+            header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            header("Content-disposition: attachment; filename=$nama_file.docx");
+            header("Content-length: " . strlen($document));
+
+            // Tampilkan isi dokumen untuk di-download
+            echo $document;
+        } else {
+            echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
+        }
+    }
+    public function generate_fkk($kd_data, $id_dok)
+    {
+        $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
+        $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
+        $kirim = $this->db->query("SELECT * FROM tb_kirim where SHA1(kd_data) = '" . $kd_data . "' ");
+
+        if ($ada_data_entry->getNumRows() > 0 && $ada_data_master->getNumRows() > 0 && $kirim->getNumRows() > 0) {
+            $data_entry = $ada_data_entry->getRow();
+            // $this->debug($data->kondisi_fisik_kantor);
+            $data_master = $ada_data_master->getRow();
+
+            $ada_nama_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $data_master->kd_unit_kerja . "' ");
+            if ($ada_nama_unit->getNumRows() > 0) {
+                $nama_unit = $ada_nama_unit->getRow()->nama_unit;
+            }
+            $hari = !empty(date('Y-m-d')) ? $this->getHariIndonesia(date('Y-m-d')) : '?hari'; //
+            $tanggal = !empty(date('Y-m-d')) ? $this->atur_tanggal(date('Y-m-d')) : date('Y-m-d'); //
+
+            // memanggil dan membaca template dokumen yang telah kita buat
+            $document = file_get_contents(ROOTPATH . "public/assets/doc/fkk.rtf");
+
+            // isi dokumen dinyatakan dalam bentuk string
+            $document = str_replace("?nama_debitur", $data_entry->nama_debitur, $document);
+            $document = str_replace("?hari", $hari, $document);
+            $document = str_replace("?tanggal", $tanggal, $document);
+            $document = str_replace("?pemasar", $data_entry->pemasar, $document);
+            $document = str_replace("?koordinator_pemasar", $data_entry->koordinator_pemasar, $document);
+            $document = str_replace("?kepala_cabang", $data_entry->kepala_cabang, $document);
+            $document = str_replace("?kepala_bagian", $data_entry->kepala_bagian, $document);
+            $document = str_replace("?kepala_divisi", $data_entry->kepala_divisi, $document);
+            $document = str_replace("?relation_manager", '?relation_manager', $document);
+
+            $document = str_replace("?rekomendasi_pemasar", $kirim->getRow()->rekomendasi_pemasar, $document);
+            $document = str_replace("?rekomendasi_koor", $kirim->getRow()->rekomendasi_koor, $document);
+            $document = str_replace("?rekomendasi_kacab", $kirim->getRow()->rekomendasi_kacab, $document);
+            $document = str_replace("?rekomendasi_analis", $kirim->getRow()->rekomendasi_analis, $document);
+            $document = str_replace("?rekomendasi_kabag", $kirim->getRow()->rekomendasi_kabag, $document);
+            $document = str_replace("?rekomendasi_kadiv", $kirim->getRow()->rekomendasi_kadiv, $document);
+
+            $nama_file = 'FKK ' . $data_entry->nama_debitur . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
+            header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            header("Content-disposition: attachment; filename=$nama_file.docx");
+            header("Content-length: " . strlen($document));
+
+            // Tampilkan isi dokumen untuk di-download
+            echo $document;
+        } else {
+            echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
+        }
+    }
+    public function generate_mkk($kd_data, $id_dok)
+    {
+        $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
+        $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
+
+        if ($ada_data_entry->getNumRows() > 0 && $ada_data_master->getNumRows() > 0) {
+            $data_entry = $ada_data_entry->getRow();
+            // $this->debug($data->kondisi_fisik_kantor);
+            $data_master = $ada_data_master->getRow();
+
+            $ada_nama_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $data_master->kd_unit_kerja . "' ");
+            $nama_unit = !empty($ada_nama_unit->getRow()->nama_unit) ? $ada_nama_unit->getRow()->nama_unit : '?nama_unit';
+            $tanggal = !empty(date('Y-m-d')) ? $this->atur_tanggal(date('Y-m-d')) : date('Y-m-d'); //
+            $plafond = !empty($data_entry->plafond) ? $this->formatting_angka($data_entry->plafond, 2) : $data_entry->plafond;
+
+            // memanggil dan membaca template dokumen yang telah kita buat
+            $document = file_get_contents(ROOTPATH . "public/assets/doc/mkk.rtf");
+
+            // isi dokumen dinyatakan dalam bentuk string
+            $document = str_replace("?nama_unit", $nama_unit, $document);
+            $document = str_replace("?nama_debitur", $data_entry->nama_debitur, $document);
+            $document = str_replace("?key_person", $data_entry->key_person, $document);
+            $document = str_replace("?group_usaha", $data_entry->group_debitur, $document);
+            $document = str_replace("?alamat_kantor", $data_entry->alamat_kantor, $document);
+            $document = str_replace("?bidang_usaha", $data_entry->bidang_usaha, $document);
+            $document = str_replace("?plafond", $plafond, $document);
+            $document = str_replace("?tujuan_pengajuan", $data_entry->tujuan_pengajuan, $document);
+            $document = str_replace("?tanggal", $tanggal, $document);
+            $document = str_replace("?kepala_cabang", $data_entry->kepala_cabang, $document);
+
+            $nama_file = 'MKK ' . $data_entry->nama_debitur . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
+            header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            header("Content-disposition: attachment; filename=$nama_file.docx");
+            header("Content-length: " . strlen($document));
+
+            // Tampilkan isi dokumen untuk di-download
+            echo $document;
+        } else {
+            echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
+        }
+    }
+    public function formatting_angka($angka, $jumlah)
+    {
+        if (!empty($angka)) {
+            return number_format($angka, $jumlah, ',', '.');
+        } else {
+            return $angka;
+        }
+    }
+    public function getHariIndonesia($tanggal)
+    {
+        // Array hari dalam bahasa Indonesia
+        $namaHari = [
+            'Sunday'    => 'Minggu',
+            'Monday'    => 'Senin',
+            'Tuesday'   => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday'  => 'Kamis',
+            'Friday'    => 'Jumat',
+            'Saturday'  => 'Sabtu'
+        ];
+
+        // Mengubah format tanggal menjadi nama hari
+        $hariInggris = date('l', strtotime($tanggal));
+
+        // Mengembalikan nama hari dalam bahasa Indonesia
+        return $namaHari[$hariInggris];
     }
     public function cek_kosong($input)
     {
@@ -8308,6 +8880,13 @@ class Pengajuan extends BaseController
         ];
         // Proses penyimpanan data
         $hasil = $this->data_fak_data($hasil);
+        // $hasil = $this->data_fak_modal($hasil);
+        // $hasil = $this->data_fak_rl($hasil);
+        // $hasil = $this->data_lap_rl($hasil);
+        // $hasil = $this->data_ceftb($hasil);
+        // $hasil = $this->data_mauk($hasil);
+        // $hasil = $this->data_dcl($hasil);
+        // $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
     public function edit_fak_modal()
@@ -8354,6 +8933,16 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
+    public function edit_faa()
+    {
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        // Proses penyimpanan data
+        $hasil = $this->data_faa($hasil);
+        echo json_encode($hasil);
+    }
     public function edit_mauk()
     {
         $hasil = [
@@ -8469,6 +9058,7 @@ class Pengajuan extends BaseController
             'biaya_umum_fak_modal' => $this->request->getPost("biaya_umum_fak_modal"),
             'total_biaya_umum_fak_modal' => $this->request->getPost("total_biaya_umum_fak_modal"),
             'jumlah_total_biaya_umum_fak_modal' => $this->request->getPost("jumlah_total_biaya_umum_fak_modal"),
+            'persentase_pekerjaan_fak_modal' => $this->request->getPost("persentase_pekerjaan_fak_modal"),
             'persiapan_pekerjaan_fak_modal' => $this->request->getPost("persiapan_pekerjaan_fak_modal"),
             'biaya_umum_adm_fak_modal' => $this->request->getPost("biaya_umum_adm_fak_modal"),
             'jumlah_kebutuhan_modal_kerja_fak_modal' => $this->request->getPost("jumlah_kebutuhan_modal_kerja_fak_modal"),
@@ -8597,6 +9187,68 @@ class Pengajuan extends BaseController
             $hasil = [
                 'status' => 'error',
                 'message' => 'Edit MAUK gagal'
+            ];
+        }
+        return $hasil;
+    }
+    public function data_faa($hasil)
+    {
+        $data = [
+            'nama_nasabah_bb' => $this->request->getPost("namanasabahbb"),
+            'jenis_dokumen_bb' => $this->request->getPost("jenis_dokumen_bb"),
+            'alamat_bb' => $this->request->getPost("alamat_bb"),
+            'jenis_bb' => $this->request->getPost("jenis_bb"),
+            'model_tipe_bb' => $this->request->getPost("model_tipe_bb"),
+            'merek_cc_bb' => $this->request->getPost("merek_cc_bb"),
+            'tahun_pembuatan_bb' => $this->request->getPost("tahun_pembuatan_bb"),
+            'serial_number_bb' => $this->request->getPost("serial_number_bb"),
+            'nomor_mesin_bb' => $this->request->getPost("nomor_mesin_bb"),
+            'warna_bb' => $this->request->getPost("warna_bb"),
+            'bahan_bakar_bb' => $this->request->getPost("bahan_bakar_bb"),
+            'kondisi_keadaan_bb' => $this->request->getPost("kondisi_keadaan_bb"),
+            'nomor_polisi_bb' => $this->request->getPost("nomor_polisi_bb"),
+            'bukti_kepemilikan_agb_bb' => $this->request->getPost("bukti_kepemilikan_agb_bb"),
+            'invoice_no_bb' => $this->request->getPost("invoice_no_bb"),
+            'invoice_tanggal_bb' => $this->request->getPost("invoice_tanggal_bb"),
+            'perubahan_hak_terakhir_bb' => $this->request->getPost("perubahan_hak_terakhir_bb"),
+            'tercatat_atas_nama_bb' => $this->request->getPost("tercatat_atas_nama_bb"),
+            'alamat_pemilik_saat_ini_bb' => $this->request->getPost("alamat_pemilik_saat_ini_bb"),
+            'umur_teknis_bb' => $this->request->getPost("umur_teknis_bb"),
+            'perkiraan_umur_ekonomis_bb' => $this->request->getPost("perkiraan_umur_ekonomis_bb"),
+            'tempat_penyimpanan_bb' => $this->request->getPost("tempat_penyimpanan_bb"),
+            'route_bb' => $this->request->getPost("route_bb"),
+            'jarak_rata_rata_tempuh_bb' => $this->request->getPost("jarak_rata_rata_tempuh_bb"),
+            'nama_nasabah_faa_tb' => $this->request->getPost("nama_nasabah_faa_tb"),
+            'nomor_shm_faa_tb' => $this->request->getPost("nomor_shm_faa_tb"),
+            'tanggal_shm_faa_tb' => $this->request->getPost("tanggal_shm_faa_tb"),
+            'nama_pemilik_shm_faa_tb' => $this->request->getPost("nama_pemilik_shm_faa_tb"),
+            'alamat_agunan_faa_tb' => $this->request->getPost("alamat_agunan_faa_tb"),
+            'harga_pasar_tanah_faa_tb' => $this->request->getPost("harga_pasar_tanah_faa_tb"),
+            'harga_buku_tanah_faa_tb' => $this->request->getPost("harga_buku_tanah_faa_tb"),
+            'harga_menurut_pejabat_bank_tanah_faa_tb' => $this->request->getPost("harga_menurut_pejabat_bank_tanah_faa_tb"),
+            'harga_tanah_tanah_faa_tb' => $this->request->getPost("harga_tanah_tanah_faa_tb"),
+            'luas_persegi_tanah_tanah_faa_tb' => $this->request->getPost("luas_persegi_tanah_tanah_faa_tb"),
+            'hasil_perhitungan_penilaian_tanah_faa_tb' => $this->request->getPost("hasil_perhitungan_penilaian_tanah_faa_tb"),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
+            'kd_unit_pengubah' => session()->get('kd_unit_user'),
+        ];
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_faa where kd_data = '" . $kd_data . "' ")->getNumRows();
+        if ($cek_kd_data > 0) {
+            $this->db->table('tb_faa')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAA berhasil'
+            ];
+        } else {
+            $hasil = [
+                'status' => 'error',
+                'message' => 'Edit FAA gagal'
             ];
         }
         return $hasil;
@@ -8860,7 +9512,7 @@ class Pengajuan extends BaseController
         $kd_data = $this->request->getPost('kd_data');
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_dcl where kd_data = '" . $kd_data . "' ")->getNumRows();
         if ($cek_kd_data > 0) {
-            $this->db->table('tb_fak_rl')->where('kd_data', $kd_data)->update($data);
+            $this->db->table('tb_dcl')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
             $hasil = [
                 'status' => 'success',
@@ -8874,5 +9526,4 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-
 }

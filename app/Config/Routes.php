@@ -140,9 +140,11 @@ $routes->post('/pengajuan/edit_dokumen', 'Pengajuan::edit_dokumen');
 // edit scoring
 // $routes->get('/dokumen-pendukung/(:any)/(:any)', 'Pengajuan::dokumen_pendukung/$1/$2');
 $routes->post('/pengajuan/edit_scoring', 'Pengajuan::edit_scoring');
+$routes->post('/pengajuan/edit_scoring_koor', 'Pengajuan::edit_scoring_koor');
 // recap
-// $routes->get('/pengajuan/coba_recap', 'Pengajuan::coba_recap');
+// $routes->get('/pengajuan/coba_recap', 'Pengfajuan::coba_recap');
 $routes->post('/pengajuan/edit_recap', 'Pengajuan::edit_recap');
+$routes->post('/pengajuan/edit_faa', 'Pengajuan::edit_faa');
 // finish
 $routes->post('/pengajuan/edit_finish', 'Pengajuan::edit_finish');
 $routes->post('/pengajuan/finish_fcr', 'Pengajuan::finish_fcr');
@@ -181,3 +183,8 @@ $routes->post('pengajuan/edit_lap_rl', 'Pengajuan::edit_lap_rl');
 $routes->post('pengajuan/edit_ceftb', 'Pengajuan::edit_ceftb');
 $routes->post('pengajuan/edit_mauk', 'Pengajuan::edit_mauk');
 $routes->post('pengajuan/edit_dcl', 'Pengajuan::edit_dcl');
+
+// data rejected
+$routes->get('/data-rejected', 'Rejected::v_data_rejected');
+$routes->get('/rejected/tabel_rejected', 'Rejected::tabel_rejected');
+

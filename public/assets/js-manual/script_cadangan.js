@@ -13,130 +13,130 @@ var angkadcl6 = 2;
 var angkadcl7 = 2;
 var angkadcl8 = 2;
 
-function tampil_button(param) {
-  if (param == "save_fak_data") {
-    $("#save_fak_data").show();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_fak_modal") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").show();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_fak_rl") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").show();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_lap_rl") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").show();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_ceftb") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").show();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_faa") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").show();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_mauk") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").show();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_dcl") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").show();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  } else if (param == "save_scoring") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").show();
-    $("#save_recap").hide();
-  } else if (param == "save_recap") {
-    $("#save_fak_data").hide();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").show();
-  } else {
-    $("#save_fak_data").show();
-    $("#save_fak_modal").hide();
-    $("#save_fak_rl").hide();
-    $("#save_lap_rl").hide();
-    $("#save_ceftb").hide();
-    $("#save_faa").hide();
-    $("#save_mauk").hide();
-    $("#save_dcl").hide();
-    $("#save_scoring").hide();
-    $("#save_recap").hide();
-  }
-}
+// function tampil_button(param) {
+//   if (param == "save_fak_data") {
+//     $("#save_fak_data").show();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_fak_modal") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").show();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_fak_rl") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").show();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_lap_rl") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").show();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_ceftb") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").show();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_faa") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").show();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_mauk") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").show();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_dcl") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").show();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").hide();
+//   } else if (param == "save_scoring_koor") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").show();
+//     $("#save_recap").hide();
+//   } else if (param == "save_recap") {
+//     $("#save_fak_data").hide();
+//     $("#save_fak_modal").hide();
+//     $("#save_fak_rl").hide();
+//     $("#save_lap_rl").hide();
+//     $("#save_ceftb").hide();
+//     $("#save_faa").hide();
+//     $("#save_mauk").hide();
+//     $("#save_dcl").hide();
+//     $("#save_scoring_koor").hide();
+//     $("#save_recap").show();
+//   } else {
+//     // $("#save_fak_data").show();
+//     // $("#save_fak_modal").hide();
+//     // $("#save_fak_rl").hide();
+//     // $("#save_lap_rl").hide();
+//     // $("#save_ceftb").hide();
+//     // $("#save_faa").hide();
+//     // $("#save_mauk").hide();
+//     // $("#save_dcl").hide();
+//     // $("#save_scoring_koor").hide();
+//     // $("#save_recap").hide();
+//   }
+// }
 
 function variabelGlobal(callback) {
   var kirim = {
@@ -182,6 +182,10 @@ function isi_fak_data() {
       $("#nilai_kontrak_setelah_ppn_fak_data").val(
         data.nilai_kontrak_setelah_ppn
       );
+      separator_edit(
+        data.nilai_kontrak_setelah_ppn,
+        "nilai_kontrak_setelah_ppn_fak_data_separators"
+      );
       $("#ppn_fak_data").val(data.ppn);
       $("#pph_fak_data").val(data.pph);
       $("#no_kontrak2_fak_data").val(data.no_kontrak);
@@ -211,10 +215,23 @@ function isi_fak_data() {
       $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(
         data.jumlah_nilai_sesudah_ppn_total_pp
       );
+      separator_edit(
+        data.jumlah_nilai_sebelum_ppn_total_pp,
+        "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators"
+      );
+      separator_edit(
+        data.jumlah_nilai_sesudah_ppn_total_pp,
+        "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators"
+      );
+
       $("#gaji_direktur_fak_data").val(data.gaji_direktur);
+      separator_edit(data.gaji_direktur, "gaji_direktur_fak_data_separators");
       $("#gaji_pengawas_fak_data").val(data.gaji_pengawas);
+      separator_edit(data.gaji_pengawas, "gaji_pengawas_fak_data_separators");
       $("#gaji_staf_fak_data").val(data.gaji_staf);
+      separator_edit(data.gaji_staf, "gaji_staf_fak_data_separators");
       $("#biaya_umum_fak_data").val(data.biaya_umum);
+      separator_edit(data.biaya_umum, "biaya_umum_fak_data_separators");
       $("#termijnfakdata").val(data.termijn);
       $("#progresstermijnfakdata").val(data.progress_termijn);
       $("#persentasetermijnfakdata").val(data.persentase_termijn);
@@ -236,11 +253,26 @@ function isi_fak_data() {
           $("#ppn_pp_fak_data" + i).val(ppnpp[0]);
           $("#nilai_sebelum_ppn_pp_fak_data" + i).val(nilaisebelumppnpp[0]);
           $("#nilai_sesudah_ppn_pp_fak_data" + i).val(nilaisesudahppnpp[0]);
-
           $("#item_pp_fak_modal" + i).val(itempp[0]);
+          separator_edit(
+            nilaisebelumppnpp[0],
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          );
+          separator_edit(
+            nilaisesudahppnpp[0],
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          );
         } else {
           var index = lengthpp - 1 - i;
           var html1 = $(".copy-pp").html();
+          separator_edit(
+            nilaisebelumppnpp[index],
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          );
+          separator_edit(
+            nilaisesudahppnpp[index],
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          );
           $(".add-form-pp").after(html1);
           var html11 =
             '<div class="col-lg-3">' +
@@ -252,19 +284,28 @@ function isi_fak_data() {
             i +
             '\')" type="text" value="' +
             itempp[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
-            '<div class="col-lg-1">' +
+            '<div class="col-lg-2">' +
             '<label class="col-lg-6 control-label">PPN</label>' +
             '<div class="col-lg-24">' +
+            '<div class="input-group">' +
             '<input id="ppn_pp_fak_data' +
             i +
             '" name="ppn_pp_fak_data[]" value="' +
             ppnpp[index] +
             '" onkeyup="hitungPP(' +
             i +
-            ')" type="text" placeholder="" class="form-control">' +
+            ')" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
+            '<div class="input-group-append">' +
+            '<span class="input-group-text">%</span>' +
+            "</div>" +
+            "</div>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -276,7 +317,12 @@ function isi_fak_data() {
             nilaisebelumppnpp[index] +
             '" onkeyup="hitungPP(' +
             i +
-            ')" type="text" placeholder="" class="form-control">' +
+            ')" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
+            '<p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data' +
+            i +
+            '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -288,9 +334,22 @@ function isi_fak_data() {
             nilaisesudahppnpp[index] +
             '" placeholder="" onchange="copyvalue(this.id, \'nilai_pp_fak_modal' +
             i +
-            '\')" class="form-control">' +
+            '\')" class="form-control" ' +
+            is_disabled +
+            ">" +
+            '<p>Nominal: <span id="nilai_sesudah_ppn_pp_fak_data' +
+            i +
+            '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>";
+          separator_edit(
+            nilaisebelumppnpp[index],
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          );
+          separator_edit(
+            nilaisesudahppnpp[index],
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          );
           $(".delete-btn-pp-fak-data").first().after(html11);
           var html2 = $(".copy-pp-fak-modal").html();
           $(".add-form-pp-fak-modal").after(html2);
@@ -302,7 +361,9 @@ function isi_fak_data() {
             i +
             '" name="item_pp_fak_modal[]" type="text" value="' +
             itempp[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-6">' +
@@ -310,7 +371,9 @@ function isi_fak_data() {
             '<div class="col-lg-24">' +
             '<input id="nilai_pp_fak_modal' +
             i +
-            '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control">' +
+            '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
         }
@@ -333,32 +396,42 @@ function isi_fak_data() {
           var html1 = $(".copy-termijn").html();
           $(".add-form-termijn-fak-data").after(html1);
           var html11 =
-            '<div class="col-lg-3">' +
+            '<div class="col-lg-4">' +
             '<label class="col-lg-6 control-label">Termijn</label>' +
-            '<div class="col-lg-12">' +
             '<input id="termijn_fak_data' +
             i +
             '" name="termijn_fak_data[]" type="text" value="' +
             termijn[index] +
-            '" placeholder="" class="form-control">' +
-            "</div>" +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             '<div class="col-lg-2">' +
             '<label class="col-lg-6 control-label">Progress</label>' +
-            '<div class="col-lg-12">' +
+            '<div class="input-group">' +
             '<input id="progress_termijn_fak_data' +
             i +
             '" name="progress_termijn_fak_data[]" type="text" value="' +
             progresstermijn[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
+            '<div class="input-group-append">' +
+            '<span class="input-group-text">%</span>' +
+            "</div>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
             '<label class="col-lg-18 center control-label">Persentase Termijn</label>' +
-            '<div class="col-lg-12">' +
+            '<div class="input-group">' +
             '<input id="persentase_termijn_fak_data" name="persentase_termijn_fak_data[]" type="text" value="' +
             persentasetermijn[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
+            '<div class="input-group-append">' +
+            '<span class="input-group-text">%</span>' +
+            "</div>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-1">' +
@@ -368,13 +441,13 @@ function isi_fak_data() {
             "</div>" +
             '<div class="col-lg-3">' +
             '<label class="col-lg-12 control-label">Prakiraan Tanggal Termijn</label>' +
-            '<div class="col-lg-12">' +
             '<input id="prakiraan_tgl_termijn_fak_data' +
             i +
             '" name="prakiraan_tgl_termijn_fak_data[]" type="date" value="' +
             prakiraantgltermijn[index] +
-            '" placeholder="" class="form-control">' +
-            "</div>" +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>";
           $(".delete-btn-termijn-fak-data").first().after(html11);
         }
@@ -385,6 +458,7 @@ function isi_fak_data() {
     }
   });
 }
+
 function isi_fak_modal() {
   variabelGlobal(function (hasil) {
     // console.log(hasil.message.data_entry.kd_data);
@@ -396,8 +470,16 @@ function isi_fak_modal() {
       $("#pemeliharaan_fak_modal").val(data.pemeliharaan_fak_modal);
       $("#persentase_proyek_fak_modal").val(data.persentase_proyek_fak_modal);
       $("#nilai_proyek_fak_modal").val(data.nilai_proyek_fak_modal);
+      separator_edit(
+        data.nilai_proyek_fak_modal,
+        "nilai_proyek_fak_modal_separators"
+      );
       $("#itemppfakmodal").val(data.item_pp_fak_modal);
       $("#nilaippfakmodal").val(data.nilai_pp_fak_modal);
+      // separator_edit(
+      //       data.nilai_proyek_fak_modal,
+      //       "nilai_proyek_fak_modal_separators"
+      //     );
       $("#koreksi_biaya_fak_modal").val(data.koreksi_biaya_fak_modal);
       $("#jumlah_fak_modal").val(data.jumlah_fak_modal);
       $("#gaji_direktur_fak_modal").val(data.gaji_direktur_fak_modal);
@@ -407,6 +489,9 @@ function isi_fak_modal() {
       $("#total_biaya_umum_fak_modal").val(data.total_biaya_umum_fak_modal);
       $("#jumlah_total_biaya_umum_fak_modal").val(
         data.jumlah_total_biaya_umum_fak_modal
+      );
+      $("#persentase_pekerjaan_fak_modal").val(
+        data.persentase_pekerjaan_fak_modal
       );
       $("#persiapan_pekerjaan_fak_modal").val(
         data.persiapan_pekerjaan_fak_modal
@@ -596,6 +681,57 @@ function isi_ceftb() {
   });
 }
 
+function isi_faa() {
+  variabelGlobal(function (hasil) {
+    // console.log(hasil.message.data_entry.kd_data);
+    if (hasil.status == "success") {
+      var data = hasil.message.faa;
+      // console.log(data);
+      $("namanasabahbb").val(data.nama_nasabah_bb);
+      $("jenisdokumenbb").val(data.jenis_dokumen_bb);
+      $("alamatbb").val(data.alamat_bb);
+      $("jenisbb").val(data.jenis_bb);
+      $("modeltipebb").val(data.model_tipe_bb);
+      $("merekccbb").val(data.merek_cc_bb);
+      $("tahunpembuatanbb").val(data.tahun_pembuatan_bb);
+      $("serialnumberbb").val(data.serial_number_bb);
+      $("nomormesinbb").val(data.nomor_mesin_bb);
+      $("warnabb").val(data.warna_bb);
+      $("bahanbakarbb").val(data.bahan_bakar_bb);
+      $("kondisikeadaanbb").val(data.kondisi_keadaan_bb);
+      $("nomorpolisibb").val(data.nomor_polisi_bb);
+      $("buktikepemilikanagbbb").val(data.bukti_kepemilikan_agb_bb);
+      $("invoicenobb").val(data.invoice_no_bb);
+      $("invoicetanggalbb").val(data.invoice_tanggal_bb);
+      $("perubahanhakterakhirbb").val(data.perubahan_hak_terakhir_bb);
+      $("tercatatatasnamabb").val(data.tercatat_atas_nama_bb);
+      $("alamatpemiliksaatinibb").val(data.alamat_pemilik_saat_ini_bb);
+      $("umurteknisbb").val(data.umur_teknis_bb);
+      $("perkiraanumurekonomisbb").val(data.perkiraan_umur_ekonomis_bb);
+      $("tempatpenyimpananbb").val(data.tempat_penyimpanan_bb);
+      $("routebb").val(data.route_bb);
+      $("jarakrataratatempuhbb").val(data.jarak_rata_rata_tempuh_bb);
+      $("namanasabahfaatb").val(data.nama_nasabah_faa_tb);
+      $("nomorshmfaatb").val(data.nomor_shm_faa_tb);
+      $("tanggalshmfaatb").val(data.tanggal_shm_faa_tb);
+      $("namapemilikshmfaatb").val(data.nama_pemilik_shm_faa_tb);
+      $("alamatagunanfaatb").val(data.alamat_agunan_faa_tb);
+      $("hargapasartanahfaatb").val(data.harga_pasar_tanah_faa_tb);
+      $("hargabukutanahfaatb").val(data.harga_buku_tanah_faa_tb);
+      $("hargamenurutpejabatbanktanahfaatb").val(
+        data.harga_menurut_pejabat_bank_tanah_faa_tb
+      );
+      $("hargatanahtanahfaatb").val(data.harga_tanah_tanah_faa_tb);
+      $("luaspersegitanahtanahfaatb").val(data.luas_persegi_tanah_tanah_faa_tb);
+      $("hasilperhitunganpenilaiantanahfaatb").val(
+        data.hasil_perhitungan_penilaian_tanah_faa_tb
+      );
+    } else {
+      alert(hasil.message);
+    }
+  });
+}
+
 function isi_mauk() {
   // editor = ckEditorInstance;
   variabelGlobal(function (hasil) {
@@ -767,7 +903,9 @@ function isi_mauk() {
             i +
             '" name="jenis_kredit_fasilitas_usul_mauk[]" value="' +
             jenis_kredit_fasilitas_usul_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -776,7 +914,9 @@ function isi_mauk() {
             i +
             '" name="max_kredit_ini_usul_mauk[]" type="text" value="' +
             max_kredit_ini_usul_mauk[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -785,7 +925,9 @@ function isi_mauk() {
             i +
             '" name="perubahan_usul_mauk[]" value="' +
             perubahan_usul_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -794,7 +936,9 @@ function isi_mauk() {
             i +
             '" name="max_kredit_usul_mauk[]" value="' +
             max_kredit_usul_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-mauk").first().after(html11);
@@ -827,7 +971,9 @@ function isi_mauk() {
             i +
             '" name="jenis_kredit_fasilitas_pal_mauk[]" value="' +
             jenis_kredit_fasilitas_pal_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -836,7 +982,9 @@ function isi_mauk() {
             i +
             '" name="max_kredit_ini_pal_mauk[]" type="text" value="' +
             max_kredit_ini_pal_mauk[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -845,7 +993,9 @@ function isi_mauk() {
             i +
             '" name="perubahan_pal_mauk[]" value="' +
             perubahan_pal_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -854,7 +1004,9 @@ function isi_mauk() {
             i +
             '" name="max_kredit_pal_mauk[]" value="' +
             max_kredit_pal_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-mauk2").first().after(html11);
@@ -883,7 +1035,9 @@ function isi_mauk() {
             i +
             '" name="agunan_mauk[]" value="' +
             agunan_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -892,7 +1046,9 @@ function isi_mauk() {
             i +
             '" name="macam_jenis_mauk[]" type="text" value="' +
             macam_jenis_mauk[index] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -901,7 +1057,9 @@ function isi_mauk() {
             i +
             '" name="nilai_agunan_mauk[]" value="' +
             nilai_agunan_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-3">' +
@@ -910,7 +1068,9 @@ function isi_mauk() {
             i +
             '" name="bentuk_pengikatan_mauk[]" value="' +
             bentuk_pengikatan_mauk[index] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-mauk3").first().after(html11);
@@ -928,7 +1088,7 @@ function isi_dcl() {
     if (hasil.status == "success") {
       var data = hasil.message.dcl;
       console.log(data);
-      $("#pengelola_dcl").val(data.pengelola_dcl);
+      // $("#pengelola_dcl").val(data.pengelola_dcl);
       $("#tanggal_dcl").val(data.tanggal_dcl);
       $("#tanggal_berkas_dcl").val(data.tanggal_berkas_dcl);
       $("#nama_pemohon_dcl").val(data.nama_pemohon_dcl);
@@ -959,7 +1119,9 @@ function isi_dcl() {
             i +
             '" name="nama_pemilik_perusahaan_dcl[]" value="' +
             nama_pemilik_perusahaan_dcl[i - 1] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-4">' +
@@ -968,7 +1130,9 @@ function isi_dcl() {
             i +
             '" name="persentase_saham_dcl[]" type="text" value="' +
             persentase_saham_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl").first().after(html11);
@@ -1007,7 +1171,9 @@ function isi_dcl() {
             i +
             '" name="jabatan_pengurus_perusahaan_dcl[]" value="' +
             jabatan_pengurus_perusahaan_dcl[i - 1] +
-            '" type="text" placeholder="" class="form-control">' +
+            '" type="text" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-4">' +
@@ -1016,7 +1182,9 @@ function isi_dcl() {
             i +
             '" name="nama_pengurus_perusahaan_dcl[]" type="text" value="' +
             nama_pengurus_perusahaan_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-4">' +
@@ -1025,13 +1193,16 @@ function isi_dcl() {
             i +
             '" name="ktp_dcl[]" type="text" value="' +
             ktp_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl2").first().after(html11);
         }
       }
 
+      $("#jenis_usaha_perusahaan_dcl").val(data.jenis_usaha_perusahaan_dcl);
       $("#fasilitaskreditdcl").val(data.fasilitas_kredit_dcl);
       $("#plafonddcl").val(data.plafond_dcl);
       $("#jangkawaktudcl").val(data.jangka_waktu_dcl);
@@ -1059,38 +1230,50 @@ function isi_dcl() {
           var html11 =
             '<div class="col-lg-2">' +
             '<div class="col-lg-12">' +
-            '<input id="fasilitas_kredit_dcl' +
+            '<textarea id="fasilitas_kredit_dcl' +
             i +
-            '" name="fasilitas_kredit_dcl[]" type="text" value="' +
+            '" name="fasilitas_kredit_dcl[]" type="text"' +
+            'placeholder="" rows="3" class="form-control" ' +
+            is_disabled +
+            ">" +
             fasilitas_kredit_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            "</textarea>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
             '<div class="col-lg-12">' +
-            '<input id="plafond_dcl' +
+            '<textarea rows="3" id="plafond_dcl' +
             i +
-            '" name="plafond_dcl[]" type="text" value="' +
+            '" name="plafond_dcl[]" type="text"' +
+            ' placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             plafond_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            "</textarea>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
             '<div class="col-lg-12">' +
-            '<input id="jangka_waktu_dcl' +
+            '<textarea rows="3" id="jangka_waktu_dcl' +
             i +
-            '" name="jangka_waktu_dcl[]" type="text" value="' +
+            '" name="jangka_waktu_dcl[]" type="text"' +
+            ' placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             jangka_waktu_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            "</textarea>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
             '<div class="col-lg-12">' +
-            '<input id="tujuan_penggunaan_dcl' +
+            '<textarea rows="3" id="tujuan_penggunaan_dcl' +
             i +
-            '" name="tujuan_penggunaan_dcl[]" type="text" value="' +
+            '" name="tujuan_penggunaan_dcl[]" type="text"' +
+            ' placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             tujuan_penggunaan_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            "</textarea>" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1099,7 +1282,9 @@ function isi_dcl() {
             i +
             '" name="permohonan_diterima_dcl[]" type="text" value="' +
             permohonan_diterima_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl3").first().after(html11);
@@ -1135,7 +1320,9 @@ function isi_dcl() {
             i +
             '" name="bukti_kepemilikan_dcl[]" type="text" value="' +
             bukti_kepemilikan_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1144,7 +1331,9 @@ function isi_dcl() {
             i +
             '" name="jenis_agunan_dcl[]" type="text" value="' +
             jenis_agunan_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1153,7 +1342,9 @@ function isi_dcl() {
             i +
             '" name="tanggal_agunan_dcl[]" type="text" value="' +
             tanggal_agunan_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1162,7 +1353,9 @@ function isi_dcl() {
             i +
             '" name="avalist_dcl[]" type="text" value="' +
             avalist_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1171,12 +1364,15 @@ function isi_dcl() {
             i +
             '" name="nominal_dcl[]" type="text" value="' +
             nominal_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl4").first().after(html11);
         }
       }
+
       $("#fasilitasdcl").val(data.fasilitas_dcl);
       $("#jatuhtempodcl").val(data.jatuh_tempo_dcl);
       $("#plafondexistingdcl").val(data.plafond_existing_dcl);
@@ -1206,7 +1402,9 @@ function isi_dcl() {
             i +
             '" name="fasilitas_dcl[]" type="text" value="' +
             fasilitas_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1215,7 +1413,9 @@ function isi_dcl() {
             i +
             '" name="jatuh_tempo_dcl[]" type="text" value="' +
             jatuh_tempo_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1224,7 +1424,9 @@ function isi_dcl() {
             i +
             '" name="plafond_existing_dcl[]" type="text" value="' +
             plafond_existing_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1233,7 +1435,9 @@ function isi_dcl() {
             i +
             '" name="outstanding_dcl[]" type="text" value="' +
             outstanding_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1242,7 +1446,9 @@ function isi_dcl() {
             i +
             '" name="kolektibilitas_dcl[]" type="text" value="' +
             kolektibilitas_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl5").first().after(html11);
@@ -1301,7 +1507,9 @@ function isi_dcl() {
             i +
             '" name="fasilitas_kredit_grup_dcl[]" type="text" value="' +
             fasilitas_kredit_grup_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1310,7 +1518,9 @@ function isi_dcl() {
             i +
             '" name="nama_debitur_kredit_grup_dcl[]" type="text" value="' +
             nama_debitur_kredit_grup_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1319,7 +1529,9 @@ function isi_dcl() {
             i +
             '" name="jatuh_tempo_kredit_grup_dcl[]" type="text" value="' +
             jatuh_tempo_kredit_grup_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1328,7 +1540,9 @@ function isi_dcl() {
             i +
             '" name="plafond_existing_kredit_grup_dcl[]" type="text" value="' +
             plafond_existing_kredit_grup_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1337,7 +1551,9 @@ function isi_dcl() {
             i +
             '" name="outstanding_kredit_grup_dcl[]" type="text" value="' +
             outstanding_kredit_grup_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1346,7 +1562,9 @@ function isi_dcl() {
             i +
             '" name="kolektibilitas_kredit_grup_dcl[]" type="text" value="' +
             kolektibilitas_kredit_grup_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl6").first().after(html11);
@@ -1357,7 +1575,8 @@ function isi_dcl() {
       $("#jatuhtempobanklaindcl").val(data.jatuh_tempo_bank_lain_dcl);
       $("#plafondexistingbanklaindcl").val(data.plafond_existing_bank_lain_dcl);
       $("#outstandingbanklaindcl").val(data.outstanding_bank_lain_dcl);
-      $("#kolektibilitas_bank_lain_dcl").val(data.kolektibilitas_bank_lain_dcl);
+      $("#kolektibilitasbanklaindcl").val(data.kolektibilitas_bank_lain_dcl);
+
       let fasilitas_bank_lain_dcl = data.fasilitas_bank_lain_dcl.split(";");
       let bank_ljk_bank_lain_dcl = data.bank_ljk_bank_lain_dcl.split(";");
       let jatuh_tempo_bank_lain_dcl = data.jatuh_tempo_bank_lain_dcl.split(";");
@@ -1394,7 +1613,9 @@ function isi_dcl() {
             i +
             '" name="fasilitas_bank_lain_dcl[]" type="text" value="' +
             fasilitas_bank_lain_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1403,7 +1624,9 @@ function isi_dcl() {
             i +
             '" name="bank_ljk_bank_lain_dcl[]" type="text" value="' +
             bank_ljk_bank_lain_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1412,7 +1635,9 @@ function isi_dcl() {
             i +
             '" name="jatuh_tempo_bank_lain_dcl[]" type="text" value="' +
             jatuh_tempo_bank_lain_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1421,7 +1646,9 @@ function isi_dcl() {
             i +
             '" name="plafond_existing_bank_lain_dcl[]" type="text" value="' +
             plafond_existing_bank_lain_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1430,7 +1657,9 @@ function isi_dcl() {
             i +
             '" name="outstanding_bank_lain_dcl[]" type="text" value="' +
             outstanding_bank_lain_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1439,7 +1668,9 @@ function isi_dcl() {
             i +
             '" name="kolektibilitas_bank_lain_dcl[]" type="text" value="' +
             kolektibilitas_bank_lain_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl7").first().after(html11);
@@ -1499,9 +1730,9 @@ function isi_dcl() {
       $("#checklist_pengujian_internal_dcl6").val(
         data.checklist_pengujian_internal_dcl6
       );
-      $("#pengujian_lainnya_dcl").val(data.pengujian_lainnya_dcl);
-      $("#dasar_pengujian_lainnya_dcl").val(data.dasar_pengujian_lainnya_dcl);
-      $("#checklist_pengujian_lainnya_dcl").val(
+      $("#pengujianlainnyadcl").val(data.pengujian_lainnya_dcl);
+      $("#dasarpengujianlainnyadcl").val(data.dasar_pengujian_lainnya_dcl);
+      $("#checklistpengujianlainnyadcl").val(
         data.checklist_pengujian_lainnya_dcl
       );
       let pengujian_lainnya_dcl = data.pengujian_lainnya_dcl.split(";");
@@ -1530,7 +1761,9 @@ function isi_dcl() {
             i +
             '" name="pengujian_lainnya_dcl[]" type="text" value="' +
             pengujian_lainnya_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1539,7 +1772,9 @@ function isi_dcl() {
             i +
             '" name="dasar_pengujian_lainnya_dcl[]" type="text" value="' +
             dasar_pengujian_lainnya_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
             "</div>" +
             "</div>" +
             '<div class="col-lg-2">' +
@@ -1548,7 +1783,16 @@ function isi_dcl() {
             i +
             '" name="checklist_pengujian_lainnya_dcl[]" type="text" value="' +
             checklist_pengujian_lainnya_dcl[i - 1] +
-            '" placeholder="" class="form-control">' +
+            '" placeholder="" class="form-control" ' +
+            is_disabled +
+            ">" +
+            '<select name="checklist_pengujian_lainnya_dcl[]" id="checklist_pengujian_lainnya_dcl' +
+            angkadcl8 +
+            '" class=" form-control class-disabled select">' +
+            '<option value=""></option>' +
+            '<option value="comply">Comply</option>' +
+            '<option value="not comply">Not Comply</option>' +
+            "</select>" +
             "</div>" +
             "</div>";
           $(".delete-btn-dcl8").first().after(html11);
@@ -1556,124 +1800,1986 @@ function isi_dcl() {
       }
       $("#kesimpulan_dcl").val(data.kesimpulan_dcl);
       $("#komentar_dcl").val(data.komentar_dcl);
-
-      // let jenis_kredit_fasilitas_pal_mauk =
-      //   data.jenis_kredit_fasilitas_pal_mauk.split(";");
-      // let max_kredit_ini_pal_mauk = data.max_kredit_ini_pal_mauk.split(";");
-      // let perubahan_pal_mauk = data.perubahan_pal_mauk.split(";");
-      // let max_kredit_pal_mauk = data.max_kredit_pal_mauk.split(";");
-      // let lengthjenis_kredit_fasilitas_pal_mauk =
-      //   jenis_kredit_fasilitas_pal_mauk.length + 1;
-      // for (var i = 0; i < jenis_kredit_fasilitas_pal_mauk.length; i++) {
-      //   if (i == 0) {
-      //     $("#jenis_kredit_fasilitas_pal_mauk" + i).val(
-      //       jenis_kredit_fasilitas_pal_mauk[0]
-      //     );
-      //     $("#max_kredit_ini_pal_mauk" + i).val(max_kredit_ini_pal_mauk[0]);
-      //     $("#perubahan_pal_mauk" + i).val(perubahan_pal_mauk[0]);
-      //     $("#max_kredit_pal_mauk" + i).val(max_kredit_pal_mauk[0]);
-      //   } else {
-      //     var index = lengthjenis_kredit_fasilitas_pal_mauk - 1 - i;
-      //     var html1 = $(".copy-mauk2").html();
-      //     $(".add-form-mauk2").after(html1);
-      //     var html11 =
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="jenis_kredit_fasilitas_pal_mauk' +
-      //       i +
-      //       '" name="jenis_kredit_fasilitas_pal_mauk[]" value="' +
-      //       jenis_kredit_fasilitas_pal_mauk[index] +
-      //       '" type="text" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>" +
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="max_kredit_ini_pal_mauk' +
-      //       i +
-      //       '" name="max_kredit_ini_pal_mauk[]" type="text" value="' +
-      //       max_kredit_ini_pal_mauk[index] +
-      //       '" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>" +
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="perubahan_pal_mauk' +
-      //       i +
-      //       '" name="perubahan_pal_mauk[]" value="' +
-      //       perubahan_pal_mauk[index] +
-      //       '" type="text" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>" +
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="max_kredit_pal_mauk' +
-      //       i +
-      //       '" name="max_kredit_pal_mauk[]" value="' +
-      //       max_kredit_pal_mauk[index] +
-      //       '" type="text" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>";
-      //     $(".delete-btn-mauk2").first().after(html11);
-      //   }
-      // }
-
-      // let agunan_mauk = data.agunan_mauk.split(";");
-      // let macam_jenis_mauk = data.macam_jenis_mauk.split(";");
-      // let nilai_agunan_mauk = data.nilai_agunan_mauk.split(";");
-      // let bentuk_pengikatan_mauk = data.bentuk_pengikatan_mauk.split(";");
-      // let lengthagunan_mauk = agunan_mauk.length + 1;
-      // for (var i = 0; i < agunan_mauk.length; i++) {
-      //   if (i == 0) {
-      //     $("#agunan_mauk" + i).val(agunan_mauk[0]);
-      //     $("#macam_jenis_mauk" + i).val(macam_jenis_mauk[0]);
-      //     $("#nilai_agunan_mauk" + i).val(nilai_agunan_mauk[0]);
-      //     $("#bentuk_pengikatan_mauk" + i).val(bentuk_pengikatan_mauk[0]);
-      //   } else {
-      //     var index = lengthagunan_mauk - 1 - i;
-      //     var html1 = $(".copy-mauk3").html();
-      //     $(".add-form-mauk3").after(html1);
-      //     var html11 =
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="agunan_mauk' +
-      //       i +
-      //       '" name="agunan_mauk[]" value="' +
-      //       agunan_mauk[index] +
-      //       '" type="text" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>" +
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="macam_jenis_mauk' +
-      //       i +
-      //       '" name="macam_jenis_mauk[]" type="text" value="' +
-      //       macam_jenis_mauk[index] +
-      //       '" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>" +
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="nilai_agunan_mauk' +
-      //       i +
-      //       '" name="nilai_agunan_mauk[]" value="' +
-      //       nilai_agunan_mauk[index] +
-      //       '" type="text" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>" +
-      //       '<div class="col-lg-3">' +
-      //       '<div class="col-lg-12">' +
-      //       '<input id="bentuk_pengikatan_mauk' +
-      //       i +
-      //       '" name="bentuk_pengikatan_mauk[]" value="' +
-      //       bentuk_pengikatan_mauk[index] +
-      //       '" type="text" placeholder="" class="form-control">' +
-      //       "</div>" +
-      //       "</div>";
-      //     $(".delete-btn-mauk3").first().after(html11);
-      //   }
-      // }
     } else {
       alert(hasil.message);
+    }
+  });
+}
+
+function isi_scoring_koor() {
+  variabelGlobal(function (hasil) {
+    // console.log(hasil.message.data_entry.kd_data);
+    if (hasil.status == "success") {
+      var data = hasil.message.scoring;
+      // alert(data.kd_data)
+      // unit_kerja_fcr()
+      $("#kd_data_tambah").val(hasil.message.data_entry.kd_data);
+
+      $("#nama_pemohon_sc").val(data.nama_pemohon);
+      $("#nama_pemohon_sc_koor").val(data.nama_pemohon);
+      $("#alamat_sc").val(data.alamat);
+      $("#alamat_sc_koor").val(data.alamat);
+      $("#plafond_sc").val(data.plafond);
+      $("#plafond_sc_koor").val(data.plafond);
+      separator_edit(data.plafond, "plafond_sc_separators");
+      separator_edit(data.plafond, "plafond_sc_koor_separators");
+      $("#tujuan_sc").val(data.tujuan);
+      $("#tujuan_sc_koor").val(data.tujuan);
+      $("#no_pak_sc").val(data.no_pak);
+      $("#no_pak_sc_koor").val(data.no_pak);
+
+      $("#pendirian_sc_koor").val(data.pendirian_bu);
+      $("#legalitas_sc_koor").val(data.legalitas);
+      $("#hubungan_sc_koor").val(data.hubungan_funding);
+      $("#pengelolaan_sc_koor").val(data.manajemen_usaha);
+      $("#jenis_agunan_sc_koor").val(data.jenis_agunan);
+      $("#bukti_sc_koor").val(data.bukti_kepemilikan_agunan);
+      $("#status_sc_koor").val(data.status_kepemilikan);
+      $("#marketable_sc_koor").val(data.marketable_agunan);
+      $("#lending_sc_koor").val(data.hubungan_landing);
+      $("#pengalaman_sc_koor").val(data.pengalaman);
+      $("#sumber_dana_sc_koor").val(data.sumber_dana);
+      $("#lokasi_sc_koor").val(data.lokasi_proyek);
+      $("#jenis_proyek_sc_koor").val(data.jenis_proyek);
+      $("#bahan_baku_sc_koor").val(data.bahan_baku);
+      $("#peralatan_sc_koor").val(data.peralatan);
+      $("#pembayaran_sc_koor").val(data.pembayaran_termijn);
+      $("#dasar_penunjukan_sc_koor").val(data.dasar_penunjukan);
+      $("#prosentase_sc_koor").val(data.persentase_plafond);
+      $("#jangka_sc_koor").val(data.jangka_waktu);
+      $("#agunan_sc_koor").val(data.persentase_agunan);
+      $("#penjaminan_sc_koor").val(data.penjaminan_maskapai);
+
+      $("#hasil_scoring_koor").html(data.hasil_skoring);
+      $("#ket_hasil_koor").html(data.keterangan);
+    } else {
+      alert(hasil.message);
+    }
+  });
+}
+
+function refresh_scoring_koor() {
+  isi_scoring_koor();
+  // tampil_button('save_scoring')
+}
+
+function ceftb() {
+  variabelGlobal(function (hasil) {
+    if (hasil.status == "success") {
+      var jenis_agunan = hasil.message.data_entry.jenis_agunan;
+      var data = hasil.message.ceftb;
+
+      var jenisAgunanArray = jenis_agunan.split(";");
+
+      var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
+        (item) => item === "Tanah/ Tanah dan Bangunan"
+      ).length;
+
+      for (
+        let counter_tanah_loop = 0;
+        counter_tanah_loop < tanahAtauTanahBangunanCount;
+        counter_tanah_loop++
+      ) {
+        const CheckBoxCEFT = (data.checkboxceft ? data.checkboxceft : "").split(
+          "|"
+        );
+        const HasilCEFT = (data.hasilceft ? data.hasilceft : "").split("|");
+        const TotalCEFT = (data.totalceft ? data.totalceft : "").split("|");
+        const CheckBoxCEFB = (data.checkboxcefb ? data.checkboxcefb : "").split(
+          "|"
+        );
+        const HasilCEFB = (data.hasilcefb ? data.hasilcefb : "").split("|");
+        const TotalCEFB = (data.totalcefb ? data.totalcefb : "").split("|");
+
+        const pecahCheckBoxCEFT = CheckBoxCEFT[counter_tanah_loop]
+          ? CheckBoxCEFT[counter_tanah_loop].split(";")
+          : [];
+        const pecahHasilCEFT = HasilCEFT[counter_tanah_loop]
+          ? HasilCEFT[counter_tanah_loop].split(";")
+          : [];
+        const pecahTotalCEFT = TotalCEFT[counter_tanah_loop]
+          ? TotalCEFT[counter_tanah_loop].split(";")
+          : [];
+        const pecahCheckBoxCEFB = CheckBoxCEFB[counter_tanah_loop]
+          ? CheckBoxCEFB[counter_tanah_loop].split(";")
+          : [];
+        const pecahHasilCEFB = HasilCEFB[counter_tanah_loop]
+          ? HasilCEFB[counter_tanah_loop].split(";")
+          : [];
+        const pecahTotalCEFB = TotalCEFB[counter_tanah_loop]
+          ? TotalCEFB[counter_tanah_loop].split(";")
+          : [];
+
+        console.log(pecahCheckBoxCEFT);
+
+        // Proses data untuk 'Tanah/ Tanah dan Bangunan' sesuai kebutuhan
+        var inputan_tanah =
+          '<div class="form-group row">' +
+          '<div class="col-lg-6 table-responsive">' +
+          '<h3 class="text-center text-danger">Penetapan CEF TANAH</h3>' +
+          '<table class="tg">' +
+          "<thead>" +
+          "<tr>" +
+          '<th class="tg-0pky">No</th>' +
+          '<th class="tg-uzvj" colspan="2">Kriteria</th>' +
+          '<th class="tg-0pky">Bobot</th>' +
+          '<th class="tg-0pky">Parameter</th>' +
+          '<th class="tg-0pky">Nilai</th>' +
+          '<th class="tg-0pky">CEF</th>' +
+          "</tr>" +
+          "</thead>" +
+          "<tbody>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">1</td>' +
+          '<td class="tg-0pky" colspan="2">Bukti Kepemilikan</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">SHM</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[0] && pecahCheckBoxCEFT[0] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SHGB, SHGU, STRATA TITLE</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[1] && pecahCheckBoxCEFT[1] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          "<td>-</td>" +
+          '<td class="tg-za14">SKPT (SRT KET PENDAFTARAN TANAH), SRT UKUR</td>' +
+          "<td></td>" +
+          "<td>50</td>" +
+          '<td><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[2] && pecahCheckBoxCEFT[2] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          "<td></td>" +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">HAK PAKAI, SEGEL, SKPT (SRT KET PENGUASAAN TANAH) </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[3] && pecahCheckBoxCEFT[3] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'1\',\'0.25\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 1</td>' +
+          '<td class="tg-0pky">25%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[0] +
+          '" id="hasilceft1" style="display: inline-block; width: 45px; margin-left: 10px;" name="hasil_checkbox_ceft[]"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">2</td>' +
+          '<td class="tg-za14" colspan="2">KELAS JALAN </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">JALAN RAYA UTAMA</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[4] && pecahCheckBoxCEFT[4] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">LINGKUNGAN/KOMPLEK </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[5] && pecahCheckBoxCEFT[5] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">GANG </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[6] && pecahCheckBoxCEFT[6] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SETAPAK</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[7] && pecahCheckBoxCEFT[7] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 2</td>' +
+          '<td class="tg-0pky">20%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[1] +
+          '" id="hasilceft2" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">3</td>' +
+          '<td class="tg-za14" colspan="2">PEMILIK AGUNAN </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">AN. SENDIRI / ISTERI & SUAMI / PENGURUS PERUSAHAAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[8] && pecahCheckBoxCEFT[8] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">AN. ANAK KANDUNG/TIRI / SAUDARA KANDUNG/TIRI/AYAH KANDUNG</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[9] && pecahCheckBoxCEFT[9] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">AN. KELUARGA LAIN </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[10] && pecahCheckBoxCEFT[10] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">AN. PIHAK KETIGA</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[11] && pecahCheckBoxCEFT[11] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'3\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 3</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[2] +
+          '" id="hasilceft3" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">4</td>' +
+          '<td class="tg-za14" colspan="2">LINGKUNGAN </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">PERKANTORAN & PERDAGANGAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[12] && pecahCheckBoxCEFT[12] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">PERUMAHAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[13] && pecahCheckBoxCEFT[13] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">PERTANIAN/PERKEBUNAN/PETERNAKAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[14] && pecahCheckBoxCEFT[14] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">LAINNYA</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[15] && pecahCheckBoxCEFT[15] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'4\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 4</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[3] +
+          '" id="hasilceft4" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">5</td>' +
+          '<td class="tg-za14" colspan="2">LETAK / LOKASI BERKAITAN DGN PUSAT BISNIS </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SANGAT DEKAT ( 0 M S/D 500 M)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[16] && pecahCheckBoxCEFT[16] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">DEKAT (> 500 M S/D 1 KM)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[17] && pecahCheckBoxCEFT[17] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">CUKUP DEKAT (> 1 KM S/D 2 KM) </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[18] && pecahCheckBoxCEFT[18] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">JAUH (> 2 KM)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[19] && pecahCheckBoxCEFT[19] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 5</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[4] +
+          '" id="hasilceft5" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">6</td>' +
+          '<td class="tg-za14" colspan="2">KELENGKAPAN FASUM / FASOS (DENGAN JARAK < 2 KM ) </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SANGAT LENGKAP (> 6 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[20] && pecahCheckBoxCEFT[20] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">LENGKAP (5 S/D 6 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[21] && pecahCheckBoxCEFT[21] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">CUKUP (3 S/D 4 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[22] && pecahCheckBoxCEFT[22] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">TIDAK LENGKAP (S/D 2 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[23] && pecahCheckBoxCEFT[23] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 6</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[5] +
+          '" id="hasilceft6" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="4">7</td>' +
+          '<td class="tg-0pky" colspan="2">BENTUK TANAH</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">SEGI EMPAT / PERSEGI PANJANG</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[24] && pecahCheckBoxCEFT[24] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'7\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">SEGI BANYAK</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[25] && pecahCheckBoxCEFT[25] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'7\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">LAINNYA (SEGITIGA, TIDAK BERATURAN,DLL)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[26] && pecahCheckBoxCEFT[26] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'7\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 7</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[6] +
+          '" id="hasilceft7" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">8</td>' +
+          '<td class="tg-za14" colspan="2">KONTUR TANAH</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">RATA</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[27] && pecahCheckBoxCEFT[27] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">BERGELOMBANG</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[28] && pecahCheckBoxCEFT[28] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">BERTINGKAT </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[29] && pecahCheckBoxCEFT[29] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">LAINNYA (KOMBINASI)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[30] && pecahCheckBoxCEFT[30] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'8\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 8</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[7] +
+          '" id="hasilceft8" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="3">9</td>' +
+          '<td class="tg-0pky" colspan="2">JENIS TANAH</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">KERAS/DARAT/MATANG</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[31] && pecahCheckBoxCEFT[31] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'9\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">RAWA/GAMBUT/BERAIR</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
+          counter_tanah_loop +
+          '" ' +
+          (pecahCheckBoxCEFT[32] && pecahCheckBoxCEFT[32] !== "0" ? "checked" : "") +
+          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'9\',\'0.05\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 9</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input  value="' +
+          pecahHasilCEFT[8] +
+          '" id="hasilceft9" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah CEF Tanah</td>' +
+          '<td class="tg-0pky">100%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasiltotalCEFT' +
+          counter_tanah_loop +
+          '" value="' +
+          TotalCEFT[counter_tanah_loop] +
+          '" name="hasiltotalceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "</tbody>" +
+          "</table>" +
+          "</div>" +
+          '<div class="col-lg-6 table-responsive">' +
+          //CEF BANGUNAN
+          '<h3 class="text-center text-danger">Penetapan CEF BANGUNAN</h3>' +
+          '<table class="tg">' +
+          "<thead>" +
+          "<tr>" +
+          '<th class="tg-0pky">No</th>' +
+          '<th class="tg-uzvj" colspan="2">Kriteria</th>' +
+          '<th class="tg-0pky">Bobot</th>' +
+          '<th class="tg-0pky">Parameter</th>' +
+          '<th class="tg-0pky">Nilai</th>' +
+          '<th class="tg-0pky">CEF</th>' +
+          "</tr>" +
+          "</thead>" +
+          "<tbody>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="4">1</td>' +
+          '<td class="tg-0pky" colspan="2">PERIJINAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">MEMILIKI IMB</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[0] && pecahCheckBoxCEFB[0] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'1\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">MEMILIKI IMB, NAMUN LUAS BANGUNAN TIDAK SESUAI DENGAN KONDISI SEBELUMNYA</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[1] && pecahCheckBoxCEFB[1] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'1\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          "<td>-</td>" +
+          '<td class="tg-za14">TIDAK MEMILIKI</td>' +
+          "<td></td>" +
+          "<td>50</td>" +
+          '<td><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[2] && pecahCheckBoxCEFB[2] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'1\',\'0.2\')"></td>' +
+          "<td></td>" +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 1</td>' +
+          '<td class="tg-0pky">20%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb1" value="' +
+          pecahHasilCEFB[0] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">2</td>' +
+          '<td class="tg-za14" colspan="2">JENIS BANGUNAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">BETON</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[3] && pecahCheckBoxCEFB[3] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SEMI PERMANEN(KOMBINASI KAYU+BETON) </td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[4] && pecahCheckBoxCEFB[4] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">KAYU</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[5] && pecahCheckBoxCEFB[5] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">MASIH DALAM PROSES</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[6] && pecahCheckBoxCEFB[6] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'2\',\'0.2\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 2</td>' +
+          '<td class="tg-0pky">20%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb2" value="' +
+          pecahHasilCEFB[1] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">3</td>' +
+          '<td class="tg-za14" colspan="2">USIA BANGUNAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">S.D. 5 TAHUN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[7] && pecahCheckBoxCEFB[7] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">>5 TAHUN S.D. 10 TAHUN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[8] && pecahCheckBoxCEFB[8] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">>10 TAHUN S.D. 15 TAHUN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[9] && pecahCheckBoxCEFB[9] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">>15 TAHUN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[10] && pecahCheckBoxCEFB[10] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'3\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 3</td>' +
+          '<td class="tg-0pky">15%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb3" value="' +
+          pecahHasilCEFB[2] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">4</td>' +
+          '<td class="tg-za14" colspan="2">KONDISI BANGUNAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SANGAT BAIK</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[11] && pecahCheckBoxCEFB[11] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">BAIK</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[12] && pecahCheckBoxCEFB[12] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">CUKUP</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[13] && pecahCheckBoxCEFB[13] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">KURANG</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[14] && pecahCheckBoxCEFB[14] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'4\',\'0.15\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 4</td>' +
+          '<td class="tg-0pky">15%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb4" value="' +
+          pecahHasilCEFB[3] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">5</td>' +
+          '<td class="tg-za14" colspan="2">PENGGUNAAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">RUMAH TEMPAT TINGGAL</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[15] && pecahCheckBoxCEFB[15] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">RUKO/RUKAN/TOKO</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[16] && pecahCheckBoxCEFB[16] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">KANTOR</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[17] && pecahCheckBoxCEFB[17] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">LAINNYA (GUDANG,DLL)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[18] && pecahCheckBoxCEFB[18] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'5\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 5</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb5" value="' +
+          pecahHasilCEFB[4] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">6</td>' +
+          '<td class="tg-za14" colspan="2">TINGGI LANTAI BANGUNAN TERHADAP JALAN</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">TINGGI (>100CM)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[19] && pecahCheckBoxCEFB[19] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SEDANG (51CM S.D. 100CM)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[20] && pecahCheckBoxCEFB[20] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">RENDAH (0 S.D. 50CM)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[21] && pecahCheckBoxCEFB[21] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-za14">SANGAT RENDAH (DIBAWAH JALAN)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">25</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[22] && pecahCheckBoxCEFB[22] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'6\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 6</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb6" value="' +
+          pecahHasilCEFB[5] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky" rowspan="5">7</td>' +
+          '<td class="tg-0pky" colspan="2">KELANGKAPAN FASILITAS</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">SANGAT LENGKAP (>6 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">100</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[22] && pecahCheckBoxCEFB[22] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">LENGKAP (5 S.D. 6 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">75</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">CUKUP (3 S.D. 4 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[24] && pecahCheckBoxCEFB[24] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky">-</td>' +
+          '<td class="tg-0pky">TIDAK LENGKAP (S.D. 2 FASILITAS)</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">50</td>' +
+          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
+          counter_tanah_loop +
+          '"' +
+          (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
+          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\')"></td>' +
+          '<td class="tg-0pky"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah Sub Point 7</td>' +
+          '<td class="tg-0pky">10%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasilcefb7" value="' +
+          pecahHasilCEFB[6] +
+          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "<tr>" +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky">Jumlah CEF Bangunan</td>' +
+          '<td class="tg-0pky">100%</td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"></td>' +
+          '<td class="tg-0pky"><input id="hasiltotalCEFB' +
+          counter_tanah_loop +
+          '" name="hasiltotalcefb[]" value="' +
+          TotalCEFB[counter_tanah_loop] +
+          '" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
+          "</tr>" +
+          "</tbody>" +
+          "</table>" +
+          "</div>" +
+          "</div>";
+
+        // Menambahkan deskripsi ke dalam DOM
+        $("#ceftb").append(inputan_tanah);
+      }
+
+      // }
+      //   }
+      // }
+    }
+  });
+}
+
+function faa_bb() {
+  variabelGlobal(function (hasil) {
+    if (hasil.status == "success") {
+      var jenis_agunan = hasil.message.data_entry.jenis_agunan;
+      var data = hasil.message.faa;
+
+      var jenisAgunanArray = jenis_agunan.split(";");
+
+      var barangBergerakCount = jenisAgunanArray.filter(
+        (item) => item === "Barang Bergerak"
+      ).length;
+      var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
+        (item) => item === "Tanah/ Tanah dan Bangunan"
+      ).length;
+
+      // Loop untuk Barang Bergerak, hanya sejumlah barangBergerakCount
+      for (
+        let counter_bb_loop = 0;
+        counter_bb_loop < barangBergerakCount;
+        counter_bb_loop++
+      ) {
+        // if (adaBarangBergerak) {
+        //     if (jenisAgunanArray[counter_bb_loop] === "Barang Bergerak") {
+        const jenisBBArray = (data.jenis_bb ? data.jenis_bb : "").split(";");
+        const nama_nasabahArray = (
+          data.nama_nasabah_bb ? data.nama_nasabah_bb : ""
+        ).split(";");
+        const jenis_dokumen_bbArray = (
+          data.jenis_dokumen_bb ? data.jenis_dokumen_bb : ""
+        ).split(";");
+        const alamat_bbArray = (data.alamat_bb ? data.alamat_bb : "").split(
+          ";"
+        );
+        const model_tipe_bbArray = (
+          data.model_tipe_bb ? data.model_tipe_bb : ""
+        ).split(";");
+        const merek_cc_bbArray = (
+          data.merek_cc_bb ? data.merek_cc_bb : ""
+        ).split(";");
+        const tahun_pembuatan_bbArray = (
+          data.tahun_pembuatan_bb ? data.tahun_pembuatan_bb : ""
+        ).split(";");
+        const serial_number_bbArray = (
+          data.serial_number_bb ? data.serial_number_bb : ""
+        ).split(";");
+        const nomor_mesin_bbArray = (
+          data.nomor_mesin_bb ? data.nomor_mesin_bb : ""
+        ).split(";");
+        const warna_bbArray = (data.warna_bb ? data.warna_bb : "").split(";");
+        const bahan_bakar_bbArray = (
+          data.bahan_bakar_bb ? data.bahan_bakar_bb : ""
+        ).split(";");
+        const kondisi_keadaan_bbArray = (
+          data.kondisi_keadaan_bb ? data.kondisi_keadaan_bb : ""
+        ).split(";");
+        const nomor_polisi_bbArray = (
+          data.nomor_polisi_bb ? data.nomor_polisi_bb : ""
+        ).split(";");
+        const invoice_no_bbArray = (
+          data.invoice_no_bb ? data.invoice_no_bb : ""
+        ).split(";");
+        const invoice_tanggal_bbArray = (
+          data.invoice_tanggal_bb ? data.invoice_tanggal_bb : ""
+        ).split(";");
+        const perubahan_hak_terakhir_bbArray = (
+          data.perubahan_hak_terakhir_bb ? data.perubahan_hak_terakhir_bb : ""
+        ).split(";");
+        const alamat_pemilik_saat_ini_bbArray = (
+          data.alamat_pemilik_saat_ini_bb ? data.alamat_pemilik_saat_ini_bb : ""
+        ).split(";");
+        const tercatat_atas_namaArray = (
+          data.tercatat_atas_nama_bb ? data.tercatat_atas_nama_bb : ""
+        ).split(";");
+        const umur_teknis_bbArray = (
+          data.umur_teknis_bb ? data.umur_teknis_bb : ""
+        ).split(";");
+        const bukti_kepemilikan_agb_bbArray = (
+          data.bukti_kepemilikan_agb_bb ? data.bukti_kepemilikan_agb_bb : ""
+        ).split(";");
+        const perkiraan_umur_ekonomis_bbArray = (
+          data.perkiraan_umur_ekonomis_bb ? data.perkiraan_umur_ekonomis_bb : ""
+        ).split(";");
+        const tempat_penyimpanan_bbArray = (
+          data.tempat_penyimpanan_bb ? data.tempat_penyimpanan_bb : ""
+        ).split(";");
+        const route_bbArray = (data.route_bb ? data.route_bb : "").split(";");
+        const jarak_rata_rata_tempuh_bbArray = (
+          data.jarak_rata_rata_tempuh_bb ? data.jarak_rata_rata_tempuh_bb : ""
+        ).split(";");
+        const nilai_buku_sebesar_bbArray = (
+          data.nilai_buku_sebesar_bb ? data.nilai_buku_sebesar_bb : ""
+        ).split(";");
+        const nilai_taksasi_sebesar_bbArray = (
+          data.nilai_taksasi_sebesar_bb ? data.nilai_taksasi_sebesar_bb : ""
+        ).split(";");
+        const safety_margin_bbArray = (
+          data.safety_margin_bb ? data.safety_margin_bb : ""
+        ).split(";");
+        const nilai_agunan_setelah_sm_bbArray = (
+          data.nilai_agunan_setelah_sm_bb ? data.nilai_agunan_setelah_sm_bb : ""
+        ).split(";");
+        const cef_bbArray = (data.cef_bb ? data.cef_bb : "").split(";");
+        const nilai_agunan_setelah_cef_bbArray = (
+          data.nilai_agunan_setelah_cef_bb
+            ? data.nilai_agunan_setelah_cef_bb
+            : ""
+        ).split(";");
+        // for (let isi = 0; isi < jenisAgunanArray.length; isi++) {
+        console.log(alamat_bbArray[1]);
+        var inputan_bb =
+          '<div id="bagian_bb' +
+          counter_bb_loop +
+          '">' +
+          '<h2 class="text-center text-danger">Barang Bergerak</h2>' +
+          '<h3 class="text-left text-success"></h3>' +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nama Nasabah</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nama_nasabah_bb' +
+          counter_bb_loop +
+          '" name="nama_nasabah_bb[]" type="text" ' +
+          'value="' +
+          (nama_nasabahArray[counter_bb_loop] || "") +
+          '"' +
+          '" placeholder="" class="form-control nama_nasabah_bb">' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Jenis Dokumen Kepemilikan</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="jenis_dokumen_bb' +
+          counter_bb_loop +
+          '" name="jenis_dokumen_bb[]" ' +
+          'value="' +
+          (jenis_dokumen_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="text" placeholder="" class="form-control jenis_dokumen_bb">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Alamat</label>' +
+          '<div class="col-lg-12">' +
+          '<textarea class="form-control alamat_bb" id="alamat_bb' +
+          counter_bb_loop +
+          '" name="alamat_bb[]" rows="3">' +
+          (alamat_bbArray[counter_bb_loop] || "") +
+          "</textarea>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<h3 class="text-left text-success">Data Umum</h3>' +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Jenis</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="jenis_bb' +
+          counter_bb_loop +
+          '" name="jenis_bb[]" ' +
+          'value="' +
+          (jenisBBArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="text" placeholder="" class="form-control class-readonly jenis_bb">' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Model/ Tipe</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="model_tipe_bb' +
+          counter_bb_loop +
+          '" name="model_tipe_bb[]" ' +
+          'value="' +
+          (model_tipe_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="text" placeholder="" class="form-control class-readonly model_tipe_bb">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Merk/ CC</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="merek_cc_bb' +
+          counter_bb_loop +
+          '" name="merek_cc_bb[]" ' +
+          'value="' +
+          (merek_cc_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="text" placeholder="" class="form-control class-readonly merek_cc_bb">' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Tahun Pembuatan</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="tahun_pembuatan_bb' +
+          counter_bb_loop +
+          '" name="tahun_pembuatan_bb[]" ' +
+          'value="' +
+          (tahun_pembuatan_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="number" placeholder="" class="form-control class-readonly tahun_pembuatan_bb">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Serial Number</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="serial_number_bb' +
+          counter_bb_loop +
+          '" name="serial_number_bb[]" ' +
+          'value="' +
+          (serial_number_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="text" placeholder="" class="form-control class-readonly serial_number_bb">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nomor Mesin</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nomor_mesin_bb' +
+          counter_bb_loop +
+          '" name="nomor_mesin_bb[]" ' +
+          'value="' +
+          (nomor_mesin_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '" type="text" placeholder="" class="form-control class-readonly nomor_mesin_bb">' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Warna</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="warna_bb' +
+          counter_bb_loop +
+          '" name="warna_bb[]"' +
+          'value="' +
+          (warna_bbArray[counter_bb_loop] || "") +
+          '"' +
+          'type="text" placeholder="" class="form-control class-readonly warna_bb" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Bahan Bakar</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="bahan_bakar_bb' +
+          counter_bb_loop +
+          '" name="bahan_bakar_bb[]"' +
+          'value="' +
+          (bahan_bakar_bbArray[counter_bb_loop] || "") +
+          '"' +
+          'type="text" placeholder="" class="form-control class-readonly bahan_bakar_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Kondisi/ Keadaan</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="kondisi_keadaan_bb' +
+          counter_bb_loop +
+          '" name="kondisi_keadaan_bb[]"' +
+          'value="' +
+          (kondisi_keadaan_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '  type="text" placeholder="" class="form-control class-readonly kondisi_keadaan_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nomor Polisi</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nomor_polisi_bb' +
+          counter_bb_loop +
+          '" name="nomor_polisi_bb[]"' +
+          'value="' +
+          (nomor_polisi_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' type="text" placeholder="" class="form-control class-readonly nomor_polisi_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Bukti Kepemilikan</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="bukti_kepemilikan_agb_bb' +
+          counter_bb_loop +
+          '" name="bukti_kepemilikan_agb_bb[]" ' +
+          'value="' +
+          (bukti_kepemilikan_agb_bbArray[counter_bb_loop] || "") +
+          '"' +
+          'type="text" placeholder="" class="form-control class-readonly bukti_kepemilikan_agb_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Invoice No</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="invoice_no_bb' +
+          counter_bb_loop +
+          '" name="invoice_no_bb[]" ' +
+          'value="' +
+          (invoice_no_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' type="text" placeholder="" class="form-control class-readonly invoice_no_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Invoice Tanggal</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="invoice_tanggal_bb' +
+          counter_bb_loop +
+          '" name="invoice_tanggal_bb[]"' +
+          'value="' +
+          (invoice_tanggal_bbArray[counter_bb_loop] || "") +
+          '"' +
+          '  type="date" placeholder="" class="form-control class-readonly invoice_tanggal_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Perubahan Hak Terakhir</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="perubahan_hak_terakhir_bb' +
+          counter_bb_loop +
+          '" name="perubahan_hak_terakhir_bb[]" ' +
+          'value="' +
+          (perubahan_hak_terakhir_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' type="text" placeholder="" class="form-control class-readonly perubahan_hak_terakhir_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Tercatat Atas Nama</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="tercatat_atas_nama_bb' +
+          counter_bb_loop +
+          '" name="tercatat_atas_nama_bb[]" ' +
+          'value="' +
+          (tercatat_atas_namaArray[counter_bb_loop] || "") +
+          '"' +
+          '  type="text" placeholder="" class="form-control class-readonly tercatat_atas_nama_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Alamat Pemilik Saat Ini</label>' +
+          '<div class="col-lg-12">' +
+          '<textarea class="form-control class-readonly alamat_pemilik_saat_ini_bb" id="alamat_pemilik_saat_ini_bb' +
+          counter_bb_loop +
+          '" name="alamat_pemilik_saat_ini_bb[]" rows="3" is_disabled>' +
+          (alamat_pemilik_saat_ini_bbArray[counter_bb_loop] || "") +
+          "</textarea>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Umur Teknis</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="umur_teknis_bb' +
+          counter_bb_loop +
+          '" name="umur_teknis_bb[]" ' +
+          'value="' +
+          (umur_teknis_bbArray[counter_bb_loop] || "") +
+          '"' +
+          'type="text" placeholder="" class="form-control class-readonly umur_teknis_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Perkiraan Umur Ekonomis</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="perkiraan_umur_ekonomis_bb' +
+          counter_bb_loop +
+          '" name="perkiraan_umur_ekonomis_bb[]" ' +
+          'value="' +
+          (perkiraan_umur_ekonomis_bbArray[counter_bb_loop] || "") +
+          '"' +
+          'type="text" placeholder="" class="form-control class-readonly perkiraan_umur_ekonomis_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Tempat Penyimpanan</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="tempat_penyimpanan_bb' +
+          counter_bb_loop +
+          '" name="tempat_penyimpanan_bb[]" ' +
+          'value="' +
+          (tempat_penyimpanan_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' type="text" placeholder="" class="form-control class-readonly tempat_penyimpanan_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Route</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="route_bb' +
+          counter_bb_loop +
+          '" name="route_bb[]" ' +
+          'value="' +
+          (route_bbArray[counter_bb_loop] || "") +
+          '"' +
+          'type="text" placeholder="" class="form-control class-readonly route_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Jarak Rata-rata Ditempuh</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="jarak_rata_rata_tempuh_bb' +
+          counter_bb_loop +
+          '" name="jarak_rata_rata_tempuh_bb[]" ' +
+          'value="' +
+          (jarak_rata_rata_tempuh_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' type="text" placeholder="" class="form-control class-readonly jarak_rata_rata_tempuh_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "<div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nilai Buku Sebesar</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nilai_buku_sebesar_bb" name="nilai_buku_sebesar_bb[]" type="text" ' +
+          'value="' +
+          (nilai_buku_sebesar_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' placeholder="" class="form-control class-readonly nilai_buku_sebesar_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nilai Taksasi Sebesar</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nilai_taksasi_sebesar_bb" name="nilai_taksasi_sebesar_bb[]" type="text" ' +
+          'value="' +
+          (nilai_taksasi_sebesar_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' placeholder="" class="form-control class-readonly nilai_taksasi_sebesar_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Safety Margin</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="safety_margin_bb" name="safety_margin_bb[]" type="text" ' +
+          'value="' +
+          (safety_margin_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' placeholder="" class="form-control class-readonly safety_margin_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nilai Agunan Setelah SM</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nilai_agunan_setelah_sm_bb" name="nilai_agunan_setelah_sm_bb[]" type="text" ' +
+          'value="' +
+          (nilai_agunan_setelah_sm_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' placeholder="" class="form-control class-readonly nilai_agunan_setelah_sm_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">CEF</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="cef_bb" name="cef_bb[]" type="text" ' +
+          'value="' +
+          (cef_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' placeholder="" class="form-control class-readonly cef_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-12 control-label">Nilai Agunan Setelah CEF</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="nilai_agunan_setelah_cef_bb" name="nilai_agunan_setelah_cef_bb[]" type="text" ' +
+          'value="' +
+          (nilai_agunan_setelah_cef_bbArray[counter_bb_loop] || "") +
+          '"' +
+          ' placeholder="" class="form-control class-readonly nilai_agunan_setelah_cef_bb" is_disabled>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>";
+
+        // Menambahkan deskripsi ke dalam DOM
+        $("#faa_bb").append(inputan_bb);
+        // }
+      }
+      //   }
+      // }
+
+      // Jika ada 'Tanah' atau 'Tanah dan Bangunan', tampilkan deskripsi
+      // if (adaTanahOrTanahBangunan) {
+      //   for (
+      //     let counter_tanah_loop = 0;
+      //     counter_tanah_loop < jenisAgunanArray.length;
+      //     counter_tanah_loop++
+      //   ) {
+      //     if (
+      //       jenisAgunanArray[counter_tanah_loop] === "Tanah/ Tanah dan Bangunan"
+      //     ) {
+      for (
+        let counter_tanah_loop = 0;
+        counter_tanah_loop < tanahAtauTanahBangunanCount;
+        counter_tanah_loop++
+      ) {
+        // Proses data untuk 'Tanah/ Tanah dan Bangunan' sesuai kebutuhan
+        const bagian_tanahArray = (
+          data.bagian_tanah ? data.bagian_tanah : ""
+        ).split(";");
+        const nama_nasabah_faa_tbArray = (
+          data.nama_nasabah_faa_tb ? data.nama_nasabah_faa_tb : ""
+        ).split(";");
+        const nomor_shm_faa_tbArray = (
+          data.nomor_shm_faa_tb ? data.nomor_shm_faa_tb : ""
+        ).split(";");
+        const tanggal_shm_faa_tbArray = (
+          data.tanggal_shm_faa_tb ? data.tanggal_shm_faa_tb : ""
+        ).split(";");
+        const nama_pemilik_shm_faa_tbArray = (
+          data.nama_pemilik_shm_faa_tb ? data.nama_pemilik_shm_faa_tb : ""
+        ).split(";");
+        const alamat_agunan_faa_tbArray = (
+          data.alamat_agunan_faa_tb ? data.alamat_agunan_faa_tb : ""
+        ).split(";");
+        const harga_pasar_tanah_faa_tbArray = (
+          data.harga_pasar_tanah_faa_tb ? data.harga_pasar_tanah_faa_tb : ""
+        ).split(";");
+        const harga_buku_tanah_faa_tbArray = (
+          data.harga_buku_tanah_faa_tb ? data.harga_buku_tanah_faa_tb : ""
+        ).split(";");
+        const harga_menurut_pejabat_bank_tanah_faa_tbArray = (
+          data.harga_menurut_pejabat_bank_tanah_faa_tb
+            ? data.harga_menurut_pejabat_bank_tanah_faa_tb
+            : ""
+        ).split(";");
+        const harga_tanah_tanah_faa_tbArray = (
+          data.harga_tanah_tanah_faa_tb ? data.harga_tanah_tanah_faa_tb : ""
+        ).split(";");
+        const luas_persegi_tanah_tanah_faa_tbArray = (
+          data.luas_persegi_tanah_tanah_faa_tb
+            ? data.luas_persegi_tanah_tanah_faa_tb
+            : ""
+        ).split(";");
+        const hasil_perhitungan_penilaian_tanah_faa_tbArray = (
+          data.hasil_perhitungan_penilaian_tanah_faa_tb
+            ? data.hasil_perhitungan_penilaian_tanah_faa_tb
+            : ""
+        ).split(";");
+        const cef_tanah_faa_tbArray = (
+          data.cef_tanah_faa_tb ? data.cef_tanah_faa_tb : ""
+        ).split(";");
+        const persentase_safety_margin_tanah_faa_tbArray = (
+          data.persentase_safety_margin_tanah_faa_tb
+            ? data.persentase_safety_margin_tanah_faa_tb
+            : ""
+        ).split(";");
+        var inputan_tanah =
+          '<div id="bagian_tanah' +
+          counter_tanah_loop +
+          '">' +
+          '<h2 class="text-center text-danger">Tanah/ Tanah dan Bangunan</h2>' +
+          '              <div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Nama Nasabah</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="nama_nasabah_faa_tb' +
+          counter_tanah_loop +
+          '" name="nama_nasabah_faa_tb[]" value="' +
+          (nama_nasabah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Nomor SHM</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="nomor_shm_faa_tb' +
+          counter_tanah_loop +
+          '" name="nomor_shm_faa_tb[]" value="' +
+          (nomor_shm_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          '<label class="col-lg-1 control-label">Tanggal</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="tanggal_shm_faa_tb' +
+          counter_tanah_loop +
+          '" name="tanggal_shm_faa_tb[]" value="' +
+          (tanggal_shm_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Nama Pemilik SHM</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="nama_pemilik_shm_faa_tb' +
+          counter_tanah_loop +
+          '" name="nama_pemilik_shm_faa_tb[]" value="' +
+          (nama_pemilik_shm_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Alamat Agunan</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="alamat_agunan_faa_tb' +
+          counter_tanah_loop +
+          '" name="alamat_agunan_faa_tb[]" value="' +
+          (alamat_agunan_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="border border-dark p-1">' +
+          "<h3>1. Harga Tanah :</h3>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-6 control-label">Harga menurut pasar</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="harga_pasar_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_pasar_tanah_faa_tb[]" value="' +
+          (harga_pasar_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-6 control-label">Harga Buku</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="harga_buku_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_buku_tanah_faa_tb[]" value="' +
+          (harga_buku_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-6 control-label">Harga menurut pejabat bank</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="harga_menurut_pejabat_bank_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_menurut_pejabat_bank_tanah_faa_tb[]" value="' +
+          (harga_menurut_pejabat_bank_tanah_faa_tbArray[counter_tanah_loop] ||
+            "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-3">' +
+          '<label class="col-lg-12 control-label">Penilaian tanah</label>' +
+          "</div>" +
+          '<div class="col-lg-1 text-right">Rp</div>' +
+          '<div class="col-lg-2">' +
+          '<input id="harga_tanah_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_tanah_tanah_faa_tb[]" value="' +
+          (harga_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          "</div>" +
+          '<div class="col-lg-1 text-center">x</div>' +
+          '<div class="col-lg-2">' +
+          '<input id="luas_persegi_tanah_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="luas_persegi_tanah_tanah_faa_tb[]" value="' +
+          (luas_persegi_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="hasil_perhitungan_penilaian_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="hasil_perhitungan_penilaian_tanah_faa_tb[]" value="' +
+          (hasil_perhitungan_penilaian_tanah_faa_tbArray[counter_tanah_loop] ||
+            "") +
+          '"type="text" placeholder="" class="form-control">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-4">' +
+          '<label class="col-lg-12 control-label">Cash Equivalency Factor (CEF)</label>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="cef_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="cef_tanah_faa_tb[]" value="' +
+          (cef_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-4">' +
+          '<label class="col-lg-6 control-label">Safety Margin</label>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="persentase_safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="persentase_safety_margin_tanah_faa_tb[]" value="' +
+          (persentase_safety_margin_tanah_faa_tbArray[counter_tanah_loop] ||
+            "") +
+          '"type="text" placeholder="" class="form-control">' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>";
+
+        // Menambahkan deskripsi ke dalam DOM
+        $("#faa_tanah").append(inputan_tanah);
+      }
+
+      // }
+      //   }
+      // }
     }
   });
 }
@@ -1685,21 +3791,6 @@ function getCurrentDate() {
   var year = today.getFullYear();
   return year + "-" + month + "-" + day;
 }
-// Masukkan tanggal saat ini ke dalam input
-
-// function isi_dcl() {
-//   // editor = ckEditorInstance;
-//   variabelGlobal(function (hasil) {
-//     // console.log(hasil.message.data_entry.kd_data);
-//     if (hasil.status == "success") {
-//       var data = hasil.message.dcl;
-//       document.getElementById("tanggal_dcl").value = getCurrentDate();
-//       unit_kerja();
-//     } else {
-//       alert(hasil.message);
-//     }
-//   });
-// }
 
 function copyvalue(id, target) {
   let TEXTValue = document.getElementById(id).value;
@@ -1712,13 +3803,13 @@ function copyvalue2(id, target1, target2) {
   $("#" + target2).val(TEXTValue);
 }
 
-function unit_kerja() {
+function unit_kerja_dcl() {
   variabelGlobal(function (hasil) {
     if (hasil.status == "success") {
       var kd_unit = hasil.message.data_entry.kd_unit_kerja;
-      // console.log(kd_unit);
+      // console.log('kode unit'+kd_unit);
       $.ajax({
-        url: base_url + "unit_kerja/get_unit_by_id" + "/" + kd_unit,
+        url: base_url + "unit_kerja/get_unit_by_id/" + kd_unit,
         // url: "<?php echo base_url('unit_kerja/get_unit_by_id'); ?>" + "/" + kd_unit,
         type: "get",
         dataType: "JSON",
@@ -1769,7 +3860,7 @@ function hitungPP(angka = null) {
   let nilai =
     parseFloat($("#nilai_sebelum_ppn_pp_fak_data" + angka).val()) || 0;
   let ppn = parseFloat($("#ppn_pp_fak_data" + angka).val()) || 0;
-  let hasil = nilai * (1 + ppn);
+  let hasil = nilai * (1 + ppn / 100);
   $("#nilai_sesudah_ppn_pp_fak_data" + angka).val(hasil);
 
   let profit_kontraktor_fak_data =
@@ -1777,7 +3868,7 @@ function hitungPP(angka = null) {
   let biaya_pemeliharaan_fak_data =
     parseFloat($("#biaya_pemeliharaan_fak_data").val()) || 0;
   // prettier-ignore
-  let hassil = hasil - (hasil * (profit_kontraktor_fak_data + biaya_pemeliharaan_fak_data));
+  let hassil = hasil - (hasil * ((profit_kontraktor_fak_data/100) + (biaya_pemeliharaan_fak_data/100)));
   $("#nilai_pp_fak_modal" + angka).val(hassil);
 
   let pembulatan_sebelumPPN =
@@ -1791,7 +3882,7 @@ function hitungPP(angka = null) {
   });
   $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(totalhasil);
 
-  penerimaan_uang_muka_fak_modal = totalhasil * persentase_uang_muka;
+  penerimaan_uang_muka_fak_modal = totalhasil * (persentase_uang_muka / 100);
   $("#penerimaan_uang_muka_fak_modal").val(penerimaan_uang_muka_fak_modal);
 
   let pembulatan_sesudahPPN = pembulatan_sebelumPPN * (1 + 0);
@@ -1804,10 +3895,11 @@ function hitungPP(angka = null) {
     totalhasil2 = total2 + pembulatan_sesudahPPN;
   });
   //prettier-ignore
-  let koreksi = totalhasil2 - (totalhasil2 * (profit_kontraktor_fak_data + biaya_pemeliharaan_fak_data));
+  let koreksi = totalhasil2 - (totalhasil2 * ((profit_kontraktor_fak_data/100) + (biaya_pemeliharaan_fak_data/100)));
   let jumlah =
     totalhasil2 -
-    totalhasil2 * (profit_kontraktor_fak_data + biaya_pemeliharaan_fak_data);
+    totalhasil2 *
+      (profit_kontraktor_fak_data / 100 + biaya_pemeliharaan_fak_data / 100);
 
   $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(totalhasil2);
   $("#koreksi_biaya_fak_modal").val(koreksi);
@@ -1823,7 +3915,7 @@ function hitungPrakiraanTanggalTermijn(angka) {
   if (progressValue === 0) {
     var formattedDate = tgl_pelaksanaan_fak_data;
   } else {
-    var elapsedDays = lama_pelaksanaan_fak_data * progressValue;
+    var elapsedDays = lama_pelaksanaan_fak_data * (progressValue / 100);
     // console.log("elapsedDays:", elapsedDays);
     var progressDate = new Date(tgl_pelaksanaan_fak_data);
     // console.log("progressDate:", progressDate);
@@ -1837,6 +3929,15 @@ function hitungPrakiraanTanggalTermijn(angka) {
 
 // Fungsi untuk melakukan perhitungan
 //FAK Modal
+function hitungPersentase() {
+  let proyek = parseFloat($("#proyek_fak_modal").val()) || 0;
+  let profit = parseFloat($("#profit_fak_modal").val()) || 0;
+  let ppn = parseFloat($("#ppn_fak_modal").val()) || 0;
+  let pemeliharaan = parseFloat($("#pemeliharaan_fak_modal").val()) || 0;
+  let hasil = proyek - profit - ppn - pemeliharaan;
+  $("#persentase_proyek_fak_modal").val(hasil);
+}
+
 function hitungNilaiProyek() {
   let sesudah_ppn =
     parseFloat($("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val()) || 0;
@@ -1845,17 +3946,8 @@ function hitungNilaiProyek() {
   let biaya_pemeliharaan =
     parseFloat($("#biaya_pemeliharaan_fak_data").val()) || 0;
   //prettier-ignore
-  let hasil = sesudah_ppn - (sesudah_ppn * (profit_kontraktor + biaya_pemeliharaan));
+  let hasil = sesudah_ppn - (sesudah_ppn * ((profit_kontraktor/100) + (biaya_pemeliharaan/100)));
   $("#nilai_proyek_fak_modal").val(hasil);
-}
-
-function hitungPersentase() {
-  let proyek = parseFloat($("#proyek_fak_modal").val()) || 0;
-  let profit = parseFloat($("#profit_fak_modal").val()) || 0;
-  let ppn = parseFloat($("#ppn_fak_modal").val()) || 0;
-  let pemeliharaan = parseFloat($("#pemeliharaan_fak_modal").val()) || 0;
-  let hasil = proyek - profit - ppn - pemeliharaan;
-  $("#persentase_proyek_fak_modal").val(hasil);
 }
 
 function hitungPPFAKM() {
@@ -1874,23 +3966,6 @@ function hitungPPFAKM() {
   $("#biaya_umum_adm_fak_rl").val(tottal);
   // $("#pembiayaan_sendiri_fak_modal").val(pembiayaan);
 }
-
-// function hitungTotalPPFAKM() {
-//   let nilaiproyek = parseFloat($("#nilai_proyek_fak_modal").val()) || 0;
-//   const inputs = $("input[name='nilai_pp_fak_modal[]']");
-//   let total = 0;
-//   inputs.each(function () {
-//     const nilai = parseFloat($(this).val()) || 0;
-//     total += nilai;
-//   });
-//   const jumlah = total - nilaiproyek;
-//   //
-//   tottal = total - jumlah;
-//   $("#koreksi_biaya_fak_modal").val(jumlah);
-//   $("#jumlah_fak_modal").val(tottal);
-//   $("#biaya_umum_adm_fak_rl").val(tottal);
-//   // $("#pembiayaan_sendiri_fak_modal").val(pembiayaan);
-// }
 
 function hitungTotal() {
   let nilaiproyek = parseFloat($("#nilai_proyek_fak_modal").val()) || 0;
@@ -1912,8 +3987,8 @@ function hitungJumlahKebutuhanModalKerja() {
     parseFloat($("#jumlah_fak_modal").val()) || 0;
   let biaya_umum_adm_fak_modal =
     parseFloat($("#jumlah_total_biaya_umum_fak_modal").val()) || 0;
-  let hasil1 = persentase * persiapan_pekerjaan_fak_modal;
-  let hasil2 = persentase * biaya_umum_adm_fak_modal;
+  let hasil1 = (persentase / 100) * persiapan_pekerjaan_fak_modal;
+  let hasil2 = (persentase / 100) * biaya_umum_adm_fak_modal;
   let total = hasil1 + hasil2;
   $("#persiapan_pekerjaan_fak_modal").val(hasil1);
   $("#biaya_umum_adm_fak_modal").val(hasil2);
@@ -1974,7 +4049,7 @@ function hitungKreditBank2() {
     parseFloat(hasil3) +
     parseFloat(hasil2)
   ).toFixed(2);
-  const hasil6 = jumlah_kredit_bank_fak_modal * provisi;
+  const hasil6 = jumlah_kredit_bank_fak_modal * (provisi / 100);
   $("#jumlah_pembiayaan_sendiri_fak_modal").val(hasil);
   $("#pendanaan_sendiri_mauk").val(hasil);
   $("#persentase_pembiayaan_sendiri_fak_modal").val(hasil3);
@@ -2039,7 +4114,7 @@ function hitungLabaSebelumPajak() {
         2
     );
     /* prettier-ignore */
-    const fix =(jumlah_kredit_bank_fak_modal * bunga_kredit_fak_data / 360 * (nilaiTanggaltermijn - nilaiTanggal)) + (biaya_provisi_fak_data * jumlah_kredit_bank_fak_modal);
+    const fix =(jumlah_kredit_bank_fak_modal * (bunga_kredit_fak_data/100) / 360 * (nilaiTanggaltermijn - nilaiTanggal)) + ((biaya_provisi_fak_data/100) * jumlah_kredit_bank_fak_modal);
     const fix1 = fix + laba_usaha_fak_rl;
 
     const fix3 = fix / jumlah_pembiayaan_sendiri_fak_modal;
@@ -2062,7 +4137,7 @@ function hitungPajakPPNPPh() {
   // console.log(nilai_kontrak_fak_data);
   // console.log(ppn_fak_data);
   /* prettier-ignore */
-  const fix = -(((ppn_fak_data / (1 + ppn_fak_data)) * nilai_kontrak_fak_data) + ((nilai_kontrak_fak_data - ((ppn_fak_data / (1 + ppn_fak_data)) * nilai_kontrak_fak_data)) * pph_fak_data));
+  const fix = -((((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * nilai_kontrak_fak_data) + ((nilai_kontrak_fak_data - (((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * nilai_kontrak_fak_data)) * (pph_fak_data/100)));
   $("#pajak_pph_ppn_fak_rl").val(Math.round(fix));
 }
 
@@ -2102,7 +4177,7 @@ function hitungPenerimaanTermijnPemeliharaan() {
   const setelah_masa_pemeliharaan_fak_data =
     parseFloat($("#setelah_masa_pemeliharaan_fak_data").val()) || 0;
 
-  const fix = nilai_kontrak_fak_rl * setelah_masa_pemeliharaan_fak_data;
+  const fix = (nilai_kontrak_fak_rl * setelah_masa_pemeliharaan_fak_data) / 100;
   $("#penerimaan_termijn_pemeliharaan_fak_rl").val(Math.round(fix));
 }
 
@@ -2123,7 +4198,7 @@ function hitungPenerimaanBersih() {
   const penerimaan_termijn_pemeliharaan_fak_rl =
     parseFloat($("#penerimaan_termijn_pemeliharaan_fak_rl").val()) || 0;
   const fix =
-    1 -
+    100 -
     persentase_penerimaan_uang_muka_fak_rl -
     persentase_penerimaan_termijn_fak_rl -
     persentase_penerimaan_termijn_pemeliharaan_fak_rl;
@@ -2143,7 +4218,7 @@ function hitungPajakRL() {
   const pph_fak_data = parseFloat($("#pph_fak_data").val()) || 0;
   const fix =
     /* prettier-ignore */
-    ((ppn_fak_data / (1 + ppn_fak_data)) * penerimaan_bersih_fak_rl) +((penerimaan_bersih_fak_rl - ((ppn_fak_data / (1 + ppn_fak_data)) * penerimaan_bersih_fak_rl)) * pph_fak_data);
+    (((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * penerimaan_bersih_fak_rl) +((penerimaan_bersih_fak_rl - (((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * penerimaan_bersih_fak_rl)) * (pph_fak_data/100));
   const fix2 = penerimaan_bersih_fak_rl - fix;
   $("#pajak_ppn_pph_fak_rl").val(fix);
   $("#kosong_bersih_fak_rl").val(fix2);
@@ -2153,8 +4228,9 @@ function hitungPersentasePemotonganKreditBank() {
   const kredit_bank_fak_rl = parseFloat($("#kredit_bank_fak_rl").val()) || 0;
   const kosong_bersih_fak_rl =
     parseFloat($("#kosong_bersih_fak_rl").val()) || 0;
-  const fix = kredit_bank_fak_rl / kosong_bersih_fak_rl;
-  const fix2 = Math.round(fix * 100) / 100;
+  const fix = (kredit_bank_fak_rl / kosong_bersih_fak_rl) * 100;
+  // const fix2 = Math.round(fix * 100) / 100;
+  const fix2 = Math.ceil(fix);
   $("#persentase_pemotongan_kredit_bank_fak_rl").val(fix.toFixed(4));
   $("#dibulatkan_fak_rl").val(fix2);
 }
@@ -2166,20 +4242,20 @@ function hitungPersentasePemotonganKreditBank() {
 function showValueCEFT(checkbox, angka, bobot) {
   if (checkbox.checked) {
     var hitungbobot = checkbox.value * bobot;
-    $("#hasil" + angka + "ceft").val(hitungbobot);
+    $("#hasilceft" + angka).val(hitungbobot);
   } else {
     var hitungbobot = 0;
-    $("#hasil" + angka + "ceft").val(hitungbobot);
+    $("#hasilceft" + angka).val(hitungbobot);
   }
-  var hasil1ceft = parseFloat(document.getElementById("hasil1ceft").value || 0);
-  var hasil2ceft = parseFloat(document.getElementById("hasil2ceft").value || 0);
-  var hasil3ceft = parseFloat(document.getElementById("hasil3ceft").value || 0);
-  var hasil4ceft = parseFloat(document.getElementById("hasil4ceft").value || 0);
-  var hasil5ceft = parseFloat(document.getElementById("hasil5ceft").value || 0);
-  var hasil6ceft = parseFloat(document.getElementById("hasil6ceft").value || 0);
-  var hasil7ceft = parseFloat(document.getElementById("hasil7ceft").value || 0);
-  var hasil8ceft = parseFloat(document.getElementById("hasil8ceft").value || 0);
-  var hasil9ceft = parseFloat(document.getElementById("hasil9ceft").value || 0);
+  var hasil1ceft = parseFloat(document.getElementById("hasilceft1").value || 0);
+  var hasil2ceft = parseFloat(document.getElementById("hasilceft2").value || 0);
+  var hasil3ceft = parseFloat(document.getElementById("hasilceft3").value || 0);
+  var hasil4ceft = parseFloat(document.getElementById("hasilceft4").value || 0);
+  var hasil5ceft = parseFloat(document.getElementById("hasilceft5").value || 0);
+  var hasil6ceft = parseFloat(document.getElementById("hasilceft6").value || 0);
+  var hasil7ceft = parseFloat(document.getElementById("hasilceft7").value || 0);
+  var hasil8ceft = parseFloat(document.getElementById("hasilceft8").value || 0);
+  var hasil9ceft = parseFloat(document.getElementById("hasilceft9").value || 0);
 
   total =
     hasil1ceft +
@@ -2199,18 +4275,18 @@ function showValueCEFT(checkbox, angka, bobot) {
 function showValueCEFB(checkbox, angka, bobot) {
   if (checkbox.checked) {
     var hitungbobot = checkbox.value * bobot;
-    $("#hasil" + angka + "cefb").val(hitungbobot);
+    $("#hasilcefb" + angka).val(hitungbobot);
   } else {
     var hitungbobot = 0;
-    $("#hasil" + angka + "cefb").val(hitungbobot);
+    $("#hasilcefb" + angka).val(hitungbobot);
   }
-  var hasil1cefb = parseFloat(document.getElementById("hasil1cefb").value || 0);
-  var hasil2cefb = parseFloat(document.getElementById("hasil2cefb").value || 0);
-  var hasil3cefb = parseFloat(document.getElementById("hasil3cefb").value || 0);
-  var hasil4cefb = parseFloat(document.getElementById("hasil4cefb").value || 0);
-  var hasil5cefb = parseFloat(document.getElementById("hasil5cefb").value || 0);
-  var hasil6cefb = parseFloat(document.getElementById("hasil6cefb").value || 0);
-  var hasil7cefb = parseFloat(document.getElementById("hasil7cefb").value || 0);
+  var hasil1cefb = parseFloat(document.getElementById("hasilcefb1").value || 0);
+  var hasil2cefb = parseFloat(document.getElementById("hasilcefb2").value || 0);
+  var hasil3cefb = parseFloat(document.getElementById("hasilcefb3").value || 0);
+  var hasil4cefb = parseFloat(document.getElementById("hasilcefb4").value || 0);
+  var hasil5cefb = parseFloat(document.getElementById("hasilcefb5").value || 0);
+  var hasil6cefb = parseFloat(document.getElementById("hasilcefb6").value || 0);
+  var hasil7cefb = parseFloat(document.getElementById("hasilcefb7").value || 0);
 
   total =
     hasil1cefb +
@@ -2239,185 +4315,6 @@ jumlahisidcl6 = 1;
 jumlahisidcl7 = 1;
 jumlahisidcl8 = 1;
 
-// function add_setting1() {
-//   var inpitemppfakdataForm = document.getElementsByName("item_pp_fak_data[]");
-//   var inpppnmppfakdataForm = document.getElementsByName("ppn_pp_fak_data[]");
-//   var inpnilaisebelumppnppfakdataForm = document.getElementsByName("nilai_sebelum_ppn_pp_fak_data[]");
-//   var inpnilaisesudahppnppfakdataForm = document.getElementsByName("nilai_sesudah_ppn_pp_fak_data[]");
-//   let simpanitemppfakdataForm = "";
-//   let simpanppnppfakdataForm = "";
-//   let simpannilaisebelumppnppfakdataForm = "";
-//   let simpannilaisesudahppnppfakdataForm = "";
-//   var flagisi = false;
-//   var flagjalan = true;
-
-//   for (var i = 0; i < inpitemppfakdataForm.length; i++) {
-//     var itemppfakdata = inpitemppfakdataForm[i];
-//     var ppnppfakdata = inpppnmppfakdataForm[i];
-//     var nilaisebelumppnppfakdata = inpnilaisebelumppnppfakdataForm[i];
-//     var nilaisesudahppnppfakdata = inpnilaisesudahppnppfakdataForm[i];
-
-//     if (itemppfakdata.value == "") {
-//       continue; // Skip jika nilai itemppfakdata kosong
-//     }
-
-//     if (itemppfakdata.value.includes("|")) {
-//       flagisi = true;
-//       flagjalan = true;
-//       simpanitemppfakdataForm += "|" + itemppfakdata.value;
-//       simpanppnppfakdataForm += "|" + ppnppfakdata.value;
-//       simpannilaisebelumppnppfakdataForm += "|" + nilaisebelumppnppfakdata.value;
-//       simpannilaisesudahppnppfakdataForm += "|" + nilaisesudahppnppfakdata.value;
-//     } else {
-//       if (flagisi == true && flagjalan == false) {
-//         flagisi = false;
-//         simpanitemppfakdataForm += ";";
-//         simpanppnppfakdataForm += ";";
-//         simpannilaisebelumppnppfakdataForm += ";";
-//         simpannilaisesudahppnppfakdataForm += ";";
-//       }
-//       if (i < inpitemppfakdataForm.length - 1) {
-//         simpanitemppfakdataForm += itemppfakdata.value + ";";
-//         simpanppnppfakdataForm += ppnppfakdata.value + ";";
-//         simpannilaisebelumppnppfakdataForm += nilaisebelumppnppfakdata.value + ";";
-//         simpannilaisesudahppnppfakdataForm += nilaisesudahppnppfakdata.value + ";";
-//       } else {
-//         simpanitemppfakdataForm += itemppfakdata.value;
-//         simpanppnppfakdataForm += ppnppfakdata.value;
-//         simpannilaisebelumppnppfakdataForm += nilaisebelumppnppfakdata.value;
-//         simpannilaisesudahppnppfakdataForm += nilaisesudahppnppfakdata.value;
-//       }
-//     }
-//   }
-
-//   $('[name="itemppfakdata"]').val(simpanitemppfakdataForm);
-//   $('[name="ppnppfakdata"]').val(simpanppnppfakdataForm);
-//   $('[name="nilaisebelumppnppfakdata"]').val(simpannilaisebelumppnppfakdataForm);
-//   $('[name="nilaisesudahppnppfakdata"]').val(simpannilaisesudahppnppfakdataForm);
-// }
-
-// function add_setting2() {
-//   var inptermijnfakdataForm = document.getElementsByName("item_pp_fak_data[]");
-//   var inpprogresstermijnfakdataForm = document.getElementsByName("ppn_pp_fak_data[]");
-//   var inppersentasetermijnfakdataForm = document.getElementsByName("nilai_sebelum_ppn_pp_fak_data[]");
-//   var inpprakiraantgltermijnfakdataForm = document.getElementsByName("nilai_sesudah_ppn_pp_fak_data[]");
-//   let simpanitemppfakdataForm = "";
-//   let simpanprogresstermijnfakdataForm = "";
-//   let simpanpersentasetermijnfakdataForm = "";
-//   let simpanprakiraantgltermijnfakdataForm = "";
-//   var flagisi = false;
-//   var flagjalan = true;
-
-//   for (var i = 0; i < inptermijnfakdataForm.length; i++) {
-//     var termijnfakdata = inptermijnfakdataForm[i];
-//     var progresstermijnfakdata = inpprogresstermijnfakdataForm[i];
-//     var persentasetermijnfakdata = inppersentasetermijnfakdataForm[i];
-//     var prakiraantgltermijnfakdata = inpprakiraantgltermijnfakdataForm[i];
-
-//     if (termijnfakdata.value == "") {
-//       continue; // Skip jika nilai termijnfakdata kosong
-//     }
-
-//     if (termijnfakdata.value.includes("|")) {
-//       flagisi = true;
-//       flagjalan = true;
-//       simpanitemppfakdataForm += "|" + termijnfakdata.value;
-//       simpanprogresstermijnfakdataForm += "|" + progresstermijnfakdata.value;
-//       simpanpersentasetermijnfakdataForm += "|" + persentasetermijnfakdata.value;
-//       simpanprakiraantgltermijnfakdataForm += "|" + prakiraantgltermijnfakdata.value;
-//     } else {
-//       if (flagisi == true && flagjalan == false) {
-//         flagisi = false;
-//         simpanitemppfakdataForm += ";";
-//         simpanprogresstermijnfakdataForm += ";";
-//         simpanpersentasetermijnfakdataForm += ";";
-//         simpanprakiraantgltermijnfakdataForm += ";";
-//       }
-//       if (i < inptermijnfakdataForm.length - 1) {
-//         simpanitemppfakdataForm += termijnfakdata.value + ";";
-//         simpanprogresstermijnfakdataForm += progresstermijnfakdata.value + ";";
-//         simpanpersentasetermijnfakdataForm += persentasetermijnfakdata.value + ";";
-//         simpanprakiraantgltermijnfakdataForm += prakiraantgltermijnfakdata.value + ";";
-//       } else {
-//         simpanitemppfakdataForm += termijnfakdata.value;
-//         simpanprogresstermijnfakdataForm += progresstermijnfakdata.value;
-//         simpanpersentasetermijnfakdataForm += persentasetermijnfakdata.value;
-//         simpanprakiraantgltermijnfakdataForm += prakiraantgltermijnfakdata.value;
-//       }
-//     }
-//   }
-
-//   $('[name="termijnfakdata"]').val(simpanitemppfakdataForm);
-//   $('[name="ppnppfakdata"]').val(simpanprogresstermijnfakdataForm);
-//   $('[name="persentasetermijnfakdata"]').val(simpanpersentasetermijnfakdataForm);
-//   $('[name="prakiraantgltermijnfakdata"]').val(simpanprakiraantgltermijnfakdataForm);
-// }
-
-// function add_setting3() {
-//   var inpitemppfakmodalForm = document.getElementsByName("item_pp_fak_modal[]");
-//   var inpnilaippfakmodalForm = document.getElementsByName("nilai_pp_fak_modal[]");
-//   let simpanitemppfakmodalForm = "";
-
-//   let simpannilaippfakmodalForm = "";
-//   var flagisi = false;
-//   var flagjalan = true;
-
-//   for (var i = 0; i < inpitemppfakmodalForm.length; i++) {
-//     var itemppfakmodal = inpitemppfakmodalForm[i];
-//     var nilaippfakmodal = inpnilaippfakmodalForm[i];
-
-//     if (itemppfakmodal.value == "") {
-//       continue; // Skip jika nilai itemppfakmodal kosong
-//     }
-
-//     if (itemppfakmodal.value.includes("|")) {
-//       flagisi = true;
-//       flagjalan = true;
-//       simpanitemppfakmodalForm += "|" + itemppfakmodal.value;
-//       simpannilaippfakmodalForm += "|" + nilaippfakmodal.value;
-//     } else {
-//       if (flagisi == true && flagjalan == false) {
-//         flagisi = false;
-//         simpanitemppfakmodalForm += ";";
-//         simpannilaippfakmodalForm += ";";
-//       }
-//       if (i < inpitemppfakmodalForm.length - 1) {
-//         simpanitemppfakmodalForm += itemppfakmodal.value + ";";
-//         simpannilaippfakmodalForm += nilaippfakmodal.value + ";";
-//       } else {
-//         simpanitemppfakmodalForm += itemppfakmodal.value;
-//         simpannilaippfakmodalForm += nilaippfakmodal.value;
-//       }
-//     }
-//   }
-
-//   $('[name="itemppfakmodal"]').val(simpanitemppfakmodalForm);
-//   $('[name="nilaippfakmodal"]').val(simpannilaippfakmodalForm);
-// }
-
-// function initializeCKEditor(element,callback) {
-
-//   $(function () {
-//     var editor = CKEDITOR.replace(element, {
-//       toolbar: [
-//         {
-//           name: "list",
-//           items: ["BulletedList", "NumberedList", "Outdent", "Indent"],
-//         },
-//         {
-//           name: "basicstyles",
-//           items: ["Bold", "Italic", "Underline"],
-//         },
-//       ],
-//     });
-
-//     editor.on("instanceReady", function () {
-//       if (callback && typeof callback === "function") {
-//         callback(editor);
-//       }
-//     });
-//   });
-// }
 function initializeCKEditor(element, callback) {
   $(function () {
     var editor = CKEDITOR.replace(element, {
@@ -2468,6 +4365,37 @@ function combineCheckboxValues(inputs) {
         combinedValues += ";";
       }
       combinedValues += "0";
+    }
+  });
+  return combinedValues;
+}
+
+function combineSelectValues(selects) {
+  let combinedValues = "";
+  selects.forEach((select, index) => {
+    // Ambil nilai dari opsi yang dipilih
+    const selectedValue = select.options[select.selectedIndex].value.trim();
+
+    if (selectedValue !== "") {
+      if (combinedValues) {
+        combinedValues += ";";
+      }
+      combinedValues += selectedValue;
+    }
+  });
+  return combinedValues;
+}
+
+function combineTextareaValues(textareas) {
+  let combinedValues = "";
+  textareas.forEach((textarea, index) => {
+    const textareaValue = textarea.value.trim();
+
+    if (textareaValue !== "") {
+      if (combinedValues) {
+        combinedValues += ";";
+      }
+      combinedValues += textareaValue;
     }
   });
   return combinedValues;
@@ -2641,6 +4569,183 @@ function add_agunan_mauk() {
   );
 }
 
+function add_faa_tb() {
+  var nama_nasabah_faa_tb = document.querySelectorAll(
+    "input[name='nama_nasabah_faa_tb[]']"
+  );
+  var nomor_shm_faa_tb = document.querySelectorAll(
+    "input[name='nomor_shm_faa_tb[]']"
+  );
+  var tanggal_shm_faa_tb = document.querySelectorAll(
+    "input[name='tanggal_shm_faa_tb[]']"
+  );
+  var nama_pemilik_shm_faa_tb = document.querySelectorAll(
+    "input[name='nama_pemilik_shm_faa_tb[]']"
+  );
+  var alamat_agunan_faa_tb = document.querySelectorAll(
+    "input[name='alamat_agunan_faa_tb[]']"
+  );
+  var harga_pasar_tanah_faa_tb = document.querySelectorAll(
+    "input[name='harga_pasar_tanah_faa_tb[]']"
+  );
+  var harga_buku_tanah_faa_tb = document.querySelectorAll(
+    "input[name='harga_buku_tanah_faa_tb[]']"
+  );
+  var harga_menurut_pejabat_bank_tanah_faa_tb = document.querySelectorAll(
+    "input[name='harga_menurut_pejabat_bank_tanah_faa_tb[]']"
+  );
+  var harga_tanah_tanah_faa_tb = document.querySelectorAll(
+    "input[name='harga_tanah_tanah_faa_tb[]']"
+  );
+  var luas_persegi_tanah_tanah_faa_tb = document.querySelectorAll(
+    "input[name='luas_persegi_tanah_tanah_faa_tb[]']"
+  );
+  var hasil_perhitungan_penilaian_tanah_faa_tb = document.querySelectorAll(
+    "input[name='hasil_perhitungan_penilaian_tanah_faa_tb[]']"
+  );
+
+  document.querySelector('[name="namanasabahfaatb"]').value =
+    combineValues(nama_nasabah_faa_tb);
+  document.querySelector('[name="nomorshmfaatb"]').value =
+    combineValues(nomor_shm_faa_tb);
+  document.querySelector('[name="tanggalshmfaatb"]').value =
+    combineValues(tanggal_shm_faa_tb);
+  document.querySelector('[name="namapemilikshmfaatb"]').value = combineValues(
+    nama_pemilik_shm_faa_tb
+  );
+  document.querySelector('[name="alamatagunanfaatb"]').value =
+    combineValues(alamat_agunan_faa_tb);
+  document.querySelector('[name="hargapasartanahfaatb"]').value = combineValues(
+    harga_pasar_tanah_faa_tb
+  );
+  document.querySelector('[name="hargabukutanahfaatb"]').value = combineValues(
+    harga_buku_tanah_faa_tb
+  );
+  document.querySelector('[name="hargamenurutpejabatbanktanahfaatb"]').value =
+    combineValues(harga_menurut_pejabat_bank_tanah_faa_tb);
+  document.querySelector('[name="hargatanahtanahfaatb"]').value = combineValues(
+    harga_tanah_tanah_faa_tb
+  );
+  document.querySelector('[name="luaspersegitanahtanahfaatb"]').value =
+    combineValues(luas_persegi_tanah_tanah_faa_tb);
+  document.querySelector('[name="hasilperhitunganpenilaiantanahfaatb"]').value =
+    combineValues(hasil_perhitungan_penilaian_tanah_faa_tb);
+}
+
+function add_faa_bb() {
+  var nama_nasabah_bb = document.querySelectorAll(
+    "input[name='nama_nasabah_bb[]']"
+  );
+  var jenis_dokumen_bb = document.querySelectorAll(
+    "input[name='jenis_dokumen_bb[]']"
+  );
+  var alamat_bb = document.querySelectorAll("textarea[name='alamat_bb[]']");
+  var jenis_bb = document.querySelectorAll("input[name='jenis_bb[]']");
+  var model_tipe_bb = document.querySelectorAll(
+    "input[name='model_tipe_bb[]']"
+  );
+  var merek_cc_bb = document.querySelectorAll("input[name='merek_cc_bb[]']");
+  var tahun_pembuatan_bb = document.querySelectorAll(
+    "input[name='tahun_pembuatan_bb[]']"
+  );
+  var serial_number_bb = document.querySelectorAll(
+    "input[name='serial_number_bb[]']"
+  );
+  var nomor_mesin_bb = document.querySelectorAll(
+    "input[name='nomor_mesin_bb[]']"
+  );
+  var warna_bb = document.querySelectorAll("input[name='warna_bb[]']");
+  var bahan_bakar_bb = document.querySelectorAll(
+    "input[name='bahan_bakar_bb[]']"
+  );
+  var kondisi_keadaan_bb = document.querySelectorAll(
+    "input[name='kondisi_keadaan_bb[]']"
+  );
+  var nomor_polisi_bb = document.querySelectorAll(
+    "input[name='nomor_polisi_bb[]']"
+  );
+  var bukti_kepemilikan_agb_bb = document.querySelectorAll(
+    "input[name='bukti_kepemilikan_agb_bb[]']"
+  );
+  var invoice_no_bb = document.querySelectorAll(
+    "input[name='invoice_no_bb[]']"
+  );
+  var invoice_tanggal_bb = document.querySelectorAll(
+    "input[name='invoice_tanggal_bb[]']"
+  );
+  var perubahan_hak_terakhir_bb = document.querySelectorAll(
+    "input[name='perubahan_hak_terakhir_bb[]']"
+  );
+  var tercatat_atas_nama_bb = document.querySelectorAll(
+    "input[name='tercatat_atas_nama_bb[]']"
+  );
+  var alamat_pemilik_saat_ini_bb = document.querySelectorAll(
+    "textarea[name='alamat_pemilik_saat_ini_bb[]']"
+  );
+  var umur_teknis_bb = document.querySelectorAll(
+    "input[name='umur_teknis_bb[]']"
+  );
+  var perkiraan_umur_ekonomis_bb = document.querySelectorAll(
+    "input[name='perkiraan_umur_ekonomis_bb[]']"
+  );
+  var tempat_penyimpanan_bb = document.querySelectorAll(
+    "input[name='tempat_penyimpanan_bb[]']"
+  );
+  var route_bb = document.querySelectorAll("input[name='route_bb[]']");
+  var jarak_rata_rata_tempuh_bb = document.querySelectorAll(
+    "input[name='jarak_rata_rata_tempuh_bb[]']"
+  );
+
+  document.querySelector('[name="namanasabahbb"]').value =
+    combineValues(nama_nasabah_bb);
+  document.querySelector('[name="jenisdokumenbb"]').value =
+    combineValues(jenis_dokumen_bb);
+  // document.querySelector('[name="alamatbb"]').value = combineValues(alamat_bb);
+  document.querySelector('[name="alamatbb"]').value =
+    combineTextareaValues(alamat_bb);
+  document.querySelector('[name="jenisbb"]').value = combineValues(jenis_bb);
+  document.querySelector('[name="modeltipebb"]').value =
+    combineValues(model_tipe_bb);
+  document.querySelector('[name="merekccbb"]').value =
+    combineValues(merek_cc_bb);
+  document.querySelector('[name="tahunpembuatanbb"]').value =
+    combineValues(tahun_pembuatan_bb);
+  document.querySelector('[name="serialnumberbb"]').value =
+    combineValues(serial_number_bb);
+  document.querySelector('[name="nomormesinbb"]').value =
+    combineValues(nomor_mesin_bb);
+  document.querySelector('[name="warnabb"]').value = combineValues(warna_bb);
+  document.querySelector('[name="bahanbakarbb"]').value =
+    combineValues(bahan_bakar_bb);
+  document.querySelector('[name="kondisikeadaanbb"]').value =
+    combineValues(kondisi_keadaan_bb);
+  document.querySelector('[name="nomorpolisibb"]').value =
+    combineValues(nomor_polisi_bb);
+  document.querySelector('[name="buktikepemilikanagbbb"]').value =
+    combineValues(bukti_kepemilikan_agb_bb);
+  document.querySelector('[name="invoicenobb"]').value =
+    combineValues(invoice_no_bb);
+  document.querySelector('[name="invoicetanggalbb"]').value =
+    combineValues(invoice_tanggal_bb);
+  document.querySelector('[name="perubahanhakterakhirbb"]').value =
+    combineValues(perubahan_hak_terakhir_bb);
+  document.querySelector('[name="tercatatatasnamabb"]').value = combineValues(
+    tercatat_atas_nama_bb
+  );
+  document.querySelector('[name="alamatpemiliksaatinibb"]').value =
+    combineTextareaValues(alamat_pemilik_saat_ini_bb);
+  document.querySelector('[name="umurteknisbb"]').value =
+    combineValues(umur_teknis_bb);
+  document.querySelector('[name="perkiraanumurekonomisbb"]').value =
+    combineValues(perkiraan_umur_ekonomis_bb);
+  document.querySelector('[name="tempatpenyimpananbb"]').value = combineValues(
+    tempat_penyimpanan_bb
+  );
+  document.querySelector('[name="routebb"]').value = combineValues(route_bb);
+  document.querySelector('[name="jarakrataratatempuhbb"]').value =
+    combineValues(jarak_rata_rata_tempuh_bb);
+}
+
 function add_dcl1() {
   var nama_pemilik_perusahaan_dcl = document.querySelectorAll(
     "input[name='nama_pemilik_perusahaan_dcl[]']"
@@ -2670,30 +4775,32 @@ function add_dcl2() {
     combineValues(nama_pengurus_perusahaan_dcl);
   document.querySelector('[name="ktpdcl"]').value = combineValues(ktp_dcl);
 }
+
 function add_dcl3() {
   var fasilitas_kredit_dcl = document.querySelectorAll(
-    "input[name='fasilitas_kredit_dcl[]']"
+    "textarea[name='fasilitas_kredit_dcl[]']"
   );
+  // console.log(fasilitas_kredit_dcl);
   var plafond_dcl = document.querySelectorAll("input[name='plafond_dcl[]']");
   var jangka_waktu_dcl = document.querySelectorAll(
-    "input[name='jangka_waktu_dcl[]']"
+    "textarea[name='jangka_waktu_dcl[]']"
   );
   var tujuan_penggunaan_dcl = document.querySelectorAll(
-    "input[name='tujuan_penggunaan_dcl[]']"
+    "textarea[name='tujuan_penggunaan_dcl[]']"
   );
   var permohonan_diterima_dcl = document.querySelectorAll(
     "input[name='permohonan_diterima_dcl[]']"
   );
-
+  // let combinedValues = combineTextareaValues(fasilitas_kredit_dcl);
+  // console.log(combinedValues);
   document.querySelector('[name="fasilitaskreditdcl"]').value =
-    combineValues(fasilitas_kredit_dcl);
+    combineTextareaValues(fasilitas_kredit_dcl);
   document.querySelector('[name="plafonddcl"]').value =
     combineValues(plafond_dcl);
   document.querySelector('[name="jangkawaktudcl"]').value =
-    combineValues(jangka_waktu_dcl);
-  document.querySelector('[name="tujuanpenggunaandcl"]').value = combineValues(
-    tujuan_penggunaan_dcl
-  );
+    combineTextareaValues(jangka_waktu_dcl);
+  document.querySelector('[name="tujuanpenggunaandcl"]').value =
+    combineTextareaValues(tujuan_penggunaan_dcl);
   document.querySelector('[name="permohonanditerimadcl"]').value =
     combineValues(permohonan_diterima_dcl);
 }
@@ -2738,7 +4845,6 @@ function add_dcl5() {
   var kolektibilitas_dcl = document.querySelectorAll(
     "input[name='kolektibilitas_dcl[]']"
   );
-
   document.querySelector('[name="fasilitasdcl"]').value =
     combineValues(fasilitas_dcl);
   document.querySelector('[name="jatuhtempodcl"]').value =
@@ -2750,6 +4856,7 @@ function add_dcl5() {
   document.querySelector('[name="kolektibilitasdcl"]').value =
     combineValues(kolektibilitas_dcl);
 }
+
 function add_dcl6() {
   var fasilitas_kredit_grup_dcl = document.querySelectorAll(
     "input[name='fasilitas_kredit_grup_dcl[]']"
@@ -2818,6 +4925,7 @@ function add_dcl7() {
   document.querySelector('[name="kolektibilitasbanklaindcl"]').value =
     combineValues(kolektibilitas_bank_lain_dcl);
 }
+
 function add_dcl8() {
   var pengujian_lainnya_dcl = document.querySelectorAll(
     "input[name='pengujian_lainnya_dcl[]']"
@@ -2826,8 +4934,14 @@ function add_dcl8() {
     "input[name='dasar_pengujian_lainnya_dcl[]']"
   );
   var checklist_pengujian_lainnya_dcl = document.querySelectorAll(
-    "input[name='checklist_pengujian_lainnya_dcl[]']"
+    "select[name='checklist_pengujian_lainnya_dcl[]']"
   );
+  // let selectElements = document.querySelectorAll(
+  //   "select[name='checklist_pengujian_lainnya_dcl[]']"
+  // );
+  // let combinedSelectValues = combineSelectValues(selectElements);
+
+  // console.log(combinedSelectValues);
 
   document.querySelector('[name="pengujianlainnyadcl"]').value = combineValues(
     pengujian_lainnya_dcl
@@ -2835,7 +4949,7 @@ function add_dcl8() {
   document.querySelector('[name="dasarpengujianlainnyadcl"]').value =
     combineValues(dasar_pengujian_lainnya_dcl);
   document.querySelector('[name="checklistpengujianlainnyadcl"]').value =
-    combineValues(checklist_pengujian_lainnya_dcl);
+    combineSelectValues(checklist_pengujian_lainnya_dcl);
 }
 
 function data_data_fak_data() {
@@ -2947,6 +5061,7 @@ function data_data_fak_modal() {
     jumlah_total_biaya_umum_fak_modal: $(
       "#jumlah_total_biaya_umum_fak_modal"
     ).val(),
+    persentase_pekerjaan_fak_modal: $("#persentase_pekerjaan_fak_modal").val(),
     persiapan_pekerjaan_fak_modal: $("#persiapan_pekerjaan_fak_modal").val(),
     biaya_umum_adm_fak_modal: $("#biaya_umum_adm_fak_modal").val(),
     jumlah_kebutuhan_modal_kerja_fak_modal: $(
@@ -3179,6 +5294,176 @@ function post_ceftb(method, data_input, button) {
   });
 }
 
+// function data_data_faa() {
+//   // var data_faa = {};
+//   variabelGlobal(function (hasil) {
+//     if (hasil.status === "success") {
+//       var jenis_agunan = hasil.message.data_entry.jenis_agunan;
+
+//       var jenisAgunanArray = jenis_agunan.split(";");
+
+//       var adaBarangBergerak = jenisAgunanArray.includes("Barang Bergerak");
+//       var adaTanahOrTanahBangunan = jenisAgunanArray.includes(
+//         "Tanah/ Tanah dan Bangunan"
+//       );
+
+//       if (adaBarangBergerak) {
+//         add_faa_bb();
+//       }
+
+//       if (adaTanahOrTanahBangunan) {
+//         add_faa_tb();
+//       }
+//       data_faa = {
+//         nama_nasabah_bb: $("#namanasabahbb").val(),
+//         jenis_dokumen_bb: $("#jenisdokumenbb").val(),
+//         alamat_bb: $("#alamatbb").val(),
+//         jenis_bb: $("#jenisbb").val(),
+//         model_tipe_bb: $("#modeltipebb").val(),
+//         merek_cc_bb: $("#merekccbb").val(),
+//         tahun_pembuatan_bb: $("#tahunpembuatanbb").val(),
+//         serial_number_bb: $("#serialnumberbb").val(),
+//         nomor_mesin_bb: $("#nomormesinbb").val(),
+//         warna_bb: $("#warnabb").val(),
+//         bahan_bakar_bb: $("#bahanbakarbb").val(),
+//         kondisi_keadaan_bb: $("#kondisikeadaanbb").val(),
+//         nomor_polisi_bb: $("#nomorpolisibb").val(),
+//         bukti_kepemilikan_agb_bb: $("#buktikepemilikanagbbb").val(),
+//         invoice_no_bb: $("#invoicenobb").val(),
+//         invoice_tanggal_bb: $("#invoicetanggalbb").val(),
+//         perubahan_hak_terakhir_bb: $("#perubahanhakterakhirbb").val(),
+//         tercatat_atas_nama_bb: $("#tercatatatasnamabb").val(),
+//         alamat_pemilik_saat_ini_bb: $("#alamatpemiliksaatinibb").val(),
+//         umur_teknis_bb: $("#umurteknisbb").val(),
+//         perkiraan_umur_ekonomis_bb: $("#perkiraanumurekonomisbb").val(),
+//         tempat_penyimpanan_bb: $("#tempatpenyimpananbb").val(),
+//         route_bb: $("#routebb").val(),
+//         jarak_rata_rata_tempuh_bb: $("#jarakrataratatempuhbb").val(),
+//         // Menyimpan data yang ada sebelumnya
+//         nama_nasabah_faa_tb: $("#namanasabahfaatb").val(),
+//         nomor_shm_faa_tb: $("#nomorshmfaatb").val(),
+//         tanggal_shm_faa_tb: $("#tanggalshmfaatb").val(),
+//         nama_pemilik_shm_faa_tb: $("#namapemilikshmfaatb").val(),
+//         alamat_agunan_faa_tb: $("#alamatagunanfaatb").val(),
+//         harga_pasar_tanah_faa_tb: $("#hargapasartanahfaatb").val(),
+//         harga_buku_tanah_faa_tb: $("#hargabukutanahfaatb").val(),
+//         harga_menurut_pejabat_bank_tanah_faa_tb: $(
+//           "#hargamenurutpejabatbanktanahfaatb"
+//         ).val(),
+//         harga_tanah_tanah_faa_tb: $("#hargatanahtanahfaatb").val(),
+//         luas_persegi_tanah_tanah_faa_tb: $("#luaspersegitanahtanahfaatb").val(),
+//         hasil_perhitungan_penilaian_tanah_faa_tb: $(
+//           "#hasilperhitunganpenilaiantanahfaatb"
+//         ).val(),
+//       };
+//       console.log(data_faa);
+//       return data_faa;
+//     }
+//   });
+// }
+function data_data_faa() {
+  return new Promise((resolve, reject) => {
+    variabelGlobal(function (hasil) {
+      if (hasil.status === "success") {
+        var jenis_agunan = hasil.message.data_entry.jenis_agunan;
+
+        var jenisAgunanArray = jenis_agunan.split(";");
+
+        var adaBarangBergerak = jenisAgunanArray.includes("Barang Bergerak");
+        var adaTanahOrTanahBangunan = jenisAgunanArray.includes(
+          "Tanah/ Tanah dan Bangunan"
+        );
+
+        if (adaBarangBergerak) {
+          add_faa_bb();
+        }
+
+        if (adaTanahOrTanahBangunan) {
+          add_faa_tb();
+        }
+
+        // Mengisi `data_faa` setelah data tersedia
+        const data_faa = {
+          kd_data_tambah: $("#kd_data_tambah").val(),
+          nama_nasabah_bb: $("#namanasabahbb").val(),
+          jenis_dokumen_bb: $("#jenisdokumenbb").val(),
+          alamat_bb: $("#alamatbb").val(),
+          jenis_bb: $("#jenisbb").val(),
+          model_tipe_bb: $("#modeltipebb").val(),
+          merek_cc_bb: $("#merekccbb").val(),
+          tahun_pembuatan_bb: $("#tahunpembuatanbb").val(),
+          serial_number_bb: $("#serialnumberbb").val(),
+          nomor_mesin_bb: $("#nomormesinbb").val(),
+          warna_bb: $("#warnabb").val(),
+          bahan_bakar_bb: $("#bahanbakarbb").val(),
+          kondisi_keadaan_bb: $("#kondisikeadaanbb").val(),
+          nomor_polisi_bb: $("#nomorpolisibb").val(),
+          bukti_kepemilikan_agb_bb: $("#buktikepemilikanagbbb").val(),
+          invoice_no_bb: $("#invoicenobb").val(),
+          invoice_tanggal_bb: $("#invoicetanggalbb").val(),
+          perubahan_hak_terakhir_bb: $("#perubahanhakterakhirbb").val(),
+          tercatat_atas_nama_bb: $("#tercatatatasnamabb").val(),
+          alamat_pemilik_saat_ini_bb: $("#alamatpemiliksaatinibb").val(),
+          umur_teknis_bb: $("#umurteknisbb").val(),
+          perkiraan_umur_ekonomis_bb: $("#perkiraanumurekonomisbb").val(),
+          tempat_penyimpanan_bb: $("#tempatpenyimpananbb").val(),
+          route_bb: $("#routebb").val(),
+          jarak_rata_rata_tempuh_bb: $("#jarakrataratatempuhbb").val(),
+          nama_nasabah_faa_tb: $("#namanasabahfaatb").val(),
+          nomor_shm_faa_tb: $("#nomorshmfaatb").val(),
+          tanggal_shm_faa_tb: $("#tanggalshmfaatb").val(),
+          nama_pemilik_shm_faa_tb: $("#namapemilikshmfaatb").val(),
+          alamat_agunan_faa_tb: $("#alamatagunanfaatb").val(),
+          harga_pasar_tanah_faa_tb: $("#hargapasartanahfaatb").val(),
+          harga_buku_tanah_faa_tb: $("#hargabukutanahfaatb").val(),
+          harga_menurut_pejabat_bank_tanah_faa_tb: $(
+            "#hargamenurutpejabatbanktanahfaatb"
+          ).val(),
+          harga_tanah_tanah_faa_tb: $("#hargatanahtanahfaatb").val(),
+          luas_persegi_tanah_tanah_faa_tb: $(
+            "#luaspersegitanahtanahfaatb"
+          ).val(),
+          hasil_perhitungan_penilaian_tanah_faa_tb: $(
+            "#hasilperhitunganpenilaiantanahfaatb"
+          ).val(),
+        };
+
+        console.log(data_faa); // Log untuk verifikasi data
+
+        resolve(data_faa); // Kirim `data_faa` sebagai hasil
+      } else {
+        reject("Gagal mendapatkan data FAA");
+      }
+    });
+  });
+}
+
+function post_faa(method, data_input, button) {
+  $.ajax({
+    url: base_url + "pengajuan/" + method,
+    type: "POST",
+    dataType: "json",
+    data: data_input,
+    success: function (response) {
+      if (response.status == "success") {
+        // $("#mohon").hide();
+        // refresh_fak_data();
+        if (button == "save_faa") {
+          toastr.success(response.message, "Berhasil");
+        }
+      } else {
+        // $("#mohon").hide();
+        toastr.warning(response.message, "Gagal");
+      }
+    },
+    error: function (xhr, status, error) {
+      // $("#mohon").hide();
+      console.log(xhr.responseText);
+      toastr.error("Edit FAA gagal", "Error");
+    },
+  });
+}
+
 function data_data_mauk() {
   add_kesimpulan_mauk();
   add_kesimpulan_pal_mauk();
@@ -3320,8 +5605,8 @@ function data_data_dcl() {
     nama_pengurus_perusahaan_dcl: $("#namapengurusperusahaandcl").val(),
     ktp_dcl: $("#ktpdcl").val(),
     jenis_usaha_perusahaan_dcl: $("#jenis_usaha_perusahaan_dcl").val(),
-    fasilitas_kredit_dcl: $("#fasilitaskreditdcl").val(),
 
+    fasilitas_kredit_dcl: $("#fasilitaskreditdcl").val(),
     plafond_dcl: $("#plafonddcl").val(),
     jangka_waktu_dcl: $("#jangkawaktudcl").val(),
     tujuan_penggunaan_dcl: $("#tujuanpenggunaandcl").val(),
@@ -3336,7 +5621,9 @@ function data_data_dcl() {
     jatuh_tempo_dcl: $("#jatuhtempodcl").val(),
     plafond_existing_dcl: $("#plafondexistingdcl").val(),
     outstanding_dcl: $("#outstandingdcl").val(),
+    kolektibilitas_dcl: $("#kolektibilitasdcl").val(),
     fasilitas_kredit_grup_dcl: $("#fasilitaskreditgrupdcl").val(),
+    nama_debitur_kredit_grup_dcl: $("#namadebiturkreditgrupdcl").val(),
     jatuh_tempo_kredit_grup_dcl: $("#jatuhtempokreditgrupdcl").val(),
     plafond_existing_kredit_grup_dcl: $("#plafondexistingkreditgrupdcl").val(),
     outstanding_kredit_grup_dcl: $("#outstandingkreditgrupdcl").val(),
@@ -3346,6 +5633,7 @@ function data_data_dcl() {
     jatuh_tempo_bank_lain_dcl: $("#jatuhtempobanklaindcl").val(),
     plafond_existing_bank_lain_dcl: $("#plafondexistingbanklaindcl").val(),
     outstanding_bank_lain_dcl: $("#outstandingbanklaindcl").val(),
+    kolektibilitas_bank_lain_dcl: $("#kolektibilitasbanklaindcl").val(),
     pengujian_ojk_dcl1: $("#pengujian_ojk_dcl1").val(),
     dasar_pengujian_ojk_dcl1: $("#dasar_pengujian_ojk_dcl1").val(),
     checklist_pengujian_ojk_dcl1: $("#checklist_pengujian_ojk_dcl1").val(),
@@ -3387,6 +5675,7 @@ function data_data_dcl() {
     ).val(),
     pengujian_lainnya_dcl: $("#pengujianlainnyadcl").val(),
     dasar_pengujian_lainnya_dcl: $("#dasarpengujianlainnyadcl").val(),
+    checklist_pengujian_lainnya_dcl: $("#checklistpengujianlainnyadcl").val(),
     kesimpulan_dcl: $("#kesimpulan_dcl").val(),
     komentar_dcl: $("#komentar_dcl").val(),
 
@@ -3421,6 +5710,73 @@ function post_dcl(method, data_input, button) {
   });
 }
 
+function post_scoring_koor(method, data_input, button) {
+  $.ajax({
+    url: base_url + "pengajuan/" + method,
+    type: "POST",
+    dataType: "json",
+    data: data_input,
+    success: function (response) {
+      if (response.status == "success") {
+        $("#mohon").hide();
+        refresh_scoring();
+        if (button == "edit_scoring_koor") {
+          toastr.success(response.message, "Berhasil");
+        }
+        if (button != "edit_scoring_koor") {
+          var hasil_recap2 = data_recap();
+          post_recap("edit_recap", hasil_recap2, "finish_recap");
+        }
+      } else {
+        $("#mohon").hide();
+        toastr.warning(response.message, "Gagal");
+      }
+    },
+    error: function (xhr, status, error) {
+      $("#mohon").hide();
+      console.log(xhr.responseText);
+      toastr.error("Edit scoring gagal", "Error");
+    },
+  });
+}
+
+function data_data_scoring_koor() {
+  var data_scoring_koor = {
+    kd_data_tambah: $("#kd_data_tambah").val(),
+
+    nama_pemohon_sc: $("#nama_pemohon_sc_koor").val(),
+    alamat_sc: $("#alamat_sc_koor").val(),
+    plafond_sc: $("#plafond_sc_koor").val(),
+    tujuan_sc: $("#tujuan_sc_koor").val(),
+    no_pak_sc: $("#no_pak_sc_koor").val(),
+
+    pendirian_sc_koor: $("#pendirian_sc_koor").val(),
+    legalitas_sc_koor: $("#legalitas_sc_koor").val(),
+    hubungan_sc_koor: $("#hubungan_sc_koor").val(),
+    pengelolaan_sc_koor: $("#pengelolaan_sc_koor").val(),
+    jenis_agunan_sc_koor: $("#jenis_agunan_sc_koor").val(),
+    bukti_sc_koor: $("#bukti_sc_koor").val(),
+    status_sc_koor: $("#status_sc_koor").val(),
+    marketable_sc_koor: $("#marketable_sc_koor").val(),
+    lending_sc_koor: $("#lending_sc_koor").val(),
+    pengalaman_sc_koor: $("#pengalaman_sc_koor").val(),
+    sumber_dana_sc_koor: $("#sumber_dana_sc_koor").val(),
+    lokasi_sc_koor: $("#lokasi_sc_koor").val(),
+    jenis_proyek_sc_koor: $("#jenis_proyek_sc_koor").val(),
+    bahan_baku_sc_koor: $("#bahan_baku_sc_koor").val(),
+    peralatan_sc_koor: $("#peralatan_sc_koor").val(),
+    pembayaran_sc_koor: $("#pembayaran_sc_koor").val(),
+    dasar_penunjukan_sc_koor: $("#dasar_penunjukan_sc_koor").val(),
+    prosentase_sc_koor: $("#prosentase_sc_koor").val(),
+    jangka_sc_koor: $("#jangka_sc_koor").val(),
+    agunan_sc_koor: $("#agunan_sc_koor").val(),
+    penjaminan_sc_koor: $("#penjaminan_sc_koor").val(),
+
+    // upload dokumen
+  };
+  return data_scoring_koor;
+}
+
 function click_save_data_fak_data() {
   var data_fak_data2 = data_data_fak_data();
   // Mengirim data menggunakan AJAX
@@ -3448,6 +5804,24 @@ function click_save_data_ceftb() {
   // Mengirim data menggunakan AJAX
   post_ceftb("edit_ceftb", data_ceftb2, "save_ceftb");
 }
+// function click_save_data_faa() {
+//   // data_data_faa();
+//   var data_faa2 = data_data_faa();
+//   // Mengirim data menggunakan AJAX
+//   post_faa("edit_faa", data_faa2, "save_faa");
+// }
+function click_save_data_faa() {
+  data_data_faa()
+    .then((data_faa2) => {
+      // Mengirim data menggunakan AJAX setelah data tersedia
+      post_faa("edit_faa", data_faa2, "save_faa");
+    })
+    .catch((error) => {
+      console.error(error); // Log jika ada kesalahan
+      toastr.error("Gagal mendapatkan data FAA", "Error");
+    });
+}
+
 function click_save_data_mauk() {
   // data_data_mauk();
   var data_mauk2 = data_data_mauk();
@@ -3459,6 +5833,16 @@ function click_save_data_dcl() {
   var data_dcl2 = data_data_dcl();
   // Mengirim data menggunakan AJAX
   post_dcl("edit_dcl", data_dcl2, "save_dcl");
+}
+function click_save_data_scoring_koor() {
+  // data_data_scoring_koor();
+  var data_scoring_koor2 = data_data_scoring_koor();
+  // Mengirim data menggunakan AJAX
+  post_scoring_koor(
+    "edit_scoring_koor",
+    data_scoring_koor2,
+    "save_scoring_koor"
+  );
 }
 
 function seeDokumen(param) {
@@ -3497,29 +5881,6 @@ function checkRecap(tabel, kd_data, id_kolom) {
   });
 }
 
-// function checkRecap(tabel, kd_data, id_kolom) {
-//   if(){}
-//   $.ajax({
-//     url: base_url + "recap/" + tabel,
-//     type: "POST",
-//     data: {
-//       kd_data: kd_data,
-//     },
-//     success: function (response) {
-//       if (response.status === "Oke") {
-//         $("#" + id_kolom + "1").show(); // Tampilkan Oke
-//         $("#" + id_kolom + "2").hide(); // Sembunyikan Not Oke
-//       } else {
-//         $("#" + id_kolom + "1").hide(); // Sembunyikan Oke
-//         $("#" + id_kolom + "2").show(); // Tampilkan Not Oke
-//       }
-//     },
-//     error: function () {
-//       alert("Terjadi kesalahan saat mengambil data.");
-//     },
-//   });
-// }
-
 function hitungSemua() {
   // getFCR();
   hitungPP();
@@ -3541,14 +5902,33 @@ function hitungSemua() {
   hitungPersentasePemotonganKreditBank();
 }
 
+function separatorNominal(id) {
+  $("#" + id).on("input", function () {
+    var hargaVal = parseInt($(this).val());
+    if (isNaN(hargaVal)) {
+      hargaVal = 0;
+    }
+    var formattedHarga = hargaVal.toLocaleString("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    });
+    $("#harga_besaran" + id).text("Besaran " + formattedHarga);
+  });
+}
+
 $(document).ready(function () {
   isi_fak_data();
   isi_fak_modal();
   isi_fak_rl();
   isi_upload_lap_rl();
+  ceftb();
   isi_ceftb();
   isi_mauk();
   isi_dcl();
+  isi_scoring_koor();
+  faa_bb();
+  unit_kerja_dcl();
+  // hitungSemua();
 
   $(".lihat-dokumen").on("click", function () {
     var data_id = $(this).data("id");
@@ -3556,72 +5936,6 @@ $(document).ready(function () {
     // Lakukan sesuatu dengan nilai data-id yang telah diambil
     // console.log('Nilai data-id:', data_id);
   });
-
-  // $("#save_fak_modal").click(function (e) {
-  //   // alert('save fcr di klik')
-
-  //   // $("#mohon").show();
-  //   e.preventDefault(); // Mencegah form untuk submit secara default
-  //   // Mendefinisikan array untuk menyimpan nilai input
-  //   // alert(data.jenis_agunan_tambah)
-  //   // var data_fak_data2 = data_data_fak_data();
-  //   // Mengirim data menggunakan AJAX
-  //   // post_fak_data("edit_fak_data", data_fak_data2, "save_fak_data");
-  // });
-  var tujuan_penggunaan_mauk = "tujuan_penggunaan_mauk";
-  var pemilik_perseroan_mauk = "pemilik_perseroan_mauk";
-  var pemilikan_saham_permodalan_mauk = "pemilikan_saham_permodalan_mauk";
-  var kewenangan_direksi_mauk = "kewenangan_direksi_mauk";
-  var informasi_riwayat_perbankan_mauk = "informasi_riwayat_perbankan_mauk";
-  var legalitas_pendirian_usaha_mauk = "legalitas_pendirian_usaha_mauk";
-  var legalitas_perizinan_usaha_mauk = "legalitas_perizinan_usaha_mauk";
-  var legalitas_pelaksanaan_proyek_mauk = "legalitas_pelaksanaan_proyek_mauk";
-  var legalitas_personal_pemohon_pemilik_agunan_mauk =
-    "legalitas_personal_pemohon_pemilik_agunan_mauk";
-  var kesimpulan_analisa_aspek_legalitas_mauk =
-    "kesimpulan_analisa_aspek_legalitas_mauk";
-  var analisa_aspek_manajemen_mauk = "analisa_aspek_manajemen_mauk";
-  var analisa_aspek_teknis_mauk = "analisa_aspek_teknis_mauk";
-  var analisa_aspek_pemasaran_mauk = "analisa_aspek_pemasaran_mauk";
-  var analisa_aspek_keuangan_mauk = "analisa_aspek_keuangan_mauk";
-  var perhitungan_kebutuhan_kredit_mauk = "perhitungan_kebutuhan_kredit_mauk";
-  var kesimpulan_jaminan_agunan_mauk = "kesimpulan_jaminan_agunan_mauk";
-  var dokumentasi_kredit_mauk = "dokumentasi_kredit_mauk";
-  var pengikatan_agunan_mauk = "pengikatan_agunan_mauk";
-  var asuransi_kredit_mauk = "asuransi_kredit_mauk";
-  var asuransi_agunan_mauk = "asuransi_agunan_mauk";
-  var syarat_ttd_pk_mauk = "syarat_ttd_pk_mauk";
-  var syarat_realisasi_penarikan_mauk = "syarat_realisasi_penarikan_mauk";
-  var affirmatives_mauk = "affirmatives_mauk";
-  var negatives_mauk = "negatives_mauk";
-  var syarat_lain_mauk = "syarat_lain_mauk";
-
-  // initializeCKEditor(myElement);
-  // initializeCKEditor(tujuan_penggunaan_mauk);
-  // initializeCKEditor(pemilik_perseroan_mauk);
-  // initializeCKEditor(pemilikan_saham_permodalan_mauk);
-  // initializeCKEditor(kewenangan_direksi_mauk);
-  // initializeCKEditor(informasi_riwayat_perbankan_mauk);
-  // initializeCKEditor(legalitas_pendirian_usaha_mauk);
-  // initializeCKEditor(legalitas_perizinan_usaha_mauk);
-  // initializeCKEditor(legalitas_pelaksanaan_proyek_mauk);
-  // initializeCKEditor(legalitas_personal_pemohon_pemilik_agunan_mauk);
-  // initializeCKEditor(kesimpulan_analisa_aspek_legalitas_mauk);
-  // initializeCKEditor(analisa_aspek_manajemen_mauk);
-  // initializeCKEditor(analisa_aspek_teknis_mauk);
-  // initializeCKEditor(analisa_aspek_pemasaran_mauk);
-  // initializeCKEditor(analisa_aspek_keuangan_mauk);
-  // initializeCKEditor(perhitungan_kebutuhan_kredit_mauk);
-  // initializeCKEditor(kesimpulan_jaminan_agunan_mauk);
-  // initializeCKEditor(dokumentasi_kredit_mauk);
-  // initializeCKEditor(pengikatan_agunan_mauk);
-  // initializeCKEditor(asuransi_kredit_mauk);
-  // initializeCKEditor(syarat_lain_mauk);
-  // initializeCKEditor(negatives_mauk);
-  // initializeCKEditor(affirmatives_mauk);
-  // initializeCKEditor(syarat_realisasi_penarikan_mauk);
-  // initializeCKEditor(syarat_ttd_pk_mauk);
-  // initializeCKEditor(asuransi_agunan_mauk);
 
   $("body").on("click", ".tambah-field-pp", function () {
     if (jumlahisipp == 13) {
@@ -3644,17 +5958,26 @@ $(document).ready(function () {
         angka +
         '" name="item_pp_fak_data[]" onkeyup="copyvalue(this.id, \'item_pp_fak_modal' +
         angka +
-        '\')" type="text" placeholder="" class="form-control">' +
+        '\')" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-1">' +
         '<label class="col-lg-6 control-label">PPN</label>' +
         '<div class="col-lg-24">' +
+        '<div class="input-group">' +
         '<input id="ppn_pp_fak_data' +
         angka +
         '" name="ppn_pp_fak_data[]" onkeyup="hitungPP(' +
         angka +
-        ')" type="text" placeholder="" class="form-control">' +
+        ')" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
+        '<div class="input-group-append">' +
+        '<span class="input-group-text">%</span>' +
+        "</div>" +
+        "</div>" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
@@ -3664,7 +5987,9 @@ $(document).ready(function () {
         angka +
         '" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(' +
         angka +
-        ')" type="text" placeholder="" class="form-control">' +
+        ')" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
@@ -3674,7 +5999,9 @@ $(document).ready(function () {
         angka +
         '" name="nilai_sesudah_ppn_pp_fak_data[]" type="text" placeholder="" onchange="copyvalue(this.id, \'nilai_pp_fak_modal' +
         angka +
-        '\')" class="form-control">' +
+        '\')" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-pp-fak-data").first().after(html11);
@@ -3686,7 +6013,9 @@ $(document).ready(function () {
         '<div class="col-lg-24">' +
         '<input id="item_pp_fak_modal' +
         angka +
-        '" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control">' +
+        '" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-6">' +
@@ -3694,7 +6023,9 @@ $(document).ready(function () {
         '<div class="col-lg-24">' +
         '<input id="nilai_pp_fak_modal' +
         angka +
-        '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control">' +
+        '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-pp-fak-modal").first().after(html12);
@@ -3730,24 +6061,30 @@ $(document).ready(function () {
       var html11 =
         '<div class="col-lg-3">' +
         '<label class="col-lg-6 control-label">Termijn</label>' +
-        '<div class="col-lg-12">' +
+        // '<div class="col-lg-12">' +
         '<input id="termijn_fak_data' +
         angkatermijninput +
-        '" name="termijn_fak_data[]" type="text" placeholder="" class="form-control">' +
-        "</div>" +
+        '" name="termijn_fak_data[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
+        // "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<label class="col-lg-6 control-label">Progress</label>' +
         '<div class="col-lg-12">' +
         '<input id="progress_termijn_fak_data' +
         angkatermijninput +
-        '" name="progress_termijn_fak_data[]" type="text" placeholder="" class="form-control">' +
+        '" name="progress_termijn_fak_data[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<label class="col-lg-18 center control-label">Persentase Termijn</label>' +
         '<div class="col-lg-12">' +
-        '<input id="persentase_termijn_fak_data" name="persentase_termijn_fak_data[]" type="text" placeholder="" class="form-control">' +
+        '<input id="persentase_termijn_fak_data" name="persentase_termijn_fak_data[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-1">' +
@@ -3760,7 +6097,9 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="prakiraan_tgl_termijn_fak_data' +
         angkatermijninput +
-        '" name="prakiraan_tgl_termijn_fak_data[]" type="date" placeholder="" class="form-control">' +
+        '" name="prakiraan_tgl_termijn_fak_data[]" type="date" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-termijn-fak-data").first().after(html11);
@@ -3776,7 +6115,7 @@ $(document).ready(function () {
             const nilai = parseFloat($(this).val()) || 0;
             total += nilai;
           });
-          const total_termijn = 1;
+          const total_termijn = 100;
           const fix = (total_termijn - total).toFixed(2);
           $("#total_termijn_fak_data").val(total_termijn);
           $("#setelah_masa_pemeliharaan_fak_data").val(fix);
@@ -3821,28 +6160,36 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="jenis_kredit_fasilitas_usul_mauk' +
         angkamauk +
-        '" name="jenis_kredit_fasilitas_usul_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="jenis_kredit_fasilitas_usul_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="max_kredit_ini_usul_mauk' +
         angkamauk +
-        '" name="max_kredit_ini_usul_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="max_kredit_ini_usul_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="perubahan_usul_mauk' +
         angkamauk +
-        '" name="perubahan_usul_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="perubahan_usul_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="max_kredit_usul_mauk' +
         angkamauk +
-        '" name="max_kredit_usul_mauk[]"  type="text" placeholder="" class="form-control">' +
+        '" name="max_kredit_usul_mauk[]"  type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-mauk").first().after(html11);
@@ -3877,28 +6224,36 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="jenis_kredit_fasilitas_pal_mauk' +
         angkamauk2 +
-        '" name="jenis_kredit_fasilitas_pal_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="jenis_kredit_fasilitas_pal_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="max_kredit_ini_pal_mauk' +
         angkamauk2 +
-        '" name="max_kredit_ini_pal_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="max_kredit_ini_pal_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="perubahan_pal_mauk' +
         angkamauk2 +
-        '" name="perubahan_pal_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="perubahan_pal_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="max_kredit_pal_mauk' +
         angkamauk2 +
-        '" name="max_kredit_pal_mauk[]"  type="text" placeholder="" class="form-control">' +
+        '" name="max_kredit_pal_mauk[]"  type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-mauk2").first().after(html11);
@@ -3933,28 +6288,36 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="agunan_mauk' +
         angkamauk3 +
-        '" name="agunan_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="agunan_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="macam_jenis_mauk' +
         angkamauk3 +
-        '" name="macam_jenis_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="macam_jenis_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="nilai_agunan_mauk' +
         angkamauk3 +
-        '" name="nilai_agunan_mauk[]" type="text" placeholder="" class="form-control">' +
+        '" name="nilai_agunan_mauk[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="bentuk_pengikatan_mauk' +
         angkamauk3 +
-        '" name="bentuk_pengikatan_mauk[]"  type="text" placeholder="" class="form-control">' +
+        '" name="bentuk_pengikatan_mauk[]"  type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-mauk3").first().after(html11);
@@ -3989,14 +6352,18 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="nama_pemilik_perusahaan_dcl' +
         angkadcl +
-        '" name="nama_pemilik_perusahaan_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="nama_pemilik_perusahaan_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-8">' +
         '<div class="col-lg-4">' +
         '<input id="persentase_saham_dcl' +
         angkadcl +
-        '" name="persentase_saham_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="persentase_saham_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl").first().after(html11);
@@ -4031,21 +6398,27 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="jabatan_pengurus_perusahaan_dcl' +
         angkadcl2 +
-        '" name="jabatan_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="jabatan_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-6">' +
         '<div class="col-lg-12">' +
         '<input id="nama_pengurus_perusahaan_dcl' +
         angkadcl2 +
-        '" name="nama_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="nama_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-6">' +
         '<div class="col-lg-12">' +
         '<input id="ktp_dcl' +
         angkadcl2 +
-        '" name="ktp_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="ktp_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl2").first().after(html11);
@@ -4080,7 +6453,9 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<textarea id="fasilitas_kredit_dcl' +
         angkadcl3 +
-        '" name="fasilitas_kredit_dcl[]"  placeholder="" class="form-control">' +
+        '" name="fasilitas_kredit_dcl[]"  placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</textarea>" +
         "</div>" +
         "</div>" +
@@ -4088,25 +6463,31 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="plafond_dcl' +
         angkadcl3 +
-        '" name="plafond_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="plafond_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<textarea id="jangka_waktu_dcl' +
         angkadcl3 +
-        '" name="jangka_waktu_dcl[]" placeholder="" class="form-control">' +
+        '" name="jangka_waktu_dcl[]" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</textarea>" +
         // '<input id="jangka_waktu_dcl' +
         // angkadcl3 +
-        // '" name="jangka_waktu_dcl[]" type="text" placeholder="" class="form-control">' +
+        // '" name="jangka_waktu_dcl[]" type="text" placeholder="" class="form-control" ' + is_disabled + '>' +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<textarea id="tujuan_penggunaan_dcl' +
         angkadcl3 +
-        '" name="tujuan_penggunaan_dcl[]" placeholder="" class="form-control">' +
+        '" name="tujuan_penggunaan_dcl[]" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</textarea>" +
         "</div>" +
         "</div>" +
@@ -4114,7 +6495,9 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="permohonan_diterima_dcl' +
         angkadcl3 +
-        '" name="permohonan_diterima_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="permohonan_diterima_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl3").first().after(html11);
@@ -4149,35 +6532,45 @@ $(document).ready(function () {
         '<div class="col-lg-10">' +
         '<input id="bukti_kepemilikan_dcl' +
         angkadcl4 +
-        '" name="bukti_kepemilikan_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="bukti_kepemilikan_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
         '<div class="col-lg-12">' +
         '<input id="jenis_agunan_dcl' +
         angkadcl4 +
-        '" name="jenis_agunan_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="jenis_agunan_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-10">' +
         '<input id="tanggal_agunan_dcl' +
         angkadcl4 +
-        '" name="tanggal_agunan_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="tanggal_agunan_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-10">' +
         '<input id="avalist_dcl' +
         angkadcl4 +
-        '" name="avalist_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="avalist_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-10">' +
         '<input id="nominal_dcl' +
         angkadcl4 +
-        '" name="nominal_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="nominal_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl4").first().after(html11);
@@ -4211,35 +6604,45 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="fasilitas_dcl' +
         angkadcl5 +
-        '" name="fasilitas_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="fasilitas_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="jatuh_tempo_dcl' +
         angkadcl5 +
-        '" name="jatuh_tempo_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="jatuh_tempo_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="plafond_existing_dcl' +
         angkadcl5 +
-        '" name="plafond_existing_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="plafond_existing_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="outstanding_dcl' +
         angkadcl5 +
-        '" name="outstanding_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="outstanding_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="kolektibilitas_dcl' +
         angkadcl5 +
-        '" name="kolektibilitas_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="kolektibilitas_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl5").first().after(html11);
@@ -4273,42 +6676,54 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="fasilitas_kredit_grup_dcl' +
         angkadcl6 +
-        '" name="fasilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="fasilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="nama_debitur_kredit_grup_dcl' +
         angkadcl6 +
-        '" name="nama_debitur_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="nama_debitur_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="jatuh_tempo_kredit_grup_dcl' +
         angkadcl6 +
-        '" name="jatuh_tempo_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="jatuh_tempo_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="plafond_existing_kredit_grup_dcl' +
         angkadcl6 +
-        '" name="plafond_existing_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="plafond_existing_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="outstanding_kredit_grup_dcl' +
         angkadcl6 +
-        '" name="outstanding_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="outstanding_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-8">' +
         '<input id="kolektibilitas_kredit_grup_dcl' +
         angkadcl6 +
-        '" name="kolektibilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="kolektibilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl6").first().after(html11);
@@ -4342,42 +6757,54 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="fasilitas_bank_lain_dcl' +
         angkadcl7 +
-        '" name="fasilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="fasilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="bank_ljk_bank_lain_dcl' +
         angkadcl7 +
-        '" name="bank_ljk_bank_lain_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="bank_ljk_bank_lain_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="jatuh_tempo_bank_lain_dcl' +
         angkadcl7 +
-        '" name="jatuh_tempo_bank_lain_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="jatuh_tempo_bank_lain_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="plafond_existing_bank_lain_dcl' +
         angkadcl7 +
-        '" name="plafond_existing_bank_lain_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="plafond_existing_bank_lain_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-12">' +
         '<input id="outstanding_bank_lain_dcl' +
         angkadcl7 +
-        '" name="outstanding_bank_lain_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="outstanding_bank_lain_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
         '<div class="col-lg-8">' +
         '<input id="kolektibilitas_bank_lain_dcl' +
         angkadcl7 +
-        '" name="kolektibilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="kolektibilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>";
       $(".delete-btn-dcl7").first().after(html11);
@@ -4411,18 +6838,24 @@ $(document).ready(function () {
         '<div class="col-lg-12">' +
         '<input id="pengujian_lainnya_dcl' +
         angkadcl8 +
-        '" name="pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-9">' +
         '<div class="col-lg-12">' +
         '<input id="dasar_pengujian_lainnya_dcl' +
         angkadcl8 +
-        '" name="dasar_pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control">' +
+        '" name="dasar_pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control" ' +
+        is_disabled +
+        ">" +
         "</div>" +
         "</div>" +
         '<div class="col-lg-2">' +
-        '<select name="checklist_pengujian_lainnya_dcl[]" id="checklist_pengujian_lainnya_dcl' +
+        '<select name="checklist_pengujian_lainnya_dcl[]" ' +
+        is_disabled +
+        'id="checklist_pengujian_lainnya_dcl' +
         angkadcl8 +
         '" class=" form-control class-disabled select">' +
         '<option value=""></option>' +

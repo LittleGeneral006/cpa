@@ -2,6 +2,54 @@
 <?= $this->section('plugin'); ?>
 <link href="<?= base_url(); ?>public/assets/css/plugins/iCheck/custom.css" rel="stylesheet">
 <link href="<?= base_url(); ?>public/assets/css/plugins/steps/jquery.steps.css" rel="stylesheet">
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .tg td {
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+
+    .tg th {
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+
+    .tg .tg-0pky {
+        border-color: inherit;
+        text-align: left;
+        vertical-align: top
+    }
+
+    .tg .tg-uzvj {
+        border-color: inherit;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle
+    }
+
+    .tg .tg-za14 {
+        border-color: inherit;
+        text-align: left;
+        vertical-align: bottom
+    }
+</style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -178,6 +226,13 @@
 
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <label class="col-lg-12 control-label">NPWP</label>
+                                    <div class="col-lg-12">
+                                        <input id="npwp_tambah" name="npwp_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+                                    </div>
+                                </div>
 
 
 
@@ -219,8 +274,8 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Nilai Proyek</label>
                                     <div class="col-lg-12">
-                                        <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
-
+                                        <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                                        <p>Nilai Proyek: <span id="nilai_proyek_tambah_separators" class="mask"></span></p>
                                     </div>
                                 </div>
 
@@ -332,6 +387,7 @@
                                     <label class="col-lg-12 control-label">Plafond</label>
                                     <div class="col-lg-12">
                                         <input id="plafond_tambah" name="plafond_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                                        <p>Plafond: <span id="plafond_separators" class="mask"></span></p>
                                     </div>
                                 </div>
 
@@ -873,7 +929,7 @@
                                 <div class="col-lg-12">
                                     <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_tanah" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Tanah</button>
                                     <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_bangunan" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Bangunan</button>
-                                    <!-- <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_lingkungan" style="display:none"><i class="fa fa-plus"></i> Lingkungan</button> -->
+                                    <!-- <button type="button"  class="btn btn-primary btn-tambah" id="btn_tambah_lingkungan" style="display:none"><i class="fa fa-plus"></i> Lingkungan</button> -->
                                     <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_barang_bergerak" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Barang Bergerak</button>
 
                                 </div>
@@ -1602,7 +1658,8 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">Plafond</label>
                                         <div class="col-lg-12">
-                                            <input id="plafond_sc" name="plafond_sc" type="text" placeholder="" class="form-control class-readonly" readonly>
+                                            <input id="plafond_sc" name="plafond_sc" type="number" placeholder="" class="form-control class-readonly" readonly>
+                                            <p>Plafond: <span id="plafond_sc_separators" class="mask"></span></p>
 
                                         </div>
                                     </div>
@@ -2079,13 +2136,13 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Kegiatan</label>
                                     <div class="col-lg-12">
-                                        <input id="kegiatan_fak_data" name="kegiatan_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="kegiatan_fak_data" name="kegiatan_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Pekerjaan</label>
                                     <div class="col-lg-12">
-                                        <input id="pekerjaan_fak_data" name="pekerjaan_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="pekerjaan_fak_data" name="pekerjaan_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2093,13 +2150,13 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Nomor Kontrak</label>
                                     <div class="col-lg-12">
-                                        <input id="no_kontrak_fak_data" name="no_kontrak_fak_data" type="text" placeholder="" onkeyup="copyvalue(this.id,'no_kontrak2_fak_data')" class="form-control">
+                                        <input id="no_kontrak_fak_data" name="no_kontrak_fak_data" type="text" placeholder="" onkeyup="copyvalue(this.id,'no_kontrak2_fak_data')" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Lokasi</label>
                                     <div class="col-lg-12">
-                                        <input id="lokasi_fak_data" name="lokasi_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="lokasi_fak_data" name="lokasi_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2107,13 +2164,13 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Kontraktor</label>
                                     <div class="col-lg-12">
-                                        <input id="kontraktor_fak_data" name="kontraktor_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="kontraktor_fak_data" name="kontraktor_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Sumber Dana</label>
                                     <div class="col-lg-12">
-                                        <input id="sumber_dana_fak_data" name="sumber_dana_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="sumber_dana_fak_data" name="sumber_dana_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2121,13 +2178,19 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Nilai Kontrak Setelah PPN</label>
                                     <div class="col-lg-12">
-                                        <input id="nilai_kontrak_setelah_ppn_fak_data" name="nilai_kontrak_setelah_ppn_fak_data" onkeyup="copyvalue2(this.id,'nilai_kontrak_fak_rl','harga_borongan_fak_rl')" type="text" placeholder="" class="form-control">
+                                        <input id="nilai_kontrak_setelah_ppn_fak_data" name="nilai_kontrak_setelah_ppn_fak_data" onkeyup="copyvalue2(this.id,'nilai_kontrak_fak_rl','harga_borongan_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="nilai_kontrak_setelah_ppn_fak_data_separators" class="mask"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">PPN</label>
-                                    <div class="col-lg-12">
-                                        <input id="ppn_fak_data" name="ppn_fak_data" type="text" onkeyup="copyvalue2(this.id,'ppn_pp_fak_data0','ppn_fak_modal')" placeholder="" class="form-control">
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <input id="ppn_fak_data" name="ppn_fak_data" type="text" onkeyup="copyvalue2(this.id,'ppn_pp_fak_data0','ppn_fak_modal')" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2135,18 +2198,18 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">PPh</label>
                                     <div class="col-lg-12">
-                                        <select name="pph_fak_data" id="pph_fak_data" class="form-control">
+                                        <select name="pph_fak_data" id="pph_fak_data" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             <option value="">-- pilih --</option>
-                                            <option value="0.0175">Pengadaan -- 1.75%</option>
-                                            <option value="0.0175">Konstruksi -- 1.75%</option>
-                                            <option value="0.035">Konsultan -- 3.5%</option>
+                                            <option value="1.75">Pengadaan -- 1.75%</option>
+                                            <option value="1.75">Konstruksi -- 1.75%</option>
+                                            <option value="0.35">Konsultan -- 3.5%</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Nomor Kontrak</label>
                                     <div class="col-lg-12">
-                                        <input disabled id="no_kontrak2_fak_data" name="no_kontrak2_fak_data" type="text" placeholder="" class="form-control">
+                                        <input disabled id="no_kontrak2_fak_data" name="no_kontrak2_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2154,13 +2217,13 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Tanggal Kontrak</label>
                                     <div class="col-lg-12">
-                                        <input id="tgl_kontrak_fak_data" name="tgl_kontrak_fak_data" type="date" placeholder="" class="form-control">
+                                        <input id="tgl_kontrak_fak_data" name="tgl_kontrak_fak_data" type="date" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Tanggal Pelaksanaan</label>
                                     <div class="col-lg-12">
-                                        <input type="date" class="form-control" id="tgl_pelaksanaan_fak_data" name="tgl_pelaksanaan_fak_data">
+                                        <input type="date" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="tgl_pelaksanaan_fak_data" name="tgl_pelaksanaan_fak_data">
                                     </div>
                                 </div>
                             </div>
@@ -2168,13 +2231,13 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Lama Pelaksanaan</label>
                                     <div class="col-lg-12">
-                                        <input id="lama_pelaksanaan_fak_data" name="lama_pelaksanaan_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="lama_pelaksanaan_fak_data" name="lama_pelaksanaan_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Lama Pemeliharaan</label>
                                     <div class="col-lg-12">
-                                        <input id="lama_pemeliharaan_fak_data" name="lama_pemeliharaan_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="lama_pemeliharaan_fak_data" name="lama_pemeliharaan_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2182,108 +2245,139 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Asumsi Tanggal Pencairan Kredit</label>
                                     <div class="col-lg-12">
-                                        <input id="tgl_pencairan_fak_data" name="tgl_pencairan_fak_data" type="date" placeholder="" class="form-control">
+                                        <input id="tgl_pencairan_fak_data" name="tgl_pencairan_fak_data" type="date" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Persentase Uang Muka</label>
-                                    <div class="col-lg-12">
-                                        <input id="persen_uang_muka_fak_data" name="persen_uang_muka_fak_data" type="text" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Bunga Kredit</label>
-                                    <div class="col-lg-12">
-                                        <input id="bunga_kredit_fak_data" name="bunga_kredit_fak_data" type="text" onkeyup="copyvalue(this.id,'bunga_mauk')" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Asumsi Profit Kontraktor</label>
-                                    <div class="col-lg-12">
-                                        <input id="profit_kontraktor_fak_data" name="profit_kontraktor_fak_data" onkeyup="copyvalue(this.id,'profit_fak_modal')" type="text" placeholder="" class="form-control">
+                                    <label class="col-lg-4 control-label">Persentase Uang Muka</label>
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <input id="persen_uang_muka_fak_data" name="persen_uang_muka_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Biaya Pemeliharaan</label>
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control" onkeyup="copyvalue(this.id,'pemeliharaan_fak_modal')" id="biaya_pemeliharaan_fak_data" name="biaya_pemeliharaan_fak_data">
+                                    <label class="col-lg-4 control-label">Bunga Kredit</label>
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <input id="bunga_kredit_fak_data" name="bunga_kredit_fak_data" type="text" onkeyup="copyvalue(this.id,'bunga_mauk')" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Biaya Provisi</label>
-                                    <div class="col-lg-12">
-                                        <input id="biaya_provisi_fak_data" name="biaya_provisi_fak_data" onkeyup="copyvalue(this.id,'provisi_fee_mauk')" type="text" placeholder="" class="form-control">
+                                    <label class="col-lg-4 control-label">Asumsi Profit Kontraktor</label>
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <input id="profit_kontraktor_fak_data" name="profit_kontraktor_fak_data" onkeyup="copyvalue(this.id,'profit_fak_modal')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label class="col-lg-4 control-label">Biaya Pemeliharaan</label>
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> onkeyup="copyvalue(this.id,'pemeliharaan_fak_modal')" id="biaya_pemeliharaan_fak_data" name="biaya_pemeliharaan_fak_data">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="col-lg-4 control-label">Biaya Provisi</label>
+                                    <div class="col-lg-4">
+                                        <div class="input-group">
+                                            <input id="biaya_provisi_fak_data" name="biaya_provisi_fak_data" onkeyup="copyvalue(this.id,'provisi_fee_mauk')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <h2 class="text-center text-danger">Persiapan dan Pekerjaan</h2>
-                            <button class="btn btn-success mt-2 tambah-field-pp text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Persiapan dan Pekerjaan</button>
+                            <button class="btn btn-success mt-2 tambah-field-pp text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Persiapan dan Pekerjaan</button>
                             <div class="add-form-pp">
                                 <div class="form-group row">
-                                    <div class="col-md-1">
-                                        <div class="col-lg-10">
-                                        </div>
-                                    </div>
                                     <div class="col-lg-3">
                                         <label class="col-lg-6 control-label">Item</label>
-                                        <div class="col-lg-12">
-                                            <input id="item_pp_fak_data0" name="item_pp_fak_data[]" type="text" onkeyup="copyvalue(this.id,'item_pp_fak_modal1')" placeholder="" class="form-control">
+                                        <div class="col-lg-18">
+                                            <input id="item_pp_fak_data0" name="item_pp_fak_data[]" type="text" onkeyup="copyvalue(this.id,'item_pp_fak_modal1')" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-2">
                                         <label class="col-lg-6 control-label">PPN</label>
                                         <div class="col-lg-24">
-                                            <input id="ppn_pp_fak_data0" name="ppn_pp_fak_data[]" onkeyup="hitungPP()" type="text" placeholder="" class="form-control">
+                                            <div class="input-group">
+                                                <input id="ppn_pp_fak_data0" name="ppn_pp_fak_data[]" onkeyup="hitungPP(0)" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">%</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="col-lg-12 control-label">Nilai Sebelum PPN</label>
                                         <div class="col-lg-12">
-                                            <input id="nilai_sebelum_ppn_pp_fak_data0" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(0)" type="text" placeholder="" class="form-control">
+                                            <input id="nilai_sebelum_ppn_pp_fak_data0" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(0)" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data0_separators" class="mask"></span></p>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="col-lg-12 control-label">Nilai Sesudah PPN</label>
                                         <div class="col-lg-12">
-                                            <input id="nilai_sesudah_ppn_pp_fak_data0" name="nilai_sesudah_ppn_pp_fak_data[]" onchange="copyvalue(this.id,'nilai_pp_fak_modal1')" type="text" placeholder="" class="form-control">
+                                            <input id="nilai_sesudah_ppn_pp_fak_data0" name="nilai_sesudah_ppn_pp_fak_data[]" onchange="copyvalue(this.id,'nilai_pp_fak_modal1')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <p>Nominal: <span id="nilai_sesudah_ppn_pp_fak_data0_separators" class="mask"></span></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Pembulatan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" name="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" onkeyup="hitungPP()" aria-atomic="" type="text" placeholder="" class="form-control">
+                                        <input id="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" name="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" onkeyup="hitungPP()" aria-atomic="" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" name="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" onkeyup="hitungPP()" type="text" placeholder="" class="form-control">
+                                        <input id="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" name="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" onkeyup="hitungPP()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Jumlah Total</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="jumlah_nilai_sebelum_ppn_total_pp_fak_data" name="jumlah_nilai_sebelum_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="jumlah_nilai_sebelum_ppn_total_pp_fak_data" name="jumlah_nilai_sebelum_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators" class="mask"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="jumlah_nilai_sesudah_ppn_total_pp_fak_data" name="jumlah_nilai_sesudah_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="jumlah_nilai_sesudah_ppn_total_pp_fak_data" name="jumlah_nilai_sesudah_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators" class="mask"></span></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -2293,99 +2387,104 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Gaji Direktur</label>
                                     <div class="col-lg-12">
-                                        <input id="gaji_direktur_fak_data" name="gaji_direktur_fak_data" onkeyup="copyvalue(this.id,'gaji_direktur_fak_modal')" type="text" placeholder="" class="form-control">
+                                        <input id="gaji_direktur_fak_data" name="gaji_direktur_fak_data" onkeyup="copyvalue(this.id,'gaji_direktur_fak_modal')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="gaji_direktur_fak_data_separators" class="mask"></span></p>
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Gaji Pengawas</label>
                                     <div class="col-lg-12">
-                                        <input id="gaji_pengawas_fak_data" name="gaji_pengawas_fak_data" onkeyup="copyvalue(this.id,'gaji_pengawas_fak_modal')" type="text" placeholder="" class="form-control">
+                                        <input id="gaji_pengawas_fak_data" name="gaji_pengawas_fak_data" onkeyup="copyvalue(this.id,'gaji_pengawas_fak_modal')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="gaji_pengawas_fak_data_separators" class="mask"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Gaji Staf</label>
                                     <div class="col-lg-12">
-                                        <input id="gaji_staf_fak_data" name="gaji_staf_fak_data" onkeyup="copyvalue(this.id,'gaji_staf_fak_modal')" type="text" placeholder="" class="form-control">
+                                        <input id="gaji_staf_fak_data" name="gaji_staf_fak_data" onkeyup="copyvalue(this.id,'gaji_staf_fak_modal')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="gaji_staf_fak_data_separators" class="mask"></span></p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Biaya Umum</label>
                                     <div class="col-lg-12">
-                                        <input id="biaya_umum_fak_data" name="biaya_umum_fak_data" onkeyup="copyvalue(this.id,'biaya_umum_fak_modal')" type="text" placeholder="" class="form-control">
+                                        <input id="biaya_umum_fak_data" name="biaya_umum_fak_data" onkeyup="copyvalue(this.id,'biaya_umum_fak_modal')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                        <p>Nominal: <span id="biaya_umum_fak_data_separators" class="mask"></span></p>
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <h2 class="text-center text-danger">Termijn</h2>
-                            <button class="btn btn-success mt-2 tambah-field-termijn text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Termijn</button>
+                            <button class="btn btn-success mt-2 tambah-field-termijn text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Termijn</button>
                             <div class="add-form-termijn-fak-data">
                                 <div class="form-group row">
-                                    <div class="col-md-1">
-                                        <div class="col-lg-10">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <label class="col-lg-6 control-label">Termijn</label>
-                                        <div class="col-lg-12">
-                                            <input id="termijn_fak_data0" name="termijn_fak_data[]" type="text" placeholder="" value="Uang Muka" class="form-control">
-                                        </div>
+                                        <input id="termijn_fak_data0" name="termijn_fak_data[]" type="text" placeholder="" value="Uang Muka" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="col-lg-6 control-label">Progress</label>
-                                        <div class="col-lg-12">
-                                            <input id="progress_termijn_fak_data0" name="progress_termijn_fak_data[]" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="progress_termijn_fak_data0" name="progress_termijn_fak_data[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="col-lg-18 center control-label">Persentase Termijn</label>
-                                        <div class="col-lg-12">
-                                            <input id="persentase_termijn_fak_data" name="persentase_termijn_fak_data[]" onkeyup="copyvalue(this.id,'persentase_penerimaan_uang_muka_fak_rl')" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="persentase_termijn_fak_data" name="persentase_termijn_fak_data[]" onkeyup="copyvalue(this.id,'persentase_penerimaan_uang_muka_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-1">
-                                        <!-- <div class="col-lg-1"> -->
                                         <a class="btn btn-success btn-rounded m-t-n-xs" style="margin-top:30px" onclick="hitungPrakiraanTanggalTermijn(0)"><span>Hitung</span></a>
-                                        <!-- </div> -->
                                     </div>
-
                                     <div class="col-lg-3">
                                         <label class="col-lg-12 control-label">Prakiraan Tanggal Termijn</label>
-                                        <div class="col-lg-12">
-                                            <input id="prakiraan_tgl_termijn_fak_data0" name="prakiraan_tgl_termijn_fak_data[]" type="date" placeholder="" class="form-control">
-                                        </div>
+                                        <input id="prakiraan_tgl_termijn_fak_data0" name="prakiraan_tgl_termijn_fak_data[]" type="date" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-3">
-                                    <!-- kosong -->
+                                <div class="col-lg-2">
+
                                 </div>
                                 <label class="col-lg-3 control-label">Setelah Masa Pemeliharaan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="setelah_masa_pemeliharaan_fak_data" name="setelah_masa_pemeliharaan_fak_data" type="text" placeholder="" onkeyup="copyvalue(this.id,'persentase_penerimaan_termijn_pemeliharaan_fak_rl')" class="form-control">
+                                        <div class="input-group">
+                                            <input id="setelah_masa_pemeliharaan_fak_data" name="setelah_masa_pemeliharaan_fak_data" type="text" placeholder="" onkeyup="copyvalue(this.id,'persentase_penerimaan_termijn_pemeliharaan_fak_rl')" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Total</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="total_termijn_fak_data" name="total_termijn_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="total_termijn_fak_data" name="total_termijn_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Jumlah Termijn (Diluar uang muka dan pemeliharaan)</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="jumlah_termijn_fak_data" name="jumlah_termijn_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="jumlah_termijn_fak_data" name="jumlah_termijn_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2405,73 +2504,100 @@
                             <h2>Data FAK Modal</h2>
                             <h2 class="text-center text-danger">Perhitungan Plafond Kredit</h2>
                             <div class="form-group row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-2">
                                     <label class="col-lg-12 control-label">Proyek</label>
                                     <div class="col-lg-12">
-                                        <input id="proyek_fak_modal" name="proyek_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="proyek_fak_modal" name="proyek_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-2">
                                     <label class="col-lg-12 control-label">Profit</label>
                                     <div class="col-lg-12">
-                                        <input id="profit_fak_modal" name="profit_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="profit_fak_modal" name="profit_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-2">
                                     <label class="col-lg-12 control-label">PPN</label>
                                     <div class="col-lg-12">
-                                        <input id="ppn_fak_modal" disabled name="ppn_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="ppn_fak_modal" disabled name="ppn_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-2">
                                     <label class="col-lg-12 control-label">Pemeliharaan</label>
                                     <div class="col-lg-12">
-                                        <input id="pemeliharaan_fak_modal" name="pemeliharaan_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="pemeliharaan_fak_modal" name="pemeliharaan_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-2">
                                     <label class="col-lg-12 control-label">Total Persentase Dari Proyek</label>
                                     <div class="col-lg-12">
-                                        <input id="persentase_proyek_fak_modal" name="persentase_proyek_fak_modal" type="text" placeholder="" class="form-control">
+                                        <div class="input-group">
+                                            <input id="persentase_proyek_fak_modal" name="persentase_proyek_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-1">
                                 </div>
                                 <div class="col-lg-2">
-                                    <a class="btn btn-default float-right btn-rounded m-t-n-xs" onclick="hitungNilaiProyek()"><span>Nilai Proyek</span></a>
+                                    <a class="btn btn-default float-right btn-rounded m-t-n-xs" onclick="hitungNilaiProyek()" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><span>Nilai Proyek</span></a>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="nilai_proyek_fak_modal" name="nilai_proyek_fak_modal" type="text" placeholder="" class="form-control">
+                                    <input id="nilai_proyek_fak_modal" name="nilai_proyek_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                    <p>Nominal: <span id="nilai_proyek_fak_modal_separators" class="mask"></span></p>
                                 </div>
                             </div>
                             <br>
                             <h2 class="text-center text-danger">Persiapan dan Pekerjaan</h2>
                             <div class="add-form-pp-fak-modal">
                                 <div class="form-group row">
-                                    <div class="col-md-1">
+                                    <!-- <div class="col-md-1">
                                         <div class="col-lg-10">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-4">
                                         <label class="col-lg-12 control-label">Item</label>
                                         <div class="col-lg-12">
-                                            <input id="item_pp_fak_modal0" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control">
+                                            <input id="item_pp_fak_modal0" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="col-lg-12 control-label">Nilai</label>
                                         <div class="col-lg-12">
-                                            <input id="nilai_pp_fak_modal0" name="nilai_pp_fak_modal[]" type="text" placeholder="" onkeyup="hitungPPFAKM()" class="form-control">
+                                            <input id="nilai_pp_fak_modal0" name="nilai_pp_fak_modal[]" type="text" placeholder="" onkeyup="hitungPPFAKM()" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                            <p>Nominal: <span id="nilai_pp_fak_modal0_separators" class="mask"></span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -2485,7 +2611,7 @@
                                             <label class="col-lg-6 control-label">Koreksi Biaya</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <input id="koreksi_biaya_fak_modal" name="koreksi_biaya_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="koreksi_biaya_fak_modal" name="koreksi_biaya_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2500,7 +2626,7 @@
                                             <label class="col-lg-6 control-label">Jumlah</label>
                                         </div>
                                         <div class="col-lg-6">
-                                            <input id="jumlah_fak_modal" name="jumlah_fak_modal" onchange="copyvalue(this.id,'pekerjaan_persiapan_konstruksi_fak_rl')" type="text" placeholder="" class="form-control">
+                                            <input id="jumlah_fak_modal" name="jumlah_fak_modal" onchange="copyvalue(this.id,'pekerjaan_persiapan_konstruksi_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2512,47 +2638,47 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Gaji Direktur</label>
                                     <div class="col-lg-12">
-                                        <input id="gaji_direktur_fak_modal" name="gaji_direktur_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <input id="gaji_direktur_fak_modal" name="gaji_direktur_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Gaji Pengawas</label>
                                     <div class="col-lg-12">
-                                        <input id="gaji_pengawas_fak_modal" name="gaji_pengawas_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <input id="gaji_pengawas_fak_modal" name="gaji_pengawas_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Gaji Staf</label>
                                     <div class="col-lg-12">
-                                        <input id="gaji_staf_fak_modal" name="gaji_staf_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <input id="gaji_staf_fak_modal" name="gaji_staf_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Biaya Umum</label>
                                     <div class="col-lg-12">
-                                        <input id="biaya_umum_fak_modal" name="biaya_umum_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control">
+                                        <input id="biaya_umum_fak_modal" name="biaya_umum_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Jumlah</label>
                                     <div class="col-lg-12">
-                                        <input id="jumlah_total_biaya_umum_fak_modal" name="jumlah_total_biaya_umum_fak_modal" type="text" placeholder="" class="form-control">
+                                        <input id="jumlah_total_biaya_umum_fak_modal" name="jumlah_total_biaya_umum_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="col-lg-12 control-label">Total</label>
                                     <div class="col-lg-12">
-                                        <input id="total_biaya_umum_fak_modal" name="total_biaya_umum_fak_modal" type="text" placeholder="" class="form-control">
+                                        <input id="total_biaya_umum_fak_modal" name="total_biaya_umum_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <h2 class="text-center text-danger">Kebutuhan Modal Kerja (s/d pekerjaan <input type="text" id="persentase_pekerjaan_fak_modal" name="persentase_pekerjaan_fak_modal" class="form-control" onkeyup="hitungJumlahKebutuhanModalKerja()" style="display: inline-block; width: 90px; margin-left: 10px;">%)</h2>
+                            <h2 class="text-center text-danger">Kebutuhan Modal Kerja (s/d pekerjaan <input type="text" id="persentase_pekerjaan_fak_modal" name="persentase_pekerjaan_fak_modal" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> onkeyup="hitungJumlahKebutuhanModalKerja()" style="display: inline-block; width: 90px; margin-left: 10px;">%)</h2>
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="col-lg-6 control-label">Persiapan dan Pekerjaan</label>
                                     <div class="col-lg-12">
-                                        <input id="persiapan_pekerjaan_fak_modal" name="persiapan_pekerjaan_fak_modal" type="text" placeholder="" class="form-control">
+                                        <input id="persiapan_pekerjaan_fak_modal" name="persiapan_pekerjaan_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2560,7 +2686,7 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-6 control-label">Biaya Umum/ Adm</label>
                                     <div class="col-lg-12">
-                                        <input id="biaya_umum_adm_fak_modal" name="biaya_umum_adm_fak_modal" type="text" placeholder="" class="form-control">
+                                        <input id="biaya_umum_adm_fak_modal" name="biaya_umum_adm_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2568,7 +2694,7 @@
                                 <div class="col-lg-6">
                                     <label class="col-lg-6 control-label">Total</label>
                                     <div class="col-lg-12">
-                                        <input id="jumlah_kebutuhan_modal_kerja_fak_modal" name="jumlah_kebutuhan_modal_kerja_fak_modal" type="text" placeholder="" value="0" class="form-control">
+                                        <input id="jumlah_kebutuhan_modal_kerja_fak_modal" name="jumlah_kebutuhan_modal_kerja_fak_modal" type="text" placeholder="" value="0" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2596,13 +2722,13 @@
                                             <label class="col-lg-10 control-label">Penerimaan Uang Muka</label>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="penerimaan_uang_muka_fak_modal" name="penerimaan_uang_muka_fak_modal" readonly type="text" placeholder="" onkeyup="hitungSemua()" class="form-control">
+                                            <input id="penerimaan_uang_muka_fak_modal" name="penerimaan_uang_muka_fak_modal" readonly type="text" placeholder="" onkeyup="hitungSemua()" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="jumlah_penerimaan_uang_muka_fak_modal" readonly name="jumlah_penerimaan_uang_muka_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="jumlah_penerimaan_uang_muka_fak_modal" readonly name="jumlah_penerimaan_uang_muka_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="persentase_penerimaan_uang_muka_fak_modal" readonly name="persentase_penerimaan_uang_muka_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="persentase_penerimaan_uang_muka_fak_modal" readonly name="persentase_penerimaan_uang_muka_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2614,13 +2740,13 @@
                                             <label class="col-lg-10 control-label">Pembiayaan Sendiri Minimal 10%</label>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="pembiayaan_sendiri_fak_modal" readonly name="pembiayaan_sendiri_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="pembiayaan_sendiri_fak_modal" readonly name="pembiayaan_sendiri_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="jumlah_pembiayaan_sendiri_fak_modal" readonly name="jumlah_pembiayaan_sendiri_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="jumlah_pembiayaan_sendiri_fak_modal" readonly name="jumlah_pembiayaan_sendiri_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="persentase_pembiayaan_sendiri_fak_modal" readonly name="persentase_pembiayaan_sendiri_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="persentase_pembiayaan_sendiri_fak_modal" readonly name="persentase_pembiayaan_sendiri_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2632,13 +2758,13 @@
                                             <label class="col-lg-10 control-label">Kredit Bank</label>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="kredit_bank_fak_modal" name="kredit_bank_fak_modal" readonly type="text" placeholder="" class="form-control">
+                                            <input id="kredit_bank_fak_modal" name="kredit_bank_fak_modal" readonly type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="jumlah_kredit_bank_fak_modal" name="jumlah_kredit_bank_fak_modal" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                            <input id="jumlah_kredit_bank_fak_modal" name="jumlah_kredit_bank_fak_modal" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="persentase_kredit_bank_fak_modal" readonly name="persentase_kredit_bank_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="persentase_kredit_bank_fak_modal" readonly name="persentase_kredit_bank_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2650,13 +2776,13 @@
                                             <label class="col-lg-10 control-label">Jumlah</label>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="sumber_pembiayaan_fak_modal" readonly name="sumber_pembiayaan_fak_modal" onchange="copyvalue(this.id)" type="text" placeholder="" class="form-control">
+                                            <input id="sumber_pembiayaan_fak_modal" readonly name="sumber_pembiayaan_fak_modal" onchange="copyvalue(this.id)" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="jumlah_bulat_sumber_pembiayaan_fak_modal" readonly name="jumlah_bulat_sumber_pembiayaan_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="jumlah_bulat_sumber_pembiayaan_fak_modal" readonly name="jumlah_bulat_sumber_pembiayaan_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                         <div class="col-lg-3">
-                                            <input id="persentase_jumlah_sumber_pembiayaan_fak_modal" readonly name="persentase_jumlah_sumber_pembiayaan_fak_modal" type="text" placeholder="" class="form-control">
+                                            <input id="persentase_jumlah_sumber_pembiayaan_fak_modal" readonly name="persentase_jumlah_sumber_pembiayaan_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2675,100 +2801,100 @@
                             <h2 class="text-center text-danger">Proyeksi Laba Rugi</h2>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Nilai Kontrak</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="nilai_kontrak_fak_rl" name="nilai_kontrak_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="nilai_kontrak_fak_rl" name="nilai_kontrak_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Pekerjaan Persiapan Dan Konstruksi</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="pekerjaan_persiapan_konstruksi_fak_rl" name="pekerjaan_persiapan_konstruksi_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="pekerjaan_persiapan_konstruksi_fak_rl" name="pekerjaan_persiapan_konstruksi_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Laba Kotor</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="laba_kotor_fak_rl" name="laba_kotor_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="laba_kotor_fak_rl" name="laba_kotor_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Biaya Adm/Umum</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="biaya_umum_adm_fak_rl" name="biaya_umum_adm_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="biaya_umum_adm_fak_rl" name="biaya_umum_adm_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Laba Usaha</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="laba_usaha_fak_rl" name="laba_usaha_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="laba_usaha_fak_rl" name="laba_usaha_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Bunga + Provisi Bank</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="bunga_provisi_bank_fak_rl" name="bunga_provisi_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="bunga_provisi_bank_fak_rl" name="bunga_provisi_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Laba Sebelum Pajak</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="laba_sebelum_pajak_fak_rl" name="laba_sebelum_pajak_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="laba_sebelum_pajak_fak_rl" name="laba_sebelum_pajak_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Pajak (PPh & PPN)</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="pajak_pph_ppn_fak_rl" name="pajak_pph_ppn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="pajak_pph_ppn_fak_rl" name="pajak_pph_ppn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Laba Bersih</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="laba_bersih_fak_rl" name="laba_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="laba_bersih_fak_rl" name="laba_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2779,13 +2905,13 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-6 control-label">Gross Profit Marfin</label>
                                         <div class="col-lg-12">
-                                            <input id="gross_profit_margin_fak_rl" name="gross_profit_margin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                            <input id="gross_profit_margin_fak_rl" name="gross_profit_margin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="col-lg-6 control-label">Gross Operating Margin</label>
                                         <div class="col-lg-12">
-                                            <input id="gross_operating_margin_fak_rl" name="gross_operating_margin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                            <input id="gross_operating_margin_fak_rl" name="gross_operating_margin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2793,13 +2919,13 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-6 control-label">Return of Sale</label>
                                         <div class="col-lg-12">
-                                            <input id="return_of_sale_fak_rl" name="return_of_sale_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                            <input id="return_of_sale_fak_rl" name="return_of_sale_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="col-lg-6 control-label">Return of Equity</label>
                                         <div class="col-lg-12">
-                                            <input id="return_of_equity_fak_rl" name="return_of_equity_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                            <input id="return_of_equity_fak_rl" name="return_of_equity_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -2809,169 +2935,169 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Harga Borongan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <!-- kosong -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="harga_borongan_fak_rl" name="harga_borongan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="harga_borongan_fak_rl" name="harga_borongan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Penerimaan Uang Muka</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_penerimaan_uang_muka_fak_rl" name="persentase_penerimaan_uang_muka_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_penerimaan_uang_muka_fak_rl" name="persentase_penerimaan_uang_muka_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_uang_muka_fak_rl" name="penerimaan_uang_muka_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="penerimaan_uang_muka_fak_rl" name="penerimaan_uang_muka_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Penerimaan Termijn</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_penerimaan_termijn_fak_rl" name="persentase_penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_penerimaan_termijn_fak_rl" name="persentase_penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_termijn_fak_rl" name="penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="penerimaan_termijn_fak_rl" name="penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Penerimaan Termijn Pemeliharaan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_penerimaan_termijn_pemeliharaan_fak_rl" name="persentase_penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_penerimaan_termijn_pemeliharaan_fak_rl" name="persentase_penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_termijn_pemeliharaan_fak_rl" name="penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="penerimaan_termijn_pemeliharaan_fak_rl" name="penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Penerimaan Bersih</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_penerimaan_bersih_fak_rl" name="persentase_penerimaan_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_penerimaan_bersih_fak_rl" name="persentase_penerimaan_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_bersih_fak_rl" name="penerimaan_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="penerimaan_bersih_fak_rl" name="penerimaan_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Pajak (PPN & PPh)</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <!-- kosong -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="pajak_ppn_pph_fak_rl" name="pajak_ppn_pph_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="pajak_ppn_pph_fak_rl" name="pajak_ppn_pph_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <!-- kosong -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="kosong_bersih_fak_rl" name="kosong_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="kosong_bersih_fak_rl" name="kosong_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Kredit Bank yang Diberikan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <!-- kosong -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="kredit_bank_fak_rl" name="kredit_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="kredit_bank_fak_rl" name="kredit_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">% Pemotongan Kredit Bank</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <!-- kosong -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_pemotongan_kredit_bank_fak_rl" name="persentase_pemotongan_kredit_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_pemotongan_kredit_bank_fak_rl" name="persentase_pemotongan_kredit_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-lg-1">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Dibulatkan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <!-- kosong -->
+
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="dibulatkan_fak_rl" name="dibulatkan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="dibulatkan_fak_rl" name="dibulatkan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                 </div>
                             </div>
@@ -2991,50 +3117,50 @@
                             <h2 class="text-center text-danger">Upload Laporan Keuangan</h2>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Laporan Rugi Laba</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
                                         <input id="laporan_rugi_laba_upload_lap_rl" name="laporan_rugi_laba_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                                        <button type="button" class="btn btn-link lihat-dokumen" data-id="laporan_rugi_laba_upload_lap_rl">Lihat Dokumen</button>
+                                        <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen" data-id="laporan_rugi_laba_upload_lap_rl">Lihat Dokumen</button>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Neraca</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
                                         <input id="neraca_upload_lap_rl" name="neraca_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                                        <button type="button" class="btn btn-link lihat-dokumen" data-id="neraca_upload_lap_rl">Lihat Dokumen</button>
+                                        <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen" data-id="neraca_upload_lap_rl">Lihat Dokumen</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Depresiasi</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
                                         <input id="depresiasi_upload_lap_rl" name="depresiasi_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                                        <button type="button" class="btn btn-link lihat-dokumen" data-id="depresiasi_upload_lap_rl">Lihat Dokumen</button>
+                                        <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen" data-id="depresiasi_upload_lap_rl">Lihat Dokumen</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <!-- kosong -->
+
                                 </div>
                                 <label class="col-lg-3 control-label">Rasio Laporan Keuangan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
                                         <input id="rasio_lap_keuangan_upload_lap_rl" name="rasio_lap_keuangan_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                                        <button type="button" class="btn btn-link lihat-dokumen" data-id="rasio_lap_keuangan_upload_lap_rl">Lihat Dokumen</button>
+                                        <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen" data-id="rasio_lap_keuangan_upload_lap_rl">Lihat Dokumen</button>
                                     </div>
                                 </div>
                             </div>
@@ -3050,818 +3176,12 @@
                         <h1>CEF (T or T&B only)</h1>
                         <fieldset>
                             <h2 class="text-center text-danger">CEF (T or T&B only)</h2>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <h3 class="text-center text-danger">Penetapan CEF TANAH</h3>
-                                    <table class="tg">
-                                        <thead>
-                                            <tr>
-                                                <th class="tg-0pky">No</th>
-                                                <th class="tg-uzvj" colspan="2">Kriteria</th>
-                                                <th class="tg-0pky">Bobot</th>
-                                                <th class="tg-0pky">Parameter</th>
-                                                <th class="tg-0pky">Nilai</th>
-                                                <th class="tg-0pky">CEF</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">1</td>
-                                                <td class="tg-0pky" colspan="2">Bukti Kepemilikan</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">SHM</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox1ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'1','0.25')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SHGB, SHGU, STRATA TITLE</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox2ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'1','0.25')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>-</td>
-                                                <td class="tg-za14">SKPT (SRT KET PENDAFTARAN TANAH), SRT UKUR</td>
-                                                <td></td>
-                                                <td>50</td>
-                                                <td><input type="checkbox" id="checkbox3ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'1','0.25')"></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">HAK PAKAI, SEGEL, SKPT (SRT KET PENGUASAAN TANAH) </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox4ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'1','0.25')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 1</td>
-                                                <td class="tg-0pky">25%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil1ceft" style="display: inline-block; width: 45px; margin-left: 10px;" name="hasil_checkbox_ceft[]"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">2</td>
-                                                <td class="tg-za14" colspan="2">KELAS JALAN </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">JALAN RAYA UTAMA</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox5ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">LINGKUNGAN/KOMPLEK </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox6ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">GANG </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox7ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SETAPAK</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox8ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 2</td>
-                                                <td class="tg-0pky">20%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil2ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">3</td>
-                                                <td class="tg-za14" colspan="2">PEMILIK AGUNAN </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">AN. SENDIRI / ISTERI & SUAMI / PENGURUS PERUSAHAAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox9ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'3','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">AN. ANAK KANDUNG/TIRI / SAUDARA KANDUNG/TIRI/AYAH KANDUNG</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox10ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'3','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">AN. KELUARGA LAIN </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox11ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'3','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">AN. PIHAK KETIGA</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox12ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'3','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 3</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil3ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">4</td>
-                                                <td class="tg-za14" colspan="2">LINGKUNGAN </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">PERKANTORAN & PERDAGANGAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox13ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'4','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">PERUMAHAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox14ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'4','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">PERTANIAN/PERKEBUNAN/PETERNAKAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox15ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'4','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">LAINNYA</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox16ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'4','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 4</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil4ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">5</td>
-                                                <td class="tg-za14" colspan="2">LETAK / LOKASI BERKAITAN DGN PUSAT BISNIS </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SANGAT DEKAT ( 0 M S/D 500 M)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox17ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">DEKAT (> 500 M S/D 1 KM)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox18ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">CUKUP DEKAT (> 1 KM S/D 2 KM) </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox19ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">JAUH (> 2 KM)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox20ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 5</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil5ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">6</td>
-                                                <td class="tg-za14" colspan="2">KELENGKAPAN FASUM / FASOS (DENGAN JARAK < 2 KM ) </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SANGAT LENGKAP (> 6 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox21ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">LENGKAP (5 S/D 6 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox22ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">CUKUP (3 S/D 4 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox23ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">TIDAK LENGKAP (S/D 2 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox24ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 6</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil6ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="4">7</td>
-                                                <td class="tg-0pky" colspan="2">BENTUK TANAH</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">SEGI EMPAT / PERSEGI PANJANG</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox25ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'7','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">SEGI BANYAK</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox26ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'7','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">LAINNYA (SEGITIGA, TIDAK BERATURAN,DLL)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox27ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'7','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 7</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil7ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">8</td>
-                                                <td class="tg-za14" colspan="2">KONTUR TANAH</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">RATA</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox28ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'8','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">BERGELOMBANG</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox29ceft" name="checkboxceft[]" value="75" onchange="showValueCEFT(this,'8','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">BERTINGKAT </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox30ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'8','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">LAINNYA (KOMBINASI)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox31ceft" name="checkboxceft[]" value="25" onchange="showValueCEFT(this,'8','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 8</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil8ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="3">9</td>
-                                                <td class="tg-0pky" colspan="2">JENIS TANAH</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">KERAS/DARAT/MATANG</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox32ceft" name="checkboxceft[]" value="100" onchange="showValueCEFT(this,'9','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">RAWA/GAMBUT/BERAIR</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox33ceft" name="checkboxceft[]" value="50" onchange="showValueCEFT(this,'9','0.05')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 9</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil9ceft" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah CEF Tanah</td>
-                                                <td class="tg-0pky">100%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasiltotalCEFT" name="hasiltotalceft" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h3 class="text-center text-danger">Penetapan CEF BANGUNAN</h3>
-                                    <table class="tg">
-                                        <thead>
-                                            <tr>
-                                                <th class="tg-0pky">No</th>
-                                                <th class="tg-uzvj" colspan="2">Kriteria</th>
-                                                <th class="tg-0pky">Bobot</th>
-                                                <th class="tg-0pky">Parameter</th>
-                                                <th class="tg-0pky">Nilai</th>
-                                                <th class="tg-0pky">CEF</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="4">1</td>
-                                                <td class="tg-0pky" colspan="2">PERIJINAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">MEMILIKI IMB</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox1cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'1','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">MEMILIKI IMB, NAMUN LUAS BANGUNAN TIDAK SESUAI DENGAN KONDISI SEBELUMNYA</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox2cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'1','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>-</td>
-                                                <td class="tg-za14">TIDAK MEMILIKI</td>
-                                                <td></td>
-                                                <td>50</td>
-                                                <td><input type="checkbox" id="checkbox3cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'1','0.2')"></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 1</td>
-                                                <td class="tg-0pky">20%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil1cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">2</td>
-                                                <td class="tg-za14" colspan="2">JENIS BANGUNAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">BETON</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox4cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SEMI PERMANEN(KOMBINASI KAYU+BETON) </td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox5cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">KAYU</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox6cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">MASIH DALAM PROSES</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox7cefb" name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,'2','0.2')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 2</td>
-                                                <td class="tg-0pky">20%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil2cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">3</td>
-                                                <td class="tg-za14" colspan="2">USIA BANGUNAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">S.D. 5 TAHUN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox8cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'3','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">>5 TAHUN S.D. 10 TAHUN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox9cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'3','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">>10 TAHUN S.D. 15 TAHUN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox10cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'3','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">>15 TAHUN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox11cefb" name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,'3','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 3</td>
-                                                <td class="tg-0pky">15%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil3cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">4</td>
-                                                <td class="tg-za14" colspan="2">KONDISI BANGUNAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SANGAT BAIK</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox12cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'4','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">BAIK</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox13cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'4','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">CUKUP</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox14cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'4','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">KURANG</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox15cefb" name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,'4','0.15')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 4</td>
-                                                <td class="tg-0pky">15%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil4cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">5</td>
-                                                <td class="tg-za14" colspan="2">PENGGUNAAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">RUMAH TEMPAT TINGGAL</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox16cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">RUKO/RUKAN/TOKO</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox17cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">KANTOR</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox18cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">LAINNYA (GUDANG,DLL)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox19cefb" name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,'5','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 5</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil5cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">6</td>
-                                                <td class="tg-za14" colspan="2">TINGGI LANTAI BANGUNAN TERHADAP JALAN</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">TINGGI (>100CM)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox20cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SEDANG (51CM S.D. 100CM)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox21cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">RENDAH (0 S.D. 50CM)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox22cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-za14">SANGAT RENDAH (DIBAWAH JALAN)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">25</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox23cefb" name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,'6','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 6</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil6cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky" rowspan="5">7</td>
-                                                <td class="tg-0pky" colspan="2">KELANGKAPAN FASILITAS</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">SANGAT LENGKAP (>6 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">100</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox24cefb" name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,'7','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">LENGKAP (5 S.D. 6 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">75</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox25cefb" name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,'7','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">CUKUP (3 S.D. 4 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox26cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'7','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky">-</td>
-                                                <td class="tg-0pky">TIDAK LENGKAP (S.D. 2 FASILITAS)</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">50</td>
-                                                <td class="tg-0pky"><input type="checkbox" id="checkbox27cefb" name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,'7','0.1')"></td>
-                                                <td class="tg-0pky"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah Sub Point 7</td>
-                                                <td class="tg-0pky">10%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasil7cefb" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky">Jumlah CEF Bangunan</td>
-                                                <td class="tg-0pky">100%</td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"></td>
-                                                <td class="tg-0pky"><input id="hasiltotalCEFB" name="hasiltotalcefb" style="display: inline-block; width: 45px; margin-left: 10px;"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div id="ceftb">
                             </div>
-
                             <br>
                         </fieldset>
                         <?php // } 
                         ?>
-
                         <!-- batas baru -->
                         <!-- baru -->
                         <?php // if($tampil_faa){ 
@@ -3869,193 +3189,13 @@
                         <h1>FAA</h1>
                         <fieldset>
                             <h2>Data Formulir Analisa Agunan</h2>
-                            <div class="form-group row">
-
-                                <label class="col-lg-3 control-label">Nama Nasabah</label>
-                                <div class="col-lg-3">
-                                    <div class="col-lg-12">
-                                        <input id="nama_nasabah_faa" name="nama_nasabah_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-                                    </div>
-                                </div>
+                            <div id="faa_tanah">
                             </div>
-                            <div class="form-group row">
-
-                                <label class="col-lg-3 control-label">Nomor SHM</label>
-                                <div class="col-lg-3">
-                                    <div class="col-lg-12">
-                                        <input id="nomor_shm_faa" name="nomor_shm_faa" type="text" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                                <label class="col-lg-1 control-label">Tanggal</label>
-                                <div class="col-lg-3">
-                                    <div class="col-lg-12">
-                                        <input id="tanggal_shm_faa" name="tanggal_shm_faa" type="text" placeholder="" class="form-control">
-                                    </div>
-                                </div>
+                            <div id="faa_bb">
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="luasbangunan">
 
-                                <label class="col-lg-3 control-label">Nama Pemilik SHM</label>
-                                <div class="col-lg-3">
-                                    <div class="col-lg-12">
-                                        <input id="nama_pemilik_shm_faa" name="nama_pemilik_shm_faa" type="text" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-
-                                <label class="col-lg-3 control-label">Alamat Agunan</label>
-                                <div class="col-lg-3">
-                                    <div class="col-lg-12">
-                                        <input id="alamat_agunan_faa" name="alamat_agunan_faa" type="text" placeholder="" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 class="text-center text-danger">Penilaian Agunan</h2>
-                            <div class="border border-dark p-1">
-                                <h3>1. Harga Tanah :</h3>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Harga menurut pasar</label>
-                                        <div class="col-lg-12">
-                                            <input id="harga_pasar_tanah_faa" name="harga_pasar_tanah_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Harga Buku</label>
-                                        <div class="col-lg-12">
-                                            <input id="harga_buku_tanah_faa" name="harga_buku_tanah_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Harga menurut pejabat bank</label>
-                                        <div class="col-lg-12">
-                                            <input id="harga_menurut_pejabat_bank_tanah_faa" name="harga_menurut_pejabat_bank_tanah_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <label class="col-lg-12 control-label">Penilaian tanah</label>
-                                            </div>
-                                            <div class="col-lg-1 text-right">
-                                                Rp
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="harga_tanah_tanah_faa" name="harga_tanah_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                            <div class="col-lg-1 text-center">
-                                                x
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="luas_persegi_tanah_tanah_faa" name="luas_persegi_tanah_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="hasil_perhitungan_penilaian_tanah_faa" name="hasil_perhitungan_penilaian_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <label class="col-lg-12 control-label">Cash Equivalency Factor (CEF)</label>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="cef_tanah_faa" name="cef_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                            <div class="col-lg-3">
-
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="harga_cef_tanah_faa" name="harga_cef_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <label class="col-lg-6 control-label">Safety Margin</label>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="persentase_safety_margin_tanah_faa" name="persentase_safety_margin_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                            <div class="col-lg-3">
-
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="safety_margin_tanah_faa" name="safety_margin_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                            </div>
-                                            <div class="col-lg-5">
-                                                <label class="col-lg-6 control-label">Nilai Bangun Setelah CEF & Safety Margin</label>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <input id="nilai_cef_safety_margin_tanah_faa" name="nilai_cef_safety_margin_tanah_faa" type="text" placeholder="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="border border-dark p-1"> -->
-                            <div class="luasbangunan">
-
-                            </div>
-                            <div class="border border-dark p-1">
-                                <h3>3. Nilai Taksasi Seluruhnya (tanah dan bangunan) :</h3>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Nilai Tanah setelah CEF & Safety Margin</label>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="nilai_tanah_setelah_cef_safety_margin_faa" name="nilai_tanah_setelah_cef_safety_margin_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Nilai Bangunan setelah CEF & Safety Margin</label>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="nilai_bangunan_setelah_cef_safety_margin_faa" name="nilai_bangunan_setelah_cef_safety_margin_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Nilai Keseluruhan</label>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="nilai_keseluruhan_faa" name="nilai_keseluruhan_faa" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-6 control-label">Rasio Perbandingan Agunan dengan Plafond Kredit</label>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="rasio_perbandingan_agunan_plafond_faa" name="rasio_perbandingan_agunan_plafond_faa" type="text" placeholder="" class="form-control">
-
-                                    </div>
-                                </div>
-                            </div>
+                            </div> -->
                             <br>
                             <br>
                         </fieldset>
@@ -4075,14 +3215,14 @@
                                     <label class="col-lg-6 control-label">Nama Nasabah</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="nama_nasabah_mauk" name="nama_nasabah_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="nama_nasabah_mauk" name="nama_nasabah_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">NPWP</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="npwp_mauk" name="npwp_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="npwp_mauk" name="npwp_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                             </div>
@@ -4093,14 +3233,14 @@
                                     <label class="col-lg-6 control-label">Direktur</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="direktur_mauk" name="direktur_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="direktur_mauk" name="direktur_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">Key Person</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="key_person_mauk" name="key_person_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="key_person_mauk" name="key_person_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                             </div>
@@ -4112,14 +3252,14 @@
                                     <label class="col-lg-6 control-label">Alamat kantor</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <textarea id="alamat_kantor_mauk" name="alamat_kantor_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="alamat_kantor_mauk" name="alamat_kantor_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">Klasifikasi</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="klasifikasi_mauk" name="klasifikasi_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="klasifikasi_mauk" name="klasifikasi_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                             </div>
@@ -4130,14 +3270,14 @@
                                     <label class="col-lg-6 control-label">Bidang Usaha</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="bidang_usaha_mauk" name="bidang_usaha_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="bidang_usaha_mauk" name="bidang_usaha_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">Jenis Fasilitas</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="jenis_fasilitas_mauk" name="jenis_fasilitas_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="jenis_fasilitas_mauk" name="jenis_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                             </div>
@@ -4148,13 +3288,13 @@
                                     <label class="col-lg-6 control-label">Bentuk Fasilitas</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="bentuk_fasilitas_mauk" name="bentuk_fasilitas_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="bentuk_fasilitas_mauk" name="bentuk_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">Maksimum Fasilitas</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="maksimum_fasilitas_mauk" name="maksimum_fasilitas_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="maksimum_fasilitas_mauk" name="maksimum_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                             </div>
@@ -4165,14 +3305,14 @@
                                     <label class="col-lg-6 control-label">Plafond Fasilitas</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input id="plafond_fasilitas_mauk" name="plafond_fasilitas_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="plafond_fasilitas_mauk" name="plafond_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
 
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">Jangka Waktu</label>
                                 </div>
                                 <div class="col-lg-4">
-                                    <textarea id="jangka_waktu_mauk" name="jangka_waktu_mauk" type="text" onkeyup="copyvalue(this.id,'kesimpulan_jangka_waktu_mauk')" placeholder="" class="form-control"></textarea>
+                                    <textarea id="jangka_waktu_mauk" name="jangka_waktu_mauk" type="text" onkeyup="copyvalue(this.id,'kesimpulan_jangka_waktu_mauk')" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
 
                                 </div>
                             </div>
@@ -4183,7 +3323,7 @@
                                     <label class="col-lg-24 control-label">Tujuan Penggunaan</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input id="tujuan_penggunaan_mauk" name="tujuan_penggunaan_mauk" onkeyup="copyvalue(this.id,'kesimpulan_tujuan_penggunaan_mauk')" type="text" placeholder="" class="form-control">
+                                    <input id="tujuan_penggunaan_mauk" name="tujuan_penggunaan_mauk" onkeyup="copyvalue(this.id,'kesimpulan_tujuan_penggunaan_mauk')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
 
@@ -4193,7 +3333,7 @@
                                     <label class="col-lg-24 control-label">Pemilik Perseroan</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="pemilik_perseroan_mauk" name="pemilik_perseroan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="pemilik_perseroan_mauk" name="pemilik_perseroan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4201,7 +3341,7 @@
                                     <label class="col-lg-24 control-label">Pemilikan Saham/Permodalan</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="pemilikan_saham_permodalan_mauk" name="pemilikan_saham_permodalan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="pemilikan_saham_permodalan_mauk" name="pemilikan_saham_permodalan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4209,7 +3349,7 @@
                                     <label class="col-lg-24 control-label">Kewenangan Direksi</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="kewenangan_direksi_mauk" name="kewenangan_direksi_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="kewenangan_direksi_mauk" name="kewenangan_direksi_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Informasi Riwayat Perbankan</h2>
@@ -4217,7 +3357,7 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="informasi_riwayat_perbankan_mauk" name="informasi_riwayat_perbankan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="informasi_riwayat_perbankan_mauk" name="informasi_riwayat_perbankan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Analisa Aspek Legalitas</h2>
@@ -4226,7 +3366,7 @@
                                     <label class="col-lg-24 control-label"> Legalitas Pendirian Usaha</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="legalitas_pendirian_usaha_mauk" name="legalitas_pendirian_usaha_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="legalitas_pendirian_usaha_mauk" name="legalitas_pendirian_usaha_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4234,7 +3374,7 @@
                                     <label class="col-lg-24 control-label"> Legalitas Perizinan Usaha</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="legalitas_perizinan_usaha_mauk" name="legalitas_perizinan_usaha_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="legalitas_perizinan_usaha_mauk" name="legalitas_perizinan_usaha_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4242,7 +3382,7 @@
                                     <label class="col-lg-24 control-label"> Legalitas Pelaksanaan Proyek</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="legalitas_pelaksanaan_proyek_mauk" name="legalitas_pelaksanaan_proyek_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="legalitas_pelaksanaan_proyek_mauk" name="legalitas_pelaksanaan_proyek_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4250,7 +3390,7 @@
                                     <label class="col-lg-24 control-label"> Legalitas Personal Pemohon dan Pemilik Agunan</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="legalitas_personal_pemohon_pemilik_agunan_mauk" name="legalitas_personal_pemohon_pemilik_agunan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="legalitas_personal_pemohon_pemilik_agunan_mauk" name="legalitas_personal_pemohon_pemilik_agunan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4258,7 +3398,7 @@
                                     <label class="col-lg-24 control-label">Kesimpulan Analisa Aspek Legalitas</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="kesimpulan_analisa_aspek_legalitas_mauk" name="kesimpulan_analisa_aspek_legalitas_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="kesimpulan_analisa_aspek_legalitas_mauk" name="kesimpulan_analisa_aspek_legalitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Analisa Aspek Manajemen</h2>
@@ -4266,7 +3406,7 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="analisa_aspek_manajemen_mauk" name="analisa_aspek_manajemen_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="analisa_aspek_manajemen_mauk" name="analisa_aspek_manajemen_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Analisa Aspek Teknis</h2>
@@ -4274,7 +3414,7 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="analisa_aspek_teknis_mauk" name="analisa_aspek_teknis_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="analisa_aspek_teknis_mauk" name="analisa_aspek_teknis_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Analisa Aspek Pemasaran</h2>
@@ -4282,7 +3422,7 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="analisa_aspek_pemasaran_mauk" name="analisa_aspek_pemasaran_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="analisa_aspek_pemasaran_mauk" name="analisa_aspek_pemasaran_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Analisa Aspek Keuangan</h2>
@@ -4290,7 +3430,7 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="analisa_aspek_keuangan_mauk" name="analisa_aspek_keuangan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="analisa_aspek_keuangan_mauk" name="analisa_aspek_keuangan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Perhitungan Kebutuhan Kredit</h2>
@@ -4298,7 +3438,7 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="perhitungan_kebutuhan_kredit_mauk" name="perhitungan_kebutuhan_kredit_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="perhitungan_kebutuhan_kredit_mauk" name="perhitungan_kebutuhan_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Kesimpulan Jaminan/Agunan yang Dikuasai</h2>
@@ -4306,37 +3446,37 @@
                                 <div class="col-lg-2">
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="kesimpulan_jaminan_agunan_mauk" name="kesimpulan_jaminan_agunan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="kesimpulan_jaminan_agunan_mauk" name="kesimpulan_jaminan_agunan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Kesimpulan dan Usulan</h2>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-mauk text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                                <button class="btn btn-success mt-2 tambah-field-mauk text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                                 <div class="add-form-mauk">
                                     <div class="form-group row">
-                                        <!-- <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" style="display: none;"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button> -->
+                                        <!-- <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button"  <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>  style="display: none;"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button> -->
                                         <div class="col-lg-3">
                                             <label class="col-lg-24 control-label">Jenis Kredit</label>
                                             <div class="col-lg-12">
-                                                <input id="jenis_kredit_fasilitas_usul_mauk0" name="jenis_kredit_fasilitas_usul_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="jenis_kredit_fasilitas_usul_mauk0" name="jenis_kredit_fasilitas_usul_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-24 control-label">Maksimum Kredit Saat Ini</label>
                                             <div class="col-lg-12">
-                                                <input id="max_kredit_ini_usul_mauk0" name="max_kredit_ini_usul_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="max_kredit_ini_usul_mauk0" name="max_kredit_ini_usul_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-24 control-label">Perubahan</label>
                                             <div class="col-lg-12">
-                                                <input id="perubahan_usul_mauk0" name="perubahan_usul_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="perubahan_usul_mauk0" name="perubahan_usul_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-24 control-label">Maksimum Kredit yang Diusulkan</label>
                                             <div class="col-lg-12">
-                                                <input id="max_kredit_usul_mauk0" name="max_kredit_usul_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="max_kredit_usul_mauk0" name="max_kredit_usul_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
@@ -4344,28 +3484,28 @@
                             </div>
                             <br>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-mauk2 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                                <button class="btn btn-success mt-2 tambah-field-mauk2 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                                 <div class="add-form-mauk2">
                                     <div class="form-group row">
-                                        <!-- <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" style="display: none;"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button> -->
+                                        <!-- <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button"  <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>  style="display: none;"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button> -->
                                         <div class="col-lg-3">
                                             <div class="col-lg-12">
-                                                <input id="jenis_kredit_fasilitas_pal_mauk0" name="jenis_kredit_fasilitas_pal_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="jenis_kredit_fasilitas_pal_mauk0" name="jenis_kredit_fasilitas_pal_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="col-lg-12">
-                                                <input id="max_kredit_ini_pal_mauk0" name="max_kredit_ini_pal_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="max_kredit_ini_pal_mauk0" name="max_kredit_ini_pal_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="col-lg-12">
-                                                <input id="perubahan_pal_mauk0" name="perubahan_pal_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="perubahan_pal_mauk0" name="perubahan_pal_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="col-lg-12">
-                                                <input id="max_kredit_pal_mauk0" name="max_kredit_pal_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="max_kredit_pal_mauk0" name="max_kredit_pal_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
@@ -4377,7 +3517,7 @@
                                     Jenis/Macam Fasilitas
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="jenis_macam_fasilitas_mauk" name="jenis_macam_fasilitas_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="jenis_macam_fasilitas_mauk" name="jenis_macam_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4385,7 +3525,7 @@
                                     Maksimum Kredit
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="maksimum_kredit_mauk" name="maksimum_kredit_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="maksimum_kredit_mauk" name="maksimum_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4393,7 +3533,7 @@
                                     Plafond Kredit
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="plafond_kredit_mauk" name="plafond_kredit_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="plafond_kredit_mauk" name="plafond_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4401,7 +3541,7 @@
                                     Kriteria Usaha
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="kriteria_usaha_mauk" name="kriteria_usaha_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="kriteria_usaha_mauk" name="kriteria_usaha_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4409,7 +3549,7 @@
                                     Pendanaan Sendiri
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="pendanaan_sendiri_mauk" name="pendanaan_sendiri_mauk" type="text" placeholder="" class="form-control">
+                                    <input id="pendanaan_sendiri_mauk" name="pendanaan_sendiri_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4417,7 +3557,7 @@
                                     Tujuan Penggunaan
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="kesimpulan_tujuan_penggunaan_mauk" name="kesimpulan_tujuan_penggunaan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="kesimpulan_tujuan_penggunaan_mauk" name="kesimpulan_tujuan_penggunaan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4425,7 +3565,7 @@
                                     Jangka Waktu
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="kesimpulan_jangka_waktu_mauk" name="kesimpulan_jangka_waktu_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="kesimpulan_jangka_waktu_mauk" name="kesimpulan_jangka_waktu_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4433,7 +3573,7 @@
                                     Cara Penarikan
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="cara_penarikan_mauk" name="cara_penarikan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="cara_penarikan_mauk" name="cara_penarikan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4441,7 +3581,7 @@
                                     Pelunasan/Angsuran
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="pelunasan_angsuran_mauk" name="pelunasan_angsuran_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="pelunasan_angsuran_mauk" name="pelunasan_angsuran_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4449,7 +3589,7 @@
                                     Bunga
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="bunga_mauk" name="bunga_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="bunga_mauk" name="bunga_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4457,10 +3597,10 @@
                                     Provisi/Fee
                                 </div>
                                 <div class="col-lg-4">
-                                    <textarea id="provisi_fee_mauk" name="provisi_fee_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="provisi_fee_mauk" name="provisi_fee_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                                 <div class="col-lg-4">
-                                    <textarea id="hitung_provisi_fee_mauk" name="hitung_provisi_fee_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="hitung_provisi_fee_mauk" name="hitung_provisi_fee_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4468,36 +3608,36 @@
                                     Akad Kredit
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="akad_kredit_mauk" name="akad_kredit_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="akad_kredit_mauk" name="akad_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-mauk3 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                                <button class="btn btn-success mt-2 tambah-field-mauk3 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                                 <div class="add-form-mauk3">
                                     <div class="form-group row">
-                                        <!-- <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" style="display: none;"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button> -->
+                                        <!-- <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button"  <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>  style="display: none;"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button> -->
                                         <div class="col-lg-3">
                                             <label class="col-lg-6 control-label">Agunan</label>
                                             <div class="col-lg-12">
-                                                <input id="agunan_mauk0" name="agunan_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="agunan_mauk0" name="agunan_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-6 control-label">Macam/Jenis</label>
                                             <div class="col-lg-12">
-                                                <input id="macam_jenis_mauk0" name="macam_jenis_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="macam_jenis_mauk0" name="macam_jenis_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-6 control-label">Nilai Agunan</label>
                                             <div class="col-lg-12">
-                                                <input id="nilai_agunan_mauk0" name="nilai_agunan_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="nilai_agunan_mauk0" name="nilai_agunan_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-6 control-label">Bentuk Pengikatan</label>
                                             <div class="col-lg-12">
-                                                <input id="bentuk_pengikatan_mauk0" name="bentuk_pengikatan_mauk[]" type="text" placeholder="" class="form-control">
+                                                <input id="bentuk_pengikatan_mauk0" name="bentuk_pengikatan_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
@@ -4508,7 +3648,7 @@
                                     <label class="col-lg-24 control-label">Dokumentasi Kredit</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="dokumentasi_kredit_mauk" name="dokumentasi_kredit_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="dokumentasi_kredit_mauk" name="dokumentasi_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4516,7 +3656,7 @@
                                     <label class="col-lg-24 control-label">Pengikatan Agunan</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="pengikatan_agunan_mauk" name="pengikatan_agunan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="pengikatan_agunan_mauk" name="pengikatan_agunan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4524,7 +3664,7 @@
                                     <label class="col-lg-24 control-label">Asuransi Kredit</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="asuransi_kredit_mauk" name="asuransi_kredit_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="asuransi_kredit_mauk" name="asuransi_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4532,7 +3672,7 @@
                                     <label class="col-lg-24 control-label"> Asuransi Agunan</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="asuransi_agunan_mauk" name="asuransi_agunan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="asuransi_agunan_mauk" name="asuransi_agunan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4540,7 +3680,7 @@
                                     <label class="col-lg-24 control-label"> Syarat Penandatangan Perjanjian Kredit</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="syarat_ttd_pk_mauk" name="syarat_ttd_pk_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="syarat_ttd_pk_mauk" name="syarat_ttd_pk_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4548,7 +3688,7 @@
                                     <label class="col-lg-24 control-label">Syarat Realisasi dan Penarikan Kredit</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="syarat_realisasi_penarikan_mauk" name="syarat_realisasi_penarikan_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="syarat_realisasi_penarikan_mauk" name="syarat_realisasi_penarikan_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4556,7 +3696,7 @@
                                     <label class="col-lg-24 control-label">Affirmatives</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="affirmatives_mauk" name="affirmatives_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="affirmatives_mauk" name="affirmatives_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4564,7 +3704,7 @@
                                     <label class="col-lg-24 control-label">Negatives</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="negatives_mauk" name="negatives_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="negatives_mauk" name="negatives_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4572,7 +3712,7 @@
                                     <label class="col-lg-24 control-label">Syarat Lainnya yang Jadi perhatian</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <textarea id="syarat_lain_mauk" name="syarat_lain_mauk" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="syarat_lain_mauk" name="syarat_lain_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <br>
@@ -4601,7 +3741,7 @@
                                     <label class="col-lg-6 control-label">Tanggal</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input id="tanggal_dcl" name="" type="text" placeholder="" class="form-control">
+                                    <input id="tanggal_dcl" name="" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4609,7 +3749,7 @@
                                     <label class="col-lg-6 control-label">Berkas Diterima Analis</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input id="tanggal_berkas_dcl" name="tanggal_berkas_dcl" type="text" placeholder="" class="form-control">
+                                    <input id="tanggal_berkas_dcl" name="tanggal_berkas_dcl" readonly type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Informasi Debitur</h2>
@@ -4618,7 +3758,7 @@
                                     <label class="col-lg-6 control-label">Nama Pemohon (Debitur/Calon Debitur)</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input id="nama_pemohon_dcl" name="nama_pemohon_dcl" type="text" placeholder="" class="form-control">
+                                    <input id="nama_pemohon_dcl" name="nama_pemohon_dcl" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4626,7 +3766,7 @@
                                     <label class="col-lg-6 control-label">Jenis Usaha/Pekerjaan</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input id="jenis_usaha_dcl" name="jenis_usaha_dcl" type="text" placeholder="" class="form-control">
+                                    <input id="jenis_usaha_dcl" name="jenis_usaha_dcl" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -4634,11 +3774,11 @@
                                     <label class="col-lg-6 control-label">Nama Perusahaan Pemohon (Debitur/Calon Debitur)</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input id="nama_perusahaan_pemohon_dcl" name="nama_perusahaan_pemohon_dcl" type="text" placeholder="" class="form-control">
+                                    <input id="nama_perusahaan_pemohon_dcl" name="nama_perusahaan_pemohon_dcl" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <!-- <div class="form-group row"> -->
-                            <button class="btn btn-success mt-2 tambah-field-dcl text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Nama Pemilik Perusahaan</button>
+                            <button class="btn btn-success mt-2 tambah-field-dcl text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Nama Pemilik Perusahaan</button>
                             <div class="add-form-dcl">
                                 <div class="form-group row">
                                     <div class="col-md-1">
@@ -4648,20 +3788,20 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-10 control-label">Nama</label>
                                         <div class="col-lg-12">
-                                            <input id="nama_pemilik_perusahaan_dcl1" name="nama_pemilik_perusahaan_dcl[]" type="text" placeholder="" class="form-control">
+                                            <input id="nama_pemilik_perusahaan_dcl1" name="nama_pemilik_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="col-lg-10 control-label">% Saham</label>
                                         <div class="col-lg-4">
-                                            <input id="persentase_saham_dcl1" name="persentase_saham_dcl[]" type="text" placeholder="" class="form-control">
+                                            <input id="persentase_saham_dcl1" name="persentase_saham_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- </div> -->
                             <!-- <div class="form-group row"> -->
-                            <button class="btn btn-success mt-2 tambah-field-dcl2 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                            <button class="btn btn-success mt-2 tambah-field-dcl2 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                             <div class="add-form-dcl2">
                                 <div class="form-group row">
                                     <div class="col-md-1">
@@ -4671,19 +3811,19 @@
                                     <div class="col-lg-2">
                                         <label class="col-lg-12 control-label">Jabatan</label>
                                         <div class="col-lg-12">
-                                            <input id="jabatan_pengurus_perusahaan_dcl1" name="jabatan_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control">
+                                            <input id="jabatan_pengurus_perusahaan_dcl1" name="jabatan_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="col-lg-6 control-label">Nama</label>
                                         <div class="col-lg-12">
-                                            <input id="nama_pengurus_perusahaan_dcl1" name="nama_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control">
+                                            <input id="nama_pengurus_perusahaan_dcl1" name="nama_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="col-lg-12 control-label">Kartu Pengenal</label>
                                         <div class="col-lg-12">
-                                            <input id="ktp_dcl1" name="ktp_dcl[]" type="text" placeholder="" class="form-control">
+                                            <input id="ktp_dcl1" name="ktp_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                         </div>
                                     </div>
                                 </div>
@@ -4694,12 +3834,12 @@
                                     <label class="col-lg-6 control-label">Jenis Usaha</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input id="jenis_usaha_perusahaan_dcl" name="jenis_usaha_perusahaan_dcl" type="text" placeholder="" class="form-control">
+                                    <input id="jenis_usaha_perusahaan_dcl" name="jenis_usaha_perusahaan_dcl" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                             </div>
                             <h2 class="text-center text-danger">Informasi Rencana Pemberian Kredit</h2>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-dcl3 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                                <button class="btn btn-success mt-2 tambah-field-dcl3 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                                 <div class="add-form-dcl3">
                                     <div class="form-group row">
                                         <div class="col-md-1">
@@ -4709,41 +3849,41 @@
                                         <div class="col-lg-2">
                                             <label class="col-lg-24 control-label">Fasilitas Kredit</label>
                                             <div class="col-lg-12">
-                                                <textarea id="fasilitas_kredit_dcl1" name="fasilitas_kredit_dcl[]" placeholder="" class="form-control"></textarea>
-                                                <!-- <input id="fasilitas_kredit_dcl1" name="fasilitas_kredit_dcl[]" type="text" placeholder="" class="form-control"> -->
+                                                <textarea type="text" id="fasilitas_kredit_dcl1" name="fasilitas_kredit_dcl[]" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
+                                                <!-- <input id="fasilitas_kredit_dcl1" name="fasilitas_kredit_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>> -->
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-24 control-label">Plafond</label>
                                             <div class="col-lg-10">
-                                                <input id="plafond_dcl1" name="plafond_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="plafond_dcl1" name="plafond_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-24 control-label">Jangka Waktu</label>
                                             <div class="col-lg-12">
-                                                <textarea id="jangka_waktu_dcl1" name="jangka_waktu_dcl[]" placeholder="" class="form-control"></textarea>
-                                                <!-- <input id="jangka_waktu_dcl1" name="jangka_waktu_dcl[]" type="text" placeholder="" class="form-control"> -->
+                                                <textarea type="text" id="jangka_waktu_dcl1" name="jangka_waktu_dcl[]" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
+                                                <!-- <input id="jangka_waktu_dcl1" name="jangka_waktu_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>> -->
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-24 control-label">Tujuan Penggunaan</label>
                                             <div class="col-lg-12">
-                                                <textarea id="tujuan_penggunaan_dcl1" name="tujuan_penggunaan_dcl[]" placeholder="" class="form-control"></textarea>
-                                                <!-- <input id="tujuan_penggunaan_dcl1" name="tujuan_penggunaan_dcl[]" type="text" placeholder="" class="form-control"> -->
+                                                <textarea type="text" id="tujuan_penggunaan_dcl1" name="tujuan_penggunaan_dcl[]" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
+                                                <!-- <input id="tujuan_penggunaan_dcl1" name="tujuan_penggunaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>> -->
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-24 control-label">Permohonan Diterima Pemasar</label>
                                             <div class="col-lg-12">
-                                                <input id="permohonan_diterima_dcl1" name="permohonan_diterima_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="permohonan_diterima_dcl1" name="permohonan_diterima_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-dcl4 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                                <button class="btn btn-success mt-2 tambah-field-dcl4 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                                 <div class="add-form-dcl4">
                                     <div class="form-group row">
                                         <div class="col-md-1">
@@ -4753,38 +3893,38 @@
                                         <div class="col-lg-2">
                                             <label class="col-lg-12 control-label">Bukti Kepemilikan</label>
                                             <div class="col-lg-10">
-                                                <input id="bukti_kepemilikan_dcl1" name="bukti_kepemilikan_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="bukti_kepemilikan_dcl1" name="bukti_kepemilikan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="col-lg-6 control-label">Jenis Agunan</label>
                                             <div class="col-lg-12">
-                                                <input id="jenis_agunan_dcl1" name="jenis_agunan_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="jenis_agunan_dcl1" name="jenis_agunan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Tanggal</label>
                                             <div class="col-lg-10">
-                                                <input id="tanggal_agunan_dcl1" name="tanggal_agunan_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="tanggal_agunan_dcl1" name="tanggal_agunan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Avalist</label>
                                             <div class="col-lg-12">
-                                                <input id="avalist_dcl1" name="avalist_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="avalist_dcl1" name="avalist_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Nominal</label>
                                             <div class="col-lg-12">
-                                                <input id="nominal_dcl1" name="nominal_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="nominal_dcl1" name="nominal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-dcl5 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Existing</button>
+                                <button class="btn btn-success mt-2 tambah-field-dcl5 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Existing</button>
                                 <div class="add-form-dcl5">
                                     <div class="form-group row">
                                         <div class="col-md-1">
@@ -4794,119 +3934,119 @@
                                         <div class="col-lg-3">
                                             <label class="col-lg-6 control-label">Fasilitas</label>
                                             <div class="col-lg-12">
-                                                <input id="fasilitas_dcl1" name="fasilitas_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="fasilitas_dcl1" name="fasilitas_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-12 control-label">Jatuh Tempo</label>
                                             <div class="col-lg-12">
-                                                <input id="jatuh_tempo_dcl1" name="jatuh_tempo_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="jatuh_tempo_dcl1" name="jatuh_tempo_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Plafond</label>
                                             <div class="col-lg-12">
-                                                <input id="plafond_existing_dcl1" name="plafond_existing_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="plafond_existing_dcl1" name="plafond_existing_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Outstanding</label>
                                             <div class="col-lg-12">
-                                                <input id="outstanding_dcl1" name="outstanding_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="outstanding_dcl1" name="outstanding_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Kolektibilitas</label>
                                             <div class="col-lg-12">
-                                                <input id="kolektibilitas_dcl1" name="kolektibilitas_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="kolektibilitas_dcl1" name="kolektibilitas_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-dcl6 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Grup</button>
+                                <button class="btn btn-success mt-2 tambah-field-dcl6 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Grup</button>
                                 <div class="add-form-dcl6">
                                     <div class="form-group row">
 
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Fasilitas</label>
                                             <div class="col-lg-12">
-                                                <input id="fasilitas_kredit_grup_dcl1" name="fasilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="fasilitas_kredit_grup_dcl1" name="fasilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-12 control-label">Nama Debitur</label>
                                             <div class="col-lg-12">
-                                                <input id="nama_debitur_kredit_grup_dcl1" name="nama_debitur_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="nama_debitur_kredit_grup_dcl1" name="nama_debitur_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-12 control-label">Jatuh Tempo</label>
                                             <div class="col-lg-10">
-                                                <input id="jatuh_tempo_kredit_grup_dcl1" name="jatuh_tempo_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="jatuh_tempo_kredit_grup_dcl1" name="jatuh_tempo_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Plafond</label>
                                             <div class="col-lg-12">
-                                                <input id="plafond_existing_kredit_grup_dcl1" name="plafond_existing_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="plafond_existing_kredit_grup_dcl1" name="plafond_existing_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Outstanding</label>
                                             <div class="col-lg-12">
-                                                <input id="outstanding_kredit_grup_dcl1" name="outstanding_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="outstanding_kredit_grup_dcl1" name="outstanding_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Kolektibilitas</label>
                                             <div class="col-lg-8">
-                                                <input id="kolektibilitas_kredit_grup_dcl1" name="kolektibilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="kolektibilitas_kredit_grup_dcl1" name="kolektibilitas_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <button class="btn btn-success mt-2 tambah-field-dcl7 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Kredit an. Debitur di Bank/LJK lain</button>
+                                <button class="btn btn-success mt-2 tambah-field-dcl7 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit an. Debitur di Bank/LJK lain</button>
                                 <div class="add-form-dcl7">
                                     <div class="form-group row">
 
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Fasilitas</label>
                                             <div class="col-lg-12">
-                                                <input id="fasilitas_bank_lain_dcl1" name="fasilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="fasilitas_bank_lain_dcl1" name="fasilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Bank/LJK</label>
                                             <div class="col-lg-12">
-                                                <input id="bank_ljk_bank_lain_dcl1" name="bank_ljk_bank_lain_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="bank_ljk_bank_lain_dcl1" name="bank_ljk_bank_lain_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-12 control-label">Jatuh Tempo</label>
                                             <div class="col-lg-10">
-                                                <input id="jatuh_tempo_bank_lain_dcl1" name="jatuh_tempo_bank_lain_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="jatuh_tempo_bank_lain_dcl1" name="jatuh_tempo_bank_lain_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Plafond</label>
                                             <div class="col-lg-12">
-                                                <input id="plafond_existing_bank_lain_dcl1" name="plafond_existing_bank_lain_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="plafond_existing_bank_lain_dcl1" name="plafond_existing_bank_lain_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Outstanding</label>
                                             <div class="col-lg-12">
-                                                <input id="outstanding_bank_lain_dcl1" name="outstanding_bank_lain_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="outstanding_bank_lain_dcl1" name="outstanding_bank_lain_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="col-lg-6 control-label">Kolektibilitas</label>
                                             <div class="col-lg-8">
-                                                <input id="kolektibilitas_bank_lain_dcl1" name="kolektibilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control">
+                                                <input id="kolektibilitas_bank_lain_dcl1" name="kolektibilitas_bank_lain_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                             </div>
                                         </div>
                                     </div>
@@ -4927,13 +4067,13 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_ojk_dcl1" name="pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_ojk_dcl1" name="pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_ojk_dcl1" name="dasar_pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_ojk_dcl1" name="dasar_pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_ojk_dcl[]" id="checklist_pengujian_ojk_dcl1" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_ojk_dcl[]" id="checklist_pengujian_ojk_dcl1" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
@@ -4942,13 +4082,13 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_ojk_dcl2" name="pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_ojk_dcl2" name="pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_ojk_dcl2" name="dasar_pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_ojk_dcl2" name="dasar_pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_ojk_dcl[]" id="checklist_pengujian_ojk_dcl2" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_ojk_dcl[]" id="checklist_pengujian_ojk_dcl2" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
@@ -4957,13 +4097,13 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_ojk_dcl3" name="pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_ojk_dcl3" name="pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_ojk_dcl3" name="dasar_pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_ojk_dcl3" name="dasar_pengujian_ojk_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_ojk_dcl[]" id="checklist_pengujian_ojk_dcl3" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_ojk_dcl[]" id="checklist_pengujian_ojk_dcl3" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
@@ -4985,44 +4125,29 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_internal_dcl1" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_internal_dcl1" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_internal_dcl1" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_internal_dcl1" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl1" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl1" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
                                     </select>
-                                    <!-- <input id="checklist_pengujian_internal_dcl1" name="checklist_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control"> -->
+                                    <!-- <input id="checklist_pengujian_internal_dcl1" name="checklist_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>> -->
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_internal_dcl2" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_internal_dcl2" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_internal_dcl2" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_internal_dcl2" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl2" class=" form-control class-disabled select">
-                                        <option value=""></option>
-                                        <option value="comply">Comply</option>
-                                        <option value="not comply">Not Comply</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-4">
-                                    <input id="pengujian_internal_dcl3" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input id="dasar_pengujian_internal_dcl3" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
-                                </div>
-                                <div class="col-lg-2">
-                                    <select name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl3" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl2" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
@@ -5031,13 +4156,13 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_internal_dcl4" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_internal_dcl3" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_internal_dcl4" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_internal_dcl3" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl4" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl3" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
@@ -5046,13 +4171,13 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_internal_dcl5" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_internal_dcl4" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_internal_dcl5" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_internal_dcl4" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl5" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl4" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
@@ -5061,20 +4186,35 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <input id="pengujian_internal_dcl6" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="pengujian_internal_dcl5" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="dasar_pengujian_internal_dcl6" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control">
+                                    <input id="dasar_pengujian_internal_dcl5" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                 </div>
                                 <div class="col-lg-2">
-                                    <select name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl6" class=" form-control class-disabled select">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl5" class=" form-control class-disabled select">
                                         <option value=""></option>
                                         <option value="comply">Comply</option>
                                         <option value="not comply">Not Comply</option>
                                     </select>
                                 </div>
                             </div>
-                            <button class="btn btn-success mt-2 tambah-field-dcl8 text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Uji terhadap Ketentuan Lainnya</button>
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    <input id="pengujian_internal_dcl6" name="pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input id="dasar_pengujian_internal_dcl6" name="dasar_pengujian_internal_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                </div>
+                                <div class="col-lg-2">
+                                    <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_internal_dcl[]" id="checklist_pengujian_internal_dcl6" class=" form-control class-disabled select">
+                                        <option value=""></option>
+                                        <option value="comply">Comply</option>
+                                        <option value="not comply">Not Comply</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-success mt-2 tambah-field-dcl8 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Uji terhadap Ketentuan Lainnya</button>
                             <div class="add-form-dcl8">
                                 <div class="form-group row">
                                     <div class="col-lg-4">
@@ -5089,13 +4229,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-4">
-                                        <input id="pengujian_lainnya_dcl1" name="pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control">
+                                        <input id="pengujian_lainnya_dcl1" name="pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                     <div class="col-lg-6">
-                                        <input id="dasar_pengujian_lainnya_dcl1" name="dasar_pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control">
+                                        <input id="dasar_pengujian_lainnya_dcl1" name="dasar_pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                     </div>
                                     <div class="col-lg-2">
-                                        <select name="checklist_pengujian_lainnya_dcl[]" id="checklist_pengujian_lainnya_dcl1" class=" form-control class-disabled select">
+                                        <select <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> name="checklist_pengujian_lainnya_dcl[]" id="checklist_pengujian_lainnya_dcl1" class=" form-control class-disabled select">
                                             <option value=""></option>
                                             <option value="comply">Comply</option>
                                             <option value="not comply">Not Comply</option>
@@ -5109,7 +4249,7 @@
                                     <label class="col-lg-6 control-label">Kesimpulan</label>
                                 </div>
                                 <div class="col-lg-6">
-                                    <textarea id="kesimpulan_dcl" name="kesimpulan_dcl" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="kesimpulan_dcl" name="kesimpulan_dcl" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -5117,7 +4257,7 @@
                                     <label class="col-lg-6 control-label">Komentar</label>
                                 </div>
                                 <div class="col-lg-6">
-                                    <textarea id="komentar_dcl" name="komentar_dcl" type="text" placeholder="" class="form-control"></textarea>
+                                    <textarea id="komentar_dcl" name="komentar_dcl" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
                                 </div>
                             </div>
                             <br>
@@ -5135,7 +4275,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">Nama Pemohon</label>
                                         <div class="col-lg-12">
-                                            <input id="nama_pemohon_sc" name="nama_pemohon_sc" type="text" placeholder="" class="form-control class-readonly" readonly>
+                                            <input id="nama_pemohon_sc_koor" name="nama_pemohon_sc_koor" type="text" placeholder="" class="form-control class-readonly" readonly>
 
                                         </div>
                                     </div>
@@ -5143,30 +4283,25 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">Alamat</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="alamat_sc" name="alamat_sc" rows="3" readonly></textarea>
-
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="alamat_sc_koor" name="alamat_sc_koor" rows="3" readonly></textarea>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">Plafond</label>
                                         <div class="col-lg-12">
-                                            <input id="plafond_sc" name="plafond_sc" type="text" placeholder="" class="form-control class-readonly" readonly>
-
+                                            <input id="plafond_sc_koor" name="plafond_sc_koor" type="text" placeholder="" class="form-control class-readonly" readonly>
+                                            <p>Nominal: <span id="plafond_sc_koor_separators" class="mask"></span></p>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">Tujuan</label>
                                         <div class="col-lg-12">
-                                            <input id="tujuan_sc" name="tujuan_sc" type="text" placeholder="" class="form-control class-readonly" readonly>
+                                            <input id="tujuan_sc_koor" name="tujuan_sc_koor" type="text" placeholder="" class="form-control class-readonly" readonly>
 
                                         </div>
                                     </div>
@@ -5181,7 +4316,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">No PAK</label>
                                         <div class="col-lg-12">
-                                            <input id="no_pak_sc" name="no_pak_sc" type="text" placeholder="" class="form-control class-readonly" readonly>
+                                            <input id="no_pak_sc_koor" name="no_pak_sc_koor" type="text" placeholder="" class="form-control class-readonly" readonly>
 
                                         </div>
                                     </div>
@@ -5196,7 +4331,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">1. PENDIRIAN BADAN USAHA</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="pendirian_sc" name="pendirian_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="pendirian_sc_koor" name="pendirian_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="2">(a) Usaha baru berjalan 0 s/d 6 bulan</option>
                                                 <option value="4">(b) Usaha berjalan lebih dari 6 bulan s/d 1 tahun</option>
@@ -5211,7 +4346,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">2. LEGALITAS</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="legalitas_sc" name="legalitas_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="legalitas_sc_koor" name="legalitas_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="2">(a) Dokumen legalitas tidak lengkap dan tidak ada surat keterangan dokumen dalam proses dari instansi berwenang</option>
                                                 <option value="4">(b) Dokumen legalitas tidak lengkap namun ada surat keterangan dokumen dalam proses dari instansi berwenang</option>
@@ -5234,7 +4369,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">3. HUBUNGAN DENGAN PERBANKAN (FUNDING)</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="hubungan_sc" name="hubungan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="hubungan_sc_koor" name="hubungan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="2">(a) Belum atau sudah menjadi nasabah Bank Kalsel selama 0 s.d 3 bulan</option>
                                                 <option value="4">(b) Sudah menjadi nasabah Bank Kalsel selama 3 bulan s.d 1 tahun</option>
@@ -5249,7 +4384,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">4. PENGELOLAAN MANAJEMEN USAHA</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="pengelolaan_sc" name="pengelolaan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="pengelolaan_sc_koor" name="pengelolaan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="2">(a) Belum ada struktur organisasi dan tidak ada pembagian tugas secara jelas</option>
                                                 <option value="6">(b) Sudah ada terdapat struktur organisasi namun tidak ada pembagian tugas</option>
@@ -5271,7 +4406,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">5. JENIS AGUNAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="jenis_agunan_sc" name="jenis_agunan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="jenis_agunan_sc_koor" name="jenis_agunan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="3">(a) Personal / Corporate Guarantee</option>
                                                 <option value="6">(b) Bergerak</option>
@@ -5286,7 +4421,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">6. BUKTI KEPEMILIKAN AGUNAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="bukti_sc" name="bukti_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="bukti_sc_koor" name="bukti_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="3">(a) Akta notarial personal / corporate guarantee</option>
                                                 <option value="6">(b) BPKB / Gross Akta / Invoice</option>
@@ -5309,7 +4444,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">7. STATUS KEPEMILIKAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="status_sc" name="status_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="status_sc_koor" name="status_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="3">(a) Atas nama pihak ketiga (diluar keluarga owner atau pengurus perusahaan sampai dengan derajat pertama)</option>
                                                 <option value="9">(b) Atas nama keluarga owner atau pengurus perusahaan sampai dengan derajat pertama (termasuk mertua, menantu dan ipar)</option>
@@ -5322,7 +4457,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">8. MARKETABLE AGUNAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="marketable_sc" name="marketable_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="marketable_sc_koor" name="marketable_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="9">(a) Agunan Tidak Bergerak: Kurang Marketable (jarak > 2 km s.d 5 km dari pusat bisnis/pasar utama di daerah tsb ; Agunan Bergerak : Tidak Mudah Dijual (contoh: Kapal, Alat Berat atau yang dipersamakan dengan itu)</option>
                                                 <option value="15">(b) Agunan Tidak Bergerak : Marketable (jarak s.d 2 Km dari pusat bisnis/pasar utama di daerah tsb) ; Agunan Bergerak : Mudah Dijual (contoh: Kendaraan bermotor, uang tunai atau yang dipersamakan dengan itu)</option>
@@ -5342,7 +4477,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">9. HUBUNGAN DENGAN PERBANKAN (LENDING)</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="lending_sc" name="lending_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="lending_sc_koor" name="lending_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="7">(a) Debitur dengan kolektibilitas 2,3, 4, 5, atau hapus buku dan atau pernah NPL namun telah lunas.</option>
                                                 <option value="14">(b) Merupakan debitur baru tanpa track record (history)</option>
@@ -5357,7 +4492,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">10. PENGALAMAN MENGERJAKAN PROYEK</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="pengalaman_sc" name="pengalaman_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="pengalaman_sc_koor" name="pengalaman_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) Pemohon belum memiliki pengalaman melaksanakan pekerjaan proyek serupa.</option>
                                                 <option value="12">(b) Pemohon memiliki pengalaman melaksanakan pekerjaan proyek serupa sebanyak 1 x.</option>
@@ -5380,7 +4515,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">11. SUMBER DANA PROYEK</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="sumber_dana_sc" name="sumber_dana_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="sumber_dana_sc_koor" name="sumber_dana_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="7">(a) Swasta Bonafid dan belum bekerjasama dengan Bank Kalsel</option>
                                                 <option value="14">(b) Swasta Bonafid dan telah bekerjasama dengan Bank Kalsel</option>
@@ -5395,7 +4530,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">12. LOKASI PROYEK / PEKERJAAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="lokasi_sc" name="lokasi_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="lokasi_sc_koor" name="lokasi_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) Berada di lokasi yang tidak dapat diakses dengan alat transportasi umum / khusus.</option>
                                                 <option value="12">(b) Berada di lokasi yang hanya dapat diakses dengan alat transportasi khusus.</option>
@@ -5418,7 +4553,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">13. JENIS PROYEK / PEKERJAAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="jenis_proyek_sc" name="jenis_proyek_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="jenis_proyek_sc_koor" name="jenis_proyek_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="18">(a) Jasa Konstruksi (Bangunan, Jalan, Jembatan, Irigasi, Drainase, dsb)</option>
                                                 <option value="30">(b) Pengadaan Barang</option>
@@ -5431,7 +4566,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">14. BAHAN BAKU PROYEK</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="bahan_baku_sc" name="bahan_baku_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="bahan_baku_sc_koor" name="bahan_baku_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) Proyek pekerjaan yang membutuhkan bahan baku khusus yang hanya dapat diperoleh dari suplier tertentu, dan Pemohon belum memiliki surat dukungan dari suplier dimaksud.</option>
                                                 <option value="12">(b) Proyek pekerjaan yang membutuhkan bahan baku khusus yang hanya dapat diperoleh dari suplier tertentu, dan Pemohon telah melampirkan surat dukungan dari suplier dimaksud.</option>
@@ -5454,7 +4589,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">15. PERALATAN YANG DIGUNAKAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="peralatan_sc" name="peralatan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="peralatan_sc_koor" name="peralatan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) Proyek pekerjaan yang dalam pelaksanaannya hanya dapat dikerjakan dengan peralatan kerja khusus dan pemohon belum memiliki/melampirkan perjanjian sewa peralatan kerja yang dibutuhkan.</option>
                                                 <option value="12">(b) Proyek pekerjaan yang dalam pelaksanaannya memerlukan peralatan kerja khusus dan Pemohon belum memiliki/melampirkan perjanjian sewa peralatan kerja yang dibutuhkan. Namun fungsi peralatan kerja tersebut dapat digantikan dengan peralatan kerja sederhana dengan dukungan tenaga kerja dalam jumlah tertentu.</option>
@@ -5470,7 +4605,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">16. PEMBAYARAN TERMIJN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="pembayaran_sc" name="pembayaran_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="pembayaran_sc_koor" name="pembayaran_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="7">(a) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing dan Standing Instruction.</option>
                                                 <option value="21">(b) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing, namun sudah dilengkapi dengan Standing Instruction.</option>
@@ -5491,7 +4626,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">17. DASAR PENUNJUKAN PEKERJAAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="dasar_penunjukan_sc" name="dasar_penunjukan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="dasar_penunjukan_sc_koor" name="dasar_penunjukan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) Pengumuman LPSE dan belum dilakukan konfirmasi kepada pihak pemberi kerja</option>
                                                 <option value="12">(b) Surat Penunjukan Pelaksana Pekerjaan (Gunning) dan belum dilakukan konfirmasi kepada pihak pemberi kerja</option>
@@ -5507,7 +4642,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">18. PROSENTASE PLAFOND KREDIT TERHADAP NILAI PROYEK</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="prosentase_sc" name="prosentase_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="prosentase_sc_koor" name="prosentase_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) > 70%</option>
                                                 <option value="12">(b) > 60% s.d 70%</option>
@@ -5530,7 +4665,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">19. JANGKA WAKTU PELAKSANAAN PROYEK</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="jangka_sc" name="jangka_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="jangka_sc_koor" name="jangka_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) > 1 tahun (multi years)</option>
                                                 <option value="18">(b) > 6 s.d 12 bulan</option>
@@ -5544,7 +4679,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">20. PROSENTASE AGUNAN TAMBAHAN</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="agunan_sc" name="agunan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="agunan_sc_koor" name="agunan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="6">(a) 30% s.d 40%</option>
                                                 <option value="12">(b) > 40% s.d 50%</option>
@@ -5567,7 +4702,7 @@
                                     <div class="col-lg-6">
                                         <label class="col-lg-12 control-label">21. PENJAMINAN MASKAPAI ASURANSI</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="penjaminan_sc" name="penjaminan_sc" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                                            <select class="form-control class-disabled select" id="penjaminan_sc_koor" name="penjaminan_sc_koor" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                                                 <option value="" disabled="">pilih</option>
                                                 <option value="5">(a) Fasilitas kredit/pembiayaan tidak dijamin oleh maskapai asuransi penjaminan kredit/pembiayaan dan terdapat izin deviasi agunan dibawah ketentuan yang berlaku.</option>
                                                 <option value="10">(b) Fasilitas kredit/pembiayaan tidak dijamin oleh maskapai asuransi penjaminan kredit/pembiayaan, namun back-up agunan kredit hanya sebesar < 75,00% dari plafond kredit/pembiayaan.</option>
@@ -5586,7 +4721,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <h3 id="hasil_scoring" class="text-danger">-</h3>
+                                                        <h3 id="hasil_scoring_koor" class="text-danger">-</h3>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -5597,7 +4732,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <h3 id="ket_hasil" class="text-danger">-</h3>
+                                                        <h3 id="ket_hasil_koor" class="text-danger">-</h3>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -5763,7 +4898,7 @@
                                                 CEF
                                             </td>
                                             <td>
-                                                <span id="cef1">Oke</span><span id="cef2">Not Oke</span>
+                                                <span id="ceftb1">Oke</span><span id="ceftb2">Not Oke</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -5834,7 +4969,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Pemasar</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="disposisi_sc" name="disposisi_sc" rows="3" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_sc" name="disposisi_sc" rows="3" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5842,7 +4977,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Koordinator Pemasar</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="disposisi_koordinator_pemasar_sc" name="disposisi_koordinator_pemasar_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_koordinator_pemasar_sc" name="disposisi_koordinator_pemasar_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5850,7 +4985,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Cabang</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5858,7 +4993,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Analis Kredit</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5866,7 +5001,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Bagian</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5874,7 +5009,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Divisi</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5884,7 +5019,7 @@
                 </div>
             </div>
         </div>
-        <input type="text" hiddenn name="kd_data" id="kd_data">
+        <input type="text" hidden name="kd_data" id="kd_data">
 
         <input type="text" hidden name="itemppfakdata" id="itemppfakdata">
         <input type="text" hidden name="ppnppfakdata" id="ppnppfakdata">
@@ -5931,7 +5066,7 @@
         <input type="text" hidden name="namapengurusperusahaandcl" id="namapengurusperusahaandcl">
         <input type="text" hidden name="ktpdcl" id="ktpdcl">
 
-        <input type="text" hidden name="fasilitas_kreditdcl" id="fasilitas_kreditdcl">
+        <input type="text" hidden name="fasilitaskreditdcl" id="fasilitaskreditdcl">
         <input type="text" hidden name="plafonddcl" id="plafonddcl">
         <input type="text" hidden name="jangkawaktudcl" id="jangkawaktudcl">
         <input type="text" hidden name="tujuanpenggunaandcl" id="tujuanpenggunaandcl">
@@ -5963,13 +5098,67 @@
         <input type="text" hidden name="outstandingbanklaindcl" id="outstandingbanklaindcl">
         <input type="text" hidden name="kolektibilitasbanklaindcl" id="kolektibilitasbanklaindcl">
 
+        <input type="text" hidden name="pengujianlainnyadcl" id="pengujianlainnyadcl">
+        <input type="text" hidden name="dasarpengujianlainnyadcl" id="dasarpengujianlainnyadcl">
+        <input type="text" hidden name="checklistpengujianlainnyadcl" id="checklistpengujianlainnyadcl">
+
+        <input type="text" hidden name="namanasabahfaatb" id="namanasabahfaatb">
+        <input type="text" hidden name="nomorshmfaatb" id="nomorshmfaatb">
+        <input type="text" hidden name="tanggalshmfaatb" id="tanggalshmfaatb">
+        <input type="text" hidden name="namapemilikshmfaatb" id="namapemilikshmfaatb">
+        <input type="text" hidden name="alamatagunanfaatb" id="alamatagunanfaatb">
+        <input type="text" hidden name="hargapasartanahfaatb" id="hargapasartanahfaatb">
+        <input type="text" hidden name="hargabukutanahfaatb" id="hargabukutanahfaatb">
+        <input type="text" hidden name="hargamenurutpejabatbanktanahfaatb" id="hargamenurutpejabatbanktanahfaatb">
+        <input type="text" hidden name="hargatanahtanahfaatb" id="hargatanahtanahfaatb">
+        <input type="text" hidden name="luaspersegitanahtanahfaatb" id="luaspersegitanahtanahfaatb">
+        <input type="text" hidden name="hasilperhitunganpenilaiantanahfaatb" id="hasilperhitunganpenilaiantanahfaatb">
+
+        <input type="text" hidden name="namanasabahbb" id="namanasabahbb">
+        <input type="text" hidden name="jenisdokumenbb" id="jenisdokumenbb">
+        <input type="text" hidden name="alamatbb" id="alamatbb">
+        <input type="text" hidden name="jenisbb" id="jenisbb">
+        <input type="text" hidden name="modeltipebb" id="modeltipebb">
+        <input type="text" hidden name="merekccbb" id="merekccbb">
+        <input type="text" hidden name="tahunpembuatanbb" id="tahunpembuatanbb">
+        <input type="text" hidden name="serialnumberbb" id="serialnumberbb">
+        <input type="text" hidden name="nomormesinbb" id="nomormesinbb">
+        <input type="text" hidden name="warnabb" id="warnabb">
+        <input type="text" hidden name="bahanbakarbb" id="bahanbakarbb">
+        <input type="text" hidden name="kondisikeadaanbb" id="kondisikeadaanbb">
+        <input type="text" hidden name="nomorpolisibb" id="nomorpolisibb">
+        <input type="text" hidden name="buktikepemilikanagbbb" id="buktikepemilikanagbbb">
+        <input type="text" hidden name="invoicenobb" id="invoicenobb">
+        <input type="text" hidden name="invoicetanggalbb" id="invoicetanggalbb">
+        <input type="text" hidden name="perubahanhakterakhirbb" id="perubahanhakterakhirbb">
+        <input type="text" hidden name="tercatatatasnamabb" id="tercatatatasnamabb">
+        <input type="text" hidden name="alamatpemiliksaatinibb" id="alamatpemiliksaatinibb">
+        <input type="text" hidden name="umurteknisbb" id="umurteknisbb">
+        <input type="text" hidden name="perkiraanumurekonomisbb" id="perkiraanumurekonomisbb">
+        <input type="text" hidden name="tempatpenyimpananbb" id="tempatpenyimpananbb">
+        <input type="text" hidden name="routebb" id="routebb">
+        <input type="text" hidden name="jarakrataratatempuhbb" id="jarakrataratatempuhbb">
+
+        <!-- <div class="faa invisible">
+            <div class="row new" id="new">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
         <div class="copy-pp invisible">
             <div class="row new" id="new">
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -5982,7 +5171,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_termijn_fak_data" class="btn btn-danger hapus_termijn_fak_data delete-btn-termijn-fak-data" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_termijn_fak_data" class="btn btn-danger hapus_termijn_fak_data delete-btn-termijn-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -5995,7 +5184,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <button name="hapus" class="btn btn-danger hapus delete-btn-pp-fak-modal" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            <button name="hapus" class="btn btn-danger hapus delete-btn-pp-fak-modal" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -6007,7 +5196,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <button name="hapus_mauk" class="btn btn-danger hapus_mauk delete-btn-mauk" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            <button name="hapus_mauk" class="btn btn-danger hapus_mauk delete-btn-mauk" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -6019,7 +5208,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <button name="hapus_mauk2" class="btn btn-danger hapus_mauk2 delete-btn-mauk2" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            <button name="hapus_mauk2" class="btn btn-danger hapus_mauk2 delete-btn-mauk2" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -6031,7 +5220,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <button name="hapus_mauk3" class="btn btn-danger hapus_mauk3 delete-btn-mauk3" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            <button name="hapus_mauk3" class="btn btn-danger hapus_mauk3 delete-btn-mauk3" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -6043,7 +5232,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <div class="input-group-append">
-                            <button name="hapus_dcl" class="btn btn-danger hapus_dcl delete-btn-dcl" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            <button name="hapus_dcl" class="btn btn-danger hapus_dcl delete-btn-dcl" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -6055,7 +5244,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl2" class="btn btn-danger hapus_dcl2 delete-btn-dcl2" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl2" class="btn btn-danger hapus_dcl2 delete-btn-dcl2" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6068,7 +5257,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl3" class="btn btn-danger hapus_dcl3 delete-btn-dcl3" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl3" class="btn btn-danger hapus_dcl3 delete-btn-dcl3" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6081,7 +5270,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl4" class="btn btn-danger hapus_dcl4 delete-btn-dcl4" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl4" class="btn btn-danger hapus_dcl4 delete-btn-dcl4" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6094,7 +5283,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl5" class="btn btn-danger hapus_dcl5 delete-btn-dcl5" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl5" class="btn btn-danger hapus_dcl5 delete-btn-dcl5" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6107,7 +5296,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl6" class="btn btn-danger hapus_dcl6 delete-btn-dcl6" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl6" class="btn btn-danger hapus_dcl6 delete-btn-dcl6" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6120,7 +5309,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl7" class="btn btn-danger hapus_dcl7 delete-btn-dcl7" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl7" class="btn btn-danger hapus_dcl7 delete-btn-dcl7" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6133,7 +5322,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl8" class="btn btn-danger hapus_dcl8 delete-btn-dcl8" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl8" class="btn btn-danger hapus_dcl8 delete-btn-dcl8" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -6211,7 +5400,6 @@
 
                     </div>
 
-
                 </div>
                 <div id="921_fb" class="modal-footer">
                     <button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Tutup</button>
@@ -6252,7 +5440,6 @@
 
                     </div>
 
-
                 </div>
                 <div id="921_fb" class="modal-footer">
                     <button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Tutup</button>
@@ -6268,6 +5455,10 @@
     </div>
 </div>
 
+
+<script>
+    var is_disabled = "<?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>";
+</script>
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <!-- Steps -->
@@ -6342,46 +5533,46 @@
                 if (currentIndex === 6) {
                     // tampil_button("save_fak_data");
                     tampil_button('save_fak_data');
-
                     resizeJquerySteps();
+                    hitungSemua();
                 } else if (currentIndex === 7) {
                     // tampil_button("save_fak_modal");
                     tampil_button('save_fak_modal');
-
+                    hitungSemua();
                     resizeJquerySteps();
                 } else if (currentIndex === 8) {
                     // tampil_button("save_fak_rl");
                     tampil_button('save_fak_rl');
-
+                    hitungSemua();
                     resizeJquerySteps();
                 } else if (currentIndex === 9) {
                     // tampil_button("save_lap_rl");
                     tampil_button('save_lap_rl');
-
+                    hitungSemua();
                     resizeJquerySteps();
                 } else if (currentIndex === 10) {
                     // tampil_button("save_ceftb");
                     tampil_button('save_ceftb');
-
+                    hitungSemua();
                     resizeJquerySteps();
                 } else if (currentIndex === 11) {
                     tampil_button('save_faa');
-
+                    hitungSemua();
                     // tampil_button("save_faa");
                     resizeJquerySteps();
                 } else if (currentIndex === 12) {
                     // tampil_button("save_mauk");
                     tampil_button('save_mauk');
-
+                    hitungSemua();
                     resizeJquerySteps();
                 } else if (currentIndex === 13) {
                     tampil_button('save_dcl');
-
+                    hitungSemua();
                     // tampil_button("save_dcl");
                     resizeJquerySteps();
                 } else if (currentIndex === 14) {
                     // tampil_button("save_scoring");
-                    tampil_button('save_scoring');
+                    tampil_button('save_scoring_koor');
 
                     resizeJquerySteps();
                 } else if (currentIndex === 15) {
@@ -6395,6 +5586,8 @@
                     checkRecap('tb_fak_modal', '<?php echo $data_entry->kd_data ?>', 'fak_modal')
                     checkRecap('tb_fak_rl', '<?php echo $data_entry->kd_data ?>', 'fak_rl')
                     checkRecap('tb_lap_rl', '<?php echo $data_entry->kd_data ?>', 'lap_rl')
+                    checkRecap('tb_ceftb', '<?php echo $data_entry->kd_data ?>', 'ceftb')
+                    checkRecap('tb_faa', '<?php echo $data_entry->kd_data ?>', 'faa')
                     checkRecap('tb_mauk', '<?php echo $data_entry->kd_data ?>', 'mauk')
                     checkRecap('tb_dcl', '<?php echo $data_entry->kd_data ?>', 'dcl')
                     tampil_button('save_recap');
@@ -6411,7 +5604,7 @@
                     // refresh_scoring()
                 } else {
                     // console.log('ini current index: '+ currentIndex)
-                    tampil_button('save_data_entry')
+                    // tampil_button('save_data_entry')
                 }
 
             },
@@ -6438,35 +5631,6 @@
                 if (!form.valid()) {
                     return false;
                 }
-
-                // // Serialize form data
-                // var formData = form.serialize();
-                // // console.log(formData)
-                // $('#mohon').show()
-                // // Send AJAX request to CodeIgniter 4 controller method
-                // $.ajax({
-                //     url: "<?php echo base_url() ?>home/simpan_permohonan",
-                //     type: "POST",
-                //     data: formData,
-                //     success: function(data) {
-                //         // Handle successful response
-                //         // console.log(data)
-                //         if (data == 1) {
-                //             $('#mohon').hide()
-                //             alert('Data Berhasil Disimpan')
-                //             // toastr.success('Data Berhasil Disimpan', 'Berhasil');
-                //             window.location.href = "<?php echo base_url() ?>home/e-form";
-                //         } else {
-                //             // alert(data)
-                //             $('#mohon').hide()
-                //             toastr.warning(data, 'Data Gagal Disimpan');
-                //         }
-                //     },
-                //     error: function(xhr, status, error) {
-                //         // Handle error response
-                //         // console.log(error)
-                //     }
-                // });
 
                 return true;
             },
@@ -6500,30 +5664,27 @@
         var save_scoring = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_scoring" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Scoring</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_scoring);
 
+        var save_scoring_koor = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_scoring_koor" onclick="click_save_data_scoring_koor()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Scoring</a></li>');
+        $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_scoring_koor);
+
         var save_recap = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_recap" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Recap</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_recap);
 
-        var save_reject = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_reject" class="red-bg"><i class="fa fa-close"></i> Reject</a></li>');
-        $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_reject);
-
-        var save_return = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_return" class="yellow-bg"><i class="fa fa-undo"></i> Return</a></li>');
-        $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_return);
-
-        var save_fak_data = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_data" onclick="click_save_data_fak_data()" class="blue-bg">Save</a></li>');
+        var save_fak_data = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_data" onclick="click_save_data_fak_data()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fak_data);
-        var save_fak_modal = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_modal" onclick="click_save_data_fak_modal()" class="blue-bg">Save</a></li>');
+        var save_fak_modal = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_modal" onclick="click_save_data_fak_modal()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fak_modal);
-        var save_fak_rl = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_rl" onclick="click_save_data_fak_rl()" class="blue-bg">Save</a></li>');
+        var save_fak_rl = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_rl" onclick="click_save_data_fak_rl()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fak_rl);
-        var save_lap_rl = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_lap_rl" onclick="click_save_data_lap_rl()" class="blue-bg">Save</a></li>');
+        var save_lap_rl = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_lap_rl" onclick="click_save_data_lap_rl()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_lap_rl);
-        var save_ceftb = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" onclick="click_save_data_ceftb()" id="save_ceftb" class="blue-bg">Save</a></li>');
+        var save_ceftb = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" onclick="click_save_data_ceftb()" id="save_ceftb" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_ceftb);
-        var save_faa = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_faa" class="blue-bg">Save</a></li>');
+        var save_faa = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_faa" onclick="click_save_data_faa()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_faa);
-        var save_mauk = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_mauk" onclick="click_save_data_mauk()" class="blue-bg">Save</a></li>');
+        var save_mauk = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_mauk" onclick="click_save_data_mauk()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_mauk);
-        var save_dcl = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_dcl" onclick="click_save_data_dcl()" class="blue-bg">Save</a></li>');
+        var save_dcl = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_dcl" onclick="click_save_data_dcl()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_dcl);
         // var save_scoring = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_scoring" class="blue-bg">Save</a></li>'
         // );
@@ -6531,6 +5692,11 @@
         // var save_recap = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_recap" class="blue-bg">Save</a></li>'
         // );
         // $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_recap);
+
+        var save_reject = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_reject" class="red-bg"><i class="fa fa-close"></i> Reject</a></li>');
+        $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_reject);
+        var save_return = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_return" class="yellow-bg"><i class="fa fa-undo"></i> Return</a></li>');
+        $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_return);
 
         // Format mata uang dengan jquery mask.
         $('.uang').mask('000,000,000,000,000,000,000,000', {

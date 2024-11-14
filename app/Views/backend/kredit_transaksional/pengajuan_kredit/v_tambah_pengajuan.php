@@ -3560,7 +3560,7 @@
                 </div>
             </div>
         </div>
-        <input type="text" name="kd_data" id="kd_data" value="<?php echo $datafcr->kd_data ?>">
+        <input type="text" hidden name="kd_data" id="kd_data" value="<?php echo $datafcr->kd_data ?>">
         <input type="text" hidden name="itemppfakdata" id="itemppfakdata">
         <input type="text" hidden name="ppnppfakdata" id="ppnppfakdata">
         <input type="text" hidden name="nilaisebelumppnppfakdata" id="nilaisebelumppnppfakdata">

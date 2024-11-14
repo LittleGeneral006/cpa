@@ -245,8 +245,8 @@
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Nilai Proyek</label>
                             <div class="col-lg-12">
-                                <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="text" placeholder="" class="form-control class-readonly">
-
+                                <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="number" placeholder="" class="form-control class-readonly">
+                                <p>Nilai Proyek: <span id="nilai_proyek_tambah_separator" class="mask"></span></p>
                             </div>
                         </div>
 
@@ -324,6 +324,7 @@
                             <label class="col-lg-12 control-label">Plafond</label>
                             <div class="col-lg-12">
                                 <input id="plafond_tambah" name="plafond_tambah" type="number" placeholder="" class="form-control class-readonly">
+                                <p>Plafond: <span id="plafond_separator" class="mask"></span></p>
                             </div>
                         </div>
 
@@ -697,7 +698,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
 
                             </tbody>
                         </table>
@@ -890,6 +891,9 @@
             // Lakukan sesuatu dengan nilai data-id yang telah diambil
             // console.log('Nilai data-id:', data_id);
         });
+        // panggil separator
+        separator_input('nilai_proyek_tambah', 'nilai_proyek_tambah_separator')
+        separator_input('plafond_tambah', 'plafond_separator')
 
     });
 
@@ -961,31 +965,68 @@
         // batas isi pemroses
     }
     // agunan dinamis
+    // function tambahInput() {
+    //     var jumlah = document.getElementById("jumlah_agunan_tambah").value;
+    //     var inputAgunan = document.getElementById("input_agunan");
+    //     inputAgunan.innerHTML = ''; // Reset inputan
+
+    //     for (var i = 0; i < jumlah; i++) {
+    //         var inputGroup = document.createElement("div");
+    //         inputGroup.classList.add("form-group");
+    //         inputGroup.classList.add("col-lg-12");
+
+    //         var label = document.createElement("label");
+    //         label.className = "col-lg-12 control-label";
+    //         label.innerHTML = "Jenis Agunan " + (i + 1);
+
+    //         var input = document.createElement("input");
+    //         input.type = "text";
+    //         input.name = "jenis_agunan_tambah[]";
+    //         input.classList.add("form-control");
+    //         input.placeholder = "Tanah/ Tanah dan Bangunan | Barang Bergerak | Tunai | Penjaminan Lembaga Penjamin";
+    //         // Tambahkan atribut required ke input
+    //         input.required = true;
+
+    //         inputGroup.appendChild(label);
+    //         inputGroup.appendChild(input);
+    //         inputAgunan.appendChild(inputGroup);
+    //     }
+    // }
+
     function tambahInput() {
-        var jumlah = document.getElementById("jumlah_agunan_tambah").value;
-        var inputAgunan = document.getElementById("input_agunan");
-        inputAgunan.innerHTML = ''; // Reset inputan
+        var jumlah = $("#jumlah_agunan_tambah").val(); // Mengambil nilai dengan jQuery
+        var inputAgunan = $("#input_agunan"); // Mengambil elemen dengan jQuery
+        inputAgunan.html(''); // Reset inputan
+
+        // Opsi dropdown sesuai dengan placeholder
+        var options = [
+            "Tanah/ Tanah dan Bangunan",
+            "Barang Bergerak",
+            "Tunai",
+            "Penjaminan Lembaga Penjamin"
+        ];
 
         for (var i = 0; i < jumlah; i++) {
-            var inputGroup = document.createElement("div");
-            inputGroup.classList.add("form-group");
-            inputGroup.classList.add("col-lg-12");
+            // Buat elemen div
+            var inputGroup = $('<div class="form-group col-lg-12"></div>');
 
-            var label = document.createElement("label");
-            label.className = "col-lg-12 control-label";
-            label.innerHTML = "Jenis Agunan " + (i + 1);
+            // Buat elemen label
+            var label = $('<label class="col-lg-12 control-label">Jenis Agunan ' + (i + 1) + '</label>');
 
-            var input = document.createElement("input");
-            input.type = "text";
-            input.name = "jenis_agunan_tambah[]";
-            input.classList.add("form-control");
-            input.placeholder = "Tanah/ Tanah dan Bangunan | Barang Bergerak | Tunai | Penjaminan Lembaga Penjamin";
-            // Tambahkan atribut required ke input
-            input.required = true;
+            // Buat elemen select
+            var select = $('<select name="jenis_agunan_tambah[]" class="form-control" required></select>');
 
-            inputGroup.appendChild(label);
-            inputGroup.appendChild(input);
-            inputAgunan.appendChild(inputGroup);
+            // Tambahkan opsi ke select
+            $.each(options, function(index, value) {
+                select.append('<option value="' + value + '">' + value + '</option>');
+            });
+
+            // Tambahkan label dan select ke dalam inputGroup
+            inputGroup.append(label);
+            inputGroup.append(select);
+
+            // Masukkan inputGroup ke dalam inputAgunan
+            inputAgunan.append(inputGroup);
         }
     }
 
@@ -1028,9 +1069,9 @@
 
                 } else {
                     $('#tabel_return tbody').append(
-                            '<tr class="text-center">' +
-                            '<td colspan="8">Tidak ada data</td>' +
-                            '</tr>'
+                        '<tr class="text-center">' +
+                        '<td colspan="8">Tidak ada data</td>' +
+                        '</tr>'
                     );
                 }
 
@@ -1083,6 +1124,39 @@
 
         // Buka tautan dalam tab baru
         window.open(url, '_blank');
+    }
+
+    // fungsi separator input
+    function formatNumber(num) {
+        // Ubah angka menjadi string dan pisahkan bagian integer dan desimal
+        var parts = num.toString().split(".");
+
+        // Ganti ribuan separator dengan titik
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        // Jika ada bagian desimal, gabungkan kembali dengan koma sebagai pemisah desimal
+        return parts.join(",");
+    }
+
+    function separator_edit(angka, id_letak) {
+        // var hasil = '';
+        if (angka != '' && angka != null) {
+            var angka_olah = formatNumber(angka);
+            // console.log(angka)
+            // console.log(id_letak)
+
+            $('#' + id_letak).text(angka_olah);
+        } else {
+            $('#' + id_letak).text('');
+        }
+    }
+
+    function separator_input(pokok_field, pokok_separator) {
+        $('#' + pokok_field).on('input', function() {
+            var inputValue = $(this).val();
+            var formattedValue = formatNumber(inputValue);
+            $('#' + pokok_separator).text(formattedValue);
+        });
     }
 </script>
 

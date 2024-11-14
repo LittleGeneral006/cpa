@@ -89,11 +89,15 @@
                 $('#alamat_kantor_tambah').val(data.alamat_kantor);
                 $('#alamat_gudang_tambah').val(data.alamat_gudang);
                 $('#group_debitur_tambah').val(data.group_debitur);
+                $('#npwp_tambah').val(data.npwp);
 
                 $('#nama_proyek_tambah').val(data.nama_proyek);
                 $('#nomor_spk_tambah').val(data.nomor_spk);
                 $('#tanggal_spk_tambah').val(data.tanggal_spk);
                 $('#nilai_proyek_tambah').val(data.nilai_proyek);
+                // separator buat tampil awal form edit
+                separator_edit(data.nilai_proyek, 'nilai_proyek_tambah_separators')
+
                 $('#alamat_proyek_tambah').val(data.alamat_proyek);
                 $('#pemberi_kerja_tambah').val(data.pemberi_kerja);
                 $('#penandatangan_kontrak_tambah').val(data.penandatangan_kontrak);
@@ -102,6 +106,9 @@
 
                 $('#tanggal_permohonan_tambah').val(data.tanggal_permohonan);
                 $('#plafond_tambah').val(data.plafond);
+                // separator buat tampil awal form edit
+                separator_edit(data.plafond, 'plafond_separators')
+
                 $('#tujuan_pengajuan_tambah').val(data.tujuan_pengajuan);
                 $('#jumlah_agunan_tambah').val(data.jumlah_agunan);
 
@@ -159,61 +166,118 @@
         });
     }
     // agunan dinamis
+    // function tambahInput() {
+    //     variabelGlobal(function(hasil) {
+    //         if (hasil.status == 'success') {
+    //             var jumlah = document.getElementById("jumlah_agunan_tambah").value;
+    //             if (jumlah == null || jumlah == '' || jumlah == undefined) {
+    //                 var jumlah = hasil.message.data_entry.jumlah_agunan
+    //             }
+    //             var inputAgunan = document.getElementById("input_agunan_tambah");
+    //             // alert(jumlah)
+    //             inputAgunan.innerHTML = ''; // Reset inputan
+
+    //             // Konversi array menjadi JSON
+    //             // var jsArray = JSON.stringify(hasil.message.jenis_agu);
+    //             var jsArray = hasil.message.jenis_agu;
+
+    //             // Menghitung jumlah elemen dalam array
+    //             var jumlahElemen = hasil.message.jenis_agu.length;
+
+    //             for (var i = 0; i < jumlah; i++) {
+    //                 var inputGroup = document.createElement("div");
+    //                 inputGroup.classList.add("form-group");
+    //                 inputGroup.classList.add("col-lg-12");
+
+    //                 var label = document.createElement("label");
+    //                 label.className = "col-lg-12 control-label";
+    //                 label.innerHTML = "Jenis Agunan " + (i + 1);
+
+    //                 var input = document.createElement("input");
+    //                 input.type = "text";
+    //                 console.log('<?php echo $edit_data ?>')
+    //                 if ('<?php echo $edit_data ?>' == '') {
+    //                     input.readOnly = "readonly";
+    //                 }
+    //                 input.name = "jenis_agunan_tambah[]";
+    //                 input.id = "jenis_agunan_tambah" + i;
+    //                 input.classList.add("form-control");
+    //                 input.classList.add("text-dark");
+    //                 input.placeholder = "Tanah/ Tanah dan Bangunan | Barang Bergerak | Tunai | Penjaminan Lembaga Penjamin";
+    //                 // Set nilai input dari array PHP
+
+    //                 if (jsArray[i] != undefined) {
+    //                     input.value = jsArray[i]
+    //                 } else {
+    //                     input.value = '';
+    //                 }
+
+    //                 inputGroup.appendChild(label);
+    //                 inputGroup.appendChild(input);
+    //                 inputAgunan.appendChild(inputGroup);
+    //             }
+    //             resizeJquerySteps();
+    //         } else {
+    //             alert(hasil.message)
+    //         }
+    //     })
+    // }
     function tambahInput() {
         variabelGlobal(function(hasil) {
             if (hasil.status == 'success') {
-                var jumlah = document.getElementById("jumlah_agunan_tambah").value;
+                var jumlah = $("#jumlah_agunan_tambah").val(); // Ambil nilai dengan jQuery
                 if (jumlah == null || jumlah == '' || jumlah == undefined) {
-                    var jumlah = hasil.message.data_entry.jumlah_agunan
+                    jumlah = hasil.message.data_entry.jumlah_agunan;
                 }
-                var inputAgunan = document.getElementById("input_agunan_tambah");
-                // alert(jumlah)
-                inputAgunan.innerHTML = ''; // Reset inputan
 
-                // Konversi array menjadi JSON
-                // var jsArray = JSON.stringify(hasil.message.jenis_agu);
+                var inputAgunan = $("#input_agunan_tambah"); // Ambil elemen dengan jQuery
+                inputAgunan.html(''); // Reset inputan
+
+                // Array dari hasil (jenis agunan)
                 var jsArray = hasil.message.jenis_agu;
 
-                // Menghitung jumlah elemen dalam array
-                var jumlahElemen = hasil.message.jenis_agu.length;
-
                 for (var i = 0; i < jumlah; i++) {
-                    var inputGroup = document.createElement("div");
-                    inputGroup.classList.add("form-group");
-                    inputGroup.classList.add("col-lg-12");
+                    // Buat elemen div
+                    var inputGroup = $('<div class="form-group col-lg-12"></div>');
 
-                    var label = document.createElement("label");
-                    label.className = "col-lg-12 control-label";
-                    label.innerHTML = "Jenis Agunan " + (i + 1);
+                    // Buat elemen label
+                    var label = $('<label class="col-lg-12 control-label">Jenis Agunan ' + (i + 1) + '</label>');
 
-                    var input = document.createElement("input");
-                    input.type = "text";
-                    console.log('<?php echo $edit_data ?>')
-                    if ('<?php echo $edit_data ?>' == '') {
-                        input.readOnly = "readonly";
-                    }
-                    input.name = "jenis_agunan_tambah[]";
-                    input.id = "jenis_agunan_tambah" + i;
-                    input.classList.add("form-control");
-                    input.classList.add("text-dark");
-                    input.placeholder = "Tanah/ Tanah dan Bangunan | Barang Bergerak | Tunai | Penjaminan Lembaga Penjamin";
-                    // Set nilai input dari array PHP
+                    // Buat elemen select
+                    var select = $('<select name="jenis_agunan_tambah[]" id="jenis_agunan_tambah' + i + '" class="form-control text-dark" required <?php echo !empty($edit_data) ? '' : 'disabled'; ?>></select>');
 
+                    // Placeholder yang akan digunakan sebagai opsi default
+                    var optionsPlaceholder = [
+                        "Tanah/ Tanah dan Bangunan",
+                        "Barang Bergerak",
+                        "Tunai",
+                        "Penjaminan Lembaga Penjamin"
+                    ];
+
+                    // Tambahkan opsi dari optionsPlaceholder ke dalam select
+                    $.each(optionsPlaceholder, function(index, value) {
+                        var option = $('<option></option>').attr("value", value).text(value);
+                        select.append(option);
+                    });
+
+                    // Atur nilai default dari select berdasarkan jsArray
                     if (jsArray[i] != undefined) {
-                        input.value = jsArray[i]
-                    } else {
-                        input.value = '';
+                        select.val(jsArray[i]); // Set value dari array PHP
                     }
 
-                    inputGroup.appendChild(label);
-                    inputGroup.appendChild(input);
-                    inputAgunan.appendChild(inputGroup);
+                    // Tambahkan label dan select ke dalam inputGroup
+                    inputGroup.append(label);
+                    inputGroup.append(select);
+
+                    // Masukkan inputGroup ke dalam inputAgunan
+                    inputAgunan.append(inputGroup);
                 }
-                resizeJquerySteps();
+
+                resizeJquerySteps(); // Fungsi tambahan jika diperlukan
             } else {
-                alert(hasil.message)
+                alert(hasil.message);
             }
-        })
+        });
     }
 
     function refresh(param) {
@@ -309,7 +373,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
 
             } else if (param == 'save_fcr') {
@@ -331,7 +395,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
 
             } else if (param == 'save_fcr_usaha') {
@@ -353,7 +417,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == 'save_fcr_agunan') {
 
@@ -375,7 +439,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == 'save_dokumen') {
                 $('#save_data_entry').hide();
@@ -396,7 +460,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == 'save_scoring') {
                 $('#save_data_entry').hide();
@@ -417,7 +481,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == 'save_recap') {
                 $('#save_data_entry').hide();
@@ -438,29 +502,29 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
-            // } else {
-            //     $('#save_data_entry').hide();
-            //     $('#save_fcr').hide();
-            //     $('#save_fcr_usaha').hide();
-            //     $('#save_fcr_agunan_tanah').hide();
-            //     $('#save_fcr_agunan_bangunan').hide();
-            //     $('#save_fcr_agunan_lingkungan').hide();
-            //     $('#save_fcr_agunan_bergerak').hide();
-            //     $('#save_dokumen').hide();
-            //     $('#save_scoring').hide();
-            //     $('#save_recap').hide();
-            //     $('#save_data_entry').show();
-            //     $('#save_fcr').hide();
-            //     $('#save_fcr_usaha').hide();
-            //     $('#save_fcr_agunan_tanah').hide();
-            //     $('#save_fcr_agunan_bangunan').hide();
-            //     $('#save_fcr_agunan_lingkungan').hide();
-            //     $('#save_fcr_agunan_bergerak').hide();
-            //     $('#save_dokumen').hide();
-            //     $('#save_scoring').hide();
-            //     $('#save_recap').hide();
+                // } else {
+                //     $('#save_data_entry').hide();
+                //     $('#save_fcr').hide();
+                //     $('#save_fcr_usaha').hide();
+                //     $('#save_fcr_agunan_tanah').hide();
+                //     $('#save_fcr_agunan_bangunan').hide();
+                //     $('#save_fcr_agunan_lingkungan').hide();
+                //     $('#save_fcr_agunan_bergerak').hide();
+                //     $('#save_dokumen').hide();
+                //     $('#save_scoring').hide();
+                //     $('#save_recap').hide();
+                //     $('#save_data_entry').show();
+                //     $('#save_fcr').hide();
+                //     $('#save_fcr_usaha').hide();
+                //     $('#save_fcr_agunan_tanah').hide();
+                //     $('#save_fcr_agunan_bangunan').hide();
+                //     $('#save_fcr_agunan_lingkungan').hide();
+                //     $('#save_fcr_agunan_bergerak').hide();
+                //     $('#save_dokumen').hide();
+                //     $('#save_scoring').hide();
+                //     $('#save_recap').hide();
             }
             if (param == "save_fak_data") {
                 $('#save_data_entry').hide();
@@ -482,7 +546,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_fak_modal") {
                 $('#save_data_entry').hide();
@@ -504,7 +568,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_fak_rl") {
                 $('#save_data_entry').hide();
@@ -526,7 +590,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_lap_rl") {
                 $('#save_data_entry').hide();
@@ -548,7 +612,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_ceftb") {
                 $('#save_data_entry').hide();
@@ -570,7 +634,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_faa") {
                 $('#save_data_entry').hide();
@@ -592,7 +656,7 @@
                 $("#save_faa").show();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_mauk") {
                 $('#save_data_entry').hide();
@@ -614,7 +678,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").show();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").hide();
             } else if (param == "save_dcl") {
                 $('#save_data_entry').hide();
@@ -638,7 +702,7 @@
                 $("#save_dcl").show();
                 $("#save_scoring").hide();
                 $("#save_recap").hide();
-            } else if (param == "save_scoring") {
+            } else if (param == "save_scoring_koor") {
                 $('#save_data_entry').hide();
                 $('#save_fcr').hide();
                 $('#save_fcr_usaha').hide();
@@ -658,7 +722,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").show();
+                $("#save_scoring_koor").show();
                 $("#save_recap").hide();
             } else if (param == "save_recap") {
                 $('#save_data_entry').hide();
@@ -680,7 +744,7 @@
                 $("#save_faa").hide();
                 $("#save_mauk").hide();
                 $("#save_dcl").hide();
-                $("#save_scoring").hide();
+                $("#save_scoring_koor").hide();
                 $("#save_recap").show();
             }
         } else {
@@ -702,7 +766,7 @@
             $("#save_faa").hide();
             $("#save_mauk").hide();
             $("#save_dcl").hide();
-            $("#save_scoring").hide();
+            $("#save_scoring_koor").hide();
             $("#save_recap").hide();
         }
 
@@ -755,6 +819,7 @@
             alamat_kantor_tambah: $('#alamat_kantor_tambah').val(),
             alamat_gudang_tambah: $('#alamat_gudang_tambah').val(),
             group_debitur_tambah: $('#group_debitur_tambah').val(),
+            npwp_tambah: $('#npwp_tambah').val(),
 
             nama_proyek_tambah: $('#nama_proyek_tambah').val(),
             nomor_spk_tambah: $('#nomor_spk_tambah').val(),

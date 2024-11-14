@@ -298,6 +298,7 @@
                                             '<label class="col-lg-12 control-label">Menurut Buku Tanah (Permeter)</label>'+
                                             '<div class="col-lg-12">'+
                                                 '<input id="buku_tanah' + i + '" name="buku_tanah[]" value="' + response.harga_tanah_buku[i] + '" type="number" placeholder="" class="form-control class-readonly buku_tanah" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                                '<p>Menurut Buku Tanah: <span id="buku_tanah' + i + '_separatorx" class="mask"></span></p>'+
 
                                             '</div>'+
                                         '</div>'+
@@ -305,10 +306,9 @@
                                             '<label class="col-lg-12 control-label">Menurut Pasar (Permeter)</label>'+
                                             '<div class="col-lg-12">'+
                                                 '<input id="menurut_pasar' + i + '" name="menurut_pasar[]" value="' + response.harga_tanah_pasar[i] + '" type="number" placeholder="" class="form-control class-readonly menurut_pasar" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                                '<p>Menurut Pasar: <span id="menurut_pasar' + i + '_separatorx" class="mask"></span></p>'+
                                             '</div>'+
                                         '</div>'+
-
 
                                     '</div>'+
                                     '<h3 class="text-left text-success">Keterangan Lain</h3>'+
@@ -329,6 +329,11 @@
                         '</div>';
                         $("#tanah_dinamis").append(inputan_tanah);
                         resizeJquerySteps();
+                        separator_input('buku_tanah' + i, 'buku_tanah' + i + '_separatorx');
+                        separator_input('menurut_pasar' + i, 'menurut_pasar' + i + '_separatorx');
+            
+                        separator_edit(response.harga_tanah_buku[i], 'buku_tanah' + i + '_separatorx');
+                        separator_edit(response.harga_tanah_pasar[i], 'menurut_pasar' + i + '_separatorx');
                     }
                     // akhir
                     // Lakukan sesuatu dengan respons sukses
@@ -456,14 +461,14 @@
                                                 '<label class="col-lg-12 control-label">Saat Pembelian Tanah</label>'+
                                                 '<div class="col-lg-12">'+
                                                     '<input id="saat_pembelian_tanah'+hb+'" name="saat_pembelian_tanah[]" value="' + response.biaya_beli_tanah[hb] + '" type="number" placeholder="" class="form-control class-readonly saat_pembelian_tanah" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                                    '<p>Saat Pembelian Tanah: <span id="saat_pembelian_tanah' + hb + '_separatorx" class="mask"></span></p>'+
                                                 '</div>'+
                                             '</div>'+
                                             '<div class="col-lg-6">'+
                                                 '<label class="col-lg-12 control-label">Saat Pembangunan</label>'+
                                                 '<div class="col-lg-12">'+
                                                     '<input id="saat_pembangunan'+hb+'" name="saat_pembangunan[]" value="' + response.biaya_pembangunan[hb] + '" type="number" placeholder="" class="form-control class-readonly saat_pembangunan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                                    '<p>Saat Pembangunan: <span id="saat_pembangunan' + hb + '_separatorx" class="mask"></span></p>'+
                                                 '</div>'+
                                             '</div>'+
 
@@ -474,12 +479,12 @@
                                                 '<label class="col-lg-12 control-label">Saat Rehab Perbaikan</label>'+
                                                 '<div class="col-lg-12">'+
                                                     '<input id="saat_rehab_perbaikan'+hb+'" name="saat_rehab_perbaikan[]" value="' + response.biaya_rehab[hb] + '" type="number" placeholder="" class="form-control class-readonly saat_rehab_perbaikan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                                    '<p>Saat Rehab Perbaikan: <span id="saat_rehab_perbaikan' + hb + '_separatorx" class="mask"></span></p>'+
                                                 '</div>'+
                                             '</div>'+
 
                                     ' </div>'+
-                                        '<h2 class="text-center text-danger">Fasilitas yang Tersedia</h2>'+
+                                        '<h2 class="text-center text-success">Fasilitas yang Tersedia</h2>'+
                                     ' <div class="row">'+
 
                                             '<div class="col-lg-6">'+
@@ -569,14 +574,14 @@
                                                     '<label class="col-lg-12 control-label">Menurut Harga Perolehan</label>'+
                                                     '<div class="col-lg-12">'+
                                                         '<input id="menurut_harga_perolehan'+hb+'" name="menurut_harga_perolehan[]" value="' + response.harga_bangunan_perolehan[hb] + '" type="number" placeholder="" class="form-control class-readonly menurut_harga_perolehan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                                        '<p>Menurut Harga Perolehan: <span id="menurut_harga_perolehan' + hb + '_separatorx" class="mask"></span></p>'+
                                                     '</div>'+
                                                 '</div>'+
                                                 '<div class="col-lg-6">'+
                                                     '<label class="col-lg-12 control-label">Menurut Pasar/ Pemilik</label>'+
                                                     '<div class="col-lg-12">'+
                                                         '<input id="menurut_pasar_fag'+hb+'" name="menurut_pasar_fag[]" value="' + response.harga_bangunan_pasar[hb] + '" type="number" placeholder="" class="form-control class-readonly menurut_pasar_fag" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                                        '<p>Menurut Pasar/ Pemilik: <span id="menurut_pasar_fag' + hb + '_separatorx" class="mask"></span></p>'+
                                                 ' </div>'+
                                                 '</div>'+
                                         '</div>'+
@@ -591,7 +596,7 @@
                                             '</div>' +
 
                                         '</div>'+
-                                        '<h2 class="text-center text-danger">Lingkungan</h2>'+
+                                        '<h2 class="text-center text-success">Lingkungan</h2>'+
                                         '<div class="row">'+
                                             '<div class="col-lg-6">'+
                                                 '<label class="col-lg-12 control-label">Sarana yang tersedia disekitar lingkungan</label>'+
@@ -678,6 +683,19 @@
                             $("#bangunan_dinamis").append(inputan_bangunan);
                             $("#gambar_situasi_dinamis").append(modal_gambar_perulangan);
                             resizeJquerySteps();
+
+                            separator_input('saat_pembelian_tanah' + hb, 'saat_pembelian_tanah' + hb + '_separatorx');
+                            separator_input('saat_pembangunan' + hb, 'saat_pembangunan' + hb + '_separatorx');
+                            separator_input('saat_rehab_perbaikan' + hb, 'saat_rehab_perbaikan' + hb + '_separatorx');
+                            separator_input('menurut_harga_perolehan' + hb, 'menurut_harga_perolehan' + hb + '_separatorx');
+                            separator_input('menurut_pasar_fag' + hb, 'menurut_pasar_fag' + hb + '_separatorx');
+            
+                            separator_edit(response.biaya_beli_tanah[hb], 'saat_pembelian_tanah' + hb + '_separatorx');
+                            separator_edit(response.biaya_pembangunan[hb], 'saat_pembangunan' + hb + '_separatorx');
+                            separator_edit(response.biaya_rehab[hb], 'saat_rehab_perbaikan' + hb + '_separatorx');
+                            separator_edit(response.harga_bangunan_perolehan[hb], 'menurut_harga_perolehan' + hb + '_separatorx');
+                            separator_edit(response.harga_bangunan_pasar[hb], 'menurut_pasar_fag' + hb + '_separatorx');
+                            
                     }
                     // akhir
                     // Lakukan sesuatu dengan respons sukses
@@ -691,8 +709,8 @@
             }
         });
     }
-    function perulangan_bb(kd_data) {
-        
+
+    function perulangan_bb(kd_data) {    
         $.ajax({
             url: '<?php echo base_url() ?>'+'pengajuan/get_perulangan',
             type: 'POST',
@@ -722,13 +740,10 @@
                                     '<label class="col-lg-12 control-label">Jenis Dokumen Kepemilikan</label>' +
                                     '<div class="col-lg-12">' +
                                         '<input id="jenis_dokumen_bb' + counter_bb_loop + '" name="jenis_dokumen_bb[]" value="' + response.jenis_dokumen[counter_bb_loop] + '" type="text" placeholder="" class="form-control class-readonly jenis_dokumen_bb" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
-
                                     '</div>' +
                                 '</div>' +
-
                             '</div>'+
                             '<div class="row">' +
-
                                 '<div class="col-lg-6">' +
                                     '<label class="col-lg-12 control-label">Alamat</label>' +
                                     '<div class="col-lg-12">' +
@@ -1804,6 +1819,7 @@
                                         '<label class="col-lg-12 control-label">Menurut Buku Tanah (Permeter)</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="buku_tanah' + counter + '" name="buku_tanah[]" type="number" placeholder="" class="form-control class-readonly buku_tanah" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                            '<p>Menurut Buku Tanah: <span id="buku_tanah' + counter + '_separator" class="mask"></span></p>'+
 
                                         '</div>'+
                                     '</div>'+
@@ -1811,6 +1827,7 @@
                                         '<label class="col-lg-12 control-label">Menurut Pasar (Permeter)</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="menurut_pasar' + counter + '" name="menurut_pasar[]" type="number" placeholder="" class="form-control class-readonly menurut_pasar" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                            '<p>Menurut Pasar: <span id="menurut_pasar' + counter + '_separator" class="mask"></span></p>'+
 
                                         '</div>'+
                                     '</div>'+
@@ -1837,6 +1854,8 @@
                     '</div>';
                 $("#tanah_dinamis").append(inputan_tanah);
                 resizeJquerySteps();
+                separator_input('buku_tanah' + counter, 'buku_tanah' + counter + '_separator');
+                separator_input('menurut_pasar' + counter, 'menurut_pasar' + counter + '_separator');
 
             } else {
                 alert(hasil.message)
@@ -1973,6 +1992,7 @@
                                         '<label class="col-lg-12 control-label">Saat Pembelian Tanah</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="saat_pembelian_tanah'+hitung_bangunan+'" name="saat_pembelian_tanah[]" type="number" placeholder="" class="form-control class-readonly saat_pembelian_tanah" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                            '<p>Saat Pembelian Tanah: <span id="saat_pembelian_tanah' + hitung_bangunan + '_separator" class="mask"></span></p>'+
 
                                         '</div>'+
                                     '</div>'+
@@ -1980,6 +2000,7 @@
                                         '<label class="col-lg-12 control-label">Saat Pembangunan</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="saat_pembangunan'+hitung_bangunan+'" name="saat_pembangunan[]" type="number" placeholder="" class="form-control class-readonly saat_pembangunan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                            '<p>Saat Pembangunan: <span id="saat_pembangunan' + hitung_bangunan + '_separator" class="mask"></span></p>'+
 
                                         '</div>'+
                                     '</div>'+
@@ -1991,12 +2012,12 @@
                                         '<label class="col-lg-12 control-label">Saat Rehab Perbaikan</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="saat_rehab_perbaikan'+hitung_bangunan+'" name="saat_rehab_perbaikan[]" type="number" placeholder="" class="form-control class-readonly saat_rehab_perbaikan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
-
+                                            '<p>Saat Rehab Perbaikan: <span id="saat_rehab_perbaikan' + hitung_bangunan + '_separator" class="mask"></span></p>'+
                                         '</div>'+
                                     '</div>'+
 
                                ' </div>'+
-                                '<h2 class="text-center text-danger">Fasilitas yang Tersedia</h2>'+
+                                '<h2 class="text-center text-success">Fasilitas yang Tersedia</h2>'+
                                ' <div class="row">'+
 
                                     '<div class="col-lg-6">'+
@@ -2086,6 +2107,7 @@
                                         '<label class="col-lg-12 control-label">Menurut Harga Perolehan</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="menurut_harga_perolehan'+hitung_bangunan+'" name="menurut_harga_perolehan[]" type="number" placeholder="" class="form-control class-readonly menurut_harga_perolehan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                            '<p>Menurut Harga Perolehan: <span id="menurut_harga_perolehan' + hitung_bangunan + '_separator" class="mask"></span></p>'+
 
                                         '</div>'+
                                     '</div>'+
@@ -2093,6 +2115,7 @@
                                         '<label class="col-lg-12 control-label">Menurut Pasar/ Pemilik</label>'+
                                         '<div class="col-lg-12">'+
                                             '<input id="menurut_pasar_fag'+hitung_bangunan+'" name="menurut_pasar_fag[]" type="number" placeholder="" class="form-control class-readonly menurut_pasar_fag" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>'+
+                                            '<p>Menurut Pasar/ Pemilik: <span id="menurut_pasar_fag' + hitung_bangunan + '_separator" class="mask"></span></p>'+
 
                                        ' </div>'+
                                     '</div>'+
@@ -2108,7 +2131,7 @@
                                     '</div>' +
 
                                 '</div>'+
-                                '<h2 class="text-center text-danger">Lingkungan</h2>'+
+                                '<h2 class="text-center text-success">Lingkungan</h2>'+
                                 '<div class="row">'+
                                     '<div class="col-lg-6">'+
                                         '<label class="col-lg-12 control-label">Sarana yang tersedia disekitar lingkungan</label>'+
@@ -2195,6 +2218,15 @@
                 $("#bangunan_dinamis").append(inputan_bangunan);
                 $("#gambar_situasi_dinamis").append(modal_gambar);
                 resizeJquerySteps();
+
+                separator_input('saat_pembelian_tanah' + hitung_bangunan, 'saat_pembelian_tanah' + hitung_bangunan + '_separator');
+                separator_input('saat_pembangunan' + hitung_bangunan, 'saat_pembangunan' + hitung_bangunan + '_separator');
+                separator_input('saat_rehab_perbaikan' + hitung_bangunan, 'saat_rehab_perbaikan' + hitung_bangunan + '_separator');
+                separator_input('menurut_harga_perolehan' + hitung_bangunan, 'menurut_harga_perolehan' + hitung_bangunan + '_separator');
+                separator_input('menurut_pasar_fag' + hitung_bangunan, 'menurut_pasar_fag' + hitung_bangunan + '_separator');
+                
+                
+
 
             } else {
                 alert(hasil.message)

@@ -16,7 +16,7 @@
         });
 
         $('#save_return').click(function(e) {
-
+            // alert('save return di klik')
             document.getElementById("form_return").reset();
             $("#modal_return").modal('show')
 
@@ -27,20 +27,20 @@
                 dataType: "JSON",
                 success: function(response) {
                     // console.log(response)
-                    if(response.status == 'success'){
+                    if (response.status == 'success') {
                         $('#kd_data_return').val(response.message.kd_data);
                         $('#nama_debitur_return').val(response.message.nama_debitur);
-                    }else{
+                    } else {
                         alert("Gagal get data return pengajuan kredit(1)");
                     }
-                    
-                    
+
+
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Gagal get data return pengajuan kredit(2)");
                 }
             });
-            
+
         });
 
         $('#save_reject').click(function(e) {
@@ -55,23 +55,28 @@
                 dataType: "JSON",
                 success: function(response) {
                     // console.log(response)
-                    if(response.status == 'success'){
+                    if (response.status == 'success') {
                         $('#kd_data_reject').val(response.message.kd_data);
                         $('#nama_debitur_reject').val(response.message.nama_debitur);
-                    }else{
+                    } else {
                         alert("Gagal get data reject pengajuan kredit(1)");
                     }
-                    
-                    
+
+
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Gagal get data reject pengajuan kredit(2)");
                 }
             });
-            
+
         });
-        
-    // batas baru
+
+        // batas baru
+
+        // panggil function buat separator input disemua tab pemasar
+        separator_input('nilai_proyek_tambah', 'nilai_proyek_tambah_separators')
+        separator_input('plafond_tambah', 'plafond_separators')
+        // batas panggil function buat separator input disemua tab pemasar
     });
     // bikin function
     function isi_recap() {
@@ -144,16 +149,13 @@
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     refresh_recap()
-                    if(button =='edit_recap'){
+                    if (button == 'edit_recap') {
                         toastr.success(response.message, 'Berhasil')
-                    }
-                    else if(button =='finish_recap'){
+                    } else if (button == 'finish_recap') {
                         toastr.success('Sukses mengirim data', 'Berhasil')
                         return
                         // alert('Kirim data berhasil');
-                        
                     }
-                    
                 } else {
                     $('#mohon').hide()
                     toastr.warning(response.message, 'Gagal')
@@ -166,6 +168,7 @@
             }
         });
     }
+    
     function tampil_disposisi(kd_data) {
         $.ajax({
             url: '<?php echo base_url(); ?>pengajuan/tampil_disposisi/' + kd_data,
@@ -175,54 +178,54 @@
                 // console.log('Success:', response);
                 // $('a[href="#finish"]').text('New Title haha');
                 // $('a[href="#finish"]').hide();
-                    $('#disposisi_sc').prop('readonly', true);
-                    $('#disposisi_koordinator_pemasar_sc').prop('readonly', true);
-                    $('#disposisi_kepala_cabang_sc').prop('readonly', true);
-                    $('#disposisi_analis_kredit_sc').prop('readonly', true);
-                    $('#disposisi_kepala_bagian_sc').prop('readonly', true);
-                    $('#disposisi_kepala_divisi_sc').prop('readonly', true);
+                $('#disposisi_sc').prop('readonly', true);
+                $('#disposisi_koordinator_pemasar_sc').prop('readonly', true);
+                $('#disposisi_kepala_cabang_sc').prop('readonly', true);
+                $('#disposisi_analis_kredit_sc').prop('readonly', true);
+                $('#disposisi_kepala_bagian_sc').prop('readonly', true);
+                $('#disposisi_kepala_divisi_sc').prop('readonly', true);
 
-                    // $('#save_return').hide();
+                // $('#save_return').hide();
 
-                    // $data_kirim = [
-                    //     'status' => 'success',
-                    //     'pemasar' => '0',
-                    //     'koor' => '0',
-                    //     'kacab' => '0',
-                    //     'analis' => '0',
-                    //     'kabag' => '0',
-                    //     'kadiv' => '0',
-                    // ];
+                // $data_kirim = [
+                //     'status' => 'success',
+                //     'pemasar' => '0',
+                //     'koor' => '0',
+                //     'kacab' => '0',
+                //     'analis' => '0',
+                //     'kabag' => '0',
+                //     'kadiv' => '0',
+                // ];
 
-                    if(response.status == 'success'){
-                        if(response.pemasar == '1'){
-                            $('#disposisi_sc').prop('readonly', false);
-                        }
-                        if(response.koor == '1'){
-                            $('#disposisi_koordinator_pemasar_sc').prop('readonly', false);
-                        }
-                        if(response.kacab == '1'){
-                            $('#disposisi_kepala_cabang_sc').prop('readonly', false);
-                        }
-                        if(response.analis == '1'){
-                            $('#disposisi_analis_kredit_sc').prop('readonly', false);
-                        }
-                        if(response.kabag == '1'){
-                            $('#disposisi_kepala_bagian_sc').prop('readonly', false);
-                        }
-                        if(response.kadiv == '1'){
-                            $('#disposisi_kepala_divisi_sc').prop('readonly', false);
-                        }
-
-                        if(response.tampil_btn_return == '1'){
-                            $('#save_return').show();
-                            $('#save_reject').show();
-                        }else{
-                            $('#save_return').hide();
-                            $('#save_reject').hide();
-                        }
+                if (response.status == 'success') {
+                    if (response.pemasar == '1') {
+                        $('#disposisi_sc').prop('readonly', false);
                     }
-                
+                    if (response.koor == '1') {
+                        $('#disposisi_koordinator_pemasar_sc').prop('readonly', false);
+                    }
+                    if (response.kacab == '1') {
+                        $('#disposisi_kepala_cabang_sc').prop('readonly', false);
+                    }
+                    if (response.analis == '1') {
+                        $('#disposisi_analis_kredit_sc').prop('readonly', false);
+                    }
+                    if (response.kabag == '1') {
+                        $('#disposisi_kepala_bagian_sc').prop('readonly', false);
+                    }
+                    if (response.kadiv == '1') {
+                        $('#disposisi_kepala_divisi_sc').prop('readonly', false);
+                    }
+
+                    if (response.tampil_btn_return == '1') {
+                        $('#save_return').show();
+                        $('#save_reject').show();
+                    } else {
+                        $('#save_return').hide();
+                        $('#save_reject').hide();
+                    }
+                }
+
             },
             error: function(xhr, status, error) {
                 console.log('Error response text:', xhr.responseText);
@@ -248,7 +251,7 @@
                         $('#mohon').hide()
                         $("#modal_return").modal('hide')
                         toastr.success('Return Berhasil', 'Berhasil')
-                        
+
                         tampil_btn_finish('<?php echo $data_entry->kd_data ?>')
                         tampil_disposisi('<?php echo $data_entry->kd_data ?>')
                     } else {
@@ -276,7 +279,7 @@
                         alert('Reject Berhasil')
 
                         window.location.href = "<?php echo base_url('pengajuan-kredit-transaksional') ?>"
-                        
+
                     } else {
                         $('#mohon').hide()
                         toastr.warning(d, 'Gagal')
@@ -285,4 +288,37 @@
             })
         }
     });
+
+    // fungsi buat separator angka pada form tambah, edit tampil pengajuan kredit, tampil data, on input pada form edit
+    function formatNumber(num) {
+        // Ubah angka menjadi string dan pisahkan bagian integer dan desimal
+        var parts = num.toString().split(".");
+
+        // Ganti ribuan separator dengan titik
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        // Jika ada bagian desimal, gabungkan kembali dengan koma sebagai pemisah desimal
+        return parts.join(",");
+    }
+
+    function separator_edit(angka, id_letak) {
+        // var hasil = '';
+        if (angka != '' && angka != null) {
+            var angka_olah = formatNumber(angka);
+            // console.log(angka)
+            // console.log(id_letak)
+
+            $('#' + id_letak).text(angka_olah);
+        } else {
+            $('#' + id_letak).text('');
+        }
+    }
+
+    function separator_input(pokok_field, pokok_separator) {
+        $('#' + pokok_field).on('input', function() {
+            var inputValue = $(this).val();
+            var formattedValue = formatNumber(inputValue);
+            $('#' + pokok_separator).text(formattedValue);
+        });
+    }
 </script>

@@ -27,10 +27,17 @@
                 $('#kd_data_tambah').val(hasil.message.data_entry.kd_data);
 
                 $('#nama_pemohon_sc').val(data.nama_pemohon);
+                $('#nama_pemohon_sc_koor').val(data.nama_pemohon);
                 $('#alamat_sc').val(data.alamat);
+                $('#alamat_sc_koor').val(data.alamat);
                 $('#plafond_sc').val(data.plafond);
+                $('#plafond_sc_koor').val(data.plafond);
+                separator_edit(data.plafond, 'plafond_sc_separators')
+                separator_edit(data.plafond, 'plafond_sc_koor_separators')
                 $('#tujuan_sc').val(data.tujuan);
+                $('#tujuan_sc_koor').val(data.tujuan);
                 $('#no_pak_sc').val(data.no_pak);
+                $('#no_pak_sc_koor').val(data.no_pak);
 
                 $('#pendirian_sc').val(data.pendirian_bu);
                 $('#legalitas_sc').val(data.legalitas);
