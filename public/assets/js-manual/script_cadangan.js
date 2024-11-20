@@ -1759,12 +1759,13 @@ function ceftb() {
           "|"
         );
         const HasilCEFT = (data.hasilceft ? data.hasilceft : "").split("|");
-        const TotalCEFT = (data.totalceft ? data.totalceft : "").split("|");
+        const TotalCEFT = (data.totalceft ? data.totalceft : "").split(";");
+
         const CheckBoxCEFB = (data.checkboxcefb ? data.checkboxcefb : "").split(
           "|"
         );
         const HasilCEFB = (data.hasilcefb ? data.hasilcefb : "").split("|");
-        const TotalCEFB = (data.totalcefb ? data.totalcefb : "").split("|");
+        const TotalCEFB = (data.totalcefb ? data.totalcefb : "").split(";");
 
         const pecahCheckBoxCEFT = CheckBoxCEFT[counter_tanah_loop]
           ? CheckBoxCEFT[counter_tanah_loop].split(";")
@@ -2806,7 +2807,7 @@ function ceftb() {
           '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
           counter_tanah_loop +
           '"' +
-          (pecahCheckBoxCEFB[22] && pecahCheckBoxCEFB[22] !== "0" ? "checked" : "") +
+          (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
           ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
@@ -2818,7 +2819,7 @@ function ceftb() {
           '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
           counter_tanah_loop +
           '"' +
-          (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
+          (pecahCheckBoxCEFB[24] && pecahCheckBoxCEFB[24] !== "0" ? "checked" : "") +
           ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
@@ -2830,7 +2831,7 @@ function ceftb() {
           '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
           counter_tanah_loop +
           '"' +
-          (pecahCheckBoxCEFB[24] && pecahCheckBoxCEFB[24] !== "0" ? "checked" : "") +
+          (pecahCheckBoxCEFB[25] && pecahCheckBoxCEFB[25] !== "0" ? "checked" : "") +
           ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
@@ -2842,7 +2843,7 @@ function ceftb() {
           '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
           counter_tanah_loop +
           '"' +
-          (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0" ? "checked" : "") +
+          (pecahCheckBoxCEFB[26] && pecahCheckBoxCEFB[26] !== "0" ? "checked" : "") +
           ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\','+counter_tanah_loop+')"></td>' +
           '<td class="tg-0pky"></td>' +
           "</tr>" +
@@ -2994,7 +2995,7 @@ function faa_bb() {
             : ""
         ).split(";");
         // for (let isi = 0; isi < jenisAgunanArray.length; isi++) {
-        console.log(alamat_bbArray[1]);
+        // console.log(alamat_bbArray[1]);
         var inputan_bb =
           '<div id="bagian_bb' +
           counter_bb_loop +
@@ -4120,7 +4121,7 @@ function showValueCEFT(checkbox, angka, bobot, counter) {
     var hitungbobot = 0;
     $("#hasil"+counter+"ceft" + angka).val(hitungbobot);
   }
-  console.log(counter);
+  // console.log(counter);
   var hasil1ceft = parseFloat(document.getElementById("hasil"+counter+"ceft1").value || 0);
   var hasil2ceft = parseFloat(document.getElementById("hasil"+counter+"ceft2").value || 0);
   var hasil3ceft = parseFloat(document.getElementById("hasil"+counter+"ceft3").value || 0);
@@ -4226,21 +4227,96 @@ function combineValues(inputs) {
   return combinedValues;
 }
 
-function combineCheckboxValues(inputs) {
+// function combineCheckboxValues(inputs) {
+//   let combinedValues = "";
+
+//   inputs.forEach((input, index) => {
+//     if (input.checked) {
+//       if (combinedValues) {
+//         combinedValues += ";";
+//       }
+//       combinedValues += input.value;
+//     } else {
+//       if (combinedValues) {
+//         combinedValues += ";";
+//       }
+//       combinedValues += "0";
+//     }
+//   });
+//   return combinedValues;
+// }
+function combineCheckboxTValues(inputs) {
   let combinedValues = "";
+  
   inputs.forEach((input, index) => {
-    if (input.checked) {
-      if (combinedValues) {
-        combinedValues += ";";
-      }
-      combinedValues += input.value;
-    } else {
-      if (combinedValues) {
-        combinedValues += ";";
-      }
-      combinedValues += "0";
+    if (index > 0 && index % 33 === 0) {
+      // Tambahkan '|' setiap 33 nilai
+      combinedValues += "|";
+    } else if (combinedValues && index % 33 !== 0) {
+      // Tambahkan ';' di antara nilai-nilai
+      combinedValues += ";";
     }
+    
+    // Tambahkan nilai checkbox atau '0' jika tidak dicentang
+    combinedValues += input.checked ? input.value : "0";
   });
+  
+  return combinedValues;
+}
+
+function combineHasilCheckboxTValues(inputs) {
+  let combinedValues = "";
+  
+  inputs.forEach((input, index) => {
+    if (index > 0 && index % 9 === 0) {
+      // Tambahkan '|' setiap 33 nilai
+      combinedValues += "|";
+    } else if (combinedValues && index % 9 !== 0) {
+      // Tambahkan ';' di antara nilai-nilai
+      combinedValues += ";";
+    }
+    
+    // Tambahkan nilai checkbox atau '0' jika tidak dicentang
+    combinedValues += input.checked ? input.value : "0";
+  });
+  
+  return combinedValues;
+}
+
+function combineCheckboxBValues(inputs) {
+  let combinedValues = "";
+  
+  inputs.forEach((input, index) => {
+    if (index > 0 && index % 27 === 0) {
+      // Tambahkan '|' setiap 27 nilai
+      combinedValues += "|";
+    } else if (combinedValues && index % 27 !== 0) {
+      // Tambahkan ';' di antara nilai-nilai
+      combinedValues += ";";
+    }
+    
+    // Tambahkan nilai checkbox atau '0' jika tidak dicentang
+    combinedValues += input.checked ? input.value : "0";
+  });
+  
+  return combinedValues;
+}
+function combineHasilCheckboxBValues(inputs) {
+  let combinedValues = "";
+
+  inputs.forEach((input, index) => {
+    if (index > 0 && index % 7 === 0) {
+      // Tambahkan '|' setiap 33 nilai
+      combinedValues += "|";
+    } else if (combinedValues && index % 7 !== 0) {
+      // Tambahkan ';' di antara nilai-nilai
+      combinedValues += ";";
+    }
+
+    // Tambahkan nilai checkbox atau '0' jika tidak dicentang
+    combinedValues += input.checked ? input.value : "0";
+  });
+
   return combinedValues;
 }
 
@@ -4341,7 +4417,7 @@ function nilaicheckboxceft() {
   );
 
   document.querySelector('[name="nilaicheckboxceft"]').value =
-    combineCheckboxValues(nilaicheckboxceft);
+    combineCheckboxTValues(nilaicheckboxceft);
 }
 
 function hasilcheckboxceft() {
@@ -4349,7 +4425,25 @@ function hasilcheckboxceft() {
     "input[name='hasil_checkbox_ceft[]']"
   );
   document.querySelector('[name="hasilcheckboxceft"]').value =
-    combineValues(hasilcheckboxceft);
+    combineHasilCheckboxTValues(hasilcheckboxceft);
+}
+function hasiltotalceft() {
+  var hasiltotalceft = document.querySelectorAll(
+    "input[name='hasiltotalceft[]']"
+  );
+  console.log(hasiltotalceft);
+  document.querySelector('[name="hasiltotalceft"]').value =
+    combineValues(hasiltotalceft);
+}
+
+
+function nilaicheckboxcefb() {
+  var nilaicheckboxcefb = document.querySelectorAll(
+    "input[name='checkboxcefb[]']"
+  );
+  
+  document.querySelector('[name="nilaicheckboxcefb"]').value =
+  combineCheckboxBValues(nilaicheckboxcefb);
 }
 
 function hasilcheckboxcefb() {
@@ -4358,16 +4452,14 @@ function hasilcheckboxcefb() {
   );
 
   document.querySelector('[name="hasilcheckboxcefb"]').value =
-    combineValues(hasilcheckboxcefb);
-}
-
-function nilaicheckboxcefb() {
-  var nilaicheckboxcefb = document.querySelectorAll(
-    "input[name='checkboxcefb[]']"
+    combineHasilCheckboxBValues(hasilcheckboxcefb);
+  }
+function hasiltotalcefb() {
+  var hasiltotalcefb = document.querySelectorAll(
+    "input[name='hasiltotalcefb[]']"
   );
-
-  document.querySelector('[name="nilaicheckboxcefb"]').value =
-    combineCheckboxValues(nilaicheckboxcefb);
+  document.querySelector('[name="hasiltotalcefb"]').value =
+    combineValues(hasiltotalcefb);
 }
 
 function add_kesimpulan_mauk() {
@@ -5126,18 +5218,18 @@ function post_lap_rl(method, data_input, button) {
 function data_data_ceftb() {
   nilaicheckboxceft();
   hasilcheckboxceft();
+  hasiltotalceft();
   nilaicheckboxcefb();
   hasilcheckboxcefb();
+  hasiltotalcefb();
   var data_ceftb1 = {
     kd_data: $("#kd_data").val(),
     nilaicheckboxceft: $("#nilaicheckboxceft").val(),
     hasilcheckboxceft: $("#hasilcheckboxceft").val(),
-    hasiltotalCEFT: $("#hasiltotalCEFT").val(),
+    hasiltotalCEFT: $("#hasiltotalceft").val(),
     nilaicheckboxcefb: $("#nilaicheckboxcefb").val(),
     hasilcheckboxcefb: $("#hasilcheckboxcefb").val(),
-    hasiltotalCEFB: $("#hasiltotalCEFB").val(),
-
-    // upload dokumen
+    hasiltotalCEFB: $("#hasiltotalcefb").val(),
   };
   return data_ceftb1;
 }
@@ -5796,7 +5888,7 @@ $(document).ready(function () {
   isi_fak_rl();
   isi_upload_lap_rl();
   ceftb();
-  isi_ceftb();
+  // isi_ceftb();
   isi_mauk();
   isi_dcl();
   isi_scoring_koor();

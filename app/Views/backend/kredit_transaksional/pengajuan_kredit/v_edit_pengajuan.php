@@ -5036,8 +5036,10 @@
 
         <input type="text" hidden name="nilaicheckboxceft" id="nilaicheckboxceft">
         <input type="text" hidden name="hasilcheckboxceft" id="hasilcheckboxceft">
+        <input type="text" hidden name="hasiltotalceft" id="hasiltotalceft">
         <input type="text" hidden name="nilaicheckboxcefb" id="nilaicheckboxcefb">
         <input type="text" hidden name="hasilcheckboxcefb" id="hasilcheckboxcefb">
+        <input type="text" hidden name="hasiltotalcefb" id="hasiltotalcefb">
 
         <input type="text" hidden name="jeniskreditfasilitasusulmauk" id="jeniskreditfasilitasusulmauk">
         <input type="text" hidden name="maxkreditiniusulmauk" id="maxkreditiniusulmauk">
