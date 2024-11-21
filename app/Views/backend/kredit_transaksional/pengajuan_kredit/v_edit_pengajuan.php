@@ -4962,14 +4962,12 @@
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Pemasar</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_sc" name="disposisi_sc" rows="3" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data) ? '' : 'disabled'; ?> id="disposisi_sc" name="disposisi_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -4985,7 +4983,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Cabang</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_kepala_cabang) ? '' : 'disabled'; ?> id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -4993,7 +4991,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Analis Kredit</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_analis_kredit) ? '' : 'disabled'; ?> id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5001,7 +4999,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Bagian</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_kepala_bagian) ? '' : 'disabled'; ?> id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5009,7 +5007,7 @@
                                     <div class="col-lg-12">
                                         <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Divisi</label>
                                         <div class="col-lg-12">
-                                            <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
+                                            <textarea class="form-control" <?php echo !empty($edit_data_kepala_divisi) ? '' : 'disabled'; ?> id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>

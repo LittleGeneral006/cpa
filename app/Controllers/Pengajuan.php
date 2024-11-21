@@ -277,6 +277,10 @@ class Pengajuan extends BaseController
             // $data['cek_agunan'] = $cek_agunan;
             $data['edit_pengajuan_kredit_transaksional'] = $this->permission2('Edit Pengajuan Kredit Transaksional');
             $data['edit_pengajuan_kredit_transaksional_koordinator'] = $this->permission2('Edit Pengajuan Kredit Transaksional Koordinator');
+            $data['edit_pengajuan_kredit_transaksional_kepala_cabang'] = $this->permission2('Edit Pengajuan Kredit Transaksional Kepala Cabang');
+            $data['edit_pengajuan_kredit_transaksional_analis_kredit'] = $this->permission2('Edit Pengajuan Kredit Transaksional Analis Kredit');
+            $data['edit_pengajuan_kredit_transaksional_kepala_bagian'] = $this->permission2('Edit Pengajuan Kredit Transaksional Kepala Bagian');
+            $data['edit_pengajuan_kredit_transaksional_kepala_divisi'] = $this->permission2('Edit Pengajuan Kredit Transaksional Kepala Divisi');
             $data_master = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
             $data['data_master'] = $data_master;
             if ($data['edit_pengajuan_kredit_transaksional'] == true && $data_master->progress == 'Input') {
@@ -288,6 +292,27 @@ class Pengajuan extends BaseController
                 $data['edit_data_koordinator'] = 'boleh edit';
             } else {
                 $data['edit_data_koordinator'] = null;
+            }
+            if ($data['edit_pengajuan_kredit_transaksional_kepala_cabang'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+                $data['edit_data_kepala_cabang'] = 'boleh edit';
+            } else {
+                $data['edit_data_kepala_cabang'] = null;
+            }
+
+            if ($data['edit_pengajuan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review'|| $data_master->progress == 'Rekomendasi')) {
+                $data['edit_data_analis_kredit'] = 'boleh edit';
+            } else {
+                $data['edit_data_analis_kredit'] = null;
+            }
+            if ($data['edit_pengajuan_kredit_transaksional_kepala_bagian'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+                $data['edit_data_kepala_bagian'] = 'boleh edit';
+            } else {
+                $data['edit_data_kepala_bagian'] = null;
+            }
+            if ($data['edit_pengajuan_kredit_transaksional_kepala_divisi'] == true && $data_master->progress == 'Approval') {
+                $data['edit_data_kepala_divisi'] = 'boleh edit';
+            } else {
+                $data['edit_data_kepala_divisi'] = null;
             }
 
             $data['save_edit_pengajuan_kredit_transaksional'] = $this->permission2('Save Edit Pengajuan Kredit Transaksional');
