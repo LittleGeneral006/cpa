@@ -1256,7 +1256,7 @@ class Pengajuan extends BaseController
                                                                 if ($tb_faa == true) {
                                                                     $tb_dcl = $this->insert_satuan('kd_data', 'tb_dcl', $data_insert['kd_data'], $data_insert);
                                                                     if ($tb_dcl == true) {
-                                                                        $tb_scoring_koor = $this->insert_satuan('kd_data', 'tb_scoring_koor', $data_insert['kd_data'], $data_insert);
+                                                                        $tb_scoring_koor = $this->insert_satuan('kd_data', 'tb_scoring_koordinator', $data_insert['kd_data'], $data_insert);
                                                                         if ($tb_scoring_koor == true) {
                                                                             $hasil = true;
                                                                         } else {
