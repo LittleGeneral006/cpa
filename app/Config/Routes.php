@@ -86,6 +86,13 @@ $routes->post('/permission/simpan_permission', 'Permission::simpan_permission');
 $routes->get('/permission/get_tabel_permission_by_id/(:any)', 'Permission::get_tabel_permission_by_id/$1');
 $routes->post('/permission/edit_permission', 'Permission::edit_permission');
 
+//pajak
+$routes->get('/pajak', 'Pajak::v_pajak');
+$routes->get('/pajak/tabel_pajak', 'Pajak::tabel_pajak');
+$routes->post('/pajak/simpan', 'Pajak::simpan');
+$routes->get('/pajak/get_data_by_id/(:any)', 'Pajak::get_data_by_id/$1');
+$routes->post('/pajak/edit', 'Pajak::edit');
+
 // assign
 $routes->get('/assign', 'Assign::index');
 $routes->get('/assign/tabel_assign', 'Assign::tabel_assign');

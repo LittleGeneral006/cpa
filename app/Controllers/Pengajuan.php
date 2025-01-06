@@ -299,7 +299,7 @@ class Pengajuan extends BaseController
                 $data['edit_data_kepala_cabang'] = null;
             }
 
-            if ($data['edit_pengajuan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review'|| $data_master->progress == 'Rekomendasi')) {
+            if ($data['edit_pengajuan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
                 $data['edit_data_analis_kredit'] = 'boleh edit';
             } else {
                 $data['edit_data_analis_kredit'] = null;
@@ -493,6 +493,12 @@ class Pengajuan extends BaseController
                         'required' => 'Nama Debitur Harus diisi',
                     ]
                 ],
+                'npwp_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'NPWP Harus diisi',
+                    ]
+                ],
                 'bidang_usaha_tambah' => [
                     'rules' => 'required',
                     'errors' => [
@@ -633,6 +639,7 @@ class Pengajuan extends BaseController
                     'kepala_divisi' => $this->request->getPost('kepala_divisi_tambah'),
 
                     'nama_debitur' => $this->request->getPost('nama_debitur_tambah'),
+                    'npwp' => $this->request->getPost('npwp_tambah'),
                     'bidang_usaha' => $this->request->getPost('bidang_usaha_tambah'),
                     'nama_direktur' => $this->request->getPost('nama_direktur_tambah'),
                     'key_person' => $this->request->getPost('key_person_tambah'),
@@ -9381,6 +9388,7 @@ class Pengajuan extends BaseController
             'depresiasi_upload_lap_rl' => $depresiasi_upload_lap_rl['message'],
             'rasio_lap_keuangan_upload_lap_rl' => $rasio_lap_keuangan_upload_lap_rl['message']
         ];
+
         // var_dump($data);
         // die;
 

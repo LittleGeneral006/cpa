@@ -13,6 +13,9 @@ var angkadcl6 = 2;
 var angkadcl7 = 2;
 var angkadcl8 = 2;
 
+
+// var kd_data_encrypt = "<?php echo sha1($datafcr->kd_data) ?>";
+
 function variabelGlobal(callback) {
   var kirim = {
     kd_data: kd_data_encrypt,
@@ -40,6 +43,7 @@ function variabelGlobal(callback) {
   });
 }
 
+
 function isi_fak_data() {
   variabelGlobal(function (hasil) {
     // console.log(hasil.message.data_entry.kd_data);
@@ -47,7 +51,7 @@ function isi_fak_data() {
       var data = hasil.message.fak_data;
       // alert(data.kd_data)
       // unit_kerja_fcr()
-      // console.log(hasil.message.kegiatan_fak_data);
+      console.log(data.kegiatan);
       $("#kegiatan_fak_data").val(data.kegiatan);
       $("#pekerjaan_fak_data").val(data.pekerjaan);
       $("#no_kontrak_fak_data").val(data.no_kontrak);
@@ -57,6 +61,7 @@ function isi_fak_data() {
       $("#nilai_kontrak_setelah_ppn_fak_data").val(
         data.nilai_kontrak_setelah_ppn
       );
+      separator_input("nilai_kontrak_setelah_ppn_fak_data", "nilai_kontrak_setelah_ppn_fak_data_separators");
       separator_edit(
         data.nilai_kontrak_setelah_ppn,
         "nilai_kontrak_setelah_ppn_fak_data_separators"
@@ -74,6 +79,7 @@ function isi_fak_data() {
       $("#profit_kontraktor_fak_data").val(data.profit_kontraktor);
       $("#biaya_pemeliharaan_fak_data").val(data.biaya_pemeliharaan);
       $("#biaya_provisi_fak_data").val(data.biaya_provisi);
+
       $("#itemppfakdata").val(data.item_pp);
       $("#ppnppfakdata").val(data.ppn_pp);
       $("#nilaisebelumppnppfakdata").val(data.nilai_sebelum_ppn_pp);
@@ -87,36 +93,14 @@ function isi_fak_data() {
       $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(
         data.jumlah_nilai_sebelum_ppn_total_pp
       );
+      separator_input("jumlah_nilai_sebelum_ppn_total_pp_fak_data", "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators");
+      separator_edit(data.jumlah_nilai_sebelum_ppn_total_pp_fak_data, "jumlah_nilai_sebelum_ppn_total_pp_fak_separators");
       $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(
         data.jumlah_nilai_sesudah_ppn_total_pp
       );
-      separator_edit(
-        data.jumlah_nilai_sebelum_ppn_total_pp,
-        "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators"
-      );
-      separator_edit(
-        data.jumlah_nilai_sesudah_ppn_total_pp,
-        "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators"
-      );
-
-      $("#gaji_direktur_fak_data").val(data.gaji_direktur);
-      separator_edit(data.gaji_direktur, "gaji_direktur_fak_data_separators");
-      $("#gaji_pengawas_fak_data").val(data.gaji_pengawas);
-      separator_edit(data.gaji_pengawas, "gaji_pengawas_fak_data_separators");
-      $("#gaji_staf_fak_data").val(data.gaji_staf);
-      separator_edit(data.gaji_staf, "gaji_staf_fak_data_separators");
-      $("#biaya_umum_fak_data").val(data.biaya_umum);
-      separator_edit(data.biaya_umum, "biaya_umum_fak_data_separators");
-      $("#termijnfakdata").val(data.termijn);
-      $("#progresstermijnfakdata").val(data.progress_termijn);
-      $("#persentasetermijnfakdata").val(data.persentase_termijn);
-      $("#prakiraantgltermijnfakdata").val(data.prakiraan_tgl_termijn);
-      $("#setelah_masa_pemeliharaan_fak_data").val(
-        data.setelah_masa_pemeliharaan_termijn
-      );
-      $("#total_termijn_fak_data").val(data.total_termijn);
-      $("#jumlah_termijn_fak_data").val(data.jumlah_termijn);
-
+      separator_input("jumlah_nilai_sesudah_ppn_total_pp_fak_data", "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators");
+      separator_edit(data.jumlah_nilai_sesudah_ppn_total_pp_fak_data, "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators");
+      
       let itempp = data.item_pp.split(";");
       let ppnpp = data.ppn_pp.split(";");
       let nilaisebelumppnpp = data.nilai_sebelum_ppn_pp.split(";");
@@ -129,6 +113,14 @@ function isi_fak_data() {
           $("#nilai_sebelum_ppn_pp_fak_data" + i).val(nilaisebelumppnpp[0]);
           $("#nilai_sesudah_ppn_pp_fak_data" + i).val(nilaisesudahppnpp[0]);
           $("#item_pp_fak_modal" + i).val(itempp[0]);
+          separator_input(
+            "nilai_sebelum_ppn_pp_fak_data"+i,
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          );
+          separator_input(
+            "nilai_sesudah_ppn_pp_fak_data"+i,
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          );
           separator_edit(
             nilaisebelumppnpp[0],
             "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
@@ -140,6 +132,14 @@ function isi_fak_data() {
         } else {
           var index = lengthpp - 1 - i;
           var html1 = $(".copy-pp").html();
+          separator_input(
+            "nilai_sebelum_ppn_pp_fak_data"+i,
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          );
+          separator_input(
+            "nilai_sesudah_ppn_pp_fak_data"+i,
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          );
           separator_edit(
             nilaisebelumppnpp[index],
             "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
@@ -217,6 +217,14 @@ function isi_fak_data() {
             '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>";
+          separator_input(
+            "nilai_sebelum_ppn_pp_fak_data" + i ,
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          );
+          separator_input(
+            "nilai_sesudah_ppn_pp_fak_data" + i ,
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          );
           separator_edit(
             nilaisebelumppnpp[index],
             "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
@@ -254,6 +262,34 @@ function isi_fak_data() {
         }
         $(".delete-btn-pp-fak-modal").first().after(html12);
       }
+
+      $("#gaji_direktur_fak_data").val(data.gaji_direktur);
+      separator_input("gaji_direktur_fak_data", "gaji_direktur_fak_data_separators");
+      separator_edit(data.gaji_direktur, "gaji_direktur_fak_data_separators");
+
+      $("#gaji_pengawas_fak_data").val(data.gaji_pengawas);
+      separator_input("gaji_pengawas_fak_data", "gaji_pengawas_fak_data_separators");
+      separator_edit(data.gaji_pengawas, "gaji_pengawas_fak_data_separators");
+
+      $("#gaji_staf_fak_data").val(data.gaji_staf);
+      separator_input("gaji_staf_fak_data_separators","gaji_staf_fak_data_separators");
+      separator_edit(data.gaji_staf, "gaji_staf_fak_data_separators");
+
+      $("#biaya_umum_fak_data").val(data.biaya_umum);
+      separator_input("biaya_umum_fak_data", "biaya_umum_fak_data_separators");
+      separator_edit(data.biaya_umum, "biaya_umum_fak_data_separators");
+      
+      $("#termijnfakdata").val(data.termijn);
+      $("#progresstermijnfakdata").val(data.progress_termijn);
+      $("#persentasetermijnfakdata").val(data.persentase_termijn);
+      $("#prakiraantgltermijnfakdata").val(data.prakiraan_tgl_termijn);
+      $("#setelah_masa_pemeliharaan_fak_data").val(
+        data.setelah_masa_pemeliharaan_termijn
+      );
+      $("#total_termijn_fak_data").val(data.total_termijn);
+      $("#jumlah_termijn_fak_data").val(data.jumlah_termijn);
+
+      
 
       let termijn = data.termijn.split(";");
       let progresstermijn = data.progress_termijn.split(";");
@@ -1733,10 +1769,10 @@ function isi_scoring_koor() {
   });
 }
 
-function refresh_scoring_koor() {
-  isi_scoring_koor();
-  // tampil_button('save_scoring')
-}
+// function refresh_scoring_koor() {
+//   isi_scoring_koor();
+//   // tampil_button('save_scoring')
+// }
 
 function ceftb() {
   variabelGlobal(function (hasil) {
@@ -5956,6 +5992,9 @@ $(document).ready(function () {
         ')" type="text" placeholder="" class="form-control" ' +
         is_disabled +
         ">" +
+        '<p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data' +
+            angka +
+            '_separators" class="mask"></span></p>' +
         "</div>" +
         "</div>" +
         '<div class="col-lg-3">' +
@@ -5968,6 +6007,9 @@ $(document).ready(function () {
         '\')" class="form-control" ' +
         is_disabled +
         ">" +
+        '<p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data' +
+            angka +
+            '_separators" class="mask"></span></p>' +
         "</div>" +
         "</div>";
       $(".delete-btn-pp-fak-data").first().after(html11);
@@ -6002,6 +6044,8 @@ $(document).ready(function () {
       angka++;
       jumlahisipp++;
       resizeJquerySteps();
+      separator_input("nilai_sebelum_ppn_pp_fak_data"+angka,"nilai_sebelum_ppn_pp_fak_data" + angka + "_separators");
+      separator_input("nilai_sesudah_ppn_pp_fak_data"+angka,"nilai_sesudah_ppn_pp_fak_data" + angka + "_separators");
     }
   });
   // saat tombol remove dklik control group akan dihapus

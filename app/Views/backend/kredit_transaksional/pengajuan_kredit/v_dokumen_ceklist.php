@@ -1,3 +1,677 @@
+<h1>Dokumen Pendukung</h1>
+<fieldset>
+    <h2>Dokumen Pendukung</h2>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="col-lg-12 control-label">Nama Nasabah</label>
+                <div class="col-lg-12">
+                    <input id="nama_nasabah_dp" name="nama_nasabah_dp" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="col-lg-12 control-label">Alamat Kantor</label>
+                <div class="col-lg-12">
+                    <textarea class="form-control" id="alamat_dp" name="alamat_dp" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Usaha</label>
+            <div class="col-lg-12">
+                <input id="usaha_dp" name="usaha_dp" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Jenis Badan Usaha</label>
+            <div class="col-lg-12">
+                <select class="form-control class-disabled select" required id="jenis_badan_usaha_dp" name="jenis_badan_usaha_dp" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                    <option value="" disabled="">pilih</option>
+                    <option value="Perseroan Perseorangan">Perseroan Perseorangan</option>
+                    <option value="Commanditaire Vennootschap">Commanditaire Vennootschap (CV)</option>
+                    <option value="Perseroan Terbatas">Perseroan Terbatas (PT)</option>
+                </select>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="reset-dokumen">
+        <!-- perorangan -->
+        <div class="perorangan">
+            <h2 class="text-left text-success">Persyaratan Dokumen</h2>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Permohonan Pengajuan Kredit</label>
+                    <div class="col-lg-12">
+                        <input id="pengajuan_kredit1" name="pengajuan_kredit1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pengajuan_kredit1">Lihat Dokumen</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Pernyataan Pendirian Perseroan Perorangan</label>
+                    <div class="col-lg-12">
+                        <input id="pendirian_perseroan1" name="pendirian_perseroan1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pendirian_perseroan1">Lihat Dokumen</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Sertifikat Pendaftaran Perseroan Perseorangan</label>
+                    <div class="col-lg-12">
+                        <input id="pendaftaran_perseroan1" name="pendaftaran_perseroan1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pendaftaran_perseroan1">Lihat Dokumen</button>
+                        <!-- <input id="pendaftaran_perseroan1" name="pendaftaran_perseroan1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Nomor Pokok Wajib Pajak (NPWP) Perseroan Perorangan</label>
+                    <div class="col-lg-12">
+                        <input id="npwp1" name="npwp1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="npwp1">Lihat Dokumen</button>
+                        <!-- <input id="npwp1" name="npwp1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) Persero</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_persero1" name="ktp_persero1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_persero1">Lihat Dokumen</button>
+                        <!-- <input id="ktp_persero1" name="ktp_persero1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Nomor Pokok Wajib Pajak (NPWP) Persero</label>
+                    <div class="col-lg-12">
+                        <input id="npwp_persero1" name="npwp_persero1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="npwp_persero1">Lihat Dokumen</button>
+                        <!-- <input id="npwp_persero1" name="npwp_persero1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy perijinan usaha yang berlaku dan sesuai yang dipersyaratkan oleh pemberi kerja</label>
+                    <div class="col-lg-12">
+                        <input id="perijinan_usaha1" name="perijinan_usaha1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="perijinan_usaha1">Lihat Dokumen</button>
+                        <!-- <input id="perijinan_usaha1" name="perijinan_usaha1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Daftar pengalaman pekerjaan</label>
+                    <div class="col-lg-12">
+                        <input id="pengalaman_kerja1" name="pengalaman_kerja1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pengalaman_kerja1">Lihat Dokumen</button>
+                        <!-- <input id="pengalaman_kerja1" name="pengalaman_kerja1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Laporan Keuangan</label>
+                    <div class="col-lg-12">
+                        <input id="laporan_keuangan1" name="laporan_keuangan1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="laporan_keuangan1">Lihat Dokumen</button>
+                        <!-- <input id="laporan_keuangan1" name="laporan_keuangan1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="text-left text-success">Dokumen Agunan</h2>
+
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy dokumen agunan yang akan diserahkan disertai kelengkapannya</label>
+                    <div class="col-lg-12">
+                        <input id="copy_dok_agunan1" name="copy_dok_agunan1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="copy_dok_agunan1">Lihat Dokumen</button>
+                        <!-- <input id="copy_dok_agunan1" name="copy_dok_agunan1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Ideb SLIK</label>
+                    <div class="col-lg-12">
+                        <input id="ideb_slik1" name="ideb_slik1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ideb_slik1">Lihat Dokumen</button>
+                        <!-- <input id="ideb_slik1" name="ideb_slik1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) suami/istri pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_istri1" name="ktp_istri1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_istri1">Lihat Dokumen</button>
+                        <!-- <input id="ktp_istri1" name="ktp_istri1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Keluarga (KK) pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="kk_pemilik_agunan1" name="kk_pemilik_agunan1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="kk_pemilik_agunan1">Lihat Dokumen</button>
+                        <!-- <input id="kk_pemilik_agunan1" name="kk_pemilik_agunan1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Akta/Buku/Surat/Kartu Nikah (jika sudah menikah)</label>
+                    <div class="col-lg-12">
+                        <input id="buku_nikah1" name="buku_nikah1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="buku_nikah1">Lihat Dokumen</button>
+                        <!-- <input id="buku_nikah1" name="buku_nikah1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="text-left text-success">Track Record</h2>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Daftar Hitam Nasional (DHN)</label>
+                    <div class="col-lg-12">
+                        <input id="dhn1" name="dhn1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="dhn1">Lihat Dokumen</button>
+                        <!-- <input id="dhn1" name="dhn1" type="file" placeholder="" class="form-control class-readonly"> -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Ideb SLIK</label>
+                    <div class="col-lg-12">
+                        <input id="ideb_slik_tr1" name="ideb_slik_tr1" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ideb_slik_tr1">Lihat Dokumen</button>
+                        <!-- <input id="ideb_slik_tr1" name="ideb_slik_tr1" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- buat cv -->
+        <div class="cv">
+            <h2 class="text-left text-success">Persyaratan Dokumen</h2>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Permohonan Pengajuan Kredit</label>
+                    <div class="col-lg-12">
+                        <input id="pengajuan_kredit2" name="pengajuan_kredit2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pengajuan_kredit2">Lihat Dokumen</button>
+                        <!-- <input id="pengajuan_kredit2" name="pengajuan_kredit2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Akta Pendirian beserta Akta Perubahan (jika ada) atau yang dipersamakan dengan hal itu</label>
+                    <div class="col-lg-12">
+                        <input id="akta_pendirian2" name="akta_pendirian2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="akta_pendirian2">Lihat Dokumen</button>
+                        <!-- <input id="akta_pendirian2" name="akta_pendirian2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Surat Keterangan/Keputusan Administrasi Hukum Umum (AHU)</label>
+                    <div class="col-lg-12">
+                        <input id="ahu2" name="ahu2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ahu2">Lihat Dokumen</button>
+                        <!-- <input id="ahu2" name="ahu2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Nomor Pokok Wajib Pajak (NPWP) Perseroan</label>
+                    <div class="col-lg-12">
+                        <input id="npwp_perseroan2" name="npwp_perseroan2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="npwp_perseroan2">Lihat Dokumen</button>
+                        <!-- <input id="npwp_perseroan2" name="npwp_perseroan2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) Persero Pengurus</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_pengurus2" name="ktp_pengurus2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_pengurus2">Lihat Dokumen</button>
+                        <!-- <input id="ktp_pengurus2" name="ktp_pengurus2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) Persero Komanditer</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_komanditer2" name="ktp_komanditer2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_komanditer2">Lihat Dokumen</button>
+                        <!-- <input id="ktp_komanditer2" name="ktp_komanditer2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy perijinan usaha</label>
+                    <div class="col-lg-12">
+                        <input id="perijinan_usaha2" name="perijinan_usaha2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="perijinan_usaha2">Lihat Dokumen</button>
+                        <!-- <input id="perijinan_usaha2" name="perijinan_usaha2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Daftar pengalaman pekerjaan</label>
+                    <div class="col-lg-12">
+                        <input id="pengalaman_kerja2" name="pengalaman_kerja2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pengalaman_kerja2">Lihat Dokumen</button>
+                        <!-- <input id="pengalaman_kerja2" name="pengalaman_kerja2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Laporan Keuangan</label>
+                    <div class="col-lg-12">
+                        <input id="laporan_keuangan2" name="laporan_keuangan2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="laporan_keuangan2">Lihat Dokumen</button>
+                        <!-- <input id="laporan_keuangan2" name="laporan_keuangan2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="text-left text-success">Dokumen Agunan</h2>
+
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy dokumen agunan yang akan diserahkan disertai kelengkapannya</label>
+                    <div class="col-lg-12">
+                        <input id="copy_dok_agunan2" name="copy_dok_agunan2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="copy_dok_agunan2">Lihat Dokumen</button>
+                        <!-- <input id="copy_dok_agunan2" name="copy_dok_agunan2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Ideb SLIK</label>
+                    <div class="col-lg-12">
+                        <input id="ideb_slik_agunan2" name="ideb_slik_agunan2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ideb_slik_agunan2">Lihat Dokumen</button>
+                        <!-- <input id="ideb_slik_agunan2" name="ideb_slik_agunan2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) suami/istri pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_pemilik_agunan2" name="ktp_pemilik_agunan2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_pemilik_agunan2">Lihat Dokumen</button>
+                        <!-- <input id="ktp_pemilik_agunan2" name="ktp_pemilik_agunan2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Keluarga (KK) pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="kk_pemilik_agunan2" name="kk_pemilik_agunan2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="kk_pemilik_agunan2">Lihat Dokumen</button>
+                        <!-- <input id="kk_pemilik_agunan2" name="kk_pemilik_agunan2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Akta/Buku/Surat/Kartu Nikah (jika sudah menikah)</label>
+                    <div class="col-lg-12">
+                        <input id="buku_nikah2" name="buku_nikah2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="buku_nikah2">Lihat Dokumen</button>
+                        <!-- <input id="buku_nikah2" name="buku_nikah2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="text-left text-success">Track Record</h2>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Daftar Hitam Nasional (DHN)</label>
+                    <div class="col-lg-12">
+                        <input id="dhn2" name="dhn2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="dhn2">Lihat Dokumen</button>
+                        <!-- <input id="dhn2" name="dhn2" type="file" placeholder="" class="form-control class-readonly"> -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Ideb SLIK</label>
+                    <div class="col-lg-12">
+                        <input id="ideb_slik2" name="ideb_slik2" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ideb_slik2">Lihat Dokumen</button>
+                        <!-- <input id="ideb_slik2" name="ideb_slik2" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="pt">
+            <h2 class="text-left text-success">Persyaratan Dokumen</h2>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Permohonan Pengajuan Kredit</label>
+                    <div class="col-lg-12">
+                        <input id="pengajuan_kredit3" name="pengajuan_kredit3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pengajuan_kredit3">Lihat Dokumen</button>
+                        <!-- <input id="pengajuan_kredit3" name="pengajuan_kredit3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Akta Pendirian beserta Akta Perubahan (jika ada) atau yang dipersamakan dengan hal itu</label>
+                    <div class="col-lg-12">
+                        <input id="akta_pendirian3" name="akta_pendirian3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="akta_pendirian3">Lihat Dokumen</button>
+                        <!-- <input id="akta_pendirian3" name="akta_pendirian3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Surat Keterangan/Keputusan Administrasi Hukum Umum (AHU)</label>
+                    <div class="col-lg-12">
+                        <input id="ahu3" name="ahu3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ahu3">Lihat Dokumen</button>
+                        <!-- <input id="ahu3" name="ahu3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Nomor Pokok Wajib Pajak (NPWP) Perseroan</label>
+                    <div class="col-lg-12">
+                        <input id="npwp_perseroan3" name="npwp_perseroan3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="npwp_perseroan3">Lihat Dokumen</button>
+                        <!-- <input id="npwp_perseroan3" name="npwp_perseroan3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) Direksi</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_direksi3" name="ktp_direksi3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_direksi3">Lihat Dokumen</button>
+                        <!-- <input id="ktp_direksi3" name="ktp_direksi3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) Komisaris</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_komisaris3" name="ktp_komisaris3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_komisaris3">Lihat Dokumen</button>
+                        <!-- <input id="ktp_komisaris3" name="ktp_komisaris3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Dokumen Legalitas Pemegang Saham (kecuali Perseroan Terbuka)</label>
+                    <div class="col-lg-12">
+                        <input id="pemegang_saham3" name="pemegang_saham3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pemegang_saham3">Lihat Dokumen</button>
+                        <!-- <input id="pemegang_saham3" name="pemegang_saham3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy perijinan usaha yang berlaku dan sesuai yang dipersyaratkan oleh pemberi kerja</label>
+                    <div class="col-lg-12">
+                        <input id="perijinan_usaha3" name="perijinan_usaha3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="perijinan_usaha3">Lihat Dokumen</button>
+                        <!-- <input id="perijinan_usaha3" name="perijinan_usaha3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Daftar pengalaman pekerjaan</label>
+                    <div class="col-lg-12">
+                        <input id="pengalaman_kerja3" name="pengalaman_kerja3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="pengalaman_kerja3">Lihat Dokumen</button>
+                        <!-- <input id="pengalaman_kerja3" name="pengalaman_kerja3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Laporan Keuangan</label>
+                    <div class="col-lg-12">
+                        <input id="laporan_keuangan3" name="laporan_keuangan3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="laporan_keuangan3">Lihat Dokumen</button>
+                        <!-- <input id="laporan_keuangan3" name="laporan_keuangan3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="text-left text-success">Dokumen Agunan</h2>
+
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Ideb SLIK</label>
+                    <div class="col-lg-12">
+                        <input id="ideb_slik_agunan3" name="ideb_slik_agunan3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ideb_slik_agunan3">Lihat Dokumen</button>
+                        <!-- <input id="ideb_slik_agunan3" name="ideb_slik_agunan3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_pemilik_agunan3" name="ktp_pemilik_agunan3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_pemilik_agunan3">Lihat Dokumen</button>
+                        <!-- <input id="ktp_pemilik_agunan3" name="ktp_pemilik_agunan3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Tanda Penduduk (KTP) suami/istri pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_istri3" name="ktp_istri3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ktp_istri3">Lihat Dokumen</button>
+                        <!-- <input id="ktp_istri3" name="ktp_istri3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Kartu Keluarga (KK) pemilik agunan</label>
+                    <div class="col-lg-12">
+                        <input id="kk_pemilik_agunan3" name="kk_pemilik_agunan3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="kk_pemilik_agunan3">Lihat Dokumen</button>
+                        <!-- <input id="kk_pemilik_agunan3" name="kk_pemilik_agunan3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group row">
+
+
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Copy Akta/Buku/Surat/Kartu Nikah (jika sudah menikah)</label>
+                    <div class="col-lg-12">
+                        <input id="buku_nikah3" name="buku_nikah3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="buku_nikah3">Lihat Dokumen</button>
+                        <!-- <input id="buku_nikah3" name="buku_nikah3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <h2 class="text-left text-success">Track Record</h2>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Daftar Hitam Nasional (DHN)</label>
+                    <div class="col-lg-12">
+                        <input id="dhn3" name="dhn3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="dhn3">Lihat Dokumen</button>
+                        <!-- <input id="dhn3" name="dhn3" type="file" placeholder="" class="form-control class-readonly"> -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="col-lg-12 control-label">Ideb SLIK</label>
+                    <div class="col-lg-12">
+                        <input id="ideb_slik3" name="ideb_slik3" type="file" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <button type="button" class="btn btn-link lihat-dokumen" data-id="ideb_slik3">Lihat Dokumen</button>
+                        <!-- <input id="ideb_slik3" name="ideb_slik3" type="file" placeholder="" class="form-control class-readonly"> -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</fieldset>
 <script>
     $(document).ready(function() {
         // perorangan()
@@ -49,11 +723,12 @@
         variabelGlobal(function(hasil) {
             // console.log(hasil.message.data_entry.kd_data);
             var result = 'nihil';
+            var data_entry = hasil.message.data_entry;
             if (hasil.status == 'success') {
+                console.log(data_entry);
                 var orang = hasil.message.dok;
                 var cv = hasil.message.dok_cv;
                 var pt = hasil.message.dok_pt;
-
                 var data = hasil.message.dok;
 
                 if (orang.nama_nasabah == null && cv.nama_nasabah == null && pt.nama_nasabah == null) {
@@ -77,9 +752,9 @@
 
                     tampil_edit_dok(result);
 
-                    $('#nama_nasabah_dp').val(data.nama_nasabah);
-                    $('#alamat_dp').val(data.alamat);
-                    $('#usaha_dp').val(data.usaha);
+                    $('#nama_nasabah_dp').val(data_entry.nama_debitur);
+                    $('#alamat_dp').val(data_entry.alamat_kantor);
+                    $('#usaha_dp').val(data_entry.bidang_usaha);
                     $('#jenis_badan_usaha_dp').val(data.jenis_badan_usaha);
                 }
 
@@ -145,6 +820,7 @@
         variabelGlobal(function(hasil) {
             // alert(param)
             // console.log(hasil.message.data_entry.kd_data);
+            var data_entry = hasil.message.data_entry;
             if (hasil.status == 'success') {
                 if (param == 'Perseroan Perseorangan') {
                     var segment = 'orang';
@@ -168,9 +844,9 @@
 
                 }
 
-                $('#nama_nasabah_dp').val(data.nama_nasabah);
-                $('#alamat_dp').val(data.alamat);
-                $('#usaha_dp').val(data.usaha);
+                $('#nama_nasabah_dp').val(data_entry.nama_debitur);
+                $('#alamat_dp').val(data_entry.alamat_kantor);
+                $('#usaha_dp').val(data_entry.bidang_usaha);
                 // $('#jenis_badan_usaha_dp').val(data.jenis_badan_usaha);
 
             } else {
@@ -353,9 +1029,9 @@
         // alert(data_id)
 
         // Mengecek apakah ada elemen dengan data-id yang sama sebelumnya
-        var id_baru = data_id +'span';
+        var id_baru = data_id + 'span';
         // var existingElement = $('[data-id="' + data_id + '"]');
-        var existingElement = $('#'+ id_baru);
+        var existingElement = $('#' + id_baru);
 
         // Jika ada elemen dengan data-id yang sama, hapus kontennya
         if (existingElement.length > 0) {

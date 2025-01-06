@@ -1,3 +1,354 @@
+<h1>Data Entry</h1>
+<fieldset>
+    <h2>Data Entry</h2>
+    <h2 class="text-center text-danger">Pemroses</h2>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="col-lg-12 control-label">Unit Kerja</label>
+                <div class="col-lg-12">
+                    <select class="form-control class-disabled select" id="unit_kerja_tambah" name="unit_kerja_tambah" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <label class="col-lg-12 control-label">Pemasar</label>
+                <div class="col-lg-12">
+                    <input id="pemasar_tambah" name="pemasar_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                    <input id="kd_data_tambah" name="kd_data_tambah" placeholder="" hidden class="form-control class-readonly">
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Koordinator Pemasar</label>
+            <div class="col-lg-12">
+                <input id="koordinator_pemasar_tambah" name="koordinator_pemasar_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Kepala Cabang</label>
+            <div class="col-lg-12">
+                <input id="kepala_cabang_tambah" name="kepala_cabang_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Kepala Bagian</label>
+            <div class="col-lg-12">
+                <input id="kepala_bagian_tambah" name="kepala_bagian_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Kepala Divisi</label>
+            <div class="col-lg-12">
+                <input id="kepala_divisi_tambah" name="kepala_divisi_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <h2 class="text-center text-danger">Data Debitur</h2>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Nama Debitur</label>
+            <div class="col-lg-12">
+                <input id="nama_debitur_tambah" name="nama_debitur_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Bidang Usaha</label>
+            <div class="col-lg-12">
+                <input id="bidang_usaha_tambah" name="bidang_usaha_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Nama Direktur</label>
+            <div class="col-lg-12">
+                <input id="nama_direktur_tambah" name="nama_direktur_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Key Person</label>
+            <div class="col-lg-12">
+                <input id="key_person_tambah" name="key_person_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Alamat Kantor</label>
+            <div class="col-lg-12">
+                <textarea class="form-control" id="alamat_kantor_tambah" name="alamat_kantor_tambah" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Alamat Gudang/ Pabrik/ Workshop</label>
+            <div class="col-lg-12">
+                <textarea class="form-control" id="alamat_gudang_tambah" name="alamat_gudang_tambah" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Group Debitur</label>
+            <div class="col-lg-12">
+                <input id="group_debitur_tambah" name="group_debitur_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">NPWP</label>
+            <div class="col-lg-12">
+                <input id="npwp_tambah" name="npwp_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <h2 class="text-center text-danger">Data Proyek</h2>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Nama Proyek</label>
+            <div class="col-lg-12">
+                <input id="nama_proyek_tambah" name="nama_proyek_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Nomor SPK/ SPPBJ/ Gunning/ Kontrak</label>
+            <div class="col-lg-12">
+                <input id="nomor_spk_tambah" name="nomor_spk_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Tanggal SPK/ SPPBJ/ Gunning/ Kontrak</label>
+            <div class="col-lg-12">
+                <input id="tanggal_spk_tambah" name="tanggal_spk_tambah" type="date" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Nilai Proyek</label>
+            <div class="col-lg-12">
+                <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <p>Nilai Proyek: <span id="nilai_proyek_tambah_separators" class="mask"></span></p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Alamat Proyek</label>
+            <div class="col-lg-12">
+                <textarea class="form-control" id="alamat_proyek_tambah" name="alamat_proyek_tambah" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Pemberi Kerja (Bouwheer)</label>
+            <div class="col-lg-12">
+                <input id="pemberi_kerja_tambah" name="pemberi_kerja_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Penandatangan Kontrak (Bouwheer)</label>
+            <div class="col-lg-12">
+                <input id="penandatangan_kontrak_tambah" name="penandatangan_kontrak_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Alamat Pemberi Kerja</label>
+            <div class="col-lg-12">
+                <textarea class="form-control" id="alamat_pemberi_tambah" name="alamat_pemberi_tambah" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Dokumen Kontrak Proyek</label>
+            <div class="row px-3">
+                <div class="col-lg-6">
+                    <input id="lihat_file" value="Lihat Dokumen" name="lihat_file" type="button" placeholder="" class="form-control class-readonly">
+
+                </div>
+                <div class="col-lg-6">
+                    <input id="edit_file" value="Edit Dokumen" name="edit_file" type="button" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+
+                </div>
+            </div>
+
+        </div>
+        <?php
+        $found = false;
+        foreach ($permission as $list_nama) {
+            if ($list_nama->nama_permission == 'Edit Status Pengajuan Kredit Transaksional') {
+                $found = true;
+                break;
+            }
+        }
+        ?>
+
+        <?php if ($found) { ?>
+            <div class="col-lg-6">
+                <label class="col-lg-12 control-label">Status</label>
+                <div class="col-lg-12">
+                    <select class="form-control class-disabled select" required id="status_tambah" name="status_tambah">
+                        <option value="" disabled="">pilih</option>
+                        <option value="Aktif">Aktif</option>
+                        <option value="Tidak Aktif">Tidak Aktif</option>
+                    </select>
+                </div>
+            </div>
+        <?php } else { ?>
+            <div class="col-lg-6">
+                <label class="col-lg-12 control-label">Status</label>
+                <div class="col-lg-12">
+                    <input id="status_tambah" name="status_tambah" type="text" placeholder="" class="form-control" readonly required>
+                </div>
+            </div>
+        <?php } ?>
+
+
+
+    </div>
+    <h2 class="text-center text-danger">Pengajuan Kredit</h2>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Tanggal Permohonan</label>
+            <div class="col-lg-12">
+                <input id="tanggal_permohonan_tambah" name="tanggal_permohonan_tambah" type="date" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Plafond</label>
+            <div class="col-lg-12">
+                <input id="plafond_tambah" name="plafond_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <p>Plafond: <span id="plafond_separators" class="mask"></span></p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="form-group row">
+
+
+        <div class="col-lg-6">
+            <label class="col-lg-12 control-label">Tujuan Pengajuan</label>
+            <div class="col-lg-12">
+                <input id="tujuan_pengajuan_tambah" name="tujuan_pengajuan_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label for="jumlah_agunan_tambah" class="col-lg-12 control-label">Jumlah Agunan:</label>
+            <div class="">
+                <div class="col-lg-12">
+                    <select name="jumlah_agunan_tambah" id="jumlah_agunan_tambah" class="form-control" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                        <option value="" selected disabled>Pilih</option>
+                        <?php for ($i = 1; $i <= 40; $i++) { ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php  } ?>
+                    </select>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div id="input_agunan_tambah" class=""></div>
+        </div>
+
+
+
+
+    </div>
+
+</fieldset>
 <script>
     $(document).ready(function() {
         $("#jumlah_agunan_tambah").on("change", function() {

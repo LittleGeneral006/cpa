@@ -65,7 +65,6 @@
                     </div>
                     <br>
                     <h2 class="text-center text-danger">Pemroses</h2>
-
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-6">
@@ -142,18 +141,22 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
+                            <label class="col-lg-12 control-label">NPWP</label>
+                            <div class="col-lg-12">
+                                <input id="npwp_tambah" name="npwp_tambah" type="text" placeholder="" class="form-control class-readonly">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Bidang Usaha</label>
                             <div class="col-lg-12">
                                 <input id="bidang_usaha_tambah" name="bidang_usaha_tambah" type="text" placeholder="" class="form-control class-readonly">
 
                             </div>
                         </div>
-
-
-
-                    </div>
-                    <div class="form-group row">
-
 
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Nama Direktur</label>
@@ -162,19 +165,19 @@
 
                             </div>
                         </div>
+                        
+                        
+                        
+                    </div>
+                    <div class="form-group row">
+                        
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Key Person</label>
                             <div class="col-lg-12">
                                 <input id="key_person_tambah" name="key_person_tambah" type="text" placeholder="" class="form-control class-readonly">
-
+    
                             </div>
                         </div>
-
-
-
-                    </div>
-                    <div class="form-group row">
-
 
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Alamat Kantor</label>
@@ -183,63 +186,44 @@
 
                             </div>
                         </div>
+                        
+                        
+                        
+                    </div>
+                    <div class="form-group row">
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Alamat Gudang/ Pabrik/ Workshop</label>
                             <div class="col-lg-12">
                                 <textarea class="form-control" id="alamat_gudang_tambah" name="alamat_gudang_tambah" rows="3"></textarea>
-
                             </div>
                         </div>
-
-
-
-                    </div>
-                    <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Group Debitur</label>
                             <div class="col-lg-12">
                                 <input id="group_debitur_tambah" name="group_debitur_tambah" type="text" placeholder="" class="form-control class-readonly">
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <h2 class="text-center text-danger">Data Proyek</h2>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Nama Proyek</label>
                             <div class="col-lg-12">
                                 <input id="nama_proyek_tambah" name="nama_proyek_tambah" type="text" placeholder="" class="form-control class-readonly">
-
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Nomor SPK/ SPPBJ/ Gunning/ Kontrak</label>
                             <div class="col-lg-12">
                                 <input id="nomor_spk_tambah" name="nomor_spk_tambah" type="text" placeholder="" class="form-control class-readonly">
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Tanggal SPK/ SPPBJ/ Gunning/ Kontrak</label>
                             <div class="col-lg-12">
                                 <input id="tanggal_spk_tambah" name="tanggal_spk_tambah" type="date" placeholder="" class="form-control class-readonly">
-
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -249,36 +233,22 @@
                                 <p>Nilai Proyek: <span id="nilai_proyek_tambah_separator" class="mask"></span></p>
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Alamat Proyek</label>
                             <div class="col-lg-12">
                                 <textarea class="form-control" id="alamat_proyek_tambah" name="alamat_proyek_tambah" rows="3"></textarea>
-
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Pemberi Kerja (Bouwheer)</label>
                             <div class="col-lg-12">
                                 <input id="pemberi_kerja_tambah" name="pemberi_kerja_tambah" type="text" placeholder="" class="form-control class-readonly">
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Penandatangan Kontrak (Bouwheer)</label>
                             <div class="col-lg-12">
@@ -289,31 +259,20 @@
                             <label class="col-lg-12 control-label">Alamat Pemberi Kerja</label>
                             <div class="col-lg-12">
                                 <textarea class="form-control" id="alamat_pemberi_tambah" name="alamat_pemberi_tambah" rows="3"></textarea>
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Upload Dokumen Kontrak Proyek</label>
                             <div class="col-lg-12">
                                 <input type="file" class="form-control form-control-file" name="upload_dokumen_tambah" id="upload_dokumen_tambah" accept=".pdf">
                                 <small class="form-text text-muted">File PDF, maksimal 2 MB</small>
-
                             </div>
                         </div>
-
                     </div>
                     <h2 class="text-center text-danger">Pengajuan Kredit</h2>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Tanggal Permohonan</label>
                             <div class="col-lg-12">
@@ -327,14 +286,8 @@
                                 <p>Plafond: <span id="plafond_separator" class="mask"></span></p>
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div class="form-group row">
-
-
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Tujuan Pengajuan</label>
                             <div class="col-lg-12">
@@ -351,28 +304,15 @@
                                             <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                         <?php  } ?>
                                     </select>
-
-
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <div id="input_agunan" class=""></div>
                         </div>
-
-
-
-
                     </div>
-
-
-
                 </div>
                 <div id="921_fb" class="modal-footer">
                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Tutup</button>
@@ -382,7 +322,6 @@
                     <br>
                     <br>
                 </div>
-
             </form>
         </div>
     </div>
@@ -390,12 +329,10 @@
 <div id="modal_pengajuan_detail" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-
             <div class="modal-body">
                 <div class="modal-header" style="padding:10px">
                     <h3 class="modal-title">Unit Kerja</h3>
                 </div>
-
                 <div class="wrapper wrapper-content  animated fadeInRight">
                     <div class="row">
                         <div class="col-sm-12">
@@ -406,11 +343,9 @@
                                     <!-- <p>
                                         Berikut adalah detail permohonan e-form dari <div id="nama_nasabah_detail"></div>
                                     </p> -->
-
                                     <div class="clients-list">
                                         <ul class="nav nav-tabs">
                                             <li><a class="nav-link active" data-toggle="tab" href="#tab-1"><i class="fa fa-university"></i> Unit Kerja</a></li>
-
                                         </ul>
                                         <div class="tab-content">
                                             <div id="tab-1" class="tab-pane active">
@@ -418,7 +353,6 @@
                                                     <div class="table-responsive">
                                                         <table class="table table-striped table-hover">
                                                             <tbody>
-
                                                                 <tr>
                                                                     <td class="font-weight-bold">Kode Unit</td>
                                                                     <td id="dkd_pengajuan"></td>
@@ -471,35 +405,24 @@
                                                                     <td class="font-weight-bold">Didaftarkan oleh Unit Kerja/ Induk</td>
                                                                     <td id="dkd_cab_pengajuan"></td>
                                                                 </tr>
-
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
                 <div id="702_fb" class="modal-footer">
                     <button type="button" class="btn btn-danger cabut-readonly" data-dismiss="modal">Tutup</button>
                     <!-- <input id="btns_702" class="btn btn-sm btn-primary m-t-n-xs" type="submit" value="Hapus"> -->
-
                 </div>
             </div>
             <!-- </form> -->
-
         </div>
     </div>
 </div>

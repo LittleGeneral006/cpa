@@ -1,3 +1,34 @@
+<h1>Lampiran FCR Agunan</h1>
+                        <fieldset>
+                            <h2>Lampiran FCR Agunan</h2>
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_tanah" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Tanah</button>
+                                    <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_bangunan" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Bangunan</button>
+                                    <!-- <button type="button"  class="btn btn-primary btn-tambah" id="btn_tambah_lingkungan" style="display:none"><i class="fa fa-plus"></i> Lingkungan</button> -->
+                                    <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_barang_bergerak" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Barang Bergerak</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <!-- agunan dinamis disini -->
+                                <div id="tanah_dinamis">
+
+                                </div>
+                                <div id="bangunan_dinamis">
+
+                                </div>
+                                <div id="bb_dinamis">
+
+                                </div>
+                                <!-- agunan dinamis disini -->
+
+                            </div>
+
+                        </fieldset>
 <script>
     $(document).ready(function() {
         refresh_fcr_agunan()
