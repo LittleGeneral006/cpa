@@ -140,36 +140,42 @@
             <label class="col-lg-12 control-label">Gaji Direktur</label>
             <div class="col-lg-12">
                 <input id="gaji_direktur_fak_modal" name="gaji_direktur_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="gaji_direktur_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Gaji Pengawas</label>
             <div class="col-lg-12">
                 <input id="gaji_pengawas_fak_modal" name="gaji_pengawas_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="gaji_pengawas_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Gaji Staf</label>
             <div class="col-lg-12">
                 <input id="gaji_staf_fak_modal" name="gaji_staf_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="gaji_staf_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Biaya Umum</label>
             <div class="col-lg-12">
                 <input id="biaya_umum_fak_modal" name="biaya_umum_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="biaya_umum_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Jumlah</label>
             <div class="col-lg-12">
                 <input id="jumlah_total_biaya_umum_fak_modal" name="jumlah_total_biaya_umum_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="jumlah_total_biaya_umum_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Total</label>
             <div class="col-lg-12">
                 <input id="total_biaya_umum_fak_modal" name="total_biaya_umum_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="total_biaya_umum_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -180,6 +186,7 @@
             <label class="col-lg-6 control-label">Persiapan dan Pekerjaan</label>
             <div class="col-lg-12">
                 <input id="persiapan_pekerjaan_fak_modal" name="persiapan_pekerjaan_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="persiapan_pekerjaan_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -188,6 +195,7 @@
             <label class="col-lg-6 control-label">Biaya Umum/ Adm</label>
             <div class="col-lg-12">
                 <input id="biaya_umum_adm_fak_modal" name="biaya_umum_adm_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="biaya_umum_adm_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -196,6 +204,7 @@
             <label class="col-lg-6 control-label">Total</label>
             <div class="col-lg-12">
                 <input id="jumlah_kebutuhan_modal_kerja_fak_modal" name="jumlah_kebutuhan_modal_kerja_fak_modal" type="text" placeholder="" value="0" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="jumlah_kebutuhan_modal_kerja_fak_modal    _separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -289,5 +298,5 @@
         </div>
     </div>
 </fieldset>
-<?php // } 
+<?php //} 
 ?>

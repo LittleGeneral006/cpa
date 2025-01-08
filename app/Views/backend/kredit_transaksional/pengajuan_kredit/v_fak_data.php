@@ -204,7 +204,7 @@
             <div class="col-lg-3">
                 <label class="col-lg-12 control-label">Nilai Sebelum PPN</label>
                 <div class="col-lg-12">
-                    <input id="nilai_sebelum_ppn_pp_fak_data0" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(0)" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <input id="nilai_sebelum_ppn_pp_fak_data0" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(0,'nilai_sebelum_ppn_pp_fak_data0','nilai_sebelum_ppn_pp_fak_data0_separators','nilai_sesudah_ppn_pp_fak_data0_separators')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     <p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data0_separators" class="mask"></span></p>
                 </div>
             </div>
@@ -248,7 +248,6 @@
             <div class="col-lg-12">
                 <input id="jumlah_nilai_sesudah_ppn_total_pp_fak_data" name="jumlah_nilai_sesudah_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 <p>Nominal: <span id="jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators" class="mask"></span></p>
-
             </div>
         </div>
     </div>

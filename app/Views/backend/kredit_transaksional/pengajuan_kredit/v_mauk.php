@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <input id="maksimum_fasilitas_mauk" name="maksimum_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-
+                                    <p>Nominal: <span id="maksimum_fasilitas_mauk_separators" class="mask"></span></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <input id="plafond_fasilitas_mauk" name="plafond_fasilitas_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-
+                                    <p>Nominal: <span id="plafond_fasilitas_mauk_separators" class="mask"></span></p>
                                 </div>
                                 <div class="col-lg-2">
                                     <label class="col-lg-6 control-label">Jangka Waktu</label>
@@ -271,6 +271,7 @@
                                             <label class="col-lg-24 control-label">Maksimum Kredit yang Diusulkan</label>
                                             <div class="col-lg-12">
                                                 <input id="max_kredit_usul_mauk0" name="max_kredit_usul_mauk[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+
                                             </div>
                                         </div>
                                     </div>
@@ -320,6 +321,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <input id="maksimum_kredit_mauk" name="maksimum_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                    <p>Nominal: <span id="maksimum_kredit_mauk_separators" class="mask"></span></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -328,6 +330,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <input id="plafond_kredit_mauk" name="plafond_kredit_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                    <p>Nominal: <span id="plafond_kredit_mauk_separators" class="mask"></span></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -344,6 +347,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <input id="pendanaan_sendiri_mauk" name="pendanaan_sendiri_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                                    <p>Nominal: <span id="pendanaan_sendiri_mauk_separators" class="mask"></span></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -395,6 +399,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <textarea id="hitung_provisi_fee_mauk" name="hitung_provisi_fee_mauk" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>></textarea>
+                                    <p>Nominal: <span id="hitung_provisi_fee_mauk_separators" class="mask"></span></p>
                                 </div>
                             </div>
                             <div class="form-group row">

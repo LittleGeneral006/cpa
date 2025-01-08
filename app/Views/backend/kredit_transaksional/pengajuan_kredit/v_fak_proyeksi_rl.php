@@ -12,6 +12,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="nilai_kontrak_fak_rl" name="nilai_kontrak_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="nilai_kontrak_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -23,6 +24,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="pekerjaan_persiapan_konstruksi_fak_rl" name="pekerjaan_persiapan_konstruksi_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="pekerjaan_persiapan_konstruksi_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -34,6 +36,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="laba_kotor_fak_rl" name="laba_kotor_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="laba_kotor_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -45,6 +48,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="biaya_umum_adm_fak_rl" name="biaya_umum_adm_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="biaya_umum_adm_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -56,6 +60,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="laba_usaha_fak_rl" name="laba_usaha_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="laba_usaha_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -67,6 +72,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="bunga_provisi_bank_fak_rl" name="bunga_provisi_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="bunga_provisi_bank_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -78,6 +84,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="laba_sebelum_pajak_fak_rl" name="laba_sebelum_pajak_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="laba_sebelum_pajak_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -89,6 +96,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="pajak_pph_ppn_fak_rl" name="pajak_pph_ppn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="pajak_pph_ppn_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -100,6 +108,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="laba_bersih_fak_rl" name="laba_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="laba_bersih_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -151,6 +160,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="harga_borongan_fak_rl" name="harga_borongan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="harga_borongan_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -168,6 +178,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="penerimaan_uang_muka_fak_rl" name="penerimaan_uang_muka_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="penerimaan_uang_muka_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -185,6 +196,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="penerimaan_termijn_fak_rl" name="penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="penerimaan_termijn_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -202,6 +214,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="penerimaan_termijn_pemeliharaan_fak_rl" name="penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="penerimaan_termijn_pemeliharaan_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -219,6 +232,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="penerimaan_bersih_fak_rl" name="penerimaan_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="penerimaan_bersih_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -236,6 +250,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="pajak_ppn_pph_fak_rl" name="pajak_ppn_pph_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="pajak_ppn_pph_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -252,6 +267,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="kosong_bersih_fak_rl" name="kosong_bersih_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="kosong_bersih_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -269,6 +285,7 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="kredit_bank_fak_rl" name="kredit_bank_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="kredit_bank_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
