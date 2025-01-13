@@ -2121,7 +2121,7 @@
                     '<div class="col-lg-6">' +
                     '<label class="col-lg-12 control-label">Luas Bangunan Lantai 1(M2)</label>' +
                     '<div class="col-lg-12">' +
-                    '<input id="lantai1_bangunan' + hitung_bangunan + '" name="lantai[]" type="number" placeholder="" class="form-control class-readonly lantai" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                    '<input id="lantai1_bangunan' + hitung_bangunan + '" name="lantai[]" data-bangunan="' + hitung_bangunan + '" type="number" placeholder="" class="form-control class-readonly lantai" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -2145,6 +2145,7 @@
                     '</div>' +
                     '</div>' +
                     '<h3 class="text-left text-success">Harga Bangunan Lantai 1</h3>' +
+                    '<div class="add-form_harga_bangunan">' +
                     '<div class="row">' +
                     ' <div class="col-lg-6">' +
                     '<label class="col-lg-12 control-label">Menurut Harga Perolehan</label>' +
@@ -2159,7 +2160,6 @@
                     '<div class="col-lg-12">' +
                     '<input id="menurut_pasar_fag' + hitung_bangunan + '" name="menurut_pasar_fag[]" type="number" placeholder="" class="form-control class-readonly menurut_pasar_fag" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
                     '<p>Menurut Pasar/ Pemilik: <span id="menurut_pasar_fag' + hitung_bangunan + '_separator" class="mask"></span></p>' +
-
                     ' </div>' +
                     '</div>' +
                     '</div>' +
@@ -2168,11 +2168,9 @@
                     '<label class="col-lg-12 control-label">Keterangan Lain</label>' +
                     '<div class="col-lg-12">' +
                     '<input id="keterangan_lain_fag' + hitung_bangunan + '" name="keterangan_lain_fag[]" type="text" placeholder="" class="form-control class-readonly keterangan_lain_fag" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
-
-
                     '</div>' +
                     '</div>' +
-
+                    '</div>' +
                     '</div>' +
                     '<h2 class="text-center text-success">Lingkungan</h2>' +
                     '<div class="row">' +
@@ -2270,6 +2268,19 @@
                     '</div>' +
                     '</div>' +
                     '</div>' +
+                    '</div>' +
+                    '<div class="copy-harga_bangunan' + hitung_bangunan + ' invisible">' +
+                    '<div class="row new" id="new">' +
+                    '<div class="form-group row">' +
+                    '<div class="col-md-12">' +
+                    '<div class="input-group">' +
+                    '<div class="input-group-append">' +
+                    '<button name="hapus_harga_bangunan_fcr_agunan" class="btn btn-danger hapus_harga_bangunan_fcr_agunan delete-btn-harga_bangunan-fcr-agunan" type="button" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
                     '</div>';
                 $("#bangunan_dinamis").append(inputan_bangunan);
                 $("#gambar_situasi_dinamis").append(modal_gambar);
@@ -2308,37 +2319,79 @@
                             '<div class="col-lg-6">' +
                             '<label class="col-lg-12 control-label">Luas Bangunan Lantai ' + jumlahisilantai + '(M2)</label>' +
                             '<div class="col-lg-12">' +
-                            '<input id="lantai' + jumlahisilantai + '_bangunan' + hitung_bangunan + '" name="lantai[]" type="number" placeholder="" class="form-control class-readonly lantai" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                            '<input id="lantai' + jumlahisilantai + '_bangunan' + hitung_bangunan + '" name="lantai[]" data-bangunan="' + hitung_bangunan + '" type="number" placeholder="" class="form-control class-readonly lantai" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
                             '</div>' +
                             '</div>' +
                             '</div>';
 
+                        var html2 = $(".copy-harga_bangunan" + hitung_bangunan).html();
+                        $(".add-form_harga_bangunan").after(html2);
+                        var html21 =
+                            ' <div class="col-lg-6">' +
+                            '<label class="col-lg-12 control-label">Menurut Harga Perolehan</label>' +
+                            '<div class="col-lg-12">' +
+                            '<input id="menurut_harga_perolehan' + hitung_bangunan + '" name="menurut_harga_perolehan[]" type="number" placeholder="" class="form-control class-readonly menurut_harga_perolehan" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                            '<p>Menurut Harga Perolehan: <span id="menurut_harga_perolehan' + hitung_bangunan + '_separator" class="mask"></span></p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-lg-6">' +
+                            '<label class="col-lg-12 control-label">Menurut Pasar/ Pemilik</label>' +
+                            '<div class="col-lg-12">' +
+                            '<input id="menurut_pasar_fag' + hitung_bangunan + '" name="menurut_pasar_fag[]" type="number" placeholder="" class="form-control class-readonly menurut_pasar_fag" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                            '<p>Menurut Pasar/ Pemilik: <span id="menurut_pasar_fag' + hitung_bangunan + '_separator" class="mask"></span></p>' +
+                            ' </div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="row">' +
+                            ' <div class="col-lg-6">' +
+                            '<label class="col-lg-12 control-label">Keterangan Lain</label>' +
+                            '<div class="col-lg-12">' +
+                            '<input id="keterangan_lain_fag' + hitung_bangunan + '" name="keterangan_lain_fag[]" type="text" placeholder="" class="form-control class-readonly keterangan_lain_fag" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                            '</div>' +
+                            '</div>';
+
                         $(".lantai_bangunan" + hitung_bangunan).append(html11);
-
-                        $("body").on("input", "input[name='lantai[]']", function() {
-                            const inputs = $("input[name='lantai[]']");
-                            let total = 0;
-                            inputs.each(function() {
-                                const nilai = parseFloat($(this).val()) || 0;
-                                total += nilai;
-                            });
-
-                            const fix = total;
-                            $("#total_bangunan" + hitung_bangunan).val(fix);
-                        });
-
+                        $(".delete-btn-harga_bangunan-fcr-agunan").first().after(html21);
+                        updateTotalLuasBangunan(hitung_bangunan);
                         jumlahisilantai++;
                         resizeJquerySteps();
                     }
                 });
                 // saat tombol remove dklik control group akan dihapus
 
+                // $("body").on("click", ".hapus_lantai_fcr_agunan", function() {
+                //     var inputId = $(this).closest('.row').find('input').attr('id');
+                //     if (inputId) {
+                //         var lantaiIndex = inputId.match(/\d+/)[0];
+                //     }
+                //     $(this).closest('.row').remove();
+                //     $(".add-form_harga_bangunan .row").each(function() {
+                //         if ($(this).find('input').attr('id').includes(lantaiIndex)) {
+                //             $(this).remove();
+                //         }
+                //     });
+                //     jumlahisilantai--;
+                //     resizeJquerySteps();
+                // });
+                // $("body").on("click", ".hapus_lantai_fcr_agunan", function() {
+                //     $(this).parents("#new").remove();
+                //     jumlahisilantai--;
+                //     // angkalantai--;
+                //     // angkalantaiinput--;
+                //     // $("#jumlah_lantai_fak_data").val(angkalantai);
+                //     resizeJquerySteps();
+                // });
+
                 $("body").on("click", ".hapus_lantai_fcr_agunan", function() {
-                    $(this).parents("#new").remove();
+                    const lantaiIndex = $(this).closest("#new").index(); // Ambil index elemen yang akan dihapus
+
+                    // Hapus elemen lantai
+                    $(this).closest("#new").remove();
                     jumlahisilantai--;
-                    // angkalantai--;
-                    // angkalantaiinput--;
-                    // $("#jumlah_lantai_fak_data").val(angkalantai);
+
+                    // Cari dan hapus elemen dengan kelas .hapus_harga_bangunan_fcr_agunan dengan index yang sama
+                    $(".hapus_harga_bangunan_fcr_agunan").eq(lantaiIndex).remove();
+
                     resizeJquerySteps();
                 });
 
@@ -2350,6 +2403,17 @@
 
         // $('#tanah_dinamis').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="addmore[][name]" placeholder="Enter your Name" class="form-control name_list" required /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
     });
+
+    function updateTotalLuasBangunan(hitung_bangunan) {
+        $("body").on("input", "input[data-bangunan='" + hitung_bangunan + "']", function() {
+            let total = 0;
+            $("input[data-bangunan='" + hitung_bangunan + "']").each(function() {
+                const nilai = parseFloat($(this).val()) || 0;
+                total += nilai;
+            });
+            $("#total_bangunan" + hitung_bangunan).val(total);
+        });
+    }
 
     $('#form').on('click', '.btn_hapus_bangunan', function() {
         if (confirm('Yakin ingin menghapus form input bangunan ini?')) {
