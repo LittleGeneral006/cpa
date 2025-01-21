@@ -445,7 +445,7 @@
                     </select>
                     <br>
                     <table class="table-responsive" border="0">
-                        <tr>
+                        <!-- <tr>
                             <td>
                                 <h3>Hasil Scoring</h3>
                             </td>
@@ -455,7 +455,7 @@
                             <td>
                                 <h3 id="hasil_scoring_koor" class="text-danger">-</h3>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>
                                 <h3>Keterangan</h3>
@@ -467,11 +467,11 @@
                                 <h3 id="ket_hasil_koor" class="text-danger">-</h3>
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td><small>Note: Passing Grade > 325</small></td>
                             <td></td>
                             <td></td>
-                        </tr>
+                        </tr> -->
                     </table>
 
 

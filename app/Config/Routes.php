@@ -103,7 +103,8 @@ $routes->post('/assign/edit_assign', 'Assign::edit_assign');
 
 // pengajuan kredit transaksional
 $routes->get('/pengajuan-kredit-transaksional', 'Pengajuan::v_pengajuan');
-$routes->get('/pengajuan/tabel_pengajuan', 'Pengajuan::tabel_pengajuan');
+$routes->get('/pengajuan-approved/(:any)', 'Pengajuan::v_pengajuan/$1');
+$routes->get('/pengajuan/tabel_pengajuan/(:any)', 'Pengajuan::tabel_pengajuan/$1');
 // simpan pengajuan
 $routes->post('/pengajuan/simpan_pengajuan', 'Pengajuan::simpan_pengajuan');
 $routes->get('/pengajuan/dokumen', 'Pengajuan::dokumen');

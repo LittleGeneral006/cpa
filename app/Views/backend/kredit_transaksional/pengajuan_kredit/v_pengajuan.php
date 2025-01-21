@@ -10,12 +10,16 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Pengajuan Kredit Transaksional</h2>
+        <?php if ($pengajuan_approved == 1) { ?>
+            <h2>Pengajuan Kredit Transaksional Approved</h2>
+        <?php } else { ?>
+            <h2>Pengajuan Kredit Transaksional</h2>
+        <?php } ?>
         <!-- <strong>Data Tables</strong> -->
     </div>
     <div class="col-lg-2 text-right">
         <br>
-        <?php if ($tambah_pengajuan_kredit_transaksional) { ?>
+        <?php if ($tambah_pengajuan_kredit_transaksional && $pengajuan_approved == 0) { ?>
             <button id="tambah_pengajuan" class="btn-primary btn" onclick="tambah_pengajuan()"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Data</span></button>
         <?php } ?>
     </div>
@@ -165,17 +169,17 @@
 
                             </div>
                         </div>
-                        
-                        
-                        
+
+
+
                     </div>
                     <div class="form-group row">
-                        
+
                         <div class="col-lg-6">
                             <label class="col-lg-12 control-label">Key Person</label>
                             <div class="col-lg-12">
                                 <input id="key_person_tambah" name="key_person_tambah" type="text" placeholder="" class="form-control class-readonly">
-    
+
                             </div>
                         </div>
 
@@ -186,9 +190,9 @@
 
                             </div>
                         </div>
-                        
-                        
-                        
+
+
+
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-6">
@@ -662,7 +666,7 @@
             "serverSide": true,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "<?php echo base_url() ?>pengajuan/tabel_pengajuan",
+            "sAjaxSource": "<?php echo base_url() ?>pengajuan/tabel_pengajuan/" + <?= $pengajuan_approved ?>,
             "columnDefs": [{
                     "targets": 0,
                     "width": "15%"
