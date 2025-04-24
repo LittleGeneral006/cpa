@@ -264,8 +264,36 @@
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
             // Mengirim data menggunakan AJAX
-            var hasil_recap = data_recap();
-            post_recap('edit_recap', hasil_recap, 'edit_recap')
+            // var hasil_recap = data_recap();
+            // post_recap('edit_recap', hasil_recap, 'edit_recap')
+            if (edit_data_pemasar) {
+                var hasil_recap = data_recap();
+                post_recap('edit_recap', hasil_recap, 'edit_recap');
+                return;
+            }
+
+            // Jika edit_data_pemasar kosong, cek checkbox
+            if (edit_data_koordinator) {
+                if (!$('#cb_data_entry').prop('checked') && !$('#cb_fcr').prop('checked') && !$('#cb_fcr_usaha').prop('checked') && !$('#cb_fcr_agunan').prop('checked') && !$('#cb_dokumen').prop('checked')) {
+                    $('#mohon').hide();
+                    toastr.warning('Anda harus mencentang checkbox paraf sebelum melanjutkan.', 'Peringatan');
+                    return;
+                } else {
+                    var hasil_recap = data_recap();
+                    post_recap('edit_recap', hasil_recap, 'edit_recap');
+                }
+            }
+
+            if (!edit_data_koordinator && !edit_data_pemasar) {
+                if (!$('#cb_data_entry').prop('checked') && !$('#cb_fcr').prop('checked') && !$('#cb_fcr_usaha').prop('checked') && !$('#cb_fcr_agunan').prop('checked') && !$('#cb_dokumen').prop('checked') && !$('#cb_fak_data').prop('checked') && !$('#cb_fak_modal').prop('checked') && !$('#cb_fak_rl').prop('checked') && !$('#cb_lap_rl').prop('checked') && !$('#cb_cef').prop('checked') && !$('#cb_faa').prop('checked') && !$('#cb_mauk').prop('checked') && !$('#cb_dcl').prop('checked') && !$('#cb_scoring').prop('checked')) {
+                    $('#mohon').hide();
+                    toastr.warning('Anda harus mencentang checkbox paraf sebelum melanjutkan.', 'Peringatan');
+                    return;
+                } else {
+                    var hasil_recap = data_recap();
+                    post_recap('edit_recap', hasil_recap, 'edit_recap');
+                }
+            }
         });
 
         $('#save_return').click(function(e) {

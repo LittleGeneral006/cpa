@@ -153,6 +153,14 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_fcr" title="Checkbox ini sebagai paraf" name="cb_fcr" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -160,6 +168,7 @@
 </fieldset>
 
 <script>
+    var kd_level = <?= json_encode(session()->get('kd_level_user')) ?>;
     $(document).ready(function() {
 
         // memberi nilai awal edit Data Entry
@@ -171,9 +180,17 @@
             e.preventDefault(); // Mencegah form untuk submit secara default
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            var data_fcr2 = data_data_fcr();
-            // Mengirim data menggunakan AJAX
-            post_fcr('edit_fcr', data_fcr2, 'save_fcr')
+
+            if (edit_data_pemasar) {
+                // Jika edit_data_koordinator null atau kosong
+                var data_fcr2 = data_data_fcr();
+                // Mengirim data menggunakan AJAX
+                post_fcr('edit_fcr', data_fcr2, 'save_fcr')
+            } else {
+                // Jika edit_data_koordinator memiliki nilai
+                var data_fcr2 = paraf_fcr();
+                post_paraf('paraf_fcr', data_fcr2, 'save_fcr');
+            }
 
         });
 
@@ -184,6 +201,8 @@
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr;
+                var data_paraf = hasil.message.paraf;
+                // console.log(data_paraf.nama_halama);
                 // alert(data.kd_data)
                 // unit_kerja_fcr()
                 $('#kd_data_tambah').val(hasil.message.data_entry.kd_data);
@@ -203,6 +222,22 @@
                 $('#hasil_kunjungan_edit').val(data.hasil_kunjungan);
                 $('#tindak_lanjut_edit').val(data.tindak_lanjut);
 
+                if (Array.isArray(data_paraf) && data_paraf.length > 0) {
+                    let paraf = data_paraf.find(p => p.nomor_halaman == '2'); // Cari nomor_halaman = 4
+
+                    if (paraf && paraf.kd_level && typeof kd_level !== "undefined" &&
+                        paraf.kd_level === kd_level &&
+                        paraf.kd_data === data.kd_data &&
+                        paraf.nama_halaman === 'FCR') {
+
+                        $('#cb_fcr').prop('checked', paraf.ceklis === 'true');
+                    } else {
+                        $('#cb_fcr').prop('checked', false);
+                    }
+                } else {
+                    $('#cb_fcr').prop('checked', false);
+                }
+
             } else {
                 alert(hasil.message)
             }
@@ -221,13 +256,11 @@
                     success: function(data) {
                         var options = data.unit;
                         var select = $('#kd_unit_kerja_edit');
-
                         select.empty();
                         // Tambahkan opsi "Pilih" yang dipilih dan dinonaktifkan
                         var defaultOption = new Option('Pilih', '', true, true);
                         $(defaultOption).prop('disabled', true);
                         select.append(defaultOption);
-
                         $.each(options, function(index, option) {
                             var newOption = new Option(option.kd_unit + ' - ' + option.nama_unit, option.kd_unit, false, false);
                             if (option.kd_unit === kd_unit) {
@@ -235,7 +268,6 @@
                             }
                             select.append(newOption);
                         });
-
                         select.select2({
                             placeholder: 'Pilih',
                             dropdownParent: $('#kd_unit_kerja_edit').parent()
@@ -245,11 +277,9 @@
                         console.log("Error get data");
                     }
                 });
-
             } else {
                 alert(hasil.message)
             }
-
         });
     }
 
@@ -262,7 +292,6 @@
     function data_data_fcr() {
         var data_fcr1 = {
             kd_data_tambah: $('#kd_data_tambah').val(),
-
             nomor_edit: $('#nomor_edit').val(),
             tanggal_edit: $('#tanggal_edit').val(),
             nama_debitur_edit: $('#nama_debitur_edit').val(),
@@ -277,7 +306,6 @@
             tujuan_kunjungan_edit: $('#tujuan_kunjungan_edit').val(),
             hasil_kunjungan_edit: $('#hasil_kunjungan_edit').val(),
             tindak_lanjut_edit: $('#tindak_lanjut_edit').val(),
-
             // upload dokumen
         };
         return data_fcr1;
@@ -313,5 +341,19 @@
             }
         });
 
+    }
+
+    function paraf_fcr() {
+        var data_fcr = {
+            kd_data_tambah: $('#kd_data_tambah').val(),
+
+            unit_kerja_tambah: $('#unit_kerja_tambah').val(),
+            nomor_halaman: '2',
+            nama_halaman: 'FCR',
+
+            cb_fcr: $('#cb_fcr').is(':checked')
+            // upload dokumen
+        };
+        return data_fcr;
     }
 </script>

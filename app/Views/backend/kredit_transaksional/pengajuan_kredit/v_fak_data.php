@@ -57,10 +57,16 @@
             <label class="col-lg-12 control-label">PPN</label>
             <div class="col-lg-4">
                 <div class="input-group">
-                    <input id="ppn_fak_data" name="ppn_fak_data" type="text" onkeyup="copyvalue2(this.id,'ppn_pp_fak_data0','ppn_fak_modal')" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <!-- <input id="ppn_fak_data" name="ppn_fak_data" type="text" onkeyup="copyvalue2(this.id,'ppn_pp_fak_data0','ppn_fak_modal')" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
-                    </div>
+                    </div> -->
+                    <select name="ppn_fak_data" id="ppn_fak_data" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                        <option value="">-- pilih --</option>
+                        <option value="10">10%</option>
+                        <option value="11">11%</option>
+                        <option value="12">12%</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -355,6 +361,16 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="jumlah_termijn_fak_data" name="jumlah_termijn_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_fak_data" title="Checkbox ini sebagai paraf" name="cb_fak_data"
+                    <?php echo (empty($edit_data) && empty($edit_data_koordinator)) ? '' : 'disabled'; ?>>
+
             </div>
         </div>
     </div>

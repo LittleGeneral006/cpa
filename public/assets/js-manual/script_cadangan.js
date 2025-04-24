@@ -1678,11 +1678,11 @@ function isi_fak_data() {
           separator_edit(nilaisesudahppnpp[0], "nilai_sesudah_ppn_pp_fak_data" + i + "_separators");
         } else {
           var index = lengthpp - 1 - i;
-          var html1 = $(".copy-pp").html();
           separator_input("nilai_sebelum_ppn_pp_fak_data" + i, "nilai_sebelum_ppn_pp_fak_data" + i + "_separators");
           separator_input("nilai_sesudah_ppn_pp_fak_data" + i, "nilai_sesudah_ppn_pp_fak_data" + i + "_separators");
           separator_edit(nilaisebelumppnpp[index], "nilai_sebelum_ppn_pp_fak_data" + i + "_separators");
           separator_edit(nilaisesudahppnpp[index], "nilai_sesudah_ppn_pp_fak_data" + i + "_separators");
+          var html1 = $(".copy-pp").html();
           $(".add-form-pp").after(html1);
           var html11 =
             '<div class="col-lg-3">' +
@@ -1823,9 +1823,9 @@ function isi_fak_data() {
           $("#prakiraan_tgl_termijn_fak_data" + i).val(prakiraantgltermijn[0]);
         } else {
           var index = lengthtermijn - 1 - i;
-          var html1 = $(".copy-termijn").html();
-          $(".add-form-termijn-fak-data").after(html1);
-          var html11 =
+          var html2 = $(".copy-termijn").html();
+          $(".add-form-termijn-fak-data").after(html2);
+          var html21 =
             '<div class="col-lg-4">' +
             '<label class="col-lg-6 control-label">Termijn</label>' +
             '<input id="termijn_fak_data' +
@@ -1879,7 +1879,7 @@ function isi_fak_data() {
             is_disabled +
             ">" +
             "</div>";
-          $(".delete-btn-termijn-fak-data").first().after(html11);
+          $(".delete-btn-termijn-fak-data").first().after(html21);
         }
       }
       resizeJquerySteps();

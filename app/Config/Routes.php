@@ -111,6 +111,12 @@ $routes->get('/pengajuan/dokumen', 'Pengajuan::dokumen');
 $routes->get('/edit-pengajuan-kredit-transaksional/(:any)', 'Pengajuan::edit_pengajuan/$1');
 $routes->get('/dokumen-kontrak-proyek/(:any)', 'Pengajuan::lihat_dokumen/$1');
 $routes->post('/pengajuan/edit_data_entry', 'Pengajuan::edit_data_entry');
+$routes->post('/pengajuan/paraf_data_entry', 'Pengajuan::paraf_data_entry');
+$routes->post('/pengajuan/paraf_fcr', 'Pengajuan::paraf_fcr');
+$routes->post('/pengajuan/paraf_fcr_usaha', 'Pengajuan::paraf_fcr_usaha');
+$routes->post('/pengajuan/paraf_fcr_agunan', 'Pengajuan::paraf_fcr_agunan');
+$routes->post('/pengajuan/paraf_dokumen_ceklis', 'Pengajuan::paraf_dokumen_ceklis');
+$routes->post('/pengajuan/paraf_scoring', 'Pengajuan::paraf_scoring');
 $routes->get('/pengajuan/cek_agunan/(:any)', 'Pengajuan::cek_agunan/$1');
 
 $routes->get('/pengajuan/tampil_btn_finish/(:any)', 'Pengajuan::tampil_btn_finish/$1');
@@ -194,4 +200,3 @@ $routes->post('pengajuan/edit_dcl', 'Pengajuan::edit_dcl');
 // data rejected
 $routes->get('/data-rejected', 'Rejected::v_data_rejected');
 $routes->get('/rejected/tabel_rejected', 'Rejected::tabel_rejected');
-

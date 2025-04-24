@@ -273,6 +273,7 @@ class Pengajuan extends BaseController
         if ($hasil == true) {
             $data['title'] = 'Edit Pengajuan Kredit Transaksional';
             $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+            $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
             $data['permission'] = $permission;
             // $data['cek_agunan'] = $cek_agunan;
             $data['edit_pengajuan_kredit_transaksional'] = $this->permission2('Edit Pengajuan Kredit Transaksional');
@@ -298,7 +299,6 @@ class Pengajuan extends BaseController
             } else {
                 $data['edit_data_kepala_cabang'] = null;
             }
-
             if ($data['edit_pengajuan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
                 $data['edit_data_analis_kredit'] = 'boleh edit';
             } else {
@@ -1245,6 +1245,12 @@ class Pengajuan extends BaseController
             'plafond' => $data['plafond'],
             'tujuan' => $data['tujuan_pengajuan'],
         ];
+        $paraf = [
+            'kd_data' => $kd_data,
+            'kd_paraf' => 'PARAF' . gmdate("dmYHis", time() + 60 * 60 * 8),
+            'nama_halaman' => 'Data Entry',
+            'kd_level' => 'LVL23072023133934', //kode level koordinator
+        ];
         $kirim = [
             'kd_data' => $kd_data,
             'kd_kirim' => 'KIRIM' . gmdate("dmYHis", time() + 60 * 60 * 8),
@@ -1290,7 +1296,12 @@ class Pengajuan extends BaseController
                                                                     if ($tb_dcl == true) {
                                                                         $tb_scoring_koor = $this->insert_satuan('kd_data', 'tb_scoring_koordinator', $data_insert['kd_data'], $data_insert);
                                                                         if ($tb_scoring_koor == true) {
-                                                                            $hasil = true;
+                                                                            $tb_paraf = $this->insert_satuan('kd_data', 'tb_paraf', $data_insert['kd_data'], $paraf);
+                                                                            if ($tb_paraf == true) {
+                                                                                $hasil = true;
+                                                                            } else {
+                                                                                $hasil = false;
+                                                                            }
                                                                         } else {
                                                                             $hasil = false;
                                                                         }
@@ -1556,6 +1567,150 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
+    public function paraf_data_entry()
+    {
+        // $cek = $this->request->getFile('upload_dokumen_tambah');
+        // var_dump($cek);
+        // die;
+        // echo json_encode($cek);
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_data_entry' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->data_entry_paraf($hasil,);
+        }
+        echo json_encode($hasil);
+    }
+    public function paraf_fcr()
+    {
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_fcr' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->fcr_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+
+    public function paraf_fcr_usaha()
+    {
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_fcr_usaha' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox FCR Usaha Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->fcr_usaha_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+    public function paraf_fcr_agunan()
+    {
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_fcr_agunan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->fcr_agunan_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+
+    public function paraf_dokumen_ceklis()
+    {
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_dokumen_ceklis' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->dokumen_ceklis_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+    public function paraf_scoring()
+    {
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_scoring' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->scoring_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
     public function data_entry($hasil, $pemanggil)
     {
 
@@ -1728,6 +1883,721 @@ class Pengajuan extends BaseController
                                 </ul>'
             ];
         }
+        return $hasil;
+    }
+
+    // public function simpanParaf($hasil, $nama_halaman, $ceklist_field)
+    // {
+    //     $kd_data = $this->request->getPost('kd_data_tambah');
+
+    //     $data = [
+    //         'kd_data' => $kd_data,
+    //         'nomor_halaman' => $this->request->getPost('nomor_halaman') ?? '0',
+    //         'nama_halaman' => $nama_halaman,
+    //         'kd_level' => session()->get('kd_level_user'),
+    //         'kd_user' => session()->get('kd_unit_user'),
+    //         'ceklis' => $this->request->getPost($ceklist_field),
+
+    //         'pengubah' => session()->get('nama_user'),
+    //         'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+    //     ];
+
+    //     // Cek apakah data sudah ada
+    //     $cek_kd_data = $this->db->query("SELECT kd_data FROM tb_paraf WHERE kd_data = ? AND nama_halaman = ?", [$kd_data, $nama_halaman])->getNumRows();
+
+    //     if ($cek_kd_data > 0) {
+    //         $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+    //         return ['status' => 'success', 'message' => 'Edit ' . $nama_halaman . ' berhasil'];
+    //     } else {
+    //         $this->db->table('tb_paraf')->insert($data);
+    //         return ['status' => 'success', 'message' => 'Tambah ' . $nama_halaman . ' berhasil'];
+    //     }
+    // }
+
+    public function data_entry_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_level = session()->get('kd_level_user');
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_data_entry'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "' AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "'")->getNumRows();
+        if ($cek_kd_data === 1) {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->where('kd_level', $kd_level)->update($data);
+
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Data Entry Gagal'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Data Entry berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+
+    public function fcr_paraf($hasil)
+    {
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_fcr'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "' AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Gagal'
+            ];
+        }
+
+        return $hasil;
+    }
+
+    public function fcr_usaha_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_fcr_usaha'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+       
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Usaha berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Usaha Gagal'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function fcr_agunan_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_fcr_agunan'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Agunan berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Agunan Gagal'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function dokumen_ceklis_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_dokumen_ceklis'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Dokumen Pendukung berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Dokumen Pendukung Gagal'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function scoring_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring Gagal'
+            ];
+        }
+
+        return $hasil;
+    }
+
+    public function fak_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Data berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Data Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function fak_modal_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Modal berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Modal Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function fak_rl_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK RL berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK RL Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function lap_rl_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Laporan RL berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Laporan RL Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function ceftb_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit CEFTB berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit CEFTB Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function faa_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAA berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAA Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function mauk_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit MAUK berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit MAUK Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function dcl_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit DCL berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit DCL Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function scoring_koor_paraf($hasil)
+    {
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring Koordinator berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring Koordinator Berhasil'
+            ];
+        }
+
         return $hasil;
     }
     public function tampil_btn_finish($kd_data)
@@ -2324,6 +3194,13 @@ class Pengajuan extends BaseController
             } else {
                 echo 'Gagal simpan data return';
             }
+            
+            $paraf = $this->db->query("SELECT * from tb_paraf where kd_data = '" . $kd_data . "' ")->getNumRows();
+            if ($paraf > 0) {
+                $this->db->table('tb_paraf')->where('kd_data', $kd_data)->delete();
+            } else {
+                echo 'Gagal simpan data return';
+            }
         }
     }
     public function edit_reject($jenis = '1')
@@ -2351,11 +3228,11 @@ class Pengajuan extends BaseController
                 $nama_unit = $unit->getRow()->nama_unit;
             }
 
-            $nama_level = session()->get('kd_level_user');
-            $level = $this->db->query("SELECT * from tb_level where kd_level = '" . session()->get('kd_level_user') . "' ");
-            if ($level->getNumRows() > 0) {
-                $nama_level = $level->getRow()->nama_level;
-            }
+                $nama_level = session()->get('kd_level_user');
+                $level = $this->db->query("SELECT * from tb_level where kd_level = '" . session()->get('kd_level_user') . "' ");
+                if ($level->getNumRows() > 0) {
+                    $nama_level = $level->getRow()->nama_level;
+                }
 
             $progress = '';
             $posisi_progress = '';
@@ -2426,6 +3303,13 @@ class Pengajuan extends BaseController
             } else {
                 echo 'Gagal simpan data return';
             }
+
+            $paraf = $this->db->query("SELECT * from tb_paraf where kd_data = '" . $kd_data . "' ")->getNumRows();
+            if ($paraf > 0) {
+                $this->db->table('tb_paraf')->where('kd_data', $kd_data)->delete();
+            } else {
+                echo 'Gagal simpan data return';
+            }
         }
     }
     public function ubah_fcr($kd_data, $data)
@@ -2485,6 +3369,8 @@ class Pengajuan extends BaseController
     public function getGlobal()
     {
         $kd_data = $this->request->getPost('kd_data');
+        $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getResultArray();
+        // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['data_master'] = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['fcr'] = $this->db->query("SELECT * FROM tb_fcr WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
@@ -2596,8 +3482,8 @@ class Pengajuan extends BaseController
             $data['pagar'] = explode(";", $detail_fcr->getRow()->pagar);
             $data['taman'] = explode(";", $detail_fcr->getRow()->taman);
             $data['lainnya'] = explode(";", $detail_fcr->getRow()->lainnya);
-            $data['luas_bangunan_lantai1'] = explode(";", $detail_fcr->getRow()->luas_bangunan_lantai1);
-            $data['luas_bangunan_lantai2'] = explode(";", $detail_fcr->getRow()->luas_bangunan_lantai2);
+            $data['luas_bangunan_lantai'] = explode(";", $detail_fcr->getRow()->luas_bangunan_lantai);
+
             $data['total_bangunan'] = explode(";", $detail_fcr->getRow()->total_bangunan);
             $data['kondisi_bangunan'] = explode(";", $detail_fcr->getRow()->kondisi_bangunan);
             $data['harga_bangunan_perolehan'] = explode(";", $detail_fcr->getRow()->harga_bangunan_perolehan);
@@ -3772,7 +4658,7 @@ class Pengajuan extends BaseController
             //         'required' => 'Lainnya Harus diisi',
             //     ]
             // ],
-            // 'lantai1' => [
+            // 'lantai_total' => [
             //     'rules' => 'required',
             //     'errors' => [
             //         'required' => 'lantai 1 diisi',
@@ -4546,7 +5432,7 @@ class Pengajuan extends BaseController
         $pagar = $postData['pagar'] ?? [];
         $taman = $postData['taman'] ?? [];
         $lainnya_fag = $postData['lainnya_fag'] ?? [];
-        $lantai1 = $postData['lantai1'] ?? [];
+        $lantai_total = $postData['lantai_total'] ?? [];
         $lantai2 = $postData['lantai2'] ?? [];
         $total_bangunan = $postData['total_bangunan'] ?? [];
         $kondisi_bangunan = $postData['kondisi_bangunan'] ?? [];
@@ -4771,7 +5657,7 @@ class Pengajuan extends BaseController
         //     echo json_encode($hasil);
         //     die;
         // }
-        // $validationRules = $this->val_foreach($lantai1, 'lantai1', 'lantai 1');
+        // $validationRules = $this->val_foreach($lantai_total, 'lantai_total', 'lantai 1');
         // if (!$this->validate($validationRules)) {
         //     $hasil = [
         //         'status' => 'error',
@@ -4917,8 +5803,8 @@ class Pengajuan extends BaseController
         $pagar = $postData['pagar'] ?? [];
         $taman = $postData['taman'] ?? [];
         $lainnya_fag = $postData['lainnya_fag'] ?? [];
-        $lantai1 = $postData['lantai1'] ?? [];
-        $lantai2 = $postData['lantai2'] ?? [];
+        $lantai_total = $postData['lantai_total'] ?? [];
+        // $lantai2 = $postData['lantai2'] ?? [];
         $total_bangunan = $postData['total_bangunan'] ?? [];
         $kondisi_bangunan = $postData['kondisi_bangunan'] ?? [];
         $menurut_harga_perolehan = $postData['menurut_harga_perolehan'] ?? [];
@@ -5150,7 +6036,7 @@ class Pengajuan extends BaseController
         //     echo json_encode($hasil);
         //     die;
         // }
-        // $validationRules = $this->val_foreach($lantai1, 'lantai1', 'lantai 1');
+        // $validationRules = $this->val_foreach($lantai_total, 'lantai_total', 'lantai 1');
         // if (!$this->validate($validationRules)) {
         //     $hasil = [
         //         'status' => 'error',
@@ -5281,14 +6167,14 @@ class Pengajuan extends BaseController
             'pagar' => !empty($this->request->getPost('pagar')) ? implode(";", $this->request->getPost('pagar')) : '',
             'taman' => !empty($this->request->getPost('taman')) ? implode(";", $this->request->getPost('taman')) : '',
             'lainnya' => !empty($this->request->getPost('lainnya_fag')) ? implode(";", $this->request->getPost('lainnya_fag')) : '',
-            'luas_bangunan_lantai1' => !empty($this->request->getPost('lantai1')) ? implode(";", $this->request->getPost('lantai1')) : '',
-            'luas_bangunan_lantai2' => !empty($this->request->getPost('lantai2')) ? implode(";", $this->request->getPost('lantai2')) : '',
+            'luas_bangunan_lantai' => !empty($this->request->getPost('lantai_total')) ? $this->request->getPost('lantai_total') : '',
+            // 'luas_bangunan_lantai2' => !empty($this->request->getPost('lantai2')) ? implode(";", $this->request->getPost('lantai2')) : '',
             'total_bangunan' => !empty($this->request->getPost('total_bangunan')) ? implode(";", $this->request->getPost('total_bangunan')) : '',
             'kondisi_bangunan' => !empty($this->request->getPost('kondisi_bangunan')) ? implode(";", $this->request->getPost('kondisi_bangunan')) : '',
-            'harga_bangunan_perolehan' => !empty($this->request->getPost('menurut_harga_perolehan')) ? implode(";", $this->request->getPost('menurut_harga_perolehan')) : '',
-            // 'menurut_harga_pasar' => !empty($this->request->getPost('menurut_harga_pasar')) ? implode(";", $this->request->getPost('menurut_harga_pasar')) : '',
-            'harga_bangunan_pasar' => !empty($this->request->getPost('menurut_pasar_fag')) ? implode(";", $this->request->getPost('menurut_pasar_fag')) : '',
-            'keterangan_lain_bangunan' => !empty($this->request->getPost('keterangan_lain_fag')) ? implode(";", $this->request->getPost('keterangan_lain_fag')) : '',
+            'harga_bangunan_perolehan' => !empty($this->request->getPost('menurut_harga_perolehan')) ? $this->request->getPost('menurut_harga_perolehan') : '',
+            // 'menurut_harga_pasar' => !empty($this->request->getPost('menurut_harga_pasar')) ? $this->request->getPost('menurut_harga_pasar') : '',
+            'harga_bangunan_pasar' => !empty($this->request->getPost('menurut_pasar_fag')) ? $this->request->getPost('menurut_pasar_fag') : '',
+            'keterangan_lain_bangunan' => !empty($this->request->getPost('keterangan_lain_fag')) ? $this->request->getPost('keterangan_lain_fag') : '',
 
             'sarana' => !empty($this->request->getPost('sarana')) ? implode(";", $this->request->getPost('sarana')) : '',
             'sarana_prasarana' => !empty($this->request->getPost('sarana_prasarana_fag')) ? implode(";", $this->request->getPost('sarana_prasarana_fag')) : '',
@@ -5298,6 +6184,7 @@ class Pengajuan extends BaseController
             'waktu_pengubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
             'kd_unit_pengubah' => session()->get('kd_unit_user'),
         ];
+        // var_dump($data);
 
         // if (!empty($this->request->getPost('luas'))) {
         //     $data['luas_total'] = $this->request->getPost('luas');
@@ -5567,7 +6454,7 @@ class Pengajuan extends BaseController
         //     ];
         //     // die;
         //     echo json_encode($hasil);
-        //     die;
+        // die;
         // }
         // $validationRules = $this->val_foreach($umur_teknis_bb, 'umur_teknis_bb', 'umur teknis');
         // if (!$this->validate($validationRules)) {
@@ -6231,7 +7118,7 @@ class Pengajuan extends BaseController
                     'required' => 'Lainnya Harus diisi',
                 ]
             ],
-            'lantai1' => [
+            'lantai_total' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'lantai 1 diisi',

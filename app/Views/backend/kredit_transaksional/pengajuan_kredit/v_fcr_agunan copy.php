@@ -29,13 +29,7 @@
 
     </div>
 
-    <div class="form-group row">
-        <div class="col-lg-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="cb_fcr_agunan" title="Checkbox ini sebagai paraf" name="cb_fcr_agunan" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
-            </div>
-        </div>
-    </div>
+
 </fieldset>
 <script>
     $(document).ready(function() {
@@ -1252,20 +1246,9 @@
             // alert('hallo')
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            // var fcr_agunan2 = data_fcr_agunan();
-            // post_fcr_agunan('edit_fcr_agunan', fcr_agunan2, 'fcr_agunan')
+            var fcr_agunan2 = data_fcr_agunan();
+            post_fcr_agunan('edit_fcr_agunan', fcr_agunan2, 'fcr_agunan')
             // Mengirim data menggunakan AJAX
-
-            if (edit_data_koordinator === null || edit_data_koordinator === '') {
-                // Jika edit_data_koordinator null atau kosong
-                var fcr_agunan2 = data_fcr_agunan();
-                // Mengirim data menggunakan AJAX
-                post_fcr_agunan('edit_fcr_agunan', fcr_agunan2, 'fcr_agunan')
-            } else {
-                // Jika edit_data_koordinator memiliki nilai
-                var fcr_agunan2 = paraf_fcr_agunan();
-                post_paraf('paraf_fcr_agunan', fcr_agunan2, 'fcr_agunan');
-            }
         });
         // update fcr agunan bangunan
         $('#save_fcr_agunan_bangunan').click(function(e) {
@@ -1274,22 +1257,11 @@
             // alert('hallo')
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            // var fcr_agunan2 = data_fcr_agunan_bangunan();
-            // console.log(fcr_agunan2);
-            // post_fcr_agunan('edit_fcr_agunan_bangunan', fcr_agunan2, 'fcr_agunan')
+            storeNilaiLantaiBangunan();
+            var fcr_agunan2 = data_fcr_agunan_bangunan();
+            console.log(fcr_agunan2);
+            post_fcr_agunan('edit_fcr_agunan_bangunan', fcr_agunan2, 'fcr_agunan')
             // Mengirim data menggunakan AJAX
-            if (edit_data_pemasar) {
-                // Jika edit_data_koordinator null atau kosong
-                var fcr_agunan2 = data_fcr_agunan();
-                // Mengirim data menggunakan AJAX
-                storeNilaiLantaiBangunan();
-                post_fcr_agunan('edit_fcr_agunan_bangunan', fcr_agunan2, 'fcr_agunan')
-            } else {
-                // Jika edit_data_koordinator memiliki nilai
-                var fcr_agunan2 = paraf_fcr_agunan();
-                post_paraf('paraf_fcr_agunan', fcr_agunan2, 'fcr_agunan');
-            }
-
         });
 
         // update fcr agunan barang bergerak
@@ -1299,19 +1271,9 @@
             // alert('hallo')
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            // var fcr_agunan2 = data_fcr_agunan_bb();
-            // post_fcr_agunan('edit_fcr_agunan_bb', fcr_agunan2, 'fcr_agunan')
+            var fcr_agunan2 = data_fcr_agunan_bb();
+            post_fcr_agunan('edit_fcr_agunan_bb', fcr_agunan2, 'fcr_agunan')
             // Mengirim data menggunakan AJAX
-            if (edit_data_koordinator === null || edit_data_koordinator === '') {
-                // Jika edit_data_koordinator null atau kosong
-                var fcr_agunan2 = data_fcr_agunan();
-                // Mengirim data menggunakan AJAX
-                post_fcr_agunan('edit_fcr_agunan_bb', fcr_agunan2, 'fcr_agunan')
-            } else {
-                // Jika edit_data_koordinator memiliki nilai
-                var fcr_agunan2 = paraf_fcr_agunan();
-                post_paraf('paraf_fcr_agunan', fcr_agunan2, 'fcr_agunan');
-            }
         });
 
     });
@@ -1325,25 +1287,9 @@
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr_agunan;
                 var kd_data = hasil.message.data_entry.kd_data;
-                var data_paraf = hasil.message.paraf;
                 perulangan(kd_data);
                 perulangan_bangunan(kd_data);
                 perulangan_bb(kd_data);
-                if (Array.isArray(data_paraf) && data_paraf.length > 0) {
-                    let paraf = data_paraf.find(p => p.nomor_halaman == '4'); // Cari nomor_halaman = 4
-
-                    if (paraf && paraf.kd_level && typeof kd_level !== "undefined" &&
-                        paraf.kd_level === kd_level &&
-                        paraf.kd_data === data.kd_data &&
-                        paraf.nama_halaman === 'FCR Agunan') {
-
-                        $('#cb_fcr_agunan').prop('checked', paraf.ceklis === 'true');
-                    } else {
-                        $('#cb_fcr_agunan').prop('checked', false);
-                    }
-                } else {
-                    $('#cb_fcr_agunan').prop('checked', false);
-                }
 
             } else {
                 alert(hasil.message)
@@ -2043,8 +1989,6 @@
                             $(".lantai_bangunan" + hb).append(lantaiHtml);
                             $(".harga_bangunan" + hb).append(hargaHtml);
                             resizeJquerySteps();
-
-
                         }
                     }
                     // akhir
@@ -2350,8 +2294,6 @@
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr_agunan;
-
-
                 var kd_data = hasil.message.data_entry.kd_data;
                 // alert(data.kd_data)
                 $('#kd_data_tambah').val(hasil.message.data_entry.kd_data);
@@ -2421,6 +2363,7 @@
                 error: function(data) {
                     console.log(data);
                 }
+
             });
         });
     }
@@ -2489,6 +2432,7 @@
         $('.bukti_kepemilikan').each(function() {
             data_fcr_agunan1.bukti_kepemilikan.push($(this).val());
         });
+
         $('.tanggal_bukti_kepemilikan').each(function() {
             data_fcr_agunan1.tanggal_bukti_kepemilikan.push($(this).val());
         });
@@ -2943,20 +2887,6 @@
             // Convert data to base64
             fileReader.readAsDataURL(fileToLoad);
         }
-    }
-
-    function paraf_fcr_agunan() {
-        var data_fcr_agunan = {
-            kd_data_tambah: $('#kd_data_tambah').val(),
-
-            unit_kerja_tambah: $('#unit_kerja_tambah').val(),
-            nomor_halaman: '4',
-            nama_halaman: 'FCR Agunan',
-
-            cb_fcr_agunan: $('#cb_fcr_agunan').is(':checked')
-            // upload dokumen
-        };
-        return data_fcr_agunan;
     }
 
     // input dinamis tanah

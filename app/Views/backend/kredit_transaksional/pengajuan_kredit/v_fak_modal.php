@@ -297,6 +297,15 @@
             </div>
         </div>
     </div>
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_fak_modal" title="Checkbox ini sebagai paraf" name="cb_fak_modal"
+                    <?php echo (!empty($edit_data) && !empty($edit_data_koordinator)) ? '' : 'disabled'; ?>>
+
+            </div>
+        </div>
+    </div>
 </fieldset>
 <?php //} 
 ?>

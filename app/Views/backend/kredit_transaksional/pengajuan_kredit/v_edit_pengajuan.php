@@ -760,37 +760,37 @@
 
         });
 
-        var save_data_entry = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_data_entry" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Data Entry</a></li>');
+        var save_data_entry = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_data_entry" class="blue-bg"><i class="fa fa-save"></i> Data Entry</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_data_entry);
 
-        var save_fcr = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> FCR</a></li>');
+        var save_fcr = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr" class="blue-bg"><i class="fa fa-save"></i> FCR</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fcr);
 
-        var save_fcr_usaha = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_usaha" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> FCR Usaha</a></li>');
+        var save_fcr_usaha = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_usaha" class="blue-bg"><i class="fa fa-save"></i> FCR Usaha</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fcr_usaha);
 
-        var save_fcr_agunan_bergerak = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_bergerak" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Barang Bergerak</a></li>');
+        var save_fcr_agunan_bergerak = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_bergerak" class="blue-bg"><i class="fa fa-save"></i> Barang Bergerak</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fcr_agunan_bergerak);
 
-        var save_fcr_agunan_lingkungan = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_lingkungan" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Lingkungan</a></li>');
+        var save_fcr_agunan_lingkungan = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_lingkungan" class="blue-bg"><i class="fa fa-save"></i> Lingkungan</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fcr_agunan_lingkungan);
 
-        var save_fcr_agunan_bangunan = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_bangunan" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Bangunan</a></li>');
+        var save_fcr_agunan_bangunan = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_bangunan" class="blue-bg"><i class="fa fa-save"></i> Bangunan</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fcr_agunan_bangunan);
 
-        var save_fcr_agunan_tanah = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_tanah" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Tanah</a></li>');
+        var save_fcr_agunan_tanah = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fcr_agunan_tanah" class="blue-bg"><i class="fa fa-save"></i> Tanah</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_fcr_agunan_tanah);
 
-        var save_dokumen = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_dokumen" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Dokumen</a></li>');
+        var save_dokumen = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_dokumen" class="blue-bg"><i class="fa fa-save"></i> Dokumen</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_dokumen);
 
-        var save_scoring = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_scoring" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Scoring</a></li>');
+        var save_scoring = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_scoring" class="blue-bg"><i class="fa fa-save"></i> Scoring</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_scoring);
 
         var save_scoring_koor = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_scoring_koor" onclick="click_save_data_scoring_koor()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Scoring</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_scoring_koor);
 
-        var save_recap = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_recap" class="blue-bg <?php echo !empty($edit_data) ? '' : ' disabled-link'; ?>"><i class="fa fa-save"></i> Recap</a></li>');
+        var save_recap = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_recap" class="blue-bg"><i class="fa fa-save"></i> Recap</a></li>');
         $('ul[aria-label=Pagination] li a[href="#next"]').parent().after(save_recap);
 
         var save_fak_data = $('<li class="" aria-disabled="false"><a href="#" role="menuitem" id="save_fak_data" onclick="click_save_data_fak_data()" class="blue-bg <?php echo !empty($edit_data_koordinator) ? '' : ' disabled-link'; ?>">Save</a></li>');

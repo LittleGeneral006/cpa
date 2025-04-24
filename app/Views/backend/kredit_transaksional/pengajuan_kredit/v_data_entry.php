@@ -28,7 +28,6 @@
 
         </div>
 
-
     </div>
     <div class="form-group row">
         <div class="col-lg-6">
@@ -347,9 +346,19 @@
 
 
     </div>
-
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_data_entry" title="Checkbox ini sebagai paraf" name="cb_data_entry" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+            </div>
+        </div>
+    </div>
 </fieldset>
 <script>
+    var edit_data_pemasar = <?php echo json_encode($edit_data); ?>;
+    var edit_data_koordinator = <?php echo json_encode($edit_data_koordinator); ?>;
+    var edit_data_kepala_cabang = <?php echo json_encode($edit_data_kepala_cabang); ?>;
+    var kd_level = <?= json_encode(session()->get('kd_level_user')) ?>;
     $(document).ready(function() {
         $("#jumlah_agunan_tambah").on("change", function() {
             tambahInput()
@@ -394,24 +403,47 @@
         });
 
         // simpan data entry
+        // $('#save_data_entry').click(function(e) {
+        //     console.log('1');
+        //     $('#mohon').show()
+        //     e.preventDefault(); // Mencegah form untuk submit secara default
+        //     // alert('hallo')
+        //     var kumpulan_agunan = getJenisAgunan();
+        //     if (kumpulan_agunan != 'cpa123') {
+        //         // Mendefinisikan array untuk menyimpan nilai input
+        //         // alert(data.jenis_agunan_tambah)
+        //         // console.log(data_data_entry2)
+        //         // Mengirim data menggunakan AJAX
+        //         var data_data_entry2 = data_data_entry(kumpulan_agunan);
+        //         post_data_entry('edit_data_entry', data_data_entry2, 'save_data_entry')
+        //     } else {
+        //         $('#mohon').hide()
+        //         toastr.warning('Jenis agunan harus diisi', 'Gagal')
+        //     }
+        // });
         $('#save_data_entry').click(function(e) {
             console.log('1');
-            $('#mohon').show()
+            $('#mohon').show();
             e.preventDefault(); // Mencegah form untuk submit secara default
-            // alert('hallo')
+
             var kumpulan_agunan = getJenisAgunan();
             if (kumpulan_agunan != 'cpa123') {
-                // Mendefinisikan array untuk menyimpan nilai input
-                // alert(data.jenis_agunan_tambah)
-                // console.log(data_data_entry2)
-                // Mengirim data menggunakan AJAX
-                var data_data_entry2 = data_data_entry(kumpulan_agunan);
-                post_data_entry('edit_data_entry', data_data_entry2, 'save_data_entry')
+                if (edit_data_pemasar) {
+                    // Jika edit_data_koordinator null atau kosong
+                    var data_data_entry2 = data_data_entry(kumpulan_agunan);
+                    post_data_entry('edit_data_entry', data_data_entry2, 'save_data_entry');
+                } else {
+                    // Jika edit_data_koordinator memiliki nilai
+                    var data_data_entry2 = paraf_data_entry();
+                    post_paraf('paraf_data_entry', data_data_entry2, 'save_data_entry');
+                }
             } else {
-                $('#mohon').hide()
-                toastr.warning('Jenis agunan harus diisi', 'Gagal')
+                $('#mohon').hide();
+                toastr.warning('Jenis agunan harus diisi', 'Gagal');
             }
         });
+
+
 
     });
     // bikin function
@@ -420,10 +452,11 @@
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
+                var data_paraf = hasil.message.paraf;
                 // alert(data.kd_data)
                 unit_kerja()
                 cek_agunan(data.kd_data)
-                // console.log(data.nama_debitur)
+                console.log(data_paraf[0].nama_halaman)
                 $('#kd_data_tambah').val(data.kd_data);
                 $('#kd_data').val(data.kd_data);
 
@@ -463,13 +496,27 @@
                 $('#tujuan_pengajuan_tambah').val(data.tujuan_pengajuan);
                 $('#jumlah_agunan_tambah').val(data.jumlah_agunan);
 
+
+                if (Array.isArray(data_paraf) && data_paraf.length > 0) {
+                    let paraf = data_paraf.find(p => p.nomor_halaman == '1'); // Cari nomor_halaman = 4
+
+                    if (paraf && paraf.kd_level && typeof kd_level !== "undefined" &&
+                        paraf.kd_level === kd_level &&
+                        paraf.kd_data === data.kd_data &&
+                        paraf.nama_halaman === 'Data Entry') {
+
+                        $('#cb_data_entry').prop('checked', paraf.ceklis === 'true');
+                    } else {
+                        $('#cb_data_entry').prop('checked', false);
+                    }
+                } else {
+                    $('#cb_data_entry').prop('checked', false);
+                }
+
             } else {
                 // alert(hasil.message)
                 console.log(hasil.message)
-
             }
-
-
         });
     }
 
@@ -1211,6 +1258,52 @@
                         var finish_fcr = data_data_fcr();
                         post_fcr('finish_fcr', finish_fcr, 'finish_fcr')
                     }
+
+                } else {
+                    $('#mohon').hide()
+                    toastr.warning(response.message, 'Gagal')
+
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#mohon').hide()
+                console.log(xhr.responseText)
+                toastr.error('Edit data entry gagal', 'Error')
+            }
+        });
+
+    }
+
+    function paraf_data_entry() {
+        var data_data_entry = {
+            kd_data_tambah: $('#kd_data_tambah').val(),
+
+            unit_kerja_tambah: $('#unit_kerja_tambah').val(),
+            nomor_halaman: '1',
+            nama_halaman: 'Data Entry',
+            cb_data_entry: $('#cb_data_entry').is(':checked')
+            // upload dokumen
+        };
+        return data_data_entry;
+    }
+
+    function post_paraf(method, data_input, button) {
+        $.ajax({
+            url: '<?php echo base_url(); ?>' + 'pengajuan/' + method,
+            type: 'POST',
+            dataType: 'json',
+            data: data_input,
+            success: function(response) {
+                if (response.status == 'success') {
+                    $('#mohon').hide()
+                    // refresh('save_data_entry')
+                    // if (button == 'save_data_entry') {
+                    //     toastr.success(response.message, 'Berhasil')
+                    // }
+                    // if (button != 'save_data_entry') {
+                    //     var finish_fcr = data_data_fcr();
+                    //     post_fcr('finish_fcr', finish_fcr, 'finish_fcr')
+                    // }
 
                 } else {
                     $('#mohon').hide()

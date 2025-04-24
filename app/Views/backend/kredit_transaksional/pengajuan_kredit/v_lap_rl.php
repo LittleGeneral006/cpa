@@ -54,6 +54,16 @@
         </div>
     </div>
     <br>
+
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_lap_rl" title="Checkbox ini sebagai paraf" name="cb_lap_rl"
+                    <?php echo (!empty($edit_data) && !empty($edit_data_koordinator)) ? '' : 'disabled'; ?>>
+
+            </div>
+        </div>
+    </div>
 </fieldset>
 <?php // } 
 ?>
