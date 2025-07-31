@@ -101,7 +101,7 @@ class Penarikan extends BaseController
         }
         return $hasil;
     }
-    public function tabel_pengajuan()
+    public function tabel_penarikan()
     {
         $sQuery1 = "SELECT * FROM v_data_master ";
         $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
