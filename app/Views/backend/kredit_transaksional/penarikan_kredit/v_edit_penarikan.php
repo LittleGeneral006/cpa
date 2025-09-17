@@ -12,10 +12,6 @@
         <h2>Penarikan Kredit Transaksional</h2>
         <!-- <strong>Data Tables</strong> -->
     </div>
-    <div class="col-lg-2 text-right">
-        <br>
-        <a href="<?= base_url(); ?>tambah-penarikan-kredit-transaksional" class="btn blue-bg"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Data</span></a>
-    </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -23,6 +19,13 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <!-- <h5>Basic Data Tables example with responsive plugin</h5> -->
+                    <label for="pilih_termin">Pilih Termin:</label>
+                    <select id="pilih_termin" name="pilih_termin" class="form-control">
+                        <option value="">-- Pilih Termin --</option>
+                        <option value="termin1">Termin 1</option>
+                        <option value="termin2">Termin 2</option>
+                        <option value="termin3">Termin 3</option>
+                    </select>
                 </div>
                 <div class="ibox-content">
                     <h2>
@@ -321,6 +324,25 @@
     // }
 
     $(document).ready(function() {
+        $.ajax({
+            url: "<?php echo base_url() ?>edit-penarikan-kredit-transaksional/get_jumlah_termin", // Endpoint to fetch data
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                var select = $("#pilih_termin");
+                select.empty(); // Clear existing options
+                select.append('<option value="">-- Pilih Termin --</option>'); // Default option
+
+                // Populate dropdown with data
+                for (var i = 1; i <= data.jumlah_termin; i++) {
+                    select.append('<option value="termin' + i + '">Termin ' + i + '</option>');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching termin data:", error);
+            }
+        });
+
         $("#wizard").steps();
         $("#form").steps({
             bodyTag: "fieldset",

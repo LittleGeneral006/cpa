@@ -139,10 +139,10 @@
         <input type="text" hidden name="nilaisebelumppnppfakdata" id="nilaisebelumppnppfakdata">
         <input type="text" hidden name="nilaisesudahppnppfakdata" id="nilaisesudahppnppfakdata">
 
-        <input type="text" hidden name="termijnfakdata" id="termijnfakdata">
-        <input type="text" hidden name="progresstermijnfakdata" id="progresstermijnfakdata">
-        <input type="text" hidden name="persentasetermijnfakdata" id="persentasetermijnfakdata">
-        <input type="text" hidden name="prakiraantgltermijnfakdata" id="prakiraantgltermijnfakdata">
+        <input type="text" hidden name="terminfakdata" id="terminfakdata">
+        <input type="text" hidden name="progressterminfakdata" id="progressterminfakdata">
+        <input type="text" hidden name="persentaseterminfakdata" id="persentaseterminfakdata">
+        <input type="text" hidden name="prakiraantglterminfakdata" id="prakiraantglterminfakdata">
 
         <input type="text" hidden name="itemppfakmodal" id="itemppfakmodal">
         <input type="text" hidden name="nilaippfakmodal" id="nilaippfakmodal">
@@ -272,6 +272,15 @@
                 </div>
             </div>
         </div> -->
+        <!-- <div class="copy-pp invisible">
+            <div class="row new" id="new">
+                <div class="form-group row col-lg-12">
+                
+                        <div name="hapus_pp_fak_data" class="delete-btn-pp-fak-data hapus_pp_fak_data">
+                        </div>
+                </div>
+            </div>
+        </div> -->
         <div class="copy-pp invisible">
             <div class="row new" id="new">
                 <div class="form-group row">
@@ -285,13 +294,13 @@
                 </div>
             </div>
         </div>
-        <div class="copy-termijn invisible">
+        <div class="copy-termin invisible">
             <div class="row new" id="new">
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_termijn_fak_data" class="btn btn-danger hapus_termijn_fak_data delete-btn-termijn-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_termin_fak_data" class="btn btn-danger hapus_termin_fak_data delete-btn-termin-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -300,23 +309,38 @@
         </div>
         <div class="copy-pp-fak-modal invisible">
             <div class="row new" id="new">
-                <!-- <div class="form-group row"> -->
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <button name="hapus" class="btn btn-danger hapus delete-btn-pp-fak-modal" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus" class="btn btn-danger hapus delete-btn-pp-fak-modal" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- <div class="copy-pp-fak-modal invisible">
+            <div class="row new" id="new">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus" class="btn btn-danger hapus delete-btn-pp-fak-modal" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
         <div class="copy-mauk invisible">
             <div class="row new" id="new">
-                <!-- <div class="form-group row"> -->
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <button name="hapus_mauk" class="btn btn-danger hapus_mauk delete-btn-mauk" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus_mauk" class="btn btn-danger hapus_mauk delete-btn-mauk" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>Hapus</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -324,11 +348,12 @@
         </div>
         <div class="copy-mauk2 invisible">
             <div class="row new" id="new">
-                <!-- <div class="form-group row"> -->
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <button name="hapus_mauk2" class="btn btn-danger hapus_mauk2 delete-btn-mauk2" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus_mauk2" class="btn btn-danger hapus_mauk2 delete-btn-mauk2" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -336,11 +361,12 @@
         </div>
         <div class="copy-mauk3 invisible">
             <div class="row new" id="new">
-                <!-- <div class="form-group row"> -->
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <button name="hapus_mauk3" class="btn btn-danger hapus_mauk3 delete-btn-mauk3" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus_mauk3" class="btn btn-danger hapus_mauk3 delete-btn-mauk3" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -348,16 +374,18 @@
         </div>
         <div class="copy-dcl invisible">
             <div class="row new" id="new">
-                <!-- <div class="form-group row"> -->
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <div class="input-group-append">
-                            <button name="hapus_dcl" class="btn btn-danger hapus_dcl delete-btn-dcl" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button name="hapus_dcl" class="btn btn-danger hapus_dcl delete-btn-dcl" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--  -->
         <div class="copy-dcl2 invisible">
             <div class="row new" id="new">
                 <div class="form-group row">

@@ -14,12 +14,9 @@
                 <label class="col-lg-12 control-label">Alamat Kantor</label>
                 <div class="col-lg-12">
                     <textarea class="form-control" id="alamat_dp" name="alamat_dp" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
-
                 </div>
             </div>
-
         </div>
-
     </div>
     <div class="form-group row">
         <div class="col-lg-6">

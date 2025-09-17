@@ -149,6 +149,7 @@ $routes->post('/pengajuan/convert_base64/', 'Pengajuan::convert_base64');
 $routes->post('/pengajuan/edit_fcr_agunan_bb', 'Pengajuan::edit_fcr_agunan_bb');
 // edit dokumen ceklist
 $routes->get('/dokumen-pendukung/(:any)/(:any)', 'Pengajuan::dokumen_pendukung/$1/$2');
+
 $routes->post('/pengajuan/edit_dokumen', 'Pengajuan::edit_dokumen');
 // edit scoring
 // $routes->get('/dokumen-pendukung/(:any)/(:any)', 'Pengajuan::dokumen_pendukung/$1/$2');
@@ -197,6 +198,9 @@ $routes->post('pengajuan/edit_ceftb', 'Pengajuan::edit_ceftb');
 $routes->post('pengajuan/edit_mauk', 'Pengajuan::edit_mauk');
 $routes->post('pengajuan/edit_dcl', 'Pengajuan::edit_dcl');
 
+$routes->get('/laporan-rl/(:any)/(:any)', 'Pengajuan::lihat_file_proyeksi_rl/$1/$2');
+
+
 // penarikan kredit transaksional
 $routes->get('/penarikan-kredit-transaksional', 'Penarikan::v_penarikan');
 $routes->get('/penarikan/tabel_penarikan', 'Penarikan::tabel_penarikan');
@@ -205,6 +209,7 @@ $routes->post('/penarikan/simpan_penarikan', 'Penarikan::simpan_penarikan');
 $routes->get('/penarikan/dokumen', 'Penarikan::dokumen');
 // edit data entry
 $routes->get('/edit-penarikan-kredit-transaksional/(:any)', 'Penarikan::edit_penarikan/$1');
+$routes->get('/edit-penarikan-kredit-transaksional/get_jumlah_termin', 'Pengajuan::get_jumlah_termin_dropdown');
 $routes->get('/dokumen-kontrak-proyek/(:any)', 'Penarikan::lihat_dokumen/$1');
 $routes->post('/penarikan/edit_data_entry', 'Penarikan::edit_data_entry');
 $routes->post('/penarikan/paraf_data_entry', 'Penarikan::paraf_data_entry');

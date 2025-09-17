@@ -218,9 +218,22 @@ class Penarikan extends BaseController
                 $row[] = '<span class="label label-warning">' . $aRow->status . '</span>';
             }
             // $row[] = '<button title="Edit" id="edit_unit" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>' . '<button title="Detail" id="detail_unit" class="btn btn-warning btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button>'; //6
+            // $button_generate = '';
+            // if ($this->permission2('Generate Dokumen penarikan Kredit Transaksional')) {
+            //     $button_generate = '<li><button title="Generate" class="btn btn-sm dropdown-item" onclick="generate_dok(\'' . $aRow->kd_data . '\')"><div class="text-left"><i class="fa fa-download" aria-hidden="true"></i> Generate Data</div></button></li>';
+            // }
             //9
-            $row[] = '<button title="Edit" id="edit_pengajuan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
+            // $row[] = '<button title="Edit" id="edit_penarikan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
+ $row[] = '<a data-toggle="dropdown" class="" href="#">' .
+                '<span class="text-dark text-xs block"><b>. . .</b></span>' .
+                '</a>' .
+                '<ul class="dropdown-menu animated fadeInRight m-t-xs">' .
+                // '<li><a class="dropdown-item" href="profile.html">Profile</a></li>'.
+                '<li><a href="' . base_url() . 'edit-penarikan-kredit-transaksional/' . sha1($aRow->kd_data) . '" class="btn btn-sm dropdown-item" title="Edit"><div class="text-left"><i class="fa fa-pencil" aria-hidden="true"></i> Proses Penarikan</div></a></li>' .
+                // $button_generate .
+                '<li><button title="History Return" class="btn btn-sm dropdown-item" onclick="modal_return(\'' . $aRow->kd_data . '\')"><div class="text-left"><i class="fa fa-undo" aria-hidden="true"></i> History Return</div></button></li>' .
 
+                '</ul>';
             // $row[] = $aRow->kd_unit; //
             // $row[] = $aRow->kd_induk_unit; //
 
@@ -229,16 +242,125 @@ class Penarikan extends BaseController
         }
         echo json_encode($output);
     }
-    public function tambah_pengajuan()
+    public function tambah_penarikan()
     {
         $hasil = $this->hak_akses();
         if ($hasil == true) {
-            $data['title'] = 'Tambah Pengajuan Kredit Transaksional';
-            return view('backend/kredit_transaksional/pengajuan_kredit/v_tambah_pengajuan', $data);
+            $data['title'] = 'Tambah penarikan Kredit Transaksional';
+            return view('backend/kredit_transaksional/penarikan_kredit/v_tambah_penarikan', $data);
         } else {
             return redirect()->to('/login');
         }
     }
+
+        public function edit_penarikan($kd_data){
+        $hasil = $this->hak_akses();
+        $permission = $this->permission();
+        // $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
+        // $cek_agunan = $this->cek_agunan($kd_data);
+        // dd($cek_agunan);
+        // if ($hasil == true) {
+            $data['title'] = 'Edit Penarikan Kredit Transaksional';
+            // $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+            // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+            // $data['permission'] = $permission;
+            // // $data['cek_agunan'] = $cek_agunan;
+            // $data['edit_penarikan_kredit_transaksional'] = $this->permission2('Edit penarikan Kredit Transaksional');
+            // $data['edit_penarikan_kredit_transaksional_koordinator'] = $this->permission2('Edit penarikan Kredit Transaksional Koordinator');
+            // $data['edit_penarikan_kredit_transaksional_kepala_cabang'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Cabang');
+            // $data['edit_penarikan_kredit_transaksional_analis_kredit'] = $this->permission2('Edit penarikan Kredit Transaksional Analis Kredit');
+            // $data['edit_penarikan_kredit_transaksional_kepala_bagian'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Bagian');
+            // $data['edit_penarikan_kredit_transaksional_kepala_divisi'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Divisi');
+            // $data_master = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+            // $data['data_master'] = $data_master;
+            // if ($data['edit_penarikan_kredit_transaksional'] == true && $data_master->progress == 'Input') {
+            //     $data['edit_data'] = 'boleh edit';
+            // } else {
+            //     $data['edit_data'] = null;
+            // }
+            // if ($data['edit_penarikan_kredit_transaksional_koordinator'] == true && $data_master->progress == 'Review') {
+            //     $data['edit_data_koordinator'] = 'boleh edit';
+            // } else {
+            //     $data['edit_data_koordinator'] = null;
+            // }
+            // if ($data['edit_penarikan_kredit_transaksional_kepala_cabang'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+            //     $data['edit_data_kepala_cabang'] = 'boleh edit';
+            // } else {
+            //     $data['edit_data_kepala_cabang'] = null;
+            // }
+            // if ($data['edit_penarikan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
+            //     $data['edit_data_analis_kredit'] = 'boleh edit';
+            // } else {
+            //     $data['edit_data_analis_kredit'] = null;
+            // }
+            // if ($data['edit_penarikan_kredit_transaksional_kepala_bagian'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+            //     $data['edit_data_kepala_bagian'] = 'boleh edit';
+            // } else {
+            //     $data['edit_data_kepala_bagian'] = null;
+            // }
+            // if ($data['edit_penarikan_kredit_transaksional_kepala_divisi'] == true && $data_master->progress == 'Approval') {
+            //     $data['edit_data_kepala_divisi'] = 'boleh edit';
+            // } else {
+            //     $data['edit_data_kepala_divisi'] = null;
+            // }
+
+            // $data['save_edit_penarikan_kredit_transaksional'] = $this->permission2('Save Edit penarikan Kredit Transaksional');
+            // $data['tampil_fak_data'] = $this->permission2('Tampil FAK Data');
+            // $data['tampil_fak_modal'] = $this->permission2('Tampil FAK Modal');
+            // $data['tampil_fak_proyeksi_rl'] = $this->permission2('Tampil FAK Proyeksi RL');
+            // $data['tampil_upload_laporan_rl'] = $this->permission2('Tampil Upload Laporan RL');
+            // $data['tampil_cef'] = $this->permission2('Tampil CEF');
+            // $data['tampil_faa'] = $this->permission2('Tampil FAA');
+            // $data['tampil_mauk'] = $this->permission2('Tampil MAUK');
+            // $data['tampil_dcl_compliance'] = $this->permission2('Tampil DCL Compliance');
+            return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
+        // } else {
+        //     return redirect()->to('/login');
+        // }
+    }
+
+    
+    public function get_jumlah_termin_dropdown($kd_data)
+    {
+        $result = $this->db->query("SELECT jumlah_termin FROM tb_fak_data WHERE kd_data = '" . $kd_data . "'")->getRow();
+        if ($result) {
+            $jumlah_termin = $result->jumlah_termin;
+            $dropdown = [];
+            for ($i = 1; $i <= $jumlah_termin; $i++) {
+                $dropdown[] = $i;
+            }
+            echo json_encode($dropdown);
+        } else {
+            echo json_encode([]);
+        }
+    }
+    
+    public function permission(){
+        if (!empty(session()->get('kd_user'))) {
+            $kd_level_user = $this->db->query(
+                "SELECT kd_level_user 
+                FROM tb_user 
+                WHERE kd_user = '" . session()->get('kd_user') . "'
+                "
+            )->getRow()->kd_level_user;
+            $permission = $this->db->query(
+                "SELECT nama_permission 
+                FROM v_assign 
+                WHERE kd_level = '" . $kd_level_user . "'
+                AND aktif_assign = 'Aktif'"
+            )->getResult();
+            // foreach($permission as $nama_permission){
+            //     // echo json_encode($nama_permission->nama_permission);
+
+            // }
+            // var_dump($permission); die;
+            // echo json_encode($permission);
+            return $permission;
+        } else {
+            return redirect()->to('/login');
+        }
+    }
+
     public function get_unit_tanpa_konsolidasi()
     {
         // $hasil = $this->db->query("SELECT * FROM tb_level order by waktu_maker_level desc limit 5")->getResult();

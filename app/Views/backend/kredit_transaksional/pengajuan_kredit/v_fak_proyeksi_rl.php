@@ -187,16 +187,16 @@
         <div class="col-lg-1">
 
         </div>
-        <label class="col-lg-3 control-label">Penerimaan Termijn</label>
+        <label class="col-lg-3 control-label">Penerimaan termin</label>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="persentase_penerimaan_termijn_fak_rl" name="persentase_penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <input id="persentase_penerimaan_termin_fak_rl" name="persentase_penerimaan_termin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="penerimaan_termijn_fak_rl" name="penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                <p>Nominal: <span id="penerimaan_termijn_fak_rl_separators" class="mask"></span></p>
+                <input id="penerimaan_termin_fak_rl" name="penerimaan_termin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="penerimaan_termin_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -205,16 +205,16 @@
         <div class="col-lg-1">
 
         </div>
-        <label class="col-lg-3 control-label">Penerimaan Termijn Pemeliharaan</label>
+        <label class="col-lg-3 control-label">Penerimaan termin Pemeliharaan</label>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="persentase_penerimaan_termijn_pemeliharaan_fak_rl" name="persentase_penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <input id="persentase_penerimaan_termin_pemeliharaan_fak_rl" name="persentase_penerimaan_termin_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="penerimaan_termijn_pemeliharaan_fak_rl" name="penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                <p>Nominal: <span id="penerimaan_termijn_pemeliharaan_fak_rl_separators" class="mask"></span></p>
+                <input id="penerimaan_termin_pemeliharaan_fak_rl" name="penerimaan_termin_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <p>Nominal: <span id="penerimaan_termin_pemeliharaan_fak_rl_separators" class="mask"></span></p>
             </div>
         </div>
     </div>

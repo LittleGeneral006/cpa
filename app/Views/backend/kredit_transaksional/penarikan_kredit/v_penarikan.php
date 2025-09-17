@@ -13,10 +13,10 @@
         <h2>penarikan Kredit Transaksional</h2>
         <!-- <strong>Data Tables</strong> -->
     </div>
-    <div class="col-lg-2 text-right">
+    <!-- <div class="col-lg-2 text-right">
         <br>
         <a href="<?= base_url(); ?>tambah-penarikan-kredit-transaksional" class="btn blue-bg"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Data</span></a>
-    </div>
+    </div> -->
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">

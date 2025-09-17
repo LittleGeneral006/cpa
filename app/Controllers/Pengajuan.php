@@ -19,8 +19,7 @@ class Pengajuan extends BaseController
     public $db;
     public $session;
     public $email;
-    public function __construct()
-    {
+    public function __construct(){
         helper('date');
         // $this->Service = new ConfigServices();
         $this->db = \Config\Database::connect();
@@ -31,8 +30,7 @@ class Pengajuan extends BaseController
         $this->session = session();
     }
 
-    public function v_pengajuan()
-    {
+    public function v_pengajuan(){
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $tambah_pengajuan_kredit_transaksional = $this->permission2('Tambah Pengajuan Kredit Transaksional');
@@ -46,8 +44,7 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function hak_akses()
-    {
+    public function hak_akses(){
         $param_kd_menu = '100';
         $controller = service('request')->uri->getSegment(1);
         // echo $controller;
@@ -108,8 +105,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function tabel_pengajuan()
-    {
+    public function tabel_pengajuan(){
         $this->update_sla();
         $sQuery1 = "SELECT * FROM v_data_master ";
         $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
@@ -263,8 +259,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($output);
     }
-    public function edit_pengajuan($kd_data)
-    {
+    
+    public function edit_pengajuan($kd_data){
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
@@ -330,8 +326,7 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function checkDataRecap($tabel)
-    {
+    public function checkDataRecap($tabel){
         $kd_data = $this->request->getPost('kd_data');
         $transaksional = new TransaksionalModel();
 
@@ -351,8 +346,7 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function cek_agunan_kd_tepakai($kd_data)
-    {
+    public function cek_agunan_kd_tepakai($kd_data){
         $tanah = '';
         $barang_bergerak = '';
         $data2 = '';
@@ -406,8 +400,7 @@ class Pengajuan extends BaseController
         ];
         return $hasil;
     }
-    public function cek_agunan($kd_data)
-    {
+    public function cek_agunan($kd_data){
         $tanah1 = '';
         $tanah2 = '';
         $barang_bergerak1 = '';
@@ -441,8 +434,7 @@ class Pengajuan extends BaseController
         // dd($data3);
         return json_encode($hasil);
     }
-    public function simpan_pengajuan()
-    {
+    public function simpan_pengajuan(){
         // $cek = $this->request->getPost('jenis_agunan_tambah[]');
         // var_dump($cek);
         // die;
@@ -716,8 +708,7 @@ class Pengajuan extends BaseController
             echo $html;
         }
     }
-    public function jenis_agunan($jenis_agunan)
-    {
+    public function jenis_agunan($jenis_agunan){
         // var_dump(count($jenis_agunan)); die;
         $found = false;
         for ($i = 0; $i < count($jenis_agunan); $i++) {
@@ -746,13 +737,11 @@ class Pengajuan extends BaseController
 
         return $found;
     }
-    public function debug($param)
-    {
+    public function debug($param){
         var_dump($param);
         die;
     }
-    public function buat_nomor_kredit($data, $data_master)
-    {
+    public function buat_nomor_kredit($data, $data_master){
         $hasil = '';
 
         // $kd_nomor = 'NMR' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -847,8 +836,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function buat_nomor_fcr($data, $kd_fcr)
-    {
+    public function buat_nomor_fcr($data, $kd_fcr){
         $hasil = '1';
 
         $kd_nomor = 'NMRFCR' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -937,8 +925,7 @@ class Pengajuan extends BaseController
         // die;
         return $hasil;
     }
-    public function buat_no_pak($data, $kd_scoring_param)
-    {
+    public function buat_no_pak($data, $kd_scoring_param){
         $hasil = '1';
 
         $kd_no = 'PAK' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -1028,8 +1015,7 @@ class Pengajuan extends BaseController
         // die;
         return $hasil;
     }
-    public function generate_nomor()
-    {
+    public function generate_nomor(){
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1059,8 +1045,7 @@ class Pengajuan extends BaseController
             echo 'generate nomor kredit gagal';
         }
     }
-    public function generate_nomor_fcr()
-    {
+    public function generate_nomor_fcr(){
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1095,8 +1080,7 @@ class Pengajuan extends BaseController
             echo 'generate nomor fcr gagal';
         }
     }
-    public function generate_no_pak()
-    {
+    public function generate_no_pak(){
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1128,8 +1112,7 @@ class Pengajuan extends BaseController
             echo 'generate no pak gagal';
         }
     }
-    public function update_nomor_fcr($nomor_input, $kd_data)
-    {
+    public function update_nomor_fcr($nomor_input, $kd_data){
         $hasil = false;
         $cek_sama = $this->db->query("SELECT nomor from tb_fcr where kd_data = '" . $kd_data . "' ");
         if ($cek_sama->getNumRows() > 0) {
@@ -1149,8 +1132,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function hitung_sla($param)
-    {
+    public function hitung_sla($param){
         // Tanggal pertama
         $tanggal1 = $param;
 
@@ -1169,8 +1151,7 @@ class Pengajuan extends BaseController
 
         return $selisih_hari;
     }
-    public function update_sla()
-    {
+    public function update_sla(){
         $sla = $this->db->query("SELECT kd_master, tanggal_isi, sla from tb_data_master where progress !='Approved'");
         if ($sla->getNumRows() > 0) {
             foreach ($sla->getResult() as $list_sla) {
@@ -1185,8 +1166,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function insert_master($data_master)
-    {
+    public function insert_master($data_master){
         $hasil = false;
         $cek_kd_master = $this->db->query("SELECT kd_master from tb_data_master where kd_master = '" . $data_master['kd_master'] . "' ")->getNumRows();
         if ($cek_kd_master < 1) {
@@ -1197,8 +1177,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function insert_all($kd_data, $data)
-    {
+    public function insert_all($kd_data, $data){
         $hasil = false;
         $fcr = [
             'kd_data' => $kd_data,
@@ -1356,8 +1335,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function insert_satuan($nama_kolom, $nama_tabel, $kd_fcr, $data)
-    {
+    public function insert_satuan($nama_kolom, $nama_tabel, $kd_fcr, $data){
         $hasil = false;
         $cek = $this->db->query("SELECT $nama_kolom from $nama_tabel where $nama_kolom = '" . $kd_fcr . "' ")->getNumRows();
         if ($cek < 1) {
@@ -1368,8 +1346,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function lihat_dokumen($kd_data)
-    {
+    public function lihat_dokumen($kd_data){
         $dokumen = $this->db->query("SELECT upload_dokumen FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->upload_dokumen)) {
             $dok = $dokumen->getRow()->upload_dokumen;
@@ -1379,8 +1356,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function edit_data_entry()
-    {
+    public function edit_data_entry(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -1567,8 +1543,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_data_entry()
-    {
+    public function paraf_data_entry(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -1594,8 +1569,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_fcr()
-    {
+    public function paraf_fcr(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -1618,8 +1592,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function paraf_fcr_usaha()
-    {
+    public function paraf_fcr_usaha(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -1641,8 +1614,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_fcr_agunan()
-    {
+    public function paraf_fcr_agunan(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -1665,8 +1637,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function paraf_dokumen_ceklis()
-    {
+    public function paraf_dokumen_ceklis(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -1688,8 +1659,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_scoring()
-    {
+    public function paraf_scoring(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -1711,8 +1681,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_entry($hasil, $pemanggil)
-    {
+    public function data_entry($hasil, $pemanggil){
 
         $input = $this->request->getPost('jenis_agunan_tambah');
         $jenis_agunan = explode(";", $input);
@@ -1887,7 +1856,7 @@ class Pengajuan extends BaseController
     }
 
     // public function simpanParaf($hasil, $nama_halaman, $ceklist_field)
-    // {
+    //{
     //     $kd_data = $this->request->getPost('kd_data_tambah');
 
     //     $data = [
@@ -1914,8 +1883,7 @@ class Pengajuan extends BaseController
     //     }
     // }
 
-    public function data_entry_paraf($hasil)
-    {
+    public function data_entry_paraf($hasil){
         // Proses penyimpanan data
         $kd_level = session()->get('kd_level_user');
         $kd_data = $this->request->getPost('kd_data_tambah');
@@ -1944,21 +1912,20 @@ class Pengajuan extends BaseController
 
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit Data Entry Gagal'
+                'message' => 'Edit Data Entry Berhasil'
             ];
         } else {
             $this->db->table('tb_paraf')->insert($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit Data Entry berhasil'
+                'message' => 'Paraf Data Entry berhasil'
             ];
         }
 
         return $hasil;
     }
 
-    public function fcr_paraf($hasil)
-    {
+    public function fcr_paraf($hasil){
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
         $kd_level = session()->get('kd_level_user');
@@ -1989,21 +1956,20 @@ class Pengajuan extends BaseController
             $this->db->table('tb_paraf')->insert($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit FCR berhasil'
+                'message' => 'Paraf FCR berhasil'
             ];
         } else {
             $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit FCR Gagal'
+                'message' => 'Edit FCR berhasil'
             ];
         }
 
         return $hasil;
     }
 
-    public function fcr_usaha_paraf($hasil)
-    {
+    public function fcr_usaha_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2035,20 +2001,19 @@ class Pengajuan extends BaseController
             $this->db->table('tb_paraf')->insert($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit FCR Usaha berhasil'
+                'message' => 'Paraf FCR Usaha berhasil'
             ];
         } else {
             $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit FCR Usaha Gagal'
+                'message' => 'Edit FCR Usaha berhasil'
             ];
         }
 
         return $hasil;
     }
-    public function fcr_agunan_paraf($hasil)
-    {
+    public function fcr_agunan_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2081,20 +2046,19 @@ class Pengajuan extends BaseController
             $this->db->table('tb_paraf')->insert($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit FCR Agunan berhasil'
+                'message' => 'Paraf FCR Agunan berhasil'
             ];
         } else {
             $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit FCR Agunan Gagal'
+                'message' => 'Edit FCR Agunan berhasil'
             ];
         }
 
         return $hasil;
     }
-    public function dokumen_ceklis_paraf($hasil)
-    {
+    public function dokumen_ceklis_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2127,20 +2091,19 @@ class Pengajuan extends BaseController
             $this->db->table('tb_paraf')->insert($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit Dokumen Pendukung berhasil'
+                'message' => 'Paraf Dokumen Pendukung berhasil'
             ];
         } else {
             $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
             $hasil = [
                 'status' => 'success',
-                'message' => 'Edit Dokumen Pendukung Gagal'
+                'message' => 'Edit Dokumen Pendukung berhasil'
             ];
         }
 
         return $hasil;
     }
-    public function scoring_paraf($hasil)
-    {
+    public function scoring_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2186,8 +2149,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function fak_paraf($hasil)
-    {
+    public function fak_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2232,8 +2194,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function fak_modal_paraf($hasil)
-    {
+    public function fak_modal_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2278,8 +2239,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function fak_rl_paraf($hasil)
-    {
+    public function fak_rl_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2324,8 +2284,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function lap_rl_paraf($hasil)
-    {
+    public function lap_rl_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2370,8 +2329,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function ceftb_paraf($hasil)
-    {
+    public function ceftb_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2416,8 +2374,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function faa_paraf($hasil)
-    {
+    public function faa_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2462,8 +2419,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function mauk_paraf($hasil)
-    {
+    public function mauk_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2508,8 +2464,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function dcl_paraf($hasil)
-    {
+    public function dcl_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2554,8 +2509,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function scoring_koor_paraf($hasil)
-    {
+    public function scoring_koor_paraf($hasil){
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2600,8 +2554,7 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function tampil_btn_finish($kd_data)
-    {
+    public function tampil_btn_finish($kd_data){
 
         $data_kirim = [
             'status' => 'success',
@@ -2784,8 +2737,7 @@ class Pengajuan extends BaseController
         // jika yang login selain role di atas, maka hilangkan button finish
         echo json_encode($data_kirim);
     }
-    public function tampil_disposisi($kd_data)
-    {
+    public function tampil_disposisi($kd_data){
 
         $data_kirim = [
             'status' => 'success',
@@ -3055,8 +3007,7 @@ class Pengajuan extends BaseController
         // jika yang login selain role di atas, maka hilangkan button finish
         echo json_encode($data_kirim);
     }
-    public function edit_master($kd_data, $data_master)
-    {
+    public function edit_master($kd_data, $data_master){
         $hasil = false;
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_data_master where kd_data = '" . $kd_data . "' ")->getNumRows();
         if ($cek_kd_data > 0) {
@@ -3067,8 +3018,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function get_data_entry($kd_data)
-    {
+    public function get_data_entry($kd_data){
         $hasil = [
             'status' => 'error',
             'message' => null,
@@ -3082,8 +3032,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function get_tabel_return($kd_data)
-    {
+    public function get_tabel_return($kd_data){
         $hasil = [
             'status' => 'error',
             'message' => null,
@@ -3097,8 +3046,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_return()
-    {
+    public function edit_return(){
         if (!$this->validate([
 
             'catatan_return' => [
@@ -3203,8 +3151,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_reject($jenis = '1')
-    {
+    public function edit_reject($jenis = '1'){
         if (!$this->validate([
 
             'catatan_reject' => [
@@ -3312,8 +3259,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function ubah_fcr($kd_data, $data)
-    {
+    public function ubah_fcr($kd_data, $data){
         $hasil = false;
         $fcr = [
             'nama_debitur' => $data['nama_debitur'],
@@ -3366,8 +3312,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function getGlobal()
-    {
+    public function getGlobal(){
         $kd_data = $this->request->getPost('kd_data');
         $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getResultArray();
         // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
@@ -3424,8 +3369,7 @@ class Pengajuan extends BaseController
 
         echo json_encode($data);
     }
-    public function get_perulangan()
-    {
+    public function get_perulangan(){
         $data = [];
         $kd_data = $this->request->getPost('kd_data');
         // $detail_fcr = $this->db->query("SELECT * FROM tb_fcr_agunan WHERE kd_data = '" . $kd_data . "' ");
@@ -3530,8 +3474,7 @@ class Pengajuan extends BaseController
 
         echo json_encode($data);
     }
-    public function edit_file()
-    {
+    public function edit_file(){
         if (!$this->validate([
             'upload_dokumen_edit' => [
                 'rules' => 'uploaded[upload_dokumen_edit]|max_size[upload_dokumen_edit,2048]|ext_in[upload_dokumen_edit,pdf]',
@@ -3572,8 +3515,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_fcr()
-    {
+    public function edit_fcr(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3682,8 +3624,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_fcr($hasil)
-    {
+    public function data_fcr($hasil){
         $data = [
             'nomor' => $this->request->getPost('nomor_edit'),
             'tanggal' => $this->request->getPost('tanggal_edit'),
@@ -3731,8 +3672,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr()
-    {
+    public function finish_fcr(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3839,8 +3779,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_fcr_usaha()
-    {
+    public function edit_fcr_usaha(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -4065,8 +4004,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_fcr_usaha($hasil)
-    {
+    public function data_fcr_usaha($hasil){
         $data = [
             'kondisi_fisik_kantor' => $this->request->getPost('kondisi_fisik_kantor'),
             'luas_tanah_kantor' => $this->request->getPost('luas_tanah_kantor'),
@@ -4131,8 +4069,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr_usaha()
-    {
+    public function finish_fcr_usaha(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -4357,8 +4294,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function kd_unit_fcr($kd_data_input, $kd_unit_input)
-    {
+    public function kd_unit_fcr($kd_data_input, $kd_unit_input){
         $hasil = false;
         $kd_unit_data_entry = $this->db->query("SELECT * from tb_data_entry where kd_data = '" . $kd_data_input . "' ");
         if ($kd_unit_data_entry->getNumRows() > 0) {
@@ -4373,8 +4309,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function edit_fcr_agunan_kd_tepakai()
-    {
+    public function edit_fcr_agunan_kd_tepakai(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -4729,8 +4664,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_fcr_agunan()
-    {
+    public function edit_fcr_agunan(){
 
         $hasil = [
             'status' => 'error',
@@ -5017,8 +4951,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan($hasil);
         echo json_encode($hasil);
     }
-    public function val_foreach($bukti_kepemilikan, $nama_validasi, $pesan)
-    {
+    public function val_foreach($bukti_kepemilikan, $nama_validasi, $pesan){
         // $this->debug($bukti_kepemilikan);
         $validationRules = [];
         foreach ($bukti_kepemilikan as $index => $value) {
@@ -5032,8 +4965,7 @@ class Pengajuan extends BaseController
         // $this->debug($validationRules);
         return $validationRules;
     }
-    public function finish_fcr_agunan_tanah()
-    {
+    public function finish_fcr_agunan_tanah(){
 
         $hasil = [
             'status' => 'error',
@@ -5319,8 +5251,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function data_fcr_agunan($hasil)
-    {
+    public function data_fcr_agunan($hasil){
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('bukti_kepemilikan'));
         // $jenis_agunan = explode(";", $input);
@@ -5390,8 +5321,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
     // bangunan
-    public function edit_fcr_agunan_bangunan()
-    {
+    public function edit_fcr_agunan_bangunan(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -5761,8 +5691,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bangunan($hasil);
         echo json_encode($hasil);
     }
-    public function finish_fcr_agunan_bangunan()
-    {
+    public function finish_fcr_agunan_bangunan(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -6140,8 +6069,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bangunan($hasil);
         echo json_encode($hasil);
     }
-    public function data_fcr_agunan_bangunan($hasil)
-    {
+    public function data_fcr_agunan_bangunan($hasil){
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('imb'));
         // $jenis_agunan = explode(";", $input);
@@ -6218,8 +6146,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function edit_status_gambar($kd_data, $index)
-    {
+    public function edit_status_gambar($kd_data, $index){
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_gambar_situasi where kd_data = '" . $kd_data . "' and index_plus_satu > '" . $index . "' AND STATUS = 'Aktif'")->getNumRows();
         if ($cek_kd_data > 0) {
             $data = [
@@ -6236,8 +6163,7 @@ class Pengajuan extends BaseController
                 ->update($data);
         }
     }
-    public function edit_fcr_agunan_bb()
-    {
+    public function edit_fcr_agunan_bb(){
 
         $hasil = [
             'status' => 'error',
@@ -6510,8 +6436,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bb($hasil);
         echo json_encode($hasil);
     }
-    public function finish_fcr_agunan_bb()
-    {
+    public function finish_fcr_agunan_bb(){
 
         $hasil = [
             'status' => 'error',
@@ -6784,8 +6709,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bb($hasil);
         echo json_encode($hasil);
     }
-    public function data_fcr_agunan_bb($hasil)
-    {
+    public function data_fcr_agunan_bb($hasil){
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('bukti_kepemilikan'));
         // $jenis_agunan = explode(";", $input);
@@ -6837,8 +6761,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr_agunan()
-    {
+    public function finish_fcr_agunan(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -7189,13 +7112,11 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function convert_base64($file)
-    {
+    public function convert_base64($file){
         $convert = base64_encode(file_get_contents($file));
         return $convert;
     }
-    public function lihat_gambar($kd_data, $data_id)
-    {
+    public function lihat_gambar($kd_data, $data_id){
         // $this->debug($data_id);
         $dokumen = $this->db->query("SELECT file_gambar FROM tb_gambar_situasi WHERE SHA1(kd_data) = '" . $kd_data . "' and index_plus_satu = '" . $data_id . "' and status='Aktif' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->file_gambar)) {
@@ -7206,8 +7127,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function lihat_gambar_kd_tepakai($kd_data, $data_id)
-    {
+    public function lihat_gambar_kd_tepakai($kd_data, $data_id){
         // $this->debug($data_id);
         $dokumen = $this->db->query("SELECT gambar_situasi FROM tb_fcr_agunan WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->gambar_situasi)) {
@@ -7223,8 +7143,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function edit_gambar($id_bangunan)
-    {
+    public function edit_gambar($id_bangunan){
 
         if (!$this->validate([
             'upload_gambar_edit' . $id_bangunan => [
@@ -7290,8 +7209,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_gambar_kd_tepakai()
-    {
+    public function edit_gambar_kd_tepakai(){
 
         if (!$this->validate([
             'upload_gambar_edit1' => [
@@ -7333,8 +7251,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function dokumen_pendukung($kd_data, $id_input)
-    {
+    public function dokumen_pendukung($kd_data, $id_input){
         $dok = false;
         $orang = $this->db->query("SELECT * FROM tb_dokumen WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         $cv = $this->db->query("SELECT * FROM tb_dokumen_cv WHERE SHA1(kd_data) = '" . $kd_data . "' ");
@@ -7455,8 +7372,7 @@ class Pengajuan extends BaseController
             echo "<iframe src=\"data:application/pdf;base64,$dok\" width=\"100%\" height=\"600px\"></iframe>";
         }
     }
-    public function edit_dokumen()
-    {
+    public function edit_dokumen(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal edit data'
@@ -7614,8 +7530,7 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function validateFile($inputName, $kalimat, $nama_kolom_db, $nama_tabel, $kd_data)
-    {
+    public function validateFile($inputName, $kalimat, $nama_kolom_db, $nama_tabel, $kd_data){
         $file = $this->request->getFile($inputName);
 
         // $fileName = pathinfo($file->getName(), PATHINFO_FILENAME);
@@ -7697,8 +7612,7 @@ class Pengajuan extends BaseController
         // Cek apakah file diisi atau tidak
 
     }
-    public function edit_perseorangan($jenis_badan_usaha, $kd_data, $kirim, $null_cv, $null_pt)
-    {
+    public function edit_perseorangan($jenis_badan_usaha, $kd_data, $kirim, $null_cv, $null_pt){
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -7895,8 +7809,7 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_cv($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_pt)
-    {
+    public function edit_cv($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_pt){
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -8093,8 +8006,7 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_pt($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_cv)
-    {
+    public function edit_pt($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_cv){
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -8301,8 +8213,7 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_scoring()
-    {
+    public function edit_scoring(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8485,8 +8396,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_scoring_koor()
-    {
+    public function edit_scoring_koor(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8669,8 +8579,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_scoring($hasil)
-    {
+    public function data_scoring($hasil){
         $data = [
             'nama_pemohon' => $this->request->getPost('nama_pemohon_sc'),
             'alamat' => $this->request->getPost('alamat_sc'),
@@ -8693,7 +8602,7 @@ class Pengajuan extends BaseController
             // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc'),
             // 'bahan_baku' => $this->request->getPost('bahan_baku_sc'),
             // 'peralatan' => $this->request->getPost('peralatan_sc'),
-            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc'),
+            // 'pembayaran_termin' => $this->request->getPost('pembayaran_sc'),
             // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc'),
             // 'persentase_plafond' => $this->request->getPost('prosentase_sc'),
             // 'jangka_waktu' => $this->request->getPost('jangka_sc'),
@@ -8715,7 +8624,7 @@ class Pengajuan extends BaseController
             'jenis_proyek' => $this->request->getPost('jenis_proyek_sc') ? $this->request->getPost('jenis_proyek_sc') : 0,
             'bahan_baku' => $this->request->getPost('bahan_baku_sc') ? $this->request->getPost('bahan_baku_sc') : 0,
             'peralatan' => $this->request->getPost('peralatan_sc') ? $this->request->getPost('peralatan_sc') : 0,
-            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc') ? $this->request->getPost('pembayaran_sc') : 0,
+            'pembayaran_termin' => $this->request->getPost('pembayaran_sc') ? $this->request->getPost('pembayaran_sc') : 0,
             'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc') ? $this->request->getPost('dasar_penunjukan_sc') : 0,
             'persentase_plafond' => $this->request->getPost('prosentase_sc') ? $this->request->getPost('prosentase_sc') : 0,
             'jangka_waktu' => $this->request->getPost('jangka_sc') ? $this->request->getPost('jangka_sc') : 0,
@@ -8732,7 +8641,7 @@ class Pengajuan extends BaseController
         $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
             + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
             + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
-            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termin']
             + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
             + $data['penjaminan_maskapai'];
         if ($jumlah >= 325) {
@@ -8761,8 +8670,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_scoring_koor($hasil)
-    {
+    public function data_scoring_koor($hasil){
         $data = [
             'nama_pemohon' => $this->request->getPost('nama_pemohon_sc_koor'),
             'alamat' => $this->request->getPost('alamat_sc_koor'),
@@ -8785,7 +8693,7 @@ class Pengajuan extends BaseController
             // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor'),
             // 'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor'),
             // 'peralatan' => $this->request->getPost('peralatan_sc_koor'),
-            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor'),
+            // 'pembayaran_termin' => $this->request->getPost('pembayaran_sc_koor'),
             // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor'),
             // 'persentase_plafond' => $this->request->getPost('prosentase_sc_koor'),
             // 'jangka_waktu' => $this->request->getPost('jangka_sc_koor'),
@@ -8807,7 +8715,7 @@ class Pengajuan extends BaseController
             'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor') ? $this->request->getPost('jenis_proyek_sc_koor') : 0,
             'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor') ? $this->request->getPost('bahan_baku_sc_koor') : 0,
             'peralatan' => $this->request->getPost('peralatan_sc_koor') ? $this->request->getPost('peralatan_sc_koor') : 0,
-            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
+            'pembayaran_termin' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
             'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor') ? $this->request->getPost('dasar_penunjukan_sc_koor') : 0,
             'persentase_plafond' => $this->request->getPost('prosentase_sc_koor') ? $this->request->getPost('prosentase_sc_koor') : 0,
             'jangka_waktu' => $this->request->getPost('jangka_sc_koor') ? $this->request->getPost('jangka_sc_koor') : 0,
@@ -8824,7 +8732,7 @@ class Pengajuan extends BaseController
         $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
             + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
             + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
-            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termin']
             + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
             + $data['penjaminan_maskapai'];
         if ($jumlah >= 325) {
@@ -8853,8 +8761,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_scoring()
-    {
+    public function finish_scoring(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -9035,8 +8942,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_scoring_master($kd_data, $hasil_scoring)
-    {
+    public function edit_scoring_master($kd_data, $hasil_scoring){
         if ($hasil_scoring >= 325) {
             $ket = 'Yes';
         } else {
@@ -9049,8 +8955,7 @@ class Pengajuan extends BaseController
             $this->db->table('tb_data_master')->where('kd_data', $kd_data)->update($data);
         }
     }
-    public function edit_recap()
-    {
+    public function edit_recap(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -9151,8 +9056,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_finish()
-    {
+    public function edit_finish(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -9329,8 +9233,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function cetak_dokumen($kd_data, $id_dok)
-    {
+    public function cetak_dokumen($kd_data, $id_dok){
         // Cetak Dokumen Pengajuan
         if ($id_dok == sha1('fcr_gen')) {
             $this->generate_fcr($kd_data, $id_dok);
@@ -9354,8 +9257,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fcr($kd_data, $id_dok)
-    {
+    public function generate_fcr($kd_data, $id_dok){
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -9446,8 +9348,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fcr_usaha($kd_data, $id_dok)
-    {
+    public function generate_fcr_usaha($kd_data, $id_dok){
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr_usaha where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -9527,8 +9428,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_dokumen_ceklis($kd_data, $id_dok)
-    {
+    public function generate_dokumen_ceklis($kd_data, $id_dok){
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
 
         if ($ada_data_entry->getNumRows() > 0) {
@@ -9571,8 +9471,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fkk($kd_data, $id_dok)
-    {
+    public function generate_fkk($kd_data, $id_dok){
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
         $kirim = $this->db->query("SELECT * FROM tb_kirim where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -9621,8 +9520,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_mkk($kd_data, $id_dok)
-    {
+    public function generate_mkk($kd_data, $id_dok){
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
 
@@ -9662,16 +9560,14 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function formatting_angka($angka, $jumlah)
-    {
+    public function formatting_angka($angka, $jumlah){
         if (!empty($angka)) {
             return number_format($angka, $jumlah, ',', '.');
         } else {
             return $angka;
         }
     }
-    public function getHariIndonesia($tanggal)
-    {
+    public function getHariIndonesia($tanggal){
         // Array hari dalam bahasa Indonesia
         $namaHari = [
             'Sunday'    => 'Minggu',
@@ -9689,16 +9585,14 @@ class Pengajuan extends BaseController
         // Mengembalikan nama hari dalam bahasa Indonesia
         return $namaHari[$hariInggris];
     }
-    public function cek_kosong($input)
-    {
+    public function cek_kosong($input){
         if (!empty($input)) {
             return $input;
         } else {
             return '';
         }
     }
-    public function atur_tanggal($input)
-    {
+    public function atur_tanggal($input){
         if (!empty($input)) {
             $tanggal = date('d-m-Y', strtotime($input));
             return $tanggal;
@@ -9706,8 +9600,7 @@ class Pengajuan extends BaseController
             return $input;
         }
     }
-    public function nama_unit($kd_unit)
-    {
+    public function nama_unit($kd_unit){
         if (!empty($kd_unit)) {
             $cek_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $kd_unit . "' ");
             if ($cek_unit->getNumRows() > 0) {
@@ -9720,8 +9613,7 @@ class Pengajuan extends BaseController
             return $kd_unit;
         }
     }
-    public function pisah_koma($input)
-    {
+    public function pisah_koma($input){
         if (!empty($input)) {
             $array = explode(";", $input);
             // var_dump($array); die;
@@ -9730,8 +9622,7 @@ class Pengajuan extends BaseController
             return $input;
         }
     }
-    public function permission()
-    {
+    public function permission(){
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
                 "SELECT kd_level_user 
@@ -9756,8 +9647,7 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function permission2($nama_permission)
-    {
+    public function permission2($nama_permission){
         $hasil = false;
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
@@ -9791,8 +9681,7 @@ class Pengajuan extends BaseController
     }
 
 
-    public function edit_fak_data()
-    {
+    public function edit_fak_data(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9808,8 +9697,7 @@ class Pengajuan extends BaseController
         // $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
-    public function edit_fak_modal()
-    {
+    public function edit_fak_modal(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9819,8 +9707,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_fak_rl()
-    {
+    public function edit_fak_rl(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9830,8 +9717,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_lap_rl()
-    {
+    public function edit_lap_rl(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9841,8 +9727,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_ceftb()
-    {
+    public function edit_ceftb(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9852,8 +9737,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_faa()
-    {
+    public function edit_faa(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9862,8 +9746,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
-    public function edit_mauk()
-    {
+    public function edit_mauk(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9872,8 +9755,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_mauk($hasil);
         echo json_encode($hasil);
     }
-    public function edit_dcl()
-    {
+    public function edit_dcl(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9883,8 +9765,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function data_fak_data($hasil)
-    {
+    public function data_fak_data($hasil){
         $data = [
             'kegiatan' => $this->request->getPost("kegiatan_fak_data"),
             'pekerjaan' => $this->request->getPost("pekerjaan_fak_data"),
@@ -9925,13 +9806,13 @@ class Pengajuan extends BaseController
             'gaji_pengawas' => $this->request->getPost("gaji_pengawas_fak_data"),
             'gaji_staf' => $this->request->getPost("gaji_staf_fak_data"),
             'biaya_umum' => $this->request->getPost("biaya_umum_fak_data"),
-            'termijn' => $this->request->getPost("termijn_fak_data"),
-            'progress_termijn' => $this->request->getPost("progress_termijn_fak_data"),
-            'persentase_termijn' => $this->request->getPost("persentase_termijn_fak_data"),
-            'prakiraan_tgl_termijn' => $this->request->getPost("prakiraan_tgl_termijn_fak_data"),
-            'setelah_masa_pemeliharaan_termijn' => $this->request->getPost("setelah_masa_pemeliharaan_fak_data"),
-            'total_termijn' => $this->request->getPost("total_termijn_fak_data"),
-            'jumlah_termijn' => $this->request->getPost("jumlah_termijn_fak_data"),
+            'termin' => $this->request->getPost("termin_fak_data"),
+            'progress_termin' => $this->request->getPost("progress_termin_fak_data"),
+            'persentase_termin' => $this->request->getPost("persentase_termin_fak_data"),
+            'prakiraan_tgl_termin' => $this->request->getPost("prakiraan_tgl_termin_fak_data"),
+            'setelah_masa_pemeliharaan_termin' => $this->request->getPost("setelah_masa_pemeliharaan_fak_data"),
+            'total_termin' => $this->request->getPost("total_termin_fak_data"),
+            'jumlah_termin' => $this->request->getPost("jumlah_termin_fak_data"),
 
             'pengubah' => session()->get('nama_user'),
             'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
@@ -9958,8 +9839,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_fak_modal($hasil)
-    {
+    public function data_fak_modal($hasil){
         $data = [
             'proyek_fak_modal' => $this->request->getPost("proyek_fak_modal"),
             'profit_fak_modal' => $this->request->getPost("profit_fak_modal"),
@@ -10019,8 +9899,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_mauk($hasil)
-    {
+    public function data_mauk($hasil){
         $data = [
             'nama_nasabah_mauk' => $this->request->getPost("nama_nasabah_mauk"),
             'npwp_mauk' => $this->request->getPost("npwp_mauk"),
@@ -10110,8 +9989,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_faa($hasil)
-    {
+    public function data_faa($hasil){
         $data = [
             'nama_nasabah_bb' => $this->request->getPost("namanasabahbb"),
             'jenis_dokumen_bb' => $this->request->getPost("jenis_dokumen_bb"),
@@ -10172,8 +10050,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_fak_rl($hasil)
-    {
+    public function data_fak_rl($hasil){
         $data = [
             'nilai_kontrak_fak_rl' => $this->request->getPost("nilai_kontrak_fak_rl"),
             'pekerjaan_persiapan_konstruksi_fak_rl' => $this->request->getPost("pekerjaan_persiapan_konstruksi_fak_rl"),
@@ -10191,10 +10068,10 @@ class Pengajuan extends BaseController
             'harga_borongan_fak_rl' => $this->request->getPost("harga_borongan_fak_rl"),
             'persentase_penerimaan_uang_muka_fak_rl' => $this->request->getPost("persentase_penerimaan_uang_muka_fak_rl"),
             'penerimaan_uang_muka_fak_rl' => $this->request->getPost("penerimaan_uang_muka_fak_rl"),
-            'persentase_penerimaan_termijn_fak_rl' => $this->request->getPost("persentase_penerimaan_termijn_fak_rl"),
-            'penerimaan_termijn_fak_rl' => $this->request->getPost("penerimaan_termijn_fak_rl"),
-            'persentase_penerimaan_termijn_pemeliharaan_fak_rl' => $this->request->getPost("persentase_penerimaan_termijn_pemeliharaan_fak_rl"),
-            'penerimaan_termijn_pemeliharaan_fak_rl' => $this->request->getPost("penerimaan_termijn_pemeliharaan_fak_rl"),
+            'persentase_penerimaan_termin_fak_rl' => $this->request->getPost("persentase_penerimaan_termin_fak_rl"),
+            'penerimaan_termin_fak_rl' => $this->request->getPost("penerimaan_termin_fak_rl"),
+            'persentase_penerimaan_termin_pemeliharaan_fak_rl' => $this->request->getPost("persentase_penerimaan_termin_pemeliharaan_fak_rl"),
+            'penerimaan_termin_pemeliharaan_fak_rl' => $this->request->getPost("penerimaan_termin_pemeliharaan_fak_rl"),
             'persentase_penerimaan_bersih_fak_rl' => $this->request->getPost("persentase_penerimaan_bersih_fak_rl"),
             'penerimaan_bersih_fak_rl' => $this->request->getPost("penerimaan_bersih_fak_rl"),
             'pajak_ppn_pph_fak_rl' => $this->request->getPost("pajak_ppn_pph_fak_rl"),
@@ -10229,8 +10106,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function data_lap_rl($hasil)
-    {
+    public function data_lap_rl($hasil){
         $kd_data = $this->request->getPost('kd_data');
 
         $laporan_rugi_laba_upload_lap_rl = $this->validateFile('laporan_rugi_laba_upload_lap_rl', 'Laporan Laba Rugi', 'laporan_rugi_laba_upload_lap_rl', 'tb_lap_rl', $kd_data);
@@ -10298,20 +10174,29 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function lihat_file_proyeksi_rl($kd_data)
-    {
-        $dokumen = $this->db->query("SELECT gambar_situasi FROM tb_lap_rl WHERE SHA1(kd_data) = '" . $kd_data . "' ");
-        if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->gambar_situasi)) {
-            $dok = $dokumen->getRow()->gambar_situasi;
-            // Tampilkan dokumen PDF menggunakan iframe
-            echo "<iframe src=\"data:application/pdf;base64,$dok\" width=\"100%\" height=\"600px\"></iframe>";
-        } else {
-            echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
-        }
-    }
+    public function lihat_file_proyeksi_rl($kd_data,$file){
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT {$file} FROM tb_lap_rl WHERE SHA1(kd_data) = ?", [$kd_data]);
 
-    public function data_ceftb($hasil)
-    {
+        if ($query->getNumRows() > 0) {
+            $row = $query->getRow();
+            $dokumen = $row->$file ?? null;
+
+            if (!empty($dokumen)) {
+                // render langsung PDF
+                return $this->response->setBody(
+        "<iframe src=\"data:application/pdf;base64,{$dokumen}\" width=\"100%\" height=\"600px\"></iframe>"
+                );
+            }
+        }
+
+        return "Dokumen tidak ditemukan. 
+                <a href='" . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . "'>Klik untuk kembali</a>";
+        
+    }
+    
+
+    public function data_ceftb($hasil){
         $data = [
             'checkboxceft' => $this->request->getPost("nilaicheckboxceft"),
             'hasilceft' => $this->request->getPost("hasilcheckboxceft"),
@@ -10346,8 +10231,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function data_dcl($hasil)
-    {
+    public function data_dcl($hasil){
         $data = [
             'pengelola_dcl' => $this->request->getPost("pengelola_dcl"),
             'tanggal_dcl' => $this->request->getPost("tanggal_dcl"),

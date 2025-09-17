@@ -444,7 +444,7 @@
 
                     </select>
                     <br>
-                    <table class="table-responsive" border="0">
+                    <!-- <table class="table-responsive" border="0">
                         <tr>
                             <td>
                                 <h3>Hasil Scoring</h3>
@@ -472,7 +472,7 @@
                             <td></td>
                             <td></td>
                         </tr>
-                    </table>
+                    </table> -->
 
 
                 </div>

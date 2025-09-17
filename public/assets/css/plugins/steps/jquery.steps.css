@@ -95,7 +95,7 @@
 .wizard > .steps .current a,
 .wizard > .steps .current a:hover,
 .wizard > .steps .current a:active {
-  background: #1ab394;
+  background: #03588e;
   color: #fff;
   cursor: default;
 }
@@ -103,7 +103,7 @@
 .wizard > .steps .done a,
 .wizard > .steps .done a:hover,
 .wizard > .steps .done a:active {
-  background: #6fd1bd;
+  background: #1c84c6;
   color: #fff;
 }
 

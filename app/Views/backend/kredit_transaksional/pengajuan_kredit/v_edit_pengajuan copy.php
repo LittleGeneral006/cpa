@@ -2307,13 +2307,13 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="col-lg-12 control-label">16. PEMBAYARAN TERMIJN</label>
+                                        <label class="col-lg-12 control-label">16. PEMBAYARAN termin</label>
                                         <div class="col-lg-12">
                                             <select class="form-control class-disabled select" required id="pembayaran_sc" name="pembayaran_sc">
                                                 <option value="" selected="" disabled="">pilih</option>
-                                                <option value="a">(a) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing dan Standing Instruction.</option>
-                                                <option value="b">(b) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing, namun sudah dilengkapi dengan Standing Instruction.</option>
-                                                <option value="c">(c) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel yang tertuang di dalam kontrak / terdapat Bank Clearing yang telah ditandatangani oleh Pejabat Pembuat Komitmen dan Bendahara Proyek/Pekerjaan yang diberikan pembiayaan.</option>
+                                                <option value="a">(a) termin disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing dan Standing Instruction.</option>
+                                                <option value="b">(b) termin disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing, namun sudah dilengkapi dengan Standing Instruction.</option>
+                                                <option value="c">(c) termin disalurkan melalui rekening Pemohon yang ada di Bank Kalsel yang tertuang di dalam kontrak / terdapat Bank Clearing yang telah ditandatangani oleh Pejabat Pembuat Komitmen dan Bendahara Proyek/Pekerjaan yang diberikan pembiayaan.</option>
                                             </select>
 
 
@@ -3071,32 +3071,32 @@
             });
         }
 
-        function variabelGlobal(callback) {
-            var kirim = {
-                kd_data: '<?php echo sha1($data_entry->kd_data) ?>'
-            };
+        // function variabelGlobal(callback) {
+        //     var kirim = {
+        //         kd_data: '<?php echo sha1($data_entry->kd_data) ?>'
+        //     };
 
-            $.ajax({
-                url: "<?php echo base_url() ?>pengajuan/getGlobal",
-                type: "POST",
-                data: kirim,
-                dataType: "JSON",
-                success: function(response) {
-                    var hasil = {
-                        status: 'success',
-                        message: response
-                    };
-                    callback(hasil); // Panggil callback dengan hasil yang diperoleh
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    var hasil = {
-                        status: 'error',
-                        message: 'gagal mendapatkan data'
-                    };
-                    callback(hasil); // Panggil callback dengan hasil yang diperoleh
-                }
-            });
-        }
+        //     $.ajax({
+        //         url: "<?php echo base_url() ?>pengajuan/getGlobal",
+        //         type: "POST",
+        //         data: kirim,
+        //         dataType: "JSON",
+        //         success: function(response) {
+        //             var hasil = {
+        //                 status: 'success',
+        //                 message: response
+        //             };
+        //             callback(hasil); // Panggil callback dengan hasil yang diperoleh
+        //         },
+        //         error: function(jqXHR, textStatus, errorThrown) {
+        //             var hasil = {
+        //                 status: 'error',
+        //                 message: 'gagal mendapatkan data'
+        //             };
+        //             callback(hasil); // Panggil callback dengan hasil yang diperoleh
+        //         }
+        //     });
+        // }
 
         // simpan data entry
         $('#save_data_entry').click(function(e) {
