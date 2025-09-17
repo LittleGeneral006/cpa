@@ -209,7 +209,7 @@ $routes->post('/penarikan/simpan_penarikan', 'Penarikan::simpan_penarikan');
 $routes->get('/penarikan/dokumen', 'Penarikan::dokumen');
 // edit data entry
 $routes->get('/edit-penarikan-kredit-transaksional/(:any)', 'Penarikan::edit_penarikan/$1');
-$routes->get('/edit-penarikan-kredit-transaksional/get_jumlah_termin', 'Pengajuan::get_jumlah_termin_dropdown');
+$routes->get('/ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown', 'Penarikan::get_jumlah_termin_dropdown');
 $routes->get('/dokumen-kontrak-proyek/(:any)', 'Penarikan::lihat_dokumen/$1');
 $routes->post('/penarikan/edit_data_entry', 'Penarikan::edit_data_entry');
 $routes->post('/penarikan/paraf_data_entry', 'Penarikan::paraf_data_entry');

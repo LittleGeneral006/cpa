@@ -22,9 +22,6 @@
                     <label for="pilih_termin">Pilih Termin:</label>
                     <select id="pilih_termin" name="pilih_termin" class="form-control">
                         <option value="">-- Pilih Termin --</option>
-                        <option value="termin1">Termin 1</option>
-                        <option value="termin2">Termin 2</option>
-                        <option value="termin3">Termin 3</option>
                     </select>
                 </div>
                 <div class="ibox-content">
@@ -38,6 +35,7 @@
                     </p>
                     <form id="form" action="#" class="wizard-big">
                         <?= csrf_field() ?>
+                        <input type="hidden" id="kd_data" value="<?= esc($kd_data) ?>">
                         <h1>Data Entry</h1>
                         <fieldset>
                             <h2>Data Entry</h2>
@@ -324,22 +322,32 @@
     // }
 
     $(document).ready(function() {
+        var kd_data = $("#kd_data").val(); // ambil dari hidden input
+        console.log(kd_data);
+
         $.ajax({
-            url: "<?php echo base_url() ?>edit-penarikan-kredit-transaksional/get_jumlah_termin", // Endpoint to fetch data
+            url: "<?= base_url('ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown'); ?>",
             type: "GET",
+            data: {
+                kd_data: kd_data
+            },
             dataType: "json",
             success: function(data) {
+                console.log("success callback jalan");
+                console.log("data:", data);
                 var select = $("#pilih_termin");
-                select.empty(); // Clear existing options
-                select.append('<option value="">-- Pilih Termin --</option>'); // Default option
+                select.empty();
+                select.append('<option value="">-- Pilih Termin --</option>');
+                // Populate dropdown
+                for (var i = 0; i < data.length; i++) {
+                    var terminNumber = data[i];
 
-                // Populate dropdown with data
-                for (var i = 1; i <= data.jumlah_termin; i++) {
-                    select.append('<option value="termin' + i + '">Termin ' + i + '</option>');
+                    select.append('<option value="termin' + terminNumber + '">Termin ' + terminNumber + '</option>');
                 }
             },
             error: function(xhr, status, error) {
-                console.error("Error fetching termin data:", error);
+                console.log('gagal ajaxnya edit-penarikan-kredit-transaksional/get_jumlah_termin_dropdown');
+
             }
         });
 

@@ -28,7 +28,7 @@ class Penarikan extends BaseController
         // $this->UsersModel = new UsersModel();
         $this->session = session();
     }
-    
+
     public function v_penarikan()
     {
         $hasil = $this->hak_akses();
@@ -124,7 +124,15 @@ class Penarikan extends BaseController
 
 
         $aColumns = array(
-            'nomor_aplikasi', 'tanggal_isi', 'nama_debitur', 'posisi_progress', 'progress', 'scoring', 'sla', 'nama_unit', 'status'
+            'nomor_aplikasi',
+            'tanggal_isi',
+            'nama_debitur',
+            'posisi_progress',
+            'progress',
+            'scoring',
+            'sla',
+            'nama_unit',
+            'status'
         );
 
         $sLimit = "";
@@ -224,7 +232,7 @@ class Penarikan extends BaseController
             // }
             //9
             // $row[] = '<button title="Edit" id="edit_penarikan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
- $row[] = '<a data-toggle="dropdown" class="" href="#">' .
+            $row[] = '<a data-toggle="dropdown" class="" href="#">' .
                 '<span class="text-dark text-xs block"><b>. . .</b></span>' .
                 '</a>' .
                 '<ul class="dropdown-menu animated fadeInRight m-t-xs">' .
@@ -253,89 +261,146 @@ class Penarikan extends BaseController
         }
     }
 
-        public function edit_penarikan($kd_data){
-        $hasil = $this->hak_akses();
-        $permission = $this->permission();
-        // $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
-        // $cek_agunan = $this->cek_agunan($kd_data);
-        // dd($cek_agunan);
-        // if ($hasil == true) {
-            $data['title'] = 'Edit Penarikan Kredit Transaksional';
-            // $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
-            // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
-            // $data['permission'] = $permission;
-            // // $data['cek_agunan'] = $cek_agunan;
-            // $data['edit_penarikan_kredit_transaksional'] = $this->permission2('Edit penarikan Kredit Transaksional');
-            // $data['edit_penarikan_kredit_transaksional_koordinator'] = $this->permission2('Edit penarikan Kredit Transaksional Koordinator');
-            // $data['edit_penarikan_kredit_transaksional_kepala_cabang'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Cabang');
-            // $data['edit_penarikan_kredit_transaksional_analis_kredit'] = $this->permission2('Edit penarikan Kredit Transaksional Analis Kredit');
-            // $data['edit_penarikan_kredit_transaksional_kepala_bagian'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Bagian');
-            // $data['edit_penarikan_kredit_transaksional_kepala_divisi'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Divisi');
-            // $data_master = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
-            // $data['data_master'] = $data_master;
-            // if ($data['edit_penarikan_kredit_transaksional'] == true && $data_master->progress == 'Input') {
-            //     $data['edit_data'] = 'boleh edit';
-            // } else {
-            //     $data['edit_data'] = null;
-            // }
-            // if ($data['edit_penarikan_kredit_transaksional_koordinator'] == true && $data_master->progress == 'Review') {
-            //     $data['edit_data_koordinator'] = 'boleh edit';
-            // } else {
-            //     $data['edit_data_koordinator'] = null;
-            // }
-            // if ($data['edit_penarikan_kredit_transaksional_kepala_cabang'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
-            //     $data['edit_data_kepala_cabang'] = 'boleh edit';
-            // } else {
-            //     $data['edit_data_kepala_cabang'] = null;
-            // }
-            // if ($data['edit_penarikan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
-            //     $data['edit_data_analis_kredit'] = 'boleh edit';
-            // } else {
-            //     $data['edit_data_analis_kredit'] = null;
-            // }
-            // if ($data['edit_penarikan_kredit_transaksional_kepala_bagian'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
-            //     $data['edit_data_kepala_bagian'] = 'boleh edit';
-            // } else {
-            //     $data['edit_data_kepala_bagian'] = null;
-            // }
-            // if ($data['edit_penarikan_kredit_transaksional_kepala_divisi'] == true && $data_master->progress == 'Approval') {
-            //     $data['edit_data_kepala_divisi'] = 'boleh edit';
-            // } else {
-            //     $data['edit_data_kepala_divisi'] = null;
-            // }
+    //     public function edit_penarikan($kd_data){
+    //     $hasil = $this->hak_akses();
+    //     $permission = $this->permission();
+    //     // $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
+    //     // $cek_agunan = $this->cek_agunan($kd_data);
+    //     // dd($cek_agunan);
+    //     // if ($hasil == true) {
+    //         $data['title'] = 'Edit Penarikan Kredit Transaksional';
+    //         $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+    //         // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+    //         // $data['permission'] = $permission;
+    //         // // $data['cek_agunan'] = $cek_agunan;
+    //         // $data['edit_penarikan_kredit_transaksional'] = $this->permission2('Edit penarikan Kredit Transaksional');
+    //         // $data['edit_penarikan_kredit_transaksional_koordinator'] = $this->permission2('Edit penarikan Kredit Transaksional Koordinator');
+    //         // $data['edit_penarikan_kredit_transaksional_kepala_cabang'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Cabang');
+    //         // $data['edit_penarikan_kredit_transaksional_analis_kredit'] = $this->permission2('Edit penarikan Kredit Transaksional Analis Kredit');
+    //         // $data['edit_penarikan_kredit_transaksional_kepala_bagian'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Bagian');
+    //         // $data['edit_penarikan_kredit_transaksional_kepala_divisi'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Divisi');
+    //         // $data_master = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+    //         // $data['data_master'] = $data_master;
+    //         // if ($data['edit_penarikan_kredit_transaksional'] == true && $data_master->progress == 'Input') {
+    //         //     $data['edit_data'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_koordinator'] == true && $data_master->progress == 'Review') {
+    //         //     $data['edit_data_koordinator'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_koordinator'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_kepala_cabang'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+    //         //     $data['edit_data_kepala_cabang'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_kepala_cabang'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
+    //         //     $data['edit_data_analis_kredit'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_analis_kredit'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_kepala_bagian'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+    //         //     $data['edit_data_kepala_bagian'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_kepala_bagian'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_kepala_divisi'] == true && $data_master->progress == 'Approval') {
+    //         //     $data['edit_data_kepala_divisi'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_kepala_divisi'] = null;
+    //         // }
 
-            // $data['save_edit_penarikan_kredit_transaksional'] = $this->permission2('Save Edit penarikan Kredit Transaksional');
-            // $data['tampil_fak_data'] = $this->permission2('Tampil FAK Data');
-            // $data['tampil_fak_modal'] = $this->permission2('Tampil FAK Modal');
-            // $data['tampil_fak_proyeksi_rl'] = $this->permission2('Tampil FAK Proyeksi RL');
-            // $data['tampil_upload_laporan_rl'] = $this->permission2('Tampil Upload Laporan RL');
-            // $data['tampil_cef'] = $this->permission2('Tampil CEF');
-            // $data['tampil_faa'] = $this->permission2('Tampil FAA');
-            // $data['tampil_mauk'] = $this->permission2('Tampil MAUK');
-            // $data['tampil_dcl_compliance'] = $this->permission2('Tampil DCL Compliance');
-            return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
-        // } else {
-        //     return redirect()->to('/login');
-        // }
-    }
-
-    
-    public function get_jumlah_termin_dropdown($kd_data)
+    //         // $data['save_edit_penarikan_kredit_transaksional'] = $this->permission2('Save Edit penarikan Kredit Transaksional');
+    //         // $data['tampil_fak_data'] = $this->permission2('Tampil FAK Data');
+    //         // $data['tampil_fak_modal'] = $this->permission2('Tampil FAK Modal');
+    //         // $data['tampil_fak_proyeksi_rl'] = $this->permission2('Tampil FAK Proyeksi RL');
+    //         // $data['tampil_upload_laporan_rl'] = $this->permission2('Tampil Upload Laporan RL');
+    //         // $data['tampil_cef'] = $this->permission2('Tampil CEF');
+    //         // $data['tampil_faa'] = $this->permission2('Tampil FAA');
+    //         // $data['tampil_mauk'] = $this->permission2('Tampil MAUK');
+    //         // $data['tampil_dcl_compliance'] = $this->permission2('Tampil DCL Compliance');
+    //         return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
+    //     // } else {
+    //     //     return redirect()->to('/login');
+    //     // }
+    // }
+    public function edit_penarikan($kd_data)
     {
-        $result = $this->db->query("SELECT jumlah_termin FROM tb_fak_data WHERE kd_data = '" . $kd_data . "'")->getRow();
-        if ($result) {
-            $jumlah_termin = $result->jumlah_termin;
-            $dropdown = [];
-            for ($i = 1; $i <= $jumlah_termin; $i++) {
-                $dropdown[] = $i;
-            }
-            echo json_encode($dropdown);
-        } else {
-            echo json_encode([]);
-        }
+        $this->hak_akses();
+        $this->permission();
+
+        $builder = $this->db->table('tb_data_entry');
+        $builder->select('kd_data');
+        $builder->where('SHA1(kd_data)', $kd_data);
+        $row = $builder->get()->getRow();
+
+        $data['title'] = 'Edit Penarikan Kredit Transaksional';
+        $data['kd_data'] = $row ? $row->kd_data : null; // simpan hanya kd_data
+
+        return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
     }
-    
-    public function permission(){
+
+    // public function get_jumlah_termin_dropdown()
+    // {
+    //     $kd_data = $this->request->getGet('kd_data');
+    //     log_message('debug', 'kd_data dari ajax: ' . $kd_data);
+
+    //     $query = $this->db->query(
+    //         "SELECT jumlah_termin FROM tb_fak_data WHERE kd_data = ?",
+    //         [$kd_data]
+    //     );
+
+    //     $row = $query->getRow();
+
+    //     if ($row) {
+    //         $jumlah_termin = (int)$row->jumlah_termin;
+    //         $dropdown = range(1, $jumlah_termin);
+    //         return $this->response->setJSON($dropdown);
+    //     } else {
+    //         return $this->response->setJSON([]);
+    //     }
+    // }
+
+    public function get_jumlah_termin_dropdown()
+    {
+        $kd_data = $this->request->getGet('kd_data');
+
+        // 1. Ambil jumlah_termin dari tb_fak_data
+        $row = $this->db->table('tb_fak_data')
+            ->select('jumlah_termin')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getRow();
+
+        if (!$row) {
+            return $this->response->setJSON([]);
+        }
+
+        $jumlah_termin = (int)$row->jumlah_termin;
+
+        // 2. Ambil termin yang sudah dipakai dari tb_penarikan
+        $used = $this->db->table('tb_penarikan')
+            ->select('termin')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getResultArray();
+
+        $usedTermin = array_column($used, 'termin'); // misal [1,2]
+
+        // 3. Buat daftar semua termin
+        $allTermin = range(1, $jumlah_termin);
+
+        // 4. Hapus yang sudah dipakai
+        $availableTermin = array_values(array_diff($allTermin, $usedTermin));
+
+        return $this->response->setJSON($availableTermin);
+    }
+
+
+    public function permission()
+    {
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
                 "SELECT kd_level_user 
