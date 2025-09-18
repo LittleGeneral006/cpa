@@ -19,9 +19,9 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <!-- <h5>Basic Data Tables example with responsive plugin</h5> -->
-                    <label for="pilih_termin">Pilih Termin:</label> 
-                    <select id="pilih_termin" name="pilih_termin" class="form-control"> 
-                        <option value="">-- Pilih Termin --</option> 
+                    <label for="pilih_termin">Pilih Termin:</label>
+                    <select id="pilih_termin" name="pilih_termin" class="form-control">
+                        <option value="">-- Pilih Termin --</option>
                     </select>
                 </div>
                 <div class="ibox-content">
@@ -322,28 +322,33 @@
     // }
 
     $(document).ready(function() {
-        var kd_data = $("#kd_data").val(); // ambil dari hidden input 
-        // console.log(kd_data); 
-        $.ajax({ 
-            url: "<?= base_url('ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown'); ?>", 
-            type: "GET", 
-            data: { kd_data: kd_data }, 
-            dataType: "json", 
-            success: function(data) { 
-                console.log("success callback jalan"); 
-                console.log("data:", data); 
-                var select = $("#pilih_termin"); 
-                select.empty(); 
-                select.append('<option value="">-- Pilih Termin --</option>'); 
-            // Populate dropdown 
-                for (var i = 0; i < data.length; i++) { 
-                    var terminNumber = data[i]; 
-                    select.append('<option value="termin' + terminNumber + '">Termin ' + terminNumber + '</option>'); 
-                } 
-            }, 
-                error: function(xhr, status, error) { 
-                    console.log('gagal ajaxnya edit-penarikan-kredit-transaksional/get_jumlah_termin_dropdown'); 
-            } 
+        var kd_data = $("#kd_data").val(); // ambil dari hidden input
+        console.log(kd_data);
+
+        $.ajax({
+            url: "<?= base_url('ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown'); ?>",
+            type: "GET",
+            data: {
+                kd_data: kd_data
+            },
+            dataType: "json",
+            success: function(data) {
+                console.log("success callback jalan");
+                console.log("data:", data);
+                var select = $("#pilih_termin");
+                select.empty();
+                select.append('<option value="">-- Pilih Termin --</option>');
+                // Populate dropdown
+                for (var i = 0; i < data.length; i++) {
+                    var terminNumber = data[i];
+
+                    select.append('<option value="termin' + terminNumber + '">Termin ' + terminNumber + '</option>');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('gagal ajaxnya edit-penarikan-kredit-transaksional/get_jumlah_termin_dropdown');
+
+            }
         });
         $("#wizard").steps();
         $("#form").steps({

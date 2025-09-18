@@ -453,7 +453,6 @@
 
             document.getElementById("form_penarikan_edit").reset();
             var data = table.row($(this).parents('tr')).data();
-            $("#modal_penarikan_edit").modal('show')
 
             // baru
             $.ajax({
