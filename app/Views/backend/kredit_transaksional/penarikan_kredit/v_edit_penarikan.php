@@ -19,10 +19,8 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <!-- <h5>Basic Data Tables example with responsive plugin</h5> -->
-                    <label for="pilih_termin">Pilih Termin:</label>
-                    <select id="pilih_termin" name="pilih_termin" class="form-control">
-                        <option value="">-- Pilih Termin --</option>
-                    </select>
+                    <label for="pilih_termin">Penarikan Ke:</label>
+                    <input id="pilih_termin" name="pilih_termin" type="text" placeholder="Masukkan Termin" class="form-control">
                 </div>
                 <div class="ibox-content">
                     <h2>
@@ -36,212 +34,12 @@
                     <form id="form" action="#" class="wizard-big">
                         <?= csrf_field() ?>
                         <input type="hidden" id="kd_data" value="<?= esc($kd_data) ?>">
-                        <h1>Data Entry</h1>
-                        <fieldset>
-                            <h2>Data Entry</h2>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-12 control-label">Unit Kerja</label>
-                                        <div class="col-lg-12">
-                                            <select class="form-control class-disabled select" id="unit_kerja" name="unit_kerja">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label class="col-lg-12 control-label">Pemasar</label>
-                                        <div class="col-lg-12">
-                                            <input id="pemasar" name="pemasar" type="text" placeholder="" class="form-control class-readonly">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Koordinator Pemasar</label>
-                                    <div class="col-lg-12">
-                                        <input id="koordinator_pemasar" name="koordinator_pemasar" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Kepala Cabang</label>
-                                    <div class="col-lg-12">
-                                        <input id="kepala_cabang" name="kepala_cabang" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Kepala Bagian</label>
-                                    <div class="col-lg-12">
-                                        <input id="kepala_bagian" name="kepala_bagian" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Kepala Divisi</label>
-                                    <div class="col-lg-12">
-                                        <input id="kepala_divisi" name="kepala_divisi" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Nama Debitur</label>
-                                    <div class="col-lg-12">
-                                        <input id="nama_debitur" name="nama_debitur" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Bidang Usaha</label>
-                                    <div class="col-lg-12">
-                                        <input id="bidang_usaha" name="bidang_usaha" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Nama Direktur</label>
-                                    <div class="col-lg-12">
-                                        <input id="nama_direktur" name="nama_direktur" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Key Person</label>
-                                    <div class="col-lg-12">
-                                        <input id="key_person" name="key_person" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Alamat Kantor</label>
-                                    <div class="col-lg-12">
-                                        <textarea class="form-control" id="alamat_kantor" name="alamat_kantor" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Alamat Gudang/ Pabrik/ Workshop</label>
-                                    <div class="col-lg-12">
-                                        <textarea class="form-control" id="alamat_gudang" name="alamat_gudang" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Group Debitur</label>
-                                    <div class="col-lg-12">
-                                        <input id="group_debitur" name="group_debitur" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Nama Proyek</label>
-                                    <div class="col-lg-12">
-                                        <input id="nama_proyek" name="nama_proyek" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Nomor SPK/ SPPBJ/ Gunning/ Kontrak</label>
-                                    <div class="col-lg-12">
-                                        <input id="nomor_spk" name="nomor_spk" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Tanggal SPK/ SPPBJ/ Gunning/ Kontrak</label>
-                                    <div class="col-lg-12">
-                                        <input id="tanggal_spk" name="tanggal_spk" type="date" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Nilai Proyek</label>
-                                    <div class="col-lg-12">
-                                        <input id="nilai_proyek" name="nilai_proyek" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Alamat Proyek</label>
-                                    <div class="col-lg-12">
-                                        <textarea class="form-control" id="alamat_proyek" name="alamat_proyek" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Pemberi Kerja (Bouwheer)</label>
-                                    <div class="col-lg-12">
-                                        <input id="pemberi_kerja" name="pemberi_kerja" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Penandatangan Kontrak (Bouwheer)</label>
-                                    <div class="col-lg-12">
-                                        <input id="penandatangan_kontrak" name="penandatangan_kontrak" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Alamat Pemberi Kerja</label>
-                                    <div class="col-lg-12">
-                                        <textarea class="form-control" id="alamat_pemberi" name="alamat_pemberi" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Upload Dokumen Kontrak Proyek</label>
-                                    <div class="col-lg-12">
-                                        <input type="file" class="form-control-file" name="upload_dokumen" id="upload_dokumen" accept=".pdf" required>
-                                        <small class="form-text text-muted">File PDF, maksimal 2 MB</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Tanggal Permohonan</label>
-                                    <div class="col-lg-12">
-                                        <input id="tanggal_permohonan" name="tanggal_permohonan" type="date" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Plafond</label>
-                                    <div class="col-lg-12">
-                                        <input id="plafond" name="plafond" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Tujuan Pengajuan</label>
-                                    <div class="col-lg-12">
-                                        <input id="tujuan_pengajuan" name="tujuan_pengajuan" type="text" placeholder="" class="form-control class-readonly">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label for="jumlah_agunan">Jumlah Agunan:</label>
-                                    <!-- <div class="col-lg-12">
-                                        <input type="number" id="jumlah_agunan" min="1" value="1" class="form-control">
-                                        <button onclick="tambahInput()">Tambah Jenis Agunan</button>
-                                    </div> -->
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <input type="number" id="jumlah_agunan" min="1" value="1" class="form-control">
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <button onclick="tambahInput()" class="btn btn-primary">Tambah Jenis Agunan</button>
-                                        </div>
-                                    </div>
-                                    <div id="input_agunan" class="form-group"></div>
-                                </div>
-                            </div>
-                        </fieldset>
+                        
+                        <?php include 'v_data_induk.php'; ?>
+                        <?php include 'v_fcr.php'; ?>
+                        <?php include 'v_dok_checklist.php'; ?>
+                        <?php include 'v_mpdkk.php'; ?>
+                        <?php include 'v_recap.php'; ?>
                     </form>
                 </div>
             </div>
@@ -253,12 +51,16 @@
 <?= $this->endSection(); ?>
 <?= $this->section('script'); ?>
 <!-- Steps -->
+ <script>
+     var base_url = "<?php echo base_url(); ?>";
+ </script>
 <script src="<?= base_url(); ?>public/assets/js/plugins/steps/jquery.steps.min.js"></script>
 <script src="<?= base_url(); ?>public/assets/js/plugins/steps/jquery.steps.fix.js"></script>
 
 <!-- Jquery Validate -->
 <script src="<?= base_url(); ?>public/assets/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/js/plugins/toastr/toastr.min.js"></script>
+<script src="<?php echo base_url(); ?>public/assets/js-manual/script_penarikan.js"></script>
 
 <script>
     function tambahInput() {
@@ -325,49 +127,19 @@
         var kd_data = $("#kd_data").val(); // ambil dari hidden input
         console.log(kd_data);
 
-        $.ajax({
-            url: "<?= base_url('ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown'); ?>",
-            type: "GET",
-            data: {
-                kd_data: kd_data
-            },
-            dataType: "json",
-            success: function(data) {
-                console.log("success callback jalan");
-                console.log("data:", data);
-                var select = $("#pilih_termin");
-                select.empty();
-                select.append('<option value="">-- Pilih Termin --</option>');
-                // Populate dropdown
-                for (var i = 0; i < data.length; i++) {
-                    var terminNumber = data[i];
-
-                    select.append('<option value="termin' + terminNumber + '">Termin ' + terminNumber + '</option>');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.log('gagal ajaxnya edit-penarikan-kredit-transaksional/get_jumlah_termin_dropdown');
-
-            }
-        });
         $("#wizard").steps();
         $("#form").steps({
             bodyTag: "fieldset",
+            enableAllSteps: true,
             onInit: function(event, currentIndex) {
                 resizeJquerySteps();
             },
             onStepChanging: function(event, currentIndex, newIndex) {
+                // Allow moving between steps without validation
                 resizeJquerySteps();
-                // Always allow going backward even if the current step contains invalid fields!
                 if (currentIndex > newIndex) {
                     return true;
                 }
-
-                // Forbid suppressing "Warning" step if the user is to young
-                if (newIndex === 3 && Number($("#age").val()) < 18) {
-                    return false;
-                }
-
                 var form = $(this);
 
                 // Clean up if user went backward before
@@ -376,154 +148,18 @@
                     $(".body:eq(" + newIndex + ") label.error", form).remove();
                     $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
                 }
-
                 // Disable validation on fields that are disabled or hidden.
                 form.validate().settings.ignore = ":disabled,:hidden";
-
                 // Start validation; Prevent going forward if false
                 return form.valid();
             },
             onStepChanged: function(event, currentIndex, priorIndex) {
                 resizeJquerySteps();
                 // Suppress (skip) "Warning" step if the user is old enough.
-                if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                    $(this).steps("next");
-                }
-
-                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                if (currentIndex === 2 && priorIndex === 3) {
-                    $(this).steps("previous");
-                }
-                // mengubah CSS ketika tab berpindah
-                if (currentIndex === 0) {
-                    $(".wizard-big.wizard > .content").css("min-height", "1300px");
-                }
-                if (currentIndex === 1) {
-                    $(".wizard-big.wizard > .content").css("min-height", "700px");
-                }
-                if (currentIndex === 2) {
-                    $(".wizard-big.wizard > .content").css("min-height", "670px");
-                }
-                if (currentIndex === 3) {
-                    $(".wizard-big.wizard > .content").css("min-height", "350px");
-                }
-                if (currentIndex === 4) {
-                    $(".wizard-big.wizard > .content").css("min-height", "500px");
-                }
-                if (currentIndex === 5) {
-                    $(".wizard-big.wizard > .content").css("min-height", "650px");
-                }
-                if (currentIndex === 6) {
-                    $(".wizard-big.wizard > .content").css("min-height", "1250px");
-                }
-                $(window).on("resize", function() {
-                    if ($(window).width() < 480) {
-                        // CSS untuk perangkat mobile
-
-                        // Tab pertama
-                        if (currentIndex === 0) {
-                            $(".wizard-big.wizard > .content").css("min-height", "2500px");
-                        }
-
-                        // Tab kedua
-                        if (currentIndex === 1) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1300px");
-                        }
-
-                        // Tab ketiga
-                        if (currentIndex === 2) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1200px");
-                        }
-
-                        // Tab keempat
-                        if (currentIndex === 3) {
-                            $(".wizard-big.wizard > .content").css("min-height", "560px");
-                        }
-                        if (currentIndex === 4) {
-                            $(".wizard-big.wizard > .content").css("min-height", "830px"); //900 tablet
-                        }
-                        if (currentIndex === 5) {
-                            $(".wizard-big.wizard > .content").css("min-height", "900px");
-                        }
-                        if (currentIndex === 6) {
-                            $(".wizard-big.wizard > .content").css("min-height", "2300px");
-                        }
-                    } else if ($(window).width() < 880) {
-                        // CSS untuk perangkat tablet atau desktop
-
-                        // Tab pertama
-                        if (currentIndex === 0) {
-                            $(".wizard-big.wizard > .content").css("min-height", "2100px");
-                        }
-
-                        // Tab kedua
-                        if (currentIndex === 1) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1200px");
-                        }
-
-                        // Tab ketiga
-                        if (currentIndex === 2) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1100px");
-                        }
-
-                        // Tab keempat
-                        if (currentIndex === 3) {
-                            $(".wizard-big.wizard > .content").css("min-height", "490px");
-                        }
-                        if (currentIndex === 4) {
-                            $(".wizard-big.wizard > .content").css("min-height", "760px"); //900 tablet
-                        }
-                        if (currentIndex === 5) {
-                            $(".wizard-big.wizard > .content").css("min-height", "780px");
-                        }
-                        if (currentIndex === 6) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1800px");
-                        }
-                    } else {
-                        // Tab pertama
-                        if (currentIndex === 0) {
-                            $(".wizard-big.wizard > .content").css("min-height", "2100px");
-                        }
-
-                        // Tab kedua
-                        if (currentIndex === 1) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1200px");
-                        }
-
-                        // Tab ketiga
-                        if (currentIndex === 2) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1100px");
-                        }
-
-                        // Tab keempat
-                        if (currentIndex === 3) {
-                            $(".wizard-big.wizard > .content").css("min-height", "490px");
-                        }
-                        if (currentIndex === 4) {
-                            $(".wizard-big.wizard > .content").css("min-height", "760px"); //900 tablet
-                        }
-                        if (currentIndex === 5) {
-                            $(".wizard-big.wizard > .content").css("min-height", "780px");
-                        }
-                        if (currentIndex === 6) {
-                            $(".wizard-big.wizard > .content").css("min-height", "1800px");
-                        }
-
-                    }
-                });
-
-                // Panggil event resize saat halaman dimuat
-                $(window).trigger("resize");
             },
             onFinishing: function(event, currentIndex) {
-                var form = $(this);
-
-                // Disable validation on fields that are disabled.
-                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                form.validate().settings.ignore = ":disabled";
-
-                // Start validation; Prevent form submission if false
-                return form.valid();
+                // Do not block finishing; allow proceeding to submit
+                return true;
             },
             // onFinished: function(event, currentIndex) {
             //     var form = $(this);
@@ -533,11 +169,6 @@
             // }
             onFinished: function(event, currentIndex) {
                 var form = $(this);
-
-                // Validate form input using jQuery Validation Plugin
-                if (!form.valid()) {
-                    return false;
-                }
 
                 // Serialize form data
                 var formData = form.serialize();
@@ -578,3 +209,6 @@
 </script>
 
 <?= $this->endSection(); ?>
+
+
+

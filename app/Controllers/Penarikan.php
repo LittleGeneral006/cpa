@@ -342,6 +342,96 @@ class Penarikan extends BaseController
         return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
     }
 
+    public function buat_nomor_fcr($data, $kd_fcr){
+        $hasil = '1';
+
+        $kd_nomor = 'NMRFCR' . gmdate("dmYHis", time() + 60 * 60 * 8);
+        $kd_fcr = $kd_fcr;
+        $kd_data = $data['kd_data'];
+
+        $kd_cabang = $data['kd_unit_kerja'];
+        $kata1 = 'FCR-Kons';
+        $kata2 = 'Kmr-';
+        $singkatan_cabang = $this->db->query("SELECT kode_cabang from tb_unit_kerja where kd_unit = '" . $data['kd_unit_kerja'] . "' ")->getRow()->kode_cabang;
+        $kata3 = 'KP';
+
+        $tahun_db = $this->db->query("SELECT max(tahun) as tahun_max from tb_nomor_fcr where kd_unit_kerja = '" . $data['kd_unit_kerja'] . "' ")->getRow()->tahun_max;
+        $tahun_sekarang = date('Y');
+        // $tahun_sekarang = date('Y', strtotime('+1 year'));
+        if ($tahun_db == $tahun_sekarang) {
+            $tahun = $tahun_db;
+            $nomor_urut_pendek = $this->db->query("SELECT max(nomor_urut_pendek) as nomor_urut_pendek_max from tb_nomor_fcr where kd_unit_kerja = '" . $data['kd_unit_kerja'] . "' ")->getRow()->nomor_urut_pendek_max;
+        }
+        if ($tahun_sekarang > $tahun_db) {
+            $tahun = $tahun_sekarang;
+            $nomor_urut_pendek = 0;
+        }
+        // var_dump($tahun);
+        // var_dump($nomor_urut_pendek);
+        // die;
+
+        $tambah_satu = $nomor_urut_pendek + 1;
+        $hitung_pendek = strlen($tambah_satu);
+        if ($hitung_pendek == '1') {
+            $nomor_urut = '00' . $tambah_satu;
+        } else if ($hitung_pendek == '2') {
+            $nomor_urut = '0' . $tambah_satu;
+        } else if ($hitung_pendek == '3') {
+            $nomor_urut = $tambah_satu;
+        } else {
+            $nomor_urut = $tambah_satu;
+        }
+
+        $nomor_urut_pendek2 = $tambah_satu;
+        $nomor_urut_panjang = $nomor_urut;
+        $hasil_generate = $nomor_urut_panjang . '/' . $kata1 . '/' .  $kata2 . $singkatan_cabang . '/' .  $kata3 . '/' . $tahun;
+        // var_dump($hasil_generate);die;
+        $kd_unit_kerja = $data['kd_unit_kerja'];
+
+        $result = [
+            'kd_nomor' => $kd_nomor,
+            'kd_fcr' => $kd_fcr,
+            'kd_data' => $kd_data,
+
+            'kd_cabang' => $kd_cabang,
+            'kata1' => $kata1,
+            'kata2' => $kata2,
+            'singkatan_cabang' => $singkatan_cabang,
+            'kata3' => $kata3,
+            'tahun' => $tahun,
+
+            'nomor_urut_pendek' => $nomor_urut_pendek2,
+            'nomor_urut_panjang' => $nomor_urut_panjang,
+            'hasil_generate' => $hasil_generate,
+            'kd_unit_kerja' => $kd_unit_kerja,
+
+            'pengubah' => session()->get('nama_user'),
+            'tanggal_pengubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
+            'waktu_pengubah' => session()->get('kd_unit_user'),
+        ];
+
+        $duplicate = $this->db->query("SELECT hasil_generate from tb_nomor_fcr where 
+                                        kd_unit_kerja = '" . $kd_unit_kerja . "' 
+                                        and 
+                                        (kd_nomor = '" . $kd_nomor . "'  
+                                        or hasil_generate = '" . $hasil_generate . "')
+                                        ")->getNumRows();
+        $cek_master = $this->db->query("SELECT nomor from tb_fcr where nomor = '" . $hasil_generate . "'")->getNumRows();
+        if ($duplicate < 1 && $cek_master < 1) {
+            $insert = $this->db->table('tb_nomor_fcr')->insert($result);
+            if ($insert) {
+                $hasil = $hasil_generate;
+            } else {
+                $hasil = '2';
+            }
+        } else {
+            $hasil = '3';
+        }
+        // var_dump($hasil);
+        // die;
+        return $hasil;
+    }
+
     // public function get_jumlah_termin_dropdown()
     // {
     //     $kd_data = $this->request->getGet('kd_data');
@@ -363,40 +453,97 @@ class Penarikan extends BaseController
     //     }
     // }
 
+   public function get_data()
+    {
+        $kd_unit_user = session()->get('kd_unit_user');
+        
+        $kd_data = $this->request->getGet('kd_data');
+
+        // Ambil data dari tb_data_entry (detail eform)
+        $dataEntry = $this->db->table('tb_data_entry')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getRowArray();
+        
+        $dataFCR = $this->db->table('tb_fcr')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getRowArray();
+
+        // Ambil semua termin dari tb_penarikan untuk kd_data ini
+        $penarikan = $this->db->table('tb_penarikan')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getResultArray();
+        $NomorFCR = $this->db->table('tb_nomor_fcr')
+            ->where('kd_cabang', $kd_unit_user)
+            ->get()
+            ->getResultArray();
+
+        // Hitung jumlah termin yang sudah ada
+        $count = count($penarikan);
+        $nextTermin = $count + 1;
+
+        // Gabungkan hasil
+        $result = [
+            'data_entry'   => $dataEntry,   // detail dari tb_data_entry
+            'fcr'   => $dataFCR,   // detail dari tb_data_entry
+            'penarikan'    => $penarikan,   // daftar penarikan yang sudah ada
+            'next_termin'  => $nextTermin,  // termin berikutnya
+            'nomor_fcr'  => $NomorFCR,  // termin berikutnya
+        ];
+
+        return $this->response->setJSON($result);   
+    }
+
+
     public function get_jumlah_termin_dropdown()
     {
         $kd_data = $this->request->getGet('kd_data');
 
-        // 1. Ambil jumlah_termin dari tb_fak_data
-        $row = $this->db->table('tb_fak_data')
-            ->select('jumlah_termin')
+        // Hitung jumlah data yang sudah ada di tb_penarikan untuk kd_data ini
+        $count = $this->db->table('tb_penarikan')
+            ->where('kd_data', $kd_data)
+            ->countAllResults();
+
+        // Nilai yang dikirim = jumlah data + 1
+        $nextTermin = $count + 1;
+
+        return $this->response->setJSON($nextTermin);
+    }
+
+    public function cek($kd_data)
+    {
+        $hasil = [
+            'data_induk' => $this->cekTable('tb_data_induk_tb', $kd_data),
+            'fcr'        => $this->cekTable('tb_fcr', $kd_data),
+            'ceklist'    => $this->cekTable('tb_dok_ceklis', $kd_data),
+            'mpdkk'      => $this->cekTable('tb_mpdkk', $kd_data),
+        ];
+
+        return $this->response->setJSON($hasil);
+    }
+
+    private function cekTable($table, $kd_data)
+    {
+        $row = $this->db->table($table)
             ->where('kd_data', $kd_data)
             ->get()
-            ->getRow();
+            ->getRowArray();
 
         if (!$row) {
-            return $this->response->setJSON([]);
+            return false; // tidak ada record → not oke
         }
 
-        $jumlah_termin = (int)$row->jumlah_termin;
-
-        // 2. Ambil termin yang sudah dipakai dari tb_penarikan
-        $used = $this->db->table('tb_penarikan')
-            ->select('termin')
-            ->where('kd_data', $kd_data)
-            ->get()
-            ->getResultArray();
-
-        $usedTermin = array_column($used, 'termin'); // misal [1,2]
-
-        // 3. Buat daftar semua termin
-        $allTermin = range(1, $jumlah_termin);
-
-        // 4. Hapus yang sudah dipakai
-        $availableTermin = array_values(array_diff($allTermin, $usedTermin));
-
-        return $this->response->setJSON($availableTermin);
+        foreach ($row as $kolom => $nilai) {
+            if ($kolom === 'kd_data') continue; // skip kolom kunci
+            if ($nilai === null || $nilai === '') {
+                return false; // ada kolom kosong
+            }
+        }
+        return true; // semua kolom terisi
     }
+
 
 
     public function permission()
