@@ -318,7 +318,13 @@
 
 
 
-
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_fcr_usaha" title="Checkbox ini sebagai paraf" name="cb_fcr_usaha" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+            </div>
+        </div>
+    </div>
 </fieldset>
 <script>
     $(document).ready(function() {
@@ -332,9 +338,20 @@
             e.preventDefault(); // Mencegah form untuk submit secara default
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            var data_fcr_usaha2 = data_fcr_usaha();
-            post_fcr_usaha('edit_fcr_usaha', data_fcr_usaha2, 'save_fcr_usaha')
+            // var data_fcr_usaha2 = data_fcr_usaha();
+            // post_fcr_usaha('edit_fcr_usaha', data_fcr_usaha2, 'save_fcr_usaha')
             // Mengirim data menggunakan AJAX
+
+            if (edit_data_pemasar) {
+                // Jika edit_data_koordinator null atau kosong
+                var data_fcr_usaha2 = data_fcr_usaha();
+                // Mengirim data menggunakan AJAX
+                post_fcr_usaha('edit_fcr_usaha', data_fcr_usaha2, 'save_fcr_usaha')
+            } else {
+                // Jika edit_data_koordinator memiliki nilai
+                var data_fcr_usaha2 = paraf_fcr_usaha();
+                post_paraf('paraf_fcr_usaha', data_fcr_usaha2, 'save_fcr_usaha');
+            }
         });
 
     });
@@ -344,6 +361,7 @@
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr_usaha;
+                var data_paraf = hasil.message.paraf;
                 // alert(data.kd_data)
                 // unit_kerja_fcr()
                 $('#kd_data_tambah').val(hasil.message.data_entry.kd_data);
@@ -388,6 +406,21 @@
                 $('#bahan_setengah_jadi').val(data.bahan_setengah_jadi);
                 $('#persediaan_material').val(data.persediaan_material);
 
+                if (Array.isArray(data_paraf) && data_paraf.length > 0) {
+                    let paraf = data_paraf.find(p => p.nomor_halaman == '3'); // Cari nomor_halaman = 4
+
+                    if (paraf && paraf.kd_level && typeof kd_level !== "undefined" &&
+                        paraf.kd_level === kd_level &&
+                        paraf.kd_data === data.kd_data &&
+                        paraf.nama_halaman === 'FCR Usaha') {
+
+                        $('#cb_fcr_usaha').prop('checked', paraf.ceklis === 'true');
+                    } else {
+                        $('#cb_fcr_usaha').prop('checked', false);
+                    }
+                } else {
+                    $('#cb_fcr_usaha').prop('checked', false);
+                }
 
             } else {
                 alert(hasil.message)
@@ -537,5 +570,19 @@
                 // console.error('Error:', error);
             }
         });
+    }
+
+    function paraf_fcr_usaha() {
+        var data_fcr = {
+            kd_data_tambah: $('#kd_data_tambah').val(),
+
+            unit_kerja_tambah: $('#unit_kerja_tambah').val(),
+            nomor_halaman: '3',
+            nama_halaman: 'FCR Usaha',
+
+            cb_fcr_usaha: $('#cb_fcr_usaha').is(':checked')
+            // upload dokumen
+        };
+        return data_fcr;
     }
 </script>

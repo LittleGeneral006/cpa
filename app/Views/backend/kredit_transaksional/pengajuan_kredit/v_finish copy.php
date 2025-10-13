@@ -43,8 +43,9 @@
 
     });
     // bikin function
-    function isi_recapz() {
-        variabelGlobal(function(hasil) {
+    async function isi_recapz() {
+        try {
+  const hasil = await variabelGlobal();
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.kirim;
@@ -74,7 +75,9 @@
             } else {
                 alert(hasil.message)
             }
-        });
+        } catch (error) {
+  console.error("Gagal memuat data:", error.message);
+}
     }
 
     function refresh_recapz() {

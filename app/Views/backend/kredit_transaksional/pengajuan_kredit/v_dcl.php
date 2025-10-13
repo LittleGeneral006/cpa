@@ -57,20 +57,22 @@
     <button class="btn btn-success mt-2 tambah-field-dcl text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Nama Pemilik Perusahaan</button>
     <div class="add-form-dcl">
         <div class="form-group row">
-            <div class="col-md-1">
-                <div class="col-lg-10">
-                </div>
+            <div class="col-lg-1">
             </div>
-            <div class="col-lg-6">
-                <label class="col-lg-10 control-label">Nama</label>
+            <div class="col-lg-8">
+                    <label class="col-lg-12 control-label">Nama</label>
                 <div class="col-lg-12">
-                    <input id="nama_pemilik_perusahaan_dcl1" name="nama_pemilik_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <div class="input-group">
+                            <input id="nama_pemilik_perusahaan_dcl1" name="nama_pemilik_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <label class="col-lg-10 control-label">% Saham</label>
-                <div class="col-lg-4">
-                    <input id="persentase_saham_dcl1" name="persentase_saham_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+            <div class="col-lg-3">
+                    <label class="col-lg-12 control-label">% Saham</label>
+                <div class="col-lg-12">
+                    <div class="input-group">
+                            <input id="persentase_saham_dcl1" name="persentase_saham_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,31 +80,31 @@
     <!-- </div> -->
     <!-- <div class="form-group row"> -->
     <button class="btn btn-success mt-2 tambah-field-dcl2 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
-    <div class="add-form-dcl2">
-        <div class="form-group row">
-            <div class="col-md-1">
-                <div class="col-lg-10">
+    
+        <div class="add-form-dcl2">
+            <div class="form-group row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-3">
+                    <label class="col-lg-12 control-label">Jabatan</label>
+                    <div class="col-lg-12">
+                        <input id="jabatan_pengurus_perusahaan_dcl1" name="jabatan_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label class="col-lg-6 control-label">Nama</label>
+                    <div class="col-lg-12">
+                        <input id="nama_pengurus_perusahaan_dcl1" name="nama_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label class="col-lg-12 control-label">Kartu Pengenal</label>
+                    <div class="col-lg-12">
+                        <input id="ktp_dcl1" name="ktp_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-2">
-                <label class="col-lg-12 control-label">Jabatan</label>
-                <div class="col-lg-12">
-                    <input id="jabatan_pengurus_perusahaan_dcl1" name="jabatan_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <label class="col-lg-6 control-label">Nama</label>
-                <div class="col-lg-12">
-                    <input id="nama_pengurus_perusahaan_dcl1" name="nama_pengurus_perusahaan_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <label class="col-lg-12 control-label">Kartu Pengenal</label>
-                <div class="col-lg-12">
-                    <input id="ktp_dcl1" name="ktp_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                </div>
-            </div>
-        </div>
+
     </div>
     <!-- </div> -->
     <div class="form-group row">
@@ -114,8 +116,8 @@
         </div>
     </div>
     <h2 class="text-center text-danger">Informasi Rencana Pemberian Kredit</h2>
+    <button class="btn btn-success mt-2 tambah-field-dcl3 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
     <div class="form-group row">
-        <button class="btn btn-success mt-2 tambah-field-dcl3 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
         <div class="add-form-dcl3">
             <div class="form-group row">
                 <div class="col-md-1">
@@ -158,8 +160,8 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-success mt-2 tambah-field-dcl4 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
     <div class="form-group row">
-        <button class="btn btn-success mt-2 tambah-field-dcl4 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah</button>
         <div class="add-form-dcl4">
             <div class="form-group row">
                 <div class="col-md-1">
@@ -199,8 +201,8 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-success mt-2 tambah-field-dcl5 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Existing</button>
     <div class="form-group row">
-        <button class="btn btn-success mt-2 tambah-field-dcl5 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Existing</button>
         <div class="add-form-dcl5">
             <div class="form-group row">
                 <div class="col-md-1">
@@ -240,11 +242,12 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-success mt-2 tambah-field-dcl6 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Grup</button>
     <div class="form-group row">
-        <button class="btn btn-success mt-2 tambah-field-dcl6 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit Grup</button>
         <div class="add-form-dcl6">
             <div class="form-group row">
-
+                <!-- <div class="col-lg-1">
+                </div> -->
                 <div class="col-lg-2">
                     <label class="col-lg-6 control-label">Fasilitas</label>
                     <div class="col-lg-12">
@@ -259,7 +262,7 @@
                 </div>
                 <div class="col-lg-2">
                     <label class="col-lg-12 control-label">Jatuh Tempo</label>
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <input id="jatuh_tempo_kredit_grup_dcl1" name="jatuh_tempo_kredit_grup_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     </div>
                 </div>
@@ -284,8 +287,8 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-success mt-2 tambah-field-dcl7 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit an. Debitur di Bank/LJK lain</button>
     <div class="form-group row">
-        <button class="btn btn-success mt-2 tambah-field-dcl7 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Kredit an. Debitur di Bank/LJK lain</button>
         <div class="add-form-dcl7">
             <div class="form-group row">
 
@@ -493,7 +496,10 @@
     <button class="btn btn-success mt-2 tambah-field-dcl8 text-center" style="width:100%;" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>&nbsp;Tambah Uji terhadap Ketentuan Lainnya</button>
     <div class="add-form-dcl8">
         <div class="form-group row">
-            <div class="col-lg-4">
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-3">
                 <label class="col-lg-6 control-label">Pengujian</label>
             </div>
             <div class="col-lg-6">
@@ -504,7 +510,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-lg-4">
+            <div class="col-lg-1">
+                
+            </div>
+            <div class="col-lg-3">
                 <input id="pengujian_lainnya_dcl1" name="pengujian_lainnya_dcl[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
             </div>
             <div class="col-lg-6">
@@ -537,6 +546,15 @@
         </div>
     </div>
     <br>
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_dcl" title="Checkbox ini sebagai paraf" name="cb_dcl"
+                    <?php echo (!empty($edit_data) && !empty($edit_data_koordinator)) ? '' : 'disabled'; ?>>
+
+            </div>
+        </div>
+    </div>
 </fieldset>
 <?php // } 
 ?>

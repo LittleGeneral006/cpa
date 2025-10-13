@@ -10,13 +10,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Pengajuan Kredit Transaksional</h2>
+        <h2>penarikan Kredit Transaksional</h2>
         <!-- <strong>Data Tables</strong> -->
     </div>
-    <div class="col-lg-2 text-right">
+    <!-- <div class="col-lg-2 text-right">
         <br>
-        <a href="<?= base_url(); ?>tambah-pengajuan-kredit-transaksional" class="btn blue-bg"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Data</span></a>
-    </div>
+        <a href="<?= base_url(); ?>tambah-penarikan-kredit-transaksional" class="btn blue-bg"><i class="fa fa-plus"></i>&nbsp;&nbsp;<span class="bold">Tambah Data</span></a>
+    </div> -->
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -28,7 +28,7 @@
                 <div class="ibox-content">
 
                     <div class="table-responsive">
-                        <table id="tabel_pengajuan" class="table table-striped table-bordered table-hover dataTables-example">
+                        <table id="tabel_penarikan" class="table table-striped table-bordered table-hover dataTables-example">
                             <thead>
                                 <tr>
                                     <!-- yang di tampilkan-->
@@ -53,13 +53,13 @@
         </div>
     </div>
 </div>
-<div id="modal_pengajuan_tambah" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
+<div id="modal_penarikan_tambah" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!--            <div class="modal-header" style="padding:10px">
                             <h7 class="modal-title">Input Skoring</h7>
                         </div>-->
-            <form id="form_pengajuan_tambah" class="form-horizontal">
+            <form id="form_penarikan_tambah" class="form-horizontal">
                 <div class="modal-body">
                     <div class="modal-header" style="padding:10px">
                         <h1 class="modal-title">Tambah Unit Kerja</h1>
@@ -68,12 +68,12 @@
                     <div class="form-group row">
                         <label class="col-lg-2 control-label">Kode Unit :</label>
                         <div class="col-lg-4">
-                            <input id="kd_pengajuan_tambah" name="kd_pengajuan_tambah" type="number" placeholder="" class="form-control" required>
+                            <input id="kd_penarikan_tambah" name="kd_penarikan_tambah" type="number" placeholder="" class="form-control" required>
                             <!-- <input id="921_iduser" style="display:none" name="921_iduser" type="text" placeholder="" class="form-control"> -->
                         </div>
                         <label class="col-lg-2 control-label">Kode Induk :</label>
                         <div class="col-lg-4">
-                            <select class="form-control select" id="kd_induk_pengajuan_tambah" name="kd_induk_pengajuan_tambah" required>
+                            <select class="form-control select" id="kd_induk_penarikan_tambah" name="kd_induk_penarikan_tambah" required>
                                 <!-- blm di generate dari controller -->
 
                             </select>
@@ -84,13 +84,13 @@
                     <div class="form-group row">
                         <label class="col-lg-2 control-label">Nama Unit :</label>
                         <div class="col-lg-4">
-                            <input id="nama_pengajuan_tambah" name="nama_pengajuan_tambah" type="text" placeholder="" class="form-control" required>
+                            <input id="nama_penarikan_tambah" name="nama_penarikan_tambah" type="text" placeholder="" class="form-control" required>
 
                         </div>
                         <label class="col-lg-2 control-label">Alamat Unit :</label>
                         <div class="col-lg-4">
 
-                            <textarea class="form-control" id="alamat_pengajuan_tambah" name="alamat_pengajuan_tambah" rows="3"></textarea>
+                            <textarea class="form-control" id="alamat_penarikan_tambah" name="alamat_penarikan_tambah" rows="3"></textarea>
 
                         </div>
 
@@ -101,12 +101,12 @@
 
                         <label class="col-lg-2 control-label">No Telepon :</label>
                         <div class="col-lg-4">
-                            <input id="telpon_pengajuan_tambah" name="telpon_pengajuan_tambah" type="number" placeholder="" class="form-control" required>
+                            <input id="telpon_penarikan_tambah" name="telpon_penarikan_tambah" type="number" placeholder="" class="form-control" required>
 
                         </div>
                         <label class="col-lg-2 control-label">Status :</label>
                         <div class="col-lg-4">
-                            <select class="form-control class-disabled select" required id="aktif_pengajuan_tambah" name="aktif_pengajuan_tambah">
+                            <select class="form-control class-disabled select" required id="aktif_penarikan_tambah" name="aktif_penarikan_tambah">
                                 <option value="0" selected="" disabled="">pilih</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>
@@ -135,13 +135,13 @@
         </div>
     </div>
 </div>
-<div id="modal_pengajuan_edit" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
+<div id="modal_penarikan_edit" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!--            <div class="modal-header" style="padding:10px">
                             <h7 class="modal-title">Input Skoring</h7>
                         </div>-->
-            <form id="form_pengajuan_edit" class="form-horizontal">
+            <form id="form_penarikan_edit" class="form-horizontal">
                 <div class="modal-body">
                     <div class="modal-header" style="padding:10px">
                         <h1 class="modal-title">Edit Unit Kerja</h1>
@@ -151,15 +151,15 @@
 
                         <label class="col-lg-2 control-label">Kode Induk :</label>
                         <div class="col-lg-4">
-                            <input id="kd_pengajuan_edit" style="display:none" name="kd_pengajuan_edit" type="text" placeholder="" class="form-control">
-                            <select class="form-control select" id="kd_induk_pengajuan_edit" name="kd_induk_pengajuan_edit" required>
+                            <input id="kd_penarikan_edit" style="display:none" name="kd_penarikan_edit" type="text" placeholder="" class="form-control">
+                            <select class="form-control select" id="kd_induk_penarikan_edit" name="kd_induk_penarikan_edit" required>
                                 <!-- blm di generate dari controller -->
 
                             </select>
                         </div>
                         <label class="col-lg-2 control-label">Nama Unit :</label>
                         <div class="col-lg-4">
-                            <input id="nama_pengajuan_edit" name="nama_pengajuan_edit" type="text" placeholder="" class="form-control" required>
+                            <input id="nama_penarikan_edit" name="nama_penarikan_edit" type="text" placeholder="" class="form-control" required>
 
                         </div>
 
@@ -170,12 +170,12 @@
                         <label class="col-lg-2 control-label">Alamat Unit :</label>
                         <div class="col-lg-4">
 
-                            <textarea class="form-control" id="alamat_pengajuan_edit" name="alamat_pengajuan_edit" rows="3"></textarea>
+                            <textarea class="form-control" id="alamat_penarikan_edit" name="alamat_penarikan_edit" rows="3"></textarea>
 
                         </div>
                         <label class="col-lg-2 control-label">No Telepon :</label>
                         <div class="col-lg-4">
-                            <input id="telpon_pengajuan_edit" name="telpon_pengajuan_edit" type="text" placeholder="" class="form-control" required>
+                            <input id="telpon_penarikan_edit" name="telpon_penarikan_edit" type="text" placeholder="" class="form-control" required>
 
                         </div>
 
@@ -187,7 +187,7 @@
 
                         <label class="col-lg-2 control-label">Status :</label>
                         <div class="col-lg-4">
-                            <select class="form-control class-disabled select" required id="aktif_pengajuan_edit" name="aktif_pengajuan_edit">
+                            <select class="form-control class-disabled select" required id="aktif_penarikan_edit" name="aktif_penarikan_edit">
                                 <option value="0" selected="" disabled="">pilih</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>
@@ -209,7 +209,7 @@
     </div>
 </div>
 
-<div id="modal_pengajuan_detail" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
+<div id="modal_penarikan_detail" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -224,7 +224,7 @@
                             <div class="ibox">
                                 <div class="ibox-content">
                                     <!-- <div class="ibox-content" style="height: 400px"> -->
-                                    <h2 class="text-center">Detail Unit kerja <span id="nama_pengajuan_detail"></span></h2>
+                                    <h2 class="text-center">Detail Unit kerja <span id="nama_penarikan_detail"></span></h2>
                                     <!-- <p>
                                         Berikut adalah detail permohonan e-form dari <div id="nama_nasabah_detail"></div>
                                     </p> -->
@@ -243,55 +243,55 @@
 
                                                                 <tr>
                                                                     <td class="font-weight-bold">Kode Unit</td>
-                                                                    <td id="dkd_pengajuan"></td>
+                                                                    <td id="dkd_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Kode Induk Unit</td>
-                                                                    <td id="dkd_induk_pengajuan"></td>
+                                                                    <td id="dkd_induk_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Nama Unit</td>
-                                                                    <td id="dnama_pengajuan"></td>
+                                                                    <td id="dnama_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Alamat Unit</td>
-                                                                    <td id="dalamat_pengajuan"></td>
+                                                                    <td id="dalamat_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Telepon Unit</td>
-                                                                    <td id="dtelpon_pengajuan"></td>
+                                                                    <td id="dtelpon_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Status</td>
-                                                                    <td id="daktif_pengajuan"></td>
+                                                                    <td id="daktif_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Pembuat</td>
-                                                                    <td id="dmaker_pengajuan"></td>
+                                                                    <td id="dmaker_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Waktu Dibuat</td>
-                                                                    <td id="dwaktu_maker_pengajuan"></td>
+                                                                    <td id="dwaktu_maker_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Unit Pembuat</td>
-                                                                    <td id="dkd_pengajuan_maker_pengajuan"></td>
+                                                                    <td id="dkd_penarikan_maker_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Pengubah</td>
-                                                                    <td id="dupdater_pengajuan"></td>
+                                                                    <td id="dupdater_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Terakhir Diubah</td>
-                                                                    <td id="dwaktu_updater_pengajuan"></td>
+                                                                    <td id="dwaktu_updater_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Unit Pengubah</td>
-                                                                    <td id="dkd_pengajuan_updater_pengajuan"></td>
+                                                                    <td id="dkd_penarikan_updater_penarikan"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="font-weight-bold">Didaftarkan oleh Unit Kerja/ Induk</td>
-                                                                    <td id="dkd_cab_pengajuan"></td>
+                                                                    <td id="dkd_cab_penarikan"></td>
                                                                 </tr>
 
 
@@ -337,14 +337,14 @@
 
     $(document).ready(function() {
 
-        var table = $('#tabel_pengajuan').DataTable({
+        var table = $('#tabel_penarikan').DataTable({
             "responsive": true,
             "processing": true,
             // "searching": false,
             "serverSide": true,
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "<?php echo base_url() ?>pengajuan/tabel_pengajuan",
+            "sAjaxSource": "<?php echo base_url() ?>penarikan/tabel_penarikan",
             "columnDefs": [{
                     "targets": 0,
                     "width": "15%"
@@ -421,14 +421,14 @@
                 },
                 {
                     "extend": 'excel',
-                    "title": 'Pengajuan Kredit Transaksional',
+                    "title": 'penarikan Kredit Transaksional',
                     "exportOptions": {
                         "columns": [0, 1, 2, 3, 4, 5, 6, 7, 8] // kolom 0, 3, 4, 5, 6, 7, 8, dan 6, 7, 8 akan di-export
                     }
                 },
                 {
                     "extend": 'pdf',
-                    "title": 'Pengajuan Kredit Transaksional',
+                    "title": 'penarikan Kredit Transaksional',
                     "exportOptions": {
                         "columns": [0, 1, 2, 3, 4, 5, 6, 7, 8] // kolom 1, da akan di-export
                     }
@@ -449,37 +449,36 @@
             ]
 
         });
-        $('#tabel_pengajuan tbody ').on('click', '#edit_pengajuan', function() {
+        $('#tabel_penarikan tbody ').on('click', '#edit_penarikan', function() {
 
-            document.getElementById("form_pengajuan_edit").reset();
+            document.getElementById("form_penarikan_edit").reset();
             var data = table.row($(this).parents('tr')).data();
-            $("#modal_pengajuan_edit").modal('show')
 
             // baru
             $.ajax({
-                url: "<?php echo base_url() ?>unit_kerja/get_tabel_pengajuan_by_id/" + data[5],
+                url: "<?php echo base_url() ?>unit_kerja/get_tabel_penarikan_by_id/" + data[5],
                 type: "get",
                 dataType: "JSON",
                 success: function(response) {
                     // console.log(response)
                     var data = response.data
-                    $('#kd_pengajuan_edit').val(data[5]);
-                    // $('#kd_induk_pengajuan_edit').val(data[6]);
-                    $('#nama_pengajuan_edit').val(data[7]);
-                    $('#alamat_pengajuan_edit').val(data[8]);
-                    $('#telpon_pengajuan_edit').val(data[9]);
-                    $('#aktif_pengajuan_edit').val(data[10]);
+                    $('#kd_penarikan_edit').val(data[5]);
+                    // $('#kd_induk_penarikan_edit').val(data[6]);
+                    $('#nama_penarikan_edit').val(data[7]);
+                    $('#alamat_penarikan_edit').val(data[8]);
+                    $('#telpon_penarikan_edit').val(data[9]);
+                    $('#aktif_penarikan_edit').val(data[10]);
 
                     var kd_induk = data[6];
                     console.log(kd_induk);
 
                     $.ajax({
-                        url: "<?php echo base_url('unit_kerja/get_pengajuan_tanpa_konsolidasi'); ?>",
+                        url: "<?php echo base_url('unit_kerja/get_penarikan_tanpa_konsolidasi'); ?>",
                         type: "get",
                         dataType: "JSON",
                         success: function(data) {
                             var options = data.unit;
-                            var select = $('#kd_induk_pengajuan_edit');
+                            var select = $('#kd_induk_penarikan_edit');
 
                             select.empty();
                             // Tambahkan opsi "Pilih" yang dipilih dan dinonaktifkan
@@ -488,8 +487,8 @@
                             select.append(defaultOption);
 
                             $.each(options, function(index, option) {
-                                var newOption = new Option(option.kd_pengajuan + ' - ' + option.nama_pengajuan, option.kd_pengajuan, false, false);
-                                if (option.kd_pengajuan === kd_induk) {
+                                var newOption = new Option(option.kd_penarikan + ' - ' + option.nama_penarikan, option.kd_penarikan, false, false);
+                                if (option.kd_penarikan === kd_induk) {
                                     $(newOption).prop('selected', true);
                                 }
                                 select.append(newOption);
@@ -497,7 +496,7 @@
 
                             select.select2({
                                 placeholder: 'Pilih',
-                                dropdownParent: $('#kd_induk_pengajuan_edit').parent()
+                                dropdownParent: $('#kd_induk_penarikan_edit').parent()
                             });
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -514,37 +513,37 @@
 
         });
         
-        $('#tabel_pengajuan tbody ').on('click', '#detail_pengajuan', function() {
+        $('#tabel_penarikan tbody ').on('click', '#detail_penarikan', function() {
             // newx_702 = 1;
-            // document.getElementById("form_pengajuan_hapus").reset();
+            // document.getElementById("form_penarikan_hapus").reset();
             var data = table.row($(this).parents('tr')).data();
-            $("#modal_pengajuan_detail").modal('show')
+            $("#modal_penarikan_detail").modal('show')
 
             // baru
             $.ajax({
-                url: "<?php echo base_url() ?>unit_kerja/get_tabel_pengajuan_by_id/" + data[5],
+                url: "<?php echo base_url() ?>unit_kerja/get_tabel_penarikan_by_id/" + data[5],
                 type: "get",
                 dataType: "JSON",
                 success: function(response) {
                     // console.log(response)
                     var data = response.data
-                    $('#nama_pengajuan_detail').html(data[7]);
-                    $('#dkd_pengajuan').html(data[5]);
-                    $('#dkd_induk_pengajuan').html(data[6]);
-                    $('#dnama_pengajuan').html(data[7]);
-                    $('#dalamat_pengajuan').html(data[8]);
-                    $('#dtelpon_pengajuan').html(data[9]);
-                    $('#daktif_pengajuan').html(data[18]);
+                    $('#nama_penarikan_detail').html(data[7]);
+                    $('#dkd_penarikan').html(data[5]);
+                    $('#dkd_induk_penarikan').html(data[6]);
+                    $('#dnama_penarikan').html(data[7]);
+                    $('#dalamat_penarikan').html(data[8]);
+                    $('#dtelpon_penarikan').html(data[9]);
+                    $('#daktif_penarikan').html(data[18]);
 
-                    $('#dmaker_pengajuan').html(data[11]);
-                    $('#dwaktu_maker_pengajuan').html(data[12]);
-                    $('#dkd_pengajuan_maker_pengajuan').html(data[13]);
+                    $('#dmaker_penarikan').html(data[11]);
+                    $('#dwaktu_maker_penarikan').html(data[12]);
+                    $('#dkd_penarikan_maker_penarikan').html(data[13]);
 
-                    $('#dupdater_pengajuan').html(data[14]);
-                    $('#dwaktu_updater_pengajuan').html(data[15]);
-                    $('#dkd_pengajuan_updater_pengajuan').html(data[16]);
+                    $('#dupdater_penarikan').html(data[14]);
+                    $('#dwaktu_updater_penarikan').html(data[15]);
+                    $('#dkd_penarikan_updater_penarikan').html(data[16]);
 
-                    $('#dkd_cab_pengajuan').html(data[17]);
+                    $('#dkd_cab_penarikan').html(data[17]);
 
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -558,11 +557,11 @@
     });
 
 
-    function tambah_pengajuan() {
-        document.getElementById("form_pengajuan_tambah").reset();
+    function tambah_penarikan() {
+        document.getElementById("form_penarikan_tambah").reset();
 
         $.ajax({
-            url: "<?php echo base_url('unit_kerja/get_pengajuan_tanpa_konsolidasi'); ?>",
+            url: "<?php echo base_url('unit_kerja/get_penarikan_tanpa_konsolidasi'); ?>",
             type: "get",
             dataType: "JSON",
             // data: {
@@ -570,7 +569,7 @@
             // },
             success: function(data) {
                 var options = data.unit;
-                var select = $('#kd_induk_pengajuan_tambah');
+                var select = $('#kd_induk_penarikan_tambah');
 
                 select.empty();
                 // Tambahkan opsi "Pilih" yang dipilih dan dinonaktifkan
@@ -579,13 +578,13 @@
                 select.append(defaultOption);
 
                 $.each(options, function(index, option) {
-                    var newOption = new Option(option.kd_pengajuan + ' - ' + option.nama_pengajuan, option.kd_pengajuan, false, false);
+                    var newOption = new Option(option.kd_penarikan + ' - ' + option.nama_penarikan, option.kd_penarikan, false, false);
                     select.append(newOption);
                 });
 
                 select.select2({
                     placeholder: 'Pilih',
-                    dropdownParent: $('#kd_induk_pengajuan_tambah').parent()
+                    dropdownParent: $('#kd_induk_penarikan_tambah').parent()
                 });
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -593,22 +592,22 @@
             }
         });
 
-        $("#modal_pengajuan_tambah").modal('show')
+        $("#modal_penarikan_tambah").modal('show')
     }
     //proses tambah
-    $("#form_pengajuan_tambah").validate({
+    $("#form_penarikan_tambah").validate({
         submitHandler: function(form) {
             $('#mohon').show()
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() ?>unit_kerja/simpan_pengajuan",
-                data: $("#form_pengajuan_tambah").serialize(),
+                url: "<?php echo base_url() ?>unit_kerja/simpan_penarikan",
+                data: $("#form_penarikan_tambah").serialize(),
                 success: function(d) {
                     if (d == '1') {
-                        $("#modal_pengajuan_tambah").modal('hide')
+                        $("#modal_penarikan_tambah").modal('hide')
                         $('#mohon').hide()
                         toastr.success('Simpan Data Berhasil', 'Berhasil')
-                        $('#tabel_pengajuan').DataTable().ajax.reload();
+                        $('#tabel_penarikan').DataTable().ajax.reload();
                     } else {
 
                         toastr.warning(d, 'Gagal')
@@ -619,19 +618,19 @@
         }
     });
     //proses edit
-    $("#form_pengajuan_edit").validate({
+    $("#form_penarikan_edit").validate({
         submitHandler: function(form) {
             $('#mohon').show()
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() ?>unit_kerja/edit_pengajuan",
-                data: $("#form_pengajuan_edit").serialize(),
+                url: "<?php echo base_url() ?>unit_kerja/edit_penarikan",
+                data: $("#form_penarikan_edit").serialize(),
                 success: function(d) {
                     if (d == '1') {
-                        $("#modal_pengajuan_edit").modal('hide')
+                        $("#modal_penarikan_edit").modal('hide')
                         $('#mohon').hide()
                         toastr.success('Edit Data Berhasil', 'Berhasil')
-                        $('#tabel_pengajuan').DataTable().ajax.reload();
+                        $('#tabel_penarikan').DataTable().ajax.reload();
                     } else {
 
                         toastr.warning(d, 'Gagal')

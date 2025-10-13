@@ -490,8 +490,13 @@
 
 
 
-
-
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_scoring" title="Checkbox ini sebagai paraf" name="cb_scoring" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+            </div>
+        </div>
+    </div>
 
 </fieldset>
 <script>
@@ -507,11 +512,58 @@
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
             // Mengirim data menggunakan AJAX
-            var hasil_scoring = data_scoring()
-            save_scoring('edit_scoring', hasil_scoring, 'edit_scoring');
-        });
 
+            if (edit_data_pemasar) {
+                // Jika edit_data_koordinator null atau kosong
+                
+                var hasil_scoring = data_scoring();
+                save_scoring('edit_scoring', hasil_scoring, 'edit_scoring');
+
+            } else {
+                // Jika edit_data_koordinator memiliki nilai
+                var hasil_paraf = paraf_scoring();
+                post_paraf('paraf_scoring', hasil_paraf, 'save_scoring');
+            }
+        });
     });
+
+    function data_scoring() {
+        var scoring_data = {
+            kd_data_tambah: $('#kd_data_tambah').val(),
+
+            nama_pemohon_sc: $('#nama_pemohon_sc').val(),
+            alamat_sc: $('#alamat_sc').val(),
+            plafond_sc: $('#plafond_sc').val(),
+            tujuan_sc: $('#tujuan_sc').val(),
+            no_pak_sc: $('#no_pak_sc').val(),
+
+            pendirian_sc: $('#pendirian_sc').val(),
+            legalitas_sc: $('#legalitas_sc').val(),
+            hubungan_sc: $('#hubungan_sc').val(),
+            pengelolaan_sc: $('#pengelolaan_sc').val(),
+            jenis_agunan_sc: $('#jenis_agunan_sc').val(),
+            bukti_sc: $('#bukti_sc').val(),
+            status_sc: $('#status_sc').val(),
+            marketable_sc: $('#marketable_sc').val(),
+            lending_sc: $('#lending_sc').val(),
+            pengalaman_sc: $('#pengalaman_sc').val(),
+            sumber_dana_sc: $('#sumber_dana_sc').val(),
+            lokasi_sc: $('#lokasi_sc').val(),
+            jenis_proyek_sc: $('#jenis_proyek_sc').val(),
+            bahan_baku_sc: $('#bahan_baku_sc').val(),
+            peralatan_sc: $('#peralatan_sc').val(),
+            pembayaran_sc: $('#pembayaran_sc').val(),
+            dasar_penunjukan_sc: $('#dasar_penunjukan_sc').val(),
+            prosentase_sc: $('#prosentase_sc').val(),
+            jangka_sc: $('#jangka_sc').val(),
+            agunan_sc: $('#agunan_sc').val(),
+            penjaminan_sc: $('#penjaminan_sc').val(),
+
+            // upload dokumen
+        };
+        return scoring_data;
+    }
+
     // bikin function
     function isi_scoring() {
         variabelGlobal(function(hasil) {
@@ -519,6 +571,7 @@
             if (hasil.status == 'success') {
                 var data = hasil.message.scoring;
                 var data_entry = hasil.message.data_entry;
+                var data_paraf = hasil.message.paraf;
                 var fcr = hasil.message.fcr;
                 // alert(data.kd_data)
                 // unit_kerja_fcr()
@@ -561,7 +614,21 @@
 
                 $('#hasil_scoring').html(data.hasil_skoring);
                 $('#ket_hasil').html(data.keterangan);
+                if (Array.isArray(data_paraf) && data_paraf.length > 0) {
+                    let paraf = data_paraf.find(p => p.nomor_halaman == '6'); // Cari nomor_halaman = 4
 
+                    if (paraf && paraf.kd_level && typeof kd_level !== "undefined" &&
+                        paraf.kd_level === kd_level &&
+                        paraf.kd_data === data.kd_data &&
+                        paraf.nama_halaman === 'Scoring') {
+
+                        $('#cb_scoring').prop('checked', paraf.ceklis === 'true');
+                    } else {
+                        $('#cb_scoring').prop('checked', false);
+                    }
+                } else {
+                    $('#cb_scoring').prop('checked', false);
+                }
             } else {
                 alert(hasil.message)
             }
@@ -573,42 +640,42 @@
         // tampil_button('save_scoring')
     }
 
-    function data_scoring() {
-        var data_scoring = {
-            kd_data_tambah: $('#kd_data_tambah').val(),
+    // function data_scoring() {
+    //     var scoring_data = {
+    //         kd_data_tambah: $('#kd_data_tambah').val(),
 
-            nama_pemohon_sc: $('#nama_pemohon_sc').val(),
-            alamat_sc: $('#alamat_sc').val(),
-            plafond_sc: $('#plafond_sc').val(),
-            tujuan_sc: $('#tujuan_sc').val(),
-            no_pak_sc: $('#no_pak_sc').val(),
+    //         nama_pemohon_sc: $('#nama_pemohon_sc').val(),
+    //         alamat_sc: $('#alamat_sc').val(),
+    //         plafond_sc: $('#plafond_sc').val(),
+    //         tujuan_sc: $('#tujuan_sc').val(),
+    //         no_pak_sc: $('#no_pak_sc').val(),
 
-            pendirian_sc: $('#pendirian_sc').val(),
-            legalitas_sc: $('#legalitas_sc').val(),
-            hubungan_sc: $('#hubungan_sc').val(),
-            pengelolaan_sc: $('#pengelolaan_sc').val(),
-            jenis_agunan_sc: $('#jenis_agunan_sc').val(),
-            bukti_sc: $('#bukti_sc').val(),
-            status_sc: $('#status_sc').val(),
-            marketable_sc: $('#marketable_sc').val(),
-            lending_sc: $('#lending_sc').val(),
-            pengalaman_sc: $('#pengalaman_sc').val(),
-            sumber_dana_sc: $('#sumber_dana_sc').val(),
-            lokasi_sc: $('#lokasi_sc').val(),
-            jenis_proyek_sc: $('#jenis_proyek_sc').val(),
-            bahan_baku_sc: $('#bahan_baku_sc').val(),
-            peralatan_sc: $('#peralatan_sc').val(),
-            pembayaran_sc: $('#pembayaran_sc').val(),
-            dasar_penunjukan_sc: $('#dasar_penunjukan_sc').val(),
-            prosentase_sc: $('#prosentase_sc').val(),
-            jangka_sc: $('#jangka_sc').val(),
-            agunan_sc: $('#agunan_sc').val(),
-            penjaminan_sc: $('#penjaminan_sc').val(),
+    //         pendirian_sc: $('#pendirian_sc').val(),
+    //         legalitas_sc: $('#legalitas_sc').val(),
+    //         hubungan_sc: $('#hubungan_sc').val(),
+    //         pengelolaan_sc: $('#pengelolaan_sc').val(),
+    //         jenis_agunan_sc: $('#jenis_agunan_sc').val(),
+    //         bukti_sc: $('#bukti_sc').val(),
+    //         status_sc: $('#status_sc').val(),
+    //         marketable_sc: $('#marketable_sc').val(),
+    //         lending_sc: $('#lending_sc').val(),
+    //         pengalaman_sc: $('#pengalaman_sc').val(),
+    //         sumber_dana_sc: $('#sumber_dana_sc').val(),
+    //         lokasi_sc: $('#lokasi_sc').val(),
+    //         jenis_proyek_sc: $('#jenis_proyek_sc').val(),
+    //         bahan_baku_sc: $('#bahan_baku_sc').val(),
+    //         peralatan_sc: $('#peralatan_sc').val(),
+    //         pembayaran_sc: $('#pembayaran_sc').val(),
+    //         dasar_penunjukan_sc: $('#dasar_penunjukan_sc').val(),
+    //         prosentase_sc: $('#prosentase_sc').val(),
+    //         jangka_sc: $('#jangka_sc').val(),
+    //         agunan_sc: $('#agunan_sc').val(),
+    //         penjaminan_sc: $('#penjaminan_sc').val(),
 
-            // upload dokumen
-        };
-        return data_scoring
-    }
+    //         // upload dokumen
+    //     };
+    //     return scoring_data
+    // }
 
     function save_scoring(method, data_input, button) {
         $.ajax({
@@ -641,6 +708,18 @@
             }
         });
 
+    }
+    function paraf_scoring() {
+        var scoring_data = {
+            kd_data_tambah: $('#kd_data_tambah').val(),
 
+            unit_kerja_tambah: $('#unit_kerja_tambah').val(),
+            nomor_halaman: '6',
+            nama_halaman: 'scoring',
+
+            cb_scoring: $('#cb_scoring').is(':checked')
+            // upload dokumen
+        };
+        return scoring_data;
     }
 </script>

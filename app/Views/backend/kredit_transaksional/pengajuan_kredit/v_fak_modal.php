@@ -2,11 +2,11 @@
 ?>
 <h1>Data FAK Modal</h1>
 <fieldset>
-    <h2>Data FAK Modal</h2>
+    <h2>Data FAK Modal <a class="btn btn-default btn-rounded m-t-n-xs" onclick="hitungNilaiProyek()" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-refresh"></i></a></h2>
     <h2 class="text-center text-danger">Perhitungan Plafond Kredit</h2>
     <div class="form-group row">
+        <label class="col-lg-3 control-label">Proyek</label>
         <div class="col-lg-2">
-            <label class="col-lg-12 control-label">Proyek</label>
             <div class="col-lg-12">
                 <div class="input-group">
                     <input id="proyek_fak_modal" name="proyek_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
@@ -18,8 +18,8 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-lg-3 control-label">Profit</label>
         <div class="col-lg-2">
-            <label class="col-lg-12 control-label">Profit</label>
             <div class="col-lg-12">
                 <div class="input-group">
                     <input id="profit_fak_modal" name="profit_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
@@ -31,11 +31,11 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-lg-3 control-label">PPN</label>
         <div class="col-lg-2">
-            <label class="col-lg-12 control-label">PPN</label>
             <div class="col-lg-12">
                 <div class="input-group">
-                    <input id="ppn_fak_modal" disabled name="ppn_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <input id="ppn_fak_modal" name="ppn_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     <div class="input-group-append">
                         <span class="input-group-text">%</span>
                     </div>
@@ -44,8 +44,8 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-lg-3 control-label">Pemeliharaan</label>
         <div class="col-lg-2">
-            <label class="col-lg-12 control-label">Pemeliharaan</label>
             <div class="col-lg-12">
                 <div class="input-group">
                     <input id="pemeliharaan_fak_modal" name="pemeliharaan_fak_modal" onkeyup="hitungSemua()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
@@ -57,8 +57,8 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-lg-3 control-label">Total Persentase Dari Proyek</label>
         <div class="col-lg-2">
-            <label class="col-lg-12 control-label">Total Persentase Dari Proyek</label>
             <div class="col-lg-12">
                 <div class="input-group">
                     <input id="persentase_proyek_fak_modal" name="persentase_proyek_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
@@ -68,14 +68,12 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-lg-1">
-        </div>
+
+        
         <div class="col-lg-2">
             <a class="btn btn-default float-right btn-rounded m-t-n-xs" onclick="hitungNilaiProyek()" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><span>Nilai Proyek</span></a>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <input id="nilai_proyek_fak_modal" name="nilai_proyek_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
             <p>Nominal: <span id="nilai_proyek_fak_modal_separators" class="mask"></span></p>
         </div>
@@ -84,49 +82,50 @@
     <h2 class="text-center text-danger">Persiapan dan Pekerjaan</h2>
     <div class="add-form-pp-fak-modal">
         <div class="form-group row">
-            <!-- <div class="col-md-1">
-                                        <div class="col-lg-10">
-                                        </div>
-                                    </div> -->
-            <div class="col-lg-4">
+            <!-- <div class="col-lg-1">
+            </div> -->
+            <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Item</label>
                 <div class="col-lg-12">
-                    <input id="item_pp_fak_modal0" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <div class="input-group">
+                        <input id="item_pp_fak_modal0" name="item_pp_fak_modal[]" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <label class="col-lg-12 control-label">Nilai</label>
                 <div class="col-lg-12">
-                    <input id="nilai_pp_fak_modal0" name="nilai_pp_fak_modal[]" type="text" placeholder="" onkeyup="hitungPPFAKM()" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <div class="input-group">
+                        <input id="nilai_pp_fak_modal0" name="nilai_pp_fak_modal[]" type="text" placeholder="" onkeyup="hitungPPFAKM()" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    </div>
                     <p>Nominal: <span id="nilai_pp_fak_modal0_separators" class="mask"></span></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-3">
-                    <label class="col-lg-6 control-label">Koreksi Biaya</label>
-                </div>
-                <div class="col-lg-6">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
+            <label class="col-lg-8 control-label">Koreksi Biaya</label>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-lg-12">
+                <div class="input-group">
                     <input id="koreksi_biaya_fak_modal" name="koreksi_biaya_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 </div>
             </div>
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-3">
-
-                </div>
-                <div class="col-lg-3">
-                    <label class="col-lg-6 control-label">Jumlah</label>
-                </div>
-                <div class="col-lg-6">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
+            <label class="col-lg-6 control-label">Jumlah</label>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-lg-12">
+                <div class="input-group">
                     <input id="jumlah_fak_modal" name="jumlah_fak_modal" onchange="copyvalue(this.id,'pekerjaan_persiapan_konstruksi_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 </div>
             </div>
@@ -294,6 +293,15 @@
                 <div class="col-lg-3">
                     <input id="persentase_jumlah_sumber_pembiayaan_fak_modal" readonly name="persentase_jumlah_sumber_pembiayaan_fak_modal" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_fak_modal" title="Checkbox ini sebagai paraf" name="cb_fak_modal"
+                    <?php echo (!empty($edit_data) && !empty($edit_data_koordinator)) ? '' : 'disabled'; ?>>
+
             </div>
         </div>
     </div>

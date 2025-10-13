@@ -444,8 +444,13 @@
 
                     </select>
                     <br>
+<<<<<<< HEAD
                     <table class="table-responsive" border="0">
                         <!-- <tr>
+=======
+                    <!-- <table class="table-responsive" border="0">
+                        <tr>
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
                             <td>
                                 <h3>Hasil Scoring</h3>
                             </td>
@@ -471,8 +476,13 @@
                             <td><small>Note: Passing Grade > 325</small></td>
                             <td></td>
                             <td></td>
+<<<<<<< HEAD
                         </tr> -->
                     </table>
+=======
+                        </tr>
+                    </table> -->
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
 
 
                 </div>

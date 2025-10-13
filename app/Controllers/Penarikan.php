@@ -28,7 +28,7 @@ class Penarikan extends BaseController
         // $this->UsersModel = new UsersModel();
         $this->session = session();
     }
-    
+
     public function v_penarikan()
     {
         $hasil = $this->hak_akses();
@@ -101,7 +101,7 @@ class Penarikan extends BaseController
         }
         return $hasil;
     }
-    public function tabel_pengajuan()
+    public function tabel_penarikan()
     {
         $sQuery1 = "SELECT * FROM v_data_master ";
         $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
@@ -124,7 +124,15 @@ class Penarikan extends BaseController
 
 
         $aColumns = array(
-            'nomor_aplikasi', 'tanggal_isi', 'nama_debitur', 'posisi_progress', 'progress', 'scoring', 'sla', 'nama_unit', 'status'
+            'nomor_aplikasi',
+            'tanggal_isi',
+            'nama_debitur',
+            'posisi_progress',
+            'progress',
+            'scoring',
+            'sla',
+            'nama_unit',
+            'status'
         );
 
         $sLimit = "";
@@ -218,9 +226,22 @@ class Penarikan extends BaseController
                 $row[] = '<span class="label label-warning">' . $aRow->status . '</span>';
             }
             // $row[] = '<button title="Edit" id="edit_unit" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>' . '<button title="Detail" id="detail_unit" class="btn btn-warning btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button>'; //6
+            // $button_generate = '';
+            // if ($this->permission2('Generate Dokumen penarikan Kredit Transaksional')) {
+            //     $button_generate = '<li><button title="Generate" class="btn btn-sm dropdown-item" onclick="generate_dok(\'' . $aRow->kd_data . '\')"><div class="text-left"><i class="fa fa-download" aria-hidden="true"></i> Generate Data</div></button></li>';
+            // }
             //9
-            $row[] = '<button title="Edit" id="edit_pengajuan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
+            // $row[] = '<button title="Edit" id="edit_penarikan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
+            $row[] = '<a data-toggle="dropdown" class="" href="#">' .
+                '<span class="text-dark text-xs block"><b>. . .</b></span>' .
+                '</a>' .
+                '<ul class="dropdown-menu animated fadeInRight m-t-xs">' .
+                // '<li><a class="dropdown-item" href="profile.html">Profile</a></li>'.
+                '<li><a href="' . base_url() . 'edit-penarikan-kredit-transaksional/' . sha1($aRow->kd_data) . '" class="btn btn-sm dropdown-item" title="Edit"><div class="text-left"><i class="fa fa-pencil" aria-hidden="true"></i> Proses Penarikan</div></a></li>' .
+                // $button_generate .
+                '<li><button title="History Return" class="btn btn-sm dropdown-item" onclick="modal_return(\'' . $aRow->kd_data . '\')"><div class="text-left"><i class="fa fa-undo" aria-hidden="true"></i> History Return</div></button></li>' .
 
+                '</ul>';
             // $row[] = $aRow->kd_unit; //
             // $row[] = $aRow->kd_induk_unit; //
 
@@ -229,16 +250,329 @@ class Penarikan extends BaseController
         }
         echo json_encode($output);
     }
-    public function tambah_pengajuan()
+    public function tambah_penarikan()
     {
         $hasil = $this->hak_akses();
         if ($hasil == true) {
-            $data['title'] = 'Tambah Pengajuan Kredit Transaksional';
-            return view('backend/kredit_transaksional/pengajuan_kredit/v_tambah_pengajuan', $data);
+            $data['title'] = 'Tambah penarikan Kredit Transaksional';
+            return view('backend/kredit_transaksional/penarikan_kredit/v_tambah_penarikan', $data);
         } else {
             return redirect()->to('/login');
         }
     }
+
+    //     public function edit_penarikan($kd_data){
+    //     $hasil = $this->hak_akses();
+    //     $permission = $this->permission();
+    //     // $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
+    //     // $cek_agunan = $this->cek_agunan($kd_data);
+    //     // dd($cek_agunan);
+    //     // if ($hasil == true) {
+    //         $data['title'] = 'Edit Penarikan Kredit Transaksional';
+    //         $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+    //         // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+    //         // $data['permission'] = $permission;
+    //         // // $data['cek_agunan'] = $cek_agunan;
+    //         // $data['edit_penarikan_kredit_transaksional'] = $this->permission2('Edit penarikan Kredit Transaksional');
+    //         // $data['edit_penarikan_kredit_transaksional_koordinator'] = $this->permission2('Edit penarikan Kredit Transaksional Koordinator');
+    //         // $data['edit_penarikan_kredit_transaksional_kepala_cabang'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Cabang');
+    //         // $data['edit_penarikan_kredit_transaksional_analis_kredit'] = $this->permission2('Edit penarikan Kredit Transaksional Analis Kredit');
+    //         // $data['edit_penarikan_kredit_transaksional_kepala_bagian'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Bagian');
+    //         // $data['edit_penarikan_kredit_transaksional_kepala_divisi'] = $this->permission2('Edit penarikan Kredit Transaksional Kepala Divisi');
+    //         // $data_master = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+    //         // $data['data_master'] = $data_master;
+    //         // if ($data['edit_penarikan_kredit_transaksional'] == true && $data_master->progress == 'Input') {
+    //         //     $data['edit_data'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_koordinator'] == true && $data_master->progress == 'Review') {
+    //         //     $data['edit_data_koordinator'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_koordinator'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_kepala_cabang'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+    //         //     $data['edit_data_kepala_cabang'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_kepala_cabang'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
+    //         //     $data['edit_data_analis_kredit'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_analis_kredit'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_kepala_bagian'] == true && ($data_master->progress == 'Rekomendasi' || $data_master->progress == 'Approval')) {
+    //         //     $data['edit_data_kepala_bagian'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_kepala_bagian'] = null;
+    //         // }
+    //         // if ($data['edit_penarikan_kredit_transaksional_kepala_divisi'] == true && $data_master->progress == 'Approval') {
+    //         //     $data['edit_data_kepala_divisi'] = 'boleh edit';
+    //         // } else {
+    //         //     $data['edit_data_kepala_divisi'] = null;
+    //         // }
+
+    //         // $data['save_edit_penarikan_kredit_transaksional'] = $this->permission2('Save Edit penarikan Kredit Transaksional');
+    //         // $data['tampil_fak_data'] = $this->permission2('Tampil FAK Data');
+    //         // $data['tampil_fak_modal'] = $this->permission2('Tampil FAK Modal');
+    //         // $data['tampil_fak_proyeksi_rl'] = $this->permission2('Tampil FAK Proyeksi RL');
+    //         // $data['tampil_upload_laporan_rl'] = $this->permission2('Tampil Upload Laporan RL');
+    //         // $data['tampil_cef'] = $this->permission2('Tampil CEF');
+    //         // $data['tampil_faa'] = $this->permission2('Tampil FAA');
+    //         // $data['tampil_mauk'] = $this->permission2('Tampil MAUK');
+    //         // $data['tampil_dcl_compliance'] = $this->permission2('Tampil DCL Compliance');
+    //         return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
+    //     // } else {
+    //     //     return redirect()->to('/login');
+    //     // }
+    // }
+    public function edit_penarikan($kd_data)
+    {
+        $this->hak_akses();
+        $this->permission();
+
+        $builder = $this->db->table('tb_data_entry');
+        $builder->select('kd_data');
+        $builder->where('SHA1(kd_data)', $kd_data);
+        $row = $builder->get()->getRow();
+
+        $data['title'] = 'Edit Penarikan Kredit Transaksional';
+        $data['kd_data'] = $row ? $row->kd_data : null; // simpan hanya kd_data
+
+        return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
+    }
+
+    public function buat_nomor_fcr($data, $kd_fcr){
+        $hasil = '1';
+
+        $kd_nomor = 'NMRFCR' . gmdate("dmYHis", time() + 60 * 60 * 8);
+        $kd_fcr = $kd_fcr;
+        $kd_data = $data['kd_data'];
+
+        $kd_cabang = $data['kd_unit_kerja'];
+        $kata1 = 'FCR-Kons';
+        $kata2 = 'Kmr-';
+        $singkatan_cabang = $this->db->query("SELECT kode_cabang from tb_unit_kerja where kd_unit = '" . $data['kd_unit_kerja'] . "' ")->getRow()->kode_cabang;
+        $kata3 = 'KP';
+
+        $tahun_db = $this->db->query("SELECT max(tahun) as tahun_max from tb_nomor_fcr where kd_unit_kerja = '" . $data['kd_unit_kerja'] . "' ")->getRow()->tahun_max;
+        $tahun_sekarang = date('Y');
+        // $tahun_sekarang = date('Y', strtotime('+1 year'));
+        if ($tahun_db == $tahun_sekarang) {
+            $tahun = $tahun_db;
+            $nomor_urut_pendek = $this->db->query("SELECT max(nomor_urut_pendek) as nomor_urut_pendek_max from tb_nomor_fcr where kd_unit_kerja = '" . $data['kd_unit_kerja'] . "' ")->getRow()->nomor_urut_pendek_max;
+        }
+        if ($tahun_sekarang > $tahun_db) {
+            $tahun = $tahun_sekarang;
+            $nomor_urut_pendek = 0;
+        }
+        // var_dump($tahun);
+        // var_dump($nomor_urut_pendek);
+        // die;
+
+        $tambah_satu = $nomor_urut_pendek + 1;
+        $hitung_pendek = strlen($tambah_satu);
+        if ($hitung_pendek == '1') {
+            $nomor_urut = '00' . $tambah_satu;
+        } else if ($hitung_pendek == '2') {
+            $nomor_urut = '0' . $tambah_satu;
+        } else if ($hitung_pendek == '3') {
+            $nomor_urut = $tambah_satu;
+        } else {
+            $nomor_urut = $tambah_satu;
+        }
+
+        $nomor_urut_pendek2 = $tambah_satu;
+        $nomor_urut_panjang = $nomor_urut;
+        $hasil_generate = $nomor_urut_panjang . '/' . $kata1 . '/' .  $kata2 . $singkatan_cabang . '/' .  $kata3 . '/' . $tahun;
+        // var_dump($hasil_generate);die;
+        $kd_unit_kerja = $data['kd_unit_kerja'];
+
+        $result = [
+            'kd_nomor' => $kd_nomor,
+            'kd_fcr' => $kd_fcr,
+            'kd_data' => $kd_data,
+
+            'kd_cabang' => $kd_cabang,
+            'kata1' => $kata1,
+            'kata2' => $kata2,
+            'singkatan_cabang' => $singkatan_cabang,
+            'kata3' => $kata3,
+            'tahun' => $tahun,
+
+            'nomor_urut_pendek' => $nomor_urut_pendek2,
+            'nomor_urut_panjang' => $nomor_urut_panjang,
+            'hasil_generate' => $hasil_generate,
+            'kd_unit_kerja' => $kd_unit_kerja,
+
+            'pengubah' => session()->get('nama_user'),
+            'tanggal_pengubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
+            'waktu_pengubah' => session()->get('kd_unit_user'),
+        ];
+
+        $duplicate = $this->db->query("SELECT hasil_generate from tb_nomor_fcr where 
+                                        kd_unit_kerja = '" . $kd_unit_kerja . "' 
+                                        and 
+                                        (kd_nomor = '" . $kd_nomor . "'  
+                                        or hasil_generate = '" . $hasil_generate . "')
+                                        ")->getNumRows();
+        $cek_master = $this->db->query("SELECT nomor from tb_fcr where nomor = '" . $hasil_generate . "'")->getNumRows();
+        if ($duplicate < 1 && $cek_master < 1) {
+            $insert = $this->db->table('tb_nomor_fcr')->insert($result);
+            if ($insert) {
+                $hasil = $hasil_generate;
+            } else {
+                $hasil = '2';
+            }
+        } else {
+            $hasil = '3';
+        }
+        // var_dump($hasil);
+        // die;
+        return $hasil;
+    }
+
+    // public function get_jumlah_termin_dropdown()
+    // {
+    //     $kd_data = $this->request->getGet('kd_data');
+    //     log_message('debug', 'kd_data dari ajax: ' . $kd_data);
+
+    //     $query = $this->db->query(
+    //         "SELECT jumlah_termin FROM tb_fak_data WHERE kd_data = ?",
+    //         [$kd_data]
+    //     );
+
+    //     $row = $query->getRow();
+
+    //     if ($row) {
+    //         $jumlah_termin = (int)$row->jumlah_termin;
+    //         $dropdown = range(1, $jumlah_termin);
+    //         return $this->response->setJSON($dropdown);
+    //     } else {
+    //         return $this->response->setJSON([]);
+    //     }
+    // }
+
+   public function get_data()
+    {
+        $kd_unit_user = session()->get('kd_unit_user');
+        
+        $kd_data = $this->request->getGet('kd_data');
+
+        // Ambil data dari tb_data_entry (detail eform)
+        $dataEntry = $this->db->table('tb_data_entry')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getRowArray();
+        
+        $dataFCR = $this->db->table('tb_fcr')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getRowArray();
+
+        // Ambil semua termin dari tb_penarikan untuk kd_data ini
+        $penarikan = $this->db->table('tb_penarikan')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getResultArray();
+        $NomorFCR = $this->db->table('tb_nomor_fcr')
+            ->where('kd_cabang', $kd_unit_user)
+            ->get()
+            ->getResultArray();
+
+        // Hitung jumlah termin yang sudah ada
+        $count = count($penarikan);
+        $nextTermin = $count + 1;
+
+        // Gabungkan hasil
+        $result = [
+            'data_entry'   => $dataEntry,   // detail dari tb_data_entry
+            'fcr'   => $dataFCR,   // detail dari tb_data_entry
+            'penarikan'    => $penarikan,   // daftar penarikan yang sudah ada
+            'next_termin'  => $nextTermin,  // termin berikutnya
+            'nomor_fcr'  => $NomorFCR,  // termin berikutnya
+        ];
+
+        return $this->response->setJSON($result);   
+    }
+
+
+    public function get_jumlah_termin_dropdown()
+    {
+        $kd_data = $this->request->getGet('kd_data');
+
+        // Hitung jumlah data yang sudah ada di tb_penarikan untuk kd_data ini
+        $count = $this->db->table('tb_penarikan')
+            ->where('kd_data', $kd_data)
+            ->countAllResults();
+
+        // Nilai yang dikirim = jumlah data + 1
+        $nextTermin = $count + 1;
+
+        return $this->response->setJSON($nextTermin);
+    }
+
+    public function cek($kd_data)
+    {
+        $hasil = [
+            'data_induk' => $this->cekTable('tb_data_induk_tb', $kd_data),
+            'fcr'        => $this->cekTable('tb_fcr', $kd_data),
+            'ceklist'    => $this->cekTable('tb_dok_ceklis', $kd_data),
+            'mpdkk'      => $this->cekTable('tb_mpdkk', $kd_data),
+        ];
+
+        return $this->response->setJSON($hasil);
+    }
+
+    private function cekTable($table, $kd_data)
+    {
+        $row = $this->db->table($table)
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getRowArray();
+
+        if (!$row) {
+            return false; // tidak ada record → not oke
+        }
+
+        foreach ($row as $kolom => $nilai) {
+            if ($kolom === 'kd_data') continue; // skip kolom kunci
+            if ($nilai === null || $nilai === '') {
+                return false; // ada kolom kosong
+            }
+        }
+        return true; // semua kolom terisi
+    }
+
+
+
+    public function permission()
+    {
+        if (!empty(session()->get('kd_user'))) {
+            $kd_level_user = $this->db->query(
+                "SELECT kd_level_user 
+                FROM tb_user 
+                WHERE kd_user = '" . session()->get('kd_user') . "'
+                "
+            )->getRow()->kd_level_user;
+            $permission = $this->db->query(
+                "SELECT nama_permission 
+                FROM v_assign 
+                WHERE kd_level = '" . $kd_level_user . "'
+                AND aktif_assign = 'Aktif'"
+            )->getResult();
+            // foreach($permission as $nama_permission){
+            //     // echo json_encode($nama_permission->nama_permission);
+
+            // }
+            // var_dump($permission); die;
+            // echo json_encode($permission);
+            return $permission;
+        } else {
+            return redirect()->to('/login');
+        }
+    }
+
     public function get_unit_tanpa_konsolidasi()
     {
         // $hasil = $this->db->query("SELECT * FROM tb_level order by waktu_maker_level desc limit 5")->getResult();

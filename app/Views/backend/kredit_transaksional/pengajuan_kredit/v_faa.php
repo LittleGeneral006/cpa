@@ -12,6 +12,15 @@
     </div> -->
     <br>
     <br>
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_faa" title="Checkbox ini sebagai paraf" name="cb_faa"
+                    <?php echo (!empty($edit_data) && !empty($edit_data_koordinator)) ? '' : 'disabled'; ?>>
+
+            </div>
+        </div>
+    </div>
 </fieldset>
 <?php // } 
 ?>

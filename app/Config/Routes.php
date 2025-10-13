@@ -112,6 +112,12 @@ $routes->get('/pengajuan/dokumen', 'Pengajuan::dokumen');
 $routes->get('/edit-pengajuan-kredit-transaksional/(:any)', 'Pengajuan::edit_pengajuan/$1');
 $routes->get('/dokumen-kontrak-proyek/(:any)', 'Pengajuan::lihat_dokumen/$1');
 $routes->post('/pengajuan/edit_data_entry', 'Pengajuan::edit_data_entry');
+$routes->post('/pengajuan/paraf_data_entry', 'Pengajuan::paraf_data_entry');
+$routes->post('/pengajuan/paraf_fcr', 'Pengajuan::paraf_fcr');
+$routes->post('/pengajuan/paraf_fcr_usaha', 'Pengajuan::paraf_fcr_usaha');
+$routes->post('/pengajuan/paraf_fcr_agunan', 'Pengajuan::paraf_fcr_agunan');
+$routes->post('/pengajuan/paraf_dokumen_ceklis', 'Pengajuan::paraf_dokumen_ceklis');
+$routes->post('/pengajuan/paraf_scoring', 'Pengajuan::paraf_scoring');
 $routes->get('/pengajuan/cek_agunan/(:any)', 'Pengajuan::cek_agunan/$1');
 
 $routes->get('/pengajuan/tampil_btn_finish/(:any)', 'Pengajuan::tampil_btn_finish/$1');
@@ -144,6 +150,7 @@ $routes->post('/pengajuan/convert_base64/', 'Pengajuan::convert_base64');
 $routes->post('/pengajuan/edit_fcr_agunan_bb', 'Pengajuan::edit_fcr_agunan_bb');
 // edit dokumen ceklist
 $routes->get('/dokumen-pendukung/(:any)/(:any)', 'Pengajuan::dokumen_pendukung/$1/$2');
+
 $routes->post('/pengajuan/edit_dokumen', 'Pengajuan::edit_dokumen');
 // edit scoring
 // $routes->get('/dokumen-pendukung/(:any)/(:any)', 'Pengajuan::dokumen_pendukung/$1/$2');
@@ -192,7 +199,107 @@ $routes->post('pengajuan/edit_ceftb', 'Pengajuan::edit_ceftb');
 $routes->post('pengajuan/edit_mauk', 'Pengajuan::edit_mauk');
 $routes->post('pengajuan/edit_dcl', 'Pengajuan::edit_dcl');
 
+$routes->get('/laporan-rl/(:any)/(:any)', 'Pengajuan::lihat_file_proyeksi_rl/$1/$2');
+
+
+// penarikan kredit transaksional
+$routes->get('/penarikan-kredit-transaksional', 'Penarikan::v_penarikan');
+$routes->get('/penarikan/tabel_penarikan', 'Penarikan::tabel_penarikan');
+// simpan penarikan
+$routes->post('/penarikan/simpan_penarikan', 'Penarikan::simpan_penarikan');
+$routes->get('/penarikan/dokumen', 'Penarikan::dokumen');
+// edit data entry
+$routes->get('/edit-penarikan-kredit-transaksional/(:any)', 'Penarikan::edit_penarikan/$1');
+$routes->get('/ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown', 'Penarikan::get_jumlah_termin_dropdown');
+$routes->get('/ajax-penarikan-kredit-transaksional/get_data', 'Penarikan::get_data');
+$routes->get('/dokumen-kontrak-proyek/(:any)', 'Penarikan::lihat_dokumen/$1');
+$routes->post('/penarikan/edit_data_entry', 'Penarikan::edit_data_entry');
+$routes->post('/penarikan/paraf_data_entry', 'Penarikan::paraf_data_entry');
+$routes->post('/penarikan/paraf_fcr', 'Penarikan::paraf_fcr');
+$routes->post('/penarikan/paraf_fcr_usaha', 'Penarikan::paraf_fcr_usaha');
+$routes->post('/penarikan/paraf_fcr_agunan', 'Penarikan::paraf_fcr_agunan');
+$routes->post('/penarikan/paraf_dokumen_ceklis', 'Penarikan::paraf_dokumen_ceklis');
+$routes->post('/penarikan/paraf_scoring', 'Penarikan::paraf_scoring');
+$routes->get('/penarikan/cek_agunan/(:any)', 'Penarikan::cek_agunan/$1');
+
+$routes->get('/penarikan/tampil_btn_finish/(:any)', 'Penarikan::tampil_btn_finish/$1');
+$routes->get('/penarikan/tampil_disposisi/(:any)', 'Penarikan::tampil_disposisi/$1');
+
+// $routes->get('/penarikan/getGlobal/(:any)', 'Penarikan::getGlobal/$1');
+$routes->post('/penarikan/getGlobal', 'Penarikan::getGlobal');
+$routes->post('/penarikan/edit_file', 'Penarikan::edit_file');
+// edit fcr
+$routes->post('/penarikan/edit_fcr', 'Penarikan::edit_fcr');
+// edit fcr usaha
+$routes->post('/penarikan/edit_fcr_usaha', 'Penarikan::edit_fcr_usaha');
+$routes->post('/penarikan/get_perulangan', 'Penarikan::get_perulangan');
+// edit fcr agunan
+$routes->post('/penarikan/edit_fcr_agunan', 'Penarikan::edit_fcr_agunan');
+$routes->get('/lihat-gambar-situasi/(:any)/(:any)', 'Penarikan::lihat_gambar/$1/$2');
+$routes->get('/edit_status_gambar/(:any)/(:any)', 'Penarikan::edit_status_gambar/$1/$2');
+// $routes->post('/penarikan/edit_gambar', 'Penarikan::edit_gambar');
+$routes->post('/penarikan/edit_gambar/(:any)', 'Penarikan::edit_gambar/$1');
+
+$routes->get('/penarikan/get_data_entry/(:any)', 'Penarikan::get_data_entry/$1');
+$routes->post('/penarikan/edit_return', 'Penarikan::edit_return');
+
+$routes->get('/penarikan/get_tabel_return/(:any)', 'Penarikan::get_tabel_return/$1');
+$routes->post('/penarikan/edit_reject', 'Penarikan::edit_reject');
+
+$routes->post('/penarikan/edit_fcr_agunan_bangunan', 'Penarikan::edit_fcr_agunan_bangunan');
+$routes->post('/penarikan/convert_base64/', 'Penarikan::convert_base64');
+
+$routes->post('/penarikan/edit_fcr_agunan_bb', 'Penarikan::edit_fcr_agunan_bb');
+// edit dokumen ceklist
+$routes->get('/dokumen-pendukung/(:any)/(:any)', 'Penarikan::dokumen_pendukung/$1/$2');
+$routes->post('/penarikan/edit_dokumen', 'Penarikan::edit_dokumen');
+// edit scoring
+// $routes->get('/dokumen-pendukung/(:any)/(:any)', 'Penarikan::dokumen_pendukung/$1/$2');
+$routes->post('/penarikan/edit_scoring', 'Penarikan::edit_scoring');
+$routes->post('/penarikan/edit_scoring_koor', 'Penarikan::edit_scoring_koor');
+// recap
+// $routes->get('/penarikan/coba_recap', 'Pengfajuan::coba_recap');
+$routes->post('/penarikan/edit_recap', 'Penarikan::edit_recap');
+$routes->post('/penarikan/edit_faa', 'Penarikan::edit_faa');
+// finish
+$routes->post('/penarikan/edit_finish', 'Penarikan::edit_finish');
+$routes->post('/penarikan/finish_fcr', 'Penarikan::finish_fcr');
+$routes->post('/penarikan/finish_fcr_usaha', 'Penarikan::finish_fcr_usaha');
+// $routes->post('/penarikan/finish_fcr_agunan', 'Penarikan::finish_fcr_agunan');
+$routes->post('/penarikan/finish_fcr_agunan_tanah', 'Penarikan::finish_fcr_agunan_tanah');
+$routes->post('/penarikan/finish_fcr_agunan_bangunan', 'Penarikan::finish_fcr_agunan_bangunan');
+$routes->post('/penarikan/finish_fcr_agunan_bb', 'Penarikan::finish_fcr_agunan_bb');
+
+$routes->post('/penarikan/finish_scoring', 'Penarikan::finish_scoring');
+// nomor aplikasi kredit
+$routes->get('/penarikan/generate_nomor', 'Penarikan::generate_nomor');
+$routes->get('/penarikan/hitung_sla/(:any)', 'Penarikan::hitung_sla/$1');
+// nomor fcr
+$routes->get('/penarikan/generate_nomor_fcr', 'Penarikan::generate_nomor_fcr');
+// no pak
+$routes->get('/penarikan/generate_no_pak', 'Penarikan::generate_no_pak');
+// generate dokumen
+$routes->get('/generate-dokumen/(:any)/(:any)', 'Penarikan::cetak_dokumen/$1/$2');
+$routes->get('/penarikan/generate_fcr/(:any)/(:any)', 'Penarikan::generate_fcr/$1/$2');
+$routes->post('/recap/(:any)', 'Penarikan::checkDataRecap/$1');
+
+// pemroses
+$routes->get('/pemroses', 'Pemroses::v_pemroses');
+$routes->get('/pemroses/tabel_pemroses', 'Pemroses::tabel_pemroses');
+$routes->post('/pemroses/simpan_pemroses', 'Pemroses::simpan_pemroses');
+$routes->get('/pemroses/get_tabel_pemroses_by_id/(:any)', 'Pemroses::get_tabel_pemroses_by_id/$1');
+$routes->post('/pemroses/edit_pemroses', 'Pemroses::edit_pemroses');
+$routes->get('/pemroses/get_tabel_pemroses_by_unit', 'Pemroses::get_tabel_pemroses_by_unit');
+
+//koordinator
+$routes->post('penarikan/edit_fak_data', 'Penarikan::edit_fak_data');
+$routes->post('penarikan/edit_fak_modal', 'Penarikan::edit_fak_modal');
+$routes->post('penarikan/edit_fak_rl', 'Penarikan::edit_fak_rl');
+$routes->post('penarikan/edit_lap_rl', 'Penarikan::edit_lap_rl');
+$routes->post('penarikan/edit_ceftb', 'Penarikan::edit_ceftb');
+$routes->post('penarikan/edit_mauk', 'Penarikan::edit_mauk');
+$routes->post('penarikan/edit_dcl', 'Penarikan::edit_dcl');
+
 // data rejected
 $routes->get('/data-rejected', 'Rejected::v_data_rejected');
 $routes->get('/rejected/tabel_rejected', 'Rejected::tabel_rejected');
-

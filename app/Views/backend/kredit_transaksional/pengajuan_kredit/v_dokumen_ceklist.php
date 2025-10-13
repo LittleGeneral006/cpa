@@ -671,6 +671,13 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <div class="col-lg-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="cb_dokumen_ceklis" title="Checkbox ini sebagai paraf" name="cb_dokumen_ceklis" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+            </div>
+        </div>
+    </div>
 </fieldset>
 <script>
     $(document).ready(function() {
@@ -701,6 +708,7 @@
         $(".lihat-dokumen").on("click", function() {
             var data_id = $(this).data('id');
             seeDokumen(data_id)
+            console.log('vdokumenceklist');
             // Lakukan sesuatu dengan nilai data-id yang telah diambil
             // console.log('Nilai data-id:', data_id);
         });
@@ -709,10 +717,16 @@
         $('#save_dokumen').click(function(e) {
             $('#mohon').show()
             e.preventDefault(); // Mencegah form untuk submit secara default
-            var hasil_dok = data_dokumen();
-            edit_dok('edit_dokumen', hasil_dok, 'edit_dok')
             // batas baru
-
+            if (edit_data_pemasar) {
+                // Jika edit_data_koordinator null atau kosong
+                var hasil_dok = data_dokumen();
+                edit_dok('edit_dokumen', hasil_dok, 'edit_dok')
+            } else {
+                // Jika edit_data_koordinator memiliki nilai
+                var hasil_dok = paraf_dokumen_ceklis();
+                post_paraf('paraf_dokumen_ceklis', hasil_dok, 'edit_dok');
+            }
         });
 
     });
@@ -724,6 +738,7 @@
             // console.log(hasil.message.data_entry.kd_data);
             var result = 'nihil';
             var data_entry = hasil.message.data_entry;
+            var data_paraf = hasil.message.paraf;
             if (hasil.status == 'success') {
                 console.log(data_entry);
                 var orang = hasil.message.dok;
@@ -756,6 +771,22 @@
                     $('#alamat_dp').val(data_entry.alamat_kantor);
                     $('#usaha_dp').val(data_entry.bidang_usaha);
                     $('#jenis_badan_usaha_dp').val(data.jenis_badan_usaha);
+                }
+
+                if (Array.isArray(data_paraf) && data_paraf.length > 0) {
+                    let paraf = data_paraf.find(p => p.nomor_halaman == '5'); // Cari nomor_halaman = 4
+
+                    if (paraf && paraf.kd_level && typeof kd_level !== "undefined" &&
+                        paraf.kd_level === kd_level &&
+                        paraf.kd_data === data.kd_data &&
+                        paraf.nama_halaman === 'Document Checklist') {
+
+                        $('#cb_dokumen_ceklis').prop('checked', paraf.ceklis === 'true');
+                    } else {
+                        $('#cb_dokumen_ceklis').prop('checked', false);
+                    }
+                } else {
+                    $('#cb_dokumen_ceklis').prop('checked', false);
                 }
 
             } else {
@@ -1044,5 +1075,19 @@
         } else {
             $('[data-id="' + data_id + '"]').append('<span id="' + id_baru + '" class="text-success"> <i class="fa fa-circle text-success" aria-hidden="true"></i></span>');
         }
+    }
+
+    function paraf_dokumen_ceklis() {
+        var data_dokumen = {
+            kd_data_tambah: $('#kd_data_tambah').val(),
+
+            unit_kerja_tambah: $('#unit_kerja_tambah').val(),
+            nomor_halaman: '5',
+            nama_halaman: 'Document Checklist',
+
+            cb_dokumen_ceklis: $('#cb_dokumen_ceklis').is(':checked')
+            // upload dokumen
+        };
+        return data_dokumen;
     }
 </script>

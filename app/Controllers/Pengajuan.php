@@ -19,8 +19,7 @@ class Pengajuan extends BaseController
     public $db;
     public $session;
     public $email;
-    public function __construct()
-    {
+    public function __construct(){
         helper('date');
         // $this->Service = new ConfigServices();
         $this->db = \Config\Database::connect();
@@ -31,6 +30,7 @@ class Pengajuan extends BaseController
         $this->session = session();
     }
 
+<<<<<<< HEAD
     public function v_pengajuan($pengajuan_approved = 0)
     {
         if(!empty($pengajuan_approved)){
@@ -43,6 +43,9 @@ class Pengajuan extends BaseController
                 die;
             }
         }
+=======
+    public function v_pengajuan(){
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $tambah_pengajuan_kredit_transaksional = $this->permission2('Tambah Pengajuan Kredit Transaksional');
@@ -60,8 +63,7 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function hak_akses()
-    {
+    public function hak_akses(){
         $param_kd_menu = '100';
         $controller = service('request')->uri->getSegment(1);
         // echo $controller;
@@ -122,8 +124,12 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
+<<<<<<< HEAD
     public function tabel_pengajuan($pengajuan_approved = 0)
     {
+=======
+    public function tabel_pengajuan(){
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         $this->update_sla();
         $sQuery1 = "SELECT * FROM v_data_master ";
         $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
@@ -283,8 +289,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($output);
     }
-    public function edit_pengajuan($kd_data)
-    {
+    
+    public function edit_pengajuan($kd_data){
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
@@ -293,6 +299,7 @@ class Pengajuan extends BaseController
         if ($hasil == true) {
             $data['title'] = 'Edit Pengajuan Kredit Transaksional';
             $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
+            $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
             $data['permission'] = $permission;
             // $data['cek_agunan'] = $cek_agunan;
             $data['edit_pengajuan_kredit_transaksional'] = $this->permission2('Edit Pengajuan Kredit Transaksional');
@@ -318,7 +325,6 @@ class Pengajuan extends BaseController
             } else {
                 $data['edit_data_kepala_cabang'] = null;
             }
-
             if ($data['edit_pengajuan_kredit_transaksional_analis_kredit'] == true && ($data_master->progress == 'Review' || $data_master->progress == 'Rekomendasi')) {
                 $data['edit_data_analis_kredit'] = 'boleh edit';
             } else {
@@ -373,8 +379,7 @@ class Pengajuan extends BaseController
         // batas baru
     }
 
-    public function checkDataRecap($tabel)
-    {
+    public function checkDataRecap($tabel){
         $kd_data = $this->request->getPost('kd_data');
         $transaksional = new TransaksionalModel();
 
@@ -394,8 +399,7 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function cek_agunan_kd_tepakai($kd_data)
-    {
+    public function cek_agunan_kd_tepakai($kd_data){
         $tanah = '';
         $barang_bergerak = '';
         $data2 = '';
@@ -449,8 +453,7 @@ class Pengajuan extends BaseController
         ];
         return $hasil;
     }
-    public function cek_agunan($kd_data)
-    {
+    public function cek_agunan($kd_data){
         $tanah1 = '';
         $tanah2 = '';
         $barang_bergerak1 = '';
@@ -484,8 +487,7 @@ class Pengajuan extends BaseController
         // dd($data3);
         return json_encode($hasil);
     }
-    public function simpan_pengajuan()
-    {
+    public function simpan_pengajuan(){
         // $cek = $this->request->getPost('jenis_agunan_tambah[]');
         // var_dump($cek);
         // die;
@@ -759,8 +761,7 @@ class Pengajuan extends BaseController
             echo $html;
         }
     }
-    public function jenis_agunan($jenis_agunan)
-    {
+    public function jenis_agunan($jenis_agunan){
         // var_dump(count($jenis_agunan)); die;
         $found = false;
         for ($i = 0; $i < count($jenis_agunan); $i++) {
@@ -789,13 +790,11 @@ class Pengajuan extends BaseController
 
         return $found;
     }
-    public function debug($param)
-    {
+    public function debug($param){
         var_dump($param);
         die;
     }
-    public function buat_nomor_kredit($data, $data_master)
-    {
+    public function buat_nomor_kredit($data, $data_master){
         $hasil = '';
 
         // $kd_nomor = 'NMR' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -890,8 +889,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function buat_nomor_fcr($data, $kd_fcr)
-    {
+    public function buat_nomor_fcr($data, $kd_fcr){
         $hasil = '1';
 
         $kd_nomor = 'NMRFCR' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -980,8 +978,7 @@ class Pengajuan extends BaseController
         // die;
         return $hasil;
     }
-    public function buat_no_pak($data, $kd_scoring_param)
-    {
+    public function buat_no_pak($data, $kd_scoring_param){
         $hasil = '1';
 
         $kd_no = 'PAK' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -1071,8 +1068,7 @@ class Pengajuan extends BaseController
         // die;
         return $hasil;
     }
-    public function generate_nomor()
-    {
+    public function generate_nomor(){
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1102,8 +1098,7 @@ class Pengajuan extends BaseController
             echo 'generate nomor kredit gagal';
         }
     }
-    public function generate_nomor_fcr()
-    {
+    public function generate_nomor_fcr(){
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1138,8 +1133,7 @@ class Pengajuan extends BaseController
             echo 'generate nomor fcr gagal';
         }
     }
-    public function generate_no_pak()
-    {
+    public function generate_no_pak(){
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1171,8 +1165,7 @@ class Pengajuan extends BaseController
             echo 'generate no pak gagal';
         }
     }
-    public function update_nomor_fcr($nomor_input, $kd_data)
-    {
+    public function update_nomor_fcr($nomor_input, $kd_data){
         $hasil = false;
         $cek_sama = $this->db->query("SELECT nomor from tb_fcr where kd_data = '" . $kd_data . "' ");
         if ($cek_sama->getNumRows() > 0) {
@@ -1192,8 +1185,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function hitung_sla($param)
-    {
+    public function hitung_sla($param){
         // Tanggal pertama
         $tanggal1 = $param;
 
@@ -1212,8 +1204,7 @@ class Pengajuan extends BaseController
 
         return $selisih_hari;
     }
-    public function update_sla()
-    {
+    public function update_sla(){
         $sla = $this->db->query("SELECT kd_master, tanggal_isi, sla from tb_data_master where progress !='Approved'");
         if ($sla->getNumRows() > 0) {
             foreach ($sla->getResult() as $list_sla) {
@@ -1228,8 +1219,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function insert_master($data_master)
-    {
+    public function insert_master($data_master){
         $hasil = false;
         $cek_kd_master = $this->db->query("SELECT kd_master from tb_data_master where kd_master = '" . $data_master['kd_master'] . "' ")->getNumRows();
         if ($cek_kd_master < 1) {
@@ -1240,8 +1230,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function insert_all($kd_data, $data)
-    {
+    public function insert_all($kd_data, $data){
         $hasil = false;
         $fcr = [
             'kd_data' => $kd_data,
@@ -1288,6 +1277,12 @@ class Pengajuan extends BaseController
             'plafond' => $data['plafond'],
             'tujuan' => $data['tujuan_pengajuan'],
         ];
+        $paraf = [
+            'kd_data' => $kd_data,
+            'kd_paraf' => 'PARAF' . gmdate("dmYHis", time() + 60 * 60 * 8),
+            'nama_halaman' => 'Data Entry',
+            'kd_level' => 'LVL23072023133934', //kode level koordinator
+        ];
         $kirim = [
             'kd_data' => $kd_data,
             'kd_kirim' => 'KIRIM' . gmdate("dmYHis", time() + 60 * 60 * 8),
@@ -1333,7 +1328,12 @@ class Pengajuan extends BaseController
                                                                     if ($tb_dcl == true) {
                                                                         $tb_scoring_koor = $this->insert_satuan('kd_data', 'tb_scoring_koordinator', $data_insert['kd_data'], $data_insert);
                                                                         if ($tb_scoring_koor == true) {
-                                                                            $hasil = true;
+                                                                            $tb_paraf = $this->insert_satuan('kd_data', 'tb_paraf', $data_insert['kd_data'], $paraf);
+                                                                            if ($tb_paraf == true) {
+                                                                                $hasil = true;
+                                                                            } else {
+                                                                                $hasil = false;
+                                                                            }
                                                                         } else {
                                                                             $hasil = false;
                                                                         }
@@ -1388,8 +1388,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function insert_satuan($nama_kolom, $nama_tabel, $kd_fcr, $data)
-    {
+    public function insert_satuan($nama_kolom, $nama_tabel, $kd_fcr, $data){
         $hasil = false;
         $cek = $this->db->query("SELECT $nama_kolom from $nama_tabel where $nama_kolom = '" . $kd_fcr . "' ")->getNumRows();
         if ($cek < 1) {
@@ -1400,8 +1399,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function lihat_dokumen($kd_data)
-    {
+    public function lihat_dokumen($kd_data){
         $dokumen = $this->db->query("SELECT upload_dokumen FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->upload_dokumen)) {
             $dok = $dokumen->getRow()->upload_dokumen;
@@ -1411,8 +1409,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function edit_data_entry()
-    {
+    public function edit_data_entry(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -1600,8 +1597,145 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_entry($hasil, $pemanggil)
-    {
+    public function paraf_data_entry(){
+        // $cek = $this->request->getFile('upload_dokumen_tambah');
+        // var_dump($cek);
+        // die;
+        // echo json_encode($cek);
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_data_entry' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->data_entry_paraf($hasil,);
+        }
+        echo json_encode($hasil);
+    }
+    public function paraf_fcr(){
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_fcr' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->fcr_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+
+    public function paraf_fcr_usaha(){
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_fcr_usaha' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox FCR Usaha Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->fcr_usaha_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+    public function paraf_fcr_agunan(){
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_fcr_agunan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->fcr_agunan_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+
+    public function paraf_dokumen_ceklis(){
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_dokumen_ceklis' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->dokumen_ceklis_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+    public function paraf_scoring(){
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        if (!$this->validate([
+            'cb_scoring' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Checkbox Data Entry Harus diisi',
+                ]
+            ],
+        ])) {
+            $hasil = [
+                'status' => 'error',
+                'message' => $this->validator->listErrors()
+            ];
+        } else {
+            $hasil = $this->scoring_paraf($hasil);
+        }
+        echo json_encode($hasil);
+    }
+    public function data_entry($hasil, $pemanggil){
 
         $input = $this->request->getPost('jenis_agunan_tambah');
         $jenis_agunan = explode(";", $input);
@@ -1774,8 +1908,707 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function tampil_btn_finish($kd_data)
-    {
+
+    // public function simpanParaf($hasil, $nama_halaman, $ceklist_field)
+    //{
+    //     $kd_data = $this->request->getPost('kd_data_tambah');
+
+    //     $data = [
+    //         'kd_data' => $kd_data,
+    //         'nomor_halaman' => $this->request->getPost('nomor_halaman') ?? '0',
+    //         'nama_halaman' => $nama_halaman,
+    //         'kd_level' => session()->get('kd_level_user'),
+    //         'kd_user' => session()->get('kd_unit_user'),
+    //         'ceklis' => $this->request->getPost($ceklist_field),
+
+    //         'pengubah' => session()->get('nama_user'),
+    //         'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+    //     ];
+
+    //     // Cek apakah data sudah ada
+    //     $cek_kd_data = $this->db->query("SELECT kd_data FROM tb_paraf WHERE kd_data = ? AND nama_halaman = ?", [$kd_data, $nama_halaman])->getNumRows();
+
+    //     if ($cek_kd_data > 0) {
+    //         $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+    //         return ['status' => 'success', 'message' => 'Edit ' . $nama_halaman . ' berhasil'];
+    //     } else {
+    //         $this->db->table('tb_paraf')->insert($data);
+    //         return ['status' => 'success', 'message' => 'Tambah ' . $nama_halaman . ' berhasil'];
+    //     }
+    // }
+
+    public function data_entry_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_level = session()->get('kd_level_user');
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_data_entry'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "' AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "'")->getNumRows();
+        if ($cek_kd_data === 1) {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->where('kd_level', $kd_level)->update($data);
+
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Data Entry Berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Paraf Data Entry berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+
+    public function fcr_paraf($hasil){
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_fcr'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "' AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Paraf FCR berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+
+    public function fcr_usaha_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_fcr_usaha'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+       
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Paraf FCR Usaha berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Usaha berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function fcr_agunan_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_fcr_agunan'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Paraf FCR Agunan berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FCR Agunan berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function dokumen_ceklis_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_dokumen_ceklis'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Paraf Dokumen Pendukung berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Dokumen Pendukung berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function scoring_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring Gagal'
+            ];
+        }
+
+        return $hasil;
+    }
+
+    public function fak_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Data berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Data Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function fak_modal_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Modal berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK Modal Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function fak_rl_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK RL berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAK RL Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function lap_rl_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Laporan RL berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Laporan RL Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function ceftb_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit CEFTB berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit CEFTB Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function faa_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAA berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit FAA Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function mauk_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit MAUK berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit MAUK Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function dcl_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit DCL berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit DCL Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function scoring_koor_paraf($hasil){
+        // Proses penyimpanan data
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $kd_level = session()->get('kd_level_user');
+        $pengubah = session()->get('nama_user');
+        $kd_paraf = $this->db->query("SELECT kd_paraf from tb_paraf where kd_data = '" . $kd_data . "'")->getResult();
+        // Proses penyimpanan data
+        $data = [
+            'kd_paraf' => $kd_paraf[0]->kd_paraf,
+            'kd_data' => $this->request->getPost('kd_data_tambah'),
+            'nomor_halaman' => $this->request->getPost('nomor_halaman'),
+            'nama_halaman' => $this->request->getPost('nama_halaman'),
+            'kd_level' => session()->get('kd_level_user'),
+            'kd_user' => session()->get('kd_unit_user'),
+            'ceklis' => $this->request->getPost('cb_scoring'),
+
+            'pengubah' => session()->get('nama_user'),
+            'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8)
+            // 'kd_unit_pengubah' => session()->get('kd_unit_user'),session()->get('kd_level_user')
+        ];
+        // $this->debug($data);
+
+        //pengecekan kd info tidak boleh sama sebelum insert
+        $kd_data = $this->request->getPost('kd_data_tambah');
+        $nama_halaman = $this->request->getPost('nama_halaman');
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        if ($cek_kd_data < 1) {
+            // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
+            // $pengaruh = $this->db->affectedRows();
+            $this->db->table('tb_paraf')->insert($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring Koordinator berhasil'
+            ];
+        } else {
+            $this->db->table('tb_paraf')->where('kd_data', $kd_data)->where('nama_halaman', $nama_halaman)->update($data);
+            $hasil = [
+                'status' => 'success',
+                'message' => 'Edit Scoring Koordinator Berhasil'
+            ];
+        }
+
+        return $hasil;
+    }
+    public function tampil_btn_finish($kd_data){
 
         $data_kirim = [
             'status' => 'success',
@@ -1958,8 +2791,7 @@ class Pengajuan extends BaseController
         // jika yang login selain role di atas, maka hilangkan button finish
         echo json_encode($data_kirim);
     }
-    public function tampil_disposisi($kd_data)
-    {
+    public function tampil_disposisi($kd_data){
 
         $data_kirim = [
             'status' => 'success',
@@ -2229,8 +3061,7 @@ class Pengajuan extends BaseController
         // jika yang login selain role di atas, maka hilangkan button finish
         echo json_encode($data_kirim);
     }
-    public function edit_master($kd_data, $data_master)
-    {
+    public function edit_master($kd_data, $data_master){
         $hasil = false;
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_data_master where kd_data = '" . $kd_data . "' ")->getNumRows();
         if ($cek_kd_data > 0) {
@@ -2241,8 +3072,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function get_data_entry($kd_data)
-    {
+    public function get_data_entry($kd_data){
         $hasil = [
             'status' => 'error',
             'message' => null,
@@ -2256,8 +3086,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function get_tabel_return($kd_data)
-    {
+    public function get_tabel_return($kd_data){
         $hasil = [
             'status' => 'error',
             'message' => null,
@@ -2271,8 +3100,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_return()
-    {
+    public function edit_return(){
         if (!$this->validate([
 
             'catatan_return' => [
@@ -2368,10 +3196,16 @@ class Pengajuan extends BaseController
             } else {
                 echo 'Gagal simpan data return';
             }
+            
+            $paraf = $this->db->query("SELECT * from tb_paraf where kd_data = '" . $kd_data . "' ")->getNumRows();
+            if ($paraf > 0) {
+                $this->db->table('tb_paraf')->where('kd_data', $kd_data)->delete();
+            } else {
+                echo 'Gagal simpan data return';
+            }
         }
     }
-    public function edit_reject($jenis = '1')
-    {
+    public function edit_reject($jenis = '1'){
         if (!$this->validate([
 
             'catatan_reject' => [
@@ -2395,11 +3229,11 @@ class Pengajuan extends BaseController
                 $nama_unit = $unit->getRow()->nama_unit;
             }
 
-            $nama_level = session()->get('kd_level_user');
-            $level = $this->db->query("SELECT * from tb_level where kd_level = '" . session()->get('kd_level_user') . "' ");
-            if ($level->getNumRows() > 0) {
-                $nama_level = $level->getRow()->nama_level;
-            }
+                $nama_level = session()->get('kd_level_user');
+                $level = $this->db->query("SELECT * from tb_level where kd_level = '" . session()->get('kd_level_user') . "' ");
+                if ($level->getNumRows() > 0) {
+                    $nama_level = $level->getRow()->nama_level;
+                }
 
             $progress = '';
             $posisi_progress = '';
@@ -2470,10 +3304,16 @@ class Pengajuan extends BaseController
             } else {
                 echo 'Gagal simpan data return';
             }
+
+            $paraf = $this->db->query("SELECT * from tb_paraf where kd_data = '" . $kd_data . "' ")->getNumRows();
+            if ($paraf > 0) {
+                $this->db->table('tb_paraf')->where('kd_data', $kd_data)->delete();
+            } else {
+                echo 'Gagal simpan data return';
+            }
         }
     }
-    public function ubah_fcr($kd_data, $data)
-    {
+    public function ubah_fcr($kd_data, $data){
         $hasil = false;
         $fcr = [
             'nama_debitur' => $data['nama_debitur'],
@@ -2526,9 +3366,10 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function getGlobal()
-    {
+    public function getGlobal(){
         $kd_data = $this->request->getPost('kd_data');
+        $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getResultArray();
+        // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['data_entry'] = $this->db->query("SELECT * FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['data_master'] = $this->db->query("SELECT * FROM tb_data_master WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
         $data['fcr'] = $this->db->query("SELECT * FROM tb_fcr WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
@@ -2582,8 +3423,7 @@ class Pengajuan extends BaseController
 
         echo json_encode($data);
     }
-    public function get_perulangan()
-    {
+    public function get_perulangan(){
         $data = [];
         $kd_data = $this->request->getPost('kd_data');
         // $detail_fcr = $this->db->query("SELECT * FROM tb_fcr_agunan WHERE kd_data = '" . $kd_data . "' ");
@@ -2640,8 +3480,8 @@ class Pengajuan extends BaseController
             $data['pagar'] = explode(";", $detail_fcr->getRow()->pagar);
             $data['taman'] = explode(";", $detail_fcr->getRow()->taman);
             $data['lainnya'] = explode(";", $detail_fcr->getRow()->lainnya);
-            $data['luas_bangunan_lantai1'] = explode(";", $detail_fcr->getRow()->luas_bangunan_lantai1);
-            $data['luas_bangunan_lantai2'] = explode(";", $detail_fcr->getRow()->luas_bangunan_lantai2);
+            $data['luas_bangunan_lantai'] = explode(";", $detail_fcr->getRow()->luas_bangunan_lantai);
+
             $data['total_bangunan'] = explode(";", $detail_fcr->getRow()->total_bangunan);
             $data['kondisi_bangunan'] = explode(";", $detail_fcr->getRow()->kondisi_bangunan);
             $data['harga_bangunan_perolehan'] = explode(";", $detail_fcr->getRow()->harga_bangunan_perolehan);
@@ -2688,8 +3528,7 @@ class Pengajuan extends BaseController
 
         echo json_encode($data);
     }
-    public function edit_file()
-    {
+    public function edit_file(){
         if (!$this->validate([
             'upload_dokumen_edit' => [
                 'rules' => 'uploaded[upload_dokumen_edit]|max_size[upload_dokumen_edit,2048]|ext_in[upload_dokumen_edit,pdf]',
@@ -2730,8 +3569,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_fcr()
-    {
+    public function edit_fcr(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -2840,8 +3678,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_fcr($hasil)
-    {
+    public function data_fcr($hasil){
         $data = [
             'nomor' => $this->request->getPost('nomor_edit'),
             'tanggal' => $this->request->getPost('tanggal_edit'),
@@ -2889,8 +3726,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr()
-    {
+    public function finish_fcr(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -2997,8 +3833,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_fcr_usaha()
-    {
+    public function edit_fcr_usaha(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3223,8 +4058,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_fcr_usaha($hasil)
-    {
+    public function data_fcr_usaha($hasil){
         $data = [
             'kondisi_fisik_kantor' => $this->request->getPost('kondisi_fisik_kantor'),
             'luas_tanah_kantor' => $this->request->getPost('luas_tanah_kantor'),
@@ -3289,8 +4123,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr_usaha()
-    {
+    public function finish_fcr_usaha(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3515,8 +4348,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function kd_unit_fcr($kd_data_input, $kd_unit_input)
-    {
+    public function kd_unit_fcr($kd_data_input, $kd_unit_input){
         $hasil = false;
         $kd_unit_data_entry = $this->db->query("SELECT * from tb_data_entry where kd_data = '" . $kd_data_input . "' ");
         if ($kd_unit_data_entry->getNumRows() > 0) {
@@ -3531,8 +4363,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function edit_fcr_agunan_kd_tepakai()
-    {
+    public function edit_fcr_agunan_kd_tepakai(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3816,7 +4647,7 @@ class Pengajuan extends BaseController
             //         'required' => 'Lainnya Harus diisi',
             //     ]
             // ],
-            // 'lantai1' => [
+            // 'lantai_total' => [
             //     'rules' => 'required',
             //     'errors' => [
             //         'required' => 'lantai 1 diisi',
@@ -3887,8 +4718,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_fcr_agunan()
-    {
+    public function edit_fcr_agunan(){
 
         $hasil = [
             'status' => 'error',
@@ -4175,8 +5005,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan($hasil);
         echo json_encode($hasil);
     }
-    public function val_foreach($bukti_kepemilikan, $nama_validasi, $pesan)
-    {
+    public function val_foreach($bukti_kepemilikan, $nama_validasi, $pesan){
         // $this->debug($bukti_kepemilikan);
         $validationRules = [];
         foreach ($bukti_kepemilikan as $index => $value) {
@@ -4190,8 +5019,7 @@ class Pengajuan extends BaseController
         // $this->debug($validationRules);
         return $validationRules;
     }
-    public function finish_fcr_agunan_tanah()
-    {
+    public function finish_fcr_agunan_tanah(){
 
         $hasil = [
             'status' => 'error',
@@ -4477,8 +5305,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function data_fcr_agunan($hasil)
-    {
+    public function data_fcr_agunan($hasil){
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('bukti_kepemilikan'));
         // $jenis_agunan = explode(";", $input);
@@ -4548,8 +5375,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
     // bangunan
-    public function edit_fcr_agunan_bangunan()
-    {
+    public function edit_fcr_agunan_bangunan(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -4590,7 +5416,7 @@ class Pengajuan extends BaseController
         $pagar = $postData['pagar'] ?? [];
         $taman = $postData['taman'] ?? [];
         $lainnya_fag = $postData['lainnya_fag'] ?? [];
-        $lantai1 = $postData['lantai1'] ?? [];
+        $lantai_total = $postData['lantai_total'] ?? [];
         $lantai2 = $postData['lantai2'] ?? [];
         $total_bangunan = $postData['total_bangunan'] ?? [];
         $kondisi_bangunan = $postData['kondisi_bangunan'] ?? [];
@@ -4815,7 +5641,7 @@ class Pengajuan extends BaseController
         //     echo json_encode($hasil);
         //     die;
         // }
-        // $validationRules = $this->val_foreach($lantai1, 'lantai1', 'lantai 1');
+        // $validationRules = $this->val_foreach($lantai_total, 'lantai_total', 'lantai 1');
         // if (!$this->validate($validationRules)) {
         //     $hasil = [
         //         'status' => 'error',
@@ -4919,8 +5745,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bangunan($hasil);
         echo json_encode($hasil);
     }
-    public function finish_fcr_agunan_bangunan()
-    {
+    public function finish_fcr_agunan_bangunan(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -4961,8 +5786,8 @@ class Pengajuan extends BaseController
         $pagar = $postData['pagar'] ?? [];
         $taman = $postData['taman'] ?? [];
         $lainnya_fag = $postData['lainnya_fag'] ?? [];
-        $lantai1 = $postData['lantai1'] ?? [];
-        $lantai2 = $postData['lantai2'] ?? [];
+        $lantai_total = $postData['lantai_total'] ?? [];
+        // $lantai2 = $postData['lantai2'] ?? [];
         $total_bangunan = $postData['total_bangunan'] ?? [];
         $kondisi_bangunan = $postData['kondisi_bangunan'] ?? [];
         $menurut_harga_perolehan = $postData['menurut_harga_perolehan'] ?? [];
@@ -5194,7 +6019,7 @@ class Pengajuan extends BaseController
         //     echo json_encode($hasil);
         //     die;
         // }
-        // $validationRules = $this->val_foreach($lantai1, 'lantai1', 'lantai 1');
+        // $validationRules = $this->val_foreach($lantai_total, 'lantai_total', 'lantai 1');
         // if (!$this->validate($validationRules)) {
         //     $hasil = [
         //         'status' => 'error',
@@ -5298,8 +6123,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bangunan($hasil);
         echo json_encode($hasil);
     }
-    public function data_fcr_agunan_bangunan($hasil)
-    {
+    public function data_fcr_agunan_bangunan($hasil){
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('imb'));
         // $jenis_agunan = explode(";", $input);
@@ -5325,14 +6149,14 @@ class Pengajuan extends BaseController
             'pagar' => !empty($this->request->getPost('pagar')) ? implode(";", $this->request->getPost('pagar')) : '',
             'taman' => !empty($this->request->getPost('taman')) ? implode(";", $this->request->getPost('taman')) : '',
             'lainnya' => !empty($this->request->getPost('lainnya_fag')) ? implode(";", $this->request->getPost('lainnya_fag')) : '',
-            'luas_bangunan_lantai1' => !empty($this->request->getPost('lantai1')) ? implode(";", $this->request->getPost('lantai1')) : '',
-            'luas_bangunan_lantai2' => !empty($this->request->getPost('lantai2')) ? implode(";", $this->request->getPost('lantai2')) : '',
+            'luas_bangunan_lantai' => !empty($this->request->getPost('lantai_total')) ? $this->request->getPost('lantai_total') : '',
+            // 'luas_bangunan_lantai2' => !empty($this->request->getPost('lantai2')) ? implode(";", $this->request->getPost('lantai2')) : '',
             'total_bangunan' => !empty($this->request->getPost('total_bangunan')) ? implode(";", $this->request->getPost('total_bangunan')) : '',
             'kondisi_bangunan' => !empty($this->request->getPost('kondisi_bangunan')) ? implode(";", $this->request->getPost('kondisi_bangunan')) : '',
-            'harga_bangunan_perolehan' => !empty($this->request->getPost('menurut_harga_perolehan')) ? implode(";", $this->request->getPost('menurut_harga_perolehan')) : '',
-            // 'menurut_harga_pasar' => !empty($this->request->getPost('menurut_harga_pasar')) ? implode(";", $this->request->getPost('menurut_harga_pasar')) : '',
-            'harga_bangunan_pasar' => !empty($this->request->getPost('menurut_pasar_fag')) ? implode(";", $this->request->getPost('menurut_pasar_fag')) : '',
-            'keterangan_lain_bangunan' => !empty($this->request->getPost('keterangan_lain_fag')) ? implode(";", $this->request->getPost('keterangan_lain_fag')) : '',
+            'harga_bangunan_perolehan' => !empty($this->request->getPost('menurut_harga_perolehan')) ? $this->request->getPost('menurut_harga_perolehan') : '',
+            // 'menurut_harga_pasar' => !empty($this->request->getPost('menurut_harga_pasar')) ? $this->request->getPost('menurut_harga_pasar') : '',
+            'harga_bangunan_pasar' => !empty($this->request->getPost('menurut_pasar_fag')) ? $this->request->getPost('menurut_pasar_fag') : '',
+            'keterangan_lain_bangunan' => !empty($this->request->getPost('keterangan_lain_fag')) ? $this->request->getPost('keterangan_lain_fag') : '',
 
             'sarana' => !empty($this->request->getPost('sarana')) ? implode(";", $this->request->getPost('sarana')) : '',
             'sarana_prasarana' => !empty($this->request->getPost('sarana_prasarana_fag')) ? implode(";", $this->request->getPost('sarana_prasarana_fag')) : '',
@@ -5342,6 +6166,7 @@ class Pengajuan extends BaseController
             'waktu_pengubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
             'kd_unit_pengubah' => session()->get('kd_unit_user'),
         ];
+        // var_dump($data);
 
         // if (!empty($this->request->getPost('luas'))) {
         //     $data['luas_total'] = $this->request->getPost('luas');
@@ -5375,8 +6200,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function edit_status_gambar($kd_data, $index)
-    {
+    public function edit_status_gambar($kd_data, $index){
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_gambar_situasi where kd_data = '" . $kd_data . "' and index_plus_satu > '" . $index . "' AND STATUS = 'Aktif'")->getNumRows();
         if ($cek_kd_data > 0) {
             $data = [
@@ -5393,8 +6217,280 @@ class Pengajuan extends BaseController
                 ->update($data);
         }
     }
-    public function edit_fcr_agunan_bb()
-    {
+    public function edit_fcr_agunan_bb(){
+
+        $hasil = [
+            'status' => 'error',
+            'message' => 'gagal input data'
+        ];
+        // Mengambil semua data POST
+        $postData = $this->request->getPost();
+
+        // Mengambil array bukti_kepemilikan
+        $jenis_dokumen_bb = $postData['jenis_dokumen_bb'] ?? [];
+        $jenis_bb = $postData['jenis_bb'] ?? [];
+        $model_tipe_bb = $postData['model_tipe_bb'] ?? [];
+        $merek_cc_bb = $postData['merek_cc_bb'] ?? [];
+        $tahun_pembuatan_bb = $postData['tahun_pembuatan_bb'] ?? [];
+        $tahun_pembeliaan_bb = $postData['tahun_pembeliaan_bb'] ?? [];
+        $serial_number_bb = $postData['serial_number_bb'] ?? [];
+        $nomor_mesin_bb = $postData['nomor_mesin_bb'] ?? [];
+        $warna_bb = $postData['warna_bb'] ?? [];
+        $bahan_bakar_bb = $postData['bahan_bakar_bb'] ?? [];
+        $kondisi_keadaan_bb = $postData['kondisi_keadaan_bb'] ?? [];
+        $nomor_polisi_bb = $postData['nomor_polisi_bb'] ?? [];
+        $bukti_kepemilikan_agb_bb = $postData['bukti_kepemilikan_agb_bb'] ?? [];
+        $invoice_no_bb = $postData['invoice_no_bb'] ?? [];
+        $invoice_tanggal_bb = $postData['invoice_tanggal_bb'] ?? [];
+        $perubahan_hak_terakhir_bb = $postData['perubahan_hak_terakhir_bb'] ?? [];
+        $tercatat_atas_nama_bb = $postData['tercatat_atas_nama_bb'] ?? [];
+        $alamat_pemilik_saat_ini_bb = $postData['alamat_pemilik_saat_ini_bb'] ?? [];
+        $umur_teknis_bb = $postData['umur_teknis_bb'] ?? [];
+        $perkiraan_umur_ekonomis_bb = $postData['perkiraan_umur_ekonomis_bb'] ?? [];
+        $tempat_penyimpanan_bb = $postData['tempat_penyimpanan_bb'] ?? [];
+        $route_bb = $postData['route_bb'] ?? [];
+        $jarak_rata_rata_tempuh_bb = $postData['jarak_rata_rata_tempuh_bb'] ?? [];
+
+        // $this->debug($bukti_kepemilikan);
+
+        // Validasi input dinamis
+        $validationRules = [];
+
+        // $validationRules = $this->val_foreach($jenis_dokumen_bb, 'jenis_dokumen_bb', 'jenis dokumen');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($jenis_bb, 'jenis_bb', 'jenis');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($model_tipe_bb, 'model_tipe_bb', 'model tipe');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($merek_cc_bb, 'merek_cc_bb', 'merek/ cc');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($tahun_pembuatan_bb, 'tahun_pembuatan_bb', 'tahun pembuatan');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($tahun_pembeliaan_bb, 'tahun_pembeliaan_bb', 'tahun pembelian');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($serial_number_bb, 'serial_number_bb', 'serial number');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($nomor_mesin_bb, 'nomor_mesin_bb', 'nomor mesin');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($warna_bb, 'warna_bb', 'warna');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($bahan_bakar_bb, 'bahan_bakar_bb', 'bahan bakar');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($kondisi_keadaan_bb, 'kondisi_keadaan_bb', 'kondisi keadaan');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($nomor_polisi_bb, 'nomor_polisi_bb', 'nomor polisi');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($bukti_kepemilikan_agb_bb, 'bukti_kepemilikan_agb_bb', 'bukti kepemilikan');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($invoice_no_bb, 'invoice_no_bb', 'nomor invoice');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($invoice_tanggal_bb, 'invoice_tanggal_bb', 'tanggal invoice');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($perubahan_hak_terakhir_bb, 'perubahan_hak_terakhir_bb', 'perubahan hak terakhir');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($tercatat_atas_nama_bb, 'tercatat_atas_nama_bb', 'tercatat atas nama');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($alamat_pemilik_saat_ini_bb, 'alamat_pemilik_saat_ini_bb', 'alamat pemilik saat ini');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        // die;
+        // }
+        // $validationRules = $this->val_foreach($umur_teknis_bb, 'umur_teknis_bb', 'umur teknis');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($perkiraan_umur_ekonomis_bb, 'perkiraan_umur_ekonomis_bb', 'perkiraan umur ekonomis');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($tempat_penyimpanan_bb, 'tempat_penyimpanan_bb', 'tempat penyimpanan');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($route_bb, 'route_bb', 'route');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+        // $validationRules = $this->val_foreach($jarak_rata_rata_tempuh_bb, 'jarak_rata_rata_tempuh_bb', 'jarak rata-rata tempuh');
+        // if (!$this->validate($validationRules)) {
+        //     $hasil = [
+        //         'status' => 'error',
+        //         'message' => $this->validator->listErrors()
+        //     ];
+        //     // die;
+        //     echo json_encode($hasil);
+        //     die;
+        // }
+
+        $hasil = $this->data_fcr_agunan_bb($hasil);
+        echo json_encode($hasil);
+    }
+    public function finish_fcr_agunan_bb(){
 
         $hasil = [
             'status' => 'error',
@@ -5667,282 +6763,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bb($hasil);
         echo json_encode($hasil);
     }
-    public function finish_fcr_agunan_bb()
-    {
-
-        $hasil = [
-            'status' => 'error',
-            'message' => 'gagal input data'
-        ];
-        // Mengambil semua data POST
-        $postData = $this->request->getPost();
-
-        // Mengambil array bukti_kepemilikan
-        $jenis_dokumen_bb = $postData['jenis_dokumen_bb'] ?? [];
-        $jenis_bb = $postData['jenis_bb'] ?? [];
-        $model_tipe_bb = $postData['model_tipe_bb'] ?? [];
-        $merek_cc_bb = $postData['merek_cc_bb'] ?? [];
-        $tahun_pembuatan_bb = $postData['tahun_pembuatan_bb'] ?? [];
-        $tahun_pembeliaan_bb = $postData['tahun_pembeliaan_bb'] ?? [];
-        $serial_number_bb = $postData['serial_number_bb'] ?? [];
-        $nomor_mesin_bb = $postData['nomor_mesin_bb'] ?? [];
-        $warna_bb = $postData['warna_bb'] ?? [];
-        $bahan_bakar_bb = $postData['bahan_bakar_bb'] ?? [];
-        $kondisi_keadaan_bb = $postData['kondisi_keadaan_bb'] ?? [];
-        $nomor_polisi_bb = $postData['nomor_polisi_bb'] ?? [];
-        $bukti_kepemilikan_agb_bb = $postData['bukti_kepemilikan_agb_bb'] ?? [];
-        $invoice_no_bb = $postData['invoice_no_bb'] ?? [];
-        $invoice_tanggal_bb = $postData['invoice_tanggal_bb'] ?? [];
-        $perubahan_hak_terakhir_bb = $postData['perubahan_hak_terakhir_bb'] ?? [];
-        $tercatat_atas_nama_bb = $postData['tercatat_atas_nama_bb'] ?? [];
-        $alamat_pemilik_saat_ini_bb = $postData['alamat_pemilik_saat_ini_bb'] ?? [];
-        $umur_teknis_bb = $postData['umur_teknis_bb'] ?? [];
-        $perkiraan_umur_ekonomis_bb = $postData['perkiraan_umur_ekonomis_bb'] ?? [];
-        $tempat_penyimpanan_bb = $postData['tempat_penyimpanan_bb'] ?? [];
-        $route_bb = $postData['route_bb'] ?? [];
-        $jarak_rata_rata_tempuh_bb = $postData['jarak_rata_rata_tempuh_bb'] ?? [];
-
-        // $this->debug($bukti_kepemilikan);
-
-        // Validasi input dinamis
-        $validationRules = [];
-
-        // $validationRules = $this->val_foreach($jenis_dokumen_bb, 'jenis_dokumen_bb', 'jenis dokumen');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($jenis_bb, 'jenis_bb', 'jenis');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($model_tipe_bb, 'model_tipe_bb', 'model tipe');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($merek_cc_bb, 'merek_cc_bb', 'merek/ cc');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($tahun_pembuatan_bb, 'tahun_pembuatan_bb', 'tahun pembuatan');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($tahun_pembeliaan_bb, 'tahun_pembeliaan_bb', 'tahun pembelian');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($serial_number_bb, 'serial_number_bb', 'serial number');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($nomor_mesin_bb, 'nomor_mesin_bb', 'nomor mesin');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($warna_bb, 'warna_bb', 'warna');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($bahan_bakar_bb, 'bahan_bakar_bb', 'bahan bakar');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($kondisi_keadaan_bb, 'kondisi_keadaan_bb', 'kondisi keadaan');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($nomor_polisi_bb, 'nomor_polisi_bb', 'nomor polisi');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($bukti_kepemilikan_agb_bb, 'bukti_kepemilikan_agb_bb', 'bukti kepemilikan');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($invoice_no_bb, 'invoice_no_bb', 'nomor invoice');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($invoice_tanggal_bb, 'invoice_tanggal_bb', 'tanggal invoice');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($perubahan_hak_terakhir_bb, 'perubahan_hak_terakhir_bb', 'perubahan hak terakhir');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($tercatat_atas_nama_bb, 'tercatat_atas_nama_bb', 'tercatat atas nama');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($alamat_pemilik_saat_ini_bb, 'alamat_pemilik_saat_ini_bb', 'alamat pemilik saat ini');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($umur_teknis_bb, 'umur_teknis_bb', 'umur teknis');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($perkiraan_umur_ekonomis_bb, 'perkiraan_umur_ekonomis_bb', 'perkiraan umur ekonomis');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($tempat_penyimpanan_bb, 'tempat_penyimpanan_bb', 'tempat penyimpanan');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($route_bb, 'route_bb', 'route');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-        // $validationRules = $this->val_foreach($jarak_rata_rata_tempuh_bb, 'jarak_rata_rata_tempuh_bb', 'jarak rata-rata tempuh');
-        // if (!$this->validate($validationRules)) {
-        //     $hasil = [
-        //         'status' => 'error',
-        //         'message' => $this->validator->listErrors()
-        //     ];
-        //     // die;
-        //     echo json_encode($hasil);
-        //     die;
-        // }
-
-        $hasil = $this->data_fcr_agunan_bb($hasil);
-        echo json_encode($hasil);
-    }
-    public function data_fcr_agunan_bb($hasil)
-    {
+    public function data_fcr_agunan_bb($hasil){
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('bukti_kepemilikan'));
         // $jenis_agunan = explode(";", $input);
@@ -5994,8 +6815,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr_agunan()
-    {
+    public function finish_fcr_agunan(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -6275,7 +7095,7 @@ class Pengajuan extends BaseController
                     'required' => 'Lainnya Harus diisi',
                 ]
             ],
-            'lantai1' => [
+            'lantai_total' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'lantai 1 diisi',
@@ -6346,13 +7166,11 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function convert_base64($file)
-    {
+    public function convert_base64($file){
         $convert = base64_encode(file_get_contents($file));
         return $convert;
     }
-    public function lihat_gambar($kd_data, $data_id)
-    {
+    public function lihat_gambar($kd_data, $data_id){
         // $this->debug($data_id);
         $dokumen = $this->db->query("SELECT file_gambar FROM tb_gambar_situasi WHERE SHA1(kd_data) = '" . $kd_data . "' and index_plus_satu = '" . $data_id . "' and status='Aktif' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->file_gambar)) {
@@ -6363,8 +7181,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function lihat_gambar_kd_tepakai($kd_data, $data_id)
-    {
+    public function lihat_gambar_kd_tepakai($kd_data, $data_id){
         // $this->debug($data_id);
         $dokumen = $this->db->query("SELECT gambar_situasi FROM tb_fcr_agunan WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->gambar_situasi)) {
@@ -6380,8 +7197,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function edit_gambar($id_bangunan)
-    {
+    public function edit_gambar($id_bangunan){
 
         if (!$this->validate([
             'upload_gambar_edit' . $id_bangunan => [
@@ -6447,8 +7263,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_gambar_kd_tepakai()
-    {
+    public function edit_gambar_kd_tepakai(){
 
         if (!$this->validate([
             'upload_gambar_edit1' => [
@@ -6490,8 +7305,7 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function dokumen_pendukung($kd_data, $id_input)
-    {
+    public function dokumen_pendukung($kd_data, $id_input){
         $dok = false;
         $orang = $this->db->query("SELECT * FROM tb_dokumen WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         $cv = $this->db->query("SELECT * FROM tb_dokumen_cv WHERE SHA1(kd_data) = '" . $kd_data . "' ");
@@ -6612,8 +7426,7 @@ class Pengajuan extends BaseController
             echo "<iframe src=\"data:application/pdf;base64,$dok\" width=\"100%\" height=\"600px\"></iframe>";
         }
     }
-    public function edit_dokumen()
-    {
+    public function edit_dokumen(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal edit data'
@@ -6771,8 +7584,7 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function validateFile($inputName, $kalimat, $nama_kolom_db, $nama_tabel, $kd_data)
-    {
+    public function validateFile($inputName, $kalimat, $nama_kolom_db, $nama_tabel, $kd_data){
         $file = $this->request->getFile($inputName);
 
         // $fileName = pathinfo($file->getName(), PATHINFO_FILENAME);
@@ -6854,8 +7666,7 @@ class Pengajuan extends BaseController
         // Cek apakah file diisi atau tidak
 
     }
-    public function edit_perseorangan($jenis_badan_usaha, $kd_data, $kirim, $null_cv, $null_pt)
-    {
+    public function edit_perseorangan($jenis_badan_usaha, $kd_data, $kirim, $null_cv, $null_pt){
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -7052,8 +7863,7 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_cv($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_pt)
-    {
+    public function edit_cv($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_pt){
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -7250,8 +8060,7 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_pt($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_cv)
-    {
+    public function edit_pt($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_cv){
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -7458,8 +8267,7 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_scoring()
-    {
+    public function edit_scoring(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -7642,8 +8450,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_scoring_koor()
-    {
+    public function edit_scoring_koor(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -7826,8 +8633,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_scoring($hasil)
-    {
+    public function data_scoring($hasil){
         $data = [
             'nama_pemohon' => $this->request->getPost('nama_pemohon_sc'),
             'alamat' => $this->request->getPost('alamat_sc'),
@@ -7850,7 +8656,7 @@ class Pengajuan extends BaseController
             // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc'),
             // 'bahan_baku' => $this->request->getPost('bahan_baku_sc'),
             // 'peralatan' => $this->request->getPost('peralatan_sc'),
-            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc'),
+            // 'pembayaran_termin' => $this->request->getPost('pembayaran_sc'),
             // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc'),
             // 'persentase_plafond' => $this->request->getPost('prosentase_sc'),
             // 'jangka_waktu' => $this->request->getPost('jangka_sc'),
@@ -7872,7 +8678,7 @@ class Pengajuan extends BaseController
             'jenis_proyek' => $this->request->getPost('jenis_proyek_sc') ? $this->request->getPost('jenis_proyek_sc') : 0,
             'bahan_baku' => $this->request->getPost('bahan_baku_sc') ? $this->request->getPost('bahan_baku_sc') : 0,
             'peralatan' => $this->request->getPost('peralatan_sc') ? $this->request->getPost('peralatan_sc') : 0,
-            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc') ? $this->request->getPost('pembayaran_sc') : 0,
+            'pembayaran_termin' => $this->request->getPost('pembayaran_sc') ? $this->request->getPost('pembayaran_sc') : 0,
             'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc') ? $this->request->getPost('dasar_penunjukan_sc') : 0,
             'persentase_plafond' => $this->request->getPost('prosentase_sc') ? $this->request->getPost('prosentase_sc') : 0,
             'jangka_waktu' => $this->request->getPost('jangka_sc') ? $this->request->getPost('jangka_sc') : 0,
@@ -7889,7 +8695,7 @@ class Pengajuan extends BaseController
         $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
             + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
             + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
-            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termin']
             + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
             + $data['penjaminan_maskapai'];
         if ($jumlah >= 325) {
@@ -7918,8 +8724,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_scoring_koor($hasil)
-    {
+    public function data_scoring_koor($hasil){
         $data = [
             'nama_pemohon' => $this->request->getPost('nama_pemohon_sc_koor'),
             'alamat' => $this->request->getPost('alamat_sc_koor'),
@@ -7942,7 +8747,7 @@ class Pengajuan extends BaseController
             // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor'),
             // 'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor'),
             // 'peralatan' => $this->request->getPost('peralatan_sc_koor'),
-            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor'),
+            // 'pembayaran_termin' => $this->request->getPost('pembayaran_sc_koor'),
             // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor'),
             // 'persentase_plafond' => $this->request->getPost('prosentase_sc_koor'),
             // 'jangka_waktu' => $this->request->getPost('jangka_sc_koor'),
@@ -7964,7 +8769,7 @@ class Pengajuan extends BaseController
             'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor') ? $this->request->getPost('jenis_proyek_sc_koor') : 0,
             'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor') ? $this->request->getPost('bahan_baku_sc_koor') : 0,
             'peralatan' => $this->request->getPost('peralatan_sc_koor') ? $this->request->getPost('peralatan_sc_koor') : 0,
-            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
+            'pembayaran_termin' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
             'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor') ? $this->request->getPost('dasar_penunjukan_sc_koor') : 0,
             'persentase_plafond' => $this->request->getPost('prosentase_sc_koor') ? $this->request->getPost('prosentase_sc_koor') : 0,
             'jangka_waktu' => $this->request->getPost('jangka_sc_koor') ? $this->request->getPost('jangka_sc_koor') : 0,
@@ -7981,7 +8786,7 @@ class Pengajuan extends BaseController
         $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
             + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
             + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
-            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termin']
             + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
             + $data['penjaminan_maskapai'];
         if ($jumlah >= 325) {
@@ -8010,8 +8815,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_scoring()
-    {
+    public function finish_scoring(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8192,8 +8996,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_scoring_master($kd_data, $hasil_scoring)
-    {
+    public function edit_scoring_master($kd_data, $hasil_scoring){
         if ($hasil_scoring >= 325) {
             $ket = 'Yes';
         } else {
@@ -8206,6 +9009,7 @@ class Pengajuan extends BaseController
             $this->db->table('tb_data_master')->where('kd_data', $kd_data)->update($data);
         }
     }
+<<<<<<< HEAD
     public function wajibDiisi($akses, $inputan, $pesan)
     {
     
@@ -8226,6 +9030,10 @@ class Pengajuan extends BaseController
     public function edit_recap()
     {
         // $cek = $this->request->getPost();
+=======
+    public function edit_recap(){
+        // $cek = $this->request->getFile('upload_dokumen_tambah');
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         // var_dump($cek);
         // die;
         if($this->request->getPost('edit_data') == 'boleh edit'){
@@ -8338,8 +9146,7 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_finish()
-    {
+    public function edit_finish(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8531,8 +9338,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function cetak_dokumen($kd_data, $id_dok)
-    {
+    public function cetak_dokumen($kd_data, $id_dok){
         // Cetak Dokumen Pengajuan
         if ($id_dok == sha1('fcr_gen')) {
             $this->generate_fcr($kd_data, $id_dok);
@@ -8556,8 +9362,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fcr($kd_data, $id_dok)
-    {
+    public function generate_fcr($kd_data, $id_dok){
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -8648,8 +9453,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fcr_usaha($kd_data, $id_dok)
-    {
+    public function generate_fcr_usaha($kd_data, $id_dok){
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr_usaha where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -8729,8 +9533,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_dokumen_ceklis($kd_data, $id_dok)
-    {
+    public function generate_dokumen_ceklis($kd_data, $id_dok){
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
 
         if ($ada_data_entry->getNumRows() > 0) {
@@ -8773,8 +9576,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fkk($kd_data, $id_dok)
-    {
+    public function generate_fkk($kd_data, $id_dok){
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
         $kirim = $this->db->query("SELECT * FROM tb_kirim where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -8823,8 +9625,7 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_mkk($kd_data, $id_dok)
-    {
+    public function generate_mkk($kd_data, $id_dok){
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
 
@@ -8864,16 +9665,14 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function formatting_angka($angka, $jumlah)
-    {
+    public function formatting_angka($angka, $jumlah){
         if (!empty($angka)) {
             return number_format($angka, $jumlah, ',', '.');
         } else {
             return $angka;
         }
     }
-    public function getHariIndonesia($tanggal)
-    {
+    public function getHariIndonesia($tanggal){
         // Array hari dalam bahasa Indonesia
         $namaHari = [
             'Sunday'    => 'Minggu',
@@ -8891,16 +9690,14 @@ class Pengajuan extends BaseController
         // Mengembalikan nama hari dalam bahasa Indonesia
         return $namaHari[$hariInggris];
     }
-    public function cek_kosong($input)
-    {
+    public function cek_kosong($input){
         if (!empty($input)) {
             return $input;
         } else {
             return '';
         }
     }
-    public function atur_tanggal($input)
-    {
+    public function atur_tanggal($input){
         if (!empty($input)) {
             $tanggal = date('d-m-Y', strtotime($input));
             return $tanggal;
@@ -8908,8 +9705,7 @@ class Pengajuan extends BaseController
             return $input;
         }
     }
-    public function nama_unit($kd_unit)
-    {
+    public function nama_unit($kd_unit){
         if (!empty($kd_unit)) {
             $cek_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $kd_unit . "' ");
             if ($cek_unit->getNumRows() > 0) {
@@ -8922,8 +9718,7 @@ class Pengajuan extends BaseController
             return $kd_unit;
         }
     }
-    public function pisah_koma($input)
-    {
+    public function pisah_koma($input){
         if (!empty($input)) {
             $array = explode(";", $input);
             // var_dump($array); die;
@@ -8932,8 +9727,7 @@ class Pengajuan extends BaseController
             return $input;
         }
     }
-    public function permission()
-    {
+    public function permission(){
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
                 "SELECT kd_level_user 
@@ -8958,8 +9752,7 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function permission2($nama_permission)
-    {
+    public function permission2($nama_permission){
         $hasil = false;
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
@@ -8993,8 +9786,7 @@ class Pengajuan extends BaseController
     }
 
 
-    public function edit_fak_data()
-    {
+    public function edit_fak_data(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9010,8 +9802,7 @@ class Pengajuan extends BaseController
         // $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
-    public function edit_fak_modal()
-    {
+    public function edit_fak_modal(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9021,8 +9812,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_fak_rl()
-    {
+    public function edit_fak_rl(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9032,8 +9822,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_lap_rl()
-    {
+    public function edit_lap_rl(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9043,8 +9832,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_ceftb()
-    {
+    public function edit_ceftb(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9054,8 +9842,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_faa()
-    {
+    public function edit_faa(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9064,8 +9851,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
-    public function edit_mauk()
-    {
+    public function edit_mauk(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9074,8 +9860,7 @@ class Pengajuan extends BaseController
         $hasil = $this->data_mauk($hasil);
         echo json_encode($hasil);
     }
-    public function edit_dcl()
-    {
+    public function edit_dcl(){
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9085,8 +9870,7 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function data_fak_data($hasil)
-    {
+    public function data_fak_data($hasil){
         $data = [
             'kegiatan' => $this->request->getPost("kegiatan_fak_data"),
             'pekerjaan' => $this->request->getPost("pekerjaan_fak_data"),
@@ -9127,13 +9911,13 @@ class Pengajuan extends BaseController
             'gaji_pengawas' => $this->request->getPost("gaji_pengawas_fak_data"),
             'gaji_staf' => $this->request->getPost("gaji_staf_fak_data"),
             'biaya_umum' => $this->request->getPost("biaya_umum_fak_data"),
-            'termijn' => $this->request->getPost("termijn_fak_data"),
-            'progress_termijn' => $this->request->getPost("progress_termijn_fak_data"),
-            'persentase_termijn' => $this->request->getPost("persentase_termijn_fak_data"),
-            'prakiraan_tgl_termijn' => $this->request->getPost("prakiraan_tgl_termijn_fak_data"),
-            'setelah_masa_pemeliharaan_termijn' => $this->request->getPost("setelah_masa_pemeliharaan_fak_data"),
-            'total_termijn' => $this->request->getPost("total_termijn_fak_data"),
-            'jumlah_termijn' => $this->request->getPost("jumlah_termijn_fak_data"),
+            'termin' => $this->request->getPost("termin_fak_data"),
+            'progress_termin' => $this->request->getPost("progress_termin_fak_data"),
+            'persentase_termin' => $this->request->getPost("persentase_termin_fak_data"),
+            'prakiraan_tgl_termin' => $this->request->getPost("prakiraan_tgl_termin_fak_data"),
+            'setelah_masa_pemeliharaan_termin' => $this->request->getPost("setelah_masa_pemeliharaan_fak_data"),
+            'total_termin' => $this->request->getPost("total_termin_fak_data"),
+            'jumlah_termin' => $this->request->getPost("jumlah_termin_fak_data"),
 
             'pengubah' => session()->get('nama_user'),
             'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
@@ -9160,8 +9944,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_fak_modal($hasil)
-    {
+    public function data_fak_modal($hasil){
         $data = [
             'proyek_fak_modal' => $this->request->getPost("proyek_fak_modal"),
             'profit_fak_modal' => $this->request->getPost("profit_fak_modal"),
@@ -9221,8 +10004,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_mauk($hasil)
-    {
+    public function data_mauk($hasil){
         $data = [
             'nama_nasabah_mauk' => $this->request->getPost("nama_nasabah_mauk"),
             'npwp_mauk' => $this->request->getPost("npwp_mauk"),
@@ -9312,8 +10094,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_faa($hasil)
-    {
+    public function data_faa($hasil){
         $data = [
             'nama_nasabah_bb' => $this->request->getPost("namanasabahbb"),
             'jenis_dokumen_bb' => $this->request->getPost("jenis_dokumen_bb"),
@@ -9374,8 +10155,7 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_fak_rl($hasil)
-    {
+    public function data_fak_rl($hasil){
         $data = [
             'nilai_kontrak_fak_rl' => $this->request->getPost("nilai_kontrak_fak_rl"),
             'pekerjaan_persiapan_konstruksi_fak_rl' => $this->request->getPost("pekerjaan_persiapan_konstruksi_fak_rl"),
@@ -9393,10 +10173,10 @@ class Pengajuan extends BaseController
             'harga_borongan_fak_rl' => $this->request->getPost("harga_borongan_fak_rl"),
             'persentase_penerimaan_uang_muka_fak_rl' => $this->request->getPost("persentase_penerimaan_uang_muka_fak_rl"),
             'penerimaan_uang_muka_fak_rl' => $this->request->getPost("penerimaan_uang_muka_fak_rl"),
-            'persentase_penerimaan_termijn_fak_rl' => $this->request->getPost("persentase_penerimaan_termijn_fak_rl"),
-            'penerimaan_termijn_fak_rl' => $this->request->getPost("penerimaan_termijn_fak_rl"),
-            'persentase_penerimaan_termijn_pemeliharaan_fak_rl' => $this->request->getPost("persentase_penerimaan_termijn_pemeliharaan_fak_rl"),
-            'penerimaan_termijn_pemeliharaan_fak_rl' => $this->request->getPost("penerimaan_termijn_pemeliharaan_fak_rl"),
+            'persentase_penerimaan_termin_fak_rl' => $this->request->getPost("persentase_penerimaan_termin_fak_rl"),
+            'penerimaan_termin_fak_rl' => $this->request->getPost("penerimaan_termin_fak_rl"),
+            'persentase_penerimaan_termin_pemeliharaan_fak_rl' => $this->request->getPost("persentase_penerimaan_termin_pemeliharaan_fak_rl"),
+            'penerimaan_termin_pemeliharaan_fak_rl' => $this->request->getPost("penerimaan_termin_pemeliharaan_fak_rl"),
             'persentase_penerimaan_bersih_fak_rl' => $this->request->getPost("persentase_penerimaan_bersih_fak_rl"),
             'penerimaan_bersih_fak_rl' => $this->request->getPost("penerimaan_bersih_fak_rl"),
             'pajak_ppn_pph_fak_rl' => $this->request->getPost("pajak_ppn_pph_fak_rl"),
@@ -9431,8 +10211,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function data_lap_rl($hasil)
-    {
+    public function data_lap_rl($hasil){
         $kd_data = $this->request->getPost('kd_data');
 
         $laporan_rugi_laba_upload_lap_rl = $this->validateFile('laporan_rugi_laba_upload_lap_rl', 'Laporan Laba Rugi', 'laporan_rugi_laba_upload_lap_rl', 'tb_lap_rl', $kd_data);
@@ -9500,20 +10279,29 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function lihat_file_proyeksi_rl($kd_data)
-    {
-        $dokumen = $this->db->query("SELECT gambar_situasi FROM tb_lap_rl WHERE SHA1(kd_data) = '" . $kd_data . "' ");
-        if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->gambar_situasi)) {
-            $dok = $dokumen->getRow()->gambar_situasi;
-            // Tampilkan dokumen PDF menggunakan iframe
-            echo "<iframe src=\"data:application/pdf;base64,$dok\" width=\"100%\" height=\"600px\"></iframe>";
-        } else {
-            echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
-        }
-    }
+    public function lihat_file_proyeksi_rl($kd_data,$file){
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT {$file} FROM tb_lap_rl WHERE SHA1(kd_data) = ?", [$kd_data]);
 
-    public function data_ceftb($hasil)
-    {
+        if ($query->getNumRows() > 0) {
+            $row = $query->getRow();
+            $dokumen = $row->$file ?? null;
+
+            if (!empty($dokumen)) {
+                // render langsung PDF
+                return $this->response->setBody(
+        "<iframe src=\"data:application/pdf;base64,{$dokumen}\" width=\"100%\" height=\"600px\"></iframe>"
+                );
+            }
+        }
+
+        return "Dokumen tidak ditemukan. 
+                <a href='" . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . "'>Klik untuk kembali</a>";
+        
+    }
+    
+
+    public function data_ceftb($hasil){
         $data = [
             'checkboxceft' => $this->request->getPost("nilaicheckboxceft"),
             'hasilceft' => $this->request->getPost("hasilcheckboxceft"),
@@ -9548,8 +10336,7 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function data_dcl($hasil)
-    {
+    public function data_dcl($hasil){
         $data = [
             'pengelola_dcl' => $this->request->getPost("pengelola_dcl"),
             'tanggal_dcl' => $this->request->getPost("tanggal_dcl"),

@@ -331,42 +331,42 @@
                                 </div>
                             </div>
                             <br>
-                            <h2 class="text-center text-danger">Termijn</h2>
-                            <button class="btn btn-success mt-2 tambah-field-termijn text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah Termijn</button>
-                            <div class="add-form-termijn-fak-data">
+                            <h2 class="text-center text-danger">termin</h2>
+                            <button class="btn btn-success mt-2 tambah-field-termin text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah termin</button>
+                            <div class="add-form-termin-fak-data">
                                 <div class="form-group row">
                                     <div class="col-md-1">
                                         <div class="col-lg-10">
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <label class="col-lg-6 control-label">Termijn</label>
+                                        <label class="col-lg-6 control-label">termin</label>
                                         <div class="col-lg-12">
-                                            <input id="termijn_fak_data0" name="termijn_fak_data[]" type="text" placeholder="" value="Uang Muka" class="form-control">
+                                            <input id="termin_fak_data0" name="termin_fak_data[]" type="text" placeholder="" value="Uang Muka" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="col-lg-6 control-label">Progress</label>
                                         <div class="col-lg-12">
-                                            <input id="progress_termijn_fak_data0" name="progress_termijn_fak_data[]" type="text" placeholder="" class="form-control">
+                                            <input id="progress_termin_fak_data0" name="progress_termin_fak_data[]" type="text" placeholder="" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
-                                        <label class="col-lg-18 center control-label">Persentase Termijn</label>
+                                        <label class="col-lg-18 center control-label">Persentase termin</label>
                                         <div class="col-lg-12">
-                                            <input id="persentase_termijn_fak_data" name="persentase_termijn_fak_data[]" onkeyup="copyvalue(this.id,'persentase_penerimaan_uang_muka_fak_rl')" type="text" placeholder="" class="form-control">
+                                            <input id="persentase_termin_fak_data" name="persentase_termin_fak_data[]" onkeyup="copyvalue(this.id,'persentase_penerimaan_uang_muka_fak_rl')" type="text" placeholder="" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-1">
                                         <!-- <div class="col-lg-1"> -->
-                                        <a class="btn btn-success btn-rounded m-t-n-xs" style="margin-top:30px" onclick="hitungPrakiraanTanggalTermijn(0)"><span>Hitung</span></a>
+                                        <a class="btn btn-success btn-rounded m-t-n-xs" style="margin-top:30px" onclick="hitungPrakiraanTanggaltermin(0)"><span>Hitung</span></a>
                                         <!-- </div> -->
                                     </div>
 
                                     <div class="col-lg-3">
-                                        <label class="col-lg-12 control-label">Prakiraan Tanggal Termijn</label>
+                                        <label class="col-lg-12 control-label">Prakiraan Tanggal termin</label>
                                         <div class="col-lg-12">
-                                            <input id="prakiraan_tgl_termijn_fak_data0" name="prakiraan_tgl_termijn_fak_data[]" type="date" placeholder="" class="form-control">
+                                            <input id="prakiraan_tgl_termin_fak_data0" name="prakiraan_tgl_termin_fak_data[]" type="date" placeholder="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -378,7 +378,7 @@
                                 <label class="col-lg-3 control-label">Setelah Masa Pemeliharaan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="setelah_masa_pemeliharaan_fak_data" name="setelah_masa_pemeliharaan_fak_data" type="text" placeholder="" onkeyup="copyvalue(this.id,'persentase_penerimaan_termijn_pemeliharaan_fak_rl')" class="form-control">
+                                        <input id="setelah_masa_pemeliharaan_fak_data" name="setelah_masa_pemeliharaan_fak_data" type="text" placeholder="" onkeyup="copyvalue(this.id,'persentase_penerimaan_termin_pemeliharaan_fak_rl')" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -389,7 +389,7 @@
                                 <label class="col-lg-3 control-label">Total</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="total_termijn_fak_data" name="total_termijn_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="total_termin_fak_data" name="total_termin_fak_data" type="text" placeholder="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -397,10 +397,10 @@
                                 <div class="col-lg-3">
                                     <!-- kosong -->
                                 </div>
-                                <label class="col-lg-3 control-label">Jumlah Termijn (Diluar uang muka dan pemeliharaan)</label>
+                                <label class="col-lg-3 control-label">Jumlah termin (Diluar uang muka dan pemeliharaan)</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="jumlah_termijn_fak_data" name="jumlah_termijn_fak_data" type="text" placeholder="" class="form-control">
+                                        <input id="jumlah_termin_fak_data" name="jumlah_termin_fak_data" type="text" placeholder="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -852,15 +852,15 @@
                                 <div class="col-lg-1">
                                     <!-- kosong -->
                                 </div>
-                                <label class="col-lg-3 control-label">Penerimaan Termijn</label>
+                                <label class="col-lg-3 control-label">Penerimaan termin</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_penerimaan_termijn_fak_rl" name="persentase_penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_penerimaan_termin_fak_rl" name="persentase_penerimaan_termin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_termijn_fak_rl" name="penerimaan_termijn_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="penerimaan_termin_fak_rl" name="penerimaan_termin_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -869,15 +869,15 @@
                                 <div class="col-lg-1">
                                     <!-- kosong -->
                                 </div>
-                                <label class="col-lg-3 control-label">Penerimaan Termijn Pemeliharaan</label>
+                                <label class="col-lg-3 control-label">Penerimaan termin Pemeliharaan</label>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="persentase_penerimaan_termijn_pemeliharaan_fak_rl" name="persentase_penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="persentase_penerimaan_termin_pemeliharaan_fak_rl" name="persentase_penerimaan_termin_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_termijn_pemeliharaan_fak_rl" name="penerimaan_termijn_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
+                                        <input id="penerimaan_termin_pemeliharaan_fak_rl" name="penerimaan_termin_pemeliharaan_fak_rl" type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -3436,13 +3436,13 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="col-lg-12 control-label">16. PEMBAYARAN TERMIJN</label>
+                                        <label class="col-lg-12 control-label">16. PEMBAYARAN termin</label>
                                         <div class="col-lg-12">
                                             <select class="form-control class-disabled select" id="pembayaran_sc" name="pembayaran_sc">
                                                 <option value="" disabled="">pilih</option>
-                                                <option value="1">(a) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing dan Standing Instruction.</option>
-                                                <option value="3">(b) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing, namun sudah dilengkapi dengan Standing Instruction.</option>
-                                                <option value="5">(c) Termijn disalurkan melalui rekening Pemohon yang ada di Bank Kalsel yang tertuang di dalam kontrak / terdapat Bank Clearing yang telah ditandatangani oleh Pejabat Pembuat Komitmen dan Bendahara Proyek/Pekerjaan yang diberikan pembiayaan.</option>
+                                                <option value="1">(a) termin disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing dan Standing Instruction.</option>
+                                                <option value="3">(b) termin disalurkan melalui rekening Pemohon yang ada di Bank Kalsel dan tidak terdapat Bank Clearing, namun sudah dilengkapi dengan Standing Instruction.</option>
+                                                <option value="5">(c) termin disalurkan melalui rekening Pemohon yang ada di Bank Kalsel yang tertuang di dalam kontrak / terdapat Bank Clearing yang telah ditandatangani oleh Pejabat Pembuat Komitmen dan Bendahara Proyek/Pekerjaan yang diberikan pembiayaan.</option>
                                             </select>
                                         </div>
                                     </div>
@@ -3566,10 +3566,10 @@
         <input type="text" hidden name="nilaisebelumppnppfakdata" id="nilaisebelumppnppfakdata">
         <input type="text" hidden name="nilaisesudahppnppfakdata" id="nilaisesudahppnppfakdata">
 
-        <input type="text" hidden name="termijnfakdata" id="termijnfakdata">
-        <input type="text" hidden name="progresstermijnfakdata" id="progresstermijnfakdata">
-        <input type="text" hidden name="persentasetermijnfakdata" id="persentasetermijnfakdata">
-        <input type="text" hidden name="prakiraantgltermijnfakdata" id="prakiraantgltermijnfakdata">
+        <input type="text" hidden name="terminfakdata" id="terminfakdata">
+        <input type="text" hidden name="progressterminfakdata" id="progressterminfakdata">
+        <input type="text" hidden name="persentaseterminfakdata" id="persentaseterminfakdata">
+        <input type="text" hidden name="prakiraantglterminfakdata" id="prakiraantglterminfakdata">
 
         <input type="text" hidden name="itemppfakmodal" id="itemppfakmodal">
         <input type="text" hidden name="nilaippfakmodal" id="nilaippfakmodal">
@@ -3651,13 +3651,13 @@
                 </div>
             </div>
         </div>
-        <div class="copy-termijn invisible">
+        <div class="copy-termin invisible">
             <div class="row new" id="new">
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_termijn_fak_data" class="btn btn-danger hapus_termijn_fak_data delete-btn-termijn-fak-data" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_termin_fak_data" class="btn btn-danger hapus_termin_fak_data delete-btn-termin-fak-data" type="button"><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>

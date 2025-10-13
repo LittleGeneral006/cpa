@@ -244,13 +244,13 @@
                                 </div>
                             </div>
                             <br>
-                            <h2 class="text-center text-danger">Termijn</h2>
-                            <button class="btn btn-success mt-2 tambah-field-termijn text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
+                            <h2 class="text-center text-danger">termin</h2>
+                            <button class="btn btn-success mt-2 tambah-field-termin text-center" style="width:100%;" type="button"><i class="fa fa-plus"></i>&nbsp;Tambah</button>
                             <div class="form-group row">
                                 <div class="col-lg-3">
-                                    <label class="col-lg-6 control-label">termijn</label>
+                                    <label class="col-lg-6 control-label">termin</label>
                                     <div class="col-lg-12">
-                                        <input id="termijn_pp_fak_data" name="termijn_pp_fak_data[]" type="text" placeholder="" class="form-control">
+                                        <input id="termin_pp_fak_data" name="termin_pp_fak_data[]" type="text" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -260,18 +260,18 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <label class="col-lg-6 control-label">Persentase Termijn</label>
+                                    <label class="col-lg-6 control-label">Persentase termin</label>
                                     <div class="col-lg-12">
-                                        <input id="persentase_termijn_pp_fak_data" name="persentase_termijn_pp_fak_data[]" type="text" placeholder="" class="form-control">
+                                        <input id="persentase_termin_pp_fak_data" name="persentase_termin_pp_fak_data[]" type="text" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <label class="col-lg-12 control-label">Prakiraan Tanggal Termijn</label>
+                                    <label class="col-lg-12 control-label">Prakiraan Tanggal termin</label>
                                     <div class="col-lg-12">
-                                        <input id="prakiraan_tgl_termijn_fak_data" name="prakiraan_tgl_termijn_fak_data[]" type="date" placeholder="" class="form-control">
+                                        <input id="prakiraan_tgl_termin_fak_data" name="prakiraan_tgl_termin_fak_data[]" type="date" placeholder="" class="form-control">
                                     </div>
                                 </div>
-                                <div class="add-form-termijn">
+                                <div class="add-form-termin">
                                 </div>
                             </div>
                         </fieldset>
@@ -612,15 +612,15 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Penerimaan Termijn</label>
+                                    <label class="col-lg-12 control-label">Penerimaan termin</label>
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_termijn_fak_rl" name="penerimaan_termijn_fak_rl" type="text" placeholder="" class="form-control">
+                                        <input id="penerimaan_termin_fak_rl" name="penerimaan_termin_fak_rl" type="text" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="col-lg-12 control-label">Penerimaan Termijn Pemeliharaan</label>
+                                    <label class="col-lg-12 control-label">Penerimaan termin Pemeliharaan</label>
                                     <div class="col-lg-12">
-                                        <input id="penerimaan_termijn_pemeliharaan_fak_rl" name="penerimaan_termijn_pemeliharaan_fak_rl" type="text" placeholder="" class="form-control">
+                                        <input id="penerimaan_termin_pemeliharaan_fak_rl" name="penerimaan_termin_pemeliharaan_fak_rl" type="text" placeholder="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -726,16 +726,16 @@
                     <!-- </div> -->
                 </div>
             </div>
-            <div class="copy-termijn invisible">
+            <div class="copy-termin invisible">
                 <div class="row new sort" id="new">
                     <div class="pindah">
                         <i class="fa fa-sort fa-2x"></i>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            <label class="col-lg-6 control-label">termijn</label>
+                            <label class="col-lg-6 control-label">termin</label>
                             <div class="col-lg-12">
-                                <input id="termijn_pp" name="termijn_pp[]" type="text" placeholder="" class="form-control">
+                                <input id="termin_pp" name="termin_pp[]" type="text" placeholder="" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -745,15 +745,15 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label class="col-lg-12 control-label">Persentase Termijn</label>
+                            <label class="col-lg-12 control-label">Persentase termin</label>
                             <div class="col-lg-12">
-                                <input id="persentase_termijn_pp" name="persentase_termijn_pp[]" type="text" placeholder="" class="form-control">
+                                <input id="persentase_termin_pp" name="persentase_termin_pp[]" type="text" placeholder="" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <label class="col-lg-12 control-label">Prakiraan Tanggal Termijn</label>
+                            <label class="col-lg-12 control-label">Prakiraan Tanggal termin</label>
                             <div class="col-lg-12">
-                                <input id="prakiraan_tgl_termijn" name="prakiraan_tgl_termijn[]" type="date" placeholder="" class="form-control">
+                                <input id="prakiraan_tgl_termin" name="prakiraan_tgl_termin[]" type="date" placeholder="" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -914,7 +914,7 @@
         }
 
         jumlahisipp = 1;
-        jumlahisitermijn = 1;
+        jumlahisitermin = 1;
 
         // $.ajax({
         //     url: "setting-jenis/edit/" + id,
@@ -1000,8 +1000,8 @@
                 $(this).parents("#new").remove();
                 jumlahisipp--;
             });
-            $("body").on("click", ".tambah-field-termijn", function() {
-                if (jumlahisitermijn == 13) {
+            $("body").on("click", ".tambah-field-termin", function() {
+                if (jumlahisitermin == 13) {
                     swal({
                         title: "Peringatan!",
                         text: "Isi form jumlah maksimal!",
@@ -1010,16 +1010,16 @@
                         timer: 1000,
                     });
                 } else {
-                    var html = $(".copy-termijn").html();
-                    $(".add-form-termijn").after(html);
-                    jumlahisitermijn++;
+                    var html = $(".copy-termin").html();
+                    $(".add-form-termin").after(html);
+                    jumlahisitermin++;
                     resizeJquerySteps();
                 }
             });
             // saat tombol remove dklik control group akan dihapus
             $("body").on("click", ".hapus", function() {
                 $(this).parents("#new").remove();
-                jumlahisitermijn--;
+                jumlahisitermin--;
                 resizeJquerySteps();
             });
             $("#wizard").steps();
