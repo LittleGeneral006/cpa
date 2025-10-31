@@ -30,9 +30,9 @@
 
     <div class="form-group row">
         <div class="col-lg-6">
-            <label class="col-lg-12 control-label">Permohonan Perizinan</label>
+            <label class="col-lg-12 control-label">Permohonan Penarikan</label>
             <div class="col-lg-12">
-                <input type="file" class="form-control-file" id="permohonan_perizinan" name="permohonan_perizinan" accept=".pdf,.jpg,.jpeg,.png">
+                <input type="file" class="form-control-file" id="permohonan_penarikan" name="permohonan_perizinan" accept=".pdf,.jpg,.jpeg,.png">
             </div>
         </div>
         <div class="col-lg-6">

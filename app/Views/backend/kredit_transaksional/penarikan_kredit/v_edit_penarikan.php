@@ -123,89 +123,392 @@
     //     resizeJquerySteps();
     // }
 
-    $(document).ready(function() {
-        var kd_data = $("#kd_data").val(); // ambil dari hidden input
-        console.log(kd_data);
+    // $(document).ready(function() {
+    //     var kd_data = $("#kd_data").val(); // ambil dari hidden input
+    //     console.log(kd_data);
 
-        $("#wizard").steps();
-        $("#form").steps({
-            bodyTag: "fieldset",
-            enableAllSteps: true,
-            onInit: function(event, currentIndex) {
-                resizeJquerySteps();
-            },
-            onStepChanging: function(event, currentIndex, newIndex) {
-                // Allow moving between steps without validation
-                resizeJquerySteps();
-                if (currentIndex > newIndex) {
-                    return true;
+    //     $("#wizard").steps();
+    //     $("#form").steps({
+    //         bodyTag: "fieldset",
+    //         enableAllSteps: true,
+    //         onInit: function(event, currentIndex) {
+    //             resizeJquerySteps();
+    //         },
+    //         onStepChanging: function(event, currentIndex, newIndex) {
+    //             // Allow moving between steps without validation
+    //             resizeJquerySteps();
+    //             if (currentIndex > newIndex) {
+    //                 return true;
+    //             }
+    //             var form = $(this);
+
+    //             // Clean up if user went backward before
+    //             if (currentIndex < newIndex) {
+    //                 // To remove error styles
+    //                 $(".body:eq(" + newIndex + ") label.error", form).remove();
+    //                 $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+    //             }
+    //             // Disable validation on fields that are disabled or hidden.
+    //             form.validate().settings.ignore = ":disabled,:hidden";
+    //             // Start validation; Prevent going forward if false
+    //             return form.valid();
+    //         },
+    //         onStepChanged: function(event, currentIndex, priorIndex) {
+    //             resizeJquerySteps();
+    //             // Suppress (skip) "Warning" step if the user is old enough.
+    //         },
+    //         onFinishing: function(event, currentIndex) {
+    //             // Do not block finishing; allow proceeding to submit
+    //             return true;
+    //         },
+    //         // onFinished: function(event, currentIndex) {
+    //         //     var form = $(this);
+
+    //         //     // Submit form input
+    //         //     form.submit();
+    //         // }
+    //         onFinished: function(event, currentIndex) {
+    //             var form = $(this);
+
+    //             // Serialize form data
+    //             var formData = form.serialize();
+    //             // console.log(formData)
+    //             $('#mohon').show()
+    //             // Send AJAX request to CodeIgniter 4 controller method
+    //             $.ajax({
+    //                 url: "<?php echo base_url() ?>home/simpan_permohonan",
+    //                 type: "POST",
+    //                 data: formData,
+    //                 success: function(data) {
+    //                     // Handle successful response
+    //                     // console.log(data)
+    //                     if (data == 1) {
+    //                         $('#mohon').hide()
+    //                         alert('Data Berhasil Disimpan')
+    //                         // toastr.success('Data Berhasil Disimpan', 'Berhasil');
+    //                         window.location.href = "<?php echo base_url() ?>home/e-form";
+    //                     } else {
+    //                         // alert(data)
+    //                         $('#mohon').hide()
+    //                         toastr.warning(data, 'Data Gagal Disimpan');
+    //                     }
+    //                 },
+    //                 error: function(xhr, status, error) {
+    //                     // Handle error response
+    //                     // console.log(error)
+    //                 }
+    //             });
+
+    //             return true;
+    //         },
+
+    //     });
+
+
+    // });
+//    $(document).ready(function () {
+//     var kd_data = $("#kd_data").val();
+//     console.log("KD DATA:", kd_data);
+
+//     $("#wizard").steps();
+
+//     $("#form").steps({
+//         bodyTag: "fieldset",
+//         enableAllSteps: true,
+//         labels: {
+//             current: "Langkah sekarang:",
+//             finish: "Selesai",
+//             next: "Berikutnya",
+//             previous: "Sebelumnya",
+//             loading: "Memuat..."
+//         },
+//         onInit: function () {
+//             resizeJquerySteps();
+
+//             // Tambahkan tombol "Simpan Sementara" di antara tombol Previous dan Next
+//             setTimeout(function () {
+//                 var actions = $(".actions ul");
+//                 if ($("#btn-save-step").length === 0) {
+//                     $('<li><a href="#" id="btn-save-step" role="menuitem" class="btn btn-warning">Simpan Sementara</a></li>')
+//                         .insertAfter(actions.find("li:first-child"));
+//                 }
+//             }, 200);
+
+//             // Event klik tombol simpan
+//             $(document).on("click", "#btn-save-step", function (e) {
+//                 e.preventDefault();
+//                 saveStepProgress();
+//             });
+//         },
+//         onStepChanging: function (event, currentIndex, newIndex) {
+//             resizeJquerySteps();
+//             if (currentIndex > newIndex) return true;
+
+//             var form = $(this);
+//             form.validate().settings.ignore = ":disabled,:hidden";
+//             return form.valid();
+//         },
+//         onStepChanged: function () {
+//             resizeJquerySteps();
+//         },
+//         onFinishing: function () {
+//             return true;
+//         },
+//         onFinished: function () {
+//             var form = $(this);
+//             var formData = form.serialize();
+
+//             $("#mohon").show();
+//             $.ajax({
+//                 url: "<?php echo base_url('home/simpan_permohonan') ?>",
+//                 type: "POST",
+//                 data: formData,
+//                 success: function (data) {
+//                     $("#mohon").hide();
+//                     if (data == 1) {
+//                         alert("Data Berhasil Disimpan");
+//                         window.location.href = "<?php echo base_url('home/e-form') ?>";
+//                     } else {
+//                         toastr.warning(data, "Data Gagal Disimpan");
+//                     }
+//                 },
+//                 error: function () {
+//                     $("#mohon").hide();
+//                     toastr.error("Terjadi kesalahan koneksi");
+//                 },
+//             });
+//             return true;
+//         },
+//     });
+
+//     // === FUNGSI SIMPAN PROGRESS PER FIELDSET ===
+//     function saveStepProgress() {
+//         var currentIndex = $("#form").steps("getCurrentIndex");
+//         var currentFieldset = $("fieldset").eq(currentIndex);
+//         var kd_data = $("#kd_data").val();
+
+//         // Mapping tabel berdasarkan step
+//         let tableMap = {
+//             0: "tb_data_entry",
+//             1: "tb_fcr",
+//             2: "tb_upload_berkas" // misal fieldset ke-3 berisi upload
+//         };
+
+//         var targetTable = tableMap[currentIndex] || "tb_data_entry";
+//         console.log("Step ke:", currentIndex, "Tabel:", targetTable);
+
+//         $("#mohon").show();
+
+//         // === STEP 3: UPLOAD FILE ===
+//         if (currentIndex === 2) {
+//             let formData = new FormData();
+//             formData.append("kd_data", kd_data);
+//             formData.append("target_table", targetTable);
+
+//             // ambil semua input file di fieldset
+//             currentFieldset.find("input[type='file']").each(function () {
+//                 if (this.files.length > 0) {
+//                     formData.append($(this).attr("name"), this.files[0]);
+//                 }
+//             });
+
+//             $.ajax({
+//                 url: "<?php echo base_url('home/simpan_progress_file') ?>",
+//                 type: "POST",
+//                 data: formData,
+//                 processData: false,
+//                 contentType: false,
+//                 success: function (data) {
+//                     $("#mohon").hide();
+//                     if (data == 1) {
+//                         toastr.success("File berhasil diunggah dan disimpan!");
+//                     } else {
+//                         toastr.warning(data, "Gagal menyimpan file");
+//                     }
+//                 },
+//                 error: function () {
+//                     $("#mohon").hide();
+//                     toastr.error("Koneksi gagal, coba lagi.");
+//                 },
+//             });
+//         } 
+//         // === STEP 1 & 2: TEXT DATA ===
+//         else {
+//             let inputs = currentFieldset.find(":input").serialize();
+//             $.ajax({
+//                 url: "<?php echo base_url('home/simpan_progress') ?>",
+//                 type: "POST",
+//                 data: inputs + "&kd_data=" + kd_data + "&target_table=" + targetTable,
+//                 success: function (data) {
+//                     $("#mohon").hide();
+//                     if (data == 1) {
+//                         toastr.success("Data langkah ini berhasil disimpan!");
+//                     } else {
+//                         toastr.warning(data, "Gagal menyimpan data");
+//                     }
+//                 },
+//                 error: function () {
+//                     $("#mohon").hide();
+//                     toastr.error("Koneksi gagal, coba lagi.");
+//                 },
+//             });
+//         }
+//     }
+// });
+$(document).ready(function () {
+    var kd_data = $("#kd_data").val();
+    console.log("KD DATA:", kd_data);
+
+    $("#wizard").steps();
+
+    $("#form").steps({
+        bodyTag: "fieldset",
+        enableAllSteps: true,
+        labels: {
+            current: "Langkah sekarang:",
+            finish: "Selesai",
+            next: "Berikutnya",
+            previous: "Sebelumnya",
+            loading: "Memuat..."
+        },
+        onInit: function () {
+            resizeJquerySteps();
+
+            // Tambahkan tombol "Simpan Sementara" di antara tombol Previous dan Next
+            setTimeout(function () {
+                var actions = $(".actions ul");
+                if ($("#btn-save-step").length === 0) {
+                    $('<li><a href="#" id="btn-save-step" role="menuitem" class="btn btn-primary">Simpan Sementara</a></li>')
+                        .insertAfter(actions.find("li:first-child"));
                 }
-                var form = $(this);
+            }, 200);
 
-                // Clean up if user went backward before
-                if (currentIndex < newIndex) {
-                    // To remove error styles
-                    $(".body:eq(" + newIndex + ") label.error", form).remove();
-                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                }
-                // Disable validation on fields that are disabled or hidden.
-                form.validate().settings.ignore = ":disabled,:hidden";
-                // Start validation; Prevent going forward if false
-                return form.valid();
-            },
-            onStepChanged: function(event, currentIndex, priorIndex) {
-                resizeJquerySteps();
-                // Suppress (skip) "Warning" step if the user is old enough.
-            },
-            onFinishing: function(event, currentIndex) {
-                // Do not block finishing; allow proceeding to submit
-                return true;
-            },
-            // onFinished: function(event, currentIndex) {
-            //     var form = $(this);
+            // Event klik tombol simpan
+            $(document).on("click", "#btn-save-step", function (e) {
+                e.preventDefault();
+                saveStepProgress();
+            });
+        },
+        onStepChanging: function (event, currentIndex, newIndex) {
+            resizeJquerySteps();
+            if (currentIndex > newIndex) return true;
 
-            //     // Submit form input
-            //     form.submit();
-            // }
-            onFinished: function(event, currentIndex) {
-                var form = $(this);
+            var form = $(this);
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onStepChanged: function () {
+            resizeJquerySteps();
+        },
+        onFinishing: function () {
+            return true;
+        },
+        onFinished: function () {
+            var form = $(this);
+            var formData = form.serialize();
 
-                // Serialize form data
-                var formData = form.serialize();
-                // console.log(formData)
-                $('#mohon').show()
-                // Send AJAX request to CodeIgniter 4 controller method
-                $.ajax({
-                    url: "<?php echo base_url() ?>home/simpan_permohonan",
-                    type: "POST",
-                    data: formData,
-                    success: function(data) {
-                        // Handle successful response
-                        // console.log(data)
-                        if (data == 1) {
-                            $('#mohon').hide()
-                            alert('Data Berhasil Disimpan')
-                            // toastr.success('Data Berhasil Disimpan', 'Berhasil');
-                            window.location.href = "<?php echo base_url() ?>home/e-form";
-                        } else {
-                            // alert(data)
-                            $('#mohon').hide()
-                            toastr.warning(data, 'Data Gagal Disimpan');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error response
-                        // console.log(error)
+            $("#mohon").show();
+            $.ajax({
+                url: base_url+"ajax-penarikan-kredit-transaksional/simpan_permohonan",
+                type: "POST",
+                data: formData,
+                success: function (data) {
+                    $("#mohon").hide();
+                    if (data == 1) {
+                        alert("Data Berhasil Disimpan");
+                        // window.location.href = base_url+"ajax-penarikan-kredit-transaksional/e-form";
+                    } else {
+                        toastr.warning(data, "Data Gagal Disimpan");
                     }
-                });
-
-                return true;
-            },
-
-        });
-
-
+                },
+                error: function () {
+                    $("#mohon").hide();
+                    toastr.error("Terjadi kesalahan koneksi");
+                },
+            });
+            return true;
+        },
     });
+
+    // === FUNGSI SIMPAN PROGRESS PER FIELDSET ===
+    function saveStepProgress() {
+        var currentIndex = $("#form").steps("getCurrentIndex");
+        var currentFieldset = $("fieldset").eq(currentIndex);
+        var kd_data = $("#kd_data").val();
+
+        // Mapping tabel berdasarkan step
+        let tableMap = {
+            0: "tb_data_entry",
+            1: "tb_fcr",
+            2: "tb_upload_berkas", // misal fieldset ke-3 berisi upload
+            3: "tb_mpdkk" // misal fieldset ke-3 berisi upload
+        };
+
+        var targetTable = tableMap[currentIndex] || "tb_data_entry";
+        console.log("Step ke:", currentIndex, "Tabel:", targetTable);
+
+        $("#mohon").show();
+
+        // === STEP 3: UPLOAD FILE ===
+        if (currentIndex === 2) {
+            let formData = new FormData();
+            formData.append("kd_data", kd_data);
+            formData.append("target_table", targetTable);
+
+            // ambil semua input file di fieldset
+            currentFieldset.find("input[type='file']").each(function () {
+                if (this.files.length > 0) {
+                    formData.append($(this).attr("name"), this.files[0]);
+                }
+            });
+
+            $.ajax({
+                url: base_url+"ajax-penarikan-kredit-transaksional/simpan_progress_file",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $("#mohon").hide();
+                    if (data == 1) {
+                        toastr.success("File berhasil diunggah dan disimpan!");
+                    } else {
+                        toastr.warning(data, "Gagal menyimpan file");
+                    }
+                },
+                error: function () {
+                    $("#mohon").hide();
+                    toastr.error("Koneksi gagal, coba lagi.");
+                },
+            });
+        } 
+        // === STEP 1 & 2: TEXT DATA ===
+        else {
+            let inputs = currentFieldset.find(":input").serialize();
+            $.ajax({
+                url: base_url+"ajax-penarikan-kredit-transaksional/simpan_progress",
+                type: "POST",
+                data: inputs + "&kd_data=" + kd_data + "&target_table=" + targetTable,
+                success: function (data) {
+                    $("#mohon").hide();
+                    if (data == 1) {
+                        toastr.success("Data langkah ini berhasil disimpan!");
+                    } else {
+                        toastr.warning(data, "Gagal menyimpan data");
+                    }
+                },
+                error: function () {
+                    $("#mohon").hide();
+                    toastr.error("Koneksi gagal, coba lagi.");
+                },
+            });
+        }
+    }
+});
+
+
+
+
 </script>
 
 <?= $this->endSection(); ?>

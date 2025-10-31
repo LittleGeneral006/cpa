@@ -65,7 +65,7 @@
     <div class="col-lg-6">
         <label class="col-lg-12 control-label">Bidang Usaha</label>
         <div class="col-lg-12">
-            <input id="biadng_usaha" name="biadng_usaha" type="text" placeholder="" class="form-control class-readonly">
+            <input id="bidang_usaha" name="bidang_usaha" type="text" placeholder="" class="form-control class-readonly">
         </div>
     </div>
     <div class="col-lg-6">

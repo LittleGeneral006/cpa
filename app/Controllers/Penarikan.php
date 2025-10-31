@@ -101,12 +101,13 @@ class Penarikan extends BaseController
         }
         return $hasil;
     }
+
     public function tabel_penarikan()
     {
-        $sQuery1 = "SELECT * FROM v_data_master ";
-        $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
-        $sQuery3 = "SELECT COUNT(kd_master) AS TOT FROM v_data_master ";
-        $sIndexColumn = "kd_master";
+        $sQuery1 = "SELECT * FROM tb_penarikan ";
+        $sQuery2 = "SELECT COUNT(kd_data) AS TOTFIL FROM tb_penarikan ";
+        $sQuery3 = "SELECT COUNT(kd_data) AS TOT FROM tb_penarikan ";
+        $sIndexColumn = "kd_data";
 
         $where2 = " kd_unit_kerja <>'abc' and status = 'Aktif' ";
         // $this->kd_cab = 001;
@@ -124,15 +125,11 @@ class Penarikan extends BaseController
 
 
         $aColumns = array(
-            'nomor_aplikasi',
-            'tanggal_isi',
-            'nama_debitur',
-            'posisi_progress',
-            'progress',
-            'scoring',
-            'sla',
-            'nama_unit',
-            'status'
+            'nama',
+            'tanggal',
+            'termin',
+            'status',
+            'jumlah_penarikan'
         );
 
         $sLimit = "";
@@ -204,20 +201,17 @@ class Penarikan extends BaseController
         foreach ($rResult as $aRow) {
 
             $row = array();
-            $row[] = $aRow->nomor_aplikasi; //0
+            $row[] = $aRow->nama; //0
             // 1
-            if (!empty($aRow->tanggal_isi)) {
-                $row[] = date('d-m-Y', strtotime($aRow->tanggal_isi)); //
+            if (!empty($aRow->tanggal)) {
+                $row[] = date('d-m-Y', strtotime($aRow->tanggal)); //
             } else {
-                $row[] = $aRow->tanggal_isi; //
+                $row[] = $aRow->tanggal; //
             }
-            $row[] = $aRow->nama_debitur; //2
-            $row[] = $aRow->posisi_progress; //3
-            $row[] = $aRow->progress; //4
-            $row[] = $aRow->scoring; //5
-            $row[] = $aRow->sla; //6
-            $row[] = $aRow->nama_unit; //7
-            //8
+            $row[] = $aRow->termin; //2
+            $row[] = $aRow->jumlah_penarikan; //3
+            $row[] = $aRow->status; //4
+            //5
             if ($aRow->status == 'Aktif') {
                 $row[] = '<span class="label label-primary">' . $aRow->status . '</span>';
             } else if ($aRow->status == 'Tidak Aktif') {
@@ -230,7 +224,7 @@ class Penarikan extends BaseController
             // if ($this->permission2('Generate Dokumen penarikan Kredit Transaksional')) {
             //     $button_generate = '<li><button title="Generate" class="btn btn-sm dropdown-item" onclick="generate_dok(\'' . $aRow->kd_data . '\')"><div class="text-left"><i class="fa fa-download" aria-hidden="true"></i> Generate Data</div></button></li>';
             // }
-            //9
+            //8
             // $row[] = '<button title="Edit" id="edit_penarikan" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>'; //6
             $row[] = '<a data-toggle="dropdown" class="" href="#">' .
                 '<span class="text-dark text-xs block"><b>. . .</b></span>' .
@@ -249,6 +243,22 @@ class Penarikan extends BaseController
             // $i++;
         }
         echo json_encode($output);
+    }
+
+    public function get_nasabah_by_unit()
+    {
+        $kd_unit_kerja = session()->get('kd_induk_user');
+
+        $builder = $this->db->table('tb_data_entry')
+            ->select('id_data,kd_data, kd_unit_kerja,nama_debitur')
+            ->where('kd_unit_kerja', $kd_unit_kerja)
+            ->orderBy('nama_debitur', 'ASC')
+            ->get();
+
+        $result = $builder->getResultArray();
+
+        // kirim response JSON ke jQuery
+        return $this->response->setJSON($result);
     }
     public function tambah_penarikan()
     {
@@ -326,6 +336,67 @@ class Penarikan extends BaseController
     //     //     return redirect()->to('/login');
     //     // }
     // }
+
+    public function simpan_progress()
+    {
+        $kd_data = $this->request->getPost('kd_data');
+        $table = $this->request->getPost('target_table');
+        $data = $this->request->getPost();
+
+        unset($data['kd_data'], $data['target_table']);
+
+        if (!$kd_data || !$table) {
+            return "Parameter tidak lengkap.";
+        }
+
+        $builder = $this->db->table($table);
+        $cek = $builder->where('kd_data', $kd_data)->get()->getRow();
+
+        $data = array_filter($data, fn($v) => $v !== null && $v !== '');
+
+        if ($cek) {
+            $update = $builder->where('kd_data', $kd_data)->update($data);
+            return $update ? 1 : "Gagal update data.";
+        } else {
+            $data['kd_data'] = $kd_data;
+            $insert = $builder->insert($data);
+            return $insert ? 1 : "Gagal insert data.";
+        }
+    }
+
+    public function simpan_progress_file()
+    {
+        $kd_data = $this->request->getPost('kd_data');
+        $table = $this->request->getPost('target_table');
+        $builder = $this->db->table($table);
+
+        if (!$kd_data || !$table) {
+            return "Parameter tidak lengkap.";
+        }
+
+        $data = ['kd_data' => $kd_data];
+
+        // Tangani semua file input
+        foreach ($this->request->getFiles() as $fieldName => $file) {
+            if ($file->isValid() && !$file->hasMoved()) {
+                $newName = $file->getRandomName();
+                $file->move(FCPATH . 'uploads/', $newName);
+                $data[$fieldName] = $newName; // simpan nama file ke DB
+            }
+        }
+
+        $cek = $builder->where('kd_data', $kd_data)->get()->getRow();
+
+        if ($cek) {
+            $update = $builder->where('kd_data', $kd_data)->update($data);
+            return $update ? 1 : "Gagal update file.";
+        } else {
+            $insert = $builder->insert($data);
+            return $insert ? 1 : "Gagal insert file.";
+        }
+    }
+
+
     public function edit_penarikan($kd_data)
     {
         $this->hak_akses();
@@ -469,28 +540,56 @@ class Penarikan extends BaseController
             ->where('kd_data', $kd_data)
             ->get()
             ->getRowArray();
-
-        // Ambil semua termin dari tb_penarikan untuk kd_data ini
-        $penarikan = $this->db->table('tb_penarikan')
+        $dataFAKdata = $this->db->table('tb_fak_data')
             ->where('kd_data', $kd_data)
             ->get()
-            ->getResultArray();
-        $NomorFCR = $this->db->table('tb_nomor_fcr')
-            ->where('kd_cabang', $kd_unit_user)
+            ->getRowArray();
+        $dataFAKRL = $this->db->table('tb_fak_rl')
+            ->where('kd_data', $kd_data)
             ->get()
-            ->getResultArray();
+            ->getRowArray();
 
-        // Hitung jumlah termin yang sudah ada
-        $count = count($penarikan);
-        $nextTermin = $count + 1;
+        // Ambil semua termin dari tb_penarikan untuk kd_data ini
+       $penarikan = $this->db->table('tb_penarikan')
+        ->where('kd_data', $kd_data)
+        ->get()
+        ->getResultArray();
+
+    $NomorFCR = $this->db->table('tb_nomor_fcr')
+        ->where('kd_cabang', $kd_unit_user)
+        ->get()
+        ->getResultArray();
+
+    $mpdkk = $this->db->table('tb_mpdkk')
+        ->where('kd_data', $kd_data)
+        ->get()
+        ->getResultArray();
+
+    // === Hitung jumlah termin dan total penarikan ===
+    $count = count($penarikan);
+    $nextTermin = $count + 1;
+
+    $totalPenarikanMpdkk = 0;
+    if (!empty($mpdkk)) {
+        foreach ($mpdkk as $row) {
+            $totalPenarikanMpdkk += floatval($row['jumlah_penarikan_disetujui'] ?? 0);
+        }
+    }
+
 
         // Gabungkan hasil
         $result = [
             'data_entry'   => $dataEntry,   // detail dari tb_data_entry
             'fcr'   => $dataFCR,   // detail dari tb_data_entry
+            'fak_data'   => $dataFAKdata,   // detail dari tb_data_entry
+            'fak_rl'   => $dataFAKRL,   // detail dari tb_data_entry
             'penarikan'    => $penarikan,   // daftar penarikan yang sudah ada
             'next_termin'  => $nextTermin,  // termin berikutnya
             'nomor_fcr'  => $NomorFCR,  // termin berikutnya
+            'mpdkk'        => [
+                'detail' => $mpdkk,
+                'total_penarikan' => $totalPenarikanMpdkk
+            ]
         ];
 
         return $this->response->setJSON($result);   
@@ -519,6 +618,8 @@ class Penarikan extends BaseController
             'fcr'        => $this->cekTable('tb_fcr', $kd_data),
             'ceklist'    => $this->cekTable('tb_dok_ceklis', $kd_data),
             'mpdkk'      => $this->cekTable('tb_mpdkk', $kd_data),
+            'fak_data'      => $this->cekTable('tb_fak_data', $kd_data),
+            'fak_rl'      => $this->cekTable('tb_fak_rl', $kd_data),
         ];
 
         return $this->response->setJSON($hasil);

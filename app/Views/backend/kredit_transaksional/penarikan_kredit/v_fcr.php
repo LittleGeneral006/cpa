@@ -118,7 +118,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Lokasi Yang Dikunjungi</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="lokasi_edit" name="lokasi_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="lokasi_edit" name="lokasi_edit" rows="3" ></textarea>
                 <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Lokasi;Lokasi B;Lokasi C</p>
 
             </div>
@@ -126,7 +126,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tujuan Kunjungan</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="tujuan_kunjungan_edit" name="tujuan_kunjungan_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="tujuan_kunjungan_edit" name="tujuan_kunjungan_edit" rows="3" ></textarea>
 
             </div>
         </div>
@@ -141,14 +141,14 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Hasil Kunjungan</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="hasil_kunjungan_edit" name="hasil_kunjungan_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="hasil_kunjungan_edit" name="hasil_kunjungan_edit" rows="3" ></textarea>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tindak Lanjut</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="tindak_lanjut_edit" name="tindak_lanjut_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="tindak_lanjut_edit" name="tindak_lanjut_edit" rows="3" ></textarea>
             </div>
         </div>
     </div>
