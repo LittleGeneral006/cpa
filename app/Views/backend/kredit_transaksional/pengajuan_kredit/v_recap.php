@@ -1,4 +1,5 @@
 <h1>Recap</h1>
+
 <fieldset>
     <h2>Recap</h2>
     <div class="row">
@@ -201,7 +202,7 @@
     </div>
 
     <div class="form-group">
-        <div class="row">
+        <div class="row" id="hilang_pemasar">
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Pemasar</label>
                 <div class="col-lg-12">
@@ -209,7 +210,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="hilang_koordinator">
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Koordinator Pemasar</label>
                 <div class="col-lg-12">
@@ -217,7 +218,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="hilang_kacab">
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Cabang</label>
                 <div class="col-lg-12">
@@ -225,7 +226,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="hilang_analis">
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Analis Kredit</label>
                 <div class="col-lg-12">
@@ -233,7 +234,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="hilang_kabag">
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Bagian</label>
                 <div class="col-lg-12">
@@ -241,7 +242,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="hilang_kadiv">
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Divisi</label>
                 <div class="col-lg-12">
@@ -252,13 +253,72 @@
     </div>
 </fieldset>
 <script>
+    var posisi = '<?php echo $posisi ?>';
+
     $(document).ready(function() {
+        // disposisi tampil berjenjang
+        $('#hilang_pemasar').hide();
+        $('#hilang_koordinator').hide();
+        $('#hilang_kacab').hide();
+        $('#hilang_analis').hide();
+        $('#hilang_kabag').hide();
+        $('#hilang_kadiv').hide();
+
+        if(posisi == 'pemasar'){
+            $('#hilang_pemasar').show();
+            $('#hilang_koordinator').hide();
+            $('#hilang_kacab').hide();
+            $('#hilang_analis').hide();
+            $('#hilang_kabag').hide();
+            $('#hilang_kadiv').hide();
+        }
+        if(posisi == 'koordinator pemasar'){
+            $('#hilang_pemasar').show();
+            $('#hilang_koordinator').show();
+            $('#hilang_kacab').hide();
+            $('#hilang_analis').hide();
+            $('#hilang_kabag').hide();
+            $('#hilang_kadiv').hide();
+        }
+        if(posisi == 'kepala cabang'){
+            $('#hilang_pemasar').show();
+            $('#hilang_koordinator').show();
+            $('#hilang_kacab').show();
+            $('#hilang_analis').hide();
+            $('#hilang_kabag').hide();
+            $('#hilang_kadiv').hide();
+        }
+        if(posisi == 'analis kredit'){
+            $('#hilang_pemasar').show();
+            $('#hilang_koordinator').show();
+            $('#hilang_kacab').show();
+            $('#hilang_analis').show();
+            $('#hilang_kabag').hide();
+            $('#hilang_kadiv').hide();
+        }
+        if(posisi == 'kepala bagian'){
+            $('#hilang_pemasar').show();
+            $('#hilang_koordinator').show();
+            $('#hilang_kacab').show();
+            $('#hilang_analis').show();
+            $('#hilang_kabag').show();
+            $('#hilang_kadiv').hide();
+        }
+        if(posisi == 'kepala divisi'){
+            $('#hilang_pemasar').show();
+            $('#hilang_koordinator').show();
+            $('#hilang_kacab').show();
+            $('#hilang_analis').show();
+            $('#hilang_kabag').show();
+            $('#hilang_kadiv').show();
+        }
+        // disposisi
 
         // memberi nilai awal edit Data Entry
         isi_recap()
         // simpan data entry
         $('#save_recap').click(function(e) {
-            // alert('save fcr di klik')
+            
             $('#mohon').show()
             e.preventDefault(); // Mencegah form untuk submit secara default
             // Mendefinisikan array untuk menyimpan nilai input
@@ -358,6 +418,8 @@
         separator_input('nilai_proyek_tambah', 'nilai_proyek_tambah_separators')
         separator_input('plafond_tambah', 'plafond_separators')
         // batas panggil function buat separator input disemua tab pemasar
+
+
     });
     // bikin function
     function isi_recap() {
@@ -406,6 +468,7 @@
     }
 
     function data_recap() {
+
         var data_recap = {
             kd_data_tambah: $('#kd_data_tambah').val(),
 
@@ -416,7 +479,18 @@
             disposisi_kepala_bagian_sc: $('#disposisi_kepala_bagian_sc').val(),
             disposisi_kepala_divisi_sc: $('#disposisi_kepala_divisi_sc').val(),
 
+            edit_data : '<?= $edit_data ?>',
+            edit_data_koordinator : '<?= $edit_data_koordinator ?>',
+            edit_data_kepala_cabang : '<?= $edit_data_kepala_cabang ?>',
+            edit_data_analis_kredit : '<?= $edit_data_analis_kredit ?>',
+            edit_data_kepala_bagian : '<?= $edit_data_kepala_bagian ?>',
+            edit_data_kepala_divisi : '<?= $edit_data_kepala_divisi ?>',
+
         };
+        // console.log(edit_data)
+        // console.log(data_recap.disposisi_sc)
+        // console.log(data_recap.disposisi_koordinator_pemasar_sc)
+
         return data_recap
     }
 

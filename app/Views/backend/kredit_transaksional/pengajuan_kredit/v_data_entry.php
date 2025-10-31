@@ -1235,6 +1235,22 @@
             jumlah_agunan_tambah: $('#jumlah_agunan_tambah').val(),
             jenis_agunan_tambah: kumpulan_agunan,
 
+            // tambahan wajib isi rekomendasi saat klik finish
+            edit_data : '<?= $edit_data ?>',
+            edit_data_koordinator : '<?= $edit_data_koordinator ?>',
+            edit_data_kepala_cabang : '<?= $edit_data_kepala_cabang ?>',
+            edit_data_analis_kredit : '<?= $edit_data_analis_kredit ?>',
+            edit_data_kepala_bagian : '<?= $edit_data_kepala_bagian ?>',
+            edit_data_kepala_divisi : '<?= $edit_data_kepala_divisi ?>',
+
+            disposisi_sc: $('#disposisi_sc').val(),
+            disposisi_koordinator_pemasar_sc: $('#disposisi_koordinator_pemasar_sc').val(),
+            disposisi_kepala_cabang_sc: $('#disposisi_kepala_cabang_sc').val(),
+            disposisi_analis_kredit_sc: $('#disposisi_analis_kredit_sc').val(),
+            disposisi_kepala_bagian_sc: $('#disposisi_kepala_bagian_sc').val(),
+            disposisi_kepala_divisi_sc: $('#disposisi_kepala_divisi_sc').val(),
+            // tambahan wajib isi rekomendasi saat klik finish
+
             // upload dokumen
         };
         return data_data_entry;

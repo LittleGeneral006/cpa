@@ -30,14 +30,33 @@ class Pengajuan extends BaseController
         $this->session = session();
     }
 
+<<<<<<< HEAD
+    public function v_pengajuan($pengajuan_approved = 0)
+    {
+        if(!empty($pengajuan_approved)){
+            if($pengajuan_approved == 0){
+
+            }else if($pengajuan_approved == 1){
+
+            }else{
+                echo 'Halaman tidak ditemukan :(';
+                die;
+            }
+        }
+=======
     public function v_pengajuan(){
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $tambah_pengajuan_kredit_transaksional = $this->permission2('Tambah Pengajuan Kredit Transaksional');
         if ($hasil == true) {
             $data['title'] = 'Pengajuan Kredit Transaksional';
+            if($pengajuan_approved == 1){
+                $data['title'] = 'Pengajuan Kredit Transaksional Approved';
+            }
             $data['permission'] = $permission;
             $data['tambah_pengajuan_kredit_transaksional'] = $tambah_pengajuan_kredit_transaksional;
+            $data['pengajuan_approved'] = $pengajuan_approved;
 
             return view('backend/kredit_transaksional/pengajuan_kredit/v_pengajuan', $data);
         } else {
@@ -105,7 +124,12 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
+<<<<<<< HEAD
+    public function tabel_pengajuan($pengajuan_approved = 0)
+    {
+=======
     public function tabel_pengajuan(){
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         $this->update_sla();
         $sQuery1 = "SELECT * FROM v_data_master ";
         $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
@@ -125,6 +149,12 @@ class Pengajuan extends BaseController
         if (session()->get('konsolidasi_user') == '3') {
             $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' and status = 'Aktif' and reject ='Tidak' ";
             // $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' ";
+        }
+        if($pengajuan_approved == 0){
+            $where2 .= " and progress != 'Approved' ";
+        }
+        if($pengajuan_approved == 1){
+            $where2 .= " and progress = 'Approved' ";
         }
 
 
@@ -320,10 +350,33 @@ class Pengajuan extends BaseController
             $data['tampil_faa'] = $this->permission2('Tampil FAA');
             $data['tampil_mauk'] = $this->permission2('Tampil MAUK');
             $data['tampil_dcl_compliance'] = $this->permission2('Tampil DCL Compliance');
+            
+            $data['posisi'] = $this->posisi_progress($data_master->posisi_progress);
+
             return view('backend/kredit_transaksional/pengajuan_kredit/v_edit_pengajuan', $data);
         } else {
             return redirect()->to('/login');
         }
+    }
+    public function posisi_progress($posisi_progress)
+    {
+        // baru
+        $posisi = null;
+        if($posisi_progress == 'Pemasar'){
+            $posisi = 'pemasar';
+        }else if($posisi_progress == 'Koordinator Pemasar'){
+            $posisi = 'koordinator pemasar';
+        }else if($posisi_progress == 'Kepala Cabang'){
+            $posisi = 'kepala cabang';
+        }else if($posisi_progress == 'Analis Kredit'){
+            $posisi = 'analis kredit';
+        }else if($posisi_progress == 'Kepala Bagian'){
+            $posisi = 'kepala bagian';
+        }else if($posisi_progress == 'Kepala Divisi'){
+            $posisi = 'kepala divisi';
+        }
+        return $posisi;
+        // batas baru
     }
 
     public function checkDataRecap($tabel){
@@ -1361,6 +1414,7 @@ class Pengajuan extends BaseController
         // var_dump($cek);
         // die;
         // echo json_encode($cek);
+
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -6123,12 +6177,12 @@ class Pengajuan extends BaseController
 
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
-
+        
         $index = !empty($this->request->getPost('imb')) ? count($this->request->getPost('imb')) : 0;
         // var_dump($kd_data);
         // die;
         $this->edit_status_gambar($kd_data, $index);
-
+        
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_fcr_agunan where kd_data = '" . $kd_data . "' ")->getNumRows();
         if ($cek_kd_data > 0) {
             $this->db->table('tb_fcr_agunan')->where('kd_data', $kd_data)->update($data);
@@ -8955,11 +9009,47 @@ class Pengajuan extends BaseController
             $this->db->table('tb_data_master')->where('kd_data', $kd_data)->update($data);
         }
     }
+<<<<<<< HEAD
+    public function wajibDiisi($akses, $inputan, $pesan)
+    {
+    
+        if($akses == 'boleh edit'){
+            
+            if(empty($inputan)){
+                $hasil = [
+                    'status' => 'error',
+                    'message' => 'rekomendasi ' .$pesan. ' harus diisi'
+                ];
+                echo json_encode($hasil);
+                die;
+            }
+        }
+
+    }
+    
+    public function edit_recap()
+    {
+        // $cek = $this->request->getPost();
+=======
     public function edit_recap(){
         // $cek = $this->request->getFile('upload_dokumen_tambah');
+>>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         // var_dump($cek);
         // die;
-        // echo json_encode($cek);
+        if($this->request->getPost('edit_data') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data'), $this->request->getPost('disposisi_sc'), 'pemasar');
+        }else if($this->request->getPost('edit_data_koordinator') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_koordinator'), $this->request->getPost('disposisi_koordinator_pemasar_sc'), 'koordinator pemasar');
+        }else if($this->request->getPost('edit_data_kepala_cabang') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_cabang'), $this->request->getPost('disposisi_kepala_cabang_sc'), 'kepala cabang');
+        }else if($this->request->getPost('edit_data_analis_kredit') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_analis_kredit'), $this->request->getPost('disposisi_analis_kredit_sc'), 'analis kredit');
+        }else if($this->request->getPost('edit_data_kepala_bagian') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_bagian'), $this->request->getPost('disposisi_kepala_bagian_sc'), 'kepala bagian');
+        }else if($this->request->getPost('edit_data_kepala_divisi') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_divisi'), $this->request->getPost('disposisi_kepala_divisi_sc'), 'kepala divisi');
+        }
+
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9065,6 +9155,21 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
+
+        if($this->request->getPost('edit_data') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data'), $this->request->getPost('disposisi_sc'), 'pemasar');
+        }else if($this->request->getPost('edit_data_koordinator') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_koordinator'), $this->request->getPost('disposisi_koordinator_pemasar_sc'), 'koordinator pemasar');
+        }else if($this->request->getPost('edit_data_kepala_cabang') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_cabang'), $this->request->getPost('disposisi_kepala_cabang_sc'), 'kepala cabang');
+        }else if($this->request->getPost('edit_data_analis_kredit') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_analis_kredit'), $this->request->getPost('disposisi_analis_kredit_sc'), 'analis kredit');
+        }else if($this->request->getPost('edit_data_kepala_bagian') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_bagian'), $this->request->getPost('disposisi_kepala_bagian_sc'), 'kepala bagian');
+        }else if($this->request->getPost('edit_data_kepala_divisi') == 'boleh edit'){
+            $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_divisi'), $this->request->getPost('disposisi_kepala_divisi_sc'), 'kepala divisi');
+        }
+
         if (!$this->validate([
             'unit_kerja_tambah' => [
                 'rules' => 'required',
