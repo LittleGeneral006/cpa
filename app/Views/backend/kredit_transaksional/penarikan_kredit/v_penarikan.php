@@ -196,110 +196,6 @@
             ]
 
         });
-        $('#tabel_penarikan tbody ').on('click', '#edit_penarikan', function() {
-
-            document.getElementById("form_penarikan_edit").reset();
-            var data = table.row($(this).parents('tr')).data();
-
-            // baru
-            $.ajax({
-                url: "<?php echo base_url() ?>unit_kerja/get_tabel_penarikan_by_id/" + data[5],
-                type: "get",
-                dataType: "JSON",
-                success: function(response) {
-                    // console.log(response)
-                    var data = response.data
-                    $('#kd_penarikan_edit').val(data[5]);
-                    // $('#kd_induk_penarikan_edit').val(data[6]);
-                    $('#nama_penarikan_edit').val(data[7]);
-                    $('#alamat_penarikan_edit').val(data[8]);
-                    $('#telpon_penarikan_edit').val(data[9]);
-                    $('#aktif_penarikan_edit').val(data[10]);
-
-                    var kd_induk = data[6];
-                    console.log(kd_induk);
-
-                    $.ajax({
-                        url: "<?php echo base_url('unit_kerja/get_penarikan_tanpa_konsolidasi'); ?>",
-                        type: "get",
-                        dataType: "JSON",
-                        success: function(data) {
-                            var options = data.unit;
-                            var select = $('#kd_induk_penarikan_edit');
-
-                            select.empty();
-                            // Tambahkan opsi "Pilih" yang dipilih dan dinonaktifkan
-                            var defaultOption = new Option('Pilih', '', true, true);
-                            $(defaultOption).prop('disabled', true);
-                            select.append(defaultOption);
-
-                            $.each(options, function(index, option) {
-                                var newOption = new Option(option.kd_penarikan + ' - ' + option.nama_penarikan, option.kd_penarikan, false, false);
-                                if (option.kd_penarikan === kd_induk) {
-                                    $(newOption).prop('selected', true);
-                                }
-                                select.append(newOption);
-                            });
-
-                            select.select2({
-                                placeholder: 'Pilih',
-                                dropdownParent: $('#kd_induk_penarikan_edit').parent()
-                            });
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.log("Error get data");
-                        }
-                    });
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert("Gagal mendapatkan data");
-                }
-            });
-            // batas baru
-
-        });
-        
-        $('#tabel_penarikan tbody ').on('click', '#detail_penarikan', function() {
-            // newx_702 = 1;
-            // document.getElementById("form_penarikan_hapus").reset();
-            var data = table.row($(this).parents('tr')).data();
-            $("#modal_penarikan_detail").modal('show')
-
-            // baru
-            $.ajax({
-                url: "<?php echo base_url() ?>unit_kerja/get_tabel_penarikan_by_id/" + data[5],
-                type: "get",
-                dataType: "JSON",
-                success: function(response) {
-                    // console.log(response)
-                    var data = response.data
-                    $('#nama_penarikan_detail').html(data[7]);
-                    $('#dkd_penarikan').html(data[5]);
-                    $('#dkd_induk_penarikan').html(data[6]);
-                    $('#dnama_penarikan').html(data[7]);
-                    $('#dalamat_penarikan').html(data[8]);
-                    $('#dtelpon_penarikan').html(data[9]);
-                    $('#daktif_penarikan').html(data[18]);
-
-                    $('#dmaker_penarikan').html(data[11]);
-                    $('#dwaktu_maker_penarikan').html(data[12]);
-                    $('#dkd_penarikan_maker_penarikan').html(data[13]);
-
-                    $('#dupdater_penarikan').html(data[14]);
-                    $('#dwaktu_updater_penarikan').html(data[15]);
-                    $('#dkd_penarikan_updater_penarikan').html(data[16]);
-
-                    $('#dkd_cab_penarikan').html(data[17]);
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert("Gagal mendapatkan data");
-                }
-            });
-            // batas baru
-
-        });
 
     });
 
@@ -307,86 +203,54 @@
     function tambah_penarikan() {
         document.getElementById("form_penarikan_tambah").reset();
 
-        $.ajax({
-            url: "<?php echo base_url('unit_kerja/get_penarikan_tanpa_konsolidasi'); ?>",
-            type: "get",
-            dataType: "JSON",
-            // data: {
-            //     search: $('#searchInput').val()
-            // },
-            success: function(data) {
-                var options = data.unit;
-                var select = $('#kd_induk_penarikan_tambah');
-
-                select.empty();
-                // Tambahkan opsi "Pilih" yang dipilih dan dinonaktifkan
-                var defaultOption = new Option('Pilih', '', true, true);
-                $(defaultOption).prop('disabled', true);
-                select.append(defaultOption);
-
-                $.each(options, function(index, option) {
-                    var newOption = new Option(option.kd_penarikan + ' - ' + option.nama_penarikan, option.kd_penarikan, false, false);
-                    select.append(newOption);
-                });
-
-                select.select2({
-                    placeholder: 'Pilih',
-                    dropdownParent: $('#kd_induk_penarikan_tambah').parent()
-                });
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log("Error get data");
-            }
-        });
-
         $("#modal_penarikan_tambah").modal('show')
     }
     //proses tambah
-    $("#form_penarikan_tambah").validate({
-        submitHandler: function(form) {
-            $('#mohon').show()
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() ?>unit_kerja/simpan_penarikan",
-                data: $("#form_penarikan_tambah").serialize(),
-                success: function(d) {
-                    if (d == '1') {
-                        $("#modal_penarikan_tambah").modal('hide')
-                        $('#mohon').hide()
-                        toastr.success('Simpan Data Berhasil', 'Berhasil')
-                        $('#tabel_penarikan').DataTable().ajax.reload();
-                    } else {
+    // $("#form_penarikan_tambah").validate({
+    //     submitHandler: function(form) {
+    //         $('#mohon').show()
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "<?php echo base_url() ?>unit_kerja/simpan_penarikan",
+    //             data: $("#form_penarikan_tambah").serialize(),
+    //             success: function(d) {
+    //                 if (d == '1') {
+    //                     $("#modal_penarikan_tambah").modal('hide')
+    //                     $('#mohon').hide()
+    //                     toastr.success('Simpan Data Berhasil', 'Berhasil')
+    //                     $('#tabel_penarikan').DataTable().ajax.reload();
+    //                 } else {
 
-                        toastr.warning(d, 'Gagal')
-                        $('#mohon').hide()
-                    }
-                }
-            })
-        }
-    });
+    //                     toastr.warning(d, 'Gagal')
+    //                     $('#mohon').hide()
+    //                 }
+    //             }
+    //         })
+    //     }
+    // });
     //proses edit
-    $("#form_penarikan_edit").validate({
-        submitHandler: function(form) {
-            $('#mohon').show()
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() ?>unit_kerja/edit_penarikan",
-                data: $("#form_penarikan_edit").serialize(),
-                success: function(d) {
-                    if (d == '1') {
-                        $("#modal_penarikan_edit").modal('hide')
-                        $('#mohon').hide()
-                        toastr.success('Edit Data Berhasil', 'Berhasil')
-                        $('#tabel_penarikan').DataTable().ajax.reload();
-                    } else {
+    // $("#form_penarikan_edit").validate({
+    //     submitHandler: function(form) {
+    //         $('#mohon').show()
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "<?php echo base_url() ?>unit_kerja/edit_penarikan",
+    //             data: $("#form_penarikan_edit").serialize(),
+    //             success: function(d) {
+    //                 if (d == '1') {
+    //                     $("#modal_penarikan_edit").modal('hide')
+    //                     $('#mohon').hide()
+    //                     toastr.success('Edit Data Berhasil', 'Berhasil')
+    //                     $('#tabel_penarikan').DataTable().ajax.reload();
+    //                 } else {
 
-                        toastr.warning(d, 'Gagal')
-                        $('#mohon').hide()
-                    }
-                }
-            })
-        }
-    });
+    //                     toastr.warning(d, 'Gagal')
+    //                     $('#mohon').hide()
+    //                 }
+    //             }
+    //         })
+    //     }
+    // });
     $(document).ready(function () {
     // 1️⃣ Ambil data nasabah dari server
         $.ajax({
@@ -404,7 +268,7 @@
             data.forEach(function (row) {
                 // gunakan data-* untuk menyimpan cabang di option
                 select.append(
-                `<option value="${row.id_data}" data-cabang="${row.kd_unit_kerja}">${row.nama_debitur}</option>`
+                `<option value="${row.kd_data}" data-cabang="${row.kd_unit_kerja}">${row.nama_debitur} - ${row.kd_unit_kerja}</option>`
                 );
             });
             },
@@ -419,6 +283,53 @@
             $("#cabang_tambah_display").val(cabang);
             $("#cabang_tambah").val(cabang);
         });
+        $("#form_penarikan_tambah").on("submit", function (e) {
+    e.preventDefault();
+
+    const $opt = $("#nama_nasabah_tambah").find(":selected");
+    if (!$opt.val()) {
+      alert("Silakan pilih nasabah terlebih dahulu");
+      return;
+    }
+
+    const kd_data = $opt.val(); // value option = kd_data
+    const kd_unit_kerja = $opt.data("cabang") || $("#cabang_tambah").val() || "";
+    // nama diambil dari teks option sebelum " - "
+    const txt = ($opt.text() || "").trim();
+    const nama = txt.split(" - ")[0] || txt;
+
+    // Kirim ke server
+    $.ajax({
+      url: "<?= base_url('ajax-penarikan-kredit-transaksional/penarikan_simpan') ?>",
+      type: "POST",
+      dataType: "json",
+      data: {
+        kd_data: kd_data,
+        nama: nama,
+        kd_unit_kerja: kd_unit_kerja
+      },
+      beforeSend: function () {
+        $("#btns_92").prop("disabled", true).val("Menyimpan...");
+      },
+      success: function (res) {
+        $("#btns_92").prop("disabled", false).val("Simpan");
+
+        if (res && res.status === "ok") {
+          // Tutup modal & refresh tabel/halaman sesuai kebutuhan
+          $("#modal_penarikan_tambah").modal("hide");
+          // TODO: reload datatable / location.reload() / panggil fungsi refresh grid
+          // location.reload();
+          alert("Berhasil membuat baris penarikan sebanyak " + res.jumlah_termin + " termin.");
+        } else {
+          alert(res.message || "Gagal menyimpan.");
+        }
+      },
+      error: function () {
+        $("#btns_92").prop("disabled", false).val("Simpan");
+        alert("Koneksi gagal. Coba lagi.");
+      }
+    });
+  });
     });
 </script>
 

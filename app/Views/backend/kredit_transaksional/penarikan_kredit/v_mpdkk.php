@@ -70,7 +70,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Penarikan Tahap</label>
-                <input type="text" name="penarikan_tahap_mpdkk" id="penarikan_tahap_mpdkk"  class="form-control">
+                <input type="text" name="penarikan_tahap_mpdkk" id="penarikan_tahap_mpdkk"  class="form-control" value="<?= esc($termin) ?>">
             </div>
             <div class="form-group">
                 <label>Tanggal Permohonan</label>

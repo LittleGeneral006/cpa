@@ -30,7 +30,6 @@ class Pengajuan extends BaseController
         $this->session = session();
     }
 
-<<<<<<< HEAD
     public function v_pengajuan($pengajuan_approved = 0)
     {
         if(!empty($pengajuan_approved)){
@@ -43,9 +42,6 @@ class Pengajuan extends BaseController
                 die;
             }
         }
-=======
-    public function v_pengajuan(){
->>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $tambah_pengajuan_kredit_transaksional = $this->permission2('Tambah Pengajuan Kredit Transaksional');
@@ -124,12 +120,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-<<<<<<< HEAD
     public function tabel_pengajuan($pengajuan_approved = 0)
     {
-=======
-    public function tabel_pengajuan(){
->>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         $this->update_sla();
         $sQuery1 = "SELECT * FROM v_data_master ";
         $sQuery2 = "SELECT COUNT(kd_master) AS TOTFIL FROM v_data_master ";
@@ -9009,7 +9001,6 @@ class Pengajuan extends BaseController
             $this->db->table('tb_data_master')->where('kd_data', $kd_data)->update($data);
         }
     }
-<<<<<<< HEAD
     public function wajibDiisi($akses, $inputan, $pesan)
     {
     
@@ -9030,10 +9021,6 @@ class Pengajuan extends BaseController
     public function edit_recap()
     {
         // $cek = $this->request->getPost();
-=======
-    public function edit_recap(){
-        // $cek = $this->request->getFile('upload_dokumen_tambah');
->>>>>>> 97f9296f36771c1810baa6ee1becc9fad902ea71
         // var_dump($cek);
         // die;
         if($this->request->getPost('edit_data') == 'boleh edit'){

@@ -6,8 +6,9 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Unit Kerja</label>
             <div class="col-lg-12">
-                <select class="form-control class-disabled select" id="unit_kerja" name="unit_kerja">
-                </select>
+                <!-- <select class="form-control class-disabled select" id="unit_kerja" name="unit_kerja">
+                </select> -->
+                <input id="unit_kerja" name="unit_kerja" type="text" placeholder="" class="form-control class-readonly">
             </div>
         </div>
         <div class="col-lg-6">
@@ -51,7 +52,7 @@
     <div class="col-lg-6">
         <label class="col-lg-12 control-label">Nama Debitur</label>
         <div class="col-lg-12">
-            <input id="nama_debitur" name="nama_debitur" type="text" placeholder="" class="form-control class-readonly">
+            <input id="nama_debitur_induk" name="nama_debitur_induk" type="text" placeholder="" class="form-control class-readonly">
         </div>
     </div>
     <div class="col-lg-6">
@@ -85,7 +86,7 @@
     <div class="col-lg-6">
         <label class="col-lg-12 control-label">Alamat Kantor</label>
         <div class="col-lg-12">
-            <input id="alamat_kantor" name="alamat_kantor" type="text" placeholder="" class="form-control class-readonly">
+            <input id="alamat_kantor_induk" name="alamat_kantor_induk" type="text" placeholder="" class="form-control class-readonly">
         </div>
     </div>
 </div>
@@ -93,13 +94,13 @@
     <div class="col-lg-6">
         <label class="col-lg-12 control-label">Alamat Gudang/Pabrik/workshop</label>
         <div class="col-lg-12">
-            <input id="alamat_gudang" name="alamat_gudang" type="text" placeholder="" class="form-control class-readonly">
+            <input id="alamat_gudang_induk" name="alamat_gudang_induk" type="text" placeholder="" class="form-control class-readonly">
         </div>
     </div>
     <div class="col-lg-6">
         <label class="col-lg-12 control-label">Group Debitur</label>
         <div class="col-lg-12">
-            <input id="group_debitur" name="group_debitur" type="text" placeholder="" class="form-control class-readonly">
+            <input id="group_debitur_induk" name="group_debitur_induk" type="text" placeholder="" class="form-control class-readonly">
         </div>
     </div>
 </div>

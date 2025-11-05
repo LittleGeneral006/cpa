@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: drwpx-tzdsk
+created: 2025-11-05T23:14:47+08:00

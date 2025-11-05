@@ -1,3 +1,9 @@
+<style>
+.file-thumb{max-width:220px;max-height:160px;border-radius:6px}
+.is-valid{border-color:#198754!important}
+.is-invalid{border-color:#dc3545!important}
+</style>
+
 <h1>Dokumen Pendukung</h1>
 <fieldset>
     <h2>Dokumen Pendukung</h2>
@@ -30,32 +36,34 @@
 
     <div class="form-group row">
         <div class="col-lg-6">
-            <label class="col-lg-12 control-label">Permohonan Penarikan</label>
-            <div class="col-lg-12">
-                <input type="file" class="form-control-file" id="permohonan_penarikan" name="permohonan_perizinan" accept=".pdf,.jpg,.jpeg,.png">
-            </div>
+            <label>Permohonan Penarikan</label>
+            <input type="file" id="permohonan_penarikan" name="permohonan_penarikan" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <div id="permohonan_penarikan_status" class="mt-1"></div>
+            <div id="permohonan_penarikan_preview" class="mt-2"></div>
         </div>
         <div class="col-lg-6">
-            <label class="col-lg-12 control-label">Dokumen Kebutuhan Penarikan</label>
-            <div class="col-lg-12">
-                <input type="file" class="form-control-file" id="dokumen_kebutuhan_penarikan" name="dokumen_kebutuhan_penarikan" accept=".pdf,.jpg,.jpeg,.png">
-            </div>
+            <label>Dokumen Kebutuhan Penarikan</label>
+            <input type="file" id="dokumen_kebutuhan_penarikan" name="dokumen_kebutuhan_penarikan" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <div id="dokumen_kebutuhan_penarikan_status" class="mt-1"></div>
+            <div id="dokumen_kebutuhan_penarikan_preview" class="mt-2"></div>
         </div>
     </div>
+
     <div class="form-group row">
         <div class="col-lg-6">
-            <label class="col-lg-12 control-label">Dokumen Progres</label>
-            <div class="col-lg-12">
-                <input type="file" class="form-control-file" id="dokumen_progres" name="dokumen_progres" accept=".pdf,.jpg,.jpeg,.png">
-            </div>
+            <label>Dokumen Progres</label>
+            <input type="file" id="dokumen_progres" name="dokumen_progres" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <div id="dokumen_progres_status" class="mt-1"></div>
+            <div id="dokumen_progres_preview" class="mt-2"></div>
         </div>
         <div class="col-lg-6">
-            <label class="col-lg-12 control-label">Dokumen Lainnya</label>
-            <div class="col-lg-12">
-                <input type="file" class="form-control-file" id="dokumen_lainnya" name="dokumen_lainnya" accept=".pdf,.jpg,.jpeg,.png">
-            </div>
+            <label>Dokumen Lainnya</label>
+            <input type="file" id="dokumen_lainnya" name="dokumen_lainnya" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <div id="dokumen_lainnya_status" class="mt-1"></div>
+            <div id="dokumen_lainnya_preview" class="mt-2"></div>
         </div>
     </div>
+
 
     <div class="form-group row">
         <div class="col-lg-12">

@@ -109,17 +109,17 @@ class Penarikan extends BaseController
         $sQuery3 = "SELECT COUNT(kd_data) AS TOT FROM tb_penarikan ";
         $sIndexColumn = "kd_data";
 
-        $where2 = " kd_unit_kerja <>'abc' and status = 'Aktif' ";
+        $where2 = " kd_unit_kerja <>'abc'  ";
         // $this->kd_cab = 001;
         if (session()->get('konsolidasi_user') == '1') {
-            $where2 = " kd_unit_kerja <>'abc' and status = 'Aktif' ";
+            $where2 = " kd_unit_kerja <>'abc'  ";
         }
         if (session()->get('konsolidasi_user') == '2') {
-            $where2 = " kd_induk_unit = '" . session()->get('kd_induk_user') . "' and status = 'Aktif' ";
+            $where2 = " kd_induk_unit = '" . session()->get('kd_induk_user') . "' ";
             // $where2 = " kd_unit_kerja <>'abc' and status = 'Aktif' ";
         }
         if (session()->get('konsolidasi_user') == '3') {
-            $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' and status = 'Aktif' ";
+            $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' ";
             // $where2 = " kd_unit_kerja <>'abc' and status = 'Aktif' ";
         }
 
@@ -210,8 +210,8 @@ class Penarikan extends BaseController
             }
             $row[] = $aRow->termin; //2
             $row[] = $aRow->jumlah_penarikan; //3
-            $row[] = $aRow->status; //4
-            //5
+            // $row[] = $aRow->status; //4
+            //4
             if ($aRow->status == 'Aktif') {
                 $row[] = '<span class="label label-primary">' . $aRow->status . '</span>';
             } else if ($aRow->status == 'Tidak Aktif') {
@@ -231,7 +231,7 @@ class Penarikan extends BaseController
                 '</a>' .
                 '<ul class="dropdown-menu animated fadeInRight m-t-xs">' .
                 // '<li><a class="dropdown-item" href="profile.html">Profile</a></li>'.
-                '<li><a href="' . base_url() . 'edit-penarikan-kredit-transaksional/' . sha1($aRow->kd_data) . '" class="btn btn-sm dropdown-item" title="Edit"><div class="text-left"><i class="fa fa-pencil" aria-hidden="true"></i> Proses Penarikan</div></a></li>' .
+                '<li><a href="' . base_url() . 'edit-penarikan-kredit-transaksional/' . sha1($aRow->kd_data) . '/'. sha1($aRow->termin) . '" class="btn btn-sm dropdown-item" title="Edit"><div class="text-left"><i class="fa fa-pencil" aria-hidden="true"></i> Proses Penarikan</div></a></li>' .
                 // $button_generate .
                 '<li><button title="History Return" class="btn btn-sm dropdown-item" onclick="modal_return(\'' . $aRow->kd_data . '\')"><div class="text-left"><i class="fa fa-undo" aria-hidden="true"></i> History Return</div></button></li>' .
 
@@ -336,79 +336,519 @@ class Penarikan extends BaseController
     //     //     return redirect()->to('/login');
     //     // }
     // }
+    // public function penarikan_simpan()
+    // {
+    //     $kd_data       = $this->request->getPost('kd_data');
+    //     $nama          = $this->request->getPost('nama');
+    //     $kd_unit_kerja = $this->request->getPost('kd_unit_kerja');
 
-    public function simpan_progress()
-    {
-        $kd_data = $this->request->getPost('kd_data');
-        $table = $this->request->getPost('target_table');
-        $data = $this->request->getPost();
+    //     if (!$kd_data || !$nama || !$kd_unit_kerja) {
+    //         return $this->response->setJSON([
+    //             'status'  => 'error',
+    //             'message' => 'Parameter tidak lengkap.'
+    //         ]);
+    //     }
 
-        unset($data['kd_data'], $data['target_table']);
+    //     $db = \Config\Database::connect();
+    //     $db->transBegin();
 
-        if (!$kd_data || !$table) {
-            return "Parameter tidak lengkap.";
-        }
+    //     try {
+    //         // 1) Ambil jumlah_termin dari tb_fak_data berdasarkan kd_data
+    //         $row = $db->table('tb_fak_data')
+    //             ->select('jumlah_termin')
+    //             ->where('kd_data', $kd_data)
+    //             ->get()
+    //             ->getRowArray();
 
-        $builder = $this->db->table($table);
-        $cek = $builder->where('kd_data', $kd_data)->get()->getRow();
+    //         if (!$row) {
+    //             throw new \RuntimeException('Data di tb_fak_data tidak ditemukan untuk kd_data: ' . $kd_data);
+    //         }
 
-        $data = array_filter($data, fn($v) => $v !== null && $v !== '');
+    //         $jumlahTermin = (int)($row['jumlah_termin'] ?? 0);
+    //         if ($jumlahTermin <= 0) {
+    //             throw new \RuntimeException('jumlah_termin tidak valid (<= 0).');
+    //         }
 
-        if ($cek) {
-            $update = $builder->where('kd_data', $kd_data)->update($data);
-            return $update ? 1 : "Gagal update data.";
-        } else {
-            $data['kd_data'] = $kd_data;
-            $insert = $builder->insert($data);
-            return $insert ? 1 : "Gagal insert data.";
-        }
+    //         // OPSIONAL: hapus dulu baris lama agar tidak dobel jika user simpan ulang
+    //         // (Jika kamu ingin idempotent)
+    //         $db->table('tb_penarikan')->where('kd_data', $kd_data)->delete();
+
+    //         // 2) Siapkan batch insert ke tb_penarikan
+    //         $now  = date('Y-m-d H:i:s');
+    //         $rows = [];
+    //         for ($i = 1; $i <= $jumlahTermin; $i++) {
+    //             $rows[] = [
+    //                 'kd_data'       => $kd_data,
+    //                 'termin'     => $i,
+    //                 'nama'          => $nama,
+    //                 'kd_unit_kerja' => $kd_unit_kerja,
+    //                 'status'        => 'draft',       // opsional
+    //                 'created_at'    => $now,          // opsional
+    //                 'updated_at'    => $now           // opsional
+    //             ];
+    //         }
+
+    //         // 3) Insert batch
+    //         if (!empty($rows)) {
+    //             $db->table('tb_penarikan')->insertBatch($rows);
+    //         }
+
+    //         $db->transCommit();
+
+    //         return $this->response->setJSON([
+    //             'status'         => 'ok',
+    //             'jumlah_termin'  => $jumlahTermin
+    //         ]);
+    //     } catch (\Throwable $e) {
+    //         $db->transRollback();
+    //         return $this->response->setJSON([
+    //             'status'  => 'error',
+    //             'message' => $e->getMessage()
+    //         ]);
+    //     }
+    // }
+//     public function penarikan_simpan()
+// {
+//     $kd_data       = $this->request->getPost('kd_data');
+//     $nama          = $this->request->getPost('nama');
+//     $kd_unit_kerja = $this->request->getPost('kd_unit_kerja');
+
+//     if (!$kd_data || !$nama || !$kd_unit_kerja) {
+//         return $this->response->setJSON(['status'=>'error','message'=>'Parameter tidak lengkap.']);
+//     }
+
+//     $db = \Config\Database::connect(); // pastikan group ini yang benar
+//     $db->transBegin();
+
+//     try {
+//         // 1) Ambil jumlah_termin
+//         $row = $db->table('tb_fak_data')
+//                   ->select('jumlah_termin')
+//                   ->where('kd_data', $kd_data)
+//                   ->get()
+//                   ->getRowArray();
+
+//         if (!$row) {
+//             throw new \RuntimeException("tb_fak_data tidak ditemukan untuk kd_data: {$kd_data}");
+//         }
+
+//         // Waspada: jika string kosong/NULL → (int) jadi 0
+//         $jumlahTermin = (int) preg_replace('/\D+/', '', (string)($row['jumlah_termin'] ?? '0'));
+//         if ($jumlahTermin <= 0) {
+//             throw new \RuntimeException("jumlah_termin tidak valid: ".json_encode($row['jumlah_termin']));
+//         }
+
+//         // OPSIONAL: idempotent — hapus dulu supaya tidak dobel
+//         $db->table('tb_penarikan')->where('kd_data', $kd_data)->delete();
+
+//         // 2) Siapkan batch
+//         $now  = date('Y-m-d H:i:s');
+//         $rows = [];
+//         for ($i = 1; $i <= $jumlahTermin; $i++) {
+//             $rows[] = [
+//                 'kd_data'       => $kd_data,
+//                 'termin'     => $i,
+//                 'nama'          => $nama,
+//                 'kd_unit_kerja' => $kd_unit_kerja,
+//                 'status'        => 'draft',
+//                 'created_at'    => $now,
+//                 'updated_at'    => $now,
+//             ];
+//         }
+
+//         // 3) Insert batch + cek hasil
+//         $builder = $db->table('tb_penarikan');
+//         $ok = $builder->insertBatch($rows); // bisa tambah chunk size: , null, 200
+
+//         // Cek error DB
+//         $dbErr = $db->error(); // ['code'=>..., 'message'=>...]
+//         if ($ok === false || !empty($dbErr['code'])) {
+//             $last = method_exists($db, 'showLastQuery') ? (string)$db->showLastQuery() : 'n/a';
+//             throw new \RuntimeException("Insert batch gagal. DB error: {$dbErr['code']} {$dbErr['message']}. Last: {$last}");
+//         }
+
+//         // Cek baris terpengaruh
+//         if ($db->affectedRows() < 1) {
+//             $last = method_exists($db, 'showLastQuery') ? (string)$db->showLastQuery() : 'n/a';
+//             throw new \RuntimeException("Tidak ada baris tersimpan (affectedRows=0). Last: {$last}");
+//         }
+
+//         $db->transCommit();
+//         return $this->response->setJSON(['status'=>'ok','jumlah_termin'=>$jumlahTermin]);
+
+//     } catch (\Throwable $e) {
+//         $db->transRollback();
+//         // Saat debug: kirim pesan lengkap agar cepat ketahuan
+//         return $this->response->setJSON(['status'=>'error','message'=>$e->getMessage()]);
+//     }
+// }
+public function penarikan_simpan()
+{
+    $kd_data       = $this->request->getPost('kd_data');
+    $nama          = $this->request->getPost('nama');
+    $kd_unit_kerja = $this->request->getPost('kd_unit_kerja');
+
+    if (!$kd_data || !$nama || !$kd_unit_kerja) {
+        return $this->response->setJSON(['status'=>'error','message'=>'Parameter tidak lengkap.']);
     }
 
-    public function simpan_progress_file()
-    {
-        $kd_data = $this->request->getPost('kd_data');
-        $table = $this->request->getPost('target_table');
-        $builder = $this->db->table($table);
+    $db = \Config\Database::connect();
+    $db->transBegin();
 
-        if (!$kd_data || !$table) {
-            return "Parameter tidak lengkap.";
+    try {
+        // 1) Ambil jumlah termin
+        $row = $db->table('tb_fak_data')->select('jumlah_termin')->where('kd_data', $kd_data)->get()->getRowArray();
+        if (!$row) throw new \RuntimeException("tb_fak_data tidak ditemukan untuk kd_data: {$kd_data}");
+
+        $jumlahTermin = (int) preg_replace('/\D+/', '', (string)($row['jumlah_termin'] ?? '0'));
+        if ($jumlahTermin <= 0) throw new \RuntimeException("jumlah_termin tidak valid: ".json_encode($row['jumlah_termin']));
+
+        // 2) Idempotent: kosongkan dulu
+        $db->table('tb_penarikan')->where('kd_data', $kd_data)->delete();
+        $db->table('tb_fcr')->where('kd_data', $kd_data)->delete();
+        $db->table('tb_dokumen_penarikan')->where('kd_data', $kd_data)->delete();
+        $db->table('tb_mpdkk')->where('kd_data', $kd_data)->delete();
+
+        // 3) Siapkan rows
+        $now = date('Y-m-d H:i:s');
+
+        $rowsPenarikan = [];
+        $rowsFcr = [];
+        $rowsDok = [];
+        $rowsMpdkk = [];
+
+        for ($i = 1; $i <= $jumlahTermin; $i++) {
+            $rowsPenarikan[] = [
+                'kd_data'       => $kd_data,
+                'termin'     => $i,
+                'nama'          => $nama,
+                'kd_unit_kerja' => $kd_unit_kerja,
+                'status'        => 'draft',
+                'created_at'    => $now,
+                'updated_at'    => $now,
+            ];
+            $rowsFcr[]   = ['kd_data' => $kd_data, 'termin' => $i];
+            $rowsDok[]   = ['kd_data' => $kd_data, 'termin' => $i];
+            $rowsMpdkk[] = ['kd_data' => $kd_data, 'termin' => $i];
         }
 
-        $data = ['kd_data' => $kd_data];
+        // 4) Insert + cek error per tabel
+        $totalPlanned = count($rowsPenarikan) + count($rowsFcr) + count($rowsDok) + count($rowsMpdkk);
+        $totalInserted = 0;
 
-        // Tangani semua file input
-        foreach ($this->request->getFiles() as $fieldName => $file) {
-            if ($file->isValid() && !$file->hasMoved()) {
-                $newName = $file->getRandomName();
-                $file->move(FCPATH . 'uploads/', $newName);
-                $data[$fieldName] = $newName; // simpan nama file ke DB
+        if (!empty($rowsPenarikan)) {
+            $ok = $db->table('tb_penarikan')->insertBatch($rowsPenarikan);
+            $err = $db->error();
+            if (!$ok || !empty($err['code'])) {
+                throw new \RuntimeException("Insert tb_penarikan gagal: {$err['code']} {$err['message']}");
             }
+            $totalInserted += count($rowsPenarikan);
         }
 
-        $cek = $builder->where('kd_data', $kd_data)->get()->getRow();
+        if (!empty($rowsFcr)) {
+            $ok = $db->table('tb_fcr_copy')->insertBatch($rowsFcr);
+            $err = $db->error();
+            if (!$ok || !empty($err['code'])) {
+                throw new \RuntimeException("Insert tb_fcr_copy gagal: {$err['code']} {$err['message']}");
+            }
+            $totalInserted += count($rowsFcr);
+        }
 
-        if ($cek) {
-            $update = $builder->where('kd_data', $kd_data)->update($data);
-            return $update ? 1 : "Gagal update file.";
-        } else {
-            $insert = $builder->insert($data);
-            return $insert ? 1 : "Gagal insert file.";
+        if (!empty($rowsDok)) {
+            $ok = $db->table('tb_dokumen_penarikan')->insertBatch($rowsDok);
+            $err = $db->error();
+            if (!$ok || !empty($err['code'])) {
+                throw new \RuntimeException("Insert tb_dokumen_penarikan gagal: {$err['code']} {$err['message']}");
+            }
+            $totalInserted += count($rowsDok);
+        }
+
+        if (!empty($rowsMpdkk)) {
+            $ok = $db->table('tb_mpdkk')->insertBatch($rowsMpdkk);
+            $err = $db->error();
+            if (!$ok || !empty($err['code'])) {
+                throw new \RuntimeException("Insert tb_mpdkk gagal: {$err['code']} {$err['message']}");
+            }
+            $totalInserted += count($rowsMpdkk);
+        }
+
+        // 5) Validasi total
+        if ($totalInserted < $totalPlanned) {
+            // Ini bukan fatal, tapi beri info kalau mau
+            // throw new \RuntimeException("Sebagian data tidak tersimpan. Planned={$totalPlanned}, Inserted={$totalInserted}");
+        }
+
+        $db->transCommit();
+        return $this->response->setJSON([
+            'status'        => 'ok',
+            'message'       => 'Berhasil membuat baris penarikan dan tabel terkait.',
+            'jumlah_termin' => $jumlahTermin,
+            'planned_rows'  => $totalPlanned,
+            'inserted_rows' => $totalInserted,
+        ]);
+
+    } catch (\Throwable $e) {
+        $db->transRollback();
+        return $this->response->setJSON(['status'=>'error','message'=>$e->getMessage()]);
+    }
+}
+
+
+
+
+
+    // public function simpan_progress()
+    // {
+    //     $kd_data = $this->request->getPost('kd_data');
+    //     $termin = $this->request->getPost('termin');
+    //     $table = $this->request->getPost('target_table');
+    //     $data = $this->request->getPost();
+
+    //     unset($data['kd_data'], $data['target_table']);
+
+    //     if (!$kd_data || !$table) {
+    //         return "Parameter tidak lengkap.";
+    //     }
+
+    //     $builder = $this->db->table($table);
+    //     $cek = $builder->where('kd_data', $kd_data)->where('termin', $termin)->get()->getRow();
+
+    //     $data = array_filter($data, fn($v) => $v !== null && $v !== '');
+
+    //     // if ($cek) {
+    //     //     $update = $builder->where('kd_data', $kd_data)->update($data);
+    //     //     return $update ? 1 : "Gagal update data.";
+    //     // } else {
+    //     //     $data['kd_data'] = $kd_data;
+    //     //     $insert = $builder->insert($data);
+    //     //     return $insert ? 1 : "Gagal insert data.";
+    //     // }
+    //     if ($cek) {
+    //     $ok = $builder->where('kd_data', $kd_data)->where('termin', $termin)->update($data);
+    //     if ($ok) return $this->response->setJSON(['status'=>'ok','message'=>'Update berhasil']);
+    //     return $this->response->setJSON(['status'=>'error','message'=>'Gagal update data.']);
+    // } else {
+    //     $data['kd_data'] = $kd_data;
+    //     $ok = $builder->insert($data);
+    //     if ($ok) return $this->response->setJSON(['status'=>'ok','message'=>'Insert berhasil']);
+    //     return $this->response->setJSON(['status'=>'error','message'=>'Gagal insert data.']);
+    // }
+    // }
+    public function simpan_progress()
+{
+    $kd_data = trim((string) $this->request->getPost('kd_data'));
+    $table   = trim((string) $this->request->getPost('target_table'));
+    // termin boleh kosong -> default 1
+    $termin  = $this->request->getPost('termin');
+    // $termin  = is_numeric($termin) ? (int) $termin : 1;
+
+    // Ambil semua payload POST sebagai data kolom
+    $data = $this->request->getPost();
+
+    // Bersihkan key kontrol agar tidak ikut ter-update sebagai kolom
+    unset($data['target_table']);
+
+    // Validasi dasar
+    if ($kd_data === '' || $table === '') {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Parameter tidak lengkap (kd_data / target_table).'
+        ]);
+    }
+
+    // Filter data: buang null dan string kosong, tetapi JANGAN buang angka 0
+    $data = array_filter($data, static function ($v) {
+        if ($v === null) return false;
+        if (is_string($v) && $v === '') return false;
+        return true;
+    });
+
+    // Pastikan kd_data & termin selalu ikut (menjadi kunci)
+    $data['kd_data'] = $kd_data;
+    $data['termin']  = $termin;
+
+    try {
+        $builder = $this->db->table($table);
+
+        // Cek keberadaan baris (berdasarkan kd_data & termin)
+        $exists = $builder
+            ->select('kd_data') // cukup minimal
+            ->where('kd_data', $kd_data)
+            ->where('termin', $termin)
+            ->get()
+            ->getRow();
+
+        if ($exists) {
+            // UPDATE
+            $ok = $builder
+                ->where('kd_data', $kd_data)
+                ->where('termin', $termin)
+                ->update($data);
+
+            if ($ok) {
+                return $this->response->setJSON([
+                    'status'  => 'ok',
+                    'message' => 'Update berhasil',
+                ]);
+            }
+
+            $err = $this->db->error();
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => 'Gagal update data.',
+                'db_error'=> $err
+            ]);
+        }
+
+        // INSERT
+        $ok = $builder->insert($data);
+        if ($ok) {
+            return $this->response->setJSON([
+                'status'  => 'ok',
+                'message' => 'Insert berhasil',
+            ]);
+        }
+
+        $err = $this->db->error();
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Gagal insert data.',
+            'db_error'=> $err
+        ]);
+
+    } catch (\Throwable $e) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => $e->getMessage(),
+        ]);
+    }
+}
+
+
+   public function simpan_progress_file()
+{
+    $kd_data = trim((string) $this->request->getPost('kd_data'));
+    $terminRaw = $this->request->getPost('termin');
+    $termin = is_numeric($terminRaw) ? (int) $terminRaw : null;
+
+    if ($kd_data === '' || $termin === null) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Parameter tidak lengkap (kd_data/termin).'
+        ]);
+    }
+
+    $table   = 'tb_dokumen_penarikan';
+    $builder = $this->db->table($table);
+
+    // Key baris
+    $where = ['kd_data' => $kd_data, 'termin' => $termin];
+
+    // Ambil baris lama (jika ada)
+    $old = $builder->where($where)->get()->getRowArray();
+
+    // Kolom file yang kita dukung
+    $fileCols = [
+        'permohonan_penarikan',
+        'dokumen_kebutuhan_penarikan',
+        'dokumen_progres',
+        'dokumen_lainnya'
+    ];
+
+    $files = $this->request->getFiles();
+    $updates = [];
+
+    // Konversi tiap file → Base64 data URI
+    foreach ($fileCols as $col) {
+        if (!isset($files[$col])) {
+            continue;
+        }
+        $file = $files[$col];
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $binary = @file_get_contents($file->getTempName());
+            if ($binary === false) {
+                // Jika gagal baca, lewati kolom ini
+                continue;
+            }
+
+            $mime    = $file->getClientMimeType(); // atau getMimeType()
+            $b64     = base64_encode($binary);
+            $dataUri = "data:{$mime};base64,{$b64}";
+            $updates[$col] = $dataUri;
         }
     }
 
+    if (empty($updates)) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Tidak ada file valid untuk disimpan.'
+        ]);
+    }
 
-    public function edit_penarikan($kd_data)
+    // Timestamp
+    $now = date('Y-m-d H:i:s');
+
+    try {
+        if ($old) {
+            // UPDATE: hanya kolom yang di-upload yang diupdate (tidak menimpa kolom lain dengan NULL)
+            $updates['updated_at'] = $now;
+            $ok = $builder->where($where)->update($updates);
+
+            if ($ok) {
+                return $this->response->setJSON([
+                    'status'  => 'ok',
+                    'message' => 'Dokumen berhasil diperbarui (base64).'
+                ]);
+            }
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => 'Gagal update dokumen.',
+                'db_error'=> $this->db->error()
+            ]);
+        } else {
+            // INSERT: set kunci & created_at
+            $insertData = array_merge($where, $updates, ['created_at' => $now, 'updated_at' => $now]);
+            $ok = $builder->insert($insertData);
+
+            if ($ok) {
+                return $this->response->setJSON([
+                    'status'  => 'ok',
+                    'message' => 'Dokumen berhasil disimpan (base64).'
+                ]);
+            }
+            return $this->response->setJSON([
+                'status'  => 'error',
+                'message' => 'Gagal insert dokumen.',
+                'db_error'=> $this->db->error()
+            ]);
+        }
+    } catch (\Throwable $e) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => $e->getMessage()
+        ]);
+    }
+}
+
+
+
+    public function edit_penarikan($kd_data, $termin = null)
     {
         $this->hak_akses();
         $this->permission();
 
-        $builder = $this->db->table('tb_data_entry');
-        $builder->select('kd_data');
-        $builder->where('SHA1(kd_data)', $kd_data);
+        $builder = $this->db->table('tb_penarikan');
+        $builder->select('kd_data, termin');
+        $builder->where("SHA1(kd_data) = '{$kd_data}'");
+        if ($termin !== null) {
+            $builder->where("SHA1(termin) = '{$termin}'");
+        }
         $row = $builder->get()->getRow();
 
         $data['title'] = 'Edit Penarikan Kredit Transaksional';
-        $data['kd_data'] = $row ? $row->kd_data : null; // simpan hanya kd_data
+        $data['kd_data'] = $row ? $row->kd_data : null;
+        $data['termin'] = $row ? $row->termin : null;
 
         return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
     }
@@ -529,6 +969,7 @@ class Penarikan extends BaseController
         $kd_unit_user = session()->get('kd_unit_user');
         
         $kd_data = $this->request->getGet('kd_data');
+        $termin = $this->request->getGet('termin');
 
         // Ambil data dari tb_data_entry (detail eform)
         $dataEntry = $this->db->table('tb_data_entry')
@@ -548,33 +989,32 @@ class Penarikan extends BaseController
             ->where('kd_data', $kd_data)
             ->get()
             ->getRowArray();
+        $dataDokPenarikan = $this->db->table('tb_dokumen_penarikan')
+            ->where('kd_data', $kd_data)
+            ->where('termin', $termin)
+            ->get()
+            ->getRowArray();
 
-        // Ambil semua termin dari tb_penarikan untuk kd_data ini
-       $penarikan = $this->db->table('tb_penarikan')
-        ->where('kd_data', $kd_data)
-        ->get()
-        ->getResultArray();
+        $NomorFCR = $this->db->table('tb_nomor_fcr')
+            ->where('kd_cabang', $kd_unit_user)
+            ->get()
+            ->getResultArray();
 
-    $NomorFCR = $this->db->table('tb_nomor_fcr')
-        ->where('kd_cabang', $kd_unit_user)
-        ->get()
-        ->getResultArray();
+        $mpdkk = $this->db->table('tb_mpdkk')
+            ->where('kd_data', $kd_data)
+            ->get()
+            ->getResultArray();
 
-    $mpdkk = $this->db->table('tb_mpdkk')
-        ->where('kd_data', $kd_data)
-        ->get()
-        ->getResultArray();
+        // === Hitung jumlah termin dan total penarikan ===
+        // $count = count($penarikan);
+        // $nextTermin = $count + 1;
 
-    // === Hitung jumlah termin dan total penarikan ===
-    $count = count($penarikan);
-    $nextTermin = $count + 1;
-
-    $totalPenarikanMpdkk = 0;
-    if (!empty($mpdkk)) {
-        foreach ($mpdkk as $row) {
-            $totalPenarikanMpdkk += floatval($row['jumlah_penarikan_disetujui'] ?? 0);
+        $totalPenarikanMpdkk = 0;
+        if (!empty($mpdkk)) {
+            foreach ($mpdkk as $row) {
+                $totalPenarikanMpdkk += floatval($row['jumlah_penarikan_disetujui'] ?? 0);
+            }
         }
-    }
 
 
         // Gabungkan hasil
@@ -583,9 +1023,10 @@ class Penarikan extends BaseController
             'fcr'   => $dataFCR,   // detail dari tb_data_entry
             'fak_data'   => $dataFAKdata,   // detail dari tb_data_entry
             'fak_rl'   => $dataFAKRL,   // detail dari tb_data_entry
-            'penarikan'    => $penarikan,   // daftar penarikan yang sudah ada
-            'next_termin'  => $nextTermin,  // termin berikutnya
+            // 'penarikan'    => $penarikan,   // daftar penarikan yang sudah ada
+            // 'next_termin'  => $nextTermin,  // termin berikutnya
             'nomor_fcr'  => $NomorFCR,  // termin berikutnya
+            'dok_penarikan'  => $dataDokPenarikan,  // termin berikutnya
             'mpdkk'        => [
                 'detail' => $mpdkk,
                 'total_penarikan' => $totalPenarikanMpdkk

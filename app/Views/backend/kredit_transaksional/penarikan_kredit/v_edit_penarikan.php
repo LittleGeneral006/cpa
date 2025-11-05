@@ -20,7 +20,7 @@
                 <div class="ibox-title">
                     <!-- <h5>Basic Data Tables example with responsive plugin</h5> -->
                     <label for="pilih_termin">Penarikan Ke:</label>
-                    <input id="pilih_termin" name="pilih_termin" type="text" placeholder="Masukkan Termin" class="form-control">
+                    <input id="pilih_termin" name="pilih_termin" type="text" placeholder="Masukkan Termin" class="form-control" value="<?= esc($termin) ?>">
                 </div>
                 <div class="ibox-content">
                     <h2>
@@ -34,6 +34,7 @@
                     <form id="form" action="#" class="wizard-big">
                         <?= csrf_field() ?>
                         <input type="hidden" id="kd_data" value="<?= esc($kd_data) ?>">
+                        <input type="hidden" id="termin" value="<?= esc($termin) ?>">
                         
                         <?php include 'v_data_induk.php'; ?>
                         <?php include 'v_fcr.php'; ?>
@@ -435,11 +436,12 @@ $(document).ready(function () {
         var currentIndex = $("#form").steps("getCurrentIndex");
         var currentFieldset = $("fieldset").eq(currentIndex);
         var kd_data = $("#kd_data").val();
+        var termin = $("#termin").val();
 
         // Mapping tabel berdasarkan step
         let tableMap = {
             0: "tb_data_entry",
-            1: "tb_fcr",
+            1: "tb_fcr_copy",
             2: "tb_upload_berkas", // misal fieldset ke-3 berisi upload
             3: "tb_mpdkk" // misal fieldset ke-3 berisi upload
         };
@@ -451,57 +453,79 @@ $(document).ready(function () {
 
         // === STEP 3: UPLOAD FILE ===
         if (currentIndex === 2) {
-            let formData = new FormData();
-            formData.append("kd_data", kd_data);
-            formData.append("target_table", targetTable);
+           const fd = new FormData();
+            fd.append('kd_data', $('#kd_data').val());
+            fd.append('termin', $('#termin').val()); // pastikan ada
 
-            // ambil semua input file di fieldset
-            currentFieldset.find("input[type='file']").each(function () {
-                if (this.files.length > 0) {
-                    formData.append($(this).attr("name"), this.files[0]);
-                }
-            });
+            // input file (jika ada)
+            if ($('#permohonan_penarikan')[0].files[0]) {
+            fd.append('permohonan_penarikan', $('#permohonan_penarikan')[0].files[0]);
+            }
+            if ($('#dokumen_kebutuhan_penarikan')[0].files[0]) {
+            fd.append('dokumen_kebutuhan_penarikan', $('#dokumen_kebutuhan_penarikan')[0].files[0]);
+            }
+            if ($('#dokumen_progres')[0].files[0]) {
+            fd.append('dokumen_progres', $('#dokumen_progres')[0].files[0]);
+            }
+            if ($('#dokumen_lainnya')[0].files[0]) {
+            fd.append('dokumen_lainnya', $('#dokumen_lainnya')[0].files[0]);
+            }
 
             $.ajax({
-                url: base_url+"ajax-penarikan-kredit-transaksional/simpan_progress_file",
-                type: "POST",
-                data: formData,
+                url: base_url + 'ajax-penarikan-kredit-transaksional/simpan_progress_file',
+                method: 'POST',
+                data: fd,
                 processData: false,
                 contentType: false,
-                success: function (data) {
-                    $("#mohon").hide();
-                    if (data == 1) {
-                        toastr.success("File berhasil diunggah dan disimpan!");
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#mohon").show();                // tampilkan spinner
+                    $("#btns_92").prop("disabled", true).val("Mengunggah...");
+                },
+                success: function (res) {
+                    if (res?.status === "ok") {
+                    toastr.success(res.message || "Berhasil disimpan.");
+                        refreshDokumenPenarikan();
+                        resizeJquerySteps();
+                    // ... refresh preview kalau perlu
                     } else {
-                        toastr.warning(data, "Gagal menyimpan file");
+                        toastr.warning(res?.message || "Gagal menyimpan dokumen.");
                     }
                 },
                 error: function () {
-                    $("#mohon").hide();
                     toastr.error("Koneksi gagal, coba lagi.");
                 },
+                complete: function () {
+                    // <-- SELALU JALAN, apapun hasilnya
+                    $("#mohon").hide();                // sembunyikan spinner
+                    $("#btns_92").prop("disabled", false).val("Simpan");
+                }
             });
+
         } 
         // === STEP 1 & 2: TEXT DATA ===
         else {
             let inputs = currentFieldset.find(":input").serialize();
+
             $.ajax({
-                url: base_url+"ajax-penarikan-kredit-transaksional/simpan_progress",
-                type: "POST",
-                data: inputs + "&kd_data=" + kd_data + "&target_table=" + targetTable,
-                success: function (data) {
-                    $("#mohon").hide();
-                    if (data == 1) {
-                        toastr.success("Data langkah ini berhasil disimpan!");
-                    } else {
-                        toastr.warning(data, "Gagal menyimpan data");
-                    }
-                },
-                error: function () {
-                    $("#mohon").hide();
-                    toastr.error("Koneksi gagal, coba lagi.");
-                },
+            url: base_url + "ajax-penarikan-kredit-transaksional/simpan_progress",
+            type: "POST",
+            dataType: "json",
+            data: inputs + "&kd_data=" + kd_data + "&target_table=" + targetTable + "&termin=" + termin,
+            success: function (res) {
+                $("#mohon").hide();
+                if (res && res.status === "ok") {
+                toastr.success(res.message || "Data langkah ini berhasil disimpan!");
+                } else {
+                toastr.warning((res && res.message) || "Gagal menyimpan data");
+                }
+            },
+            error: function () {
+                $("#mohon").hide();
+                toastr.error("Koneksi gagal, coba lagi.");
+            },
             });
+
         }
     }
 });
