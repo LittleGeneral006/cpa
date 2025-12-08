@@ -678,7 +678,7 @@
                     tampil_button('save_dokumen')
                 } else if (currentIndex == 5) {
                     tampil_button('save_scoring')
-                    // console.log('ini current index: '+ currentIndex)
+                    
                 } else
                 if (currentIndex === 6) {
                     // tampil_button("save_fak_data");
@@ -747,14 +747,14 @@
 
                     resizeJquerySteps();
                     // } else if (currentIndex == 6) {
-                    //     // console.log('ini current index: '+ currentIndex)
+                    
 
                     //     // isi_recap()
                     // } else if (currentIndex == 7) {} else if (currentIndex == 8) {} else if (currentIndex == 9) {} else if (currentIndex == 10) {} else if (currentIndex == 11) {} else if (currentIndex == 12) {} else if (currentIndex == 13) {
                     //     tampil_button('save_scoring')
                     // refresh_scoring()
                 } else {
-                    // console.log('ini current index: '+ currentIndex)
+                    
                     // tampil_button('save_data_entry')
                 }
 

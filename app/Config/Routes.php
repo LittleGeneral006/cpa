@@ -213,9 +213,13 @@ $routes->get('/edit-penarikan-kredit-transaksional/(:any)', 'Penarikan::edit_pen
 $routes->get('/ajax-penarikan-kredit-transaksional/get_jumlah_termin_dropdown', 'Penarikan::get_jumlah_termin_dropdown');
 $routes->get('/ajax-penarikan-kredit-transaksional/get_data', 'Penarikan::get_data');
 $routes->get('/ajax-penarikan-kredit-transaksional/get_nasabah_by_unit', 'Penarikan::get_nasabah_by_unit');
+$routes->get('/ajax-penarikan-kredit-transaksional/get_plafond_penarikan', 'Penarikan::get_plafond_penarikan');
+$routes->post('/ajax-penarikan-kredit-transaksional/generate_nomor_fcr', 'Penarikan::generate_nomor_fcr');
 $routes->post('/ajax-penarikan-kredit-transaksional/penarikan_simpan', 'Penarikan::penarikan_simpan');
 $routes->post('/ajax-penarikan-kredit-transaksional/simpan_progress', 'Penarikan::simpan_progress');
 $routes->post('/ajax-penarikan-kredit-transaksional/simpan_progress_file', 'Penarikan::simpan_progress_file');
+$routes->post('/ajax-penarikan-kredit-transaksional/cek_rekap', 'Penarikan::cek_rekap');
+$routes->post('/ajax-penarikan-kredit-transaksional/simpan_permohonan', 'Penarikan::simpan_permohonan');
 $routes->get('/dokumen-kontrak-proyek/(:any)', 'Penarikan::lihat_dokumen/$1');
 $routes->post('/penarikan/edit_data_entry', 'Penarikan::edit_data_entry');
 $routes->post('/penarikan/paraf_data_entry', 'Penarikan::paraf_data_entry');

@@ -195,14 +195,15 @@
         });
 
     });
+
     // bikin function
     function isi_fcr() {
         variabelGlobal(function(hasil) {
-            // console.log(hasil.message.data_entry.kd_data);
+            
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr;
                 var data_paraf = hasil.message.paraf;
-                // console.log(data_paraf.nama_halama);
+                
                 // alert(data.kd_data)
                 // unit_kerja_fcr()
                 $('#kd_data_tambah').val(hasil.message.data_entry.kd_data);
@@ -248,7 +249,7 @@
         variabelGlobal(function(hasil) {
             if (hasil.status == 'success') {
                 var kd_unit = hasil.message.fcr.kd_unit_kerja;
-                console.log(kd_unit);
+                
                 $.ajax({
                     url: "<?php echo base_url('unit_kerja/get_unit'); ?>",
                     type: "get",
@@ -274,7 +275,7 @@
                         });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.log("Error get data");
+                        
                     }
                 });
             } else {
@@ -308,6 +309,8 @@
             tindak_lanjut_edit: $('#tindak_lanjut_edit').val(),
             // upload dokumen
         };
+
+        
         return data_fcr1;
     }
 
@@ -336,7 +339,7 @@
             },
             error: function(xhr, status, error) {
                 $('#mohon').hide()
-                console.log(xhr.responseText)
+                
                 toastr.error('Edit fcr gagal', 'Error')
             }
         });

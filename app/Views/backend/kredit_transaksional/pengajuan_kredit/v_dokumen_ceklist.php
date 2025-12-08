@@ -748,6 +748,11 @@
 
                 if (orang.nama_nasabah == null && cv.nama_nasabah == null && pt.nama_nasabah == null) {
                     perorangan();
+
+                    $('#nama_nasabah_dp').val(data_entry.nama_debitur);
+                    $('#alamat_dp').val(data_entry.alamat_kantor);
+                    $('#usaha_dp').val(data_entry.bidang_usaha);
+
                 } else {
                     if (orang.nama_nasabah != null) {
                         var result = 'orang';
@@ -771,6 +776,8 @@
                     $('#alamat_dp').val(data_entry.alamat_kantor);
                     $('#usaha_dp').val(data_entry.bidang_usaha);
                     $('#jenis_badan_usaha_dp').val(data.jenis_badan_usaha);
+                    
+                    resizeJquerySteps();
                 }
 
                 if (Array.isArray(data_paraf) && data_paraf.length > 0) {
@@ -793,6 +800,8 @@
                 alert(hasil.message)
             }
         });
+
+        resizeJquerySteps();
     }
 
     function refresh_dokumen(param) {
@@ -884,6 +893,8 @@
                 alert(hasil.message)
             }
         });
+
+        resizeJquerySteps();
     }
 
     function data_dokumen() {

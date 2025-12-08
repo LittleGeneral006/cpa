@@ -367,7 +367,7 @@
                 type: "get",
                 dataType: "JSON",
                 success: function(response) {
-                    // console.log(response)
+                    
                     if (response.status == 'success') {
                         $('#kd_data_return').val(response.message.kd_data);
                         $('#nama_debitur_return').val(response.message.nama_debitur);
@@ -395,7 +395,7 @@
                 type: "get",
                 dataType: "JSON",
                 success: function(response) {
-                    // console.log(response)
+                    
                     if (response.status == 'success') {
                         $('#kd_data_reject').val(response.message.kd_data);
                         $('#nama_debitur_reject').val(response.message.nama_debitur);
@@ -424,7 +424,7 @@
     // bikin function
     function isi_recap() {
         variabelGlobal(function(hasil) {
-            // console.log(hasil.message.data_entry.kd_data);
+            
             if (hasil.status == 'success') {
                 var data = hasil.message.kirim;
                 // alert(data.kd_data)
@@ -487,9 +487,9 @@
             edit_data_kepala_divisi : '<?= $edit_data_kepala_divisi ?>',
 
         };
-        // console.log(edit_data)
-        // console.log(data_recap.disposisi_sc)
-        // console.log(data_recap.disposisi_koordinator_pemasar_sc)
+        
+        
+        
 
         return data_recap
     }
@@ -518,7 +518,7 @@
             },
             error: function(xhr, status, error) {
                 $('#mohon').hide()
-                console.log(xhr.responseText)
+                
                 toastr.error('Edit recap gagal', 'Error')
             }
         });
@@ -530,7 +530,7 @@
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                // console.log('Success:', response);
+                
                 // $('a[href="#finish"]').text('New Title haha');
                 // $('a[href="#finish"]').hide();
                 $('#disposisi_sc').prop('readonly', true);
@@ -583,9 +583,9 @@
 
             },
             error: function(xhr, status, error) {
-                console.log('Error response text:', xhr.responseText);
-                console.log('Error status:', status);
-                console.log('Error:', error);
+                
+                
+                
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);
@@ -660,8 +660,8 @@
         // var hasil = '';
         if (angka != '' && angka != null) {
             var angka_olah = formatNumber(angka);
-            // console.log(angka)
-            // console.log(id_letak)
+            
+            
 
             $('#' + id_letak).text(angka_olah);
         } else {

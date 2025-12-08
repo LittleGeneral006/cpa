@@ -161,7 +161,7 @@ $(document).ready(function () {
         "</div>";
       $(".delete-btn-pp-fak-modal").first().after(html12);
       var ppnFakDataValue = $("#ppn_fak_data").val();
-      // console.log(ppnFakDataValue);
+      
       $("#ppn_pp_fak_data" + angka).val(ppnFakDataValue);
       hitungPP(angka);
       angka++;
@@ -1392,7 +1392,7 @@ $(document).ready(function () {
         // if (adaBarangBergerak) {
         //     if (jenisAgunanArray[counter_bb_loop] === "Barang Bergerak") {
         // for (let isi = 0; isi < jenisAgunanArray.length; isi++) {
-        // console.log(alamat_bbArray[1]);
+        
 
         // }
         // let nilaiBukuSebesar =
@@ -1717,12 +1717,12 @@ $(document).ready(function () {
 
 function isi_fak_data() {
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.fak_data;
       // alert(data.kd_data)
       // unit_kerja_fcr()
-      console.log(data.kegiatan);
+      
       $("#kegiatan_fak_data").val(data.kegiatan);
       $("#pekerjaan_fak_data").val(data.pekerjaan);
       $("#no_kontrak_fak_data").val(data.no_kontrak);
@@ -2083,7 +2083,7 @@ function isi_fak_data() {
 
 function isi_fak_modal() {
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.fak_modal;
       $("#proyek_fak_modal").val(data.proyek_fak_modal);
@@ -2153,7 +2153,7 @@ function isi_fak_modal() {
       // upload dokumen
 
       let nilai_pp_fak_modal = data.nilai_pp_fak_modal.split(";");
-      // console.log(nilai_pp_fak_modal);
+      
       let lengthnilai_pp_fak_modal = nilai_pp_fak_modal.length + 1;
       for (var i = 0; i < nilai_pp_fak_modal.length; i++) {
         if (i == 0) {
@@ -2170,10 +2170,10 @@ function isi_fak_modal() {
 }
 function isi_fak_rl() {
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.fak_rl;
-      // console.log(data);
+      
       $("#nilai_kontrak_fak_rl").val(data.nilai_kontrak_fak_rl);
       $("#pekerjaan_persiapan_konstruksi_fak_rl").val(
         data.pekerjaan_persiapan_konstruksi_fak_rl
@@ -2225,10 +2225,10 @@ function isi_fak_rl() {
 
 function isi_upload_lap_rl() {
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.upload_lap_rl;
-      // console.log(data);
+      
       $("#laporan_rugi_laba_upload_lap_rl").val(
         data.laporan_rugi_laba_upload_lap_rl
       );
@@ -2305,10 +2305,10 @@ function isi_ceftb() {
 
 function isi_faa() {
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.faa;
-      // console.log(data);
+      
       $("namanasabahbb").val(data.nama_nasabah_bb);
       $("jenisdokumenbb").val(data.jenis_dokumen_bb);
       $("alamatbb").val(data.alamat_bb);
@@ -2357,7 +2357,7 @@ function isi_faa() {
 function isi_mauk() {
   // editor = ckEditorInstance;
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.mauk;
       $("#nama_nasabah_mauk").val(data.nama_nasabah_mauk);
@@ -2374,7 +2374,7 @@ function isi_mauk() {
       $("#jangka_waktu_mauk").val(data.jangka_waktu_mauk);
       $("#tujuan_penggunaan_mauk").val(data.tujuan_penggunaan_mauk);
       // CKEDITOR.instances.editor1.setData(data.tujuan_penggunaan_mauk);
-      // console.log("Setting data to CKEditor:", data.tujuan_penggunaan_mauk);
+      
       // initializeCKEditor("tujuan_penggunaan_mauk", function (editor) {
       //   editor.setData(data.tujuan_penggunaan_mauk);
       // });
@@ -2706,10 +2706,10 @@ function isi_mauk() {
 function isi_dcl() {
   // editor = ckEditorInstance;
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.dcl;
-      console.log(data);
+      
       // $("#pengelola_dcl").val(data.pengelola_dcl);
       $("#tanggal_dcl").val(data.tanggal_dcl);
       $("#tanggal_berkas_dcl").val(data.tanggal_berkas_dcl);
@@ -3430,7 +3430,7 @@ function isi_dcl() {
 
 function isi_scoring_koor() {
   variabelGlobal(function (hasil) {
-    // console.log(hasil.message.data_entry.kd_data);
+    
     if (hasil.status == "success") {
       var data = hasil.message.scoring;
       // alert(data.kd_data)
@@ -5057,7 +5057,7 @@ function faa_bb() {
             : ""
         ).split(";");
         // for (let isi = 0; isi < jenisAgunanArray.length; isi++) {
-        // console.log(alamat_bbArray[1]);
+        
         var inputan_bb =
           '<div id="bagian_bb' +
           counter_bb_loop +
@@ -5799,7 +5799,7 @@ function unit_kerja_dcl() {
   variabelGlobal(function (hasil) {
     if (hasil.status == "success") {
       var kd_unit = hasil.message.data_entry.kd_unit_kerja;
-      // console.log('kode unit'+kd_unit);
+      
       $.ajax({
         url: base_url + "unit_kerja/get_unit_by_id/" + kd_unit,
         // url: "<?php echo base_url('unit_kerja/get_unit_by_id'); ?>" + "/" + kd_unit,
@@ -5834,7 +5834,7 @@ function unit_kerja_dcl() {
           });
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log("Error get data");
+          
         },
       });
     } else {
@@ -5927,9 +5927,9 @@ function hitungPrakiraanTanggaltermin(angka) {
     var formattedDate = tgl_pelaksanaan_fak_data;
   } else {
     var elapsedDays = lama_pelaksanaan_fak_data * (progressValue / 100);
-    // console.log("elapsedDays:", elapsedDays);
+    
     var progressDate = new Date(tgl_pelaksanaan_fak_data);
-    // console.log("progressDate:", progressDate);
+    
     progressDate.setDate(progressDate.getDate() + Math.floor(elapsedDays));
     var formattedDate = progressDate.toISOString().slice(0, 10);
   }
@@ -6360,7 +6360,7 @@ function showValueCEFT(checkbox, angka, bobot, counter) {
     var hitungbobot = 0;
     $("#hasil" + counter + "ceft" + angka).val(hitungbobot);
   }
-  // console.log(counter);
+  
   var hasil1ceft = parseFloat(
     document.getElementById("hasil" + counter + "ceft1").value || 0
   );
@@ -6477,7 +6477,7 @@ function initializeCKEditor(element, callback) {
     });
 
     editor.on("instanceReady", function () {
-      // console.log("CKEditor instance is ready");
+      
       if (callback && typeof callback === "function") {
         callback(editor);
       }
@@ -6702,7 +6702,7 @@ function hasiltotalceft() {
   var hasiltotalceft = document.querySelectorAll(
     "input[name='hasiltotalceft[]']"
   );
-  console.log(hasiltotalceft);
+  
   document.querySelector('[name="hasiltotalceft"]').value =
     combineValues(hasiltotalceft);
 }
@@ -7016,7 +7016,7 @@ function add_dcl3() {
   var fasilitas_kredit_dcl = document.querySelectorAll(
     "textarea[name='fasilitas_kredit_dcl[]']"
   );
-  // console.log(fasilitas_kredit_dcl);
+  
   var plafond_dcl = document.querySelectorAll("input[name='plafond_dcl[]']");
   var jangka_waktu_dcl = document.querySelectorAll(
     "textarea[name='jangka_waktu_dcl[]']"
@@ -7028,7 +7028,7 @@ function add_dcl3() {
     "input[name='permohonan_diterima_dcl[]']"
   );
   // let combinedValues = combineTextareaValues(fasilitas_kredit_dcl);
-  // console.log(combinedValues);
+  
   document.querySelector('[name="fasilitaskreditdcl"]').value =
     combineTextareaValues(fasilitas_kredit_dcl);
   document.querySelector('[name="plafonddcl"]').value =
@@ -7177,7 +7177,7 @@ function add_dcl8() {
   // );
   // let combinedSelectValues = combineSelectValues(selectElements);
 
-  // console.log(combinedSelectValues);
+  
 
   document.querySelector('[name="pengujianlainnyadcl"]').value = combineValues(
     pengujian_lainnya_dcl
@@ -7270,7 +7270,7 @@ function post_fak_data(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit FAK Data gagal", "Error");
     },
   });
@@ -7354,7 +7354,7 @@ function post_fak_modal(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit FAK Modal gagal", "Error");
     },
   });
@@ -7429,7 +7429,7 @@ function post_fak_rl(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit FAK RL gagal", "Error");
     },
   });
@@ -7479,7 +7479,7 @@ function post_lap_rl(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit FAK RL gagal", "Error");
     },
   });
@@ -7524,7 +7524,7 @@ function post_ceftb(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit CEF Tanah Bangunan gagal", "Error");
     },
   });
@@ -7592,7 +7592,7 @@ function post_ceftb(method, data_input, button) {
 //           "#hasilperhitunganpenilaiantanahfaatb"
 //         ).val(),
 //       };
-//       console.log(data_faa);
+
 //       return data_faa;
 //     }
 //   });
@@ -7664,7 +7664,7 @@ function data_data_faa() {
           ).val(),
         };
 
-        console.log(data_faa); // Log untuk verifikasi data
+        
 
         resolve(data_faa); // Kirim `data_faa` sebagai hasil
       } else {
@@ -7694,7 +7694,7 @@ function post_faa(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit FAA gagal", "Error");
     },
   });
@@ -7812,7 +7812,7 @@ function post_mauk(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit MAUK gagal", "Error");
     },
   });
@@ -7940,7 +7940,7 @@ function post_dcl(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       // $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit DCL Compliance gagal", "Error");
     },
   });
@@ -7970,7 +7970,7 @@ function post_scoring_koor(method, data_input, button) {
     },
     error: function (xhr, status, error) {
       $("#mohon").hide();
-      console.log(xhr.responseText);
+      
       toastr.error("Edit scoring gagal", "Error");
     },
   });

@@ -396,7 +396,7 @@
                     }
                 },
                 error: function(data) {
-                    console.log(data);
+                    
                 }
 
             });
@@ -404,7 +404,7 @@
 
         // simpan data entry
         // $('#save_data_entry').click(function(e) {
-        //     console.log('1');
+        
         //     $('#mohon').show()
         //     e.preventDefault(); // Mencegah form untuk submit secara default
         //     // alert('hallo')
@@ -412,7 +412,7 @@
         //     if (kumpulan_agunan != 'cpa123') {
         //         // Mendefinisikan array untuk menyimpan nilai input
         //         // alert(data.jenis_agunan_tambah)
-        //         // console.log(data_data_entry2)
+        
         //         // Mengirim data menggunakan AJAX
         //         var data_data_entry2 = data_data_entry(kumpulan_agunan);
         //         post_data_entry('edit_data_entry', data_data_entry2, 'save_data_entry')
@@ -422,7 +422,7 @@
         //     }
         // });
         $('#save_data_entry').click(function(e) {
-            console.log('1');
+            
             $('#mohon').show();
             e.preventDefault(); // Mencegah form untuk submit secara default
 
@@ -449,14 +449,14 @@
     // bikin function
     function pemroses() {
         variabelGlobal(function(hasil) {
-            // console.log(hasil.message.data_entry.kd_data);
+            
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
                 var data_paraf = hasil.message.paraf;
                 // alert(data.kd_data)
                 unit_kerja()
                 cek_agunan(data.kd_data)
-                console.log(data_paraf[0].nama_halaman)
+                
                 $('#kd_data_tambah').val(data.kd_data);
                 $('#kd_data').val(data.kd_data);
 
@@ -515,7 +515,7 @@
 
             } else {
                 // alert(hasil.message)
-                console.log(hasil.message)
+                
             }
         });
     }
@@ -524,7 +524,7 @@
         variabelGlobal(function(hasil) {
             if (hasil.status == 'success') {
                 var kd_unit = hasil.message.data_entry.kd_unit_kerja;
-                // console.log(kd_unit);
+                
                 $.ajax({
                     url: "<?php echo base_url('unit_kerja/get_unit_by_id'); ?>" + "/" + kd_unit,
                     type: "get",
@@ -553,7 +553,7 @@
                         });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        console.log("Error get data");
+                        
                     }
                 });
 
@@ -593,7 +593,7 @@
 
     //                 var input = document.createElement("input");
     //                 input.type = "text";
-    //                 console.log('<?php echo $edit_data ?>')
+    
     //                 if ('<?php echo $edit_data ?>' == '') {
     //                     input.readOnly = "readonly";
     //                 }
@@ -736,7 +736,7 @@
     function editFile() {
         document.getElementById("form_dokumen_edit").reset();
         variabelGlobal(function(hasil) {
-            // console.log(hasil.message.data_entry.kd_data);
+            
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
                 // alert(data.kd_data)
@@ -1257,7 +1257,7 @@
     }
 
     function post_data_entry(method, data_input, button) {
-        console.log('2');
+        
         $.ajax({
             url: '<?php echo base_url(); ?>' + 'pengajuan/' + method,
             type: 'POST',
@@ -1283,7 +1283,7 @@
             },
             error: function(xhr, status, error) {
                 $('#mohon').hide()
-                console.log(xhr.responseText)
+                
                 toastr.error('Edit data entry gagal', 'Error')
             }
         });
@@ -1329,7 +1329,7 @@
             },
             error: function(xhr, status, error) {
                 $('#mohon').hide()
-                console.log(xhr.responseText)
+                
                 toastr.error('Edit data entry gagal', 'Error')
             }
         });
@@ -1342,7 +1342,7 @@
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                // console.log('Success:', response);
+                
                 if (response.tanah != '') {
                     // Lakukan sesuatu jika status sukses
                     $('#btn_tambah_tanah').show();
@@ -1374,9 +1374,9 @@
                 }
             },
             error: function(xhr, status, error) {
-                console.log('Error response text:', xhr.responseText);
-                console.log('Error status:', status);
-                console.log('Error:', error);
+                
+                
+                
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);
@@ -1390,7 +1390,7 @@
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                // console.log('Success:', response);
+                
 
                 if (response.tanah != '') {
                     // tampil button simpan agunan tanah
@@ -1409,9 +1409,9 @@
                 }
             },
             error: function(xhr, status, error) {
-                console.log('Error response text:', xhr.responseText);
-                console.log('Error status:', status);
-                console.log('Error:', error);
+                
+                
+                
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);
@@ -1425,7 +1425,7 @@
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                // console.log('Success:', response);
+                
                 // $('a[href="#finish"]').text('New Title haha');
                 // $('a[href="#finish"]').hide();
                 if (response.status == 'success') {
@@ -1441,9 +1441,9 @@
 
             },
             error: function(xhr, status, error) {
-                console.log('Error response text:', xhr.responseText);
-                console.log('Error status:', status);
-                console.log('Error:', error);
+                
+                
+                
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);

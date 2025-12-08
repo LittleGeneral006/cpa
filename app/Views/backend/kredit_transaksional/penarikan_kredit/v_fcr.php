@@ -6,23 +6,24 @@
     <div class="form-group">
         <div class="row">
             <div class="col-lg-6">
-                <label class="col-lg-12 control-label">Nomor</label>
+                <label class="col-lg-12 control-label d-flex align-items-center justify-content-between">
+                <span>Nomor</span>
+                <button type="button" id="btn-refresh-fcr" class="btn btn-sm btn-outline-primary">
+                    Refresh Nomor FCR
+                </button>
+                </label>
                 <div class="col-lg-12">
-                    <input id="nomor" name="nomor" type="text" placeholder="" class="form-control class-readonly" readonly>
-
+                    <input id="nomor" name="nomor" type="text" class="form-control class-readonly" readonly>
                 </div>
             </div>
+
             <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Tanggal</label>
                 <div class="col-lg-12">
-                    <input id="tanggal" readonly name="tanggal" type="date" placeholder="" class="form-control class-readonly">
-
+                    <input id="tanggal" name="tanggal" type="date" class="form-control class-readonly" readonly>
                 </div>
             </div>
-
         </div>
-
-
     </div>
     <div class="form-group row">
         <div class="col-lg-6">
@@ -80,7 +81,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Yang Melaksanakan Kunjungan</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="kunjungan" name="kunjungan" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="kunjungan_oleh" name="kunjungan_oleh" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
                 <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Abdullah;Fitriani;Ahmad Rossy</p>
 
 
@@ -95,9 +96,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Unit Kerja</label>
             <div class="col-lg-12">
-                <select class="form-control class-disabled select" id="kd_unit_kerja" name="kd_unit_kerja" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
-
-                </select>
+                <input id="kd_unit_kerja" name="kd_unit_kerja" type="text" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -118,7 +117,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Lokasi Yang Dikunjungi</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="lokasi" name="lokasi" rows="3" ></textarea>
+                <textarea class="form-control" id="lokasi_yang_dikunjungi" name="lokasi_yang_dikunjungi" rows="3" ></textarea>
                 <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Lokasi;Lokasi B;Lokasi C</p>
 
             </div>

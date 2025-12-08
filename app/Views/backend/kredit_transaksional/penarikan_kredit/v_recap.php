@@ -65,7 +65,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Pemasar</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data) ? '' : 'disabled'; ?> id="disposisi_sc" name="disposisi_sc" rows="3"></textarea>
+                    <textarea class="form-control" <?php echo !empty($edit_data_pemasar) ? '' : 'disabled'; ?> id="disposisi_sc" name="disposisi_sc" rows="3"></textarea>
+                    <input type="hidden" id="can_edit_pemasar"           value="<?= !empty($edit_data_pemasar) ? 1 : 0; ?>">
                 </div>
             </div>
         </div>
@@ -73,7 +74,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Koordinator Pemasar</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> id="disposisi_koordinator_pemasar_sc" name="disposisi_koordinator_pemasar_sc" rows="3"></textarea>
+                    <textarea class="form-control" <?php echo !empty($edit_data_koorcabang) ? '' : 'disabled'; ?> id="disposisi_koordinator_pemasar_sc" name="disposisi_koordinator_pemasar_sc" rows="3"></textarea>
+                    <input type="hidden" id="can_edit_koor_pemasar"      value="<?= !empty($edit_data_koorcabang) ? 1 : 0; ?>">
                 </div>
             </div>
         </div>
@@ -81,7 +83,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Cabang</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_kepala_cabang) ? '' : 'disabled'; ?> id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
+                    <textarea class="form-control" <?php echo !empty($edit_data_kacab) ? '' : 'disabled'; ?> id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
+                    <input type="hidden" id="can_edit_kepala_cabang"     value="<?= !empty($edit_data_kacab) ? 1 : 0; ?>">
                 </div>
             </div>
         </div>
@@ -89,7 +92,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Analis Kredit</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_analis_kredit) ? '' : 'disabled'; ?> id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
+                    <textarea class="form-control" <?php echo !empty($edit_data_analis) ? '' : 'disabled'; ?> id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
+                    <input type="hidden" id="can_edit_analis_kredit"     value="<?= !empty($edit_data_analis) ? 1 : 0; ?>">
                 </div>
             </div>
         </div>
@@ -97,7 +101,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Bagian</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_kepala_bagian) ? '' : 'disabled'; ?> id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
+                    <textarea class="form-control" <?php echo !empty($edit_data_kabag) ? '' : 'disabled'; ?> id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
+                    <input type="hidden" id="can_edit_kepala_bagian"     value="<?= !empty($edit_data_kabag) ? 1 : 0; ?>">
                 </div>
             </div>
         </div>
@@ -105,7 +110,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Divisi</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_kepala_divisi) ? '' : 'disabled'; ?> id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
+                    <textarea class="form-control" <?php echo !empty($edit_data_kadiv) ? '' : 'disabled'; ?> id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
+                    <input type="hidden" id="can_edit_kepala_divisi"     value="<?= !empty($edit_data_kadiv) ? 1 : 0; ?>">
                 </div>
             </div>
         </div>
