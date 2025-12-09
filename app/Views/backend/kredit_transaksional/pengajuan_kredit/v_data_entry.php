@@ -8,7 +8,8 @@
             <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Unit Kerja</label>
                 <div class="col-lg-12">
-                    <select class="form-control class-disabled select" id="unit_kerja_tambah" name="unit_kerja_tambah" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                    <select class="form-control class-disabled select" id="unit_kerja_tambah" name="unit_kerja_tambah"
+                        <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
 
                     </select>
 
@@ -18,8 +19,10 @@
             <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Pemasar</label>
                 <div class="col-lg-12">
-                    <input id="pemasar_tambah" name="pemasar_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
-                    <input id="kd_data_tambah" name="kd_data_tambah" placeholder="" hidden class="form-control class-readonly">
+                    <input id="pemasar_tambah" name="pemasar_tambah" type="text" placeholder=""
+                        class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                    <input id="kd_data_tambah" name="kd_data_tambah" placeholder="" hidden
+                        class="form-control class-readonly">
 
 
                 </div>
@@ -33,14 +36,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Koordinator Pemasar</label>
             <div class="col-lg-12">
-                <input id="koordinator_pemasar_tambah" name="koordinator_pemasar_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="koordinator_pemasar_tambah" name="koordinator_pemasar_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Kepala Cabang</label>
             <div class="col-lg-12">
-                <input id="kepala_cabang_tambah" name="kepala_cabang_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="kepala_cabang_tambah" name="kepala_cabang_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -53,14 +58,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Kepala Bagian</label>
             <div class="col-lg-12">
-                <input id="kepala_bagian_tambah" name="kepala_bagian_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="kepala_bagian_tambah" name="kepala_bagian_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Kepala Divisi</label>
             <div class="col-lg-12">
-                <input id="kepala_divisi_tambah" name="kepala_divisi_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="kepala_divisi_tambah" name="kepala_divisi_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -75,14 +82,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Nama Debitur</label>
             <div class="col-lg-12">
-                <input id="nama_debitur_tambah" name="nama_debitur_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="nama_debitur_tambah" name="nama_debitur_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Bidang Usaha</label>
             <div class="col-lg-12">
-                <input id="bidang_usaha_tambah" name="bidang_usaha_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="bidang_usaha_tambah" name="bidang_usaha_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -96,14 +105,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Nama Direktur</label>
             <div class="col-lg-12">
-                <input id="nama_direktur_tambah" name="nama_direktur_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="nama_direktur_tambah" name="nama_direktur_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Key Person</label>
             <div class="col-lg-12">
-                <input id="key_person_tambah" name="key_person_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="key_person_tambah" name="key_person_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -138,14 +149,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Group Debitur</label>
             <div class="col-lg-12">
-                <input id="group_debitur_tambah" name="group_debitur_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="group_debitur_tambah" name="group_debitur_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">NPWP</label>
             <div class="col-lg-12">
-                <input id="npwp_tambah" name="npwp_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="npwp_tambah" name="npwp_tambah" type="number" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -161,14 +174,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Nama Proyek</label>
             <div class="col-lg-12">
-                <input id="nama_proyek_tambah" name="nama_proyek_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="nama_proyek_tambah" name="nama_proyek_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Nomor SPK/ SPPBJ/ Gunning/ Kontrak</label>
             <div class="col-lg-12">
-                <input id="nomor_spk_tambah" name="nomor_spk_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="nomor_spk_tambah" name="nomor_spk_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -183,14 +198,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tanggal SPK/ SPPBJ/ Gunning/ Kontrak</label>
             <div class="col-lg-12">
-                <input id="tanggal_spk_tambah" name="tanggal_spk_tambah" type="date" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="tanggal_spk_tambah" name="tanggal_spk_tambah" type="date" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Nilai Proyek</label>
             <div class="col-lg-12">
-                <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="nilai_proyek_tambah" name="nilai_proyek_tambah" type="number" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
                 <p>Nilai Proyek: <span id="nilai_proyek_tambah_separators" class="mask"></span></p>
             </div>
         </div>
@@ -212,7 +229,8 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Pemberi Kerja (Bouwheer)</label>
             <div class="col-lg-12">
-                <input id="pemberi_kerja_tambah" name="pemberi_kerja_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="pemberi_kerja_tambah" name="pemberi_kerja_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -227,7 +245,8 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Penandatangan Kontrak (Bouwheer)</label>
             <div class="col-lg-12">
-                <input id="penandatangan_kontrak_tambah" name="penandatangan_kontrak_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="penandatangan_kontrak_tambah" name="penandatangan_kontrak_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
             </div>
         </div>
         <div class="col-lg-6">
@@ -246,11 +265,13 @@
             <label class="col-lg-12 control-label">Dokumen Kontrak Proyek</label>
             <div class="row px-3">
                 <div class="col-lg-6">
-                    <input id="lihat_file" value="Lihat Dokumen" name="lihat_file" type="button" placeholder="" class="form-control class-readonly">
+                    <input id="lihat_file" value="Lihat Dokumen" name="lihat_file" type="button" placeholder=""
+                        class="form-control class-readonly">
 
                 </div>
                 <div class="col-lg-6">
-                    <input id="edit_file" value="Edit Dokumen" name="edit_file" type="button" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                    <input id="edit_file" value="Edit Dokumen" name="edit_file" type="button" placeholder=""
+                        class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
 
                 </div>
             </div>
@@ -281,7 +302,8 @@
             <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Status</label>
                 <div class="col-lg-12">
-                    <input id="status_tambah" name="status_tambah" type="text" placeholder="" class="form-control" readonly required>
+                    <input id="status_tambah" name="status_tambah" type="text" placeholder="" class="form-control" readonly
+                        required>
                 </div>
             </div>
         <?php } ?>
@@ -296,13 +318,15 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tanggal Permohonan</label>
             <div class="col-lg-12">
-                <input id="tanggal_permohonan_tambah" name="tanggal_permohonan_tambah" type="date" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="tanggal_permohonan_tambah" name="tanggal_permohonan_tambah" type="date" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Plafond</label>
             <div class="col-lg-12">
-                <input id="plafond_tambah" name="plafond_tambah" type="number" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="plafond_tambah" name="plafond_tambah" type="number" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
                 <p>Plafond: <span id="plafond_separators" class="mask"></span></p>
             </div>
         </div>
@@ -317,7 +341,8 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tujuan Pengajuan</label>
             <div class="col-lg-12">
-                <input id="tujuan_pengajuan_tambah" name="tujuan_pengajuan_tambah" type="text" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="tujuan_pengajuan_tambah" name="tujuan_pengajuan_tambah" type="text" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
             </div>
         </div>
         <div class="col-lg-6">
@@ -328,7 +353,7 @@
                         <option value="" selected disabled>Pilih</option>
                         <?php for ($i = 1; $i <= 40; $i++) { ?>
                             <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php  } ?>
+                        <?php } ?>
                     </select>
 
 
@@ -349,7 +374,8 @@
     <div class="form-group row">
         <div class="col-lg-12">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="cb_data_entry" title="Checkbox ini sebagai paraf" name="cb_data_entry" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+                <input class="form-check-input" type="checkbox" id="cb_data_entry" title="Checkbox ini sebagai paraf"
+                    name="cb_data_entry" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
             </div>
         </div>
     </div>
@@ -359,14 +385,14 @@
     var edit_data_koordinator = <?php echo json_encode($edit_data_koordinator); ?>;
     var edit_data_kepala_cabang = <?php echo json_encode($edit_data_kepala_cabang); ?>;
     var kd_level = <?= json_encode(session()->get('kd_level_user')) ?>;
-    $(document).ready(function() {
-        $("#jumlah_agunan_tambah").on("change", function() {
+    $(document).ready(function () {
+        $("#jumlah_agunan_tambah").on("change", function () {
             tambahInput()
         });
-        $("#lihat_file").on("click", function() {
+        $("#lihat_file").on("click", function () {
             lihatFile()
         });
-        $("#edit_file").on("click", function() {
+        $("#edit_file").on("click", function () {
             editFile()
         });
 
@@ -374,7 +400,7 @@
         refresh('save_data_entry')
 
         // edit file
-        $('#form_dokumen_edit').on('submit', function(e) {
+        $('#form_dokumen_edit').on('submit', function (e) {
             e.preventDefault();
             $('#mohon').show()
             $.ajax({
@@ -384,7 +410,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     if (data == '1') {
                         $("#modal_dokumen_edit").modal('hide')
                         $('#mohon').hide()
@@ -395,8 +421,8 @@
                         toastr.warning(data, 'Gagal')
                     }
                 },
-                error: function(data) {
-                    
+                error: function (data) {
+
                 }
 
             });
@@ -404,7 +430,7 @@
 
         // simpan data entry
         // $('#save_data_entry').click(function(e) {
-        
+
         //     $('#mohon').show()
         //     e.preventDefault(); // Mencegah form untuk submit secara default
         //     // alert('hallo')
@@ -412,7 +438,7 @@
         //     if (kumpulan_agunan != 'cpa123') {
         //         // Mendefinisikan array untuk menyimpan nilai input
         //         // alert(data.jenis_agunan_tambah)
-        
+
         //         // Mengirim data menggunakan AJAX
         //         var data_data_entry2 = data_data_entry(kumpulan_agunan);
         //         post_data_entry('edit_data_entry', data_data_entry2, 'save_data_entry')
@@ -421,8 +447,8 @@
         //         toastr.warning('Jenis agunan harus diisi', 'Gagal')
         //     }
         // });
-        $('#save_data_entry').click(function(e) {
-            
+        $('#save_data_entry').click(function (e) {
+
             $('#mohon').show();
             e.preventDefault(); // Mencegah form untuk submit secara default
 
@@ -448,15 +474,15 @@
     });
     // bikin function
     function pemroses() {
-        variabelGlobal(function(hasil) {
-            
+        variabelGlobal(function (hasil) {
+
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
                 var data_paraf = hasil.message.paraf;
                 // alert(data.kd_data)
                 unit_kerja()
                 cek_agunan(data.kd_data)
-                
+
                 $('#kd_data_tambah').val(data.kd_data);
                 $('#kd_data').val(data.kd_data);
 
@@ -515,21 +541,21 @@
 
             } else {
                 // alert(hasil.message)
-                
+
             }
         });
     }
 
     function unit_kerja() {
-        variabelGlobal(function(hasil) {
+        variabelGlobal(function (hasil) {
             if (hasil.status == 'success') {
                 var kd_unit = hasil.message.data_entry.kd_unit_kerja;
-                
+
                 $.ajax({
                     url: "<?php echo base_url('unit_kerja/get_unit_by_id'); ?>" + "/" + kd_unit,
                     type: "get",
                     dataType: "JSON",
-                    success: function(data) {
+                    success: function (data) {
                         var options = data.unit;
                         var select = $('#unit_kerja_tambah');
 
@@ -539,7 +565,7 @@
                         $(defaultOption).prop('disabled', true);
                         select.append(defaultOption);
 
-                        $.each(options, function(index, option) {
+                        $.each(options, function (index, option) {
                             var newOption = new Option(option.kd_unit + ' - ' + option.nama_unit, option.kd_unit, false, false);
                             if (option.kd_unit === kd_unit) {
                                 $(newOption).prop('selected', true);
@@ -552,8 +578,8 @@
                             dropdownParent: $('#unit_kerja_tambah').parent()
                         });
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        
+                    error: function (jqXHR, textStatus, errorThrown) {
+
                     }
                 });
 
@@ -593,7 +619,7 @@
 
     //                 var input = document.createElement("input");
     //                 input.type = "text";
-    
+
     //                 if ('<?php echo $edit_data ?>' == '') {
     //                     input.readOnly = "readonly";
     //                 }
@@ -621,7 +647,7 @@
     //     })
     // }
     function tambahInput() {
-        variabelGlobal(function(hasil) {
+        variabelGlobal(function (hasil) {
             if (hasil.status == 'success') {
                 var jumlah = $("#jumlah_agunan_tambah").val(); // Ambil nilai dengan jQuery
                 if (jumlah == null || jumlah == '' || jumlah == undefined) {
@@ -653,7 +679,7 @@
                     ];
 
                     // Tambahkan opsi dari optionsPlaceholder ke dalam select
-                    $.each(optionsPlaceholder, function(index, value) {
+                    $.each(optionsPlaceholder, function (index, value) {
                         var option = $('<option></option>').attr("value", value).text(value);
                         select.append(option);
                     });
@@ -735,8 +761,8 @@
 
     function editFile() {
         document.getElementById("form_dokumen_edit").reset();
-        variabelGlobal(function(hasil) {
-            
+        variabelGlobal(function (hasil) {
+
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
                 // alert(data.kd_data)
@@ -1181,14 +1207,14 @@
             type: "POST",
             data: kirim,
             dataType: "JSON",
-            success: function(response) {
+            success: function (response) {
                 var hasil = {
                     status: 'success',
                     message: response
                 };
                 callback(hasil); // Panggil callback dengan hasil yang diperoleh
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 var hasil = {
                     status: 'error',
                     message: 'gagal mendapatkan data'
@@ -1236,12 +1262,12 @@
             jenis_agunan_tambah: kumpulan_agunan,
 
             // tambahan wajib isi rekomendasi saat klik finish
-            edit_data : '<?= $edit_data ?>',
-            edit_data_koordinator : '<?= $edit_data_koordinator ?>',
-            edit_data_kepala_cabang : '<?= $edit_data_kepala_cabang ?>',
-            edit_data_analis_kredit : '<?= $edit_data_analis_kredit ?>',
-            edit_data_kepala_bagian : '<?= $edit_data_kepala_bagian ?>',
-            edit_data_kepala_divisi : '<?= $edit_data_kepala_divisi ?>',
+            edit_data: '<?= $edit_data ?>',
+            edit_data_koordinator: '<?= $edit_data_koordinator ?>',
+            edit_data_kepala_cabang: '<?= $edit_data_kepala_cabang ?>',
+            edit_data_analis_kredit: '<?= $edit_data_analis_kredit ?>',
+            edit_data_kepala_bagian: '<?= $edit_data_kepala_bagian ?>',
+            edit_data_kepala_divisi: '<?= $edit_data_kepala_divisi ?>',
 
             disposisi_sc: $('#disposisi_sc').val(),
             disposisi_koordinator_pemasar_sc: $('#disposisi_koordinator_pemasar_sc').val(),
@@ -1257,13 +1283,13 @@
     }
 
     function post_data_entry(method, data_input, button) {
-        
+
         $.ajax({
             url: '<?php echo base_url(); ?>' + 'pengajuan/' + method,
             type: 'POST',
             dataType: 'json',
             data: data_input,
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     refresh('save_data_entry')
@@ -1281,9 +1307,9 @@
 
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 $('#mohon').hide()
-                
+
                 toastr.error('Edit data entry gagal', 'Error')
             }
         });
@@ -1309,7 +1335,7 @@
             type: 'POST',
             dataType: 'json',
             data: data_input,
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     // refresh('save_data_entry')
@@ -1327,9 +1353,9 @@
 
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 $('#mohon').hide()
-                
+
                 toastr.error('Edit data entry gagal', 'Error')
             }
         });
@@ -1341,8 +1367,8 @@
             url: '<?php echo base_url(); ?>pengajuan/cek_agunan/' + kd_data,
             type: 'GET',
             dataType: 'json',
-            success: function(response) {
-                
+            success: function (response) {
+
                 if (response.tanah != '') {
                     // Lakukan sesuatu jika status sukses
                     $('#btn_tambah_tanah').show();
@@ -1373,10 +1399,10 @@
                     // $('#save_fcr_agunan_bergerak').hide();
                 }
             },
-            error: function(xhr, status, error) {
-                
-                
-                
+            error: function (xhr, status, error) {
+
+
+
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);
@@ -1389,8 +1415,8 @@
             url: '<?php echo base_url(); ?>pengajuan/cek_agunan/' + kd_data,
             type: 'GET',
             dataType: 'json',
-            success: function(response) {
-                
+            success: function (response) {
+
 
                 if (response.tanah != '') {
                     // tampil button simpan agunan tanah
@@ -1408,10 +1434,10 @@
                     $('#save_fcr_agunan_bergerak').hide();
                 }
             },
-            error: function(xhr, status, error) {
-                
-                
-                
+            error: function (xhr, status, error) {
+
+
+
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);
@@ -1424,8 +1450,8 @@
             url: '<?php echo base_url(); ?>pengajuan/tampil_btn_finish/' + kd_data,
             type: 'GET',
             dataType: 'json',
-            success: function(response) {
-                
+            success: function (response) {
+
                 // $('a[href="#finish"]').text('New Title haha');
                 // $('a[href="#finish"]').hide();
                 if (response.status == 'success') {
@@ -1440,10 +1466,10 @@
                 }
 
             },
-            error: function(xhr, status, error) {
-                
-                
-                
+            error: function (xhr, status, error) {
+
+
+
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);

@@ -8,14 +8,16 @@
             <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Nomor</label>
                 <div class="col-lg-12">
-                    <input id="nomor_edit" name="nomor_edit" type="text" placeholder="" class="form-control class-readonly" readonly>
+                    <input id="nomor_edit" name="nomor_edit" type="text" placeholder=""
+                        class="form-control class-readonly" readonly>
 
                 </div>
             </div>
             <div class="col-lg-6">
                 <label class="col-lg-12 control-label">Tanggal</label>
                 <div class="col-lg-12">
-                    <input id="tanggal_edit" readonly name="tanggal_edit" type="date" placeholder="" class="form-control class-readonly">
+                    <input id="tanggal_edit" readonly name="tanggal_edit" type="date" placeholder=""
+                        class="form-control class-readonly">
 
                 </div>
             </div>
@@ -28,14 +30,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Nama Debitur</label>
             <div class="col-lg-12">
-                <input id="nama_debitur_edit" readonly name="nama_debitur_edit" type="text" placeholder="" class="form-control class-readonly">
+                <input id="nama_debitur_edit" readonly name="nama_debitur_edit" type="text" placeholder=""
+                    class="form-control class-readonly">
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Alamat Kantor</label>
             <div class="col-lg-12">
-                <textarea class="form-control" readonly id="alamat_kantor_edit" name="alamat_kantor_edit" rows="3"></textarea>
+                <textarea class="form-control" readonly id="alamat_kantor_edit" name="alamat_kantor_edit"
+                    rows="3"></textarea>
 
             </div>
         </div>
@@ -48,14 +52,16 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Alamat Gudang/ Pabrik/ Workshop</label>
             <div class="col-lg-12">
-                <textarea class="form-control" readonly id="alamat_gudang_edit" name="alamat_gudang_edit" rows="3"></textarea>
+                <textarea class="form-control" readonly id="alamat_gudang_edit" name="alamat_gudang_edit"
+                    rows="3"></textarea>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Group Debitur</label>
             <div class="col-lg-12">
-                <input id="group_debitur_edit" readonly name="group_debitur_edit" type="text" placeholder="" class="form-control class-readonly">
+                <input id="group_debitur_edit" readonly name="group_debitur_edit" type="text" placeholder=""
+                    class="form-control class-readonly">
 
             </div>
         </div>
@@ -72,7 +78,8 @@
 
             <div class="col-lg-12">
                 <textarea class="form-control" id="contact_person_edit" name="contact_person_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
-                <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Abdullah;Fitriani;Ahmad Rossy</p>
+                <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh:
+                    Abdullah;Fitriani;Ahmad Rossy</p>
             </div>
 
 
@@ -81,7 +88,8 @@
             <label class="col-lg-12 control-label">Yang Melaksanakan Kunjungan</label>
             <div class="col-lg-12">
                 <textarea class="form-control" id="kunjungan_edit" name="kunjungan_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
-                <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Abdullah;Fitriani;Ahmad Rossy</p>
+                <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh:
+                    Abdullah;Fitriani;Ahmad Rossy</p>
 
 
             </div>
@@ -95,7 +103,8 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Unit Kerja</label>
             <div class="col-lg-12">
-                <select class="form-control class-disabled select" id="kd_unit_kerja_edit" name="kd_unit_kerja_edit" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+                <select class="form-control class-disabled select" id="kd_unit_kerja_edit" name="kd_unit_kerja_edit"
+                    <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
 
                 </select>
 
@@ -104,7 +113,8 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tanggal Kunjungan</label>
             <div class="col-lg-12">
-                <input id="tanggal_kunjungan_edit" name="tanggal_kunjungan_edit" type="date" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="tanggal_kunjungan_edit" name="tanggal_kunjungan_edit" type="date" placeholder=""
+                    class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -119,7 +129,8 @@
             <label class="col-lg-12 control-label">Lokasi Yang Dikunjungi</label>
             <div class="col-lg-12">
                 <textarea class="form-control" id="lokasi_edit" name="lokasi_edit" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
-                <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Lokasi;Lokasi B;Lokasi C</p>
+                <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh:
+                    Lokasi;Lokasi B;Lokasi C</p>
 
             </div>
         </div>
@@ -156,7 +167,8 @@
     <div class="form-group row">
         <div class="col-lg-12">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="cb_fcr" title="Checkbox ini sebagai paraf" name="cb_fcr" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+                <input class="form-check-input" type="checkbox" id="cb_fcr" title="Checkbox ini sebagai paraf"
+                    name="cb_fcr" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
             </div>
         </div>
     </div>
@@ -169,12 +181,12 @@
 
 <script>
     var kd_level = <?= json_encode(session()->get('kd_level_user')) ?>;
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         // memberi nilai awal edit Data Entry
         refresh_fcr()
         // simpan fcr
-        $('#save_fcr').click(function(e) {
+        $('#save_fcr').click(function (e) {
             // alert('save fcr di klik')
             $('#mohon').show()
             e.preventDefault(); // Mencegah form untuk submit secara default
@@ -198,12 +210,12 @@
 
     // bikin function
     function isi_fcr() {
-        variabelGlobal(function(hasil) {
-            
+        variabelGlobal(function (hasil) {
+
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr;
                 var data_paraf = hasil.message.paraf;
-                
+
                 // alert(data.kd_data)
                 // unit_kerja_fcr()
                 $('#kd_data_tambah').val(hasil.message.data_entry.kd_data);
@@ -246,15 +258,15 @@
     }
 
     function unit_kerja_fcr() {
-        variabelGlobal(function(hasil) {
+        variabelGlobal(function (hasil) {
             if (hasil.status == 'success') {
                 var kd_unit = hasil.message.fcr.kd_unit_kerja;
-                
+
                 $.ajax({
                     url: "<?php echo base_url('unit_kerja/get_unit'); ?>",
                     type: "get",
                     dataType: "JSON",
-                    success: function(data) {
+                    success: function (data) {
                         var options = data.unit;
                         var select = $('#kd_unit_kerja_edit');
                         select.empty();
@@ -262,7 +274,7 @@
                         var defaultOption = new Option('Pilih', '', true, true);
                         $(defaultOption).prop('disabled', true);
                         select.append(defaultOption);
-                        $.each(options, function(index, option) {
+                        $.each(options, function (index, option) {
                             var newOption = new Option(option.kd_unit + ' - ' + option.nama_unit, option.kd_unit, false, false);
                             if (option.kd_unit === kd_unit) {
                                 $(newOption).prop('selected', true);
@@ -274,8 +286,8 @@
                             dropdownParent: $('#kd_unit_kerja_edit').parent()
                         });
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        
+                    error: function (jqXHR, textStatus, errorThrown) {
+
                     }
                 });
             } else {
@@ -310,7 +322,7 @@
             // upload dokumen
         };
 
-        
+
         return data_fcr1;
     }
 
@@ -320,7 +332,7 @@
             type: 'POST',
             dataType: 'json',
             data: data_input,
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     refresh_fcr()
@@ -337,9 +349,9 @@
                     toastr.warning(response.message, 'Gagal')
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 $('#mohon').hide()
-                
+
                 toastr.error('Edit fcr gagal', 'Error')
             }
         });
