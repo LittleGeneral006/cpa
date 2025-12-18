@@ -7,7 +7,9 @@
             <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_tanah" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Tanah</button>
             <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_bangunan" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Bangunan</button>
             <!-- <button type="button"  class="btn btn-primary btn-tambah" id="btn_tambah_lingkungan" style="display:none"><i class="fa fa-plus"></i> Lingkungan</button> -->
-            <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_barang_bergerak" style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i> Barang Bergerak</button>
+            <button type="button" class="btn btn-primary btn-tambah" id="btn_tambah_barang_bergerak"
+                style="display:none" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>><i class="fa fa-plus"></i>
+                Barang Bergerak</button>
 
         </div>
 
@@ -32,13 +34,14 @@
     <div class="form-group row">
         <div class="col-lg-12">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="cb_fcr_agunan" title="Checkbox ini sebagai paraf" name="cb_fcr_agunan" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
+                <input class="form-check-input" type="checkbox" id="cb_fcr_agunan" title="Checkbox ini sebagai paraf"
+                    name="cb_fcr_agunan" <?php echo empty($edit_data) ? '' : 'disabled'; ?>>
             </div>
         </div>
     </div>
 </fieldset>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         refresh_fcr_agunan()
         panggil_perulangan()
         // onInputLuas()
@@ -51,8 +54,8 @@
         //     editGambar()
         // });
         var counter = 0;
-        $("#form").on("click", "#btn_tambah_tanah", function() {
-            variabelGlobal(function(hasil) {
+        $("#form").on("click", "#btn_tambah_tanah", function () {
+            variabelGlobal(function (hasil) {
                 // console.log(hasil.message.data_entry.kd_data);
                 if (hasil.status == 'success') {
                     var data = hasil.message.fcr_agunan;
@@ -330,7 +333,7 @@
             // $('#tanah_dinamis').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="addmore[][name]" placeholder="Enter your Name" class="form-control name_list" required /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
 
-        $('#form').on('click', '.btn_hapus_tanah', function() {
+        $('#form').on('click', '.btn_hapus_tanah', function () {
             if (confirm('Yakin ingin menghapus form input tanah ini?')) {
                 counter--;
                 var button_id = $(this).attr("data-id");
@@ -343,8 +346,8 @@
 
         // input dinamis bangunan
         var hitung_bangunan = 0;
-        $("#form").on("click", "#btn_tambah_bangunan", function() {
-            variabelGlobal(function(hasil) {
+        $("#form").on("click", "#btn_tambah_bangunan", function () {
+            variabelGlobal(function (hasil) {
                 // console.log(hasil.message.data_entry.kd_data);
                 if (hasil.status == 'success') {
                     jumlah_elemen = hasil.message.imb.length;
@@ -705,7 +708,7 @@
 
                     jumlahisilantai = 2;
 
-                    $("body").on("click", ".tambah-field-lantai-bangunan" + hitung_bangunan, function() {
+                    $("body").on("click", ".tambah-field-lantai-bangunan" + hitung_bangunan, function () {
                         if (jumlahisilantai == 13) {
                             swal({
                                 title: "Peringatan!",
@@ -809,7 +812,7 @@
                     //     resizeJquerySteps();
                     // });
 
-                    $("body").on("click", ".hapus_lantai_fcr_agunan", function() {
+                    $("body").on("click", ".hapus_lantai_fcr_agunan", function () {
                         var groupId = $(this).closest(".lantai-bangunan").data("group");
                         // Hapus lantai dan harga bangunan yang sesuai
                         $('[data-group="' + groupId + '"]').remove();
@@ -827,9 +830,9 @@
         });
 
         function updateTotalLuasBangunan(hitung_bangunan) {
-            $("body").on("input", "input[data-bangunan='" + hitung_bangunan + "']", function() {
+            $("body").on("input", "input[data-bangunan='" + hitung_bangunan + "']", function () {
                 let total = 0;
-                $("input[data-bangunan='" + hitung_bangunan + "']").each(function() {
+                $("input[data-bangunan='" + hitung_bangunan + "']").each(function () {
                     const nilai = parseFloat($(this).val()) || 0;
                     total += nilai;
                 });
@@ -837,7 +840,7 @@
             });
         }
 
-        $('#form').on('click', '.btn_hapus_bangunan', function() {
+        $('#form').on('click', '.btn_hapus_bangunan', function () {
             if (confirm('Yakin ingin menghapus form input bangunan ini?')) {
                 counter--;
                 var button_id = $(this).attr("data-id");
@@ -858,7 +861,7 @@
                 keterangan_lain_fag: []
             };
 
-            $('.lantai_total').each(function() {
+            $('.lantai_total').each(function () {
                 var bangunanIndex = $(this).data('bangunan') || 1;
                 var lantaiIndex = $(this).data('lantai') || 1; // Default to 1 if not specified
                 var value = $(this).val();
@@ -870,7 +873,7 @@
                 data_fcr_agunan1.lantai_total[bangunanIndex][lantaiIndex] = value;
             });
 
-            $('.menurut_harga_perolehan').each(function() {
+            $('.menurut_harga_perolehan').each(function () {
                 var bangunanIndex = $(this).data('bangunan') || 1;
                 var lantaiIndex = $(this).data('lantai') || 1; // Default to 1 if not specified
                 var value = $(this).val();
@@ -882,7 +885,7 @@
                 data_fcr_agunan1.menurut_harga_perolehan[bangunanIndex][lantaiIndex] = value;
             });
 
-            $('.menurut_pasar_fag').each(function() {
+            $('.menurut_pasar_fag').each(function () {
                 var bangunanIndex = $(this).data('bangunan') || 1;
                 var lantaiIndex = $(this).data('lantai') || 1; // Default to 1 if not specified
                 var value = $(this).val();
@@ -894,7 +897,7 @@
                 data_fcr_agunan1.menurut_pasar_fag[bangunanIndex][lantaiIndex] = value;
             });
 
-            $('.keterangan_lain_fag').each(function() {
+            $('.keterangan_lain_fag').each(function () {
                 var bangunanIndex = $(this).data('bangunan') || 1;
                 var lantaiIndex = $(this).data('lantai') || 1; // Default to 1 if not specified
                 var value = $(this).val();
@@ -906,27 +909,27 @@
                 data_fcr_agunan1.keterangan_lain_fag[bangunanIndex][lantaiIndex] = value;
             });
 
-            var lantaiString = data_fcr_agunan1.lantai_total.filter(function(bangunan) {
+            var lantaiString = data_fcr_agunan1.lantai_total.filter(function (bangunan) {
                 return bangunan.length > 0;
-            }).map(function(bangunan) {
+            }).map(function (bangunan) {
                 return bangunan.filter(Boolean).join('|');
             }).join(';');
 
-            var hargaPerolehanString = data_fcr_agunan1.menurut_harga_perolehan.filter(function(bangunan) {
+            var hargaPerolehanString = data_fcr_agunan1.menurut_harga_perolehan.filter(function (bangunan) {
                 return bangunan.length > 0;
-            }).map(function(bangunan) {
+            }).map(function (bangunan) {
                 return bangunan.filter(Boolean).join('|');
             }).join(';');
 
-            var pasarFagString = data_fcr_agunan1.menurut_pasar_fag.filter(function(bangunan) {
+            var pasarFagString = data_fcr_agunan1.menurut_pasar_fag.filter(function (bangunan) {
                 return bangunan.length > 0;
-            }).map(function(bangunan) {
+            }).map(function (bangunan) {
                 return bangunan.filter(Boolean).join('|');
             }).join(';');
 
-            var keteranganLainString = data_fcr_agunan1.keterangan_lain_fag.filter(function(bangunan) {
+            var keteranganLainString = data_fcr_agunan1.keterangan_lain_fag.filter(function (bangunan) {
                 return bangunan.length > 0;
-            }).map(function(bangunan) {
+            }).map(function (bangunan) {
                 return bangunan.filter(Boolean).join('|');
             }).join(';');
 
@@ -950,8 +953,8 @@
         // input dinamis barang bergerak
 
         var counter_bb = 0;
-        $("#form").on("click", "#btn_tambah_barang_bergerak", function() {
-            variabelGlobal(function(hasil) {
+        $("#form").on("click", "#btn_tambah_barang_bergerak", function () {
+            variabelGlobal(function (hasil) {
                 // console.log(hasil.message.data_entry.kd_data);
                 if (hasil.status == 'success') {
                     var data = hasil.message.fcr_agunan;
@@ -1233,7 +1236,7 @@
             // $('#tanah_dinamis').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="addmore[][name]" placeholder="Enter your Name" class="form-control name_list" required /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
 
-        $('#form').on('click', '.btn_hapus_bb', function() {
+        $('#form').on('click', '.btn_hapus_bb', function () {
             if (confirm('Yakin ingin menghapus form input barang bergerak ini?')) {
                 counter--;
                 var button_id = $(this).attr("data-id");
@@ -1244,7 +1247,7 @@
 
         });
         // update fcr agunan tanah
-        $('#save_fcr_agunan_tanah').click(function(e) {
+        $('#save_fcr_agunan_tanah').click(function (e) {
             $('#mohon').show()
             e.preventDefault(); // Mencegah form untuk submit secara default
             // alert('hallo')
@@ -1266,32 +1269,24 @@
             }
         });
         // update fcr agunan bangunan
-        $('#save_fcr_agunan_bangunan').click(function(e) {
-            // $('#mohon').show()
-            e.preventDefault(); // Mencegah form untuk submit secara default
-            // alert('hallo')
-            // Mendefinisikan array untuk menyimpan nilai input
-            // alert(data.jenis_agunan_tambah)
-            // var fcr_agunan2 = data_fcr_agunan_bangunan();
-            // console.log(fcr_agunan2);
-            // post_fcr_agunan('edit_fcr_agunan_bangunan', fcr_agunan2, 'fcr_agunan')
-            // Mengirim data menggunakan AJAX
+        $('#save_fcr_agunan_bangunan').click(function (e) {
+            e.preventDefault();
+
             if (edit_data_pemasar) {
-                // Jika edit_data_koordinator null atau kosong
-                var fcr_agunan2 = data_fcr_agunan();
-                // Mengirim data menggunakan AJAX
-                storeNilaiLantaiBangunan();
-                post_fcr_agunan('edit_fcr_agunan_bangunan', fcr_agunan2, 'fcr_agunan')
+                // Ambil hasil dinamis dulu
+                const hasil = storeNilaiLantaiBangunan();   // <-- PENTING: ditangkap
+                const fcr_agunan2 = data_fcr_agunan_bangunan(hasil);
+
+                post_fcr_agunan('edit_fcr_agunan_bangunan', fcr_agunan2, 'fcr_agunan');
             } else {
-                // Jika edit_data_koordinator memiliki nilai
-                var fcr_agunan2 = paraf_fcr_agunan();
+                const fcr_agunan2 = paraf_fcr_agunan();
                 post_paraf('paraf_fcr_agunan', fcr_agunan2, 'fcr_agunan');
             }
-
         });
 
+
         // update fcr agunan barang bergerak
-        $('#save_fcr_agunan_bergerak').click(function(e) {
+        $('#save_fcr_agunan_bergerak').click(function (e) {
             $('#mohon').show()
             e.preventDefault(); // Mencegah form untuk submit secara default
             // alert('hallo')
@@ -1302,7 +1297,8 @@
             // Mengirim data menggunakan AJAX
             if (edit_data_koordinator === null || edit_data_koordinator === '') {
                 // Jika edit_data_koordinator null atau kosong
-                var fcr_agunan2 = data_fcr_agunan();
+                var fcr_agunan2 = data_fcr_agunan_bb();
+                console.log(fcr_agunan2);
                 // Mengirim data menggunakan AJAX
                 post_fcr_agunan('edit_fcr_agunan_bb', fcr_agunan2, 'fcr_agunan')
             } else {
@@ -1318,7 +1314,7 @@
     var jumlah_elemen = 0;
 
     function panggil_perulangan() {
-        variabelGlobal(function(hasil) {
+        variabelGlobal(function (hasil) {
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr_agunan;
@@ -1358,7 +1354,7 @@
             data: {
                 kd_data: kd_data
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.jumlah > 0) {
                     // console.log('Data retrieved successfully:', response);
                     // awal
@@ -1627,7 +1623,7 @@
                     console.log('No data found for the given kd_data.');
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log('Error retrieving data:', xhr.responseText);
             }
         });
@@ -1642,7 +1638,7 @@
             data: {
                 kd_data: kd_data
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.jumlah > 0) {
                     // console.log('Data retrieved successfully:', response);
                     // awal
@@ -2052,7 +2048,7 @@
                     console.log('No data found for the given kd_data.');
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log('Error retrieving data:', xhr.responseText);
             }
         });
@@ -2066,7 +2062,7 @@
             data: {
                 kd_data: kd_data
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.jumlah > 0) {
                     // console.log('Data retrieved successfully:', response);
                     // awal
@@ -2337,14 +2333,14 @@
                     console.log('No data found for the given kd_data.');
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log('Error retrieving data:', xhr.responseText);
             }
         });
     }
 
     function isi_fcr_agunan() {
-        variabelGlobal(function(hasil) {
+        variabelGlobal(function (hasil) {
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.fcr_agunan;
@@ -2380,7 +2376,7 @@
     function editGambar(index) {
         // $("#modal_gambar_edit"+index).modal('show')
         document.getElementById("form_gambar_edit" + index).reset();
-        variabelGlobal(function(hasil) {
+        variabelGlobal(function (hasil) {
             // console.log(hasil.message.data_entry.kd_data);
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
@@ -2395,7 +2391,7 @@
 
     function submit_gambar(id_bangunan) {
         // edit file
-        $('#form_gambar_edit' + id_bangunan).on('submit', function(e) {
+        $('#form_gambar_edit' + id_bangunan).on('submit', function (e) {
             e.preventDefault();
             $('#mohon').show()
             $.ajax({
@@ -2405,7 +2401,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function(data) {
+                success: function (data) {
                     if (data == '1') {
                         $("#modal_gambar_edit" + id_bangunan).modal('hide')
                         $('#mohon').hide()
@@ -2416,7 +2412,7 @@
                         toastr.warning(data, 'Gagal')
                     }
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log(data);
                 }
             });
@@ -2453,108 +2449,80 @@
             menurut_pasar: [],
             keterangan_lain: [],
 
-            // imb: $('#imb').val(),
-            // pondasi: $('#pondasi').val(),
-            // lantai: $('#lantai').val(),
-            // tinggi_lantai_terhadap_jalan: $('#tinggi_lantai_terhadap_jalan').val(),
-            // rangka: $('#rangka').val(),
-            // dinding: $('#dinding').val(),
-            // langit_plafond: $('#langit_plafond').val(),
-            // atap: $('#atap').val(),
-            // tahun_pembangunan: $('#tahun_pembangunan').val(),
-            // rehap_perbaikan: $('#rehap_perbaikan').val(),
-            // saat_pembelian_tanah: $('#saat_pembelian_tanah').val(),
-            // saat_pembangunan: $('#saat_pembangunan').val(),
-            // saat_rehab_perbaikan: $('#saat_rehab_perbaikan').val(),
-            // air: $('#air').val(),
-            // telepon: $('#telepon').val(),
-            // listrik: $('#listrik').val(),
-            // pagar: $('#pagar').val(),
-            // taman: $('#taman').val(),
-            // lainnya_fag: $('#lainnya_fag').val(),
-            // lantai1: $('#lantai1').val(),
-            // lantai2: $('#lantai2').val(),
-            // total_bangunan: $('#total_bangunan').val(),
-            // kondisi_bangunan: $('#kondisi_bangunan').val(),
-            // menurut_harga_perolehan: $('#menurut_harga_perolehan').val(),
-            // menurut_pasar_fag: $('#menurut_pasar_fag').val(),
-            // keterangan_lain_fag: $('#keterangan_lain_fag').val(),
-            // sarana: $('#sarana').val(),
-            // sarana_prasarana_fag: $('#sarana_prasarana_fag').val(),
-            // kelas: $('#kelas').val()
+            
         };
 
-        $('.bukti_kepemilikan').each(function() {
+        $('.bukti_kepemilikan').each(function () {
             data_fcr_agunan1.bukti_kepemilikan.push($(this).val());
         });
-        $('.tanggal_bukti_kepemilikan').each(function() {
+        $('.tanggal_bukti_kepemilikan').each(function () {
             data_fcr_agunan1.tanggal_bukti_kepemilikan.push($(this).val());
         });
         // baru tanah
-        $('.surat_ukur').each(function() {
+        $('.surat_ukur').each(function () {
             data_fcr_agunan1.surat_ukur.push($(this).val());
         });
-        $('.tanggal_surat_ukur').each(function() {
+        $('.tanggal_surat_ukur').each(function () {
             data_fcr_agunan1.tanggal_surat_ukur.push($(this).val());
         });
-        $('.nib').each(function() {
+        $('.nib').each(function () {
             data_fcr_agunan1.nib.push($(this).val());
         });
-        $('.penunjuk').each(function() {
+        $('.penunjuk').each(function () {
             data_fcr_agunan1.penunjuk.push($(this).val());
         });
-        $('.kelurahan').each(function() {
+        $('.kelurahan').each(function () {
             data_fcr_agunan1.kelurahan.push($(this).val());
         });
-        $('.kecamatan').each(function() {
+        $('.kecamatan').each(function () {
             data_fcr_agunan1.kecamatan.push($(this).val());
         });
-        $('.kabupaten').each(function() {
+        $('.kabupaten').each(function () {
             data_fcr_agunan1.kabupaten.push($(this).val());
         });
-        $('.provinsi').each(function() {
+        $('.provinsi').each(function () {
             data_fcr_agunan1.provinsi.push($(this).val());
         });
-        $('.utara').each(function() {
+        $('.utara').each(function () {
             data_fcr_agunan1.utara.push($(this).val());
         });
-        $('.barat').each(function() {
+        $('.barat').each(function () {
             data_fcr_agunan1.barat.push($(this).val());
         });
-        $('.selatan').each(function() {
+        $('.selatan').each(function () {
             data_fcr_agunan1.selatan.push($(this).val());
         });
-        $('.timur').each(function() {
+        $('.timur').each(function () {
             data_fcr_agunan1.timur.push($(this).val());
         });
-        $('.luas').each(function() {
+        $('.luas').each(function () {
             data_fcr_agunan1.luas.push($(this).val());
         });
-        $('.kanan').each(function() {
+        $('.kanan').each(function () {
             data_fcr_agunan1.kanan.push($(this).val());
         });
-        $('.kiri').each(function() {
+        $('.kiri').each(function () {
             data_fcr_agunan1.kiri.push($(this).val());
         });
-        $('.depan').each(function() {
+        $('.depan').each(function () {
             data_fcr_agunan1.depan.push($(this).val());
         });
-        $('.belakang').each(function() {
+        $('.belakang').each(function () {
             data_fcr_agunan1.belakang.push($(this).val());
         });
-        $('.daerah_pemakaian').each(function() {
+        $('.daerah_pemakaian').each(function () {
             data_fcr_agunan1.daerah_pemakaian.push($(this).val());
         });
-        $('.kondisi_tanah').each(function() {
+        $('.kondisi_tanah').each(function () {
             data_fcr_agunan1.kondisi_tanah.push($(this).val());
         });
-        $('.buku_tanah').each(function() {
+        $('.buku_tanah').each(function () {
             data_fcr_agunan1.buku_tanah.push($(this).val());
         });
-        $('.menurut_pasar').each(function() {
+        $('.menurut_pasar').each(function () {
             data_fcr_agunan1.menurut_pasar.push($(this).val());
         });
-        $('.keterangan_lain').each(function() {
+        $('.keterangan_lain').each(function () {
             data_fcr_agunan1.keterangan_lain.push($(this).val());
         });
         // console.log(data_fcr_agunan1['bukti_kepemilikan'])
@@ -2565,9 +2533,6 @@
     function data_fcr_agunan_bangunan() {
         var data_fcr_agunan1 = {
             kd_data_tambah: $('#kd_data_tambah').val(),
-
-            // bukti_kepemilikan: [],
-
             imb: [],
             pondasi: [],
             lantai: [],
@@ -2587,78 +2552,74 @@
             pagar: [],
             taman: [],
             lainnya_fag: [],
-            lantai_total: [], //dinamis
-            // lantai2: [],
+            lantai_total: "",
             total_bangunan: [],
             kondisi_bangunan: [],
-            menurut_harga_perolehan: [], //dinamis
-            menurut_pasar_fag: [], //dinamis
-            keterangan_lain_fag: [], //dinamis
-
+            menurut_harga_perolehan: "",
+            menurut_pasar_fag: "",
+            keterangan_lain_fag: "",
             sarana: [],
             sarana_prasarana_fag: [],
             kelas: [],
-
-            // edit_gambar: [],
         };
 
-        $('.imb').each(function() {
+        $('.imb').each(function () {
             data_fcr_agunan1.imb.push($(this).val());
         });
 
-        $('.pondasi').each(function() {
+        $('.pondasi').each(function () {
             data_fcr_agunan1.pondasi.push($(this).val());
         });
         // baru tanah
-        $('.lantai').each(function() {
+        $('.lantai').each(function () {
             data_fcr_agunan1.lantai.push($(this).val());
         });
-        $('.tinggi_lantai_terhadap_jalan').each(function() {
+        $('.tinggi_lantai_terhadap_jalan').each(function () {
             data_fcr_agunan1.tinggi_lantai_terhadap_jalan.push($(this).val());
         });
-        $('.rangka').each(function() {
+        $('.rangka').each(function () {
             data_fcr_agunan1.rangka.push($(this).val());
         });
-        $('.dinding').each(function() {
+        $('.dinding').each(function () {
             data_fcr_agunan1.dinding.push($(this).val());
         });
-        $('.langit_plafond').each(function() {
+        $('.langit_plafond').each(function () {
             data_fcr_agunan1.langit_plafond.push($(this).val());
         });
-        $('.atap').each(function() {
+        $('.atap').each(function () {
             data_fcr_agunan1.atap.push($(this).val());
         });
-        $('.tahun_pembangunan').each(function() {
+        $('.tahun_pembangunan').each(function () {
             data_fcr_agunan1.tahun_pembangunan.push($(this).val());
         });
-        $('.rehap_perbaikan').each(function() {
+        $('.rehap_perbaikan').each(function () {
             data_fcr_agunan1.rehap_perbaikan.push($(this).val());
         });
-        $('.saat_pembelian_tanah').each(function() {
+        $('.saat_pembelian_tanah').each(function () {
             data_fcr_agunan1.saat_pembelian_tanah.push($(this).val());
         });
-        $('.saat_pembangunan').each(function() {
+        $('.saat_pembangunan').each(function () {
             data_fcr_agunan1.saat_pembangunan.push($(this).val());
         });
-        $('.saat_rehab_perbaikan').each(function() {
+        $('.saat_rehab_perbaikan').each(function () {
             data_fcr_agunan1.saat_rehab_perbaikan.push($(this).val());
         });
-        $('.air').each(function() {
+        $('.air').each(function () {
             data_fcr_agunan1.air.push($(this).val());
         });
-        $('.telepon').each(function() {
+        $('.telepon').each(function () {
             data_fcr_agunan1.telepon.push($(this).val());
         });
-        $('.listrik').each(function() {
+        $('.listrik').each(function () {
             data_fcr_agunan1.listrik.push($(this).val());
         });
-        $('.pagar').each(function() {
+        $('.pagar').each(function () {
             data_fcr_agunan1.pagar.push($(this).val());
         });
-        $('.taman').each(function() {
+        $('.taman').each(function () {
             data_fcr_agunan1.taman.push($(this).val());
         });
-        $('.lainnya_fag').each(function() {
+        $('.lainnya_fag').each(function () {
             data_fcr_agunan1.lainnya_fag.push($(this).val());
         });
         data_fcr_agunan1.lantai_total = hasilFCRAgunanBangunan.lantai_total;
@@ -2668,10 +2629,10 @@
         // $('.lantai2').each(function() {
         //     data_fcr_agunan1.lantai2.push($(this).val());
         // });
-        $('.total_bangunan').each(function() {
+        $('.total_bangunan').each(function () {
             data_fcr_agunan1.total_bangunan.push($(this).val());
         });
-        $('.kondisi_bangunan').each(function() {
+        $('.kondisi_bangunan').each(function () {
             data_fcr_agunan1.kondisi_bangunan.push($(this).val());
         });
 
@@ -2689,13 +2650,13 @@
         //     data_fcr_agunan1.keterangan_lain_fag.push($(this).val());
         // });
 
-        $('.sarana').each(function() {
+        $('.sarana').each(function () {
             data_fcr_agunan1.sarana.push($(this).val());
         });
-        $('.sarana_prasarana_fag').each(function() {
+        $('.sarana_prasarana_fag').each(function () {
             data_fcr_agunan1.sarana_prasarana_fag.push($(this).val());
         });
-        $('.kelas').each(function() {
+        $('.kelas').each(function () {
             data_fcr_agunan1.kelas.push($(this).val());
         });
 
@@ -2747,73 +2708,73 @@
             // edit_gambar_bb: [],
         };
 
-        $('.jenis_dokumen_bb').each(function() {
+        $('.jenis_dokumen_bb').each(function () {
             data_fcr_agunan1.jenis_dokumen_bb.push($(this).val());
         });
-        $('.jenis_bb').each(function() {
+        $('.jenis_bb').each(function () {
             data_fcr_agunan1.jenis_bb.push($(this).val());
         });
-        $('.model_tipe_bb').each(function() {
+        $('.model_tipe_bb').each(function () {
             data_fcr_agunan1.model_tipe_bb.push($(this).val());
         });
-        $('.merek_cc_bb').each(function() {
+        $('.merek_cc_bb').each(function () {
             data_fcr_agunan1.merek_cc_bb.push($(this).val());
         });
-        $('.tahun_pembuatan_bb').each(function() {
+        $('.tahun_pembuatan_bb').each(function () {
             data_fcr_agunan1.tahun_pembuatan_bb.push($(this).val());
         });
-        $('.tahun_pembeliaan_bb').each(function() {
+        $('.tahun_pembeliaan_bb').each(function () {
             data_fcr_agunan1.tahun_pembeliaan_bb.push($(this).val());
         });
-        $('.serial_number_bb').each(function() {
+        $('.serial_number_bb').each(function () {
             data_fcr_agunan1.serial_number_bb.push($(this).val());
         });
-        $('.nomor_mesin_bb').each(function() {
+        $('.nomor_mesin_bb').each(function () {
             data_fcr_agunan1.nomor_mesin_bb.push($(this).val());
         });
-        $('.warna_bb').each(function() {
+        $('.warna_bb').each(function () {
             data_fcr_agunan1.warna_bb.push($(this).val());
         });
-        $('.bahan_bakar_bb').each(function() {
+        $('.bahan_bakar_bb').each(function () {
             data_fcr_agunan1.bahan_bakar_bb.push($(this).val());
         });
-        $('.kondisi_keadaan_bb').each(function() {
+        $('.kondisi_keadaan_bb').each(function () {
             data_fcr_agunan1.kondisi_keadaan_bb.push($(this).val());
         });
-        $('.nomor_polisi_bb').each(function() {
+        $('.nomor_polisi_bb').each(function () {
             data_fcr_agunan1.nomor_polisi_bb.push($(this).val());
         });
-        $('.bukti_kepemilikan_agb_bb').each(function() {
+        $('.bukti_kepemilikan_agb_bb').each(function () {
             data_fcr_agunan1.bukti_kepemilikan_agb_bb.push($(this).val());
         });
-        $('.invoice_no_bb').each(function() {
+        $('.invoice_no_bb').each(function () {
             data_fcr_agunan1.invoice_no_bb.push($(this).val());
         });
-        $('.invoice_tanggal_bb').each(function() {
+        $('.invoice_tanggal_bb').each(function () {
             data_fcr_agunan1.invoice_tanggal_bb.push($(this).val());
         });
-        $('.perubahan_hak_terakhir_bb').each(function() {
+        $('.perubahan_hak_terakhir_bb').each(function () {
             data_fcr_agunan1.perubahan_hak_terakhir_bb.push($(this).val());
         });
-        $('.tercatat_atas_nama_bb').each(function() {
+        $('.tercatat_atas_nama_bb').each(function () {
             data_fcr_agunan1.tercatat_atas_nama_bb.push($(this).val());
         });
-        $('.alamat_pemilik_saat_ini_bb').each(function() {
+        $('.alamat_pemilik_saat_ini_bb').each(function () {
             data_fcr_agunan1.alamat_pemilik_saat_ini_bb.push($(this).val());
         });
-        $('.umur_teknis_bb').each(function() {
+        $('.umur_teknis_bb').each(function () {
             data_fcr_agunan1.umur_teknis_bb.push($(this).val());
         });
-        $('.perkiraan_umur_ekonomis_bb').each(function() {
+        $('.perkiraan_umur_ekonomis_bb').each(function () {
             data_fcr_agunan1.perkiraan_umur_ekonomis_bb.push($(this).val());
         });
-        $('.tempat_penyimpanan_bb').each(function() {
+        $('.tempat_penyimpanan_bb').each(function () {
             data_fcr_agunan1.tempat_penyimpanan_bb.push($(this).val());
         });
-        $('.route_bb').each(function() {
+        $('.route_bb').each(function () {
             data_fcr_agunan1.route_bb.push($(this).val());
         });
-        $('.jarak_rata_rata_tempuh_bb').each(function() {
+        $('.jarak_rata_rata_tempuh_bb').each(function () {
             data_fcr_agunan1.jarak_rata_rata_tempuh_bb.push($(this).val());
         });
 
@@ -2830,7 +2791,7 @@
             data: data_input,
             // contentType: false,
             // processData: false,
-            success: function(response) {
+            success: function (response) {
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     refresh_fcr_agunan()
@@ -2847,7 +2808,7 @@
                     console.log(response)
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 $('#mohon').hide()
                 console.log(xhr.responseText)
                 toastr.error('Edit fcr agunan gagal', 'Error')
@@ -2887,8 +2848,8 @@
             $('#base64Output').empty(); // Clear previous output
             for (var i = 0; i < files.length; i++) {
                 var reader = new FileReader();
-                reader.onload = (function(file) {
-                    return function(e) {
+                reader.onload = (function (file) {
+                    return function (e) {
                         var base64String = e.target.result.split(',')[1]; // Get base64 string
                         $('#base64Output').append('<p>Base64 of ' + file.name + ':<br>' + base64String + '</p>');
                     };
@@ -2906,10 +2867,10 @@
             type: "post",
             dataType: "JSON",
             data: file,
-            success: function(data) {
+            success: function (data) {
                 console.log(data)
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.log("Error get data");
             }
         });
@@ -2929,7 +2890,7 @@
             var base64;
 
             // Onload of file read the file content
-            fileReader.onload = function(fileLoadedEvent) {
+            fileReader.onload = function (fileLoadedEvent) {
                 base64 = fileLoadedEvent.target.result;
                 // Print data in console
                 console.log(base64);

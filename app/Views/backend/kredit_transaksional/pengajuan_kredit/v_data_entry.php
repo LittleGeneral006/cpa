@@ -157,7 +157,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">NPWP</label>
             <div class="col-lg-12">
-                <input id="npwp_tambah" name="npwp_tambah" type="number" placeholder=""
+                <input id="npwp_tambah" name="npwp_tambah" type="text" placeholder=""
                     class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
 
             </div>

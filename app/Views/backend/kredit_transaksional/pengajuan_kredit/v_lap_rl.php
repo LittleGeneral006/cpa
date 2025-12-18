@@ -12,7 +12,8 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="laporan_rugi_laba_upload_lap_rl" name="laporan_rugi_laba_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="laporan_rugi_laba_upload_lap_rl">Lihat Dokumen</button>
+                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="laporan_rugi_laba_upload_lap_rl">Lihat Dokumen <span id="status_laporan_rugi_laba_upload_lap_rl" class="ml-2"></span></button>
+                
             </div>
         </div>
 
@@ -25,7 +26,8 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="neraca_upload_lap_rl" name="neraca_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="neraca_upload_lap_rl">Lihat Dokumen</button>
+                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="neraca_upload_lap_rl">Lihat Dokumen <span id="status_neraca_upload_lap_rl" class="ml-2"></span></button>
+                
             </div>
         </div>
     </div>
@@ -37,7 +39,8 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="depresiasi_upload_lap_rl" name="depresiasi_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="depresiasi_upload_lap_rl">Lihat Dokumen</button>
+                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="depresiasi_upload_lap_rl">Lihat Dokumen <span id="status_depresiasi_upload_lap_rl" class="ml-2"></span></button>
+                
             </div>
         </div>
     </div>
@@ -49,7 +52,8 @@
         <div class="col-lg-3">
             <div class="col-lg-12">
                 <input id="rasio_lap_keuangan_upload_lap_rl" name="rasio_lap_keuangan_upload_lap_rl" type="file" placeholder="" class="form-control class-readonly">
-                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="rasio_lap_keuangan_upload_lap_rl">Lihat Dokumen</button>
+                <button type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?> class="btn btn-link lihat-dokumen-lap-rl" data-id="rasio_lap_keuangan_upload_lap_rl">Lihat Dokumen <span id="status_rasio_lap_keuangan_upload_lap_rl" class="ml-2"></span></button>
+                
             </div>
         </div>
     </div>

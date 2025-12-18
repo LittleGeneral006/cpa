@@ -98,11 +98,25 @@
                 <input type="number" name="jumlah_penarikan_disetujui_mpdkk" id="jumlah_penarikan_disetujui_mpdkk"
                     class="form-control">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Persentase Pemotongan Kredit</label>
                 <input type="text" name="persentase_pemotongan_mpdkk" id="persentase_pemotongan_mpdkk"
-                    class="form-control">
+                    class="form-control col-lg-4">
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div> -->
+            <div class="form-group">
+                <label for="persentase_pemotongan_mpdkk">Persentase Pemotongan Kredit</label>
+                <div class="input-group col-lg-4">
+                    <input type="number" step="0.01" min="0" name="persentase_pemotongan_mpdkk"
+                        id="persentase_pemotongan_mpdkk" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
             </div>
+
         </div>
         <div class="col-lg-6">
             <div class="form-group">
@@ -126,22 +140,25 @@
                 <input type="text" name="jangka_waktu_proyek_mpdkk" id="jangka_waktu_proyek_mpdkk" class="form-control">
             </div>
             <div class="form-group">
-                <label>Rencana Penggunaan</label>
-                <textarea name="rencana_penggunaan_mpdkk" id="rencana_penggunaan_mpdkk" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
                 <label>Persentase Penarikan (%)</label>
                 <input type="number" step="0.01" min="0" max="100" name="persentase_penarikan_mpdkk"
                     id="persentase_penarikan_mpdkk" class="form-control">
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
             </div>
             <div class="form-group">
                 <label>Sisa Termijn</label>
                 <input type="number" name="sisa_termijn_mpdkk" id="sisa_termijn_mpdkk" class="form-control">
             </div>
             <div class="form-group">
+                <label>Rencana Penggunaan</label>
+                <textarea name="rencana_penggunaan_mpdkk" id="rencana_penggunaan_mpdkk" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
                 <label>Lain-Lain</label>
                 <textarea name="lain_lain_mpdkk" id="lain_lain_mpdkk" class="form-control"></textarea>
-            </div>  
+            </div>
         </div>
     </div>
 

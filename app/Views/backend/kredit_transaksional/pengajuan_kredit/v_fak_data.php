@@ -383,7 +383,7 @@
                 </div>
             </div>
             <div class="col-lg-1">
-                <a class="btn btn-success btn-rounded m-t-n-xs" style="margin-top:30px" onclick="hitungPrakiraanTanggalTermin(0)"><span>Hitung</span></a>
+                <a class="btn btn-success btn-rounded m-t-n-xs" style="margin-top:30px" onclick="hitungPrakiraanTanggaltermin(0)"><span>Hitung</span></a>
             </div>
             <div class="col-lg-3">
                 <label class="col-lg-12 control-label">Prakiraan Tanggal Termin</label>

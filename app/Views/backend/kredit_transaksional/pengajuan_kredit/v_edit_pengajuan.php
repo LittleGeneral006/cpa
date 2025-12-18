@@ -169,11 +169,6 @@
         <input type="text" hidden name="nilaiagunanmauk" id="nilaiagunanmauk">
         <input type="text" hidden name="bentukpengikatanmauk" id="bentukpengikatanmauk">
 
-        <input type="text" hidden name="agunanmauk" id="agunanmauk">
-        <input type="text" hidden name="macamjenismauk" id="macamjenismauk">
-        <input type="text" hidden name="nilaiagunanmauk" id="nilaiagunanmauk">
-        <input type="text" hidden name="bentukpengikatanmauk" id="bentukpengikatanmauk">
-
         <input type="text" hidden name="namapemilikperusahaandcl" id="namapemilikperusahaandcl">
         <input type="text" hidden name="persentasesahamdcl" id="persentasesahamdcl">
 
@@ -252,6 +247,7 @@
         <input type="text" hidden name="perkiraanumurekonomisbb" id="perkiraanumurekonomisbb">
         <input type="text" hidden name="tempatpenyimpananbb" id="tempatpenyimpananbb">
         <input type="text" hidden name="routebb" id="routebb">
+        <input type="text" hidden name="jarakrataratatempuhbb" id="jarakrataratatempuhbb">
         <input type="text" hidden name="nilaibukusebesarbb" id="nilaibukusebesarbb">
         <input type="text" hidden name="nilaitaksasisebesarbb" id="nilaitaksasisebesarbb">
         <input type="text" hidden name="safetymarginbb" id="safetymarginbb">
