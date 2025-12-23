@@ -1046,7 +1046,7 @@
                         '<div class="col-lg-6">' +
                         '<label class="col-lg-12 control-label">Tahun Pembelian</label>' +
                         '<div class="col-lg-12">' +
-                        '<input id="tahun_pembeliaan_bb' + counter_bb + '" name="tahun_pembeliaan_bb[]" type="number" placeholder="" class="form-control class-readonly tahun_pembeliaan_bb" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                        '<input id="tahun_pembelian_bb' + counter_bb + '" name="tahun_pembelian_bb[]" type="number" placeholder="" class="form-control class-readonly tahun_pembelian_bb" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
 
                         '</div>' +
                         '</div>' +
@@ -1253,7 +1253,7 @@
             // alert('hallo')
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            // var fcr_agunan2 = data_fcr_agunan();
+            
             // post_fcr_agunan('edit_fcr_agunan', fcr_agunan2, 'fcr_agunan')
             // Mengirim data menggunakan AJAX
 
@@ -1292,7 +1292,7 @@
             // alert('hallo')
             // Mendefinisikan array untuk menyimpan nilai input
             // alert(data.jenis_agunan_tambah)
-            // var fcr_agunan2 = data_fcr_agunan_bb();
+            
             // post_fcr_agunan('edit_fcr_agunan_bb', fcr_agunan2, 'fcr_agunan')
             // Mengirim data menggunakan AJAX
             if (edit_data_koordinator === null || edit_data_koordinator === '') {
@@ -2144,7 +2144,7 @@
                             '<div class="col-lg-6">' +
                             '<label class="col-lg-12 control-label">Tahun Pembelian</label>' +
                             '<div class="col-lg-12">' +
-                            '<input id="tahun_pembeliaan_bb' + counter_bb_loop + '" name="tahun_pembeliaan_bb[]" type="number" value="' + response.tahun_pembeliaan[counter_bb_loop] + '" placeholder="" class="form-control class-readonly tahun_pembeliaan_bb" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
+                            '<input id="tahun_pembelian_bb' + counter_bb_loop + '" name="tahun_pembelian_bb[]" type="number" value="' + response.tahun_pembelian[counter_bb_loop] + '" placeholder="" class="form-control class-readonly tahun_pembelian_bb" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>' +
 
                             '</div>' +
                             '</div>' +
@@ -2686,7 +2686,7 @@
             model_tipe_bb: [],
             merek_cc_bb: [],
             tahun_pembuatan_bb: [],
-            tahun_pembeliaan_bb: [],
+            tahun_pembelian_bb: [],
             serial_number_bb: [],
             nomor_mesin_bb: [],
             warna_bb: [],
@@ -2723,8 +2723,8 @@
         $('.tahun_pembuatan_bb').each(function () {
             data_fcr_agunan1.tahun_pembuatan_bb.push($(this).val());
         });
-        $('.tahun_pembeliaan_bb').each(function () {
-            data_fcr_agunan1.tahun_pembeliaan_bb.push($(this).val());
+        $('.tahun_pembelian_bb').each(function () {
+            data_fcr_agunan1.tahun_pembelian_bb.push($(this).val());
         });
         $('.serial_number_bb').each(function () {
             data_fcr_agunan1.serial_number_bb.push($(this).val());

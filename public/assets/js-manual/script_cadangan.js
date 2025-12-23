@@ -1041,6 +1041,7 @@ $(document).ready(function () {
     if (hasil.status == "success") {
       var jenis_agunan = hasil.message.data_entry.jenis_agunan;
       var data = hasil.message.faa;
+      var dataceftb = hasil.message.ceftb;
 
       var jenisAgunanArray = jenis_agunan.split(";");
 
@@ -1053,293 +1054,344 @@ $(document).ready(function () {
 
       // Loop untuk Barang Bergerak, hanya sejumlah barangBergerakCount
       for (
-        let counter_bb_loop = 0;
-        counter_bb_loop < barangBergerakCount;
-        counter_bb_loop++
+        let counter_bb_faa_loop = 0;
+        counter_bb_faa_loop < barangBergerakCount;
+        counter_bb_faa_loop++
       ) {
-        const nama_nasabah_bbArray = (
-  data.nama_nasabah_bb ? data.nama_nasabah_bb : ""
-).split(";");
+        const nama_nasabah_bb_faaArray = (
+          data.nama_nasabah_bb ? data.nama_nasabah_bb : ""
+        ).split(";");
 
-const jenis_dokumen_bbArray = (
-  data.jenis_dokumen_bb ? data.jenis_dokumen_bb : ""
-).split(";");
+        const jenis_dokumen_bb_faaArray = (
+          data.jenis_dokumen_bb ? data.jenis_dokumen_bb : ""
+        ).split(";");
 
-const alamat_bbArray = (
-  data.alamat_bb ? data.alamat_bb : ""
-).split(";");
+        const alamat_bb_faaArray = (
+          data.alamat_bb ? data.alamat_bb : ""
+        ).split(";");
 
-const jenis_bbArray = (
-  data.jenis_bb ? data.jenis_bb : ""
-).split(";");
+        const jenis_bb_faaArray = (
+          data.jenis_bb ? data.jenis_bb : ""
+        ).split(";");
 
-const model_tipe_bbArray = (
-  data.model_tipe_bb ? data.model_tipe_bb : ""
-).split(";");
+        const model_tipe_bb_faaArray = (
+          data.model_tipe_bb ? data.model_tipe_bb : ""
+        ).split(";");
 
-const merek_cc_bbArray = (
-  data.merek_cc_bb ? data.merek_cc_bb : ""
-).split(";");
+        const merek_cc_bb_faaArray = (
+          data.merek_cc_bb ? data.merek_cc_bb : ""
+        ).split(";");
 
-const tahun_pembuatan_bbArray = (
-  data.tahun_pembuatan_bb ? data.tahun_pembuatan_bb : ""
-).split(";");
+        const tahun_pembuatan_bb_faaArray = (
+          data.tahun_pembuatan_bb ? data.tahun_pembuatan_bb : ""
+        ).split(";");
 
-const serial_number_bbArray = (
-  data.serial_number_bb ? data.serial_number_bb : ""
-).split(";");
+        const serial_number_bb_faaArray = (
+          data.serial_number_bb ? data.serial_number_bb : ""
+        ).split(";");
 
-const nomor_mesin_bbArray = (
-  data.nomor_mesin_bb ? data.nomor_mesin_bb : ""
-).split(";");
+        const nomor_mesin_bb_faaArray = (
+          data.nomor_mesin_bb ? data.nomor_mesin_bb : ""
+        ).split(";");
 
-const warna_bbArray = (
-  data.warna_bb ? data.warna_bb : ""
-).split(";");
+        const warna_bb_faaArray = (
+          data.warna_bb ? data.warna_bb : ""
+        ).split(";");
 
-const bahan_bakar_bbArray = (
-  data.bahan_bakar_bb ? data.bahan_bakar_bb : ""
-).split(";");
+        const bahan_bakar_bb_faaArray = (
+          data.bahan_bakar_bb ? data.bahan_bakar_bb : ""
+        ).split(";");
 
-const kondisi_keadaan_bbArray = (
-  data.kondisi_keadaan_bb ? data.kondisi_keadaan_bb : ""
-).split(";");
+        const kondisi_keadaan_bb_faaArray = (
+          data.kondisi_keadaan_bb ? data.kondisi_keadaan_bb : ""
+        ).split(";");
 
-const nomor_polisi_bbArray = (
-  data.nomor_polisi_bb ? data.nomor_polisi_bb : ""
-).split(";");
+        const nomor_polisi_bb_faaArray = (
+          data.nomor_polisi_bb ? data.nomor_polisi_bb : ""
+        ).split(";");
 
-const bukti_kepemilikan_agb_bbArray = (
-  data.bukti_kepemilikan_agb_bb ? data.bukti_kepemilikan_agb_bb : ""
-).split(";");
+        const bukti_kepemilikan_agb_bb_faaArray = (
+          data.bukti_kepemilikan_agb_bb_faa
+            ? data.bukti_kepemilikan_agb_bb_faa
+            : ""
+        ).split(";");
 
-const invoice_no_bbArray = (
-  data.invoice_no_bb ? data.invoice_no_bb : ""
-).split(";");
+        const invoice_no_bb_faaArray = (
+          data.invoice_no_bb ? data.invoice_no_bb : ""
+        ).split(";");
 
-const invoice_tanggal_bbArray = (
-  data.invoice_tanggal_bb ? data.invoice_tanggal_bb : ""
-).split(";");
+        const invoice_tanggal_bb_faaArray = (
+          data.invoice_tanggal_bb ? data.invoice_tanggal_bb : ""
+        ).split(";");
 
-const perubahan_hak_terakhir_bbArray = (
-  data.perubahan_hak_terakhir_bb ? data.perubahan_hak_terakhir_bb : ""
-).split(";");
+        const perubahan_hak_terakhir_bb_faaArray = (
+          data.perubahan_hak_terakhir_bb
+            ? data.perubahan_hak_terakhir_bb
+            : ""
+        ).split(";");
 
-const tercatat_atas_nama_bbArray = (
-  data.tercatat_atas_nama_bb ? data.tercatat_atas_nama_bb : ""
-).split(";");
+        const tercatat_atas_nama_bb_faaArray = (
+          data.tercatat_atas_nama_bb ? data.tercatat_atas_nama_bb : ""
+        ).split(";");
 
-const alamat_pemilik_saat_ini_bbArray = (
-  data.alamat_pemilik_saat_ini_bb ? data.alamat_pemilik_saat_ini_bb : ""
-).split(";");
+        const alamat_pemilik_saat_ini_bb_faaArray = (
+          data.alamat_pemilik_saat_ini_bb
+            ? data.alamat_pemilik_saat_ini_bb
+            : ""
+        ).split(";");
 
-const umur_teknis_bbArray = (
-  data.umur_teknis_bb ? data.umur_teknis_bb : ""
-).split(";");
+        const umur_teknis_bbArray = (
+          data.umur_teknis_bb ? data.umur_teknis_bb : ""
+        ).split(";");
 
-const perkiraan_umur_ekonomis_bbArray = (
-  data.perkiraan_umur_ekonomis_bb ? data.perkiraan_umur_ekonomis_bb : ""
-).split(";");
+        const perkiraan_umur_ekonomis_bb_faaArray = (
+          data.perkiraan_umur_ekonomis_bb
+            ? data.perkiraan_umur_ekonomis_bb
+            : ""
+        ).split(";");
 
-const tempat_penyimpanan_bbArray = (
-  data.tempat_penyimpanan_bb ? data.tempat_penyimpanan_bb : ""
-).split(";");
+        const tempat_penyimpanan_bb_faaArray = (
+          data.tempat_penyimpanan_bb ? data.tempat_penyimpanan_bb : ""
+        ).split(";");
 
-const route_bbArray = (
-  data.route_bb ? data.route_bb : ""
-).split(";");
+        const route_bb_faaArray = (
+          data.route_bb ? data.route_bb : ""
+        ).split(";");
 
-const jarak_rata_rata_tempuh_bbArray = (
-  data.jarak_rata_rata_tempuh_bb ? data.jarak_rata_rata_tempuh_bb : ""
-).split(";");
+        const jarak_rata_rata_tempuh_bb_faaArray = (
+          data.jarak_rata_rata_tempuh_bb_faa
+            ? data.jarak_rata_rata_tempuh_bb_faa
+            : ""
+        ).split(";");
 
-        if (!data.nama_nasabah_bb) {
-          var inputan_bb =
-  '<div id="bagian_bb' + counter_bb_loop + '">' +
+        if (!data.nama_nasabah_bb_faa) {
+          var inputan_bb_faa =
+            '<div id="bagian_bb_faa' +
+            counter_bb_faa_loop +
+            '">' +
+            '<h2 class="text-center text-danger">Barang Bergerak</h2>' +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Nama Nasabah</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="nama_nasabah_bb_faa' +
+            counter_bb_faa_loop +
+            '" ' +
+            'name="nama_nasabah_bb_faa[]" type="text" ' +
+            'value="' +
+            (nama_nasabah_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control nama_nasabah_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Jenis Dokumen Kepemilikan</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="jenis_dokumen_bb_faa' +
+            counter_bb_faa_loop +
+            '" ' +
+            'name="jenis_dokumen_bb_faa[]" type="text" ' +
+            'value="' +
+            (jenis_dokumen_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control jenis_dokumen_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Alamat</label>' +
+            '<div class="col-lg-12">' +
+            '<textarea id="alamat_bb_faa' +
+            counter_bb_faa_loop +
+            '" ' +
+            'name="alamat_bb_faa[]" rows="3" class="form-control alamat_bb_faa">' +
+            (alamat_bb_faaArray[counter_bb_faa_loop] || "") +
+            "</textarea>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<h3 class="text-left text-success">Data Umum</h3>' +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Jenis</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="jenis_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="jenis_bb_faa[]" type="text" ' +
+            'value="' +
+            (jenis_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly jenis_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Model / Tipe</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="model_tipe_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="model_tipe_bb_faa[]" type="text" ' +
+            'value="' +
+            (model_tipe_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly model_tipe_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Merk / CC</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="merek_cc_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="merek_cc_bb_faa[]" type="text" ' +
+            'value="' +
+            (merek_cc_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly merek_cc_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Tahun Pembuatan</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="tahun_pembuatan_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="tahun_pembuatan_bb_faa[]" type="number" ' +
+            'value="' +
+            (tahun_pembuatan_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly tahun_pembuatan_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Serial Number</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="serial_number_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="serial_number_bb_faa[]" type="text" ' +
+            'value="' +
+            (serial_number_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly serial_number_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Nomor Mesin</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="nomor_mesin_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="nomor_mesin_bb_faa[]" type="text" ' +
+            'value="' +
+            (nomor_mesin_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly nomor_mesin_bb_faa">' +
+            "</div>" +
+            "</div>" +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Warna</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="warna_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="warna_bb_faa[]" type="text" ' +
+            'value="' +
+            (warna_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly warna_bb_faa" ' +
+            is_disabled +
+            ">" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Bahan Bakar</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="bahan_bakar_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="bahan_bakar_bb_faa[]" type="text" ' +
+            'value="' +
+            (bahan_bakar_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly bahan_bakar_bb_faa" is_disabled>' +
+            "</div>" +
+            "</div>" +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Kondisi / Keadaan</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="kondisi_keadaan_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="kondisi_keadaan_bb_faa[]" type="text" ' +
+            'value="' +
+            (kondisi_keadaan_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly kondisi_keadaan_bb_faa" is_disabled>' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Nomor Polisi</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="nomor_polisi_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="nomor_polisi_bb_faa[]" type="text" ' +
+            'value="' +
+            (nomor_polisi_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly nomor_polisi_bb_faa" is_disabled>' +
+            "</div>" +
+            "</div>" +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Bukti Kepemilikan</label>' +
+            '<div class="col-lg-12">' +
+            '<input id="bukti_kepemilikan_agb_bb_faa' +
+            counter_bb_faa_loop +
+            '" name="bukti_kepemilikan_agb_bb_faa[]" type="text" ' +
+            'value="' +
+            (bukti_kepemilikan_agb_bb_faaArray[counter_bb_faa_loop] || "") +
+            '" ' +
+            'class="form-control class-readonly bukti_kepemilikan_agb_bb_faa" is_disabled>' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            '<div class="row">' +
+            '<div class="col-lg-6">' +
+            '<label class="col-lg-12 control-label">Alamat Pemilik Saat Ini</label>' +
+            '<div class="col-lg-12">' +
+            '<textarea id="alamat_pemilik_saat_ini_bb_faa' +
+            counter_bb_faa_loop +
+            '" ' +
+            'name="alamat_pemilik_saat_ini_bb_faa[]" rows="3" ' +
+            'class="form-control class-readonly alamat_pemilik_saat_ini_bb_faa" is_disabled>' +
+            (alamat_pemilik_saat_ini_bb_faaArray[counter_bb_faa_loop] || "") +
+            "</textarea>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
 
-  '<h2 class="text-center text-danger">Barang Bergerak</h2>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Nama Nasabah</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="nama_nasabah_bb' + counter_bb_loop + '" ' +
-        'name="nama_nasabah_bb[]" type="text" ' +
-        'value="' + (nama_nasabah_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control nama_nasabah_bb">' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Jenis Dokumen Kepemilikan</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="jenis_dokumen_bb' + counter_bb_loop + '" ' +
-        'name="jenis_dokumen_bb[]" type="text" ' +
-        'value="' + (jenis_dokumen_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control jenis_dokumen_bb">' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Alamat</label>' +
-      '<div class="col-lg-12">' +
-        '<textarea id="alamat_bb' + counter_bb_loop + '" ' +
-        'name="alamat_bb[]" rows="3" class="form-control alamat_bb">' +
-        (alamat_bbArray[counter_bb_loop] || '') +
-        '</textarea>' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<h3 class="text-left text-success">Data Umum</h3>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Jenis</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="jenis_bb' + counter_bb_loop + '" name="jenis_bb[]" type="text" ' +
-        'value="' + (jenis_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly jenis_bb">' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Model / Tipe</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="model_tipe_bb' + counter_bb_loop + '" name="model_tipe_bb[]" type="text" ' +
-        'value="' + (model_tipe_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly model_tipe_bb">' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Merk / CC</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="merek_cc_bb' + counter_bb_loop + '" name="merek_cc_bb[]" type="text" ' +
-        'value="' + (merek_cc_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly merek_cc_bb">' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Tahun Pembuatan</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="tahun_pembuatan_bb' + counter_bb_loop + '" name="tahun_pembuatan_bb[]" type="number" ' +
-        'value="' + (tahun_pembuatan_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly tahun_pembuatan_bb">' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Serial Number</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="serial_number_bb' + counter_bb_loop + '" name="serial_number_bb[]" type="text" ' +
-        'value="' + (serial_number_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly serial_number_bb">' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Nomor Mesin</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="nomor_mesin_bb' + counter_bb_loop + '" name="nomor_mesin_bb[]" type="text" ' +
-        'value="' + (nomor_mesin_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly nomor_mesin_bb">' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Warna</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="warna_bb' + counter_bb_loop + '" name="warna_bb[]" type="text" ' +
-        'value="' + (warna_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly warna_bb" ' + is_disabled + '>' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Bahan Bakar</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="bahan_bakar_bb' + counter_bb_loop + '" name="bahan_bakar_bb[]" type="text" ' +
-        'value="' + (bahan_bakar_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly bahan_bakar_bb" is_disabled>' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Kondisi / Keadaan</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="kondisi_keadaan_bb' + counter_bb_loop + '" name="kondisi_keadaan_bb[]" type="text" ' +
-        'value="' + (kondisi_keadaan_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly kondisi_keadaan_bb" is_disabled>' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Nomor Polisi</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="nomor_polisi_bb' + counter_bb_loop + '" name="nomor_polisi_bb[]" type="text" ' +
-        'value="' + (nomor_polisi_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly nomor_polisi_bb" is_disabled>' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Bukti Kepemilikan</label>' +
-      '<div class="col-lg-12">' +
-        '<input id="bukti_kepemilikan_agb_bb' + counter_bb_loop + '" name="bukti_kepemilikan_agb_bb[]" type="text" ' +
-        'value="' + (bukti_kepemilikan_agb_bbArray[counter_bb_loop] || '') + '" ' +
-        'class="form-control class-readonly bukti_kepemilikan_agb_bb" is_disabled>' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '<div class="row">' +
-    '<div class="col-lg-6">' +
-      '<label class="col-lg-12 control-label">Alamat Pemilik Saat Ini</label>' +
-      '<div class="col-lg-12">' +
-        '<textarea id="alamat_pemilik_saat_ini_bb' + counter_bb_loop + '" ' +
-        'name="alamat_pemilik_saat_ini_bb[]" rows="3" ' +
-        'class="form-control class-readonly alamat_pemilik_saat_ini_bb" is_disabled>' +
-        (alamat_pemilik_saat_ini_bbArray[counter_bb_loop] || '') +
-        '</textarea>' +
-      '</div>' +
-    '</div>' +
-  '</div>' +
-
-  '</div>';
-
-$('#faa_bb').append(inputan_bb);
-
+          $("#faa_bb").append(inputan_bb_faa);
         } else {
           faa_bb();
         }
         // if (adaBarangBergerak) {
-        //     if (jenisAgunanArray[counter_bb_loop] === "Barang Bergerak") {
+        //     if (jenisAgunanArray[counter_bb_faa_loop] === "Barang Bergerak") {
         // for (let isi = 0; isi < jenisAgunanArray.length; isi++) {
 
         // }
         // let nilaiBukuSebesar =
-        //   parseFloat(nilai_buku_sebesar_bbArray[counter_bb_loop]) || 0;
+        //   parseFloat(nilai_buku_sebesar_bbArray[counter_bb_faa_loop]) || 0;
         // let nilaiBukuSebesar20Percent = nilaiBukuSebesar * 0.2;
-        // $("#safety_margin_bb" + counter_bb_loop).val(
+        // $("#safety_margin_bb" + counter_bb_faa_loop).val(
         //   formatNumber(nilaiBukuSebesar20Percent)
         // );
 
         // let nilaiAgunanSetelahSM = nilaiBukuSebesar - nilaiBukuSebesar20Percent;
-        // $("#nilai_agunan_setelah_sm_bb" + counter_bb_loop).val(
+        // $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop).val(
         //   formatNumber(nilaiAgunanSetelahSM)
         // );
       }
@@ -1356,6 +1408,7 @@ $('#faa_bb').append(inputan_bb);
       //     if (
       //       jenisAgunanArray[counter_tanah_loop] === "Tanah/ Tanah dan Bangunan"
       //     ) {
+
       for (
         let counter_tanah_loop = 0;
         counter_tanah_loop < tanahAtauTanahBangunanCount;
@@ -1404,6 +1457,20 @@ $('#faa_bb').append(inputan_bb);
             ? data.hasil_perhitungan_penilaian_tanah_faa_tb
             : ""
         ).split(";");
+        // Ambil nilai CEF: jika kosong, gunakan data.totalceft
+
+        let persentase_cef_tanah_faa_tbArray;
+        if (data.cef_tanah_faa_tb && data.cef_tanah_faa_tb.trim() !== "") {
+          persentase_cef_tanah_faa_tbArray = data.cef_tanah_faa_tb.split(";");
+        } else if (dataceftb.totalceft && dataceftb.totalceft.trim() !== "") {
+          persentase_cef_tanah_faa_tbArray = dataceftb.totalceft.split(";");
+        } else {
+          persentase_cef_tanah_faa_tbArray = [];
+        }
+        console.log(
+          "persentase_cef_tanah_faa_tbArray:",
+          persentase_cef_tanah_faa_tbArray
+        );
         const cef_tanah_faa_tbArray = (
           data.cef_tanah_faa_tb ? data.cef_tanah_faa_tb : ""
         ).split(";");
@@ -1412,6 +1479,42 @@ $('#faa_bb').append(inputan_bb);
             ? data.persentase_safety_margin_tanah_faa_tb
             : ""
         ).split(";");
+        const safety_margin_tanah_faa_tbArray = (
+          data.safety_margin_tanah_faa_tb ? data.safety_margin_tanah_faa_tb : ""
+        ).split(";");
+        const nilai_tanah_setelah_cef_safety_margin_tanah_faa_tbArray = (
+          data.nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb
+            ? data.nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb
+            : ""
+        ).split(";");
+
+        const hargaPejabat =
+          harga_menurut_pejabat_bank_tanah_faa_tbArray[counter_tanah_loop] ||
+          "";
+        const hargaTanahAuto = hargaPejabat; // mengikuti persis input pejabat (string)
+        const luasAuto =
+          luas_persegi_tanah_tanah_faa_tbArray[counter_tanah_loop] || "";
+
+        // hitung hasil (angka)
+        const hasilHitungAuto =
+          toNumber(hargaTanahAuto) * toNumber(luasAuto) || "";
+
+        const persenSMDefault =
+          persentase_safety_margin_tanah_faa_tbArray[counter_tanah_loop] || "5";
+
+        // ambil CEF dari array (string), hitung SM & nilai akhir
+        const cefTanahStr = cef_tanah_faa_tbArray[counter_tanah_loop] || "";
+        const cefTanahNum = toNumber(cefTanahStr);
+
+        const smTanahNum = cefTanahNum * (toNumber(persenSMDefault) / 100);
+        const nilaiTanahAkhirNum = cefTanahNum - smTanahNum;
+
+        // untuk value input (kalau mau tampil angka polos)
+        const smTanahAuto = smTanahNum ? smTanahNum : "";
+        const nilaiTanahAkhirAuto = nilaiTanahAkhirNum
+          ? nilaiTanahAkhirNum
+          : "";
+
         var inputan_tanah =
           '<div id="bagian_tanah' +
           counter_tanah_loop +
@@ -1447,7 +1550,7 @@ $('#faa_bb').append(inputan_bb);
           '<label class="col-lg-1 control-label">Tanggal</label>' +
           '<div class="col-lg-3">' +
           '<div class="col-lg-12">' +
-          '<input id="tanggal_shm_faa_tb' +
+          '<input type="date" id="tanggal_shm_faa_tb' +
           counter_tanah_loop +
           '" name="tanggal_shm_faa_tb[]" value="' +
           (tanggal_shm_faa_tbArray[counter_tanah_loop] || "") +
@@ -1526,7 +1629,9 @@ $('#faa_bb').append(inputan_bb);
           '" name="harga_menurut_pejabat_bank_tanah_faa_tb[]" value="' +
           (harga_menurut_pejabat_bank_tanah_faa_tbArray[counter_tanah_loop] ||
             "") +
-          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          '"type="text" onkeyup="hitungSemua();copyvalue(this.id, \'harga_tanah_tanah_faa_tb' +
+          counter_tanah_loop +
+          '\')"" placeholder="" class="form-control">' +
           '<p>Nominal: <span id="harga_menurut_pejabat_bank_tanah_faa_tb' +
           counter_tanah_loop +
           '_separators" class="mask"></span></p>' +
@@ -1541,31 +1646,45 @@ $('#faa_bb').append(inputan_bb);
           "</div>" +
           '<div class="col-lg-1 text-right">Rp</div>' +
           '<div class="col-lg-2">' +
+          // ✅ harga_tanah diisi dari harga pejabat (readonly)
           '<input id="harga_tanah_tanah_faa_tb' +
           counter_tanah_loop +
-          '" name="harga_tanah_tanah_faa_tb[]" value="' +
-          (harga_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
-          '"type="text" placeholder="" class="form-control">' +
+          '" ' +
+          'name="harga_tanah_tanah_faa_tb[]" ' +
+          'value="' +
+          (hargaTanahAuto || "") +
+          '" ' +
+          'type="text" placeholder="" class="form-control" readonly>' +
           '<p>Nominal: <span id="harga_tanah_tanah_faa_tb' +
           counter_tanah_loop +
           '_separators" class="mask"></span></p>' +
           "</div>" +
           '<div class="col-lg-1 text-center">x</div>' +
           '<div class="col-lg-2">' +
+          // luas tetap bisa input (atau readonly jika mau)
           '<input id="luas_persegi_tanah_tanah_faa_tb' +
           counter_tanah_loop +
-          '" name="luas_persegi_tanah_tanah_faa_tb[]" value="' +
-          (luas_persegi_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
-          '"type="text" placeholder="" class="form-control">' +
+          '" ' +
+          'name="luas_persegi_tanah_tanah_faa_tb[]" ' +
+          'value="' +
+          (luasAuto || "") +
+          '" ' +
+          'type="text" placeholder="" class="form-control" ' +
+          "onkeyup=\"hitungTanahLengkap('" +
+          counter_tanah_loop +
+          "')\">" +
           "</div>" +
           '<div class="col-lg-1 text-center">=</div>' +
           '<div class="col-lg-2">' +
+          // ✅ hasil = harga_tanah * luas (readonly)
           '<input id="hasil_perhitungan_penilaian_tanah_faa_tb' +
           counter_tanah_loop +
-          '" name="hasil_perhitungan_penilaian_tanah_faa_tb[]" value="' +
-          (hasil_perhitungan_penilaian_tanah_faa_tbArray[counter_tanah_loop] ||
-            "") +
-          '"type="text" placeholder="" class="form-control">' +
+          '" ' +
+          'name="hasil_perhitungan_penilaian_tanah_faa_tb[]" ' +
+          'value="' +
+          (hasilHitungAuto !== "" ? hasilHitungAuto : "") +
+          '" ' +
+          'type="text" placeholder="" class="form-control" readonly>' +
           '<p>Nominal: <span id="hasil_perhitungan_penilaian_tanah_faa_tb' +
           counter_tanah_loop +
           '_separators" class="mask"></span></p>' +
@@ -1580,11 +1699,26 @@ $('#faa_bb').append(inputan_bb);
           '<label class="col-lg-12 control-label">Cash Equivalency Factor (CEF)</label>' +
           "</div>" +
           '<div class="col-lg-2">' +
+          '<input id="persentase_cef_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="persentase_cef_tanah_faa_tb[]" value="' +
+          (persentase_cef_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="persentase_cef_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
           '<input id="cef_tanah_faa_tb' +
           counter_tanah_loop +
-          '" name="cef_tanah_faa_tb[]" value="' +
-          (cef_tanah_faa_tbArray[counter_tanah_loop] || "") +
-          '"type="text" placeholder="" class="form-control">' +
+          '" ' +
+          'name="cef_tanah_faa_tb[]" value="' +
+          (cefTanahStr || "") +
+          '" ' +
+          '"type="text" placeholder="" class="form-control" ' +
+          "onkeyup=\"hitungSafetyMarginTanah('" +
+          counter_tanah_loop +
+          "')\">" +
           '<p>Nominal: <span id="cef_tanah_faa_tb' +
           counter_tanah_loop +
           '_separators" class="mask"></span></p>' +
@@ -1601,11 +1735,48 @@ $('#faa_bb').append(inputan_bb);
           '<div class="col-lg-2">' +
           '<input id="persentase_safety_margin_tanah_faa_tb' +
           counter_tanah_loop +
-          '" name="persentase_safety_margin_tanah_faa_tb[]" value="' +
-          (persentase_safety_margin_tanah_faa_tbArray[counter_tanah_loop] ||
-            "") +
-          '"type="text" placeholder="" class="form-control">' +
+          '" ' +
+          'name="persentase_safety_margin_tanah_faa_tb[]" value="' +
+          persenSMDefault +
+          '" ' +
+          '"type="text" placeholder="" class="form-control" ' +
+          "onkeyup=\"hitungSafetyMarginTanah('" +
+          counter_tanah_loop +
+          "')\">" +
           '<p>Nominal: <span id="persentase_safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" ' +
+          'name="safety_margin_tanah_faa_tb[]" value="' +
+          (smTanahAuto || "") +
+          '" ' +
+          '"type="text" placeholder="" class="form-control" readonly>' +
+          '<p>Nominal: <span id="safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-4">' +
+          '<label class="col-lg-6 control-label">Nilai Tanah setelah CEF & Safety Margin</label>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" ' +
+          'name="nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb[]" value="' +
+          (nilaiTanahAkhirAuto || "") +
+          '" ' +
+          '"type="text" placeholder="" class="form-control" readonly>' +
+          '<p>Nominal: <span id="nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb' +
           counter_tanah_loop +
           '_separators" class="mask"></span></p>' +
           "</div>" +
@@ -1616,40 +1787,84 @@ $('#faa_bb').append(inputan_bb);
           "</div>";
 
         // Menambahkan deskripsi ke dalam DOM
+        hitungSafetyMarginTanah(counter_tanah_loop);
         $("#faa_tanah").append(inputan_tanah);
       }
     }
   });
 });
-// var kd_data_encrypt = "<?php echo sha1($datafcr->kd_data) ?>";
 
-// function variabelGlobal(callback) {
-//   var kirim = {
-//     kd_data: kd_data_encrypt,
-//   };
-//   $.ajax({
-//     // url: "<?php echo base_url() ?>pengajuan/getGlobal",
-//     url: base_url + "pengajuan/getGlobal",
-//     type: "POST",
-//     data: kirim,
-//     dataType: "JSON",
-//     success: function (response) {
-//       var hasil = {
-//         status: "success",
-//         message: response,
-//       };
-//       callback(hasil); // Panggil callback dengan hasil yang diperoleh
-//     },
-//     error: function (jqXHR, textStatus, errorThrown) {
-//       var hasil = {
-//         status: "error",
-//         message: "gagal mendapatkan data",
-//       };
-//       callback(hasil); // Panggil callback dengan hasil yang diperoleh
-//     },
-//   });
-// }
-//cek script variabelGlobal di v_data_entry.php
+function toNumber(val) {
+  if (val == null) return 0;
+  // buang "Rp", titik pemisah ribuan, spasi
+  const s = val
+    .toString()
+    .replace(/[^0-9,-]/g, "")
+    .replace(",", ".");
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n;
+}
+function hitungPenilaianTanah(i) {
+  const hargaPejabat =
+    $("#harga_menurut_pejabat_bank_tanah_faa_tb" + i).val() || "";
+
+  // set harga_tanah = harga pejabat
+  $("#harga_tanah_tanah_faa_tb" + i).val(hargaPejabat);
+
+  const harga = toNumber(hargaPejabat);
+  const luas = toNumber($("#luas_persegi_tanah_tanah_faa_tb" + i).val() || "");
+
+  const hasil = harga * luas;
+  $("#hasil_perhitungan_penilaian_tanah_faa_tb" + i).val(hasil ? hasil : "");
+}
+function hitungSafetyMarginTanah(i) {
+  const persen = toNumber(
+    $("#persentase_safety_margin_tanah_faa_tb" + i).val() || 5
+  );
+  const cef = toNumber($("#cef_tanah_faa_tb" + i).val() || 0);
+
+  const sm = cef * (persen / 100);
+  const nilai = cef - sm;
+
+  $("#safety_margin_tanah_faa_tb" + i).val(sm ? sm : "");
+  $("#nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb" + i).val(
+    nilai ? nilai : ""
+  );
+}
+function hitungTanahLengkap(i) {
+  // === Ambil nilai dasar ===
+  const harga = toNumber($("#harga_tanah_tanah_faa_tb" + i).val());
+  const luas = toNumber($("#luas_persegi_tanah_tanah_faa_tb" + i).val());
+
+  // 1️⃣ Penilaian tanah
+  const hasilPenilaian = harga * luas;
+  $("#hasil_perhitungan_penilaian_tanah_faa_tb" + i).val(
+    hasilPenilaian ? hasilPenilaian : ""
+  );
+
+  // === CEF ===
+  const persenCEF = toNumber($("#persentase_cef_tanah_faa_tb" + i).val());
+  const cefTanah = hasilPenilaian * (persenCEF / 100);
+  $("#cef_tanah_faa_tb" + i).val(cefTanah ? cefTanah : "");
+
+  // === Safety Margin ===
+  let persenSM = toNumber(
+    $("#persentase_safety_margin_tanah_faa_tb" + i).val()
+  );
+  if (!persenSM) {
+    persenSM = 5;
+    $("#persentase_safety_margin_tanah_faa_tb" + i).val(5);
+  }
+
+  const safetyMargin = cefTanah * (persenSM / 100);
+  $("#safety_margin_tanah_faa_tb" + i).val(safetyMargin ? safetyMargin : "");
+
+  // === Nilai akhir ===
+  const nilaiAkhir = cefTanah - safetyMargin;
+  $("#nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb" + i).val(
+    nilaiAkhir ? nilaiAkhir : ""
+  );
+}
 
 function isi_fak_data() {
   variabelGlobal(function (hasil) {
@@ -1886,7 +2101,8 @@ function isi_fak_data() {
             i +
             '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control" ' +
             is_disabled +
-            "value='" +nilaisesudahppnpp[index]+
+            "value='" +
+            nilaisesudahppnpp[index] +
             "'>" +
             "</div>" +
             "</div>" +
@@ -2154,19 +2370,19 @@ function isi_fak_rl() {
       alert(hasil.message);
     }
   });
-} 
+}
 
 function setStatusDokumen(id, val) {
-  
-
   let iconHtml;
 
   if (val && val !== "") {
     // sudah ada dokumen di DB
-    iconHtml = '<i class="fa fa-check-circle text-success" aria-hidden="true"></i>';
+    iconHtml =
+      '<i class="fa fa-check-circle text-success" aria-hidden="true"></i>';
   } else {
     // belum ada dokumen
-    iconHtml = '<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>';
+    iconHtml =
+      '<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>';
   }
 
   const $target = $("#status_" + id);
@@ -2179,29 +2395,37 @@ function setStatusDokumen(id, val) {
 }
 
 function isi_upload_lap_rl() {
-  
-
   variabelGlobal(function (hasil) {
     console.log("Respon variabelGlobal:", hasil);
 
     if (hasil.status === "success") {
       // aman-kan kalau upload_lap_rl tidak ada
-      var data = (hasil.message && hasil.message.upload_lap_rl) ? hasil.message.upload_lap_rl : {};
+      var data =
+        hasil.message && hasil.message.upload_lap_rl
+          ? hasil.message.upload_lap_rl
+          : {};
 
       // Pastikan object-nya ada
       console.log("Data upload_lap_rl:", data);
 
-      setStatusDokumen("laporan_rugi_laba_upload_lap_rl", data.laporan_rugi_laba_upload_lap_rl || "");
-      setStatusDokumen("neraca_upload_lap_rl",                 data.neraca_upload_lap_rl || "");
-      setStatusDokumen("depresiasi_upload_lap_rl",             data.depresiasi_upload_lap_rl || "");
-      setStatusDokumen("rasio_lap_keuangan_upload_lap_rl",     data.rasio_lap_keuangan_upload_lap_rl || "");
-
+      setStatusDokumen(
+        "laporan_rugi_laba_upload_lap_rl",
+        data.laporan_rugi_laba_upload_lap_rl || ""
+      );
+      setStatusDokumen("neraca_upload_lap_rl", data.neraca_upload_lap_rl || "");
+      setStatusDokumen(
+        "depresiasi_upload_lap_rl",
+        data.depresiasi_upload_lap_rl || ""
+      );
+      setStatusDokumen(
+        "rasio_lap_keuangan_upload_lap_rl",
+        data.rasio_lap_keuangan_upload_lap_rl || ""
+      );
     } else {
       alert(hasil.message || "Gagal mengambil data upload_lap_rl");
     }
   });
 }
-
 
 function isi_ceftb() {
   variabelGlobal(function (hasil) {
@@ -2268,30 +2492,30 @@ function isi_faa() {
     if (hasil.status == "success") {
       var data = hasil.message.faa;
 
-      $("namanasabahbb").val(data.nama_nasabah_bb);
-      $("jenisdokumenbb").val(data.jenis_dokumen_bb);
-      $("alamatbb").val(data.alamat_bb);
-      $("jenisbb").val(data.jenis_bb);
-      $("modeltipebb").val(data.model_tipe_bb);
-      $("merekccbb").val(data.merek_cc_bb);
-      $("tahunpembuatanbb").val(data.tahun_pembuatan_bb);
-      $("serialnumberbb").val(data.serial_number_bb);
-      $("nomormesinbb").val(data.nomor_mesin_bb);
-      $("warnabb").val(data.warna_bb);
-      $("bahanbakarbb").val(data.bahan_bakar_bb);
-      $("kondisikeadaanbb").val(data.kondisi_keadaan_bb);
-      $("nomorpolisibb").val(data.nomor_polisi_bb);
-      $("buktikepemilikanagbbb").val(data.bukti_kepemilikan_agb_bb);
-      $("invoicenobb").val(data.invoice_no_bb);
-      $("invoicetanggalbb").val(data.invoice_tanggal_bb);
-      $("perubahanhakterakhirbb").val(data.perubahan_hak_terakhir_bb);
-      $("tercatatatasnamabb").val(data.tercatat_atas_nama_bb);
-      $("alamatpemiliksaatinibb").val(data.alamat_pemilik_saat_ini_bb);
-      $("umurteknisbb").val(data.umur_teknis_bb);
-      $("perkiraanumurekonomisbb").val(data.perkiraan_umur_ekonomis_bb);
-      $("tempatpenyimpananbb").val(data.tempat_penyimpanan_bb);
-      $("routebb").val(data.route_bb);
-      $("jarakrataratatempuhbb").val(data.jarak_rata_rata_tempuh_bb);
+      $("namanasabahfaabb").val(data.nama_nasabah_faa_bb);
+      $("jenisdokumenfaabb").val(data.jenis_dokumen_faa_bb);
+      $("alamatfaabb").val(data.alamat_faa_bb);
+      $("jenisfaabb").val(data.jenis_faa_bb);
+      $("modeltipefaabb").val(data.model_tipe_faa_bb);
+      $("merekccfaabb").val(data.merek_cc_faa_bb);
+      $("tahunpembuatanfaabb").val(data.tahun_pembuatan_bb);
+      $("serialnumberfaabb").val(data.serial_number_bb);
+      $("nomormesinfaabb").val(data.nomor_mesin_bb);
+      $("warnafaabb").val(data.warna_bb);
+      $("bahanbakarfaabb").val(data.bahan_bakar_bb);
+      $("kondisikeadaanfaabb").val(data.kondisi_keadaan_bb);
+      $("nomorpolisifaabb").val(data.nomor_polisi_bb);
+      $("buktikepemilikanagbfaabb").val(data.bukti_kepemilikan_agb_bb);
+      $("invoicenofaabb").val(data.invoice_no_bb);
+      $("invoicetanggalfaabb").val(data.invoice_tanggal_bb);
+      $("perubahanhakterakhirfaabb").val(data.perubahan_hak_terakhir_bb);
+      $("tercatatatasnamafaabb").val(data.tercatat_atas_nama_bb);
+      $("alamatpemiliksaatinifaabb").val(data.alamat_pemilik_saat_ini_bb);
+      $("umurteknisfaabb").val(data.umur_teknis_bb);
+      $("perkiraanumurekonomisfaabb").val(data.perkiraan_umur_ekonomis_bb);
+      $("tempatpenyimpananfaabb").val(data.tempat_penyimpanan_bb);
+      $("routefaabb").val(data.route_bb);
+      $("jarakrataratatempuhfaabb").val(data.jarak_rata_rata_tempuh_bb);
       $("namanasabahfaatb").val(data.nama_nasabah_faa_tb);
       $("nomorshmfaatb").val(data.nomor_shm_faa_tb);
       $("tanggalshmfaatb").val(data.tanggal_shm_faa_tb);
@@ -2306,6 +2530,10 @@ function isi_faa() {
       $("luaspersegitanahtanahfaatb").val(data.luas_persegi_tanah_tanah_faa_tb);
       $("hasilperhitunganpenilaiantanahfaatb").val(
         data.hasil_perhitungan_penilaian_tanah_faa_tb
+      );
+      $("safetymargintanahfaatb").val(data.safety_margin_tanah_faa_tb);
+      $("nilaitanahsetelahcefsafetymargintanahfaatb").val(
+        data.nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb
       );
     } else {
       alert(hasil.message);
@@ -4862,44 +5090,46 @@ function ceftb() {
   });
 }
 
-function hitungNilaiFAABB(counter_bb_loop) {
+function hitungNilaiFAABB(counter_bb_faa_loop) {
   let nilaiBukuSebesar =
-    parseFloat($("#nilai_buku_sebesar_bb" + counter_bb_loop).val()) || 0;
-  $("#nilai_taksasi_sebesar_bb" + counter_bb_loop).val(nilaiBukuSebesar);
+    parseFloat($("#nilai_buku_sebesar_bb" + counter_bb_faa_loop).val()) || 0;
+  $("#nilai_taksasi_sebesar_bb" + counter_bb_faa_loop).val(nilaiBukuSebesar);
   var formattedValue = formatNumber(nilaiBukuSebesar);
-  $("#nilai_buku_sebesar_bb" + counter_bb_loop + "_separators").text(
+  $("#nilai_buku_sebesar_bb" + counter_bb_faa_loop + "_separators").text(
     formattedValue
   );
-  $("#nilai_taksasi_sebesar_bb" + counter_bb_loop + "_separators").text(
+  $("#nilai_taksasi_sebesar_bb" + counter_bb_faa_loop + "_separators").text(
     formattedValue
   );
   let persentaseSafetyMargin =
-    parseFloat($("#persentase_safety_margin" + counter_bb_loop).val()) || 0;
+    parseFloat($("#persentase_safety_margin" + counter_bb_faa_loop).val()) || 0;
 
   let nilaiBukuSebesar20Percent =
     nilaiBukuSebesar * (persentaseSafetyMargin / 100);
 
-  $("#safety_margin_bb" + counter_bb_loop).val(nilaiBukuSebesar20Percent);
+  $("#safety_margin_bb" + counter_bb_faa_loop).val(nilaiBukuSebesar20Percent);
   var formattedValue1 = formatNumber(nilaiBukuSebesar20Percent);
-  $("#safety_margin_bb" + counter_bb_loop + "_separators").text(
+  $("#safety_margin_bb" + counter_bb_faa_loop + "_separators").text(
     formattedValue1
   );
 
   let nilaiAgunanSetelahSM = nilaiBukuSebesar - nilaiBukuSebesar20Percent;
 
-  $("#nilai_agunan_setelah_sm_bb" + counter_bb_loop).val(nilaiAgunanSetelahSM);
+  $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop).val(
+    nilaiAgunanSetelahSM
+  );
   var formattedValue2 = formatNumber(nilaiAgunanSetelahSM);
-  $("#nilai_agunan_setelah_sm_bb" + counter_bb_loop + "_separators").text(
+  $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop + "_separators").text(
     formattedValue2
   );
 
-  let persentaseCEF = parseFloat($("#cef_bb" + counter_bb_loop).val()) || 0;
+  let persentaseCEF = parseFloat($("#cef_bb" + counter_bb_faa_loop).val()) || 0;
   let nilaiAgunanSetelahCEF = nilaiAgunanSetelahSM * (persentaseCEF / 100);
-  $("#nilai_agunan_setelah_cef_bb" + counter_bb_loop).val(
+  $("#nilai_agunan_setelah_cef_bb" + counter_bb_faa_loop).val(
     nilaiAgunanSetelahCEF
   );
   var formattedValue3 = formatNumber(nilaiAgunanSetelahCEF);
-  $("#nilai_agunan_setelah_cef_bb" + counter_bb_loop + "_separators").text(
+  $("#nilai_agunan_setelah_cef_bb" + counter_bb_faa_loop + "_separators").text(
     formattedValue3
   );
 }
@@ -4921,530 +5151,620 @@ function faa_bb() {
 
       // Loop untuk Barang Bergerak, hanya sejumlah barangBergerakCount
       for (
-        let counter_bb_loop = 0;
-        counter_bb_loop < barangBergerakCount;
-        counter_bb_loop++
+        let counter_bb_faa_loop = 0;
+        counter_bb_faa_loop < barangBergerakCount;
+        counter_bb_faa_loop++
       ) {
         // if (adaBarangBergerak) {
-        //     if (jenisAgunanArray[counter_bb_loop] === "Barang Bergerak") {
-        const jenisBBArray = (data.jenis_bb ? data.jenis_bb : "").split(";");
-        const nama_nasabahArray = (
-          data.nama_nasabah_bb ? data.nama_nasabah_bb : ""
-        ).split(";");
-        const jenis_dokumen_bbArray = (
-          data.jenis_dokumen_bb ? data.jenis_dokumen_bb : ""
-        ).split(";");
-        const alamat_bbArray = (data.alamat_bb ? data.alamat_bb : "").split(
+        //     if (jenisAgunanArray[counter_bb_faa_loop] === "Barang Bergerak") {
+        const jenisBBArray = (data.jenis_bb_faa ? data.jenis_bb_faa : "").split(
           ";"
         );
-        const model_tipe_bbArray = (
-          data.model_tipe_bb ? data.model_tipe_bb : ""
+        const nama_nasabahArray = (
+          data.nama_nasabah_bb_faa ? data.nama_nasabah_bb_faa : ""
         ).split(";");
-        const merek_cc_bbArray = (
-          data.merek_cc_bb ? data.merek_cc_bb : ""
+        const jenis_dokumen_bb_faaArray = (
+          data.jenis_dokumen_bb_faa ? data.jenis_dokumen_bb_faa : ""
         ).split(";");
-        const tahun_pembuatan_bbArray = (
-          data.tahun_pembuatan_bb ? data.tahun_pembuatan_bb : ""
+        const alamat_bb_faaArray = (
+          data.alamat_bb_faa ? data.alamat_bb_faa : ""
         ).split(";");
-        const serial_number_bbArray = (
-          data.serial_number_bb ? data.serial_number_bb : ""
+        const model_tipe_bb_faaArray = (
+          data.model_tipe_bb_faa ? data.model_tipe_bb_faa : ""
         ).split(";");
-        const nomor_mesin_bbArray = (
-          data.nomor_mesin_bb ? data.nomor_mesin_bb : ""
+        const merek_cc_bb_faaArray = (
+          data.merek_cc_bb_faa ? data.merek_cc_bb_faa : ""
         ).split(";");
-        const warna_bbArray = (data.warna_bb ? data.warna_bb : "").split(";");
-        const bahan_bakar_bbArray = (
-          data.bahan_bakar_bb ? data.bahan_bakar_bb : ""
+        const tahun_pembuatan_bb_faaArray = (
+          data.tahun_pembuatan_bb_faa ? data.tahun_pembuatan_bb_faa : ""
         ).split(";");
-        const kondisi_keadaan_bbArray = (
-          data.kondisi_keadaan_bb ? data.kondisi_keadaan_bb : ""
+        const serial_number_bb_faaArray = (
+          data.serial_number_bb_faa ? data.serial_number_bb_faa : ""
         ).split(";");
-        const nomor_polisi_bbArray = (
-          data.nomor_polisi_bb ? data.nomor_polisi_bb : ""
+        const nomor_mesin_bb_faaArray = (
+          data.nomor_mesin_bb_faa ? data.nomor_mesin_bb_faa : ""
         ).split(";");
-        const invoice_no_bbArray = (
-          data.invoice_no_bb ? data.invoice_no_bb : ""
+        const warna_bb_faaArray = (
+          data.warna_bb_faa ? data.warna_bb_faa : ""
         ).split(";");
-        const invoice_tanggal_bbArray = (
-          data.invoice_tanggal_bb ? data.invoice_tanggal_bb : ""
+        const bahan_bakar_bb_faaArray = (
+          data.bahan_bakar_bb_faa ? data.bahan_bakar_bb_faa : ""
         ).split(";");
-        const perubahan_hak_terakhir_bbArray = (
-          data.perubahan_hak_terakhir_bb ? data.perubahan_hak_terakhir_bb : ""
+        const kondisi_keadaan_bb_faaArray = (
+          data.kondisi_keadaan_bb_faa ? data.kondisi_keadaan_bb_faa : ""
         ).split(";");
-        const alamat_pemilik_saat_ini_bbArray = (
-          data.alamat_pemilik_saat_ini_bb ? data.alamat_pemilik_saat_ini_bb : ""
+        const nomor_polisi_bb_faaArray = (
+          data.nomor_polisi_bb_faa ? data.nomor_polisi_bb_faa : ""
+        ).split(";");
+        const invoice_no_bb_faaArray = (
+          data.invoice_no_bb_faa ? data.invoice_no_bb_faa : ""
+        ).split(";");
+        const invoice_tanggal_bb_faaArray = (
+          data.invoice_tanggal_bb_faa ? data.invoice_tanggal_bb_faa : ""
+        ).split(";");
+        const perubahan_hak_terakhir_bb_faaArray = (
+          data.perubahan_hak_terakhir_bb_faa
+            ? data.perubahan_hak_terakhir_bb_faa
+            : ""
+        ).split(";");
+        const alamat_pemilik_saat_ini_bb_faaArray = (
+          data.alamat_pemilik_saat_ini_bb_faa
+            ? data.alamat_pemilik_saat_ini_bb_faa
+            : ""
         ).split(";");
         const tercatat_atas_namaArray = (
-          data.tercatat_atas_nama_bb ? data.tercatat_atas_nama_bb : ""
+          data.tercatat_atas_nama_bb_faa ? data.tercatat_atas_nama_bb_faa : ""
         ).split(";");
-        const umur_teknis_bbArray = (
-          data.umur_teknis_bb ? data.umur_teknis_bb : ""
+        const umur_teknis_bb_faaArray = (
+          data.umur_teknis_bb_faa ? data.umur_teknis_bb_faa : ""
         ).split(";");
-        const bukti_kepemilikan_agb_bbArray = (
-          data.bukti_kepemilikan_agb_bb ? data.bukti_kepemilikan_agb_bb : ""
+        const bukti_kepemilikan_agb_bb_faaArray = (
+          data.bukti_kepemilikan_agb_bb_faa
+            ? data.bukti_kepemilikan_agb_bb_faa
+            : ""
         ).split(";");
-        const perkiraan_umur_ekonomis_bbArray = (
-          data.perkiraan_umur_ekonomis_bb ? data.perkiraan_umur_ekonomis_bb : ""
+        const perkiraan_umur_ekonomis_bb_faaArray = (
+          data.perkiraan_umur_ekonomis_bb_faa
+            ? data.perkiraan_umur_ekonomis_bb_faa
+            : ""
         ).split(";");
-        const tempat_penyimpanan_bbArray = (
-          data.tempat_penyimpanan_bb ? data.tempat_penyimpanan_bb : ""
+        const tempat_penyimpanan_bb_faaArray = (
+          data.tempat_penyimpanan_bb_faa ? data.tempat_penyimpanan_bb_faa : ""
         ).split(";");
-        const route_bbArray = (data.route_bb ? data.route_bb : "").split(";");
-        const jarak_rata_rata_tempuh_bbArray = (
-          data.jarak_rata_rata_tempuh_bb ? data.jarak_rata_rata_tempuh_bb : ""
+        const route_bb_faaArray = (
+          data.route_bb_faa ? data.route_bb_faa : ""
         ).split(";");
-        const nilai_buku_sebesar_bbArray = (
-          data.nilai_buku_sebesar_bb ? data.nilai_buku_sebesar_bb : ""
+        const jarak_rata_rata_tempuh_bb_faaArray = (
+          data.jarak_rata_rata_tempuh_bb_faa
+            ? data.jarak_rata_rata_tempuh_bb_faa
+            : ""
         ).split(";");
-        const nilai_taksasi_sebesar_bbArray = (
-          data.nilai_taksasi_sebesar_bb ? data.nilai_taksasi_sebesar_bb : ""
+        const nilai_buku_sebesar_bb_faaArray = (
+          data.nilai_buku_sebesar_bb_faa ? data.nilai_buku_sebesar_bb_faa : ""
         ).split(";");
-        const safety_margin_bbArray = (
-          data.safety_margin_bb ? data.safety_margin_bb : ""
+        const nilai_taksasi_sebesar_bb_faaArray = (
+          data.nilai_taksasi_sebesar_bb_faa
+            ? data.nilai_taksasi_sebesar_bb_faa
+            : ""
         ).split(";");
-        const nilai_agunan_setelah_sm_bbArray = (
-          data.nilai_agunan_setelah_sm_bb ? data.nilai_agunan_setelah_sm_bb : ""
+        const safety_margin_bb_faaArray = (
+          data.safety_margin_bb_faa ? data.safety_margin_bb_faa : ""
         ).split(";");
-        const cef_bbArray = (data.cef_bb ? data.cef_bb : "").split(";");
-        const nilai_agunan_setelah_cef_bbArray = (
-          data.nilai_agunan_setelah_cef_bb
-            ? data.nilai_agunan_setelah_cef_bb
+        const nilai_agunan_setelah_sm_bb_faaArray = (
+          data.nilai_agunan_setelah_sm_bb_faa
+            ? data.nilai_agunan_setelah_sm_bb_faa
+            : ""
+        ).split(";");
+        const cef_bb_faaArray = (data.cef_bb_faa ? data.cef_bb_faa : "").split(
+          ";"
+        );
+        const nilai_agunan_setelah_cef_bb_faaArray = (
+          data.nilai_agunan_setelah_cef_bb_faa
+            ? data.nilai_agunan_setelah_cef_bb_faa
             : ""
         ).split(";");
         // for (let isi = 0; isi < jenisAgunanArray.length; isi++) {
 
-        var inputan_bb =
-          '<div id="bagian_bb' +
-          counter_bb_loop +
-          '">' +
-          '<h2 class="text-center text-danger">Barang Bergerak</h2>' +
-          '<h3 class="text-left text-success"></h3>' +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nama Nasabah</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nama_nasabah_bb' +
-          counter_bb_loop +
-          '" name="nama_nasabah_bb[]" type="text" ' +
-          'value="' +
-          (nama_nasabahArray[counter_bb_loop] || "") +
-          '"' +
-          '" placeholder="" class="form-control nama_nasabah_bb">' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Jenis Dokumen Kepemilikan</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="jenis_dokumen_bb' +
-          counter_bb_loop +
-          '" name="jenis_dokumen_bb[]" ' +
-          'value="' +
-          (jenis_dokumen_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="text" placeholder="" class="form-control jenis_dokumen_bb">' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Alamat</label>' +
-          '<div class="col-lg-12">' +
-          '<textarea class="form-control alamat_bb" id="alamat_bb' +
-          counter_bb_loop +
-          '" name="alamat_bb[]" rows="3">' +
-          (alamat_bbArray[counter_bb_loop] || "") +
-          "</textarea>" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<h3 class="text-left text-success">Data Umum</h3>' +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Jenis</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="jenis_bb' +
-          counter_bb_loop +
-          '" name="jenis_bb[]" ' +
-          'value="' +
-          (jenisBBArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="text" placeholder="" class="form-control class-readonly jenis_bb">' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Model/ Tipe</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="model_tipe_bb' +
-          counter_bb_loop +
-          '" name="model_tipe_bb[]" ' +
-          'value="' +
-          (model_tipe_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="text" placeholder="" class="form-control class-readonly model_tipe_bb">' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Merk/ CC</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="merek_cc_bb' +
-          counter_bb_loop +
-          '" name="merek_cc_bb[]" ' +
-          'value="' +
-          (merek_cc_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="text" placeholder="" class="form-control class-readonly merek_cc_bb">' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Tahun Pembuatan</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="tahun_pembuatan_bb' +
-          counter_bb_loop +
-          '" name="tahun_pembuatan_bb[]" ' +
-          'value="' +
-          (tahun_pembuatan_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="number" placeholder="" class="form-control class-readonly tahun_pembuatan_bb">' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Serial Number</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="serial_number_bb' +
-          counter_bb_loop +
-          '" name="serial_number_bb[]" ' +
-          'value="' +
-          (serial_number_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="text" placeholder="" class="form-control class-readonly serial_number_bb">' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nomor Mesin</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nomor_mesin_bb' +
-          counter_bb_loop +
-          '" name="nomor_mesin_bb[]" ' +
-          'value="' +
-          (nomor_mesin_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '" type="text" placeholder="" class="form-control class-readonly nomor_mesin_bb">' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Warna</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="warna_bb' +
-          counter_bb_loop +
-          '" name="warna_bb[]"' +
-          'value="' +
-          (warna_bbArray[counter_bb_loop] || "") +
-          '"' +
-          'type="text" placeholder="" class="form-control class-readonly warna_bb" ' +
-          is_disabled +
-          ">" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Bahan Bakar</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="bahan_bakar_bb' +
-          counter_bb_loop +
-          '" name="bahan_bakar_bb[]"' +
-          'value="' +
-          (bahan_bakar_bbArray[counter_bb_loop] || "") +
-          '"' +
-          'type="text" placeholder="" class="form-control class-readonly bahan_bakar_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Kondisi/ Keadaan</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="kondisi_keadaan_bb' +
-          counter_bb_loop +
-          '" name="kondisi_keadaan_bb[]"' +
-          'value="' +
-          (kondisi_keadaan_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '  type="text" placeholder="" class="form-control class-readonly kondisi_keadaan_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nomor Polisi</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nomor_polisi_bb' +
-          counter_bb_loop +
-          '" name="nomor_polisi_bb[]"' +
-          'value="' +
-          (nomor_polisi_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' type="text" placeholder="" class="form-control class-readonly nomor_polisi_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Bukti Kepemilikan</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="bukti_kepemilikan_agb_bb' +
-          counter_bb_loop +
-          '" name="bukti_kepemilikan_agb_bb[]" ' +
-          'value="' +
-          (bukti_kepemilikan_agb_bbArray[counter_bb_loop] || "") +
-          '"' +
-          'type="text" placeholder="" class="form-control class-readonly bukti_kepemilikan_agb_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Invoice No</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="invoice_no_bb' +
-          counter_bb_loop +
-          '" name="invoice_no_bb[]" ' +
-          'value="' +
-          (invoice_no_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' type="text" placeholder="" class="form-control class-readonly invoice_no_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Invoice Tanggal</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="invoice_tanggal_bb' +
-          counter_bb_loop +
-          '" name="invoice_tanggal_bb[]"' +
-          'value="' +
-          (invoice_tanggal_bbArray[counter_bb_loop] || "") +
-          '"' +
-          '  type="date" placeholder="" class="form-control class-readonly invoice_tanggal_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Perubahan Hak Terakhir</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="perubahan_hak_terakhir_bb' +
-          counter_bb_loop +
-          '" name="perubahan_hak_terakhir_bb[]" ' +
-          'value="' +
-          (perubahan_hak_terakhir_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' type="text" placeholder="" class="form-control class-readonly perubahan_hak_terakhir_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Tercatat Atas Nama</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="tercatat_atas_nama_bb' +
-          counter_bb_loop +
-          '" name="tercatat_atas_nama_bb[]" ' +
-          'value="' +
-          (tercatat_atas_namaArray[counter_bb_loop] || "") +
-          '"' +
-          '  type="text" placeholder="" class="form-control class-readonly tercatat_atas_nama_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Alamat Pemilik Saat Ini</label>' +
-          '<div class="col-lg-12">' +
-          '<textarea class="form-control class-readonly alamat_pemilik_saat_ini_bb" id="alamat_pemilik_saat_ini_bb' +
-          counter_bb_loop +
-          '" name="alamat_pemilik_saat_ini_bb[]" rows="3" is_disabled>' +
-          (alamat_pemilik_saat_ini_bbArray[counter_bb_loop] || "") +
-          "</textarea>" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Umur Teknis</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="umur_teknis_bb' +
-          counter_bb_loop +
-          '" name="umur_teknis_bb[]" ' +
-          'value="' +
-          (umur_teknis_bbArray[counter_bb_loop] || "") +
-          '"' +
-          'type="text" placeholder="" class="form-control class-readonly umur_teknis_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Perkiraan Umur Ekonomis</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="perkiraan_umur_ekonomis_bb' +
-          counter_bb_loop +
-          '" name="perkiraan_umur_ekonomis_bb[]" ' +
-          'value="' +
-          (perkiraan_umur_ekonomis_bbArray[counter_bb_loop] || "") +
-          '"' +
-          'type="text" placeholder="" class="form-control class-readonly perkiraan_umur_ekonomis_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Tempat Penyimpanan</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="tempat_penyimpanan_bb' +
-          counter_bb_loop +
-          '" name="tempat_penyimpanan_bb[]" ' +
-          'value="' +
-          (tempat_penyimpanan_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' type="text" placeholder="" class="form-control class-readonly tempat_penyimpanan_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Route</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="route_bb' +
-          counter_bb_loop +
-          '" name="route_bb[]" ' +
-          'value="' +
-          (route_bbArray[counter_bb_loop] || "") +
-          '"' +
-          'type="text" placeholder="" class="form-control class-readonly route_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Jarak Rata-rata Ditempuh</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="jarak_rata_rata_tempuh_bb' +
-          counter_bb_loop +
-          '" name="jarak_rata_rata_tempuh_bb[]" ' +
-          'value="' +
-          (jarak_rata_rata_tempuh_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' type="text" placeholder="" class="form-control class-readonly jarak_rata_rata_tempuh_bb" is_disabled>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "<div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nilai Buku Sebesar</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nilai_buku_sebesar_bb" name="nilai_buku_sebesar_bb[]" type="text" ' +
-          'value="' +
-          (nilai_buku_sebesar_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' placeholder="" onkeyup="hitungNilaiFAABB()" class="form-control class-readonly nilai_buku_sebesar_bb" is_disabled>' +
-          '<p>Nominal: <span id="nilai_buku_sebesar_bb' +
-          counter_bb_loop +
-          '_separators" class="mask"></span></p>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nilai Taksasi Sebesar</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nilai_taksasi_sebesar_bb" name="nilai_taksasi_sebesar_bb[]" type="text" ' +
-          'value="' +
-          (nilai_taksasi_sebesar_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' placeholder="" class="form-control class-readonly nilai_taksasi_sebesar_bb" is_disabled>' +
-          '<p>Nominal: <span id="nilai_taksasi_sebesar_bb' +
-          counter_bb_loop +
-          '_separators" class="mask"></span></p>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Safety Margin</label>' +
-          '<div class="col-lg-4">' +
-          '<input id="persentase_safety_margin" name="persentase_safety_margin[]" type="text" ' +
-          'value="" placeholder="" onkeyup="hitungNilaiFAABB()" class="form-control class-readonly persentase_safety_margin" is_disabled>' +
-          "</div>" +
-          '<div class="col-lg-6">' +
-          '<input id="safety_margin_bb" name="safety_margin_bb[]" type="text" ' +
-          'value="' +
-          (safety_margin_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' placeholder="" class="form-control class-readonly safety_margin_bb" is_disabled>' +
-          '<p>Nominal: <span id="safety_margin_bb' +
-          counter_bb_loop +
-          '_separators" class="mask"></span></p>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nilai Agunan Setelah SM</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nilai_agunan_setelah_sm_bb" name="nilai_agunan_setelah_sm_bb[]" type="text" ' +
-          'value="' +
-          (nilai_agunan_setelah_sm_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' placeholder="" class="form-control class-readonly nilai_agunan_setelah_sm_bb" is_disabled>' +
-          '<p>Nominal: <span id="nilai_agunan_setelah_sm_bb' +
-          counter_bb_loop +
-          '_separators" class="mask"></span></p>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">CEF</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="cef_bb" name="cef_bb[]" type="text" ' +
-          'value="' +
-          (cef_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' placeholder="" class="form-control class-readonly cef_bb" is_disabled>' +
-          '<p>Nominal: <span id="cef_bb' +
-          counter_bb_loop +
-          '_separators" class="mask"></span></p>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          '<div class="row">' +
-          '<div class="col-lg-6">' +
-          '<label class="col-lg-12 control-label">Nilai Agunan Setelah CEF</label>' +
-          '<div class="col-lg-12">' +
-          '<input id="nilai_agunan_setelah_cef_bb" name="nilai_agunan_setelah_cef_bb[]" type="text" ' +
-          'value="' +
-          (nilai_agunan_setelah_cef_bbArray[counter_bb_loop] || "") +
-          '"' +
-          ' placeholder="" class="form-control class-readonly nilai_agunan_setelah_cef_bb" is_disabled>' +
-          '<p>Nominal: <span id="nilai_agunan_setelah_cef_bb' +
-          counter_bb_loop +
-          '_separators" class="mask"></span></p>' +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</div>" +
-          "</div>";
+        var inputan_bb_faa = `
+  <div id="bagian_bb_faa${counter_bb_faa_loop}">
+    <h2 class="text-center text-danger">Barang Bergerak</h2>
+    <h3 class="text-left text-success"></h3>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Nama Nasabah</label>
+        <div class="col-lg-12">
+          <input
+            id="nama_nasabah_bb_faa${counter_bb_faa_loop}"
+            name="nama_nasabah_bb_faa[]"
+            type="text"
+            value="${nama_nasabahArray[counter_bb_faa_loop] || ""}"
+            placeholder=""
+            class="form-control nama_nasabah_bb_faa">
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Jenis Dokumen Kepemilikan</label>
+        <div class="col-lg-12">
+          <input
+            id="jenis_dokumen_bb_faa${counter_bb_faa_loop}"
+            name="jenis_dokumen_bb_faa[]"
+            value="${jenis_dokumen_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control jenis_dokumen_bb_faa">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Alamat</label>
+        <div class="col-lg-12">
+          <textarea
+            class="form-control alamat_bb_faa"
+            id="alamat_bb_faa${counter_bb_faa_loop}"
+            name="alamat_bb_faa[]"
+            rows="3">${alamat_bbArray[counter_bb_faa_loop] || ""}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="text-left text-success">Data Umum</h3>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Jenis</label>
+        <div class="col-lg-12">
+          <input
+            id="jenis_bb_faa${counter_bb_faa_loop}"
+            name="jenis_bb_faa[]"
+            value="${jenisBBArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly jenis_bb_faa">
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Model/ Tipe</label>
+        <div class="col-lg-12">
+          <input
+            id="model_tipe_bb_faa${counter_bb_faa_loop}"
+            name="model_tipe_bb_faa[]"
+            value="${model_tipe_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly model_tipe_bb_faa">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Merk/ CC</label>
+        <div class="col-lg-12">
+          <input
+            id="merek_cc_bb_faa${counter_bb_faa_loop}"
+            name="merek_cc_bb_faa[]"
+            value="${merek_cc_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly merek_cc_bb_faa">
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Tahun Pembuatan</label>
+        <div class="col-lg-12">
+          <input
+            id="tahun_pembuatan_bb_faa${counter_bb_faa_loop}"
+            name="tahun_pembuatan_bb_faa[]"
+            value="${tahun_pembuatan_bbArray[counter_bb_faa_loop] || ""}"
+            type="number"
+            placeholder=""
+            class="form-control class-readonly tahun_pembuatan_bb_faa">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Serial Number</label>
+        <div class="col-lg-12">
+          <input
+            id="serial_number_bb_faa${counter_bb_faa_loop}"
+            name="serial_number_bb_faa[]"
+            value="${serial_number_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly serial_number_bb_faa">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Nomor Mesin</label>
+        <div class="col-lg-12">
+          <input
+            id="nomor_mesin_bb_faa${counter_bb_faa_loop}"
+            name="nomor_mesin_bb_faa[]"
+            value="${nomor_mesin_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly nomor_mesin_bb_faa">
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Warna</label>
+        <div class="col-lg-12">
+          <input
+            id="warna_bb_faa${counter_bb_faa_loop}"
+            name="warna_bb_faa[]"
+            value="${warna_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly warna_bb_faa"
+            ${is_disabled}>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Bahan Bakar</label>
+        <div class="col-lg-12">
+          <input
+            id="bahan_bakar_bb_faa${counter_bb_faa_loop}"
+            name="bahan_bakar_bb_faa[]"
+            value="${bahan_bakar_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly bahan_bakar_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Kondisi/ Keadaan</label>
+        <div class="col-lg-12">
+          <input
+            id="kondisi_keadaan_bb_faa${counter_bb_faa_loop}"
+            name="kondisi_keadaan_bb_faa[]"
+            value="${kondisi_keadaan_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly kondisi_keadaan_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Nomor Polisi</label>
+        <div class="col-lg-12">
+          <input
+            id="nomor_polisi_bb_faa${counter_bb_faa_loop}"
+            name="nomor_polisi_bb_faa[]"
+            value="${nomor_polisi_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly nomor_polisi_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Bukti Kepemilikan</label>
+        <div class="col-lg-12">
+          <input
+            id="bukti_kepemilikan_agb_bb_faa${counter_bb_faa_loop}"
+            name="bukti_kepemilikan_agb_bb_faa[]"
+            value="${bukti_kepemilikan_agb_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly bukti_kepemilikan_agb_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Invoice No</label>
+        <div class="col-lg-12">
+          <input
+            id="invoice_no_bb_faa${counter_bb_faa_loop}"
+            name="invoice_no_bb_faa[]"
+            value="${invoice_no_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly invoice_no_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Invoice Tanggal</label>
+        <div class="col-lg-12">
+          <input
+            id="invoice_tanggal_bb_faa${counter_bb_faa_loop}"
+            name="invoice_tanggal_bb_faa[]"
+            value="${invoice_tanggal_bbArray[counter_bb_faa_loop] || ""}"
+            type="date"
+            placeholder=""
+            class="form-control class-readonly invoice_tanggal_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Perubahan Hak Terakhir</label>
+        <div class="col-lg-12">
+          <input
+            id="perubahan_hak_terakhir_bb_faa${counter_bb_faa_loop}"
+            name="perubahan_hak_terakhir_bb_faa[]"
+            value="${perubahan_hak_terakhir_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly perubahan_hak_terakhir_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Tercatat Atas Nama</label>
+        <div class="col-lg-12">
+          <input
+            id="tercatat_atas_nama_bb_faa${counter_bb_faa_loop}"
+            name="tercatat_atas_nama_bb_faa[]"
+            value="${tercatat_atas_namaArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly tercatat_atas_nama_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Alamat Pemilik Saat Ini</label>
+        <div class="col-lg-12">
+          <textarea
+            class="form-control class-readonly alamat_pemilik_saat_ini_bb_faa"
+            id="alamat_pemilik_saat_ini_bb_faa${counter_bb_faa_loop}"
+            name="alamat_pemilik_saat_ini_bb_faa[]"
+            rows="3"
+            is_disabled>${
+              alamat_pemilik_saat_ini_bbArray[counter_bb_faa_loop] || ""
+            }</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Umur Teknis</label>
+        <div class="col-lg-12">
+          <input
+            id="umur_teknis_bb_faa${counter_bb_faa_loop}"
+            name="umur_teknis_bb_faa[]"
+            value="${umur_teknis_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly umur_teknis_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Perkiraan Umur Ekonomis</label>
+        <div class="col-lg-12">
+          <input
+            id="perkiraan_umur_ekonomis_bb_faa${counter_bb_faa_loop}"
+            name="perkiraan_umur_ekonomis_bb_faa[]"
+            value="${
+              perkiraan_umur_ekonomis_bbArray[counter_bb_faa_loop] || ""
+            }"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly perkiraan_umur_ekonomis_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Tempat Penyimpanan</label>
+        <div class="col-lg-12">
+          <input
+            id="tempat_penyimpanan_bb_faa${counter_bb_faa_loop}"
+            name="tempat_penyimpanan_bb_faa[]"
+            value="${tempat_penyimpanan_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly tempat_penyimpanan_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Route</label>
+        <div class="col-lg-12">
+          <input
+            id="route_bb_faa${counter_bb_faa_loop}"
+            name="route_bb_faa[]"
+            value="${route_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly route_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Jarak Rata-rata Ditempuh</label>
+        <div class="col-lg-12">
+          <input
+            id="jarak_rata_rata_tempuh_bb_faa${counter_bb_faa_loop}"
+            name="jarak_rata_rata_tempuh_bb_faa[]"
+            value="${jarak_rata_rata_tempuh_bbArray[counter_bb_faa_loop] || ""}"
+            type="text"
+            placeholder=""
+            class="form-control class-readonly jarak_rata_rata_tempuh_bb_faa"
+            is_disabled>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="col-lg-12 control-label">Nilai Buku Sebesar</label>
+          <div class="col-lg-12">
+            <input
+              id="nilai_buku_sebesar_bb_faa${counter_bb_faa_loop}"
+              name="nilai_buku_sebesar_bb_faa[]"
+              type="text"
+              value="${nilai_buku_sebesar_bbArray[counter_bb_faa_loop] || ""}"
+              placeholder=""
+              onkeyup="hitungNilaiFAABB()"
+              class="form-control class-readonly nilai_buku_sebesar_bb_faa"
+              is_disabled>
+            <p>Nominal: <span id="nilai_buku_sebesar_bb_faa${counter_bb_faa_loop}_separators" class="mask"></span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="col-lg-12 control-label">Nilai Taksasi Sebesar</label>
+          <div class="col-lg-12">
+            <input
+              id="nilai_taksasi_sebesar_bb_faa${counter_bb_faa_loop}"
+              name="nilai_taksasi_sebesar_bb_faa[]"
+              type="text"
+              value="${
+                nilai_taksasi_sebesar_bbArray[counter_bb_faa_loop] || ""
+              }"
+              placeholder=""
+              class="form-control class-readonly nilai_taksasi_sebesar_bb_faa"
+              is_disabled>
+            <p>Nominal: <span id="nilai_taksasi_sebesar_bb_faa${counter_bb_faa_loop}_separators" class="mask"></span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="col-lg-12 control-label">Safety Margin</label>
+          <div class="col-lg-4">
+            <input
+              id="persentase_safety_margin${counter_bb_faa_loop}"
+              name="persentase_safety_margin[]"
+              type="text"
+              value=""
+              placeholder=""
+              onkeyup="hitungNilaiFAABB()"
+              class="form-control class-readonly persentase_safety_margin"
+              is_disabled>
+          </div>
+
+          <div class="col-lg-6">
+            <input
+              id="safety_margin_bb_faa${counter_bb_faa_loop}"
+              name="safety_margin_bb_faa[]"
+              type="text"
+              value="${safety_margin_bbArray[counter_bb_faa_loop] || ""}"
+              placeholder=""
+              class="form-control class-readonly safety_margin_bb_faa"
+              is_disabled>
+            <p>Nominal: <span id="safety_margin_bb_faa${counter_bb_faa_loop}_separators" class="mask"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Nilai Agunan Setelah SM</label>
+        <div class="col-lg-12">
+          <input
+            id="nilai_agunan_setelah_sm_bb_faa${counter_bb_faa_loop}"
+            name="nilai_agunan_setelah_sm_bb_faa[]"
+            type="text"
+            value="${
+              nilai_agunan_setelah_sm_bbArray[counter_bb_faa_loop] || ""
+            }"
+            placeholder=""
+            class="form-control class-readonly nilai_agunan_setelah_sm_bb_faa"
+            is_disabled>
+          <p>Nominal: <span id="nilai_agunan_setelah_sm_bb_faa${counter_bb_faa_loop}_separators" class="mask"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">CEF</label>
+        <div class="col-lg-12">
+          <input
+            id="cef_bb_faa${counter_bb_faa_loop}"
+            name="cef_bb_faa[]"
+            type="text"
+            value="${cef_bbArray[counter_bb_faa_loop] || ""}"
+            placeholder=""
+            class="form-control class-readonly cef_bb_faa"
+            is_disabled>
+          <p>Nominal: <span id="cef_bb_faa${counter_bb_faa_loop}_separators" class="mask"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label class="col-lg-12 control-label">Nilai Agunan Setelah CEF</label>
+        <div class="col-lg-12">
+          <input
+            id="nilai_agunan_setelah_cef_bb_faa${counter_bb_faa_loop}"
+            name="nilai_agunan_setelah_cef_bb_faa[]"
+            type="text"
+            value="${
+              nilai_agunan_setelah_cef_bbArray[counter_bb_faa_loop] || ""
+            }"
+            placeholder=""
+            class="form-control class-readonly nilai_agunan_setelah_cef_bb_faa"
+            is_disabled>
+          <p>Nominal: <span id="nilai_agunan_setelah_cef_bb_faa${counter_bb_faa_loop}_separators" class="mask"></span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+`;
 
         // Menambahkan deskripsi ke dalam DOM
         $("#faa_bb").append(inputan_bb);
         // }
         let nilaiBukuSebesar =
-          parseFloat(nilai_buku_sebesar_bbArray[counter_bb_loop]) || 0;
+          parseFloat(nilai_buku_sebesar_bbArray[counter_bb_faa_loop]) || 0;
         let nilaiBukuSebesar20Percent = nilaiBukuSebesar * 0.2;
-        $("#safety_margin_bb" + counter_bb_loop).val(
+        $("#safety_margin_bb" + counter_bb_faa_loop).val(
           formatNumber(nilaiBukuSebesar20Percent)
         );
 
         let nilaiAgunanSetelahSM = nilaiBukuSebesar - nilaiBukuSebesar20Percent;
-        $("#nilai_agunan_setelah_sm_bb" + counter_bb_loop).val(
+        $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop).val(
           formatNumber(nilaiAgunanSetelahSM)
         );
       }
@@ -5517,208 +5837,208 @@ function faa_bb() {
             ? data.persentase_safety_margin_tanah_faa_tb
             : ""
         ).split(";");
-          var inputan_tanah =
-            '<div id="bagian_tanah' +
-            counter_tanah_loop +
-            '">' +
-            '<h2 class="text-center text-danger">Tanah/ Tanah dan Bangunan</h2>' +
-            '              <div class="form-group row">' +
-            '<label class="col-lg-3 control-label">Nama Nasabah</label>' +
-            '<div class="col-lg-3">' +
-            '<div class="col-lg-12">' +
-            '<input id="nama_nasabah_faa_tb' +
-            counter_tanah_loop +
-            '" name="nama_nasabah_faa_tb[]" value="' +
-            (nama_nasabah_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" ' +
-            is_disabled +
-            ">" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<label class="col-lg-3 control-label">Nomor SHM</label>' +
-            '<div class="col-lg-3">' +
-            '<div class="col-lg-12">' +
-            '<input id="nomor_shm_faa_tb' +
-            counter_tanah_loop +
-            '" name="nomor_shm_faa_tb[]" value="' +
-            (nomor_shm_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control" ' +
-            is_disabled +
-            ">" +
-            "</div>" +
-            "</div>" +
-            '<label class="col-lg-1 control-label">Tanggal</label>' +
-            '<div class="col-lg-3">' +
-            '<div class="col-lg-12">' +
-            '<input id="tanggal_shm_faa_tb' +
-            counter_tanah_loop +
-            '" name="tanggal_shm_faa_tb[]" value="' +
-            (tanggal_shm_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control" ' +
-            is_disabled +
-            ">" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<label class="col-lg-3 control-label">Nama Pemilik SHM</label>' +
-            '<div class="col-lg-3">' +
-            '<div class="col-lg-12">' +
-            '<input id="nama_pemilik_shm_faa_tb' +
-            counter_tanah_loop +
-            '" name="nama_pemilik_shm_faa_tb[]" value="' +
-            (nama_pemilik_shm_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control" ' +
-            is_disabled +
-            ">" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<label class="col-lg-3 control-label">Alamat Agunan</label>' +
-            '<div class="col-lg-3">' +
-            '<div class="col-lg-12">' +
-            '<input id="alamat_agunan_faa_tb' +
-            counter_tanah_loop +
-            '" name="alamat_agunan_faa_tb[]" value="' +
-            (alamat_agunan_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control" ' +
-            is_disabled +
-            ">" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="border border-dark p-1">' +
-            "<h3>1. Harga Tanah :</h3>" +
-            '<div class="form-group row">' +
-            '<div class="col-lg-6">' +
-            '<label class="col-lg-6 control-label">Harga menurut pasar</label>' +
-            '<div class="col-lg-12">' +
-            '<input id="harga_pasar_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="harga_pasar_tanah_faa_tb[]" value="' +
-            (harga_pasar_tanah_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="harga_pasar_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<div class="col-lg-6">' +
-            '<label class="col-lg-6 control-label">Harga Buku</label>' +
-            '<div class="col-lg-12">' +
-            '<input id="harga_buku_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="harga_buku_tanah_faa_tb[]" value="' +
-            (harga_buku_tanah_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="harga_buku_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<div class="col-lg-6">' +
-            '<label class="col-lg-6 control-label">Harga menurut pejabat bank</label>' +
-            '<div class="col-lg-12">' +
-            '<input id="harga_menurut_pejabat_bank_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="harga_menurut_pejabat_bank_tanah_faa_tb[]" value="' +
-            (harga_menurut_pejabat_bank_tanah_faa_tbArray[counter_tanah_loop] ||
-              "") +
-            '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="harga_menurut_pejabat_bank_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<div class="col-lg-12">' +
-            '<div class="row">' +
-            '<div class="col-lg-3">' +
-            '<label class="col-lg-12 control-label">Penilaian tanah</label>' +
-            "</div>" +
-            '<div class="col-lg-1 text-right">Rp</div>' +
-            '<div class="col-lg-2">' +
-            '<input id="harga_tanah_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="harga_tanah_tanah_faa_tb[]" value="' +
-            (harga_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="harga_tanah_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            '<div class="col-lg-1 text-center">x</div>' +
-            '<div class="col-lg-2">' +
-            '<input id="luas_persegi_tanah_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="luas_persegi_tanah_tanah_faa_tb[]" value="' +
-            (luas_persegi_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control">' +
-            "</div>" +
-            '<div class="col-lg-1 text-center">=</div>' +
-            '<div class="col-lg-2">' +
-            '<input id="hasil_perhitungan_penilaian_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="hasil_perhitungan_penilaian_tanah_faa_tb[]" value="' +
-            (hasil_perhitungan_penilaian_tanah_faa_tbArray[counter_tanah_loop] ||
-              "") +
-            '"type="text" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="hasil_perhitungan_penilaian_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<div class="col-lg-12">' +
-            '<div class="row">' +
-            '<div class="col-lg-4">' +
-            '<label class="col-lg-12 control-label">Cash Equivalency Factor (CEF)</label>' +
-            "</div>" +
-            '<div class="col-lg-2">' +
-            '<input id="cef_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="cef_tanah_faa_tb[]" value="' +
-            (cef_tanah_faa_tbArray[counter_tanah_loop] || "") +
-            '"type="text" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="cef_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<div class="form-group row">' +
-            '<div class="col-lg-12">' +
-            '<div class="row">' +
-            '<div class="col-lg-4">' +
-            '<label class="col-lg-6 control-label">Safety Margin</label>' +
-            "</div>" +
-            '<div class="col-lg-2">' +
-            '<input id="persentase_safety_margin_tanah_faa_tb' +
-            counter_tanah_loop +
-            '" name="persentase_safety_margin_tanah_faa_tb[]" value="' +
-            (persentase_safety_margin_tanah_faa_tbArray[counter_tanah_loop] ||
-              "") +
-            '"type="text" placeholder="" class="form-control">' +
-            '<p>Nominal: <span id="persentase_safety_margin_tanah_faa_tb' +
-            counter_tanah_loop +
-            '_separators" class="mask"></span></p>' +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>";
+        var inputan_tanah =
+          '<div id="bagian_tanah' +
+          counter_tanah_loop +
+          '">' +
+          '<h2 class="text-center text-danger">Tanah/ Tanah dan Bangunan</h2>' +
+          '              <div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Nama Nasabah</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="nama_nasabah_faa_tb' +
+          counter_tanah_loop +
+          '" name="nama_nasabah_faa_tb[]" value="' +
+          (nama_nasabah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Nomor SHM</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="nomor_shm_faa_tb' +
+          counter_tanah_loop +
+          '" name="nomor_shm_faa_tb[]" value="' +
+          (nomor_shm_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          '<label class="col-lg-1 control-label">Tanggal</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="tanggal_shm_faa_tb' +
+          counter_tanah_loop +
+          '" name="tanggal_shm_faa_tb[]" value="' +
+          (tanggal_shm_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Nama Pemilik SHM</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="nama_pemilik_shm_faa_tb' +
+          counter_tanah_loop +
+          '" name="nama_pemilik_shm_faa_tb[]" value="' +
+          (nama_pemilik_shm_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<label class="col-lg-3 control-label">Alamat Agunan</label>' +
+          '<div class="col-lg-3">' +
+          '<div class="col-lg-12">' +
+          '<input id="alamat_agunan_faa_tb' +
+          counter_tanah_loop +
+          '" name="alamat_agunan_faa_tb[]" value="' +
+          (alamat_agunan_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control" ' +
+          is_disabled +
+          ">" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="border border-dark p-1">' +
+          "<h3>1. Harga Tanah :</h3>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-6 control-label">Harga menurut pasar</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="harga_pasar_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_pasar_tanah_faa_tb[]" value="' +
+          (harga_pasar_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="harga_pasar_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-6 control-label">Harga Buku</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="harga_buku_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_buku_tanah_faa_tb[]" value="' +
+          (harga_buku_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="harga_buku_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-6">' +
+          '<label class="col-lg-6 control-label">Harga menurut pejabat bank</label>' +
+          '<div class="col-lg-12">' +
+          '<input id="harga_menurut_pejabat_bank_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_menurut_pejabat_bank_tanah_faa_tb[]" value="' +
+          (harga_menurut_pejabat_bank_tanah_faa_tbArray[counter_tanah_loop] ||
+            "") +
+          '"type="text" onkeyup="hitungSemua()" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="harga_menurut_pejabat_bank_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-3">' +
+          '<label class="col-lg-12 control-label">Penilaian tanah</label>' +
+          "</div>" +
+          '<div class="col-lg-1 text-right">Rp</div>' +
+          '<div class="col-lg-2">' +
+          '<input id="harga_tanah_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="harga_tanah_tanah_faa_tb[]" value="' +
+          (harga_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="harga_tanah_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          '<div class="col-lg-1 text-center">x</div>' +
+          '<div class="col-lg-2">' +
+          '<input id="luas_persegi_tanah_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="luas_persegi_tanah_tanah_faa_tb[]" value="' +
+          (luas_persegi_tanah_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          "</div>" +
+          '<div class="col-lg-1 text-center">=</div>' +
+          '<div class="col-lg-2">' +
+          '<input id="hasil_perhitungan_penilaian_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="hasil_perhitungan_penilaian_tanah_faa_tb[]" value="' +
+          (hasil_perhitungan_penilaian_tanah_faa_tbArray[counter_tanah_loop] ||
+            "") +
+          '"type="text" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="hasil_perhitungan_penilaian_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-4">' +
+          '<label class="col-lg-12 control-label">Cash Equivalency Factor (CEF)</label>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="cef_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="cef_tanah_faa_tb[]" value="' +
+          (cef_tanah_faa_tbArray[counter_tanah_loop] || "") +
+          '"type="text" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="cef_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<div class="form-group row">' +
+          '<div class="col-lg-12">' +
+          '<div class="row">' +
+          '<div class="col-lg-4">' +
+          '<label class="col-lg-6 control-label">Safety Margin</label>' +
+          "</div>" +
+          '<div class="col-lg-2">' +
+          '<input id="persentase_safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '" name="persentase_safety_margin_tanah_faa_tb[]" value="' +
+          (persentase_safety_margin_tanah_faa_tbArray[counter_tanah_loop] ||
+            "") +
+          '"type="text" placeholder="" class="form-control">' +
+          '<p>Nominal: <span id="persentase_safety_margin_tanah_faa_tb' +
+          counter_tanah_loop +
+          '_separators" class="mask"></span></p>' +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>";
 
         // Menambahkan deskripsi ke dalam DOM
         $("#faa_tanah").append(inputan_tanah);
@@ -6154,13 +6474,13 @@ function hitungLabaSebelumPajak() {
     const fix =(jumlah_kredit_bank_fak_modal * (bunga_kredit_fak_data/100) / 360 * (nilaiTanggaltermin - nilaiTanggal)) + ((biaya_provisi_fak_data/100) * jumlah_kredit_bank_fak_modal);
     const fix1 = fix + laba_usaha_fak_rl;
 
-    console.log('a'+jumlah_kredit_bank_fak_modal);
-    console.log('b'+bunga_kredit_fak_data);
-    console.log('c'+biaya_provisi_fak_data);  
-    console.log('d'+nilaiTanggal);
-    console.log('e'+nilaiTanggaltermin);
-    console.log('f'+biaya_provisi_fak_data);
-    console.log('g'+jumlah_kredit_bank_fak_modal);
+    console.log("a" + jumlah_kredit_bank_fak_modal);
+    console.log("b" + bunga_kredit_fak_data);
+    console.log("c" + biaya_provisi_fak_data);
+    console.log("d" + nilaiTanggal);
+    console.log("e" + nilaiTanggaltermin);
+    console.log("f" + biaya_provisi_fak_data);
+    console.log("g" + jumlah_kredit_bank_fak_modal);
     // const fix3 = fix / jumlah_pembiayaan_sendiri_fak_modal;
     $("#bunga_provisi_bank_fak_rl").val(fix);
     var formattedValue = formatNumber(fix);
@@ -6803,6 +7123,25 @@ function add_faa_tb() {
   var hasil_perhitungan_penilaian_tanah_faa_tb = document.querySelectorAll(
     "input[name='hasil_perhitungan_penilaian_tanah_faa_tb[]']"
   );
+  var safety_margin_tanah_faa_tb = document.querySelectorAll(
+    "input[name='safety_margin_tanah_faa_tb[]']"
+  );
+  var nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb =
+    document.querySelectorAll(
+      "input[name='nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb[]']"
+    );
+  var persentase_nilai_tanah_faa_tb = document.querySelectorAll(
+    "input[name='persentase_nilai_tanah_faa_tb[]']"
+  );
+  var persentase_cef_tanah_faa_tb = document.querySelectorAll(
+    "input[name='persentase_cef_tanah_faa_tb[]']"
+  );
+  var cef_tanah_faa_tb = document.querySelectorAll(
+    "input[name='cef_tanah_faa_tb[]']"
+  );
+  var persentase_safety_margin_tanah_faa_tb = document.querySelectorAll(
+    "input[name='persentase_safety_margin_tanah_faa_tb[]']"
+  );
 
   document.querySelector('[name="namanasabahfaatb"]').value =
     combineValues(nama_nasabah_faa_tb);
@@ -6830,119 +7169,140 @@ function add_faa_tb() {
     combineValues(luas_persegi_tanah_tanah_faa_tb);
   document.querySelector('[name="hasilperhitunganpenilaiantanahfaatb"]').value =
     combineValues(hasil_perhitungan_penilaian_tanah_faa_tb);
+  
+  document.querySelector('[name="persentaseceftanahfaatb"]').value =
+    combineValues(persentase_cef_tanah_faa_tb);
+  document.querySelector('[name="ceftanahfaatb"]').value =
+    combineValues(cef_tanah_faa_tb);
+  document.querySelector('[name="persentasesafetymargintanahfaatb"]').value =
+    combineValues(persentase_safety_margin_tanah_faa_tb);
+  document.querySelector('[name="safetymargintanahfaatb"]').value =
+    combineValues(safety_margin_tanah_faa_tb);
+  document.querySelector(
+    '[name="nilaitanahsetelahcefsafetymargintanahfaatb"]'
+  ).value = combineValues(nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb);
 }
 
 function add_faa_bb() {
-  var nama_nasabah_bb = document.querySelectorAll(
-    "input[name='nama_nasabah_bb[]']"
+  var nama_nasabah_bb_faa = document.querySelectorAll(
+    "input[name='nama_nasabah_bb_faa[]']"
   );
-  var jenis_dokumen_bb = document.querySelectorAll(
-    "input[name='jenis_dokumen_bb[]']"
+  var jenis_dokumen_bb_faa = document.querySelectorAll(
+    "input[name='jenis_dokumen_bb_faa[]']"
   );
-  var alamat_bb = document.querySelectorAll("textarea[name='alamat_bb[]']");
-  var jenis_bb = document.querySelectorAll("input[name='jenis_bb[]']");
-  var model_tipe_bb = document.querySelectorAll(
-    "input[name='model_tipe_bb[]']"
+  var alamat_bb_faa = document.querySelectorAll(
+    "textarea[name='alamat_bb_faa[]']"
   );
-  var merek_cc_bb = document.querySelectorAll("input[name='merek_cc_bb[]']");
-  var tahun_pembuatan_bb = document.querySelectorAll(
-    "input[name='tahun_pembuatan_bb[]']"
+  var jenis_bb_faa = document.querySelectorAll("input[name='jenis_bb_faa[]']");
+  var model_tipe_bb_faa = document.querySelectorAll(
+    "input[name='model_tipe_bb_faa[]']"
   );
-  var serial_number_bb = document.querySelectorAll(
-    "input[name='serial_number_bb[]']"
+  var merek_cc_bb_faa = document.querySelectorAll(
+    "input[name='merek_cc_bb_faa[]']"
   );
-  var nomor_mesin_bb = document.querySelectorAll(
-    "input[name='nomor_mesin_bb[]']"
+  var tahun_pembuatan_bb_faa = document.querySelectorAll(
+    "input[name='tahun_pembuatan_bb_faa[]']"
   );
-  var warna_bb = document.querySelectorAll("input[name='warna_bb[]']");
-  var bahan_bakar_bb = document.querySelectorAll(
-    "input[name='bahan_bakar_bb[]']"
+  var serial_number_bb_faa = document.querySelectorAll(
+    "input[name='serial_number_bb_faa[]']"
   );
-  var kondisi_keadaan_bb = document.querySelectorAll(
-    "input[name='kondisi_keadaan_bb[]']"
+  var nomor_mesin_bb_faa = document.querySelectorAll(
+    "input[name='nomor_mesin_bb_faa[]']"
   );
-  var nomor_polisi_bb = document.querySelectorAll(
-    "input[name='nomor_polisi_bb[]']"
+  var warna_bb_faa = document.querySelectorAll("input[name='warna_bb_faa[]']");
+  var bahan_bakar_bb_faa = document.querySelectorAll(
+    "input[name='bahan_bakar_bb_faa[]']"
   );
-  var bukti_kepemilikan_agb_bb = document.querySelectorAll(
-    "input[name='bukti_kepemilikan_agb_bb[]']"
+  var kondisi_keadaan_bb_faa = document.querySelectorAll(
+    "input[name='kondisi_keadaan_bb_faa[]']"
   );
-  var invoice_no_bb = document.querySelectorAll(
-    "input[name='invoice_no_bb[]']"
+  var nomor_polisi_bb_faa = document.querySelectorAll(
+    "input[name='nomor_polisi_bb_faa[]']"
   );
-  var invoice_tanggal_bb = document.querySelectorAll(
-    "input[name='invoice_tanggal_bb[]']"
+  var bukti_kepemilikan_agb_bb_faa = document.querySelectorAll(
+    "input[name='bukti_kepemilikan_agb_bb_faa[]']"
   );
-  var perubahan_hak_terakhir_bb = document.querySelectorAll(
-    "input[name='perubahan_hak_terakhir_bb[]']"
+  var invoice_no_bb_faa = document.querySelectorAll(
+    "input[name='invoice_no_bb_faa[]']"
   );
-  var tercatat_atas_nama_bb = document.querySelectorAll(
-    "input[name='tercatat_atas_nama_bb[]']"
+  var invoice_tanggal_bb_faa = document.querySelectorAll(
+    "input[name='invoice_tanggal_bb_faa[]']"
   );
-  var alamat_pemilik_saat_ini_bb = document.querySelectorAll(
-    "textarea[name='alamat_pemilik_saat_ini_bb[]']"
+  var perubahan_hak_terakhir_bb_faa = document.querySelectorAll(
+    "input[name='perubahan_hak_terakhir_bb_faa[]']"
   );
-  var umur_teknis_bb = document.querySelectorAll(
-    "input[name='umur_teknis_bb[]']"
+  var tercatat_atas_nama_bb_faa = document.querySelectorAll(
+    "input[name='tercatat_atas_nama_bb_faa[]']"
   );
-  var perkiraan_umur_ekonomis_bb = document.querySelectorAll(
-    "input[name='perkiraan_umur_ekonomis_bb[]']"
+  var alamat_pemilik_saat_ini_bb_faa = document.querySelectorAll(
+    "textarea[name='alamat_pemilik_saat_ini_bb_faa[]']"
   );
-  var tempat_penyimpanan_bb = document.querySelectorAll(
-    "input[name='tempat_penyimpanan_bb[]']"
+  var umur_teknis_bb_faa = document.querySelectorAll(
+    "input[name='umur_teknis_bb_faa[]']"
   );
-  var route_bb = document.querySelectorAll("input[name='route_bb[]']");
-  var jarak_rata_rata_tempuh_bb = document.querySelectorAll(
-    "input[name='jarak_rata_rata_tempuh_bb[]']"
+  var perkiraan_umur_ekonomis_bb_faa = document.querySelectorAll(
+    "input[name='perkiraan_umur_ekonomis_bb_faa[]']"
+  );
+  var tempat_penyimpanan_bb_faa = document.querySelectorAll(
+    "input[name='tempat_penyimpanan_bb_faa[]']"
+  );
+  var route_bb_faa = document.querySelectorAll("input[name='route_bb_faa[]']");
+  var jarak_rata_rata_tempuh_bb_faa = document.querySelectorAll(
+    "input[name='jarak_rata_rata_tempuh_bb_faa[]']"
   );
 
-  document.querySelector('[name="namanasabahbb"]').value =
-    combineValues(nama_nasabah_bb);
-  document.querySelector('[name="jenisdokumenbb"]').value =
-    combineValues(jenis_dokumen_bb);
-  // document.querySelector('[name="alamatbb"]').value = combineValues(alamat_bb);
-  document.querySelector('[name="alamatbb"]').value =
-    combineTextareaValues(alamat_bb);
-  document.querySelector('[name="jenisbb"]').value = combineValues(jenis_bb);
-  document.querySelector('[name="modeltipebb"]').value =
-    combineValues(model_tipe_bb);
-  document.querySelector('[name="merekccbb"]').value =
-    combineValues(merek_cc_bb);
-  document.querySelector('[name="tahunpembuatanbb"]').value =
-    combineValues(tahun_pembuatan_bb);
-  document.querySelector('[name="serialnumberbb"]').value =
-    combineValues(serial_number_bb);
-  document.querySelector('[name="nomormesinbb"]').value =
-    combineValues(nomor_mesin_bb);
-  document.querySelector('[name="warnabb"]').value = combineValues(warna_bb);
-  document.querySelector('[name="bahanbakarbb"]').value =
-    combineValues(bahan_bakar_bb);
-  document.querySelector('[name="kondisikeadaanbb"]').value =
-    combineValues(kondisi_keadaan_bb);
-  document.querySelector('[name="nomorpolisibb"]').value =
-    combineValues(nomor_polisi_bb);
-  document.querySelector('[name="buktikepemilikanagbbb"]').value =
-    combineValues(bukti_kepemilikan_agb_bb);
-  document.querySelector('[name="invoicenobb"]').value =
-    combineValues(invoice_no_bb);
-  document.querySelector('[name="invoicetanggalbb"]').value =
-    combineValues(invoice_tanggal_bb);
-  document.querySelector('[name="perubahanhakterakhirbb"]').value =
-    combineValues(perubahan_hak_terakhir_bb);
-  document.querySelector('[name="tercatatatasnamabb"]').value = combineValues(
-    tercatat_atas_nama_bb
+  document.querySelector('[name="namanasabahfaabb"]').value =
+    combineValues(nama_nasabah_bb_faa);
+  document.querySelector('[name="jenisdokumenfaabb"]').value =
+    combineValues(jenis_dokumen_bb_faa);
+  // document.querySelector('[name="alamatfaabb"]').value = combineValues(alamat_bb_faa);
+  document.querySelector('[name="alamatfaabb"]').value =
+    combineTextareaValues(alamat_bb_faa);
+  document.querySelector('[name="jenisfaabb"]').value =
+    combineValues(jenis_bb_faa);
+  document.querySelector('[name="modeltipefaabb"]').value =
+    combineValues(model_tipe_bb_faa);
+  document.querySelector('[name="merekccfaabb"]').value =
+    combineValues(merek_cc_bb_faa);
+  document.querySelector('[name="tahunpembuatanfaabb"]').value = combineValues(
+    tahun_pembuatan_bb_faa
   );
-  document.querySelector('[name="alamatpemiliksaatinibb"]').value =
-    combineTextareaValues(alamat_pemilik_saat_ini_bb);
-  document.querySelector('[name="umurteknisbb"]').value =
-    combineValues(umur_teknis_bb);
-  document.querySelector('[name="perkiraanumurekonomisbb"]').value =
-    combineValues(perkiraan_umur_ekonomis_bb);
-  document.querySelector('[name="tempatpenyimpananbb"]').value = combineValues(
-    tempat_penyimpanan_bb
+  document.querySelector('[name="serialnumberfaabb"]').value =
+    combineValues(serial_number_bb_faa);
+  document.querySelector('[name="nomormesinfaabb"]').value =
+    combineValues(nomor_mesin_bb_faa);
+  document.querySelector('[name="warnafaabb"]').value =
+    combineValues(warna_bb_faa);
+  document.querySelector('[name="bahanbakarfaabb"]').value =
+    combineValues(bahan_bakar_bb_faa);
+  document.querySelector('[name="kondisikeadaanfaabb"]').value = combineValues(
+    kondisi_keadaan_bb_faa
   );
-  document.querySelector('[name="routebb"]').value = combineValues(route_bb);
-  document.querySelector('[name="jarakrataratatempuhbb"]').value = combineValues(jarak_rata_rata_tempuh_bb);
+  document.querySelector('[name="nomorpolisifaabb"]').value =
+    combineValues(nomor_polisi_bb_faa);
+  document.querySelector('[name="buktikepemilikanagbfaabb"]').value =
+    combineValues(bukti_kepemilikan_agb_bb_faa);
+  document.querySelector('[name="invoicenofaabb"]').value =
+    combineValues(invoice_no_bb_faa);
+  document.querySelector('[name="invoicetanggalfaabb"]').value = combineValues(
+    invoice_tanggal_bb_faa
+  );
+  document.querySelector('[name="perubahanhakterakhirfaabb"]').value =
+    combineValues(perubahan_hak_terakhir_bb_faa);
+  document.querySelector('[name="tercatatatasnamafaabb"]').value =
+    combineValues(tercatat_atas_nama_bb_faa);
+  document.querySelector('[name="alamatpemiliksaatinifaabb"]').value =
+    combineTextareaValues(alamat_pemilik_saat_ini_bb_faa);
+  document.querySelector('[name="umurteknisfaabb"]').value =
+    combineValues(umur_teknis_bb_faa);
+  document.querySelector('[name="perkiraanumurekonomisfaabb"]').value =
+    combineValues(perkiraan_umur_ekonomis_bb_faa);
+  document.querySelector('[name="tempatpenyimpananfaabb"]').value =
+    combineValues(tempat_penyimpanan_bb_faa);
+  document.querySelector('[name="routefaabb"]').value =
+    combineValues(route_bb_faa);
+  document.querySelector('[name="jarakrataratatempuhfaabb"]').value =
+    combineValues(jarak_rata_rata_tempuh_bb_faa);
 }
 
 function add_dcl1() {
@@ -7491,73 +7851,6 @@ function post_ceftb(method, data_input, button) {
   });
 }
 
-// function data_data_faa() {
-//   // var data_faa = {};
-//   variabelGlobal(function (hasil) {
-//     if (hasil.status === "success") {
-//       var jenis_agunan = hasil.message.data_entry.jenis_agunan;
-
-//       var jenisAgunanArray = jenis_agunan.split(";");
-
-//       var adaBarangBergerak = jenisAgunanArray.includes("Barang Bergerak");
-//       var adaTanahOrTanahBangunan = jenisAgunanArray.includes(
-//         "Tanah/ Tanah dan Bangunan"
-//       );
-
-//       if (adaBarangBergerak) {
-//         add_faa_bb();
-//       }
-
-//       if (adaTanahOrTanahBangunan) {
-//         add_faa_tb();
-//       }
-//       data_faa = {
-//         nama_nasabah_bb: $("#namanasabahbb").val(),
-//         jenis_dokumen_bb: $("#jenisdokumenbb").val(),
-//         alamat_bb: $("#alamatbb").val(),
-//         jenis_bb: $("#jenisbb").val(),
-//         model_tipe_bb: $("#modeltipebb").val(),
-//         merek_cc_bb: $("#merekccbb").val(),
-//         tahun_pembuatan_bb: $("#tahunpembuatanbb").val(),
-//         serial_number_bb: $("#serialnumberbb").val(),
-//         nomor_mesin_bb: $("#nomormesinbb").val(),
-//         warna_bb: $("#warnabb").val(),
-//         bahan_bakar_bb: $("#bahanbakarbb").val(),
-//         kondisi_keadaan_bb: $("#kondisikeadaanbb").val(),
-//         nomor_polisi_bb: $("#nomorpolisibb").val(),
-//         bukti_kepemilikan_agb_bb: $("#buktikepemilikanagbbb").val(),
-//         invoice_no_bb: $("#invoicenobb").val(),
-//         invoice_tanggal_bb: $("#invoicetanggalbb").val(),
-//         perubahan_hak_terakhir_bb: $("#perubahanhakterakhirbb").val(),
-//         tercatat_atas_nama_bb: $("#tercatatatasnamabb").val(),
-//         alamat_pemilik_saat_ini_bb: $("#alamatpemiliksaatinibb").val(),
-//         umur_teknis_bb: $("#umurteknisbb").val(),
-//         perkiraan_umur_ekonomis_bb: $("#perkiraanumurekonomisbb").val(),
-//         tempat_penyimpanan_bb: $("#tempatpenyimpananbb").val(),
-//         route_bb: $("#routebb").val(),
-//         jarak_rata_rata_tempuh_bb: $("#jarakrataratatempuhbb").val(),
-//         // Menyimpan data yang ada sebelumnya
-//         nama_nasabah_faa_tb: $("#namanasabahfaatb").val(),
-//         nomor_shm_faa_tb: $("#nomorshmfaatb").val(),
-//         tanggal_shm_faa_tb: $("#tanggalshmfaatb").val(),
-//         nama_pemilik_shm_faa_tb: $("#namapemilikshmfaatb").val(),
-//         alamat_agunan_faa_tb: $("#alamatagunanfaatb").val(),
-//         harga_pasar_tanah_faa_tb: $("#hargapasartanahfaatb").val(),
-//         harga_buku_tanah_faa_tb: $("#hargabukutanahfaatb").val(),
-//         harga_menurut_pejabat_bank_tanah_faa_tb: $(
-//           "#hargamenurutpejabatbanktanahfaatb"
-//         ).val(),
-//         harga_tanah_tanah_faa_tb: $("#hargatanahtanahfaatb").val(),
-//         luas_persegi_tanah_tanah_faa_tb: $("#luaspersegitanahtanahfaatb").val(),
-//         hasil_perhitungan_penilaian_tanah_faa_tb: $(
-//           "#hasilperhitunganpenilaiantanahfaatb"
-//         ).val(),
-//       };
-
-//       return data_faa;
-//     }
-//   });
-// }
 function data_data_faa() {
   return new Promise((resolve, reject) => {
     variabelGlobal(function (hasil) {
@@ -7582,30 +7875,32 @@ function data_data_faa() {
         // Mengisi `data_faa` setelah data tersedia
         const data_faa = {
           kd_data_tambah: $("#kd_data_tambah").val(),
-          nama_nasabah_bb: $("#namanasabahbb").val(),
-          jenis_dokumen_bb: $("#jenisdokumenbb").val(),
-          alamat_bb: $("#alamatbb").val(),
-          jenis_bb: $("#jenisbb").val(),
-          model_tipe_bb: $("#modeltipebb").val(),
-          merek_cc_bb: $("#merekccbb").val(),
-          tahun_pembuatan_bb: $("#tahunpembuatanbb").val(),
-          serial_number_bb: $("#serialnumberbb").val(),
-          nomor_mesin_bb: $("#nomormesinbb").val(),
-          warna_bb: $("#warnabb").val(),
-          bahan_bakar_bb: $("#bahanbakarbb").val(),
-          kondisi_keadaan_bb: $("#kondisikeadaanbb").val(),
-          nomor_polisi_bb: $("#nomorpolisibb").val(),
-          bukti_kepemilikan_agb_bb: $("#buktikepemilikanagbbb").val(),
-          invoice_no_bb: $("#invoicenobb").val(),
-          invoice_tanggal_bb: $("#invoicetanggalbb").val(),
-          perubahan_hak_terakhir_bb: $("#perubahanhakterakhirbb").val(),
-          tercatat_atas_nama_bb: $("#tercatatatasnamabb").val(),
-          alamat_pemilik_saat_ini_bb: $("#alamatpemiliksaatinibb").val(),
-          umur_teknis_bb: $("#umurteknisbb").val(),
-          perkiraan_umur_ekonomis_bb: $("#perkiraanumurekonomisbb").val(),
-          tempat_penyimpanan_bb: $("#tempatpenyimpananbb").val(),
-          route_bb: $("#routebb").val(),
-          jarak_rata_rata_tempuh_bb: $("#jarakrataratatempuhbb").val(),
+          nama_nasabah_faa_bb: $("#namanasabahfaabb").val(),
+          jenis_dokumen_faa_bb: $("#jenisdokumenfaabb").val(),
+          alamat_faa_bb: $("#alamatfaabb").val(),
+          jenis_faa_bb: $("#jenisfaabb").val(),
+          model_tipe_faa_bb: $("#modeltipefaabb").val(),
+          merek_cc_faa_bb: $("#merekccfaabb").val(),
+          tahun_pembuatan_faa_bb: $("#tahunpembuatanfaabb").val(),
+          serial_number_faa_bb: $("#serialnumberfaabb").val(),
+          nomor_mesin_faa_bb: $("#nomormesinfaabb").val(),
+          warna_faa_bb: $("#warnafaabb").val(),
+          bahan_bakar_faa_bb: $("#bahanbakarfaabb").val(),
+          kondisi_keadaan_faa_bb: $("#kondisikeadaanfaabb").val(),
+          nomor_polisi_faa_bb: $("#nomorpolisifaabb").val(),
+          bukti_kepemilikan_agb_faa_bb: $("#buktikepemilikanagbfaabb").val(),
+          invoice_no_faa_bb: $("#invoicenofaabb").val(),
+          invoice_tanggal_faa_bb: $("#invoicetanggalfaabb").val(),
+          perubahan_hak_terakhir_faa_bb: $("#perubahanhakterakhirfaabb").val(),
+          tercatat_atas_nama_faa_bb: $("#tercatatatasnamafaabb").val(),
+          alamat_pemilik_saat_ini_faa_bb: $("#alamatpemiliksaatinifaabb").val(),
+          umur_teknis_faa_bb: $("#umurteknisfaabb").val(),
+          perkiraan_umur_ekonomis_faa_bb: $(
+            "#perkiraanumurekonomisfaabb"
+          ).val(),
+          tempat_penyimpanan_faa_bb: $("#tempatpenyimpananfaabb").val(),
+          route_faa_bb: $("#routefaabb").val(),
+          jarak_rata_rata_tempuh_faa_bb: $("#jarakrataratatempuhfaabb").val(),
           nama_nasabah_faa_tb: $("#namanasabahfaatb").val(),
           nomor_shm_faa_tb: $("#nomorshmfaatb").val(),
           tanggal_shm_faa_tb: $("#tanggalshmfaatb").val(),
@@ -7613,6 +7908,8 @@ function data_data_faa() {
           alamat_agunan_faa_tb: $("#alamatagunanfaatb").val(),
           harga_pasar_tanah_faa_tb: $("#hargapasartanahfaatb").val(),
           harga_buku_tanah_faa_tb: $("#hargabukutanahfaatb").val(),
+          cef_tanah_faa_tb: $("#ceftanahfaatb").val(),
+          persentase_cef_tanah_faa_tb: $("#persentaseceftanahfaatb").val(),
           harga_menurut_pejabat_bank_tanah_faa_tb: $(
             "#hargamenurutpejabatbanktanahfaatb"
           ).val(),
@@ -7622,6 +7919,10 @@ function data_data_faa() {
           ).val(),
           hasil_perhitungan_penilaian_tanah_faa_tb: $(
             "#hasilperhitunganpenilaiantanahfaatb"
+          ).val(),
+          safety_margin_tanah_faa_tb: $("#safetymargintanahfaatb").val(),
+          nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb: $(
+            "#nilaitanahsetelahcefsafetymargintanahfaatb"
           ).val(),
         };
 

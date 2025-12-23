@@ -254,7 +254,7 @@
 </fieldset>
 <script>
     var posisi = '<?php echo $posisi ?>';
-
+console.log('hellooooo =',posisi);
     $(document).ready(function() {
         // disposisi tampil berjenjang
         $('#hilang_pemasar').hide();

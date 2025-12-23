@@ -19,7 +19,8 @@ class Pengajuan extends BaseController
     public $db;
     public $session;
     public $email;
-    public function __construct(){
+    public function __construct()
+    {
         helper('date');
         // $this->Service = new ConfigServices();
         $this->db = \Config\Database::connect();
@@ -32,12 +33,12 @@ class Pengajuan extends BaseController
 
     public function v_pengajuan($pengajuan_approved = 0)
     {
-        if(!empty($pengajuan_approved)){
-            if($pengajuan_approved == 0){
+        if (!empty($pengajuan_approved)) {
+            if ($pengajuan_approved == 0) {
 
-            }else if($pengajuan_approved == 1){
+            } else if ($pengajuan_approved == 1) {
 
-            }else{
+            } else {
                 echo 'Halaman tidak ditemukan :(';
                 die;
             }
@@ -47,7 +48,7 @@ class Pengajuan extends BaseController
         $tambah_pengajuan_kredit_transaksional = $this->permission2('Tambah Pengajuan Kredit Transaksional');
         if ($hasil == true) {
             $data['title'] = 'Pengajuan Kredit Transaksional';
-            if($pengajuan_approved == 1){
+            if ($pengajuan_approved == 1) {
                 $data['title'] = 'Pengajuan Kredit Transaksional Approved';
             }
             $data['permission'] = $permission;
@@ -59,7 +60,8 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function hak_akses(){
+    public function hak_akses()
+    {
         $param_kd_menu = '100';
         $controller = service('request')->uri->getSegment(1);
         // echo $controller;
@@ -142,10 +144,10 @@ class Pengajuan extends BaseController
             $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' and status = 'Aktif' and reject ='Tidak' ";
             // $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' ";
         }
-        if($pengajuan_approved == 0){
+        if ($pengajuan_approved == 0) {
             $where2 .= " and progress != 'Approved' ";
         }
-        if($pengajuan_approved == 1){
+        if ($pengajuan_approved == 1) {
             $where2 .= " and progress = 'Approved' ";
         }
 
@@ -199,7 +201,7 @@ class Pengajuan extends BaseController
         } else {
             $sWhere = $sWhere . " and ";
         }
-        $sQuery = $sQuery1 . $sWhere . $where2 . $sOrder  . $sLimit;
+        $sQuery = $sQuery1 . $sWhere . $where2 . $sOrder . $sLimit;
         // if(!empty($sOrder)){
         //     $sQuery = $sQuery1 . $sWhere . $where2 . $sOrder  . $sLimit;
         // }else{
@@ -281,8 +283,9 @@ class Pengajuan extends BaseController
         }
         echo json_encode($output);
     }
-    
-    public function edit_pengajuan($kd_data){
+
+    public function edit_pengajuan($kd_data)
+    {
         $hasil = $this->hak_akses();
         $permission = $this->permission();
         $data['datafcr'] = $this->TransaksionalModel->koordinator($kd_data);
@@ -342,7 +345,7 @@ class Pengajuan extends BaseController
             $data['tampil_faa'] = $this->permission2('Tampil FAA');
             $data['tampil_mauk'] = $this->permission2('Tampil MAUK');
             $data['tampil_dcl_compliance'] = $this->permission2('Tampil DCL Compliance');
-            
+
             $data['posisi'] = $this->posisi_progress($data_master->posisi_progress);
 
             return view('backend/kredit_transaksional/pengajuan_kredit/v_edit_pengajuan', $data);
@@ -354,24 +357,25 @@ class Pengajuan extends BaseController
     {
         // baru
         $posisi = null;
-        if($posisi_progress == 'Pemasar'){
+        if ($posisi_progress == 'Pemasar') {
             $posisi = 'pemasar';
-        }else if($posisi_progress == 'Koordinator Pemasar'){
+        } else if ($posisi_progress == 'Koordinator Pemasar') {
             $posisi = 'koordinator pemasar';
-        }else if($posisi_progress == 'Kepala Cabang'){
+        } else if ($posisi_progress == 'Kepala Cabang') {
             $posisi = 'kepala cabang';
-        }else if($posisi_progress == 'Analis Kredit'){
+        } else if ($posisi_progress == 'Analis Kredit') {
             $posisi = 'analis kredit';
-        }else if($posisi_progress == 'Kepala Bagian'){
+        } else if ($posisi_progress == 'Kepala Bagian') {
             $posisi = 'kepala bagian';
-        }else if($posisi_progress == 'Kepala Divisi'){
+        } else if ($posisi_progress == 'Kepala Divisi') {
             $posisi = 'kepala divisi';
         }
         return $posisi;
         // batas baru
     }
 
-    public function checkDataRecap($tabel){
+    public function checkDataRecap($tabel)
+    {
         $kd_data = $this->request->getPost('kd_data');
         $transaksional = new TransaksionalModel();
 
@@ -391,7 +395,8 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function cek_agunan_kd_tepakai($kd_data){
+    public function cek_agunan_kd_tepakai($kd_data)
+    {
         $tanah = '';
         $barang_bergerak = '';
         $data2 = '';
@@ -445,7 +450,8 @@ class Pengajuan extends BaseController
         ];
         return $hasil;
     }
-    public function cek_agunan($kd_data){
+    public function cek_agunan($kd_data)
+    {
         $tanah1 = '';
         $tanah2 = '';
         $barang_bergerak1 = '';
@@ -479,183 +485,186 @@ class Pengajuan extends BaseController
         // dd($data3);
         return json_encode($hasil);
     }
-    public function simpan_pengajuan(){
+    public function simpan_pengajuan()
+    {
         // $cek = $this->request->getPost('jenis_agunan_tambah[]');
         // var_dump($cek);
         // die;
         // echo json_encode($cek);
         $jenis_agunan = $this->jenis_agunan($this->request->getPost('jenis_agunan_tambah[]'));
         if ($jenis_agunan == true) {
-            if (!$this->validate([
+            if (
+                !$this->validate([
 
-                'unit_kerja_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Unit Kerja Harus diisi',
-                    ]
-                ],
-                'pemasar_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Pemasar Harus diisi',
-                    ]
-                ],
-                'koordinator_pemasar_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Koordinator Pemasar Harus diisi',
-                    ]
-                ],
-                'kepala_cabang_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Kepala Cabang Harus diisi',
-                    ]
-                ],
-                'kepala_bagian_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Kepala Bagian Harus diisi',
-                    ]
-                ],
-                'kepala_divisi_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Kepala Divisi Harus diisi',
-                    ]
-                ],
-                'nama_debitur_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Nama Debitur Harus diisi',
-                    ]
-                ],
-                'npwp_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'NPWP Harus diisi',
-                    ]
-                ],
-                'bidang_usaha_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Bidang Usaha Harus diisi',
-                    ]
-                ],
-                'nama_direktur_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Nama Direktur Harus diisi',
-                    ]
-                ],
-                'key_person_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Key Person Harus diisi',
-                    ]
-                ],
-                'alamat_kantor_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Alamat Kantor Harus diisi',
-                    ]
-                ],
-                'alamat_gudang_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Alamat Gudang/ Pabrik/ Workshop Harus diisi',
-                    ]
-                ],
-                'group_debitur_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Group Debitur Harus diisi',
-                    ]
-                ],
-                'nama_proyek_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Nama Proyek Harus diisi',
-                    ]
-                ],
-                'nomor_spk_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Nomor SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
-                    ]
-                ],
-                'tanggal_spk_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Tanggal SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
-                    ]
-                ],
-                'nilai_proyek_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Nilai Proyek Harus diisi',
-                    ]
-                ],
-                'alamat_proyek_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Alamat Proyek Harus diisi',
-                    ]
-                ],
-                'pemberi_kerja_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Pemberi Kerja Harus diisi',
-                    ]
-                ],
-                'penandatangan_kontrak_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Penandatangan Kontrak Harus diisi',
-                    ]
-                ],
-                'alamat_pemberi_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Alamat Pemberi Harus diisi',
-                    ]
-                ],
-                'tanggal_permohonan_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Tanggal Permohonan Harus diisi',
-                    ]
-                ],
-                'plafond_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Plafond Harus diisi',
-                    ]
-                ],
-                'tujuan_pengajuan_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Tujuan Pengajuan Harus diisi',
-                    ]
-                ],
-                'jumlah_agunan_tambah' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Jumlah Agunan Harus diisi',
-                    ]
-                ],
+                    'unit_kerja_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Unit Kerja Harus diisi',
+                        ]
+                    ],
+                    'pemasar_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Pemasar Harus diisi',
+                        ]
+                    ],
+                    'koordinator_pemasar_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Koordinator Pemasar Harus diisi',
+                        ]
+                    ],
+                    'kepala_cabang_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Kepala Cabang Harus diisi',
+                        ]
+                    ],
+                    'kepala_bagian_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Kepala Bagian Harus diisi',
+                        ]
+                    ],
+                    'kepala_divisi_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Kepala Divisi Harus diisi',
+                        ]
+                    ],
+                    'nama_debitur_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Nama Debitur Harus diisi',
+                        ]
+                    ],
+                    'npwp_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'NPWP Harus diisi',
+                        ]
+                    ],
+                    'bidang_usaha_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Bidang Usaha Harus diisi',
+                        ]
+                    ],
+                    'nama_direktur_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Nama Direktur Harus diisi',
+                        ]
+                    ],
+                    'key_person_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Key Person Harus diisi',
+                        ]
+                    ],
+                    'alamat_kantor_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Alamat Kantor Harus diisi',
+                        ]
+                    ],
+                    'alamat_gudang_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Alamat Gudang/ Pabrik/ Workshop Harus diisi',
+                        ]
+                    ],
+                    'group_debitur_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Group Debitur Harus diisi',
+                        ]
+                    ],
+                    'nama_proyek_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Nama Proyek Harus diisi',
+                        ]
+                    ],
+                    'nomor_spk_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Nomor SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
+                        ]
+                    ],
+                    'tanggal_spk_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Tanggal SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
+                        ]
+                    ],
+                    'nilai_proyek_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Nilai Proyek Harus diisi',
+                        ]
+                    ],
+                    'alamat_proyek_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Alamat Proyek Harus diisi',
+                        ]
+                    ],
+                    'pemberi_kerja_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Pemberi Kerja Harus diisi',
+                        ]
+                    ],
+                    'penandatangan_kontrak_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Penandatangan Kontrak Harus diisi',
+                        ]
+                    ],
+                    'alamat_pemberi_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Alamat Pemberi Harus diisi',
+                        ]
+                    ],
+                    'tanggal_permohonan_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Tanggal Permohonan Harus diisi',
+                        ]
+                    ],
+                    'plafond_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Plafond Harus diisi',
+                        ]
+                    ],
+                    'tujuan_pengajuan_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Tujuan Pengajuan Harus diisi',
+                        ]
+                    ],
+                    'jumlah_agunan_tambah' => [
+                        'rules' => 'required',
+                        'errors' => [
+                            'required' => 'Jumlah Agunan Harus diisi',
+                        ]
+                    ],
 
-                'upload_dokumen_tambah' => [
-                    'rules' => 'uploaded[upload_dokumen_tambah]|max_size[upload_dokumen_tambah,2048]|ext_in[upload_dokumen_tambah,pdf]',
-                    'errors' => [
-                        'uploaded' => 'Harus Ada File Yang Diupload',
-                        'max_size' => 'File maksimal 2 mb',
-                        'ext_in' => 'File harus berupa pdf',
-                    ]
-                ],
+                    'upload_dokumen_tambah' => [
+                        'rules' => 'uploaded[upload_dokumen_tambah]|max_size[upload_dokumen_tambah,2048]|ext_in[upload_dokumen_tambah,pdf]',
+                        'errors' => [
+                            'uploaded' => 'Harus Ada File Yang Diupload',
+                            'max_size' => 'File maksimal 2 mb',
+                            'ext_in' => 'File harus berupa pdf',
+                        ]
+                    ],
 
 
-            ])) {
+                ])
+            ) {
                 echo $this->validator->listErrors();
                 // var_dump($this->validator->listErrors()); die;
 
@@ -753,7 +762,8 @@ class Pengajuan extends BaseController
             echo $html;
         }
     }
-    public function jenis_agunan($jenis_agunan){
+    public function jenis_agunan($jenis_agunan)
+    {
         // var_dump(count($jenis_agunan)); die;
         $found = false;
         for ($i = 0; $i < count($jenis_agunan); $i++) {
@@ -782,11 +792,13 @@ class Pengajuan extends BaseController
 
         return $found;
     }
-    public function debug($param){
+    public function debug($param)
+    {
         var_dump($param);
         die;
     }
-    public function buat_nomor_kredit($data, $data_master){
+    public function buat_nomor_kredit($data, $data_master)
+    {
         $hasil = '';
 
         // $kd_nomor = 'NMR' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -881,7 +893,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function buat_nomor_fcr($data, $kd_fcr){
+    public function buat_nomor_fcr($data, $kd_fcr)
+    {
         $hasil = '1';
 
         $kd_nomor = 'NMRFCR' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -923,7 +936,7 @@ class Pengajuan extends BaseController
 
         $nomor_urut_pendek2 = $tambah_satu;
         $nomor_urut_panjang = $nomor_urut;
-        $hasil_generate = $nomor_urut_panjang . '/' . $kata1 . '/' .  $kata2 . $singkatan_cabang . '/' .  $kata3 . '/' . $tahun;
+        $hasil_generate = $nomor_urut_panjang . '/' . $kata1 . '/' . $kata2 . $singkatan_cabang . '/' . $kata3 . '/' . $tahun;
         // var_dump($hasil_generate);die;
         $kd_unit_kerja = $data['kd_unit_kerja'];
 
@@ -970,7 +983,8 @@ class Pengajuan extends BaseController
         // die;
         return $hasil;
     }
-    public function buat_no_pak($data, $kd_scoring_param){
+    public function buat_no_pak($data, $kd_scoring_param)
+    {
         $hasil = '1';
 
         $kd_no = 'PAK' . gmdate("dmYHis", time() + 60 * 60 * 8);
@@ -1020,7 +1034,7 @@ class Pengajuan extends BaseController
             $no_fcr2 = $no_urut_panjang;
         }
 
-        $hasil_generate = $no_fcr2 . '/' . $kata . '/' . $singkatan_unit . '/' .  $kata2 . '/' . $tahun;
+        $hasil_generate = $no_fcr2 . '/' . $kata . '/' . $singkatan_unit . '/' . $kata2 . '/' . $tahun;
         // var_dump($no_fcr2);die;
 
         $result = [
@@ -1060,7 +1074,8 @@ class Pengajuan extends BaseController
         // die;
         return $hasil;
     }
-    public function generate_nomor(){
+    public function generate_nomor()
+    {
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1080,7 +1095,7 @@ class Pengajuan extends BaseController
                 'tahun' => date('Y'),
 
             ];
-            $result['hasil_generate'] = $result['kd_cabang'] . '-' . $result['kd_proses'] . '-' .  $result['nomor_urut_panjang'] . '-' .  $result['tanggal_pembuatan'];
+            $result['hasil_generate'] = $result['kd_cabang'] . '-' . $result['kd_proses'] . '-' . $result['nomor_urut_panjang'] . '-' . $result['tanggal_pembuatan'];
             $hitung++;
             $insert = $this->db->table('tb_nomor_aplikasi_kredit')->insert($result);
         }
@@ -1090,7 +1105,8 @@ class Pengajuan extends BaseController
             echo 'generate nomor kredit gagal';
         }
     }
-    public function generate_nomor_fcr(){
+    public function generate_nomor_fcr()
+    {
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1115,7 +1131,7 @@ class Pengajuan extends BaseController
                 'waktu_pengubah' => session()->get('kd_unit_user'),
 
             ];
-            $result['hasil_generate'] = $result['nomor_urut_panjang'] . '/' . $result['kata1'] . '/' .  $result['kata2'] . $result['singkatan_cabang'] . '/' .  $result['kata3'] . '/' . $result['tahun'];
+            $result['hasil_generate'] = $result['nomor_urut_panjang'] . '/' . $result['kata1'] . '/' . $result['kata2'] . $result['singkatan_cabang'] . '/' . $result['kata3'] . '/' . $result['tahun'];
             $hitung++;
             $insert = $this->db->table('tb_nomor_fcr')->insert($result);
         }
@@ -1125,7 +1141,8 @@ class Pengajuan extends BaseController
             echo 'generate nomor fcr gagal';
         }
     }
-    public function generate_no_pak(){
+    public function generate_no_pak()
+    {
         $kode_cabang = $this->db->query("SELECT * from tb_unit_kerja")->getResult();
         $hitung = 1;
         foreach ($kode_cabang as $daftar) {
@@ -1147,7 +1164,7 @@ class Pengajuan extends BaseController
                 'kd_unit_pengubah' => session()->get('kd_unit_user'),
 
             ];
-            $result['hasil_generate'] = $result['no_urut_panjang'] . '/' . $result['kata'] . '/' .  $result['singkatan_unit'] . '/' . $result['kata2'] . '/' .  $result['tahun'];
+            $result['hasil_generate'] = $result['no_urut_panjang'] . '/' . $result['kata'] . '/' . $result['singkatan_unit'] . '/' . $result['kata2'] . '/' . $result['tahun'];
             $hitung++;
             $insert = $this->db->table('tb_no_pak')->insert($result);
         }
@@ -1157,7 +1174,8 @@ class Pengajuan extends BaseController
             echo 'generate no pak gagal';
         }
     }
-    public function update_nomor_fcr($nomor_input, $kd_data){
+    public function update_nomor_fcr($nomor_input, $kd_data)
+    {
         $hasil = false;
         $cek_sama = $this->db->query("SELECT nomor from tb_fcr where kd_data = '" . $kd_data . "' ");
         if ($cek_sama->getNumRows() > 0) {
@@ -1177,7 +1195,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function hitung_sla($param){
+    public function hitung_sla($param)
+    {
         // Tanggal pertama
         $tanggal1 = $param;
 
@@ -1196,7 +1215,8 @@ class Pengajuan extends BaseController
 
         return $selisih_hari;
     }
-    public function update_sla(){
+    public function update_sla()
+    {
         $sla = $this->db->query("SELECT kd_master, tanggal_isi, sla from tb_data_master where progress !='Approved'");
         if ($sla->getNumRows() > 0) {
             foreach ($sla->getResult() as $list_sla) {
@@ -1211,7 +1231,8 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function insert_master($data_master){
+    public function insert_master($data_master)
+    {
         $hasil = false;
         $cek_kd_master = $this->db->query("SELECT kd_master from tb_data_master where kd_master = '" . $data_master['kd_master'] . "' ")->getNumRows();
         if ($cek_kd_master < 1) {
@@ -1222,7 +1243,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function insert_all($kd_data, $data){
+    public function insert_all($kd_data, $data)
+    {
         $hasil = false;
         $fcr = [
             'kd_data' => $kd_data,
@@ -1380,7 +1402,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function insert_satuan($nama_kolom, $nama_tabel, $kd_fcr, $data){
+    public function insert_satuan($nama_kolom, $nama_tabel, $kd_fcr, $data)
+    {
         $hasil = false;
         $cek = $this->db->query("SELECT $nama_kolom from $nama_tabel where $nama_kolom = '" . $kd_fcr . "' ")->getNumRows();
         if ($cek < 1) {
@@ -1391,7 +1414,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function lihat_dokumen($kd_data){
+    public function lihat_dokumen($kd_data)
+    {
         $dokumen = $this->db->query("SELECT upload_dokumen FROM tb_data_entry WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->upload_dokumen)) {
             $dok = $dokumen->getRow()->upload_dokumen;
@@ -1401,7 +1425,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function edit_data_entry(){
+    public function edit_data_entry()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -1411,175 +1436,177 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'unit_kerja_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Unit Kerja Harus diisi',
-                ]
-            ],
-            // 'pemasar_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pemasar Harus diisi',
-            //     ]
-            // ],
-            // 'koordinator_pemasar_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Koordinator Pemasar Harus diisi',
-            //     ]
-            // ],
-            // 'kepala_cabang_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kepala Cabang Harus diisi',
-            //     ]
-            // ],
-            // 'kepala_bagian_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kepala Bagian Harus diisi',
-            //     ]
-            // ],
-            // 'kepala_divisi_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kepala Divisi Harus diisi',
-            //     ]
-            // ],
-            // 'nama_debitur_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nama Debitur Harus diisi',
-            //     ]
-            // ],
-            // 'bidang_usaha_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bidang Usaha Harus diisi',
-            //     ]
-            // ],
-            // 'nama_direktur_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nama Direktur Harus diisi',
-            //     ]
-            // ],
-            // 'key_person_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Key Person Harus diisi',
-            //     ]
-            // ],
-            // 'alamat_kantor_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Kantor Harus diisi',
-            //     ]
-            // ],
-            // 'alamat_gudang_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Gudang/ Pabrik/ Workshop Harus diisi',
-            //     ]
-            // ],
-            // 'group_debitur_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Group Debitur Harus diisi',
-            //     ]
-            // ],
-            // 'nama_proyek_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nama Proyek Harus diisi',
-            //     ]
-            // ],
-            // 'nomor_spk_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nomor SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
-            //     ]
-            // ],
-            // 'tanggal_spk_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tanggal SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
-            //     ]
-            // ],
-            // 'nilai_proyek_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nilai Proyek Harus diisi',
-            //     ]
-            // ],
-            // 'alamat_proyek_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Proyek Harus diisi',
-            //     ]
-            // ],
-            // 'pemberi_kerja_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pemberi Kerja Harus diisi',
-            //     ]
-            // ],
-            // 'penandatangan_kontrak_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Penandatangan Kontrak Harus diisi',
-            //     ]
-            // ],
-            // 'alamat_pemberi_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Pemberi Harus diisi',
-            //     ]
-            // ],
-            // 'tanggal_permohonan_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tanggal Permohonan Harus diisi',
-            //     ]
-            // ],
-            // 'plafond_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Plafond Harus diisi',
-            //     ]
-            // ],
-            // 'tujuan_pengajuan_tambah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tujuan Pengajuan Harus diisi',
-            //     ]
-            // ],
-            'jumlah_agunan_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Jumlah Agunan Harus diisi',
-                ]
-            ],
-            'status_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Status Pengajuan Harus diisi',
-                ]
-            ],
+                'unit_kerja_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Unit Kerja Harus diisi',
+                    ]
+                ],
+                // 'pemasar_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pemasar Harus diisi',
+                //     ]
+                // ],
+                // 'koordinator_pemasar_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Koordinator Pemasar Harus diisi',
+                //     ]
+                // ],
+                // 'kepala_cabang_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kepala Cabang Harus diisi',
+                //     ]
+                // ],
+                // 'kepala_bagian_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kepala Bagian Harus diisi',
+                //     ]
+                // ],
+                // 'kepala_divisi_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kepala Divisi Harus diisi',
+                //     ]
+                // ],
+                // 'nama_debitur_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nama Debitur Harus diisi',
+                //     ]
+                // ],
+                // 'bidang_usaha_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bidang Usaha Harus diisi',
+                //     ]
+                // ],
+                // 'nama_direktur_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nama Direktur Harus diisi',
+                //     ]
+                // ],
+                // 'key_person_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Key Person Harus diisi',
+                //     ]
+                // ],
+                // 'alamat_kantor_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Kantor Harus diisi',
+                //     ]
+                // ],
+                // 'alamat_gudang_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Gudang/ Pabrik/ Workshop Harus diisi',
+                //     ]
+                // ],
+                // 'group_debitur_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Group Debitur Harus diisi',
+                //     ]
+                // ],
+                // 'nama_proyek_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nama Proyek Harus diisi',
+                //     ]
+                // ],
+                // 'nomor_spk_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nomor SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
+                //     ]
+                // ],
+                // 'tanggal_spk_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tanggal SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
+                //     ]
+                // ],
+                // 'nilai_proyek_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nilai Proyek Harus diisi',
+                //     ]
+                // ],
+                // 'alamat_proyek_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Proyek Harus diisi',
+                //     ]
+                // ],
+                // 'pemberi_kerja_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pemberi Kerja Harus diisi',
+                //     ]
+                // ],
+                // 'penandatangan_kontrak_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Penandatangan Kontrak Harus diisi',
+                //     ]
+                // ],
+                // 'alamat_pemberi_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Pemberi Harus diisi',
+                //     ]
+                // ],
+                // 'tanggal_permohonan_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tanggal Permohonan Harus diisi',
+                //     ]
+                // ],
+                // 'plafond_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Plafond Harus diisi',
+                //     ]
+                // ],
+                // 'tujuan_pengajuan_tambah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tujuan Pengajuan Harus diisi',
+                //     ]
+                // ],
+                'jumlah_agunan_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jumlah Agunan Harus diisi',
+                    ]
+                ],
+                'status_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Status Pengajuan Harus diisi',
+                    ]
+                ],
 
-            // 'upload_dokumen_tambah' => [
-            //     // 'rules' => 'uploaded[upload_dokumen_tambah]|max_size[upload_dokumen_tambah,2048]|ext_in[upload_dokumen_tambah,pdf]',
-            //     'rules' => 'max_size[upload_dokumen_tambah,2048]|ext_in[upload_dokumen_tambah,pdf]',
-            //     'errors' => [
-            //         // 'uploaded' => 'Harus Ada File Yang Diupload',
-            //         'max_size' => 'File maksimal 2 mb',
-            //         'ext_in' => 'File harus berupa pdf',
-            //     ]
-            // ],
-        ])) {
+                // 'upload_dokumen_tambah' => [
+                //     // 'rules' => 'uploaded[upload_dokumen_tambah]|max_size[upload_dokumen_tambah,2048]|ext_in[upload_dokumen_tambah,pdf]',
+                //     'rules' => 'max_size[upload_dokumen_tambah,2048]|ext_in[upload_dokumen_tambah,pdf]',
+                //     'errors' => [
+                //         // 'uploaded' => 'Harus Ada File Yang Diupload',
+                //         'max_size' => 'File maksimal 2 mb',
+                //         'ext_in' => 'File harus berupa pdf',
+                //     ]
+                // ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -1589,7 +1616,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_data_entry(){
+    public function paraf_data_entry()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -1598,36 +1626,41 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
-            'cb_data_entry' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Checkbox Data Entry Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'cb_data_entry' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Checkbox Data Entry Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
             ];
         } else {
-            $hasil = $this->data_entry_paraf($hasil,);
+            $hasil = $this->data_entry_paraf($hasil, );
         }
         echo json_encode($hasil);
     }
-    public function paraf_fcr(){
+    public function paraf_fcr()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
-            'cb_fcr' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Checkbox Data Entry Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'cb_fcr' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Checkbox Data Entry Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -1638,19 +1671,22 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function paraf_fcr_usaha(){
+    public function paraf_fcr_usaha()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
-            'cb_fcr_usaha' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Checkbox FCR Usaha Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'cb_fcr_usaha' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Checkbox FCR Usaha Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -1660,19 +1696,22 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_fcr_agunan(){
+    public function paraf_fcr_agunan()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
-            'cb_fcr_agunan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Checkbox Data Entry Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'cb_fcr_agunan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Checkbox Data Entry Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -1683,19 +1722,22 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function paraf_dokumen_ceklis(){
+    public function paraf_dokumen_ceklis()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
-            'cb_dokumen_ceklis' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Checkbox Data Entry Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'cb_dokumen_ceklis' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Checkbox Data Entry Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -1705,19 +1747,22 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function paraf_scoring(){
+    public function paraf_scoring()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
-            'cb_scoring' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Checkbox Data Entry Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'cb_scoring' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Checkbox Data Entry Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -1727,7 +1772,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_entry($hasil, $pemanggil){
+    public function data_entry($hasil, $pemanggil)
+    {
 
         $input = $this->request->getPost('jenis_agunan_tambah');
         $jenis_agunan = explode(";", $input);
@@ -1929,7 +1975,8 @@ class Pengajuan extends BaseController
     //     }
     // }
 
-    public function data_entry_paraf($hasil){
+    public function data_entry_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_level = session()->get('kd_level_user');
         $kd_data = $this->request->getPost('kd_data_tambah');
@@ -1971,7 +2018,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function fcr_paraf($hasil){
+    public function fcr_paraf($hasil)
+    {
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
         $kd_level = session()->get('kd_level_user');
@@ -2015,7 +2063,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function fcr_usaha_paraf($hasil){
+    public function fcr_usaha_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2039,8 +2088,8 @@ class Pengajuan extends BaseController
         // $this->debug($data);
 
         //pengecekan kd info tidak boleh sama sebelum insert
-       
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2059,7 +2108,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function fcr_agunan_paraf($hasil){
+    public function fcr_agunan_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2085,7 +2135,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2104,7 +2154,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function dokumen_ceklis_paraf($hasil){
+    public function dokumen_ceklis_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2130,7 +2181,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2149,7 +2200,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function scoring_paraf($hasil){
+    public function scoring_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2175,7 +2227,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2195,7 +2247,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function fak_paraf($hasil){
+    public function fak_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2221,7 +2274,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2240,7 +2293,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function fak_modal_paraf($hasil){
+    public function fak_modal_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2266,7 +2320,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2285,7 +2339,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function fak_rl_paraf($hasil){
+    public function fak_rl_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2311,7 +2366,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2330,7 +2385,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function lap_rl_paraf($hasil){
+    public function lap_rl_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2356,7 +2412,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2375,7 +2431,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function ceftb_paraf($hasil){
+    public function ceftb_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2401,7 +2458,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2420,7 +2477,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function faa_paraf($hasil){
+    public function faa_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2446,7 +2504,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2465,7 +2523,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function mauk_paraf($hasil){
+    public function mauk_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2491,7 +2550,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2510,7 +2569,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function dcl_paraf($hasil){
+    public function dcl_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2536,7 +2596,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2555,7 +2615,8 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function scoring_koor_paraf($hasil){
+    public function scoring_koor_paraf($hasil)
+    {
         // Proses penyimpanan data
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
@@ -2581,7 +2642,7 @@ class Pengajuan extends BaseController
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
         $nama_halaman = $this->request->getPost('nama_halaman');
-        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman ."' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
+        $cek_kd_data = $this->db->query("SELECT kd_data from tb_paraf where kd_data = '" . $kd_data . "'  AND nama_halaman='" . $nama_halaman . "' AND kd_level='" . $kd_level . "' AND pengubah='" . $pengubah . "'")->getNumRows();
         if ($cek_kd_data < 1) {
             // $this->db->table('tb_paraf')->where('kd_data', $kd_data)->update($data);
             // $pengaruh = $this->db->affectedRows();
@@ -2600,190 +2661,362 @@ class Pengajuan extends BaseController
 
         return $hasil;
     }
-    public function tampil_btn_finish($kd_data){
+    // public function tampil_btn_finish($kd_data)
+    // {
 
-        $data_kirim = [
+    //     $data_kirim = [
+    //         'status' => 'success',
+    //         'tampil_button' => 'hide',
+    //         'judul_button' => 'Error',
+    //     ];
+    //     $cek_ada = $this->db->query("SELECT m.posisi_progress, m.progress, d.plafond from tb_data_master as m, tb_data_entry as d where m.kd_data = '" . $kd_data . "' and d.kd_data = '" . $kd_data . "' ");
+    //     // $this->debug($cek_ada->getRow());
+    //     if ($cek_ada->getNumRows() > 0) {
+    //         $plafond_db = $cek_ada->getRow()->plafond;
+    //         $posisi_progress_db = $cek_ada->getRow()->posisi_progress;
+    //         $progress_db = $cek_ada->getRow()->progress;
+    //         // $this->debug($plafond_db);
+    //         //pemasar => koord pemasar
+    //         if (session()->get('kd_level_user') == 'LVL23072023135343' && $posisi_progress_db == 'Pemasar' && $progress_db == 'Input') {
+    //             // $data_master['posisi_progress'] = 'Koordinator Pemasar';
+    //             // $data_master['progress'] = 'Review';
+    //             $data_kirim = [
+    //                 'status' => 'success',
+    //                 'tampil_button' => 'show',
+    //                 'judul_button' => 'Kirim ke Koord Pemasar',
+    //             ];
+    //         }
+    //         // koord pemasar => kepala cabang
+    //         if (session()->get('kd_level_user') == 'LVL23072023133934') {
+    //             if ($plafond_db < 2000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Kacab',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Kacab',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Kacab',
+    //                 ];
+    //             }
+    //         }
+    //         // kepala cabang => analis kredit
+    //         if (session()->get('kd_level_user') == 'LVL23072023131340') {
+    //             if ($plafond_db < 2000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Setujui/ Approve',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Analis Kredit';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Analis Kredit',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Analis Kredit';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Analis Kredit',
+    //                 ];
+    //             }
+    //         }
+    //         // analis kredit => kepala bagian
+    //         if (session()->get('kd_level_user') == 'LVL18092023101055') {
+    //             if ($plafond_db < 2000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'hide',
+    //                     'judul_button' => 'Kirim ke Kacab/ Error',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Approval';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Kabag',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Kabag',
+    //                 ];
+    //             }
+    //         }
+    //         // kepala bagian => kepala divisi
+    //         if (session()->get('kd_level_user') == 'LVL23072023134345') {
+    //             if ($plafond_db < 2000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'hide',
+    //                     'judul_button' => 'Kirim ke Kacab/  Error',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Setujui/ Approve',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Divisi';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Kirim ke Kadiv',
+    //                 ];
+    //             }
+    //         }
+
+    //         // kepala divisi
+    //         if (session()->get('kd_level_user') == 'LVL07112023100547') {
+    //             if ($plafond_db < 2000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'hide',
+    //                     'judul_button' => 'Kirim ke Kacab/ Error',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'hide',
+    //                     'judul_button' => 'Kirim ke Kabag/ Error',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Divisi';
+    //                 // $data_master['progress'] = 'Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'tampil_button' => 'show',
+    //                     'judul_button' => 'Setujui/ Approve',
+    //                 ];
+    //             }
+    //         }
+    //     }
+    //     // jika yang login selain role di atas, maka hilangkan button finish
+    //     echo json_encode($data_kirim);
+    // }
+
+
+    public function tampil_btn_finish($kd_data)
+    {
+        // default response
+        $resp = [
             'status' => 'success',
             'tampil_button' => 'hide',
             'judul_button' => 'Error',
         ];
-        $cek_ada = $this->db->query("SELECT m.posisi_progress, m.progress, d.plafond from tb_data_master as m, tb_data_entry as d where m.kd_data = '" . $kd_data . "' and d.kd_data = '" . $kd_data . "' ");
-        // $this->debug($cek_ada->getRow());
-        if ($cek_ada->getNumRows() > 0) {
-            $plafond_db = $cek_ada->getRow()->plafond;
-            $posisi_progress_db = $cek_ada->getRow()->posisi_progress;
-            $progress_db = $cek_ada->getRow()->progress;
-            // $this->debug($plafond_db);
-            //pemasar => koord pemasar
-            if (session()->get('kd_level_user') == 'LVL23072023135343' && $posisi_progress_db == 'Pemasar' && $progress_db == 'Input') {
-                // $data_master['posisi_progress'] = 'Koordinator Pemasar';
-                // $data_master['progress'] = 'Review';
-                $data_kirim = [
-                    'status' => 'success',
-                    'tampil_button' => 'show',
-                    'judul_button' => 'Kirim ke Koord Pemasar',
-                ];
-            }
-            // koord pemasar => kepala cabang
-            if (session()->get('kd_level_user') == 'LVL23072023133934') {
-                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Kacab',
-                    ];
+
+        // ambil data master + entry
+        $q = $this->db->query("
+        SELECT m.posisi_progress, m.progress, d.plafond
+        FROM tb_data_master m
+        JOIN tb_data_entry d ON d.kd_data = m.kd_data
+        WHERE m.kd_data = ?
+        LIMIT 1
+    ", [$kd_data]);
+
+        if ($q->num_rows() <= 0) {
+            echo json_encode($resp);
+            return;
+        }
+
+        $row = $q->row();
+        $plafond = (float) ($row->plafond ?? 0);
+        $posisi = (string) ($row->posisi_progress ?? '');
+        $prog = (string) ($row->progress ?? '');
+
+        // session
+        $level = (string) session()->get('kd_level_user'); // kd level user
+        $unit = (string) session()->get('kd_unit_user');  // contoh: '001' cabang utama
+
+        // mapping level -> nama role (biar enak dibaca)
+        $LVL_PEMASAR = 'LVL23072023135343';
+        $LVL_KOORD = 'LVL23072023133934';
+        $LVL_KACAB = 'LVL23072023131340';
+        $LVL_ANALIS = 'LVL18092023101055';
+        $LVL_KABAG = 'LVL23072023134345';
+        $LVL_KADIV = 'LVL07112023100547';
+
+        // helper set response
+        $show = function ($judul) use (&$resp) {
+            $resp['tampil_button'] = 'show';
+            $resp['judul_button'] = $judul;
+        };
+        $hide = function ($judul) use (&$resp) {
+            $resp['tampil_button'] = 'hide';
+            $resp['judul_button'] = $judul;
+        };
+
+        // =========================
+        // RULES LIMIT (sesuai request)
+        // =========================
+        $isCabangUtama = ($unit === '001');
+
+        // Siapa final approver?
+        // - Cabang Utama: <=1B Kabag, >1B Kadiv
+        // - Selain itu:   <=2B Kacab, >2B Kadiv
+        if ($isCabangUtama) {
+            $finalApprover = ($plafond <= 1000000000) ? 'KABAG' : 'KADIV';
+        } else {
+            $finalApprover = ($plafond <= 2000000000) ? 'KACAB' : 'KADIV';
+        }
+
+        // =========================
+        // FLOW BUTTON (berdasarkan posisi/progress + role login)
+        // =========================
+
+        // 1) Pemasar -> Koordinator Pemasar
+        if ($level === $LVL_PEMASAR && $posisi === 'Pemasar' && $prog === 'Input') {
+            $show('Kirim ke Koord Pemasar');
+            echo json_encode($resp);
+            return;
+        }
+
+        // 2) Koordinator Pemasar -> Kepala Cabang
+        if ($level === $LVL_KOORD && $posisi === 'Koordinator Pemasar' && $prog === 'Review') {
+            $show('Kirim ke Kacab');
+            echo json_encode($resp);
+            return;
+        }
+
+        // 3) Kepala Cabang
+        if ($level === $LVL_KACAB && $posisi === 'Kepala Cabang') {
+
+            // Jika final approver adalah KACAB => tombol approve saat progress=Approval
+            if ($finalApprover === 'KACAB') {
+                if ($prog === 'Approval') {
+                    $show('Setujui/ Approve');
+                } else {
+                    $hide('Menunggu tahap Approval Kacab');
                 }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Kacab',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Kacab',
-                    ];
-                }
-            }
-            // kepala cabang => analis kredit
-            if (session()->get('kd_level_user') == 'LVL23072023131340') {
-                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Setujui/ Approve',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Analis Kredit';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Analis Kredit',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Analis Kredit';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Analis Kredit',
-                    ];
-                }
-            }
-            // analis kredit => kepala bagian
-            if (session()->get('kd_level_user') == 'LVL18092023101055') {
-                if ($plafond_db < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'hide',
-                        'judul_button' => 'Kirim ke Kacab/ Error',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Approval';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Kabag',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Kabag',
-                    ];
-                }
-            }
-            // kepala bagian => kepala divisi
-            if (session()->get('kd_level_user') == 'LVL23072023134345') {
-                if ($plafond_db < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'hide',
-                        'judul_button' => 'Kirim ke Kacab/  Error',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Setujui/ Approve',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Kepala Divisi';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Kirim ke Kadiv',
-                    ];
-                }
+                echo json_encode($resp);
+                return;
             }
 
-            // kepala divisi
-            if (session()->get('kd_level_user') == 'LVL07112023100547') {
-                if ($plafond_db < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'hide',
-                        'judul_button' => 'Kirim ke Kacab/ Error',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'hide',
-                        'judul_button' => 'Kirim ke Kabag/ Error',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
-                    // $data_master['posisi_progress'] = 'Kepala Divisi';
-                    // $data_master['progress'] = 'Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'tampil_button' => 'show',
-                        'judul_button' => 'Setujui/ Approve',
-                    ];
-                }
+            // Jika final approver BUKAN KACAB => KACAB hanya meneruskan rekomendasi ke Analis
+            if ($prog === 'Rekomendasi') {
+                $show('Kirim ke Analis Kredit');
+            } else {
+                $hide('Menunggu tahap Rekomendasi Kacab');
             }
+            echo json_encode($resp);
+            return;
         }
-        // jika yang login selain role di atas, maka hilangkan button finish
-        echo json_encode($data_kirim);
+
+        // 4) Analis Kredit
+        if ($level === $LVL_ANALIS && $posisi === 'Analis Kredit') {
+
+            // Jalur ke Kabag (baik untuk Cabang Utama maupun non-utama) ketika Analis selesai rekomendasi
+            if ($prog === 'Rekomendasi') {
+                $show('Kirim ke Kabag');
+            } else {
+                $hide('Menunggu tahap Rekomendasi Analis');
+            }
+            echo json_encode($resp);
+            return;
+        }
+
+        // 5) Kepala Bagian
+        if ($level === $LVL_KABAG && $posisi === 'Kepala Bagian') {
+
+            // Jika Cabang Utama & plafond <=1B => final approver Kabag, approve saat Approval
+            if ($finalApprover === 'KABAG') {
+                if ($prog === 'Approval') {
+                    $show('Setujui/ Approve');
+                } else {
+                    $hide('Menunggu tahap Approval Kabag');
+                }
+                echo json_encode($resp);
+                return;
+            }
+
+            // Selain itu => Kabag meneruskan ke Kadiv saat rekomendasi
+            if ($prog === 'Rekomendasi') {
+                $show('Kirim ke Kadiv');
+            } else {
+                $hide('Menunggu tahap Rekomendasi Kabag');
+            }
+            echo json_encode($resp);
+            return;
+        }
+
+        // 6) Kepala Divisi
+        if ($level === $LVL_KADIV && $posisi === 'Kepala Divisi') {
+
+            // final approver Kadiv => approve saat Approval
+            if ($finalApprover === 'KADIV') {
+                if ($prog === 'Approval') {
+                    $show('Setujui/ Approve');
+                } else {
+                    $hide('Menunggu tahap Approval Kadiv');
+                }
+                echo json_encode($resp);
+                return;
+            }
+
+            // kalau bukan final approver (harusnya tidak terjadi dengan rules baru), hide saja
+            $hide('Bukan tahap approver');
+            echo json_encode($resp);
+            return;
+        }
+
+        // selain role di atas: hide
+        $hide('Tidak ada aksi untuk role ini');
+        echo json_encode($resp);
     }
-    public function tampil_disposisi($kd_data){
+
+    public function tampil_disposisi($kd_data)
+    {
 
         $data_kirim = [
             'status' => 'success',
@@ -3053,7 +3286,8 @@ class Pengajuan extends BaseController
         // jika yang login selain role di atas, maka hilangkan button finish
         echo json_encode($data_kirim);
     }
-    public function edit_master($kd_data, $data_master){
+    public function edit_master($kd_data, $data_master)
+    {
         $hasil = false;
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_data_master where kd_data = '" . $kd_data . "' ")->getNumRows();
         if ($cek_kd_data > 0) {
@@ -3064,7 +3298,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function get_data_entry($kd_data){
+    public function get_data_entry($kd_data)
+    {
         $hasil = [
             'status' => 'error',
             'message' => null,
@@ -3078,7 +3313,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function get_tabel_return($kd_data){
+    public function get_tabel_return($kd_data)
+    {
         $hasil = [
             'status' => 'error',
             'message' => null,
@@ -3092,17 +3328,20 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_return(){
-        if (!$this->validate([
+    public function edit_return()
+    {
+        if (
+            !$this->validate([
 
-            'catatan_return' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alasan Harus diisi',
-                ]
-            ],
+                'catatan_return' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alasan Harus diisi',
+                    ]
+                ],
 
-        ])) {
+            ])
+        ) {
             // session()->setFlashdata('error', $this->validator->listErrors());
             // return redirect()->back()->withInput();
             echo $this->validator->listErrors();
@@ -3188,7 +3427,7 @@ class Pengajuan extends BaseController
             } else {
                 echo 'Gagal simpan data return';
             }
-            
+
             $paraf = $this->db->query("SELECT * from tb_paraf where kd_data = '" . $kd_data . "' ")->getNumRows();
             if ($paraf > 0) {
                 $this->db->table('tb_paraf')->where('kd_data', $kd_data)->delete();
@@ -3197,17 +3436,20 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_reject($jenis = '1'){
-        if (!$this->validate([
+    public function edit_reject($jenis = '1')
+    {
+        if (
+            !$this->validate([
 
-            'catatan_reject' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alasan Harus diisi',
-                ]
-            ],
+                'catatan_reject' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alasan Harus diisi',
+                    ]
+                ],
 
-        ])) {
+            ])
+        ) {
             // session()->setFlashdata('error', $this->validator->listErrors());
             // return redirect()->back()->withInput();
             echo $this->validator->listErrors();
@@ -3221,11 +3463,11 @@ class Pengajuan extends BaseController
                 $nama_unit = $unit->getRow()->nama_unit;
             }
 
-                $nama_level = session()->get('kd_level_user');
-                $level = $this->db->query("SELECT * from tb_level where kd_level = '" . session()->get('kd_level_user') . "' ");
-                if ($level->getNumRows() > 0) {
-                    $nama_level = $level->getRow()->nama_level;
-                }
+            $nama_level = session()->get('kd_level_user');
+            $level = $this->db->query("SELECT * from tb_level where kd_level = '" . session()->get('kd_level_user') . "' ");
+            if ($level->getNumRows() > 0) {
+                $nama_level = $level->getRow()->nama_level;
+            }
 
             $progress = '';
             $posisi_progress = '';
@@ -3305,7 +3547,8 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function ubah_fcr($kd_data, $data){
+    public function ubah_fcr($kd_data, $data)
+    {
         $hasil = false;
         $fcr = [
             'nama_debitur' => $data['nama_debitur'],
@@ -3358,7 +3601,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function getGlobal(){
+    public function getGlobal()
+    {
         $kd_data = $this->request->getPost('kd_data');
         $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getResultArray();
         // $data['paraf'] = $this->db->query("SELECT * FROM tb_paraf WHERE SHA1(kd_data) = '" . $kd_data . "' ")->getRow();
@@ -3415,7 +3659,8 @@ class Pengajuan extends BaseController
 
         echo json_encode($data);
     }
-    public function get_perulangan(){
+    public function get_perulangan()
+    {
         $data = [];
         $kd_data = $this->request->getPost('kd_data');
         // $detail_fcr = $this->db->query("SELECT * FROM tb_fcr_agunan WHERE kd_data = '" . $kd_data . "' ");
@@ -3495,7 +3740,7 @@ class Pengajuan extends BaseController
             $data['model_tipe'] = explode(";", $detail_fcr->getRow()->model_tipe);
             $data['merek_cc'] = explode(";", $detail_fcr->getRow()->merek_cc);
             $data['tahun_pembuatan'] = explode(";", $detail_fcr->getRow()->tahun_pembuatan);
-            $data['tahun_pembeliaan'] = explode(";", $detail_fcr->getRow()->tahun_pembeliaan);
+            $data['tahun_pembelian'] = explode(";", $detail_fcr->getRow()->tahun_pembelian);
             $data['serial_number'] = explode(";", $detail_fcr->getRow()->serial_number);
             $data['nomor_mesin'] = explode(";", $detail_fcr->getRow()->nomor_mesin);
             $data['warna'] = explode(";", $detail_fcr->getRow()->warna);
@@ -3520,19 +3765,22 @@ class Pengajuan extends BaseController
 
         echo json_encode($data);
     }
-    public function edit_file(){
-        if (!$this->validate([
-            'upload_dokumen_edit' => [
-                'rules' => 'uploaded[upload_dokumen_edit]|max_size[upload_dokumen_edit,2048]|ext_in[upload_dokumen_edit,pdf]',
-                'errors' => [
-                    'uploaded' => 'Harus Ada File Yang Diupload',
-                    'max_size' => 'File maksimal 2 mb',
-                    'ext_in' => 'File harus berupa pdf',
-                ]
-            ],
+    public function edit_file()
+    {
+        if (
+            !$this->validate([
+                'upload_dokumen_edit' => [
+                    'rules' => 'uploaded[upload_dokumen_edit]|max_size[upload_dokumen_edit,2048]|ext_in[upload_dokumen_edit,pdf]',
+                    'errors' => [
+                        'uploaded' => 'Harus Ada File Yang Diupload',
+                        'max_size' => 'File maksimal 2 mb',
+                        'ext_in' => 'File harus berupa pdf',
+                    ]
+                ],
 
 
-        ])) {
+            ])
+        ) {
 
             echo $this->validator->listErrors();
         } else {
@@ -3561,7 +3809,8 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_fcr(){
+    public function edit_fcr()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3570,96 +3819,98 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            // 'nomor_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nomor Harus diisi',
-            //     ]
-            // ],
-            // 'tanggal_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tanggal Harus diisi',
-            //     ]
-            // ],
-            // 'nama_debitur_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nama Debitur Harus diisi',
-            //     ]
-            // ],
-            // 'alamat_kantor_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat kantor Harus diisi',
-            //     ]
-            // ],
-            // 'alamat_gudang_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Gudang Harus diisi',
-            //     ]
-            // ],
-            // 'group_debitur_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Group Debitur Harus diisi',
-            //     ]
-            // ],
-            // 'contact_person_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Contact Person Harus diisi',
-            //     ]
-            // ],
-            // 'kunjungan_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kunjungan Harus diisi',
-            //     ]
-            // ],
-            'kd_unit_kerja_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Unit Kerja Harus diisi',
-                ]
-            ],
-            // 'tanggal_kunjungan_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tanggal Kunjungan Harus diisi',
-            //     ]
-            // ],
-            // 'lokasi_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lokasi Harus diisi',
-            //     ]
-            // ],
-            // 'tujuan_kunjungan_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tujuan Kunjungan Harus diisi',
-            //     ]
-            // ],
-            // 'hasil_kunjungan_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Hasil Kunjungan Harus diisi',
-            //     ]
-            // ],
-            // 'tindak_lanjut_edit' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tindak Lanjut Harus diisi',
-            //     ]
-            // ],
+                // 'nomor_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nomor Harus diisi',
+                //     ]
+                // ],
+                // 'tanggal_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tanggal Harus diisi',
+                //     ]
+                // ],
+                // 'nama_debitur_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nama Debitur Harus diisi',
+                //     ]
+                // ],
+                // 'alamat_kantor_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat kantor Harus diisi',
+                //     ]
+                // ],
+                // 'alamat_gudang_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Gudang Harus diisi',
+                //     ]
+                // ],
+                // 'group_debitur_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Group Debitur Harus diisi',
+                //     ]
+                // ],
+                // 'contact_person_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Contact Person Harus diisi',
+                //     ]
+                // ],
+                // 'kunjungan_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kunjungan Harus diisi',
+                //     ]
+                // ],
+                'kd_unit_kerja_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Unit Kerja Harus diisi',
+                    ]
+                ],
+                // 'tanggal_kunjungan_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tanggal Kunjungan Harus diisi',
+                //     ]
+                // ],
+                // 'lokasi_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lokasi Harus diisi',
+                //     ]
+                // ],
+                // 'tujuan_kunjungan_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tujuan Kunjungan Harus diisi',
+                //     ]
+                // ],
+                // 'hasil_kunjungan_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Hasil Kunjungan Harus diisi',
+                //     ]
+                // ],
+                // 'tindak_lanjut_edit' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tindak Lanjut Harus diisi',
+                //     ]
+                // ],
 
 
 
-        ])) {
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -3670,7 +3921,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_fcr($hasil){
+    public function data_fcr($hasil)
+    {
         $data = [
             'nomor' => $this->request->getPost('nomor_edit'),
             'tanggal' => $this->request->getPost('tanggal_edit'),
@@ -3718,7 +3970,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr(){
+    public function finish_fcr()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3727,94 +3980,96 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'nomor_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nomor Harus diisi',
-                ]
-            ],
-            'tanggal_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tanggal Harus diisi',
-                ]
-            ],
-            'nama_debitur_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Debitur Harus diisi',
-                ]
-            ],
-            'alamat_kantor_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat kantor Harus diisi',
-                ]
-            ],
-            'alamat_gudang_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat Gudang Harus diisi',
-                ]
-            ],
-            'group_debitur_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Group Debitur Harus diisi',
-                ]
-            ],
-            'contact_person_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Contact Person Harus diisi',
-                ]
-            ],
-            'kunjungan_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kunjungan Harus diisi',
-                ]
-            ],
-            'kd_unit_kerja_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Unit Kerja Harus diisi',
-                ]
-            ],
-            'tanggal_kunjungan_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tanggal Kunjungan Harus diisi',
-                ]
-            ],
-            'lokasi_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lokasi Harus diisi',
-                ]
-            ],
-            'tujuan_kunjungan_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tujuan Kunjungan Harus diisi',
-                ]
-            ],
-            'hasil_kunjungan_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Hasil Kunjungan Harus diisi',
-                ]
-            ],
-            'tindak_lanjut_edit' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tindak Lanjut Harus diisi',
-                ]
-            ],
+                'nomor_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nomor Harus diisi',
+                    ]
+                ],
+                'tanggal_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Harus diisi',
+                    ]
+                ],
+                'nama_debitur_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Debitur Harus diisi',
+                    ]
+                ],
+                'alamat_kantor_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat kantor Harus diisi',
+                    ]
+                ],
+                'alamat_gudang_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Gudang Harus diisi',
+                    ]
+                ],
+                'group_debitur_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Group Debitur Harus diisi',
+                    ]
+                ],
+                'contact_person_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Contact Person Harus diisi',
+                    ]
+                ],
+                'kunjungan_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kunjungan Harus diisi',
+                    ]
+                ],
+                'kd_unit_kerja_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Unit Kerja Harus diisi',
+                    ]
+                ],
+                'tanggal_kunjungan_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Kunjungan Harus diisi',
+                    ]
+                ],
+                'lokasi_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lokasi Harus diisi',
+                    ]
+                ],
+                'tujuan_kunjungan_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tujuan Kunjungan Harus diisi',
+                    ]
+                ],
+                'hasil_kunjungan_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Hasil Kunjungan Harus diisi',
+                    ]
+                ],
+                'tindak_lanjut_edit' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tindak Lanjut Harus diisi',
+                    ]
+                ],
 
-        ])) {
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -3825,7 +4080,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_fcr_usaha(){
+    public function edit_fcr_usaha()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -3834,212 +4090,214 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'kondisi_fisik_kantor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Fisik Kantor Harus diisi',
-                ]
-            ],
-            // 'luas_tanah_kantor' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Luas Tanah Kantor Harus diisi',
-            //     ]
-            // ],
-            // 'luas_bangunan_kantor' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Luas Bangunan Kantor Harus diisi',
-            //     ]
-            // ],
-            // 'fasilitas_kantor' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Fasilitas Kantor Harus diisi',
-            //     ]
-            // ],
-            // 'lokasi_kantor' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lokasi Kantor Harus diisi',
-            //     ]
-            // ],
+                'kondisi_fisik_kantor' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Fisik Kantor Harus diisi',
+                    ]
+                ],
+                // 'luas_tanah_kantor' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Luas Tanah Kantor Harus diisi',
+                //     ]
+                // ],
+                // 'luas_bangunan_kantor' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Luas Bangunan Kantor Harus diisi',
+                //     ]
+                // ],
+                // 'fasilitas_kantor' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Fasilitas Kantor Harus diisi',
+                //     ]
+                // ],
+                // 'lokasi_kantor' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lokasi Kantor Harus diisi',
+                //     ]
+                // ],
 
-            // 'kondisi_fisik_workshop' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Fisik Workshop Harus diisi',
-            //     ]
-            // ],
-            // 'luas_tanah_workshop' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Luas Tanah Workshop Harus diisi',
-            //     ]
-            // ],
-            // 'luas_bangunan_workshop' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Luas Bangunan Workshop Harus diisi',
-            //     ]
-            // ],
-            // 'fasilitas_workshop' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Fasilitas Workshop Harus diisi',
-            //     ]
-            // ],
-            // 'lokasi_workshop' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lokasi Workshop Harus diisi',
-            //     ]
-            // ],
+                // 'kondisi_fisik_workshop' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Fisik Workshop Harus diisi',
+                //     ]
+                // ],
+                // 'luas_tanah_workshop' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Luas Tanah Workshop Harus diisi',
+                //     ]
+                // ],
+                // 'luas_bangunan_workshop' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Luas Bangunan Workshop Harus diisi',
+                //     ]
+                // ],
+                // 'fasilitas_workshop' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Fasilitas Workshop Harus diisi',
+                //     ]
+                // ],
+                // 'lokasi_workshop' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lokasi Workshop Harus diisi',
+                //     ]
+                // ],
 
-            // 'mesin_utama_m' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Mesin Utama Harus diisi',
-            //     ]
-            // ],
-            // 'mesin_penunjang_m' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Mesin Penunjang Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_m' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Mesin Harus diisi',
-            //     ]
-            // ],
+                // 'mesin_utama_m' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Mesin Utama Harus diisi',
+                //     ]
+                // ],
+                // 'mesin_penunjang_m' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Mesin Penunjang Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_m' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Mesin Harus diisi',
+                //     ]
+                // ],
 
-            // 'kapasitas_mesin_m' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kapasitas Mesin Harus diisi',
-            //     ]
-            // ],
+                // 'kapasitas_mesin_m' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kapasitas Mesin Harus diisi',
+                //     ]
+                // ],
 
-            // 'peralatan_utama_p' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Peralatan Utama Harus diisi',
-            //     ]
-            // ],
-            // 'peralatan_penunjang_p' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Peralatan Penunjang Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_p' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Harus diisi',
-            //     ]
-            // ],
-            // 'lainnya_p' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lainnya Harus diisi',
-            //     ]
-            // ],
+                // 'peralatan_utama_p' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Peralatan Utama Harus diisi',
+                //     ]
+                // ],
+                // 'peralatan_penunjang_p' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Peralatan Penunjang Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_p' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Harus diisi',
+                //     ]
+                // ],
+                // 'lainnya_p' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lainnya Harus diisi',
+                //     ]
+                // ],
 
-            // 'fungsi_b' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Fungsi Harus diisi',
-            //     ]
-            // ],
-            // 'merk_b' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Merk Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_b' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Harus diisi',
-            //     ]
-            // ],
-            // 'lainnya_b' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lainnya Harus diisi',
-            //     ]
-            // ],
-
-
-            // 'fungsi_k' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Fungsi Harus diisi',
-            //     ]
-            // ],
-            // 'merk_k' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Merk Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_k' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Harus diisi',
-            //     ]
-            // ],
-            // 'lainnya_k' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lainnya Harus diisi',
-            //     ]
-            // ],
+                // 'fungsi_b' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Fungsi Harus diisi',
+                //     ]
+                // ],
+                // 'merk_b' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Merk Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_b' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Harus diisi',
+                //     ]
+                // ],
+                // 'lainnya_b' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lainnya Harus diisi',
+                //     ]
+                // ],
 
 
-            // 'lokasi_sk' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lokasi Harus diisi',
-            //     ]
-            // ],
-            // 'luas_lokasi_sk' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Luas Lokasi Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_fisik_sk' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Fisik Harus diisi',
-            //     ]
-            // ],
+                // 'fungsi_k' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Fungsi Harus diisi',
+                //     ]
+                // ],
+                // 'merk_k' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Merk Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_k' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Harus diisi',
+                //     ]
+                // ],
+                // 'lainnya_k' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lainnya Harus diisi',
+                //     ]
+                // ],
 
 
-            // 'bahan_baku' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bahan Baku Harus diisi',
-            //     ]
-            // ],
-            // 'bahan_setengah_jadi' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bahan Setengah Jadi Harus diisi',
-            //     ]
-            // ],
-            // 'persediaan_material' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Persediaan Material Harus diisi',
-            //     ]
-            // ],
-        ])) {
+                // 'lokasi_sk' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lokasi Harus diisi',
+                //     ]
+                // ],
+                // 'luas_lokasi_sk' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Luas Lokasi Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_fisik_sk' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Fisik Harus diisi',
+                //     ]
+                // ],
+
+
+                // 'bahan_baku' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bahan Baku Harus diisi',
+                //     ]
+                // ],
+                // 'bahan_setengah_jadi' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bahan Setengah Jadi Harus diisi',
+                //     ]
+                // ],
+                // 'persediaan_material' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Persediaan Material Harus diisi',
+                //     ]
+                // ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -4050,7 +4308,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_fcr_usaha($hasil){
+    public function data_fcr_usaha($hasil)
+    {
         $data = [
             'kondisi_fisik_kantor' => $this->request->getPost('kondisi_fisik_kantor'),
             'luas_tanah_kantor' => $this->request->getPost('luas_tanah_kantor'),
@@ -4115,7 +4374,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr_usaha(){
+    public function finish_fcr_usaha()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -4124,212 +4384,214 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'kondisi_fisik_kantor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Fisik Kantor Harus diisi',
-                ]
-            ],
-            'luas_tanah_kantor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Luas Tanah Kantor Harus diisi',
-                ]
-            ],
-            'luas_bangunan_kantor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Luas Bangunan Kantor Harus diisi',
-                ]
-            ],
-            'fasilitas_kantor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Fasilitas Kantor Harus diisi',
-                ]
-            ],
-            'lokasi_kantor' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lokasi Kantor Harus diisi',
-                ]
-            ],
+                'kondisi_fisik_kantor' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Fisik Kantor Harus diisi',
+                    ]
+                ],
+                'luas_tanah_kantor' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Luas Tanah Kantor Harus diisi',
+                    ]
+                ],
+                'luas_bangunan_kantor' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Luas Bangunan Kantor Harus diisi',
+                    ]
+                ],
+                'fasilitas_kantor' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Fasilitas Kantor Harus diisi',
+                    ]
+                ],
+                'lokasi_kantor' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lokasi Kantor Harus diisi',
+                    ]
+                ],
 
-            'kondisi_fisik_workshop' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Fisik Workshop Harus diisi',
-                ]
-            ],
-            'luas_tanah_workshop' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Luas Tanah Workshop Harus diisi',
-                ]
-            ],
-            'luas_bangunan_workshop' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Luas Bangunan Workshop Harus diisi',
-                ]
-            ],
-            'fasilitas_workshop' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Fasilitas Workshop Harus diisi',
-                ]
-            ],
-            'lokasi_workshop' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lokasi Workshop Harus diisi',
-                ]
-            ],
+                'kondisi_fisik_workshop' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Fisik Workshop Harus diisi',
+                    ]
+                ],
+                'luas_tanah_workshop' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Luas Tanah Workshop Harus diisi',
+                    ]
+                ],
+                'luas_bangunan_workshop' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Luas Bangunan Workshop Harus diisi',
+                    ]
+                ],
+                'fasilitas_workshop' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Fasilitas Workshop Harus diisi',
+                    ]
+                ],
+                'lokasi_workshop' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lokasi Workshop Harus diisi',
+                    ]
+                ],
 
-            'mesin_utama_m' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Mesin Utama Harus diisi',
-                ]
-            ],
-            'mesin_penunjang_m' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Mesin Penunjang Harus diisi',
-                ]
-            ],
-            'kondisi_m' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Mesin Harus diisi',
-                ]
-            ],
+                'mesin_utama_m' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Mesin Utama Harus diisi',
+                    ]
+                ],
+                'mesin_penunjang_m' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Mesin Penunjang Harus diisi',
+                    ]
+                ],
+                'kondisi_m' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Mesin Harus diisi',
+                    ]
+                ],
 
-            'kapasitas_mesin_m' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kapasitas Mesin Harus diisi',
-                ]
-            ],
+                'kapasitas_mesin_m' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kapasitas Mesin Harus diisi',
+                    ]
+                ],
 
-            'peralatan_utama_p' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Peralatan Utama Harus diisi',
-                ]
-            ],
-            'peralatan_penunjang_p' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Peralatan Penunjang Harus diisi',
-                ]
-            ],
-            'kondisi_p' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Harus diisi',
-                ]
-            ],
-            'lainnya_p' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lainnya Harus diisi',
-                ]
-            ],
+                'peralatan_utama_p' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Peralatan Utama Harus diisi',
+                    ]
+                ],
+                'peralatan_penunjang_p' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Peralatan Penunjang Harus diisi',
+                    ]
+                ],
+                'kondisi_p' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Harus diisi',
+                    ]
+                ],
+                'lainnya_p' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lainnya Harus diisi',
+                    ]
+                ],
 
-            'fungsi_b' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Fungsi Harus diisi',
-                ]
-            ],
-            'merk_b' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Merk Harus diisi',
-                ]
-            ],
-            'kondisi_b' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Harus diisi',
-                ]
-            ],
-            'lainnya_b' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lainnya Harus diisi',
-                ]
-            ],
-
-
-            'fungsi_k' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Fungsi Harus diisi',
-                ]
-            ],
-            'merk_k' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Merk Harus diisi',
-                ]
-            ],
-            'kondisi_k' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Harus diisi',
-                ]
-            ],
-            'lainnya_k' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lainnya Harus diisi',
-                ]
-            ],
+                'fungsi_b' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Fungsi Harus diisi',
+                    ]
+                ],
+                'merk_b' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Merk Harus diisi',
+                    ]
+                ],
+                'kondisi_b' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Harus diisi',
+                    ]
+                ],
+                'lainnya_b' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lainnya Harus diisi',
+                    ]
+                ],
 
 
-            'lokasi_sk' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lokasi Harus diisi',
-                ]
-            ],
-            'luas_lokasi_sk' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Luas Lokasi Harus diisi',
-                ]
-            ],
-            'kondisi_fisik_sk' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Fisik Harus diisi',
-                ]
-            ],
+                'fungsi_k' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Fungsi Harus diisi',
+                    ]
+                ],
+                'merk_k' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Merk Harus diisi',
+                    ]
+                ],
+                'kondisi_k' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Harus diisi',
+                    ]
+                ],
+                'lainnya_k' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lainnya Harus diisi',
+                    ]
+                ],
 
 
-            'bahan_baku' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bahan Baku Harus diisi',
-                ]
-            ],
-            'bahan_setengah_jadi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bahan Setengah Jadi Harus diisi',
-                ]
-            ],
-            'persediaan_material' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Persediaan Material Harus diisi',
-                ]
-            ],
-        ])) {
+                'lokasi_sk' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lokasi Harus diisi',
+                    ]
+                ],
+                'luas_lokasi_sk' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Luas Lokasi Harus diisi',
+                    ]
+                ],
+                'kondisi_fisik_sk' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Fisik Harus diisi',
+                    ]
+                ],
+
+
+                'bahan_baku' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bahan Baku Harus diisi',
+                    ]
+                ],
+                'bahan_setengah_jadi' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bahan Setengah Jadi Harus diisi',
+                    ]
+                ],
+                'persediaan_material' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Persediaan Material Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -4340,7 +4602,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function kd_unit_fcr($kd_data_input, $kd_unit_input){
+    public function kd_unit_fcr($kd_data_input, $kd_unit_input)
+    {
         $hasil = false;
         $kd_unit_data_entry = $this->db->query("SELECT * from tb_data_entry where kd_data = '" . $kd_data_input . "' ");
         if ($kd_unit_data_entry->getNumRows() > 0) {
@@ -4355,7 +4618,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function edit_fcr_agunan_kd_tepakai(){
+    public function edit_fcr_agunan_kd_tepakai()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -4366,341 +4630,343 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'bukti_kepemilikan[0]' => [
-                // 'rules' => 'max_length[1000000000]',
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bukti Kepemilikan Harus diisi',
-                    // 'max_length' => 'Maksimal 1 milyar karakter',
-                ]
-            ],
-            // 'tanggal_bukti_kepemilikan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tanggal Bukti Kepemilikan Harus diisi',
-            //     ]
-            // ],
-            // 'surat_ukur' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Surat Ukur Harus diisi',
-            //     ]
-            // ],
-            // 'tanggal_surat_ukur' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tangal Surat Ukur Harus diisi',
-            //     ]
-            // ],
-            // 'nib' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Nib Harus diisi',
-            //     ]
-            // ],
+                'bukti_kepemilikan[0]' => [
+                    // 'rules' => 'max_length[1000000000]',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bukti Kepemilikan Harus diisi',
+                        // 'max_length' => 'Maksimal 1 milyar karakter',
+                    ]
+                ],
+                // 'tanggal_bukti_kepemilikan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tanggal Bukti Kepemilikan Harus diisi',
+                //     ]
+                // ],
+                // 'surat_ukur' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Surat Ukur Harus diisi',
+                //     ]
+                // ],
+                // 'tanggal_surat_ukur' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tangal Surat Ukur Harus diisi',
+                //     ]
+                // ],
+                // 'nib' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Nib Harus diisi',
+                //     ]
+                // ],
 
-            // 'penunjuk' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Penunjuk Harus diisi',
-            //     ]
-            // ],
-            // 'kelurahan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kelurahan Harus diisi',
-            //     ]
-            // ],
-            // 'kecamatan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kecamatan Harus diisi',
-            //     ]
-            // ],
-            // 'kabupaten' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kabupaten Harus diisi',
-            //     ]
-            // ],
-            // 'provinsi' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Provinsi Harus diisi',
-            //     ]
-            // ],
+                // 'penunjuk' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Penunjuk Harus diisi',
+                //     ]
+                // ],
+                // 'kelurahan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kelurahan Harus diisi',
+                //     ]
+                // ],
+                // 'kecamatan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kecamatan Harus diisi',
+                //     ]
+                // ],
+                // 'kabupaten' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kabupaten Harus diisi',
+                //     ]
+                // ],
+                // 'provinsi' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Provinsi Harus diisi',
+                //     ]
+                // ],
 
-            // 'utara' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Utara Harus diisi',
-            //     ]
-            // ],
-            // 'barat' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Barat Harus diisi',
-            //     ]
-            // ],
-            // 'selatan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Selatan Harus diisi',
-            //     ]
-            // ],
+                // 'utara' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Utara Harus diisi',
+                //     ]
+                // ],
+                // 'barat' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Barat Harus diisi',
+                //     ]
+                // ],
+                // 'selatan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Selatan Harus diisi',
+                //     ]
+                // ],
 
-            // 'timur' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Timur Harus diisi',
-            //     ]
-            // ],
+                // 'timur' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Timur Harus diisi',
+                //     ]
+                // ],
 
-            // 'luas' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Luas Harus diisi',
-            //     ]
-            // ],
-            // 'kanan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kanan Harus diisi',
-            //     ]
-            // ],
-            // 'kiri' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kiri Harus diisi',
-            //     ]
-            // ],
-            // 'depan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Depan Harus diisi',
-            //     ]
-            // ],
+                // 'luas' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Luas Harus diisi',
+                //     ]
+                // ],
+                // 'kanan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kanan Harus diisi',
+                //     ]
+                // ],
+                // 'kiri' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kiri Harus diisi',
+                //     ]
+                // ],
+                // 'depan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Depan Harus diisi',
+                //     ]
+                // ],
 
-            // 'belakang' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Belakang Harus diisi',
-            //     ]
-            // ],
-            // 'daerah_pemakaian' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Daerah Pemakaian Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_tanah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Tanah Harus diisi',
-            //     ]
-            // ],
-            // 'buku_tanah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Buku Tanah Harus diisi',
-            //     ]
-            // ],
-
-
-            // 'menurut_pasar' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Menurut Pasar Harus diisi',
-            //     ]
-            // ],
-            // 'keterangan_lain' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Keterangan Lain Harus diisi',
-            //     ]
-            // ],
-            // 'imb' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'IMB Harus diisi',
-            //     ]
-            // ],
-            // 'pondasi' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pondasi Harus diisi',
-            //     ]
-            // ],
+                // 'belakang' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Belakang Harus diisi',
+                //     ]
+                // ],
+                // 'daerah_pemakaian' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Daerah Pemakaian Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_tanah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Tanah Harus diisi',
+                //     ]
+                // ],
+                // 'buku_tanah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Buku Tanah Harus diisi',
+                //     ]
+                // ],
 
 
-            // 'lantai' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lantai Harus diisi',
-            //     ]
-            // ],
-            // 'tinggi_lantai_terhadap_jalan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tinggi Lantai Terhadap Jalan Harus diisi',
-            //     ]
-            // ],
-            // 'rangka' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Rangka Harus diisi',
-            //     ]
-            // ],
+                // 'menurut_pasar' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Menurut Pasar Harus diisi',
+                //     ]
+                // ],
+                // 'keterangan_lain' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Keterangan Lain Harus diisi',
+                //     ]
+                // ],
+                // 'imb' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'IMB Harus diisi',
+                //     ]
+                // ],
+                // 'pondasi' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pondasi Harus diisi',
+                //     ]
+                // ],
 
 
-            // 'dinding' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Dinding Harus diisi',
-            //     ]
-            // ],
-            // 'langit_plafond' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Langit Plafond Harus diisi',
-            //     ]
-            // ],
-            // 'atap' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Atap Harus diisi',
-            //     ]
-            // ],
-            // 'tahun_pembangunan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tahun Pembangunan Harus diisi',
-            //     ]
-            // ],
-            // 'rehap_perbaikan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Rehab Perbaikan Harus diisi',
-            //     ]
-            // ],
-            // 'saat_pembelian_tanah' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Saat Pembelian Tanah Harus diisi',
-            //     ]
-            // ],
-            // 'saat_pembangunan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Saat Pembangunan Harus diisi',
-            //     ]
-            // ],
-            // 'saat_rehab_perbaikan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Saat Rehab Perbaikan Harus diisi',
-            //     ]
-            // ],
-            // 'air' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Air Harus diisi',
-            //     ]
-            // ],
-            // 'telepon' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Telepon Harus diisi',
-            //     ]
-            // ],
-            // 'listrik' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Listrik Harus diisi',
-            //     ]
-            // ],
-            // 'pagar' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pagar Harus diisi',
-            //     ]
-            // ],
-            // 'taman' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Taman Harus diisi',
-            //     ]
-            // ],
-            // 'lainnya_fag' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lainnya Harus diisi',
-            //     ]
-            // ],
-            // 'lantai_total' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'lantai 1 diisi',
-            //     ]
-            // ],
-            // 'lantai2' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'lantai 2 Harus diisi',
-            //     ]
-            // ],
-            // 'total_bangunan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Total Bangunan Harus diisi',
-            //     ]
-            // ],
-            // 'kondisi_bangunan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kondisi Bangunan Harus diisi',
-            //     ]
-            // ],
-            // 'menurut_harga_perolehan' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Menurut Harga Perolehan Harus diisi',
-            //     ]
-            // ],
-            // 'menurut_pasar_fag' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Menurut Pasar Harus diisi',
-            //     ]
-            // ],
-            // 'keterangan_lain_fag' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'keterangan Lain Harus diisi',
-            //     ]
-            // ],
-            // 'sarana' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Sarana Harus diisi',
-            //     ]
-            // ],
-            // 'sarana_prasarana_fag' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Sarana Prasarana Harus diisi',
-            //     ]
-            // ],
-            // 'kelas' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Kelas Harus diisi',
-            //     ]
-            // ],
+                // 'lantai' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lantai Harus diisi',
+                //     ]
+                // ],
+                // 'tinggi_lantai_terhadap_jalan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tinggi Lantai Terhadap Jalan Harus diisi',
+                //     ]
+                // ],
+                // 'rangka' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Rangka Harus diisi',
+                //     ]
+                // ],
 
-        ])) {
+
+                // 'dinding' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Dinding Harus diisi',
+                //     ]
+                // ],
+                // 'langit_plafond' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Langit Plafond Harus diisi',
+                //     ]
+                // ],
+                // 'atap' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Atap Harus diisi',
+                //     ]
+                // ],
+                // 'tahun_pembangunan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tahun Pembangunan Harus diisi',
+                //     ]
+                // ],
+                // 'rehap_perbaikan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Rehab Perbaikan Harus diisi',
+                //     ]
+                // ],
+                // 'saat_pembelian_tanah' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Saat Pembelian Tanah Harus diisi',
+                //     ]
+                // ],
+                // 'saat_pembangunan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Saat Pembangunan Harus diisi',
+                //     ]
+                // ],
+                // 'saat_rehab_perbaikan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Saat Rehab Perbaikan Harus diisi',
+                //     ]
+                // ],
+                // 'air' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Air Harus diisi',
+                //     ]
+                // ],
+                // 'telepon' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Telepon Harus diisi',
+                //     ]
+                // ],
+                // 'listrik' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Listrik Harus diisi',
+                //     ]
+                // ],
+                // 'pagar' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pagar Harus diisi',
+                //     ]
+                // ],
+                // 'taman' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Taman Harus diisi',
+                //     ]
+                // ],
+                // 'lainnya_fag' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lainnya Harus diisi',
+                //     ]
+                // ],
+                // 'lantai_total' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'lantai 1 diisi',
+                //     ]
+                // ],
+                // 'lantai2' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'lantai 2 Harus diisi',
+                //     ]
+                // ],
+                // 'total_bangunan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Total Bangunan Harus diisi',
+                //     ]
+                // ],
+                // 'kondisi_bangunan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kondisi Bangunan Harus diisi',
+                //     ]
+                // ],
+                // 'menurut_harga_perolehan' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Menurut Harga Perolehan Harus diisi',
+                //     ]
+                // ],
+                // 'menurut_pasar_fag' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Menurut Pasar Harus diisi',
+                //     ]
+                // ],
+                // 'keterangan_lain_fag' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'keterangan Lain Harus diisi',
+                //     ]
+                // ],
+                // 'sarana' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Sarana Harus diisi',
+                //     ]
+                // ],
+                // 'sarana_prasarana_fag' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Sarana Prasarana Harus diisi',
+                //     ]
+                // ],
+                // 'kelas' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Kelas Harus diisi',
+                //     ]
+                // ],
+
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -4710,7 +4976,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_fcr_agunan(){
+    public function edit_fcr_agunan()
+    {
 
         $hasil = [
             'status' => 'error',
@@ -4997,7 +5264,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan($hasil);
         echo json_encode($hasil);
     }
-    public function val_foreach($bukti_kepemilikan, $nama_validasi, $pesan){
+    public function val_foreach($bukti_kepemilikan, $nama_validasi, $pesan)
+    {
         // $this->debug($bukti_kepemilikan);
         $validationRules = [];
         foreach ($bukti_kepemilikan as $index => $value) {
@@ -5011,7 +5279,8 @@ class Pengajuan extends BaseController
         // $this->debug($validationRules);
         return $validationRules;
     }
-    public function finish_fcr_agunan_tanah(){
+    public function finish_fcr_agunan_tanah()
+    {
 
         $hasil = [
             'status' => 'error',
@@ -5297,7 +5566,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function data_fcr_agunan($hasil){
+    public function data_fcr_agunan($hasil)
+    {
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('bukti_kepemilikan'));
         // $jenis_agunan = explode(";", $input);
@@ -5367,7 +5637,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
     // bangunan
-    public function edit_fcr_agunan_bangunan(){
+    public function edit_fcr_agunan_bangunan()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -5737,7 +6008,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bangunan($hasil);
         echo json_encode($hasil);
     }
-    public function finish_fcr_agunan_bangunan(){
+    public function finish_fcr_agunan_bangunan()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -6115,7 +6387,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bangunan($hasil);
         echo json_encode($hasil);
     }
-    public function data_fcr_agunan_bangunan($hasil){
+    public function data_fcr_agunan_bangunan($hasil)
+    {
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('imb'));
         // $jenis_agunan = explode(";", $input);
@@ -6169,12 +6442,12 @@ class Pengajuan extends BaseController
 
         //pengecekan kd info tidak boleh sama sebelum insert
         $kd_data = $this->request->getPost('kd_data_tambah');
-        
+
         $index = !empty($this->request->getPost('imb')) ? count($this->request->getPost('imb')) : 0;
         // var_dump($kd_data);
         // die;
         $this->edit_status_gambar($kd_data, $index);
-        
+
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_fcr_agunan where kd_data = '" . $kd_data . "' ")->getNumRows();
         if ($cek_kd_data > 0) {
             $this->db->table('tb_fcr_agunan')->where('kd_data', $kd_data)->update($data);
@@ -6192,7 +6465,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function edit_status_gambar($kd_data, $index){
+    public function edit_status_gambar($kd_data, $index)
+    {
         $cek_kd_data = $this->db->query("SELECT kd_data from tb_gambar_situasi where kd_data = '" . $kd_data . "' and index_plus_satu > '" . $index . "' AND STATUS = 'Aktif'")->getNumRows();
         if ($cek_kd_data > 0) {
             $data = [
@@ -6209,7 +6483,8 @@ class Pengajuan extends BaseController
                 ->update($data);
         }
     }
-    public function edit_fcr_agunan_bb(){
+    public function edit_fcr_agunan_bb()
+    {
 
         $hasil = [
             'status' => 'error',
@@ -6224,7 +6499,7 @@ class Pengajuan extends BaseController
         $model_tipe_bb = $postData['model_tipe_bb'] ?? [];
         $merek_cc_bb = $postData['merek_cc_bb'] ?? [];
         $tahun_pembuatan_bb = $postData['tahun_pembuatan_bb'] ?? [];
-        $tahun_pembeliaan_bb = $postData['tahun_pembeliaan_bb'] ?? [];
+        $tahun_pembelian_bb = $postData['tahun_pembelian_bb'] ?? [];
         $serial_number_bb = $postData['serial_number_bb'] ?? [];
         $nomor_mesin_bb = $postData['nomor_mesin_bb'] ?? [];
         $warna_bb = $postData['warna_bb'] ?? [];
@@ -6249,7 +6524,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bb($hasil);
         echo json_encode($hasil);
     }
-    public function finish_fcr_agunan_bb(){
+    public function finish_fcr_agunan_bb()
+    {
 
         $hasil = [
             'status' => 'error',
@@ -6264,7 +6540,7 @@ class Pengajuan extends BaseController
         $model_tipe_bb = $postData['model_tipe_bb'] ?? [];
         $merek_cc_bb = $postData['merek_cc_bb'] ?? [];
         $tahun_pembuatan_bb = $postData['tahun_pembuatan_bb'] ?? [];
-        $tahun_pembeliaan_bb = $postData['tahun_pembeliaan_bb'] ?? [];
+        $tahun_pembelian_bb = $postData['tahun_pembelian_bb'] ?? [];
         $serial_number_bb = $postData['serial_number_bb'] ?? [];
         $nomor_mesin_bb = $postData['nomor_mesin_bb'] ?? [];
         $warna_bb = $postData['warna_bb'] ?? [];
@@ -6338,7 +6614,7 @@ class Pengajuan extends BaseController
         //     echo json_encode($hasil);
         //     die;
         // }
-        // $validationRules = $this->val_foreach($tahun_pembeliaan_bb, 'tahun_pembeliaan_bb', 'tahun pembelian');
+        // $validationRules = $this->val_foreach($tahun_pembelian_bb, 'tahun_pembelian_bb', 'tahun pembelian');
         // if (!$this->validate($validationRules)) {
         //     $hasil = [
         //         'status' => 'error',
@@ -6522,7 +6798,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_fcr_agunan_bb($hasil);
         echo json_encode($hasil);
     }
-    public function data_fcr_agunan_bb($hasil){
+    public function data_fcr_agunan_bb($hasil)
+    {
         // Proses penyimpanan data
         // $this->debug($this->request->getPost('bukti_kepemilikan'));
         // $jenis_agunan = explode(";", $input);
@@ -6532,7 +6809,7 @@ class Pengajuan extends BaseController
             'model_tipe' => !empty($this->request->getPost('model_tipe_bb')) ? implode(";", $this->request->getPost('model_tipe_bb')) : '',
             'merek_cc' => !empty($this->request->getPost('merek_cc_bb')) ? implode(";", $this->request->getPost('merek_cc_bb')) : '',
             'tahun_pembuatan' => !empty($this->request->getPost('tahun_pembuatan_bb')) ? implode(";", $this->request->getPost('tahun_pembuatan_bb')) : '',
-            'tahun_pembeliaan' => !empty($this->request->getPost('tahun_pembeliaan_bb')) ? implode(";", $this->request->getPost('tahun_pembeliaan_bb')) : '',
+            'tahun_pembelian' => !empty($this->request->getPost('tahun_pembelian_bb')) ? implode(";", $this->request->getPost('tahun_pembelian_bb')) : '',
             'serial_number' => !empty($this->request->getPost('serial_number_bb')) ? implode(";", $this->request->getPost('serial_number_bb')) : '',
             'nomor_mesin' => !empty($this->request->getPost('nomor_mesin_bb')) ? implode(";", $this->request->getPost('nomor_mesin_bb')) : '',
             'warna' => !empty($this->request->getPost('warna_bb')) ? implode(";", $this->request->getPost('warna_bb')) : '',
@@ -6574,7 +6851,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_fcr_agunan(){
+    public function finish_fcr_agunan()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -6583,339 +6861,341 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'bukti_kepemilikan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bukti Kepemilikan Harus diisi',
-                ]
-            ],
-            'tanggal_bukti_kepemilikan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tanggal Bukti Kepemilikan Harus diisi',
-                ]
-            ],
-            'surat_ukur' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Surat Ukur Harus diisi',
-                ]
-            ],
-            'tanggal_surat_ukur' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tangal Surat Ukur Harus diisi',
-                ]
-            ],
-            'nib' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nib Harus diisi',
-                ]
-            ],
+                'bukti_kepemilikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bukti Kepemilikan Harus diisi',
+                    ]
+                ],
+                'tanggal_bukti_kepemilikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Bukti Kepemilikan Harus diisi',
+                    ]
+                ],
+                'surat_ukur' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Surat Ukur Harus diisi',
+                    ]
+                ],
+                'tanggal_surat_ukur' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tangal Surat Ukur Harus diisi',
+                    ]
+                ],
+                'nib' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nib Harus diisi',
+                    ]
+                ],
 
-            'penunjuk' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Penunjuk Harus diisi',
-                ]
-            ],
-            'kelurahan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kelurahan Harus diisi',
-                ]
-            ],
-            'kecamatan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kecamatan Harus diisi',
-                ]
-            ],
-            'kabupaten' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kabupaten Harus diisi',
-                ]
-            ],
-            'provinsi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Provinsi Harus diisi',
-                ]
-            ],
+                'penunjuk' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Penunjuk Harus diisi',
+                    ]
+                ],
+                'kelurahan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kelurahan Harus diisi',
+                    ]
+                ],
+                'kecamatan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kecamatan Harus diisi',
+                    ]
+                ],
+                'kabupaten' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kabupaten Harus diisi',
+                    ]
+                ],
+                'provinsi' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Provinsi Harus diisi',
+                    ]
+                ],
 
-            'utara' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Utara Harus diisi',
-                ]
-            ],
-            'barat' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Barat Harus diisi',
-                ]
-            ],
-            'selatan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Selatan Harus diisi',
-                ]
-            ],
+                'utara' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Utara Harus diisi',
+                    ]
+                ],
+                'barat' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Barat Harus diisi',
+                    ]
+                ],
+                'selatan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Selatan Harus diisi',
+                    ]
+                ],
 
-            'timur' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Timur Harus diisi',
-                ]
-            ],
+                'timur' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Timur Harus diisi',
+                    ]
+                ],
 
-            'luas' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Luas Harus diisi',
-                ]
-            ],
-            'kanan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kanan Harus diisi',
-                ]
-            ],
-            'kiri' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kiri Harus diisi',
-                ]
-            ],
-            'depan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Depan Harus diisi',
-                ]
-            ],
+                'luas' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Luas Harus diisi',
+                    ]
+                ],
+                'kanan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kanan Harus diisi',
+                    ]
+                ],
+                'kiri' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kiri Harus diisi',
+                    ]
+                ],
+                'depan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Depan Harus diisi',
+                    ]
+                ],
 
-            'belakang' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Belakang Harus diisi',
-                ]
-            ],
-            'daerah_pemakaian' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Daerah Pemakaian Harus diisi',
-                ]
-            ],
-            'kondisi_tanah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Tanah Harus diisi',
-                ]
-            ],
-            'buku_tanah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Buku Tanah Harus diisi',
-                ]
-            ],
-
-
-            'menurut_pasar' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Menurut Pasar Harus diisi',
-                ]
-            ],
-            'keterangan_lain' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Keterangan Lain Harus diisi',
-                ]
-            ],
-            'imb' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'IMB Harus diisi',
-                ]
-            ],
-            'pondasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pondasi Harus diisi',
-                ]
-            ],
+                'belakang' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Belakang Harus diisi',
+                    ]
+                ],
+                'daerah_pemakaian' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Daerah Pemakaian Harus diisi',
+                    ]
+                ],
+                'kondisi_tanah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Tanah Harus diisi',
+                    ]
+                ],
+                'buku_tanah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Buku Tanah Harus diisi',
+                    ]
+                ],
 
 
-            'lantai' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lantai Harus diisi',
-                ]
-            ],
-            'tinggi_lantai_terhadap_jalan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tinggi Lantai Terhadap Jalan Harus diisi',
-                ]
-            ],
-            'rangka' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Rangka Harus diisi',
-                ]
-            ],
+                'menurut_pasar' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Menurut Pasar Harus diisi',
+                    ]
+                ],
+                'keterangan_lain' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Keterangan Lain Harus diisi',
+                    ]
+                ],
+                'imb' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'IMB Harus diisi',
+                    ]
+                ],
+                'pondasi' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pondasi Harus diisi',
+                    ]
+                ],
 
 
-            'dinding' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Dinding Harus diisi',
-                ]
-            ],
-            'langit_plafond' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Langit Plafond Harus diisi',
-                ]
-            ],
-            'atap' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Atap Harus diisi',
-                ]
-            ],
-            'tahun_pembangunan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tahun Pembangunan Harus diisi',
-                ]
-            ],
-            'rehap_perbaikan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Rehab Perbaikan Harus diisi',
-                ]
-            ],
-            'saat_pembelian_tanah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Saat Pembelian Tanah Harus diisi',
-                ]
-            ],
-            'saat_pembangunan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Saat Pembangunan Harus diisi',
-                ]
-            ],
-            'saat_rehab_perbaikan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Saat Rehab Perbaikan Harus diisi',
-                ]
-            ],
-            'air' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Air Harus diisi',
-                ]
-            ],
-            'telepon' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Telepon Harus diisi',
-                ]
-            ],
-            'listrik' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Listrik Harus diisi',
-                ]
-            ],
-            'pagar' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pagar Harus diisi',
-                ]
-            ],
-            'taman' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Taman Harus diisi',
-                ]
-            ],
-            'lainnya_fag' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lainnya Harus diisi',
-                ]
-            ],
-            'lantai_total' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'lantai 1 diisi',
-                ]
-            ],
-            'lantai2' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'lantai 2 Harus diisi',
-                ]
-            ],
-            'total_bangunan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Total Bangunan Harus diisi',
-                ]
-            ],
-            'kondisi_bangunan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kondisi Bangunan Harus diisi',
-                ]
-            ],
-            'menurut_harga_perolehan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Menurut Harga Perolehan Harus diisi',
-                ]
-            ],
-            'menurut_pasar_fag' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Menurut Pasar Harus diisi',
-                ]
-            ],
-            'keterangan_lain_fag' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'keterangan Lain Harus diisi',
-                ]
-            ],
-            'sarana' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Sarana Harus diisi',
-                ]
-            ],
-            'sarana_prasarana_fag' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Sarana Prasarana Harus diisi',
-                ]
-            ],
-            'kelas' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kelas Harus diisi',
-                ]
-            ],
+                'lantai' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lantai Harus diisi',
+                    ]
+                ],
+                'tinggi_lantai_terhadap_jalan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tinggi Lantai Terhadap Jalan Harus diisi',
+                    ]
+                ],
+                'rangka' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Rangka Harus diisi',
+                    ]
+                ],
 
-        ])) {
+
+                'dinding' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Dinding Harus diisi',
+                    ]
+                ],
+                'langit_plafond' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Langit Plafond Harus diisi',
+                    ]
+                ],
+                'atap' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Atap Harus diisi',
+                    ]
+                ],
+                'tahun_pembangunan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tahun Pembangunan Harus diisi',
+                    ]
+                ],
+                'rehap_perbaikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Rehab Perbaikan Harus diisi',
+                    ]
+                ],
+                'saat_pembelian_tanah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Saat Pembelian Tanah Harus diisi',
+                    ]
+                ],
+                'saat_pembangunan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Saat Pembangunan Harus diisi',
+                    ]
+                ],
+                'saat_rehab_perbaikan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Saat Rehab Perbaikan Harus diisi',
+                    ]
+                ],
+                'air' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Air Harus diisi',
+                    ]
+                ],
+                'telepon' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Telepon Harus diisi',
+                    ]
+                ],
+                'listrik' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Listrik Harus diisi',
+                    ]
+                ],
+                'pagar' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pagar Harus diisi',
+                    ]
+                ],
+                'taman' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Taman Harus diisi',
+                    ]
+                ],
+                'lainnya_fag' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lainnya Harus diisi',
+                    ]
+                ],
+                'lantai_total' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'lantai 1 diisi',
+                    ]
+                ],
+                'lantai2' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'lantai 2 Harus diisi',
+                    ]
+                ],
+                'total_bangunan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Total Bangunan Harus diisi',
+                    ]
+                ],
+                'kondisi_bangunan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kondisi Bangunan Harus diisi',
+                    ]
+                ],
+                'menurut_harga_perolehan' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Menurut Harga Perolehan Harus diisi',
+                    ]
+                ],
+                'menurut_pasar_fag' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Menurut Pasar Harus diisi',
+                    ]
+                ],
+                'keterangan_lain_fag' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'keterangan Lain Harus diisi',
+                    ]
+                ],
+                'sarana' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Sarana Harus diisi',
+                    ]
+                ],
+                'sarana_prasarana_fag' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Sarana Prasarana Harus diisi',
+                    ]
+                ],
+                'kelas' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kelas Harus diisi',
+                    ]
+                ],
+
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -6925,11 +7205,13 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function convert_base64($file){
+    public function convert_base64($file)
+    {
         $convert = base64_encode(file_get_contents($file));
         return $convert;
     }
-    public function lihat_gambar($kd_data, $data_id){
+    public function lihat_gambar($kd_data, $data_id)
+    {
         // $this->debug($data_id);
         $dokumen = $this->db->query("SELECT file_gambar FROM tb_gambar_situasi WHERE SHA1(kd_data) = '" . $kd_data . "' and index_plus_satu = '" . $data_id . "' and status='Aktif' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->file_gambar)) {
@@ -6940,7 +7222,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function lihat_gambar_kd_tepakai($kd_data, $data_id){
+    public function lihat_gambar_kd_tepakai($kd_data, $data_id)
+    {
         // $this->debug($data_id);
         $dokumen = $this->db->query("SELECT gambar_situasi FROM tb_fcr_agunan WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         if ($dokumen->getNumRows() > 0 && !empty($dokumen->getRow()->gambar_situasi)) {
@@ -6956,20 +7239,23 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . '">Klik untuk kembali</a>';
         }
     }
-    public function edit_gambar($id_bangunan){
+    public function edit_gambar($id_bangunan)
+    {
 
-        if (!$this->validate([
-            'upload_gambar_edit' . $id_bangunan => [
-                'rules' => 'uploaded[upload_gambar_edit' . $id_bangunan . ']|max_size[upload_gambar_edit' . $id_bangunan . ',2048]|ext_in[upload_gambar_edit' . $id_bangunan . ',pdf]',
-                'errors' => [
-                    'uploaded' => 'Gambar Situasi yang ke- ' . $id_bangunan,
-                    'max_size' => 'Gambar Situasi yang ke- ' . $id_bangunan . ' maksimal ukuran filenya 2 mb',
-                    'ext_in' => 'Gambar Situasi yang ke- ' . $id_bangunan . ' harus berupa pdf',
-                ]
-            ],
+        if (
+            !$this->validate([
+                'upload_gambar_edit' . $id_bangunan => [
+                    'rules' => 'uploaded[upload_gambar_edit' . $id_bangunan . ']|max_size[upload_gambar_edit' . $id_bangunan . ',2048]|ext_in[upload_gambar_edit' . $id_bangunan . ',pdf]',
+                    'errors' => [
+                        'uploaded' => 'Gambar Situasi yang ke- ' . $id_bangunan,
+                        'max_size' => 'Gambar Situasi yang ke- ' . $id_bangunan . ' maksimal ukuran filenya 2 mb',
+                        'ext_in' => 'Gambar Situasi yang ke- ' . $id_bangunan . ' harus berupa pdf',
+                    ]
+                ],
 
 
-        ])) {
+            ])
+        ) {
 
             echo $this->validator->listErrors();
         } else {
@@ -7022,20 +7308,23 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function edit_gambar_kd_tepakai(){
+    public function edit_gambar_kd_tepakai()
+    {
 
-        if (!$this->validate([
-            'upload_gambar_edit1' => [
-                'rules' => 'uploaded[upload_gambar_edit1]|max_size[upload_gambar_edit1,2048]|ext_in[upload_gambar_edit1,pdf]',
-                'errors' => [
-                    'uploaded' => 'Harus Ada File Yang Diupload',
-                    'max_size' => 'File maksimal 2 mb',
-                    'ext_in' => 'File harus berupa pdf',
-                ]
-            ],
+        if (
+            !$this->validate([
+                'upload_gambar_edit1' => [
+                    'rules' => 'uploaded[upload_gambar_edit1]|max_size[upload_gambar_edit1,2048]|ext_in[upload_gambar_edit1,pdf]',
+                    'errors' => [
+                        'uploaded' => 'Harus Ada File Yang Diupload',
+                        'max_size' => 'File maksimal 2 mb',
+                        'ext_in' => 'File harus berupa pdf',
+                    ]
+                ],
 
 
-        ])) {
+            ])
+        ) {
 
             echo $this->validator->listErrors();
         } else {
@@ -7064,7 +7353,8 @@ class Pengajuan extends BaseController
             }
         }
     }
-    public function dokumen_pendukung($kd_data, $id_input){
+    public function dokumen_pendukung($kd_data, $id_input)
+    {
         $dok = false;
         $orang = $this->db->query("SELECT * FROM tb_dokumen WHERE SHA1(kd_data) = '" . $kd_data . "' ");
         $cv = $this->db->query("SELECT * FROM tb_dokumen_cv WHERE SHA1(kd_data) = '" . $kd_data . "' ");
@@ -7185,39 +7475,42 @@ class Pengajuan extends BaseController
             echo "<iframe src=\"data:application/pdf;base64,$dok\" width=\"100%\" height=\"600px\"></iframe>";
         }
     }
-    public function edit_dokumen(){
+    public function edit_dokumen()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal edit data'
         ];
-        if (!$this->validate([
-            'nama_nasabah_dp' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'nama nasabah harus diisi',
-                ]
-            ],
-            'alamat_dp' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'alamat harus diisi',
-                ]
-            ],
-            'usaha_dp' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'usaha harus diisi',
-                ]
-            ],
-            'jenis_badan_usaha_dp' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'jenis badan usaha harus diisi',
-                ]
-            ],
+        if (
+            !$this->validate([
+                'nama_nasabah_dp' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'nama nasabah harus diisi',
+                    ]
+                ],
+                'alamat_dp' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'alamat harus diisi',
+                    ]
+                ],
+                'usaha_dp' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'usaha harus diisi',
+                    ]
+                ],
+                'jenis_badan_usaha_dp' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'jenis badan usaha harus diisi',
+                    ]
+                ],
 
 
-        ])) {
+            ])
+        ) {
 
             // echo $this->validator->listErrors();
             $hasil = [
@@ -7343,7 +7636,8 @@ class Pengajuan extends BaseController
         }
     }
 
-    public function validateFile($inputName, $kalimat, $nama_kolom_db, $nama_tabel, $kd_data){
+    public function validateFile($inputName, $kalimat, $nama_kolom_db, $nama_tabel, $kd_data)
+    {
         $file = $this->request->getFile($inputName);
 
         // $fileName = pathinfo($file->getName(), PATHINFO_FILENAME);
@@ -7425,7 +7719,8 @@ class Pengajuan extends BaseController
         // Cek apakah file diisi atau tidak
 
     }
-    public function edit_perseorangan($jenis_badan_usaha, $kd_data, $kirim, $null_cv, $null_pt){
+    public function edit_perseorangan($jenis_badan_usaha, $kd_data, $kirim, $null_cv, $null_pt)
+    {
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -7622,7 +7917,8 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_cv($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_pt){
+    public function edit_cv($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_pt)
+    {
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -7819,7 +8115,8 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_pt($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_cv){
+    public function edit_pt($jenis_badan_usaha, $kd_data, $kirim, $null_perseorangan, $null_cv)
+    {
         $result = [
             'status' => 'error',
             'message' => 'edit dokumen gagal',
@@ -8026,7 +8323,8 @@ class Pengajuan extends BaseController
         }
         return $result;
     }
-    public function edit_scoring(){
+    public function edit_scoring()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8035,170 +8333,172 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'nama_pemohon_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Pemohon Harus diisi',
-                ]
-            ],
-            // 'alamat_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Harus diisi',
-            //     ]
-            // ],
-            // 'plafond_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Plafond Harus diisi',
-            //     ]
-            // ],
-            // 'tujuan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tujuan Harus diisi',
-            //     ]
-            // ],
-            'no_pak_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'No PAK Harus diisi',
-                ]
-            ],
+                'nama_pemohon_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Pemohon Harus diisi',
+                    ]
+                ],
+                // 'alamat_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Harus diisi',
+                //     ]
+                // ],
+                // 'plafond_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Plafond Harus diisi',
+                //     ]
+                // ],
+                // 'tujuan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tujuan Harus diisi',
+                //     ]
+                // ],
+                'no_pak_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'No PAK Harus diisi',
+                    ]
+                ],
 
-            // 'pendirian_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pendirian Harus diisi',
-            //     ]
-            // ],
-            // 'legalitas_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Legalitas Harus diisi',
-            //     ]
-            // ],
-            // 'hubungan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Hubungan Harus diisi',
-            //     ]
-            // ],
+                // 'pendirian_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pendirian Harus diisi',
+                //     ]
+                // ],
+                // 'legalitas_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Legalitas Harus diisi',
+                //     ]
+                // ],
+                // 'hubungan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Hubungan Harus diisi',
+                //     ]
+                // ],
 
-            // 'pengelolaan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pengelolaan Harus diisi',
-            //     ]
-            // ],
-            // 'jenis_agunan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Jenis Agunan Harus diisi',
-            //     ]
-            // ],
-            // 'bukti_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bukti Harus diisi',
-            //     ]
-            // ],
-            // 'status_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Status Harus diisi',
-            //     ]
-            // ],
-            // 'marketable_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Marketable Harus diisi',
-            //     ]
-            // ],
-            // 'lending_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lending Harus diisi',
-            //     ]
-            // ],
-            // 'pengalaman_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pengalaman Harus diisi',
-            //     ]
-            // ],
-            // 'sumber_dana_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Sumber Dana Harus diisi',
-            //     ]
-            // ],
-            // 'lokasi_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lokasi Harus diisi',
-            //     ]
-            // ],
-            // 'jenis_proyek_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Jenis Proyek Harus diisi',
-            //     ]
-            // ],
-            // 'bahan_baku_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bahan Baku Harus diisi',
-            //     ]
-            // ],
-            // 'peralatan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Peralatan Harus diisi',
-            //     ]
-            // ],
-            // 'pembayaran_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pembayaran Harus diisi',
-            //     ]
-            // ],
-            // 'dasar_penunjukan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Dasar Penunjukan Harus diisi',
-            //     ]
-            // ],
-            // 'prosentase_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Prosentase Harus diisi',
-            //     ]
-            // ],
-            // 'jangka_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Jangka Waktu Harus diisi',
-            //     ]
-            // ],
-            // 'agunan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Agunan Harus diisi',
-            //     ]
-            // ],
-            // 'penjaminan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Penjaminan Harus diisi',
-            //     ]
-            // ],
+                // 'pengelolaan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pengelolaan Harus diisi',
+                //     ]
+                // ],
+                // 'jenis_agunan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Jenis Agunan Harus diisi',
+                //     ]
+                // ],
+                // 'bukti_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bukti Harus diisi',
+                //     ]
+                // ],
+                // 'status_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Status Harus diisi',
+                //     ]
+                // ],
+                // 'marketable_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Marketable Harus diisi',
+                //     ]
+                // ],
+                // 'lending_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lending Harus diisi',
+                //     ]
+                // ],
+                // 'pengalaman_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pengalaman Harus diisi',
+                //     ]
+                // ],
+                // 'sumber_dana_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Sumber Dana Harus diisi',
+                //     ]
+                // ],
+                // 'lokasi_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lokasi Harus diisi',
+                //     ]
+                // ],
+                // 'jenis_proyek_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Jenis Proyek Harus diisi',
+                //     ]
+                // ],
+                // 'bahan_baku_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bahan Baku Harus diisi',
+                //     ]
+                // ],
+                // 'peralatan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Peralatan Harus diisi',
+                //     ]
+                // ],
+                // 'pembayaran_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pembayaran Harus diisi',
+                //     ]
+                // ],
+                // 'dasar_penunjukan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Dasar Penunjukan Harus diisi',
+                //     ]
+                // ],
+                // 'prosentase_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Prosentase Harus diisi',
+                //     ]
+                // ],
+                // 'jangka_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Jangka Waktu Harus diisi',
+                //     ]
+                // ],
+                // 'agunan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Agunan Harus diisi',
+                //     ]
+                // ],
+                // 'penjaminan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Penjaminan Harus diisi',
+                //     ]
+                // ],
 
 
 
-        ])) {
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -8209,7 +8509,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_scoring_koor(){
+    public function edit_scoring_koor()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8218,170 +8519,172 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'nama_pemohon_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Pemohon Harus diisi',
-                ]
-            ],
-            // 'alamat_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Alamat Harus diisi',
-            //     ]
-            // ],
-            // 'plafond_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Plafond Harus diisi',
-            //     ]
-            // ],
-            // 'tujuan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Tujuan Harus diisi',
-            //     ]
-            // ],
-            'no_pak_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'No PAK Harus diisi',
-                ]
-            ],
+                'nama_pemohon_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Pemohon Harus diisi',
+                    ]
+                ],
+                // 'alamat_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Alamat Harus diisi',
+                //     ]
+                // ],
+                // 'plafond_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Plafond Harus diisi',
+                //     ]
+                // ],
+                // 'tujuan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Tujuan Harus diisi',
+                //     ]
+                // ],
+                'no_pak_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'No PAK Harus diisi',
+                    ]
+                ],
 
-            // 'pendirian_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pendirian Harus diisi',
-            //     ]
-            // ],
-            // 'legalitas_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Legalitas Harus diisi',
-            //     ]
-            // ],
-            // 'hubungan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Hubungan Harus diisi',
-            //     ]
-            // ],
+                // 'pendirian_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pendirian Harus diisi',
+                //     ]
+                // ],
+                // 'legalitas_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Legalitas Harus diisi',
+                //     ]
+                // ],
+                // 'hubungan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Hubungan Harus diisi',
+                //     ]
+                // ],
 
-            // 'pengelolaan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pengelolaan Harus diisi',
-            //     ]
-            // ],
-            // 'jenis_agunan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Jenis Agunan Harus diisi',
-            //     ]
-            // ],
-            // 'bukti_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bukti Harus diisi',
-            //     ]
-            // ],
-            // 'status_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Status Harus diisi',
-            //     ]
-            // ],
-            // 'marketable_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Marketable Harus diisi',
-            //     ]
-            // ],
-            // 'lending_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lending Harus diisi',
-            //     ]
-            // ],
-            // 'pengalaman_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pengalaman Harus diisi',
-            //     ]
-            // ],
-            // 'sumber_dana_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Sumber Dana Harus diisi',
-            //     ]
-            // ],
-            // 'lokasi_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Lokasi Harus diisi',
-            //     ]
-            // ],
-            // 'jenis_proyek_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Jenis Proyek Harus diisi',
-            //     ]
-            // ],
-            // 'bahan_baku_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Bahan Baku Harus diisi',
-            //     ]
-            // ],
-            // 'peralatan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Peralatan Harus diisi',
-            //     ]
-            // ],
-            // 'pembayaran_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Pembayaran Harus diisi',
-            //     ]
-            // ],
-            // 'dasar_penunjukan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Dasar Penunjukan Harus diisi',
-            //     ]
-            // ],
-            // 'prosentase_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Prosentase Harus diisi',
-            //     ]
-            // ],
-            // 'jangka_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Jangka Waktu Harus diisi',
-            //     ]
-            // ],
-            // 'agunan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Agunan Harus diisi',
-            //     ]
-            // ],
-            // 'penjaminan_sc' => [
-            //     'rules' => 'required',
-            //     'errors' => [
-            //         'required' => 'Penjaminan Harus diisi',
-            //     ]
-            // ],
+                // 'pengelolaan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pengelolaan Harus diisi',
+                //     ]
+                // ],
+                // 'jenis_agunan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Jenis Agunan Harus diisi',
+                //     ]
+                // ],
+                // 'bukti_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bukti Harus diisi',
+                //     ]
+                // ],
+                // 'status_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Status Harus diisi',
+                //     ]
+                // ],
+                // 'marketable_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Marketable Harus diisi',
+                //     ]
+                // ],
+                // 'lending_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lending Harus diisi',
+                //     ]
+                // ],
+                // 'pengalaman_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pengalaman Harus diisi',
+                //     ]
+                // ],
+                // 'sumber_dana_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Sumber Dana Harus diisi',
+                //     ]
+                // ],
+                // 'lokasi_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Lokasi Harus diisi',
+                //     ]
+                // ],
+                // 'jenis_proyek_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Jenis Proyek Harus diisi',
+                //     ]
+                // ],
+                // 'bahan_baku_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Bahan Baku Harus diisi',
+                //     ]
+                // ],
+                // 'peralatan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Peralatan Harus diisi',
+                //     ]
+                // ],
+                // 'pembayaran_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Pembayaran Harus diisi',
+                //     ]
+                // ],
+                // 'dasar_penunjukan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Dasar Penunjukan Harus diisi',
+                //     ]
+                // ],
+                // 'prosentase_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Prosentase Harus diisi',
+                //     ]
+                // ],
+                // 'jangka_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Jangka Waktu Harus diisi',
+                //     ]
+                // ],
+                // 'agunan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Agunan Harus diisi',
+                //     ]
+                // ],
+                // 'penjaminan_sc' => [
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => 'Penjaminan Harus diisi',
+                //     ]
+                // ],
 
 
 
-        ])) {
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -8392,7 +8695,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function data_scoring($hasil){
+    public function data_scoring($hasil)
+    {
         $data = [
             'nama_pemohon' => $this->request->getPost('nama_pemohon_sc'),
             'alamat' => $this->request->getPost('alamat_sc'),
@@ -8483,7 +8787,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_scoring_koor($hasil){
+    public function data_scoring_koor($hasil)
+    {
         $data = [
             'nama_pemohon' => $this->request->getPost('nama_pemohon_sc_koor'),
             'alamat' => $this->request->getPost('alamat_sc_koor'),
@@ -8574,7 +8879,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function finish_scoring(){
+    public function finish_scoring()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8583,168 +8889,170 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'nama_pemohon_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Pemohon Harus diisi',
-                ]
-            ],
-            'alamat_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat Harus diisi',
-                ]
-            ],
-            'plafond_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Plafond Harus diisi',
-                ]
-            ],
-            'tujuan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tujuan Harus diisi',
-                ]
-            ],
-            'no_pak_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'No PAK Harus diisi',
-                ]
-            ],
+                'nama_pemohon_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Pemohon Harus diisi',
+                    ]
+                ],
+                'alamat_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Harus diisi',
+                    ]
+                ],
+                'plafond_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Plafond Harus diisi',
+                    ]
+                ],
+                'tujuan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tujuan Harus diisi',
+                    ]
+                ],
+                'no_pak_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'No PAK Harus diisi',
+                    ]
+                ],
 
-            'pendirian_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pendirian Harus diisi',
-                ]
-            ],
-            'legalitas_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Legalitas Harus diisi',
-                ]
-            ],
-            'hubungan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Hubungan Harus diisi',
-                ]
-            ],
+                'pendirian_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pendirian Harus diisi',
+                    ]
+                ],
+                'legalitas_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Legalitas Harus diisi',
+                    ]
+                ],
+                'hubungan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Hubungan Harus diisi',
+                    ]
+                ],
 
-            'pengelolaan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pengelolaan Harus diisi',
-                ]
-            ],
-            'jenis_agunan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Jenis Agunan Harus diisi',
-                ]
-            ],
-            'bukti_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bukti Harus diisi',
-                ]
-            ],
-            'status_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Status Harus diisi',
-                ]
-            ],
-            'marketable_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Marketable Harus diisi',
-                ]
-            ],
-            'lending_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lending Harus diisi',
-                ]
-            ],
-            'pengalaman_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pengalaman Harus diisi',
-                ]
-            ],
-            'sumber_dana_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Sumber Dana Harus diisi',
-                ]
-            ],
-            'lokasi_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Lokasi Harus diisi',
-                ]
-            ],
-            'jenis_proyek_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Jenis Proyek Harus diisi',
-                ]
-            ],
-            'bahan_baku_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bahan Baku Harus diisi',
-                ]
-            ],
-            'peralatan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Peralatan Harus diisi',
-                ]
-            ],
-            'pembayaran_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pembayaran Harus diisi',
-                ]
-            ],
-            'dasar_penunjukan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Dasar Penunjukan Harus diisi',
-                ]
-            ],
-            'prosentase_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Prosentase Harus diisi',
-                ]
-            ],
-            'jangka_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Jangka Waktu Harus diisi',
-                ]
-            ],
-            'agunan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Agunan Harus diisi',
-                ]
-            ],
-            'penjaminan_sc' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Penjaminan Harus diisi',
-                ]
-            ],
+                'pengelolaan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pengelolaan Harus diisi',
+                    ]
+                ],
+                'jenis_agunan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jenis Agunan Harus diisi',
+                    ]
+                ],
+                'bukti_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bukti Harus diisi',
+                    ]
+                ],
+                'status_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Status Harus diisi',
+                    ]
+                ],
+                'marketable_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Marketable Harus diisi',
+                    ]
+                ],
+                'lending_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lending Harus diisi',
+                    ]
+                ],
+                'pengalaman_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pengalaman Harus diisi',
+                    ]
+                ],
+                'sumber_dana_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Sumber Dana Harus diisi',
+                    ]
+                ],
+                'lokasi_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Lokasi Harus diisi',
+                    ]
+                ],
+                'jenis_proyek_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jenis Proyek Harus diisi',
+                    ]
+                ],
+                'bahan_baku_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bahan Baku Harus diisi',
+                    ]
+                ],
+                'peralatan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Peralatan Harus diisi',
+                    ]
+                ],
+                'pembayaran_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pembayaran Harus diisi',
+                    ]
+                ],
+                'dasar_penunjukan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Dasar Penunjukan Harus diisi',
+                    ]
+                ],
+                'prosentase_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Prosentase Harus diisi',
+                    ]
+                ],
+                'jangka_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jangka Waktu Harus diisi',
+                    ]
+                ],
+                'agunan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Agunan Harus diisi',
+                    ]
+                ],
+                'penjaminan_sc' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Penjaminan Harus diisi',
+                    ]
+                ],
 
-        ])) {
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -8755,7 +9063,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_scoring_master($kd_data, $hasil_scoring){
+    public function edit_scoring_master($kd_data, $hasil_scoring)
+    {
         if ($hasil_scoring >= 325) {
             $ket = 'Yes';
         } else {
@@ -8770,13 +9079,13 @@ class Pengajuan extends BaseController
     }
     public function wajibDiisi($akses, $inputan, $pesan)
     {
-    
-        if($akses == 'boleh edit'){
-            
-            if(empty($inputan)){
+
+        if ($akses == 'boleh edit') {
+
+            if (empty($inputan)) {
                 $hasil = [
                     'status' => 'error',
-                    'message' => 'rekomendasi ' .$pesan. ' harus diisi'
+                    'message' => 'rekomendasi ' . $pesan . ' harus diisi'
                 ];
                 echo json_encode($hasil);
                 die;
@@ -8784,23 +9093,23 @@ class Pengajuan extends BaseController
         }
 
     }
-    
+
     public function edit_recap()
     {
         // $cek = $this->request->getPost();
         // var_dump($cek);
         // die;
-        if($this->request->getPost('edit_data') == 'boleh edit'){
+        if ($this->request->getPost('edit_data') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data'), $this->request->getPost('disposisi_sc'), 'pemasar');
-        }else if($this->request->getPost('edit_data_koordinator') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_koordinator') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_koordinator'), $this->request->getPost('disposisi_koordinator_pemasar_sc'), 'koordinator pemasar');
-        }else if($this->request->getPost('edit_data_kepala_cabang') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_kepala_cabang') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_cabang'), $this->request->getPost('disposisi_kepala_cabang_sc'), 'kepala cabang');
-        }else if($this->request->getPost('edit_data_analis_kredit') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_analis_kredit') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_analis_kredit'), $this->request->getPost('disposisi_analis_kredit_sc'), 'analis kredit');
-        }else if($this->request->getPost('edit_data_kepala_bagian') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_kepala_bagian') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_bagian'), $this->request->getPost('disposisi_kepala_bagian_sc'), 'kepala bagian');
-        }else if($this->request->getPost('edit_data_kepala_divisi') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_kepala_divisi') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_divisi'), $this->request->getPost('disposisi_kepala_divisi_sc'), 'kepala divisi');
         }
 
@@ -8808,59 +9117,61 @@ class Pengajuan extends BaseController
             'status' => 'error',
             'message' => 'gagal input data'
         ];
-        if (!$this->validate([
+        if (
+            !$this->validate([
 
-            'disposisi_sc' => [
-                // 'rules' => 'required|min_length[3]',
-                'rules' => 'max_length[100000]',
-                'errors' => [
-                    // 'required' => 'Disposisi Pemasar Harus diisi',
-                    'max_length' => 'Disposisi Pemasar Maksimal 100 Ribu Karakter',
-                ]
-            ],
-            'disposisi_koordinator_pemasar_sc' => [
-                // 'rules' => 'required|min_length[3]',
-                'rules' => 'max_length[100000]',
-                'errors' => [
-                    // 'required' => 'Disposisi Pemasar Harus diisi',
-                    'max_length' => 'Disposisi Koordinator Pemasar Maksimal 100 Ribu Karakter',
-                ]
-            ],
-            'disposisi_kepala_cabang_sc' => [
-                // 'rules' => 'required|min_length[3]',
-                'rules' => 'max_length[100000]',
-                'errors' => [
-                    // 'required' => 'Disposisi Pemasar Harus diisi',
-                    'max_length' => 'Disposisi Kepala Cabang Maksimal 100 Ribu Karakter',
-                ]
-            ],
-            'disposisi_analis_kredit_sc' => [
-                // 'rules' => 'required|min_length[3]',
-                'rules' => 'max_length[100000]',
-                'errors' => [
-                    // 'required' => 'Disposisi Pemasar Harus diisi',
-                    'max_length' => 'Disposisi Analis Kredit Maksimal 100 Ribu Karakter',
-                ]
-            ],
-            'disposisi_kepala_bagian_sc' => [
-                // 'rules' => 'required|min_length[3]',
-                'rules' => 'max_length[100000]',
-                'errors' => [
-                    // 'required' => 'Disposisi Pemasar Harus diisi',
-                    'max_length' => 'Disposisi Kepala Bagian Maksimal 100 Ribu Karakter',
-                ]
-            ],
-            'disposisi_kepala_divisi_sc' => [
-                // 'rules' => 'required|min_length[3]',
-                'rules' => 'max_length[100000]',
-                'errors' => [
-                    // 'required' => 'Disposisi Pemasar Harus diisi',
-                    'max_length' => 'Disposisi Kepala Divisi Maksimal 100 Ribu Karakter',
-                ]
-            ],
+                'disposisi_sc' => [
+                    // 'rules' => 'required|min_length[3]',
+                    'rules' => 'max_length[100000]',
+                    'errors' => [
+                        // 'required' => 'Disposisi Pemasar Harus diisi',
+                        'max_length' => 'Disposisi Pemasar Maksimal 100 Ribu Karakter',
+                    ]
+                ],
+                'disposisi_koordinator_pemasar_sc' => [
+                    // 'rules' => 'required|min_length[3]',
+                    'rules' => 'max_length[100000]',
+                    'errors' => [
+                        // 'required' => 'Disposisi Pemasar Harus diisi',
+                        'max_length' => 'Disposisi Koordinator Pemasar Maksimal 100 Ribu Karakter',
+                    ]
+                ],
+                'disposisi_kepala_cabang_sc' => [
+                    // 'rules' => 'required|min_length[3]',
+                    'rules' => 'max_length[100000]',
+                    'errors' => [
+                        // 'required' => 'Disposisi Pemasar Harus diisi',
+                        'max_length' => 'Disposisi Kepala Cabang Maksimal 100 Ribu Karakter',
+                    ]
+                ],
+                'disposisi_analis_kredit_sc' => [
+                    // 'rules' => 'required|min_length[3]',
+                    'rules' => 'max_length[100000]',
+                    'errors' => [
+                        // 'required' => 'Disposisi Pemasar Harus diisi',
+                        'max_length' => 'Disposisi Analis Kredit Maksimal 100 Ribu Karakter',
+                    ]
+                ],
+                'disposisi_kepala_bagian_sc' => [
+                    // 'rules' => 'required|min_length[3]',
+                    'rules' => 'max_length[100000]',
+                    'errors' => [
+                        // 'required' => 'Disposisi Pemasar Harus diisi',
+                        'max_length' => 'Disposisi Kepala Bagian Maksimal 100 Ribu Karakter',
+                    ]
+                ],
+                'disposisi_kepala_divisi_sc' => [
+                    // 'rules' => 'required|min_length[3]',
+                    'rules' => 'max_length[100000]',
+                    'errors' => [
+                        // 'required' => 'Disposisi Pemasar Harus diisi',
+                        'max_length' => 'Disposisi Kepala Divisi Maksimal 100 Ribu Karakter',
+                    ]
+                ],
 
 
-        ])) {
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -8900,7 +9211,8 @@ class Pengajuan extends BaseController
         }
         echo json_encode($hasil);
     }
-    public function edit_finish(){
+    public function edit_finish()
+    {
         // $cek = $this->request->getFile('upload_dokumen_tambah');
         // var_dump($cek);
         // die;
@@ -8910,178 +9222,180 @@ class Pengajuan extends BaseController
             'message' => 'gagal input data'
         ];
 
-        if($this->request->getPost('edit_data') == 'boleh edit'){
+        if ($this->request->getPost('edit_data') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data'), $this->request->getPost('disposisi_sc'), 'pemasar');
-        }else if($this->request->getPost('edit_data_koordinator') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_koordinator') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_koordinator'), $this->request->getPost('disposisi_koordinator_pemasar_sc'), 'koordinator pemasar');
-        }else if($this->request->getPost('edit_data_kepala_cabang') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_kepala_cabang') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_cabang'), $this->request->getPost('disposisi_kepala_cabang_sc'), 'kepala cabang');
-        }else if($this->request->getPost('edit_data_analis_kredit') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_analis_kredit') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_analis_kredit'), $this->request->getPost('disposisi_analis_kredit_sc'), 'analis kredit');
-        }else if($this->request->getPost('edit_data_kepala_bagian') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_kepala_bagian') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_bagian'), $this->request->getPost('disposisi_kepala_bagian_sc'), 'kepala bagian');
-        }else if($this->request->getPost('edit_data_kepala_divisi') == 'boleh edit'){
+        } else if ($this->request->getPost('edit_data_kepala_divisi') == 'boleh edit') {
             $cek_isi = $this->wajibDiisi($this->request->getPost('edit_data_kepala_divisi'), $this->request->getPost('disposisi_kepala_divisi_sc'), 'kepala divisi');
         }
 
-        if (!$this->validate([
-            'unit_kerja_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Unit Kerja Harus diisi',
-                ]
-            ],
-            'pemasar_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pemasar Harus diisi',
-                ]
-            ],
-            'koordinator_pemasar_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Koordinator Pemasar Harus diisi',
-                ]
-            ],
-            'kepala_cabang_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kepala Cabang Harus diisi',
-                ]
-            ],
-            'kepala_bagian_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kepala Bagian Harus diisi',
-                ]
-            ],
-            'kepala_divisi_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Kepala Divisi Harus diisi',
-                ]
-            ],
-            'nama_debitur_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Debitur Harus diisi',
-                ]
-            ],
-            'bidang_usaha_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Bidang Usaha Harus diisi',
-                ]
-            ],
-            'nama_direktur_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Direktur Harus diisi',
-                ]
-            ],
-            'key_person_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Key Person Harus diisi',
-                ]
-            ],
-            'alamat_kantor_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat Kantor Harus diisi',
-                ]
-            ],
-            'alamat_gudang_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat Gudang/ Pabrik/ Workshop Harus diisi',
-                ]
-            ],
-            'group_debitur_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Group Debitur Harus diisi',
-                ]
-            ],
-            'nama_proyek_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Proyek Harus diisi',
-                ]
-            ],
-            'nomor_spk_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nomor SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
-                ]
-            ],
-            'tanggal_spk_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tanggal SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
-                ]
-            ],
-            'nilai_proyek_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nilai Proyek Harus diisi',
-                ]
-            ],
-            'alamat_proyek_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat Proyek Harus diisi',
-                ]
-            ],
-            'pemberi_kerja_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pemberi Kerja Harus diisi',
-                ]
-            ],
-            'penandatangan_kontrak_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Penandatangan Kontrak Harus diisi',
-                ]
-            ],
-            'alamat_pemberi_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Alamat Pemberi Harus diisi',
-                ]
-            ],
-            'tanggal_permohonan_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tanggal Permohonan Harus diisi',
-                ]
-            ],
-            'plafond_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Plafond Harus diisi',
-                ]
-            ],
-            'tujuan_pengajuan_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Tujuan Pengajuan Harus diisi',
-                ]
-            ],
-            'jumlah_agunan_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Jumlah Agunan Harus diisi',
-                ]
-            ],
-            'status_tambah' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Status Pengajuan Harus diisi',
-                ]
-            ],
-        ])) {
+        if (
+            !$this->validate([
+                'unit_kerja_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Unit Kerja Harus diisi',
+                    ]
+                ],
+                'pemasar_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pemasar Harus diisi',
+                    ]
+                ],
+                'koordinator_pemasar_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Koordinator Pemasar Harus diisi',
+                    ]
+                ],
+                'kepala_cabang_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kepala Cabang Harus diisi',
+                    ]
+                ],
+                'kepala_bagian_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kepala Bagian Harus diisi',
+                    ]
+                ],
+                'kepala_divisi_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Kepala Divisi Harus diisi',
+                    ]
+                ],
+                'nama_debitur_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Debitur Harus diisi',
+                    ]
+                ],
+                'bidang_usaha_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Bidang Usaha Harus diisi',
+                    ]
+                ],
+                'nama_direktur_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Direktur Harus diisi',
+                    ]
+                ],
+                'key_person_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Key Person Harus diisi',
+                    ]
+                ],
+                'alamat_kantor_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Kantor Harus diisi',
+                    ]
+                ],
+                'alamat_gudang_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Gudang/ Pabrik/ Workshop Harus diisi',
+                    ]
+                ],
+                'group_debitur_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Group Debitur Harus diisi',
+                    ]
+                ],
+                'nama_proyek_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nama Proyek Harus diisi',
+                    ]
+                ],
+                'nomor_spk_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nomor SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
+                    ]
+                ],
+                'tanggal_spk_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal SPK/ SPPBJ/ Gunning/ Kontrak Harus diisi',
+                    ]
+                ],
+                'nilai_proyek_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Nilai Proyek Harus diisi',
+                    ]
+                ],
+                'alamat_proyek_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Proyek Harus diisi',
+                    ]
+                ],
+                'pemberi_kerja_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Pemberi Kerja Harus diisi',
+                    ]
+                ],
+                'penandatangan_kontrak_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Penandatangan Kontrak Harus diisi',
+                    ]
+                ],
+                'alamat_pemberi_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Alamat Pemberi Harus diisi',
+                    ]
+                ],
+                'tanggal_permohonan_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tanggal Permohonan Harus diisi',
+                    ]
+                ],
+                'plafond_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Plafond Harus diisi',
+                    ]
+                ],
+                'tujuan_pengajuan_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Tujuan Pengajuan Harus diisi',
+                    ]
+                ],
+                'jumlah_agunan_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Jumlah Agunan Harus diisi',
+                    ]
+                ],
+                'status_tambah' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Status Pengajuan Harus diisi',
+                    ]
+                ],
+            ])
+        ) {
             $hasil = [
                 'status' => 'error',
                 'message' => $this->validator->listErrors()
@@ -9092,7 +9406,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function cetak_dokumen($kd_data, $id_dok){
+    public function cetak_dokumen($kd_data, $id_dok)
+    {
         // Cetak Dokumen Pengajuan
         if ($id_dok == sha1('fcr_gen')) {
             $this->generate_fcr($kd_data, $id_dok);
@@ -9116,7 +9431,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fcr($kd_data, $id_dok){
+    public function generate_fcr($kd_data, $id_dok)
+    {
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -9207,7 +9523,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fcr_usaha($kd_data, $id_dok){
+    public function generate_fcr_usaha($kd_data, $id_dok)
+    {
         $cek_ada = $this->db->query("SELECT * FROM tb_fcr_usaha where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -9287,7 +9604,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_dokumen_ceklis($kd_data, $id_dok){
+    public function generate_dokumen_ceklis($kd_data, $id_dok)
+    {
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
 
         if ($ada_data_entry->getNumRows() > 0) {
@@ -9330,7 +9648,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_fkk($kd_data, $id_dok){
+    public function generate_fkk($kd_data, $id_dok)
+    {
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
         $kirim = $this->db->query("SELECT * FROM tb_kirim where SHA1(kd_data) = '" . $kd_data . "' ");
@@ -9379,7 +9698,8 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function generate_mkk($kd_data, $id_dok){
+    public function generate_mkk($kd_data, $id_dok)
+    {
         $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
         $ada_data_master = $this->db->query("SELECT * FROM tb_data_master where SHA1(kd_data) = '" . $kd_data . "' ");
 
@@ -9419,23 +9739,25 @@ class Pengajuan extends BaseController
             echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
         }
     }
-    public function formatting_angka($angka, $jumlah){
+    public function formatting_angka($angka, $jumlah)
+    {
         if (!empty($angka)) {
             return number_format($angka, $jumlah, ',', '.');
         } else {
             return $angka;
         }
     }
-    public function getHariIndonesia($tanggal){
+    public function getHariIndonesia($tanggal)
+    {
         // Array hari dalam bahasa Indonesia
         $namaHari = [
-            'Sunday'    => 'Minggu',
-            'Monday'    => 'Senin',
-            'Tuesday'   => 'Selasa',
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
             'Wednesday' => 'Rabu',
-            'Thursday'  => 'Kamis',
-            'Friday'    => 'Jumat',
-            'Saturday'  => 'Sabtu'
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
         ];
 
         // Mengubah format tanggal menjadi nama hari
@@ -9444,14 +9766,16 @@ class Pengajuan extends BaseController
         // Mengembalikan nama hari dalam bahasa Indonesia
         return $namaHari[$hariInggris];
     }
-    public function cek_kosong($input){
+    public function cek_kosong($input)
+    {
         if (!empty($input)) {
             return $input;
         } else {
             return '';
         }
     }
-    public function atur_tanggal($input){
+    public function atur_tanggal($input)
+    {
         if (!empty($input)) {
             $tanggal = date('d-m-Y', strtotime($input));
             return $tanggal;
@@ -9459,7 +9783,8 @@ class Pengajuan extends BaseController
             return $input;
         }
     }
-    public function nama_unit($kd_unit){
+    public function nama_unit($kd_unit)
+    {
         if (!empty($kd_unit)) {
             $cek_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $kd_unit . "' ");
             if ($cek_unit->getNumRows() > 0) {
@@ -9472,7 +9797,8 @@ class Pengajuan extends BaseController
             return $kd_unit;
         }
     }
-    public function pisah_koma($input){
+    public function pisah_koma($input)
+    {
         if (!empty($input)) {
             $array = explode(";", $input);
             // var_dump($array); die;
@@ -9481,7 +9807,8 @@ class Pengajuan extends BaseController
             return $input;
         }
     }
-    public function permission(){
+    public function permission()
+    {
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
                 "SELECT kd_level_user 
@@ -9506,7 +9833,8 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-    public function permission2($nama_permission){
+    public function permission2($nama_permission)
+    {
         $hasil = false;
         if (!empty(session()->get('kd_user'))) {
             $kd_level_user = $this->db->query(
@@ -9540,7 +9868,8 @@ class Pengajuan extends BaseController
     }
 
 
-    public function edit_fak_data(){
+    public function edit_fak_data()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9556,7 +9885,8 @@ class Pengajuan extends BaseController
         // $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
-    public function edit_fak_modal(){
+    public function edit_fak_modal()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9566,7 +9896,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_fak_rl(){
+    public function edit_fak_rl()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9576,7 +9907,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_lap_rl(){
+    public function edit_lap_rl()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9586,7 +9918,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_ceftb(){
+    public function edit_ceftb()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9596,7 +9929,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function edit_faa(){
+    public function edit_faa()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9605,7 +9939,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_faa($hasil);
         echo json_encode($hasil);
     }
-    public function edit_mauk(){
+    public function edit_mauk()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9614,7 +9949,8 @@ class Pengajuan extends BaseController
         $hasil = $this->data_mauk($hasil);
         echo json_encode($hasil);
     }
-    public function edit_dcl(){
+    public function edit_dcl()
+    {
         $hasil = [
             'status' => 'error',
             'message' => 'gagal input data'
@@ -9624,7 +9960,8 @@ class Pengajuan extends BaseController
         echo json_encode($hasil);
     }
 
-    public function data_fak_data($hasil){
+    public function data_fak_data($hasil)
+    {
         $data = [
             'kegiatan' => $this->request->getPost("kegiatan_fak_data"),
             'pekerjaan' => $this->request->getPost("pekerjaan_fak_data"),
@@ -9698,7 +10035,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_fak_modal($hasil){
+    public function data_fak_modal($hasil)
+    {
         $data = [
             'proyek_fak_modal' => $this->request->getPost("proyek_fak_modal"),
             'profit_fak_modal' => $this->request->getPost("profit_fak_modal"),
@@ -9758,7 +10096,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_mauk($hasil){
+    public function data_mauk($hasil)
+    {
         $data = [
             'nama_nasabah_mauk' => $this->request->getPost("nama_nasabah_mauk"),
             'npwp_mauk' => $this->request->getPost("npwp_mauk"),
@@ -9848,32 +10187,33 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_faa($hasil){
+    public function data_faa($hasil)
+    {
         $data = [
-            'nama_nasabah_bb' => $this->request->getPost("namanasabahbb"),
-            'jenis_dokumen_bb' => $this->request->getPost("jenis_dokumen_bb"),
-            'alamat_bb' => $this->request->getPost("alamat_bb"),
-            'jenis_bb' => $this->request->getPost("jenis_bb"),
-            'model_tipe_bb' => $this->request->getPost("model_tipe_bb"),
-            'merek_cc_bb' => $this->request->getPost("merek_cc_bb"),
-            'tahun_pembuatan_bb' => $this->request->getPost("tahun_pembuatan_bb"),
-            'serial_number_bb' => $this->request->getPost("serial_number_bb"),
-            'nomor_mesin_bb' => $this->request->getPost("nomor_mesin_bb"),
-            'warna_bb' => $this->request->getPost("warna_bb"),
-            'bahan_bakar_bb' => $this->request->getPost("bahan_bakar_bb"),
-            'kondisi_keadaan_bb' => $this->request->getPost("kondisi_keadaan_bb"),
-            'nomor_polisi_bb' => $this->request->getPost("nomor_polisi_bb"),
-            'bukti_kepemilikan_agb_bb' => $this->request->getPost("bukti_kepemilikan_agb_bb"),
-            'invoice_no_bb' => $this->request->getPost("invoice_no_bb"),
-            'invoice_tanggal_bb' => $this->request->getPost("invoice_tanggal_bb"),
-            'perubahan_hak_terakhir_bb' => $this->request->getPost("perubahan_hak_terakhir_bb"),
-            'tercatat_atas_nama_bb' => $this->request->getPost("tercatat_atas_nama_bb"),
-            'alamat_pemilik_saat_ini_bb' => $this->request->getPost("alamat_pemilik_saat_ini_bb"),
-            'umur_teknis_bb' => $this->request->getPost("umur_teknis_bb"),
-            'perkiraan_umur_ekonomis_bb' => $this->request->getPost("perkiraan_umur_ekonomis_bb"),
-            'tempat_penyimpanan_bb' => $this->request->getPost("tempat_penyimpanan_bb"),
-            'route_bb' => $this->request->getPost("route_bb"),
-            'jarak_rata_rata_tempuh_bb' => $this->request->getPost("jarak_rata_rata_tempuh_bb"),
+            'nama_nasabah_bb' => $this->request->getPost("nama_nasabah_faa_bb"),
+            'jenis_dokumen_bb' => $this->request->getPost("jenis_dokumen_faa_bb"),
+            'alamat_bb' => $this->request->getPost("alamat_faa_bb"),
+            'jenis_bb' => $this->request->getPost("jenis_faa_bb"),
+            'model_tipe_bb' => $this->request->getPost("model_tipe_faa_bb"),
+            'merek_cc_bb' => $this->request->getPost("merek_cc_faa_bb"),
+            'tahun_pembuatan_bb' => $this->request->getPost("tahun_pembuatan_faa_bb"),
+            'serial_number_bb' => $this->request->getPost("serial_number_faa_bb"),
+            'nomor_mesin_bb' => $this->request->getPost("nomor_mesin_faa_bb"),
+            'warna_bb' => $this->request->getPost("warna_faa_bb"),
+            'bahan_bakar_bb' => $this->request->getPost("bahan_bakar_faa_bb"),
+            'kondisi_keadaan_bb' => $this->request->getPost("kondisi_keadaan_faa_bb"),
+            'nomor_polisi_bb' => $this->request->getPost("nomor_polisi_faa_bb"),
+            'bukti_kepemilikan_agb_bb' => $this->request->getPost("bukti_kepemilikan_agb_faa_bb"),
+            'invoice_no_bb' => $this->request->getPost("invoice_no_faa_bb"),
+            'invoice_tanggal_bb' => $this->request->getPost("invoice_tanggal_faa_bb"),
+            'perubahan_hak_terakhir_bb' => $this->request->getPost("perubahan_hak_terakhir_faa_bb"),
+            'tercatat_atas_nama_bb' => $this->request->getPost("tercatat_atas_nama_faa_bb"),
+            'alamat_pemilik_saat_ini_bb' => $this->request->getPost("alamat_pemilik_saat_ini_faa_bb"),
+            'umur_teknis_bb' => $this->request->getPost("umur_teknis_faa_bb"),
+            'perkiraan_umur_ekonomis_bb' => $this->request->getPost("perkiraan_umur_ekonomis_faa_bb"),
+            'tempat_penyimpanan_bb' => $this->request->getPost("tempat_penyimpanan_faa_bb"),
+            'route_bb' => $this->request->getPost("route_faa_bb"),
+            'jarak_rata_rata_tempuh_bb' => $this->request->getPost("jarak_rata_rata_tempuh_faa_bb"),
             'nama_nasabah_faa_tb' => $this->request->getPost("nama_nasabah_faa_tb"),
             'nomor_shm_faa_tb' => $this->request->getPost("nomor_shm_faa_tb"),
             'tanggal_shm_faa_tb' => $this->request->getPost("tanggal_shm_faa_tb"),
@@ -9885,6 +10225,10 @@ class Pengajuan extends BaseController
             'harga_tanah_tanah_faa_tb' => $this->request->getPost("harga_tanah_tanah_faa_tb"),
             'luas_persegi_tanah_tanah_faa_tb' => $this->request->getPost("luas_persegi_tanah_tanah_faa_tb"),
             'hasil_perhitungan_penilaian_tanah_faa_tb' => $this->request->getPost("hasil_perhitungan_penilaian_tanah_faa_tb"),
+            'cef_tanah_faa_tb' => $this->request->getPost("cef_tanah_faa_tb"),
+            'persentase_cef_tanah_faa_tb' => $this->request->getPost("persentase_cef_tanah_faa_tb"),
+            'nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb' => $this->request->getPost("nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb"),
+
 
             'pengubah' => session()->get('nama_user'),
             'waktu_ubah' => gmdate("Y-m-d H:i:s", time() + 60 * 60 * 8),
@@ -9909,7 +10253,8 @@ class Pengajuan extends BaseController
         }
         return $hasil;
     }
-    public function data_fak_rl($hasil){
+    public function data_fak_rl($hasil)
+    {
         $data = [
             'nilai_kontrak_fak_rl' => $this->request->getPost("nilai_kontrak_fak_rl"),
             'pekerjaan_persiapan_konstruksi_fak_rl' => $this->request->getPost("pekerjaan_persiapan_konstruksi_fak_rl"),
@@ -9965,7 +10310,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function data_lap_rl($hasil){
+    public function data_lap_rl($hasil)
+    {
         $kd_data = $this->request->getPost('kd_data');
 
         $laporan_rugi_laba_upload_lap_rl = $this->validateFile('laporan_rugi_laba_upload_lap_rl', 'Laporan Laba Rugi', 'laporan_rugi_laba_upload_lap_rl', 'tb_lap_rl', $kd_data);
@@ -10033,7 +10379,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function lihat_file_proyeksi_rl($kd_data,$file){
+    public function lihat_file_proyeksi_rl($kd_data, $file)
+    {
         $db = \Config\Database::connect();
         $query = $db->query("SELECT {$file} FROM tb_lap_rl WHERE SHA1(kd_data) = ?", [$kd_data]);
 
@@ -10044,18 +10391,19 @@ class Pengajuan extends BaseController
             if (!empty($dokumen)) {
                 // render langsung PDF
                 return $this->response->setBody(
-        "<iframe src=\"data:application/pdf;base64,{$dokumen}\" width=\"100%\" height=\"600px\"></iframe>"
+                    "<iframe src=\"data:application/pdf;base64,{$dokumen}\" width=\"100%\" height=\"600px\"></iframe>"
                 );
             }
         }
 
         return "Dokumen tidak ditemukan. 
                 <a href='" . base_url('edit-pengajuan-kredit-transaksional/' . $kd_data) . "'>Klik untuk kembali</a>";
-        
-    }
-    
 
-    public function data_ceftb($hasil){
+    }
+
+
+    public function data_ceftb($hasil)
+    {
         $data = [
             'checkboxceft' => $this->request->getPost("nilaicheckboxceft"),
             'hasilceft' => $this->request->getPost("hasilcheckboxceft"),
@@ -10090,7 +10438,8 @@ class Pengajuan extends BaseController
         return $hasil;
     }
 
-    public function data_dcl($hasil){
+    public function data_dcl($hasil)
+    {
         $data = [
             'pengelola_dcl' => $this->request->getPost("pengelola_dcl"),
             'tanggal_dcl' => $this->request->getPost("tanggal_dcl"),

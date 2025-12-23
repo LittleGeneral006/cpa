@@ -89,7 +89,8 @@ $.ajax({
     $("#alamat_kantor").val(res.data_entry.alamat_kantor);
     $("#alamat_gudang").val(res.data_entry.alamat_gudang);
     $("#group_debitur").val(res.data_entry.group_debitur);
-    $("#contact_person").val(res.data_entry.contact_person);
+    $("#contact_person").val(res.fcr_penarikan.contact_person);
+    $("#contact_person").val(res.fcr_penarikan.contact_person);
     // $("#next_termin").val("Termin " + res.next_termin);
 
     //dokumen checklist

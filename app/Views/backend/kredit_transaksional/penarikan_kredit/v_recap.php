@@ -65,7 +65,7 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Pemasar</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_pemasar) ? '' : 'disabled'; ?> id="disposisi_sc" name="disposisi_sc" rows="3"></textarea>
+                    <textarea class="form-control" id="disposisi_sc" name="disposisi_sc" rows="3"></textarea>
                     <input type="hidden" id="can_edit_pemasar"           value="<?= !empty($edit_data_pemasar) ? 1 : 0; ?>">
                 </div>
             </div>

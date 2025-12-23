@@ -223,60 +223,45 @@
         <input type="text" hidden name="hargatanahtanahfaatb" id="hargatanahtanahfaatb">
         <input type="text" hidden name="luaspersegitanahtanahfaatb" id="luaspersegitanahtanahfaatb">
         <input type="text" hidden name="hasilperhitunganpenilaiantanahfaatb" id="hasilperhitunganpenilaiantanahfaatb">
+        <input type="text" hidden name="ceftanahfaatb" id="ceftanahfaatb">
+        <input type="text" hidden name="persentaseceftanahfaatb" id="persentaseceftanahfaatb">
+        <input type="text" hidden name="safetymargintanahfaatb" id="safetymargintanahfaatb">
+        <input type="text" hidden name="persentasesafetymargintanahfaatb" id="persentasesafetymargintanahfaatb">
+        <input type="text" hidden name="nilaitanahsetelahcefsafetymargintanahfaatb" id="nilaitanahsetelahcefsafetymargintanahfaatb">
 
-        <input type="text" hidden name="namanasabahbb" id="namanasabahbb">
-        <input type="text" hidden name="jenisdokumenbb" id="jenisdokumenbb">
-        <input type="text" hidden name="alamatbb" id="alamatbb">
-        <input type="text" hidden name="jenisbb" id="jenisbb">
-        <input type="text" hidden name="modeltipebb" id="modeltipebb">
-        <input type="text" hidden name="merekccbb" id="merekccbb">
-        <input type="text" hidden name="tahunpembuatanbb" id="tahunpembuatanbb">
-        <input type="text" hidden name="serialnumberbb" id="serialnumberbb">
-        <input type="text" hidden name="nomormesinbb" id="nomormesinbb">
-        <input type="text" hidden name="warnabb" id="warnabb">
-        <input type="text" hidden name="bahanbakarbb" id="bahanbakarbb">
-        <input type="text" hidden name="kondisikeadaanbb" id="kondisikeadaanbb">
-        <input type="text" hidden name="nomorpolisibb" id="nomorpolisibb">
-        <input type="text" hidden name="buktikepemilikanagbbb" id="buktikepemilikanagbbb">
-        <input type="text" hidden name="invoicenobb" id="invoicenobb">
-        <input type="text" hidden name="invoicetanggalbb" id="invoicetanggalbb">
-        <input type="text" hidden name="perubahanhakterakhirbb" id="perubahanhakterakhirbb">
-        <input type="text" hidden name="tercatatatasnamabb" id="tercatatatasnamabb">
-        <input type="text" hidden name="alamatpemiliksaatinibb" id="alamatpemiliksaatinibb">
-        <input type="text" hidden name="umurteknisbb" id="umurteknisbb">
-        <input type="text" hidden name="perkiraanumurekonomisbb" id="perkiraanumurekonomisbb">
-        <input type="text" hidden name="tempatpenyimpananbb" id="tempatpenyimpananbb">
-        <input type="text" hidden name="routebb" id="routebb">
-        <input type="text" hidden name="jarakrataratatempuhbb" id="jarakrataratatempuhbb">
-        <input type="text" hidden name="nilaibukusebesarbb" id="nilaibukusebesarbb">
-        <input type="text" hidden name="nilaitaksasisebesarbb" id="nilaitaksasisebesarbb">
-        <input type="text" hidden name="safetymarginbb" id="safetymarginbb">
-        <input type="text" hidden name="nilaiagunansetelahsmbb" id="nilaiagunansetelahsmbb">
-        <input type="text" hidden name="cefbb" id="cefbb">
-        <input type="text" hidden name="nilaiagunansetelahcefbb" id="nilaiagunansetelahcefbb">
 
-        <!-- <div class="faa invisible">
-            <div class="row new" id="new">
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <div class="input-group-append">
-                                <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="copy-pp invisible">
-            <div class="row new" id="new">
-                <div class="form-group row col-lg-12">
-                
-                        <div name="hapus_pp_fak_data" class="delete-btn-pp-fak-data hapus_pp_fak_data">
-                        </div>
-                </div>
-            </div>
-        </div> -->
+        <input type="text" hidden name="namanasabahfaabb" id="namanasabahfaabb">
+        <input type="text" hidden name="jenisdokumenfaabb" id="jenisdokumenfaabb">
+        <input type="text" hidden name="alamatfaabb" id="alamatfaabb">
+        <input type="text" hidden name="jenisfaabb" id="jenisfaabb">
+        <input type="text" hidden name="modeltipefaabb" id="modeltipefaabb">
+        <input type="text" hidden name="merekccfaabb" id="merekccfaabb">
+        <input type="text" hidden name="tahunpembuatanfaabb" id="tahunpembuatanfaabb">
+        <input type="text" hidden name="serialnumberfaabb" id="serialnumberfaabb">
+        <input type="text" hidden name="nomormesinfaabb" id="nomormesinfaabb">
+        <input type="text" hidden name="warnafaabb" id="warnafaabb">
+        <input type="text" hidden name="bahanbakarfaabb" id="bahanbakarfaabb">
+        <input type="text" hidden name="kondisikeadaanfaabb" id="kondisikeadaanfaabb">
+        <input type="text" hidden name="nomorpolisifaabb" id="nomorpolisifaabb">
+        <input type="text" hidden name="buktikepemilikanagbfaabb" id="buktikepemilikanagbfaabb">
+        <input type="text" hidden name="invoicenofaabb" id="invoicenofaabb">
+        <input type="text" hidden name="invoicetanggalfaabb" id="invoicetanggalfaabb">
+        <input type="text" hidden name="perubahanhakterakhirfaabb" id="perubahanhakterakhirfaabb">
+        <input type="text" hidden name="tercatatatasnamafaabb" id="tercatatatasnamafaabb">
+        <input type="text" hidden name="alamatpemiliksaatinifaabb" id="alamatpemiliksaatinifaabb">
+        <input type="text" hidden name="umurteknisfaabb" id="umurteknisfaabb">
+        <input type="text" hidden name="perkiraanumurekonomisfaabb" id="perkiraanumurekonomisfaabb">
+        <input type="text" hidden name="tempatpenyimpananfaabb" id="tempatpenyimpananfaabb">
+        <input type="text" hidden name="routefaabb" id="routefaabb">
+        <input type="text" hidden name="jarakrataratatempuhfaabb" id="jarakrataratatempuhfaabb">
+        <input type="text" hidden name="nilaibukusebesarfaabb" id="nilaibukusebesarfaabb">
+        <input type="text" hidden name="nilaitaksasisebesarfaabb" id="nilaitaksasisebesarfaabb">
+        <input type="text" hidden name="safetymarginfaabb" id="safetymarginfaabb">
+        <input type="text" hidden name="nilaiagunansetelahsmfaabb" id="nilaiagunansetelahsmfaabb">
+        <input type="text" hidden name="ceffaabb" id="ceffaabb">
+        <input type="text" hidden name="nilaiagunansetelahceffaabb" id="nilaiagunansetelahceffaabb">
+
+        
         <div class="copy-pp invisible">
             <div class="row new" id="new">
                 <div class="form-group row">
