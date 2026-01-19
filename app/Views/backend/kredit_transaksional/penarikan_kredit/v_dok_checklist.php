@@ -37,13 +37,13 @@
     <div class="form-group row">
         <div class="col-lg-6">
             <label>Permohonan Penarikan</label>
-            <input type="file" id="permohonan_penarikan" name="permohonan_penarikan" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <input type="file" id="permohonan_penarikan" name="permohonan_penarikan" accept=".pdf,.jpg,.jpeg,.png" class="form-control" <?= !empty($can_edit) ? '' : 'readonly'; ?>>
             <div id="permohonan_penarikan_status" class="mt-1"></div>
             <div id="permohonan_penarikan_preview" class="mt-2"></div>
         </div>
         <div class="col-lg-6">
             <label>Dokumen Kebutuhan Penarikan</label>
-            <input type="file" id="dokumen_kebutuhan_penarikan" name="dokumen_kebutuhan_penarikan" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <input type="file" id="dokumen_kebutuhan_penarikan" name="dokumen_kebutuhan_penarikan" accept=".pdf,.jpg,.jpeg,.png" class="form-control" <?= !empty($can_edit) ? '' : 'readonly'; ?>>
             <div id="dokumen_kebutuhan_penarikan_status" class="mt-1"></div>
             <div id="dokumen_kebutuhan_penarikan_preview" class="mt-2"></div>
         </div>
@@ -52,13 +52,13 @@
     <div class="form-group row">
         <div class="col-lg-6">
             <label>Dokumen Progres</label>
-            <input type="file" id="dokumen_progres" name="dokumen_progres" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <input type="file" id="dokumen_progres" name="dokumen_progres" accept=".pdf,.jpg,.jpeg,.png" class="form-control" <?= !empty($can_edit) ? '' : 'readonly'; ?>>
             <div id="dokumen_progres_status" class="mt-1"></div>
             <div id="dokumen_progres_preview" class="mt-2"></div>
         </div>
         <div class="col-lg-6">
             <label>Dokumen Lainnya</label>
-            <input type="file" id="dokumen_lainnya" name="dokumen_lainnya" accept=".pdf,.jpg,.jpeg,.png" class="form-control">
+            <input type="file" id="dokumen_lainnya" name="dokumen_lainnya" accept=".pdf,.jpg,.jpeg,.png" class="form-control" <?= !empty($can_edit) ? '' : 'readonly'; ?>>
             <div id="dokumen_lainnya_status" class="mt-1"></div>
             <div id="dokumen_lainnya_preview" class="mt-2"></div>
         </div>

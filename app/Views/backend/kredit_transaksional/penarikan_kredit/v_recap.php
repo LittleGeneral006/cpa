@@ -1,5 +1,14 @@
 <h1>Recap</h1>
 <fieldset>
+    <?php
+    function dispo_attr($field, $can_edit, $current_field, $active_field)
+    {
+        if ($can_edit && $field === $current_field && $field === $active_field) {
+            return ''; // boleh edit
+        }
+        return 'readonly';
+    }
+    ?>
     <h2>Recap</h2>
     <div class="row">
         <div class="col-lg-6">
@@ -39,7 +48,7 @@
                         3
                     </td>
                     <td>
-                       Dokumen Checklist 
+                        Dokumen Checklist
                     </td>
                     <td>
                         <span id="dokumen_checklist1">Oke</span><span id="dokumen_checklist2">Not Oke</span>
@@ -65,8 +74,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Pemasar</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" id="disposisi_sc" name="disposisi_sc" rows="3"></textarea>
-                    <input type="hidden" id="can_edit_pemasar"           value="<?= !empty($edit_data_pemasar) ? 1 : 0; ?>">
+                    <textarea class="form-control" id="disposisi_pemasar" name="disposisi_pemasar" rows="3"
+                         <?= dispo_attr('disposisi_pemasar', $can_edit, $current_field, $active_field); ?>></textarea>
                 </div>
             </div>
         </div>
@@ -74,8 +83,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Koordinator Pemasar</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_koorcabang) ? '' : 'disabled'; ?> id="disposisi_koordinator_pemasar_sc" name="disposisi_koordinator_pemasar_sc" rows="3"></textarea>
-                    <input type="hidden" id="can_edit_koor_pemasar"      value="<?= !empty($edit_data_koorcabang) ? 1 : 0; ?>">
+                    <textarea class="form-control" id="disposisi_koor_pemasar" name="disposisi_koor_pemasar" rows="3"
+                         <?= dispo_attr('disposisi_koor_pemasar', $can_edit, $current_field, $active_field); ?>></textarea>
                 </div>
             </div>
         </div>
@@ -83,8 +92,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Cabang</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_kacab) ? '' : 'disabled'; ?> id="disposisi_kepala_cabang_sc" name="disposisi_kepala_cabang_sc" rows="3"></textarea>
-                    <input type="hidden" id="can_edit_kepala_cabang"     value="<?= !empty($edit_data_kacab) ? 1 : 0; ?>">
+                    <textarea class="form-control" id="disposisi_kacab" name="disposisi_kacab" rows="3"
+                         <?= dispo_attr('disposisi_kacab', $can_edit, $current_field, $active_field); ?>></textarea>
                 </div>
             </div>
         </div>
@@ -92,8 +101,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Analis Kredit</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_analis) ? '' : 'disabled'; ?> id="disposisi_analis_kredit_sc" name="disposisi_analis_kredit_sc" rows="3"></textarea>
-                    <input type="hidden" id="can_edit_analis_kredit"     value="<?= !empty($edit_data_analis) ? 1 : 0; ?>">
+                    <textarea class="form-control" id="disposisi_analis" name="disposisi_analis" rows="3"
+                         <?= dispo_attr('disposisi_analis', $can_edit, $current_field, $active_field); ?>></textarea>
                 </div>
             </div>
         </div>
@@ -101,8 +110,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Bagian</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_kabag) ? '' : 'disabled'; ?> id="disposisi_kepala_bagian_sc" name="disposisi_kepala_bagian_sc" rows="3"></textarea>
-                    <input type="hidden" id="can_edit_kepala_bagian"     value="<?= !empty($edit_data_kabag) ? 1 : 0; ?>">
+                    <textarea class="form-control" id="disposisi_kabag" name="disposisi_kabag" rows="3"
+                         <?= dispo_attr('disposisi_kabag', $can_edit, $current_field, $active_field); ?>></textarea>
                 </div>
             </div>
         </div>
@@ -110,8 +119,8 @@
             <div class="col-lg-12">
                 <label class="col-lg-12 control-label">Disposisi/ Rekomendasi Kepala Divisi</label>
                 <div class="col-lg-12">
-                    <textarea class="form-control" <?php echo !empty($edit_data_kadiv) ? '' : 'disabled'; ?> id="disposisi_kepala_divisi_sc" name="disposisi_kepala_divisi_sc" rows="3"></textarea>
-                    <input type="hidden" id="can_edit_kepala_divisi"     value="<?= !empty($edit_data_kadiv) ? 1 : 0; ?>">
+                    <textarea class="form-control" id="disposisi_kadiv" name="disposisi_kadiv"
+                         <?= dispo_attr('disposisi_kadiv', $can_edit, $current_field, $active_field); ?>rows="3" ></textarea>
                 </div>
             </div>
         </div>

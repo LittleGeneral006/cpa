@@ -72,7 +72,7 @@
             <label class="col-lg-12 control-label">Contact Person</label>
 
             <div class="col-lg-12">
-                <textarea class="form-control" id="contact_person" name="contact_person" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="contact_person" name="contact_person" rows="3" <?= !empty($can_edit) ? '' : 'readonly'; ?>></textarea>
                 <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Abdullah;Fitriani;Ahmad Rossy</p>
             </div>
 
@@ -81,7 +81,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Yang Melaksanakan Kunjungan</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="kunjungan_oleh" name="kunjungan_oleh" rows="3" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>></textarea>
+                <textarea class="form-control" id="kunjungan_oleh" name="kunjungan_oleh" rows="3" <?= !empty($can_edit) ? '' : 'readonly'; ?>></textarea>
                 <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Abdullah;Fitriani;Ahmad Rossy</p>
 
 
@@ -96,14 +96,14 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Unit Kerja</label>
             <div class="col-lg-12">
-                <input id="kd_unit_kerja" name="kd_unit_kerja" type="text" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="kd_unit_kerja" name="kd_unit_kerja" type="text" class="form-control class-readonly" readonly>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tanggal Kunjungan</label>
             <div class="col-lg-12">
-                <input id="tanggal_kunjungan" name="tanggal_kunjungan" type="date" placeholder="" class="form-control class-readonly" <?php echo !empty($edit_data) ? '' : 'readonly'; ?>>
+                <input id="tanggal_kunjungan" name="tanggal_kunjungan" type="date" placeholder="" class="form-control class-readonly" <?= !empty($can_edit) ? '' : 'readonly'; ?>>
 
             </div>
         </div>
@@ -117,7 +117,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Lokasi Yang Dikunjungi</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="lokasi_yang_dikunjungi" name="lokasi_yang_dikunjungi" rows="3" ></textarea>
+                <textarea class="form-control" id="lokasi_yang_dikunjungi" name="lokasi_yang_dikunjungi" rows="3" <?= !empty($can_edit) ? '' : 'readonly'; ?>></textarea>
                 <p class="text-danger">Pisahkan dengan tanda titik koma (;) jika data lebih dari satu<br>Contoh: Lokasi;Lokasi B;Lokasi C</p>
 
             </div>
@@ -125,7 +125,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tujuan Kunjungan</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="tujuan_kunjungan" name="tujuan_kunjungan" rows="3" ></textarea>
+                <textarea class="form-control" id="tujuan_kunjungan" name="tujuan_kunjungan" rows="3" <?= !empty($can_edit) ? '' : 'readonly'; ?>></textarea>
 
             </div>
         </div>
@@ -140,14 +140,14 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Hasil Kunjungan</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="hasil_kunjungan" name="hasil_kunjungan" rows="3" ></textarea>
+                <textarea class="form-control" id="hasil_kunjungan" name="hasil_kunjungan" rows="3" <?= !empty($can_edit) ? '' : 'readonly'; ?>></textarea>
 
             </div>
         </div>
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Tindak Lanjut</label>
             <div class="col-lg-12">
-                <textarea class="form-control" id="tindak_lanjut" name="tindak_lanjut" rows="3" ></textarea>
+                <textarea class="form-control" id="tindak_lanjut" name="tindak_lanjut" rows="3" <?= !empty($can_edit) ? '' : 'readonly'; ?>></textarea>
             </div>
         </div>
     </div>

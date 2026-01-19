@@ -13,6 +13,70 @@ var angkadcl6 = 2;
 var angkadcl7 = 2;
 var angkadcl8 = 2;
 
+// Ubah ke angka digit saja (untuk value input)
+function toDigits(val) {
+  if (val === null || val === undefined) return "";
+  return String(val).replace(/[^\d]/g, "");
+}
+
+// Format ribuan untuk ditampilkan di span (Indonesia: pakai titik)
+function formatIDR(val) {
+  const digits = toDigits(val);
+  if (!digits) return "";
+  return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+/**
+ * Bind 1 input ke 1 span "Nominal"
+ * - input tetap angka mentah (digits only)
+ * - span menampilkan format ribuan
+ */
+function bindNominal(inputId, spanId) {
+  const $input = $("#" + inputId);
+  const $span = $("#" + spanId);
+
+  if ($input.length === 0) {
+    console.warn("bindNominal: input tidak ditemukan:", inputId);
+    return;
+  }
+  if ($span.length === 0) {
+    console.warn("bindNominal: span tidak ditemukan:", spanId);
+    return;
+  }
+
+  // fungsi render: ambil value input -> format -> taruh ke span
+  const render = () => {
+    const raw = $input.val();
+    $span.text(formatIDR(raw));
+  };
+
+  // supaya tidak dobel binding kalau dipanggil berulang
+  $input.off("input.nominal");
+
+  // saat user mengetik/paste, jaga input hanya digits
+  $input.on("input.nominal", function () {
+    const digits = toDigits(this.value);
+    if (this.value !== digits) this.value = digits; // input tetap mentah
+    render();
+  });
+
+  // render awal (untuk kondisi edit / load awal / input disabled)
+  render();
+
+  // return helper kalau mau dipakai (opsional)
+  return { render };
+}
+
+/**
+ * Kalau kamu load data dari DB via JS:
+ * set value input -> update span
+ */
+function setNominalValue(inputId, spanId, valueFromDB) {
+  const digits = toDigits(valueFromDB);
+  $("#" + inputId).val(digits);
+  $("#" + spanId).text(formatIDR(digits));
+}
+
 $(document).ready(function () {
   isi_fak_data();
   isi_fak_modal();
@@ -100,9 +164,9 @@ $(document).ready(function () {
         is_disabled +
         ">" +
         "</div>" +
-        '<small><span id="nilai_sebelum_ppn_pp_fak_data' +
+        '<p><span id="nilai_sebelum_ppn_pp_fak_data' +
         angka +
-        '_separators" class="mask"></span></small>' +
+        '_separators" class="mask"></span></p>' +
         "</div>" +
         "</div>" +
         // Nilai Sesudah PPN
@@ -118,9 +182,9 @@ $(document).ready(function () {
         is_disabled +
         ">" +
         "</div>" +
-        '<small><span id="nilai_sesudah_ppn_pp_fak_data' +
+        '<p><span id="nilai_sesudah_ppn_pp_fak_data' +
         angka +
-        '_separators" class="mask"></span></small>' +
+        '_separators" class="mask"></span></p>' +
         "</div>" +
         // "</div>" +
         "</div>";
@@ -1066,13 +1130,13 @@ $(document).ready(function () {
           data.jenis_dokumen_bb ? data.jenis_dokumen_bb : ""
         ).split(";");
 
-        const alamat_bb_faaArray = (
-          data.alamat_bb ? data.alamat_bb : ""
-        ).split(";");
+        const alamat_bb_faaArray = (data.alamat_bb ? data.alamat_bb : "").split(
+          ";"
+        );
 
-        const jenis_bb_faaArray = (
-          data.jenis_bb ? data.jenis_bb : ""
-        ).split(";");
+        const jenis_bb_faaArray = (data.jenis_bb ? data.jenis_bb : "").split(
+          ";"
+        );
 
         const model_tipe_bb_faaArray = (
           data.model_tipe_bb ? data.model_tipe_bb : ""
@@ -1094,9 +1158,9 @@ $(document).ready(function () {
           data.nomor_mesin_bb ? data.nomor_mesin_bb : ""
         ).split(";");
 
-        const warna_bb_faaArray = (
-          data.warna_bb ? data.warna_bb : ""
-        ).split(";");
+        const warna_bb_faaArray = (data.warna_bb ? data.warna_bb : "").split(
+          ";"
+        );
 
         const bahan_bakar_bb_faaArray = (
           data.bahan_bakar_bb ? data.bahan_bakar_bb : ""
@@ -1125,9 +1189,7 @@ $(document).ready(function () {
         ).split(";");
 
         const perubahan_hak_terakhir_bb_faaArray = (
-          data.perubahan_hak_terakhir_bb
-            ? data.perubahan_hak_terakhir_bb
-            : ""
+          data.perubahan_hak_terakhir_bb ? data.perubahan_hak_terakhir_bb : ""
         ).split(";");
 
         const tercatat_atas_nama_bb_faaArray = (
@@ -1135,9 +1197,7 @@ $(document).ready(function () {
         ).split(";");
 
         const alamat_pemilik_saat_ini_bb_faaArray = (
-          data.alamat_pemilik_saat_ini_bb
-            ? data.alamat_pemilik_saat_ini_bb
-            : ""
+          data.alamat_pemilik_saat_ini_bb ? data.alamat_pemilik_saat_ini_bb : ""
         ).split(";");
 
         const umur_teknis_bbArray = (
@@ -1145,18 +1205,16 @@ $(document).ready(function () {
         ).split(";");
 
         const perkiraan_umur_ekonomis_bb_faaArray = (
-          data.perkiraan_umur_ekonomis_bb
-            ? data.perkiraan_umur_ekonomis_bb
-            : ""
+          data.perkiraan_umur_ekonomis_bb ? data.perkiraan_umur_ekonomis_bb : ""
         ).split(";");
 
         const tempat_penyimpanan_bb_faaArray = (
           data.tempat_penyimpanan_bb ? data.tempat_penyimpanan_bb : ""
         ).split(";");
 
-        const route_bb_faaArray = (
-          data.route_bb ? data.route_bb : ""
-        ).split(";");
+        const route_bb_faaArray = (data.route_bb ? data.route_bb : "").split(
+          ";"
+        );
 
         const jarak_rata_rata_tempuh_bb_faaArray = (
           data.jarak_rata_rata_tempuh_bb_faa
@@ -1882,14 +1940,16 @@ function isi_fak_data() {
       $("#nilai_kontrak_setelah_ppn_fak_data").val(
         data.nilai_kontrak_setelah_ppn
       );
-      separator_input(
+      bindNominal(
         "nilai_kontrak_setelah_ppn_fak_data",
         "nilai_kontrak_setelah_ppn_fak_data_separators"
       );
-      separator_edit(
-        data.nilai_kontrak_setelah_ppn,
-        "nilai_kontrak_setelah_ppn_fak_data_separators"
+      setNominalValue(
+        "nilai_kontrak_setelah_ppn_fak_data",
+        "nilai_kontrak_setelah_ppn_fak_data_separators",
+        data.nilai_kontrak_setelah_ppn
       );
+
       $("#ppn_fak_data").val(data.ppn);
       $("#pph_fak_data").val(data.pph);
       $("#no_kontrak2_fak_data").val(data.no_kontrak);
@@ -1914,16 +1974,17 @@ function isi_fak_data() {
       $("#pembulatan_nilai_sesudah_ppn_total_pp_fak_data").val(
         data.pembulatan_nilai_sesudah_ppn_total_pp
       );
-      $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(
-        data.jumlah_nilai_sebelum_ppn_total_pp
-      );
+      // $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(
+      //   data.jumlah_nilai_sebelum_ppn_total_pp
+      // );
       separator_input(
         "jumlah_nilai_sebelum_ppn_total_pp_fak_data",
         "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators"
       );
-      separator_edit(
-        data.jumlah_nilai_sebelum_ppn_total_pp_fak_data,
-        "jumlah_nilai_sebelum_ppn_total_pp_fak_separators"
+      setNominalValue(
+        "jumlah_nilai_sebelum_ppn_total_pp_fak_data",
+        "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators",
+        data.jumlah_nilai_sebelum_ppn_total_pp
       );
       $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(
         data.jumlah_nilai_sesudah_ppn_total_pp
@@ -1932,9 +1993,10 @@ function isi_fak_data() {
         "jumlah_nilai_sesudah_ppn_total_pp_fak_data",
         "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators"
       );
-      separator_edit(
-        data.jumlah_nilai_sesudah_ppn_total_pp_fak_data,
-        "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators"
+      setNominalValue(
+        "jumlah_nilai_sesudah_ppn_total_pp_fak_data",
+        "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators",
+        data.jumlah_nilai_sesudah_ppn_total_pp
       );
 
       let itempp = data.item_pp.split(";");
@@ -1957,32 +2019,19 @@ function isi_fak_data() {
             "nilai_sesudah_ppn_pp_fak_data" + i,
             "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
           );
-          separator_edit(
-            nilaisebelumppnpp[0],
-            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+          setNominalValue(
+            "nilai_sebelum_ppn_pp_fak_data" + i,
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators",
+            nilaisebelumppnpp[0]
           );
-          separator_edit(
-            nilaisesudahppnpp[0],
-            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+          setNominalValue(
+            "nilai_sesudah_ppn_pp_fak_data" + i,
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators",
+            nilaisesudahppnpp[0]
           );
         } else {
           var index = lengthpp - 1 - i;
-          separator_input(
-            "nilai_sebelum_ppn_pp_fak_data" + i,
-            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
-          );
-          separator_input(
-            "nilai_sesudah_ppn_pp_fak_data" + i,
-            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
-          );
-          separator_edit(
-            nilaisebelumppnpp[index],
-            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
-          );
-          separator_edit(
-            nilaisesudahppnpp[index],
-            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
-          );
+
           var html1 = $(".copy-pp").html();
           $(".add-form-pp").after(html1);
           var html11 =
@@ -2022,7 +2071,7 @@ function isi_fak_data() {
             '<div class="col-lg-3">' +
             '<label class="col-lg-12 control-label">Nilai Sebelum PPN</label>' +
             '<div class="col-lg-12">' +
-            '<input id="nilai_sebelum_ppn_pp_fak_data' +
+            '<input id="nilai_sebelum_ppn_pp_fak_data ' +
             i +
             '" name="nilai_sebelum_ppn_pp_fak_data[]" value="' +
             nilaisebelumppnpp[index] +
@@ -2059,22 +2108,18 @@ function isi_fak_data() {
             '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>";
-          separator_input(
-            "nilai_sebelum_ppn_pp_fak_data" + i,
-            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
-          );
-          separator_input(
-            "nilai_sesudah_ppn_pp_fak_data" + i,
-            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
-          );
-          separator_edit(
-            nilaisebelumppnpp[index],
-            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
-          );
-          separator_edit(
-            nilaisesudahppnpp[index],
-            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
-          );
+          // setNominalValue(
+          //   "nilai_sebelum_ppn_pp_fak_data" + index,
+          //   "nilai_sebelum_ppn_pp_fak_data" + index + "_separators",
+          //   nilaisebelumppnpp[index]
+          // );
+          separator_edit(nilaisebelumppnpp[index],"nilai_sebelum_ppn_pp_fak_data" + index + "_separators")
+          separator_edit(nilaisesudahppnpp[index],"nilai_sesudah_ppn_pp_fak_data" + index + "_separators")
+          // setNominalValue(
+          //   "nilai_sesudah_ppn_pp_fak_data" + index,
+          //   "nilai_sesudah_ppn_pp_fak_data" + index + "_separators",
+          //   nilaisesudahppnpp[index]
+          // );
           $(".delete-btn-pp-fak-data").first().after(html11);
           var html2 = $(".copy-pp-fak-modal").html();
           $(".add-form-pp-fak-modal").after(html2);
@@ -2112,27 +2157,42 @@ function isi_fak_data() {
       }
 
       $("#gaji_direktur_fak_data").val(data.gaji_direktur);
-      separator_input(
+      bindNominal(
         "gaji_direktur_fak_data",
         "gaji_direktur_fak_data_separators"
       );
-      separator_edit(data.gaji_direktur, "gaji_direktur_fak_data_separators");
+      setNominalValue(
+        "gaji_direktur_fak_data",
+        "gaji_direktur_fak_data_separators",
+        data.gaji_direktur
+      );
 
       $("#gaji_pengawas_fak_data").val(data.gaji_pengawas);
-      separator_input(
+      bindNominal(
         "gaji_pengawas_fak_data",
         "gaji_pengawas_fak_data_separators"
       );
-      separator_edit(data.gaji_pengawas, "gaji_pengawas_fak_data_separators");
+      setNominalValue(
+        "gaji_pengawas_fak_data",
+        "gaji_pengawas_fak_data_separators",
+        data.gaji_pengawas
+      );
 
       $("#gaji_staf_fak_data").val(data.gaji_staf);
-      separator_input("gaji_staf_fak_data", "gaji_staf_fak_data_separators");
-      separator_edit(data.gaji_staf, "gaji_staf_fak_data_separators");
+      bindNominal("gaji_staf_fak_data", "gaji_staf_fak_data_separators");
+      setNominalValue(
+        "gaji_staf_fak_data",
+        "gaji_staf_fak_data_separators",
+        data.gaji_staf
+      );
 
       $("#biaya_umum_fak_data").val(data.biaya_umum);
-      separator_input("biaya_umum_fak_data", "biaya_umum_fak_data_separators");
-      separator_edit(data.biaya_umum, "biaya_umum_fak_data_separators");
-
+      bindNominal("biaya_umum_fak_data", "biaya_umum_fak_data_separators");
+      setNominalValue(
+        "biaya_umum_fak_data",
+        "biaya_umum_fak_data_separators",
+        data.biaya_umum
+      );
       $("#terminfakdata").val(data.termin);
       $("#progressterminfakdata").val(data.progress_termin);
       $("#persentaseterminfakdata").val(data.persentase_termin);
@@ -2248,12 +2308,10 @@ function isi_fak_modal() {
       );
       $("#itemppfakmodal").val(data.item_pp_fak_modal);
       $("#nilaippfakmodal").val(data.nilai_pp_fak_modal);
-      // separator_edit(
-      //       data.nilai_proyek_fak_modal,
-      //       "nilai_proyek_fak_modal_separators"
-      //     );
       $("#koreksi_biaya_fak_modal").val(data.koreksi_biaya_fak_modal);
       $("#jumlah_fak_modal").val(data.jumlah_fak_modal);
+      separator_input("jumlah_fak_modal", "jumlah_fak_modal_separators");
+      separator_edit(data.jumlah_fak_modal, "jumlah_fak_modal_separators");
       $("#gaji_direktur_fak_modal").val(data.gaji_direktur_fak_modal);
       $("#gaji_pengawas_fak_modal").val(data.gaji_pengawas_fak_modal);
       $("#gaji_staf_fak_modal").val(data.gaji_staf_fak_modal);
@@ -2546,17 +2604,29 @@ function isi_mauk() {
   variabelGlobal(function (hasil) {
     if (hasil.status == "success") {
       var data = hasil.message.mauk;
-      $("#nama_nasabah_mauk").val(data.nama_nasabah_mauk);
-      $("#npwp_mauk").val(data.npwp_mauk);
-      $("#direktur_mauk").val(data.direktur_mauk);
-      $("#key_person_mauk").val(data.key_person_mauk);
-      $("#alamat_kantor_mauk").val(data.alamat_kantor_mauk);
+      var data_awal1 = hasil.message.data_entry;
+      var data_awal2 = hasil.message.fak_modal;
+      $("#nama_nasabah_mauk").val(
+        data.nama_nasabah_mauk || data_awal1.nama_nasabah
+      );
+      $("#npwp_mauk").val(data.npwp_mauk || data_awal1.npwp);
+      $("#direktur_mauk").val(data.direktur_mauk || data_awal1.direktur);
+      $("#key_person_mauk").val(data.key_person_mauk || data_awal1.key_person);
+      $("#alamat_kantor_mauk").val(
+        data.alamat_kantor_mauk || data_awal1.alamat_kantor
+      );
       $("#klasifikasi_mauk").val(data.klasifikasi_mauk);
-      $("#bidang_usaha_mauk").val(data.bidang_usaha_mauk);
+      $("#bidang_usaha_mauk").val(
+        data.bidang_usaha_mauk || data_awal.bidang_usaha
+      );
       $("#jenis_fasilitas_mauk").val(data.jenis_fasilitas_mauk);
       $("#bentuk_fasilitas_mauk").val(data.bentuk_fasilitas_mauk);
-      $("#maksimum_fasilitas_mauk").val(data.maksimum_fasilitas_mauk);
-      $("#plafond_fasilitas_mauk").val(data.plafond_fasilitas_mauk);
+      $("#maksimum_fasilitas_mauk").val(
+        data.maksimum_fasilitas_mauk || data_awal2.kredit_bank_fak_modal
+      );
+      $("#plafond_fasilitas_mauk").val(
+        data.plafond_fasilitas_mauk || data_awal2.jumlah_kredit_bank_fak_modal
+      );
       $("#jangka_waktu_mauk").val(data.jangka_waktu_mauk);
       $("#tujuan_penggunaan_mauk").val(data.tujuan_penggunaan_mauk);
       // CKEDITOR.instances.editor1.setData(data.tujuan_penggunaan_mauk);
@@ -3669,1423 +3739,1315 @@ function isi_scoring_koor() {
 //   // tampil_button('save_scoring')
 // }
 
+/* ===========================
+ *  GLOBAL HELPERS + HANDLERS
+ *  (WAJIB GLOBAL agar onchange HTML bekerja)
+ * =========================== */
+
+function legacySelected(arr, indexes, fallback = "") {
+  for (const i of indexes) {
+    const v = arr?.[i];
+    if (
+      v !== undefined &&
+      v !== null &&
+      String(v) !== "0" &&
+      String(v) !== ""
+    ) {
+      return String(v);
+    }
+  }
+  return String(fallback || "");
+}
+
+function buildSelectGroup({ name, id, selected, onchange, items }) {
+  let html = `<select class="form-control form-control-sm" name="${name}" id="${id}" onchange="${onchange}">
+    <option value="">- pilih -</option>`;
+
+  for (const it of items) {
+    const sel = String(selected) === String(it.value) ? "selected" : "";
+    html += `<option value="${it.value}" ${sel}>${it.label}</option>`;
+  }
+
+  html += `</select>`;
+  return html;
+}
+
+// === skala 0-100: hasil = val * bobot ===
+window.showValueCEFT = function (el, subPoint, bobot, loopIndex) {
+  const val = parseFloat(el.value || 0);
+  const hasil = val * parseFloat(bobot || 0); // 0-100
+
+  const target = document.getElementById(`hasil${loopIndex}ceft${subPoint}`);
+  if (target) target.value = hasil ? hasil.toFixed(2) : "";
+
+  if (typeof window.hitungTotalCEFT === "function")
+    window.hitungTotalCEFT(loopIndex);
+};
+
+window.showValueCEFB = function (el, subPoint, bobot, loopIndex) {
+  const val = parseFloat(el.value || 0);
+  const hasil = val * parseFloat(bobot || 0); // 0-100
+
+  const target = document.getElementById(`hasil${loopIndex}cefb${subPoint}`);
+  if (target) target.value = hasil ? hasil.toFixed(2) : "";
+
+  if (typeof window.hitungTotalCEFB === "function")
+    window.hitungTotalCEFB(loopIndex);
+};
+
+window.hitungTotalCEFT = function (loopIndex) {
+  let total = 0;
+  for (let i = 1; i <= 9; i++) {
+    const el = document.getElementById(`hasil${loopIndex}ceft${i}`);
+    total += parseFloat(el?.value || 0);
+  }
+  const t = document.getElementById(`hasiltotalCEFT${loopIndex}`);
+  if (t) t.value = total ? total.toFixed(2) : "";
+};
+
+window.hitungTotalCEFB = function (loopIndex) {
+  let total = 0;
+  for (let i = 1; i <= 7; i++) {
+    const el = document.getElementById(`hasil${loopIndex}cefb${i}`);
+    total += parseFloat(el?.value || 0);
+  }
+  const t = document.getElementById(`hasiltotalCEFB${loopIndex}`);
+  if (t) t.value = total ? total.toFixed(2) : "";
+};
+
+/* ===========================
+ *  TABLE BUILDERS
+ * =========================== */
+
+// function buildCeftTable(
+//   loopIndex,
+//   pecahCheckBoxCEFT,
+//   pecahHasilCEFT,
+//   TotalCEFT
+// ) {
+//   const ceftSelected = {
+//     1: legacySelected(pecahCheckBoxCEFT, [0, 1, 2, 3]),
+//     2: legacySelected(pecahCheckBoxCEFT, [4, 5, 6, 7]),
+//     3: legacySelected(pecahCheckBoxCEFT, [8, 9, 10, 11]),
+//     4: legacySelected(pecahCheckBoxCEFT, [12, 13, 14, 15]),
+//     5: legacySelected(pecahCheckBoxCEFT, [16, 17, 18, 19]),
+//     6: legacySelected(pecahCheckBoxCEFT, [20, 21, 22, 23]),
+//     7: legacySelected(pecahCheckBoxCEFT, [24, 25, 26]),
+//     8: legacySelected(pecahCheckBoxCEFT, [27, 28, 29, 30]),
+//     9: legacySelected(pecahCheckBoxCEFT, [31, 32]),
+//   };
+
+//   return `
+//     <h3 class="text-center text-danger">Penetapan CEF TANAH</h3>
+//     <table class="tg">
+//       <thead>
+//         <tr>
+//           <th class="tg-0pky">No</th>
+//           <th class="tg-uzvj" colspan="2">Kriteria</th>
+//           <th class="tg-0pky">Parameter</th>
+//           <th class="tg-0pky">Nilai</th>
+//           <th class="tg-0pky">CEF</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+
+//         <!-- 1 Bukti Kepemilikan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">1</td>
+//           <td class="tg-0pky" colspan="2">BUKTI KEPEMILIKAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp1`,
+//               selected: ceftSelected[1],
+//               onchange: `showValueCEFT(this,'1','0.25',${loopIndex})`,
+//               items: [
+//                 { label: "SHM", value: "100" },
+//                 { label: "SHGB/SHGU/STRATA TITLE", value: "75" },
+//                 { label: "SKPT/SURAT UKUR ", value: "50" },
+//                 { label: "HAK PAKAI/SEGEL/SKPT PENGUASAAN (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 1</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[0] || ""}"
+//               id="hasil${loopIndex}ceft1"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 2 Kelas Jalan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">2</td>
+//           <td class="tg-za14" colspan="2">KELAS JALAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp2`,
+//               selected: ceftSelected[2],
+//               onchange: `showValueCEFT(this,'2','0.2',${loopIndex})`,
+//               items: [
+//                 { label: "JALAN RAYA UTAMA", value: "100" },
+//                 { label: "LINGKUNGAN/KOMPLEK", value: "75" },
+//                 { label: "GANG ", value: "50" },
+//                 { label: "SETAPAK (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 2</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[1] || ""}"
+//               id="hasil${loopIndex}ceft2"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 3 Pemilik Agunan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">3</td>
+//           <td class="tg-za14" colspan="2">PEMILIK AGUNAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp3`,
+//               selected: ceftSelected[3],
+//               onchange: `showValueCEFT(this,'3','0.1',${loopIndex})`,
+//               items: [
+//                 {
+//                   label: "AN. SENDIRI / ISTERI & SUAMI / PENGURUS",
+//                   value: "100",
+//                 },
+//                 { label: "AN. ANAK/SAUDARA/AYAH KANDUNG", value: "75" },
+//                 { label: "AN. KELUARGA LAIN ", value: "50" },
+//                 { label: "AN. PIHAK KETIGA (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 3</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[2] || ""}"
+//               id="hasil${loopIndex}ceft3"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 4 Lingkungan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">4</td>
+//           <td class="tg-za14" colspan="2">LINGKUNGAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp4`,
+//               selected: ceftSelected[4],
+//               onchange: `showValueCEFT(this,'4','0.1',${loopIndex})`,
+//               items: [
+//                 { label: "PERKANTORAN & PERDAGANGAN", value: "100" },
+//                 { label: "PERUMAHAN", value: "75" },
+//                 { label: "PERTANIAN/PERKEBUNAN/PETERNAKAN ", value: "50" },
+//                 { label: "LAINNYA (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 4</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[3] || ""}"
+//               id="hasil${loopIndex}ceft4"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 5 Letak/Lokasi -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">5</td>
+//           <td class="tg-za14" colspan="2">LETAK / LOKASI TERHADAP PUSAT BISNIS</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp5`,
+//               selected: ceftSelected[5],
+//               onchange: `showValueCEFT(this,'5','0.1',${loopIndex})`,
+//               items: [
+//                 { label: "SANGAT DEKAT (0-500M)", value: "100" },
+//                 { label: "DEKAT (>500M-1KM)", value: "75" },
+//                 { label: "CUKUP DEKAT (>1-2KM) ", value: "50" },
+//                 { label: "JAUH (>2KM) (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 5</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[4] || ""}"
+//               id="hasil${loopIndex}ceft5"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 6 Fasum/Fasos -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">6</td>
+//           <td class="tg-za14" colspan="2">KELENGKAPAN FASUM / FASOS (JARAK &lt; 2 KM)</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp6`,
+//               selected: ceftSelected[6],
+//               onchange: `showValueCEFT(this,'6','0.1',${loopIndex})`,
+//               items: [
+//                 { label: "SANGAT LENGKAP (>6 FASILITAS)", value: "100" },
+//                 { label: "LENGKAP (5-6 FASILITAS)", value: "75" },
+//                 { label: "CUKUP (3-4 FASILITAS) ", value: "50" },
+//                 { label: "TIDAK LENGKAP (≤2 FASILITAS) (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 6</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[5] || ""}"
+//               id="hasil${loopIndex}ceft6"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 7 Bentuk Tanah -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">7</td>
+//           <td class="tg-0pky" colspan="2">BENTUK TANAH</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp7`,
+//               selected: ceftSelected[7],
+//               onchange: `showValueCEFT(this,'7','0.05',${loopIndex})`,
+//               items: [
+//                 { label: "SEGI EMPAT / PERSEGI PANJANG", value: "100" },
+//                 { label: "SEGI BANYAK", value: "75" },
+//                 { label: "LAINNYA ", value: "50" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 7</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[6] || ""}"
+//               id="hasil${loopIndex}ceft7"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 8 Kontur Tanah -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">8</td>
+//           <td class="tg-za14" colspan="2">KONTUR TANAH</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp8`,
+//               selected: ceftSelected[8],
+//               onchange: `showValueCEFT(this,'8','0.05',${loopIndex})`,
+//               items: [
+//                 { label: "RATA", value: "100" },
+//                 { label: "BERGELOMBANG", value: "75" },
+//                 { label: "BERTINGKAT ", value: "50" },
+//                 { label: "LAINNYA/KOMBINASI (25)", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 8</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[7] || ""}"
+//               id="hasil${loopIndex}ceft8"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- 9 Jenis Tanah -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">9</td>
+//           <td class="tg-0pky" colspan="2">JENIS TANAH</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "ceft_subpoint[]",
+//               id: `ceft_${loopIndex}_sp9`,
+//               selected: ceftSelected[9],
+//               onchange: `showValueCEFT(this,'9','0.05',${loopIndex})`,
+//               items: [
+//                 { label: "KERAS/DARAT/MATANG", value: "100" },
+//                 { label: "RAWA/GAMBUT/BERAIR", value: "75" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 9</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" value="${pecahHasilCEFT?.[8] || ""}"
+//               id="hasil${loopIndex}ceft9"
+//               name="hasil_checkbox_ceft[]">
+//           </td>
+//         </tr>
+
+//         <!-- Total (ini yang tampil nilainya) -->
+//         <tr>
+//           <td class="tg-0pky" colspan="3"></td>
+//           <td class="tg-0pky" colspan="2"><b>Jumlah CEF Tanah</b></td>
+//           <td class="tg-0pky">
+//             <input id="hasiltotalCEFT${loopIndex}"
+//               value="${TotalCEFT?.[loopIndex] || ""}"
+//               name="hasiltotalceft[]"
+//               style="display:inline-block;width:90px;margin-left:10px;">
+//           </td>
+//         </tr>
+
+//       </tbody>
+//     </table>
+//   `;
+// }
+
+// function buildCefbTable(
+//   loopIndex,
+//   pecahCheckBoxCEFB,
+//   pecahHasilCEFB,
+//   TotalCEFB
+// ) {
+//   const cefbSelected = {
+//     1: legacySelected(pecahCheckBoxCEFB, [0, 1, 2]),
+//     2: legacySelected(pecahCheckBoxCEFB, [3, 4, 5, 6]),
+//     3: legacySelected(pecahCheckBoxCEFB, [7, 8, 9, 10]),
+//     4: legacySelected(pecahCheckBoxCEFB, [11, 12, 13, 14]),
+//     5: legacySelected(pecahCheckBoxCEFB, [15, 16, 17, 18]),
+//     6: legacySelected(pecahCheckBoxCEFB, [19, 20, 21, 22]),
+//     7: legacySelected(pecahCheckBoxCEFB, [23, 24, 25, 26]),
+//   };
+
+//   return `
+//     <h3 class="text-center text-danger">Penetapan CEF BANGUNAN</h3>
+//     <table class="tg">
+//       <thead>
+//         <tr>
+//           <th class="tg-0pky">No</th>
+//           <th class="tg-uzvj" colspan="2">Kriteria</th>
+//           <th class="tg-0pky">Parameter</th>
+//           <th class="tg-0pky">Nilai</th>
+//           <th class="tg-0pky">CEF</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+
+//         <!-- 1 Perijinan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">1</td>
+//           <td class="tg-0pky" colspan="2">PERIJINAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp1`,
+//               selected: cefbSelected[1],
+//               onchange: `showValueCEFB(this,'1','0.2',${loopIndex})`,
+//               items: [
+//                 { label: "MEMILIKI IMB", value: "100" },
+//                 { label: "IMB ADA, LUAS TIDAK SESUAI", value: "75" },
+//                 { label: "TIDAK MEMILIKI ", value: "50" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 1</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb1"
+//               value="${pecahHasilCEFB?.[0] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- 2 Jenis Bangunan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">2</td>
+//           <td class="tg-za14" colspan="2">JENIS BANGUNAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp2`,
+//               selected: cefbSelected[2],
+//               onchange: `showValueCEFB(this,'2','0.2',${loopIndex})`,
+//               items: [
+//                 { label: "BETON", value: "100" },
+//                 { label: "SEMI PERMANEN", value: "75" },
+//                 { label: "KAYU ", value: "50" },
+//                 { label: "MASIH DALAM PROSES ", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 2</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb2"
+//               value="${pecahHasilCEFB?.[1] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- 3 Usia Bangunan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">3</td>
+//           <td class="tg-za14" colspan="2">USIA BANGUNAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp3`,
+//               selected: cefbSelected[3],
+//               onchange: `showValueCEFB(this,'3','0.15',${loopIndex})`,
+//               items: [
+//                 { label: "S.D. 5 TAHUN", value: "100" },
+//                 { label: ">5 S.D. 10 TAHUN", value: "75" },
+//                 { label: ">10 S.D. 15 TAHUN ", value: "50" },
+//                 { label: ">15 TAHUN ", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 3</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb3"
+//               value="${pecahHasilCEFB?.[2] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- 4 Kondisi Bangunan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">4</td>
+//           <td class="tg-za14" colspan="2">KONDISI BANGUNAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp4`,
+//               selected: cefbSelected[4],
+//               onchange: `showValueCEFB(this,'4','0.15',${loopIndex})`,
+//               items: [
+//                 { label: "SANGAT BAIK", value: "100" },
+//                 { label: "BAIK", value: "75" },
+//                 { label: "CUKUP ", value: "50" },
+//                 { label: "KURANG ", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 4</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb4"
+//               value="${pecahHasilCEFB?.[3] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- 5 Penggunaan -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">5</td>
+//           <td class="tg-za14" colspan="2">PENGGUNAAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp5`,
+//               selected: cefbSelected[5],
+//               onchange: `showValueCEFB(this,'5','0.1',${loopIndex})`,
+//               items: [
+//                 { label: "RUMAH TEMPAT TINGGAL", value: "100" },
+//                 { label: "RUKO/RUKAN/TOKO", value: "75" },
+//                 { label: "KANTOR ", value: "50" },
+//                 { label: "LAINNYA (GUDANG, DLL) ", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 5</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb5"
+//               value="${pecahHasilCEFB?.[4] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- 6 Tinggi Lantai -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">6</td>
+//           <td class="tg-za14" colspan="2">TINGGI LANTAI BANGUNAN TERHADAP JALAN</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp6`,
+//               selected: cefbSelected[6],
+//               onchange: `showValueCEFB(this,'6','0.1',${loopIndex})`,
+//               items: [
+//                 { label: "TINGGI (>100CM)", value: "100" },
+//                 { label: "SEDANG (51-100CM)", value: "75" },
+//                 { label: "RENDAH (0-50CM) ", value: "50" },
+//                 { label: "SANGAT RENDAH (DIBAWAH JALAN) ", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 6</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb6"
+//               value="${pecahHasilCEFB?.[5] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- 7 Kelengkapan Fasilitas -->
+//         <tr>
+//           <td class="tg-0pky" rowspan="2">7</td>
+//           <td class="tg-0pky" colspan="2">KELENGKAPAN FASILITAS</td>
+//           <td class="tg-0pky">
+//             ${buildSelectGroup({
+//               name: "cefb_subpoint[]",
+//               id: `cefb_${loopIndex}_sp7`,
+//               selected: cefbSelected[7],
+//               onchange: `showValueCEFB(this,'7','0.1',${loopIndex})`,
+//               items: [
+//                 { label: "SANGAT LENGKAP (>6 FASILITAS)", value: "100" },
+//                 { label: "LENGKAP (5-6 FASILITAS)", value: "75" },
+//                 { label: "CUKUP (3-4 FASILITAS) ", value: "50" },
+//                 { label: "TIDAK LENGKAP (≤2 FASILITAS) ", value: "25" },
+//               ],
+//             })}
+//           </td>
+//         </tr>
+//         <tr>
+//           <td class="tg-0pky" colspan="4">Jumlah Sub Point 7</td>
+//           <td class="tg-0pky">
+//             <input type="hidden" id="hasil${loopIndex}cefb7"
+//               value="${pecahHasilCEFB?.[6] || ""}"
+//               name="hasil_checkbox_cefb[]">
+//           </td>
+//         </tr>
+
+//         <!-- Total (ini yang tampil nilainya) -->
+//         <tr>
+//           <td class="tg-0pky" colspan="3"></td>
+//           <td class="tg-0pky" colspan="2"><b>Jumlah CEF Bangunan</b></td>
+//           <td class="tg-0pky">
+//             <input id="hasiltotalCEFB${loopIndex}"
+//               name="hasiltotalcefb[]"
+//               value="${TotalCEFB?.[loopIndex] || ""}"
+//               style="display:inline-block;width:90px;margin-left:10px;">
+//           </td>
+//         </tr>
+
+//       </tbody>
+//     </table>
+//   `;
+// }
+
+/* ===========================
+ *  MAIN FUNCTION (PUNYAMU)
+ * =========================== */
+
+// function ceftb() {
+//   variabelGlobal(function (hasil) {
+//     if (hasil.status == "success") {
+//       var jenis_agunan = hasil.message.data_entry.jenis_agunan;
+//       var data = hasil.message.ceftb;
+
+//       var jenisAgunanArray = jenis_agunan.split(";");
+//       var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
+//         (item) => item === "Tanah/ Tanah dan Bangunan"
+//       ).length;
+
+//       // bersihkan dulu biar tidak dobel render
+//       $("#ceftb").empty();
+
+//       for (
+//         let counter_tanah_loop = 0;
+//         counter_tanah_loop < tanahAtauTanahBangunanCount;
+//         counter_tanah_loop++
+//       ) {
+//         const CheckBoxCEFT = (data.checkboxceft ? data.checkboxceft : "").split(
+//           "|"
+//         );
+//         const HasilCEFT = (data.hasilceft ? data.hasilceft : "").split("|");
+//         const TotalCEFT = (data.totalceft ? data.totalceft : "").split(";");
+
+//         const CheckBoxCEFB = (data.checkboxcefb ? data.checkboxcefb : "").split(
+//           "|"
+//         );
+//         const HasilCEFB = (data.hasilcefb ? data.hasilcefb : "").split("|");
+//         const TotalCEFB = (data.totalcefb ? data.totalcefb : "").split(";");
+
+//         const pecahCheckBoxCEFT = CheckBoxCEFT[counter_tanah_loop]
+//           ? CheckBoxCEFT[counter_tanah_loop].split(";")
+//           : [];
+
+//         const pecahHasilCEFT = HasilCEFT[counter_tanah_loop]
+//           ? HasilCEFT[counter_tanah_loop].split(";")
+//           : [];
+
+//         const pecahCheckBoxCEFB = CheckBoxCEFB[counter_tanah_loop]
+//           ? CheckBoxCEFB[counter_tanah_loop].split(";")
+//           : [];
+
+//         const pecahHasilCEFB = HasilCEFB[counter_tanah_loop]
+//           ? HasilCEFB[counter_tanah_loop].split(";")
+//           : [];
+
+//         // layout: ATAS-BAWAH (bukan berdampingan)
+//         var inputan_tanah = `<div class="form-group row">
+//             <div class="col-12 table-responsive mb-4">
+//               ${buildCeftTable(
+//                 counter_tanah_loop,
+//                 pecahCheckBoxCEFT,
+//                 pecahHasilCEFT,
+//                 TotalCEFT
+//               )}
+//             </div>
+//             <div class="col-12 table-responsive">
+//               ${buildCefbTable(
+//                 counter_tanah_loop,
+//                 pecahCheckBoxCEFB,
+//                 pecahHasilCEFB,
+//                 TotalCEFB
+//               )}
+//             </div>
+//           </div>`;
+
+//         $("#ceftb").append(inputan_tanah);
+
+//         // OPTIONAL:
+//         // Kalau kamu mau saat render langsung hitung ulang dari selected dropdown (bukan pakai value lama)
+//         // maka trigger change untuk semua select di loop ini:
+//         // $(`#ceft_${counter_tanah_loop}_sp1, #ceft_${counter_tanah_loop}_sp2, #ceft_${counter_tanah_loop}_sp3, #ceft_${counter_tanah_loop}_sp4, #ceft_${counter_tanah_loop}_sp5, #ceft_${counter_tanah_loop}_sp6, #ceft_${counter_tanah_loop}_sp7, #ceft_${counter_tanah_loop}_sp8, #ceft_${counter_tanah_loop}_sp9`).trigger('change');
+//         // $(`#cefb_${counter_tanah_loop}_sp1, #cefb_${counter_tanah_loop}_sp2, #cefb_${counter_tanah_loop}_sp3, #cefb_${counter_tanah_loop}_sp4, #cefb_${counter_tanah_loop}_sp5, #cefb_${counter_tanah_loop}_sp6, #cefb_${counter_tanah_loop}_sp7`).trigger('change');
+
+//         // Jika tidak trigger change, minimal hitung total dari input hasil yg sudah ada:
+//         window.hitungTotalCEFT(counter_tanah_loop);
+//         window.hitungTotalCEFB(counter_tanah_loop);
+//       }
+//     }
+//   });
+// }
+// bobot internal (tidak ditampilkan) - total = sum(value * bobot)
+const BOBOT_CEFT = {
+  1: 0.25,
+  2: 0.2,
+  3: 0.1,
+  4: 0.1,
+  5: 0.1,
+  6: 0.1,
+  7: 0.05,
+  8: 0.05,
+  9: 0.05,
+};
+
+const BOBOT_CEFB = {
+  1: 0.2,
+  2: 0.2,
+  3: 0.15,
+  4: 0.15,
+  5: 0.1,
+  6: 0.1,
+  7: 0.1,
+};
+
+// ambil angka dropdown (0..100)
+function getSelectVal(id) {
+  const el = document.getElementById(id);
+  if (!el) return 0;
+  const v = parseFloat(el.value || 0);
+  return isNaN(v) ? 0 : v;
+}
+
+window.recalcCEFT = function (loopIndex) {
+  let total = 0;
+
+  for (let sp = 1; sp <= 9; sp++) {
+    const v = getSelectVal(`ceft_${loopIndex}_sp${sp}`); // 0..100
+    total += v * (BOBOT_CEFT[sp] || 0);
+  }
+
+  // hasil total tetap skala 0..100 (karena bobot total = 1)
+  const target = document.getElementById(`hasiltotalCEFT${loopIndex}`);
+  if (target) target.value = total ? total.toFixed(2) : "0.00";
+};
+
+window.recalcCEFB = function (loopIndex) {
+  let total = 0;
+
+  for (let sp = 1; sp <= 7; sp++) {
+    const v = getSelectVal(`cefb_${loopIndex}_sp${sp}`); // 0..100
+    total += v * (BOBOT_CEFB[sp] || 0);
+  }
+
+  const target = document.getElementById(`hasiltotalCEFB${loopIndex}`);
+  if (target) target.value = total ? total.toFixed(2) : "0.00";
+};
+
 function ceftb() {
   variabelGlobal(function (hasil) {
-    if (hasil.status == "success") {
-      var jenis_agunan = hasil.message.data_entry.jenis_agunan;
-      var data = hasil.message.ceftb;
+    if (hasil.status !== "success") return;
 
-      var jenisAgunanArray = jenis_agunan.split(";");
+    var jenis_agunan = hasil.message.data_entry.jenis_agunan || "";
+    var data = hasil.message.ceftb || {};
 
-      var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
-        (item) => item === "Tanah/ Tanah dan Bangunan"
-      ).length;
+    var jenisAgunanArray = jenis_agunan.split(";");
+    var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
+      (item) => item === "Tanah/ Tanah dan Bangunan"
+    ).length;
 
-      for (
-        let counter_tanah_loop = 0;
-        counter_tanah_loop < tanahAtauTanahBangunanCount;
-        counter_tanah_loop++
-      ) {
-        const CheckBoxCEFT = (data.checkboxceft ? data.checkboxceft : "").split(
-          "|"
-        );
-        const HasilCEFT = (data.hasilceft ? data.hasilceft : "").split("|");
-        const TotalCEFT = (data.totalceft ? data.totalceft : "").split(";");
+    // bersihkan dulu biar tidak dobel render
+    $("#ceftb").empty();
 
-        const CheckBoxCEFB = (data.checkboxcefb ? data.checkboxcefb : "").split(
-          "|"
-        );
-        const HasilCEFB = (data.hasilcefb ? data.hasilcefb : "").split("|");
-        const TotalCEFB = (data.totalcefb ? data.totalcefb : "").split(";");
+    // =========================
+    // helper untuk ambil pilihan legacy
+    // =========================
+    function legacySelected(arr, indexes, fallback = "") {
+      for (const i of indexes) {
+        const v = arr?.[i];
+        if (
+          v !== undefined &&
+          v !== null &&
+          String(v) !== "0" &&
+          String(v) !== ""
+        ) {
+          return String(v);
+        }
+      }
+      return String(fallback || "");
+    }
 
-        const pecahCheckBoxCEFT = CheckBoxCEFT[counter_tanah_loop]
-          ? CheckBoxCEFT[counter_tanah_loop].split(";")
-          : [];
-        const pecahHasilCEFT = HasilCEFT[counter_tanah_loop]
-          ? HasilCEFT[counter_tanah_loop].split(";")
-          : [];
-        const pecahTotalCEFT = TotalCEFT[counter_tanah_loop]
-          ? TotalCEFT[counter_tanah_loop].split(";")
-          : [];
-        const pecahCheckBoxCEFB = CheckBoxCEFB[counter_tanah_loop]
-          ? CheckBoxCEFB[counter_tanah_loop].split(";")
-          : [];
-        const pecahHasilCEFB = HasilCEFB[counter_tanah_loop]
-          ? HasilCEFB[counter_tanah_loop].split(";")
-          : [];
-        const pecahTotalCEFB = TotalCEFB[counter_tanah_loop]
-          ? TotalCEFB[counter_tanah_loop].split(";")
-          : [];
+    function buildSelectGroup({ name, id, selected, onchange, items }) {
+      let html = `<select class="form-control form-control-sm" name="${name}" id="${id}"
+      ${onchange ? `onchange="${onchange}"` : ""}>
+    <option value="">- pilih -</option>`;
 
-        // Proses data untuk 'Tanah/ Tanah dan Bangunan' sesuai kebutuhan
-        var inputan_tanah =
-          '<div class="form-group row">' +
-          '<div class="col-lg-6 table-responsive">' +
-          '<h3 class="text-center text-danger">Penetapan CEF TANAH</h3>' +
-          '<table class="tg">' +
-          "<thead>" +
-          "<tr>" +
-          '<th class="tg-0pky">No</th>' +
-          '<th class="tg-uzvj" colspan="2">Kriteria</th>' +
-          '<th class="tg-0pky">Bobot</th>' +
-          '<th class="tg-0pky">Parameter</th>' +
-          '<th class="tg-0pky">Nilai</th>' +
-          '<th class="tg-0pky">CEF</th>' +
-          "</tr>" +
-          "</thead>" +
-          "<tbody>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">1</td>' +
-          '<td class="tg-0pky" colspan="2">Bukti Kepemilikan</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">SHM</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[0] && pecahCheckBoxCEFT[0] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'1\',\'0.25\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SHGB, SHGU, STRATA TITLE</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[1] && pecahCheckBoxCEFT[1] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'1\',\'0.25\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          "<td>-</td>" +
-          '<td class="tg-za14">SKPT (SURAT KETERANGAN PENDAFTARAN TANAH), SURAT UKUR</td>' +
-          "<td></td>" +
-          "<td>50</td>" +
-          '<td><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[2] && pecahCheckBoxCEFT[2] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'1\',\'0.25\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          "<td></td>" +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">HAK PAKAI, SEGEL, SKPT (SURAT KETERANGAN PENGUASAAN TANAH) </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[3] && pecahCheckBoxCEFT[3] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'1\',\'0.25\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 1</td>' +
-          '<td class="tg-0pky">25%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[0] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft1" style="display: inline-block; width: 45px; margin-left: 10px;" name="hasil_checkbox_ceft[]"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">2</td>' +
-          '<td class="tg-za14" colspan="2">KELAS JALAN </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">JALAN RAYA UTAMA</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[4] && pecahCheckBoxCEFT[4] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">LINGKUNGAN/KOMPLEK </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[5] && pecahCheckBoxCEFT[5] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">GANG </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[6] && pecahCheckBoxCEFT[6] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SETAPAK</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[7] && pecahCheckBoxCEFT[7] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 2</td>' +
-          '<td class="tg-0pky">20%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[1] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft2" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">3</td>' +
-          '<td class="tg-za14" colspan="2">PEMILIK AGUNAN </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">AN. SENDIRI / ISTERI & SUAMI / PENGURUS PERUSAHAAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[8] && pecahCheckBoxCEFT[8] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'3\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">AN. ANAK KANDUNG/TIRI / SAUDARA KANDUNG/TIRI/AYAH KANDUNG</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[9] && pecahCheckBoxCEFT[9] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'3\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">AN. KELUARGA LAIN </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[10] && pecahCheckBoxCEFT[10] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'3\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">AN. PIHAK KETIGA</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[11] && pecahCheckBoxCEFT[11] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'3\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 3</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[2] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft3" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">4</td>' +
-          '<td class="tg-za14" colspan="2">LINGKUNGAN </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">PERKANTORAN & PERDAGANGAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[12] && pecahCheckBoxCEFT[12] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'4\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">PERUMAHAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[13] && pecahCheckBoxCEFT[13] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'4\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">PERTANIAN/PERKEBUNAN/PETERNAKAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[14] && pecahCheckBoxCEFT[14] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'4\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">LAINNYA</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[15] && pecahCheckBoxCEFT[15] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'4\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 4</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[3] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft4" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">5</td>' +
-          '<td class="tg-za14" colspan="2">LETAK / LOKASI BERKAITAN DGN PUSAT BISNIS </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SANGAT DEKAT ( 0 M S/D 500 M)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[16] && pecahCheckBoxCEFT[16] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">DEKAT (> 500 M S/D 1 KM)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[17] && pecahCheckBoxCEFT[17] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">CUKUP DEKAT (> 1 KM S/D 2 KM) </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[18] && pecahCheckBoxCEFT[18] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">JAUH (> 2 KM)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[19] && pecahCheckBoxCEFT[19] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 5</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[4] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft5" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">6</td>' +
-          '<td class="tg-za14" colspan="2">KELENGKAPAN FASUM / FASOS (DENGAN JARAK < 2 KM ) </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SANGAT LENGKAP (> 6 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[20] && pecahCheckBoxCEFT[20] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">LENGKAP (5 S/D 6 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[21] && pecahCheckBoxCEFT[21] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">CUKUP (3 S/D 4 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[22] && pecahCheckBoxCEFT[22] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">TIDAK LENGKAP (S/D 2 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[23] && pecahCheckBoxCEFT[23] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 6</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[5] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft6" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="4">7</td>' +
-          '<td class="tg-0pky" colspan="2">BENTUK TANAH</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">SEGI EMPAT / PERSEGI PANJANG</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[24] && pecahCheckBoxCEFT[24] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'7\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">SEGI BANYAK</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[25] && pecahCheckBoxCEFT[25] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'7\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">LAINNYA (SEGITIGA, TIDAK BERATURAN,DLL)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[26] && pecahCheckBoxCEFT[26] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'7\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 7</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[6] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft7" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">8</td>' +
-          '<td class="tg-za14" colspan="2">KONTUR TANAH</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">RATA</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[27] && pecahCheckBoxCEFT[27] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'8\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">BERGELOMBANG</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[28] && pecahCheckBoxCEFT[28] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="75" onchange="showValueCEFT(this,\'8\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">BERTINGKAT </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[29] && pecahCheckBoxCEFT[29] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'8\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">LAINNYA (KOMBINASI)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[30] && pecahCheckBoxCEFT[30] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="25" onchange="showValueCEFT(this,\'8\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 8</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[7] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft8" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="3">9</td>' +
-          '<td class="tg-0pky" colspan="2">JENIS TANAH</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">KERAS/DARAT/MATANG</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[31] && pecahCheckBoxCEFT[31] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="100" onchange="showValueCEFT(this,\'9\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">RAWA/GAMBUT/BERAIR</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxceft' +
-          counter_tanah_loop +
-          '" ' +
-          (pecahCheckBoxCEFT[32] && pecahCheckBoxCEFT[32] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxceft[]" value="50" onchange="showValueCEFT(this,\'9\',\'0.05\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 9</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input  value="' +
-          (pecahHasilCEFT[8] || "") +
-          '" id="hasil' +
-          counter_tanah_loop +
-          'ceft9" name="hasil_checkbox_ceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah CEF Tanah</td>' +
-          '<td class="tg-0pky">100%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasiltotalCEFT' +
-          counter_tanah_loop +
-          '" value="' +
-          (TotalCEFT[counter_tanah_loop] || "") +
-          '" name="hasiltotalceft[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "</tbody>" +
-          "</table>" +
-          "</div>" +
-          '<div class="col-lg-6 table-responsive">' +
-          //CEF BANGUNAN
-          '<h3 class="text-center text-danger">Penetapan CEF BANGUNAN</h3>' +
-          '<table class="tg">' +
-          "<thead>" +
-          "<tr>" +
-          '<th class="tg-0pky">No</th>' +
-          '<th class="tg-uzvj" colspan="2">Kriteria</th>' +
-          '<th class="tg-0pky">Bobot</th>' +
-          '<th class="tg-0pky">Parameter</th>' +
-          '<th class="tg-0pky">Nilai</th>' +
-          '<th class="tg-0pky">CEF</th>' +
-          "</tr>" +
-          "</thead>" +
-          "<tbody>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="4">1</td>' +
-          '<td class="tg-0pky" colspan="2">PERIJINAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">MEMILIKI IMB</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[0] && pecahCheckBoxCEFB[0] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'1\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">MEMILIKI IMB, NAMUN LUAS BANGUNAN TIDAK SESUAI DENGAN KONDISI SEBELUMNYA</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[1] && pecahCheckBoxCEFB[1] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'1\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          "<td>-</td>" +
-          '<td class="tg-za14">TIDAK MEMILIKI</td>' +
-          "<td></td>" +
-          "<td>50</td>" +
-          '<td><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[2] && pecahCheckBoxCEFB[2] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'1\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          "<td></td>" +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 1</td>' +
-          '<td class="tg-0pky">20%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb1" value="' +
-          (pecahHasilCEFB[0] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">2</td>' +
-          '<td class="tg-za14" colspan="2">JENIS BANGUNAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">BETON</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[3] && pecahCheckBoxCEFB[3] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SEMI PERMANEN(KOMBINASI KAYU+BETON) </td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[4] && pecahCheckBoxCEFB[4] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">KAYU</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[5] && pecahCheckBoxCEFB[5] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">MASIH DALAM PROSES</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[6] && pecahCheckBoxCEFB[6] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'2\',\'0.2\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 2</td>' +
-          '<td class="tg-0pky">20%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb2" value="' +
-          (pecahHasilCEFB[1] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">3</td>' +
-          '<td class="tg-za14" colspan="2">USIA BANGUNAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">S.D. 5 TAHUN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[7] && pecahCheckBoxCEFB[7] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'3\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">>5 TAHUN S.D. 10 TAHUN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[8] && pecahCheckBoxCEFB[8] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'3\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">>10 TAHUN S.D. 15 TAHUN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[9] && pecahCheckBoxCEFB[9] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'3\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">>15 TAHUN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[10] && pecahCheckBoxCEFB[10] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'3\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 3</td>' +
-          '<td class="tg-0pky">15%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb3" value="' +
-          (pecahHasilCEFB[2] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">4</td>' +
-          '<td class="tg-za14" colspan="2">KONDISI BANGUNAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SANGAT BAIK</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[11] && pecahCheckBoxCEFB[11] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'4\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">BAIK</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[12] && pecahCheckBoxCEFB[12] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'4\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">CUKUP</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[13] && pecahCheckBoxCEFB[13] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'4\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">KURANG</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[14] && pecahCheckBoxCEFB[14] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'4\',\'0.15\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 4</td>' +
-          '<td class="tg-0pky">15%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb4" value="' +
-          (pecahHasilCEFB[3] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">5</td>' +
-          '<td class="tg-za14" colspan="2">PENGGUNAAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">RUMAH TEMPAT TINGGAL</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[15] && pecahCheckBoxCEFB[15] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">RUKO/RUKAN/TOKO</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[16] && pecahCheckBoxCEFB[16] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">KANTOR</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[17] && pecahCheckBoxCEFB[17] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">LAINNYA (GUDANG,DLL)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[18] && pecahCheckBoxCEFB[18] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'5\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 5</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb5" value="' +
-          (pecahHasilCEFB[4] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">6</td>' +
-          '<td class="tg-za14" colspan="2">TINGGI LANTAI BANGUNAN TERHADAP JALAN</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">TINGGI (>100CM)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[19] && pecahCheckBoxCEFB[19] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SEDANG (51CM S.D. 100CM)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[20] && pecahCheckBoxCEFB[20] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">RENDAH (0 S.D. 50CM)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[21] && pecahCheckBoxCEFB[21] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-za14">SANGAT RENDAH (DIBAWAH JALAN)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">25</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[22] && pecahCheckBoxCEFB[22] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="25" onchange="showValueCEFB(this,\'6\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 6</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb6" value="' +
-          (pecahHasilCEFB[5] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky" rowspan="5">7</td>' +
-          '<td class="tg-0pky" colspan="2">KELANGKAPAN FASILITAS</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">SANGAT LENGKAP (>6 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">100</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[23] && pecahCheckBoxCEFB[23] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="100" onchange="showValueCEFB(this,\'7\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">LENGKAP (5 S.D. 6 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">75</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[24] && pecahCheckBoxCEFB[24] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="75" onchange="showValueCEFB(this,\'7\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">CUKUP (3 S.D. 4 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[25] && pecahCheckBoxCEFB[25] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky">-</td>' +
-          '<td class="tg-0pky">TIDAK LENGKAP (S.D. 2 FASILITAS)</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">50</td>' +
-          '<td class="tg-0pky"><input type="checkbox" id="checkboxcefb' +
-          counter_tanah_loop +
-          '"' +
-          (pecahCheckBoxCEFB[26] && pecahCheckBoxCEFB[26] !== "0"
-            ? "checked"
-            : "") +
-          ' name="checkboxcefb[]" value="50" onchange="showValueCEFB(this,\'7\',\'0.1\',' +
-          counter_tanah_loop +
-          ')"></td>' +
-          '<td class="tg-0pky"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah Sub Point 7</td>' +
-          '<td class="tg-0pky">10%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasil' +
-          counter_tanah_loop +
-          'cefb7" value="' +
-          (pecahHasilCEFB[6] || "") +
-          '" name="hasil_checkbox_cefb[]" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "<tr>" +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky">Jumlah CEF Bangunan</td>' +
-          '<td class="tg-0pky">100%</td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"></td>' +
-          '<td class="tg-0pky"><input id="hasiltotalCEFB' +
-          counter_tanah_loop +
-          '" name="hasiltotalcefb[]" value="' +
-          (TotalCEFB[counter_tanah_loop] || "") +
-          '" style="display: inline-block; width: 45px; margin-left: 10px;"></td>' +
-          "</tr>" +
-          "</tbody>" +
-          "</table>" +
-          "</div>" +
-          "</div>";
-
-        // Menambahkan deskripsi ke dalam DOM
-        $("#ceftb").append(inputan_tanah);
+      for (const it of items) {
+        const sel = String(selected) === String(it.value) ? "selected" : "";
+        html += `<option value="${it.value}" ${sel}>${it.label}</option>`;
       }
 
-      // }
-      //   }
-      // }
+      html += `</select>`;
+      return html;
+    }
+
+    function legacySelected(arr, indexes, fallback = "") {
+      for (const i of indexes) {
+        const v = arr?.[i];
+        if (
+          v !== undefined &&
+          v !== null &&
+          String(v) !== "0" &&
+          String(v) !== ""
+        ) {
+          return String(v);
+        }
+      }
+      return String(fallback || "");
+    }
+    function isNewFormat(arr, expectedLen) {
+      if (!Array.isArray(arr)) return false;
+      if (arr.length !== expectedLen) return false;
+      // semua elemen angka (atau kosong masih boleh kalau kamu simpan kosong)
+      return arr.every((v) => v === "" || /^[0-9]+$/.test(String(v)));
+    }
+
+    function legacySelected(arr, indexes, fallback = "") {
+      for (const i of indexes) {
+        const v = arr?.[i];
+        if (
+          v !== undefined &&
+          v !== null &&
+          String(v) !== "0" &&
+          String(v) !== ""
+        ) {
+          return String(v);
+        }
+      }
+      return String(fallback || "");
+    }
+
+    // =========================
+    // TABLE TANAH (EDIT): tanpa kolom bobot, tanpa hasil subpoint
+    // hanya dropdown + total
+    // =========================
+    function buildCeftTableEdit(loopIndex, pecahCheckBoxCEFT, totalCeftValue) {
+      let ceftSelected;
+
+      if (isNewFormat(pecahCheckBoxCEFT, 9)) {
+        // FORMAT BARU: 9 subpoint berurutan
+        ceftSelected = {
+          1: String(pecahCheckBoxCEFT[0] || ""),
+          2: String(pecahCheckBoxCEFT[1] || ""),
+          3: String(pecahCheckBoxCEFT[2] || ""),
+          4: String(pecahCheckBoxCEFT[3] || ""),
+          5: String(pecahCheckBoxCEFT[4] || ""),
+          6: String(pecahCheckBoxCEFT[5] || ""),
+          7: String(pecahCheckBoxCEFT[6] || ""),
+          8: String(pecahCheckBoxCEFT[7] || ""),
+          9: String(pecahCheckBoxCEFT[8] || ""),
+        };
+      } else {
+        // FORMAT LAMA: index checkbox panjang (0..32)
+        ceftSelected = {
+          1: legacySelected(pecahCheckBoxCEFT, [0, 1, 2, 3]),
+          2: legacySelected(pecahCheckBoxCEFT, [4, 5, 6, 7]),
+          3: legacySelected(pecahCheckBoxCEFT, [8, 9, 10, 11]),
+          4: legacySelected(pecahCheckBoxCEFT, [12, 13, 14, 15]),
+          5: legacySelected(pecahCheckBoxCEFT, [16, 17, 18, 19]),
+          6: legacySelected(pecahCheckBoxCEFT, [20, 21, 22, 23]),
+          7: legacySelected(pecahCheckBoxCEFT, [24, 25, 26]),
+          8: legacySelected(pecahCheckBoxCEFT, [27, 28, 29, 30]),
+          9: legacySelected(pecahCheckBoxCEFT, [31, 32]),
+        };
+      }
+
+      return `
+        <h3 class="text-center text-danger">Penetapan CEF TANAH</h3>
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-0pky">No</th>
+              <th class="tg-uzvj" colspan="2">Kriteria</th>
+              <th class="tg-0pky">Parameter</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td class="tg-0pky">1</td>
+              <td class="tg-0pky" colspan="2">BUKTI KEPEMILIKAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp1`,
+                  selected: ceftSelected[1],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "SHM", value: "100" },
+                    { label: "SHGB/SHGU/STRATA TITLE", value: "75" },
+                    { label: "SKPT/SURAT UKUR", value: "50" },
+                    { label: "HAK PAKAI/SEGEL/SKPT PENGUASAAN", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">2</td>
+              <td class="tg-za14" colspan="2">KELAS JALAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp2`,
+                  selected: ceftSelected[2],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "JALAN RAYA UTAMA", value: "100" },
+                    { label: "LINGKUNGAN/KOMPLEK", value: "75" },
+                    { label: "GANG", value: "50" },
+                    { label: "SETAPAK", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">3</td>
+              <td class="tg-za14" colspan="2">PEMILIK AGUNAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp3`,
+                  selected: ceftSelected[3],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    {
+                      label: "AN. SENDIRI / ISTERI & SUAMI / PENGURUS",
+                      value: "100",
+                    },
+                    { label: "AN. ANAK/SAUDARA/AYAH KANDUNG", value: "75" },
+                    { label: "AN. KELUARGA LAIN", value: "50" },
+                    { label: "AN. PIHAK KETIGA", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">4</td>
+              <td class="tg-za14" colspan="2">LINGKUNGAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp4`,
+                  selected: ceftSelected[4],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "PERKANTORAN & PERDAGANGAN", value: "100" },
+                    { label: "PERUMAHAN", value: "75" },
+                    { label: "PERTANIAN/PERKEBUNAN/PETERNAKAN", value: "50" },
+                    { label: "LAINNYA", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">5</td>
+              <td class="tg-za14" colspan="2">LETAK / LOKASI TERHADAP PUSAT BISNIS</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp5`,
+                  selected: ceftSelected[5],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "SANGAT DEKAT (0-500M)", value: "100" },
+                    { label: "DEKAT (>500M-1KM)", value: "75" },
+                    { label: "CUKUP DEKAT (>1-2KM)", value: "50" },
+                    { label: "JAUH (>2KM)", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">6</td>
+              <td class="tg-za14" colspan="2">KELENGKAPAN FASUM / FASOS (JARAK &lt; 2 KM)</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp6`,
+                  selected: ceftSelected[6],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "SANGAT LENGKAP (>6 FASILITAS)", value: "100" },
+                    { label: "LENGKAP (5-6 FASILITAS)", value: "75" },
+                    { label: "CUKUP (3-4 FASILITAS)", value: "50" },
+                    { label: "TIDAK LENGKAP (≤2 FASILITAS)", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">7</td>
+              <td class="tg-0pky" colspan="2">BENTUK TANAH</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp7`,
+                  selected: ceftSelected[7],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "SEGI EMPAT / PERSEGI PANJANG", value: "100" },
+                    { label: "SEGI BANYAK", value: "75" },
+                    {
+                      label: "LAINNYA (SEGITIGA/TIDAK BERATURAN)",
+                      value: "50",
+                    },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">8</td>
+              <td class="tg-za14" colspan="2">KONTUR TANAH</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp8`,
+                  selected: ceftSelected[8],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "RATA", value: "100" },
+                    { label: "BERGELOMBANG", value: "75" },
+                    { label: "BERTINGKAT", value: "50" },
+                    { label: "LAINNYA/KOMBINASI", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">9</td>
+              <td class="tg-0pky" colspan="2">JENIS TANAH</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "ceft_subpoint[]",
+                  id: `ceft_${loopIndex}_sp9`,
+                  selected: ceftSelected[9],
+                  onchange: `recalcCEFT(${loopIndex})`,
+                  items: [
+                    { label: "KERAS/DARAT/MATANG", value: "100" },
+                    { label: "RAWA/GAMBUT/BERAIR", value: "75" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky" colspan="3" style="text-align:right;"><b>Jumlah CEF Tanah</b></td>
+              <td class="tg-0pky" colspan="2">
+                <input readonly
+                  id="hasiltotalCEFT${loopIndex}"
+                  name="hasiltotalceft[]"
+                  value="${String(totalCeftValue || "")}"
+                  style="display:inline-block;width:80px;">
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      `;
+    }
+
+    // =========================
+    // TABLE BANGUNAN (EDIT): sama (tanpa bobot, tanpa hasil subpoint)
+    // =========================
+    function buildCefbTableEdit(loopIndex, pecahCheckBoxCEFB, totalCefbValue) {
+      let cefbSelected;
+
+      if (isNewFormat(pecahCheckBoxCEFB, 7)) {
+        // FORMAT BARU: 7 subpoint berurutan
+        cefbSelected = {
+          1: String(pecahCheckBoxCEFB[0] || ""),
+          2: String(pecahCheckBoxCEFB[1] || ""),
+          3: String(pecahCheckBoxCEFB[2] || ""),
+          4: String(pecahCheckBoxCEFB[3] || ""),
+          5: String(pecahCheckBoxCEFB[4] || ""),
+          6: String(pecahCheckBoxCEFB[5] || ""),
+          7: String(pecahCheckBoxCEFB[6] || ""),
+        };
+      } else {
+        // FORMAT LAMA
+        cefbSelected = {
+          1: legacySelected(pecahCheckBoxCEFB, [0, 1, 2]),
+          2: legacySelected(pecahCheckBoxCEFB, [3, 4, 5, 6]),
+          3: legacySelected(pecahCheckBoxCEFB, [7, 8, 9, 10]),
+          4: legacySelected(pecahCheckBoxCEFB, [11, 12, 13, 14]),
+          5: legacySelected(pecahCheckBoxCEFB, [15, 16, 17, 18]),
+          6: legacySelected(pecahCheckBoxCEFB, [19, 20, 21, 22]),
+          7: legacySelected(pecahCheckBoxCEFB, [23, 24, 25, 26]),
+        };
+      }
+
+      return `
+        <h3 class="text-center text-danger">Penetapan CEF BANGUNAN</h3>
+        <table class="tg">
+          <thead>
+            <tr>
+              <th class="tg-0pky">No</th>
+              <th class="tg-uzvj" colspan="2">Kriteria</th>
+              <th class="tg-0pky">Parameter</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td class="tg-0pky">1</td>
+              <td class="tg-0pky" colspan="2">PERIJINAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp1`,
+                  selected: cefbSelected[1],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "MEMILIKI IMB", value: "100" },
+                    { label: "IMB ADA, LUAS TIDAK SESUAI", value: "75" },
+                    { label: "TIDAK MEMILIKI", value: "50" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">2</td>
+              <td class="tg-za14" colspan="2">JENIS BANGUNAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp2`,
+                  selected: cefbSelected[2],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "BETON", value: "100" },
+                    { label: "SEMI PERMANEN", value: "75" },
+                    { label: "KAYU", value: "50" },
+                    { label: "MASIH DALAM PROSES", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">3</td>
+              <td class="tg-za14" colspan="2">USIA BANGUNAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp3`,
+                  selected: cefbSelected[3],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "S.D. 5 TAHUN", value: "100" },
+                    { label: ">5 S.D. 10 TAHUN", value: "75" },
+                    { label: ">10 S.D. 15 TAHUN", value: "50" },
+                    { label: ">15 TAHUN", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">4</td>
+              <td class="tg-za14" colspan="2">KONDISI BANGUNAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp4`,
+                  selected: cefbSelected[4],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "SANGAT BAIK", value: "100" },
+                    { label: "BAIK", value: "75" },
+                    { label: "CUKUP", value: "50" },
+                    { label: "KURANG", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">5</td>
+              <td class="tg-za14" colspan="2">PENGGUNAAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp5`,
+                  selected: cefbSelected[5],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "RUMAH TEMPAT TINGGAL", value: "100" },
+                    { label: "RUKO/RUKAN/TOKO", value: "75" },
+                    { label: "KANTOR", value: "50" },
+                    { label: "LAINNYA (GUDANG, DLL)", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">6</td>
+              <td class="tg-za14" colspan="2">TINGGI LANTAI BANGUNAN TERHADAP JALAN</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp6`,
+                  selected: cefbSelected[6],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "TINGGI (>100CM)", value: "100" },
+                    { label: "SEDANG (51-100CM)", value: "75" },
+                    { label: "RENDAH (0-50CM)", value: "50" },
+                    { label: "SANGAT RENDAH (DIBAWAH JALAN)", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky">7</td>
+              <td class="tg-0pky" colspan="2">KELENGKAPAN FASILITAS</td>
+              <td class="tg-0pky">
+                ${buildSelectGroup({
+                  name: "cefb_subpoint[]",
+                  id: `cefb_${loopIndex}_sp7`,
+                  selected: cefbSelected[7],
+                  onchange: `recalcCEFB(${loopIndex})`,
+                  items: [
+                    { label: "SANGAT LENGKAP (>6 FASILITAS)", value: "100" },
+                    { label: "LENGKAP (5-6 FASILITAS)", value: "75" },
+                    { label: "CUKUP (3-4 FASILITAS)", value: "50" },
+                    { label: "TIDAK LENGKAP (≤2 FASILITAS)", value: "25" },
+                  ],
+                })}
+              </td>
+            </tr>
+
+            <tr>
+              <td class="tg-0pky" colspan="3" style="text-align:right;"><b>Jumlah CEF Bangunan</b></td>
+              <td class="tg-0pky" colspan="2">
+                <input readonly
+                  id="hasiltotalCEFB${loopIndex}"
+                  name="hasiltotalcefb[]"
+                  value="${String(totalCefbValue || "")}"
+                  style="display:inline-block;width:80px;">
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      `;
+    }
+
+    // =========================
+    // render per loop
+    // =========================
+    const CheckBoxCEFT = (data.checkboxceft || "").split("|");
+    const TotalCEFT = (data.totalceft || "").split(";");
+
+    const CheckBoxCEFB = (data.checkboxcefb || "").split("|");
+    const TotalCEFB = (data.totalcefb || "").split(";");
+
+    for (let i = 0; i < tanahAtauTanahBangunanCount; i++) {
+      const pecahCheckBoxCEFT = CheckBoxCEFT[i]
+        ? CheckBoxCEFT[i].split(";")
+        : [];
+      const pecahCheckBoxCEFB = CheckBoxCEFB[i]
+        ? CheckBoxCEFB[i].split(";")
+        : [];
+
+      const totalCeftValue = TotalCEFT[i] !== undefined ? TotalCEFT[i] : "";
+      const totalCefbValue = TotalCEFB[i] !== undefined ? TotalCEFB[i] : "";
+
+      const html = `
+        <div class="form-group row">
+          <div class="col-12 table-responsive mb-4">
+            ${buildCeftTableEdit(i, pecahCheckBoxCEFT, totalCeftValue)}
+          </div>
+          <div class="col-12 table-responsive">
+            ${buildCefbTableEdit(i, pecahCheckBoxCEFB, totalCefbValue)}
+          </div>
+        </div>
+      `;
+
+      $("#ceftb").append(html);
+      // window.recalcCEFT(i);
+      // window.recalcCEFB(i);
     }
   });
 }
@@ -6192,6 +6154,8 @@ function hitungPP(
     );
     $("#koreksi_biaya_fak_modal").val(koreksi);
     $("#jumlah_fak_modal").val(jumlah);
+    var formattedValuejumlah_fak_modal = formatNumber(jumlah);
+    $("#jumlah_fak_modal_separators").text(formattedValuejumlah_fak_modal);
   });
 }
 
@@ -7169,7 +7133,7 @@ function add_faa_tb() {
     combineValues(luas_persegi_tanah_tanah_faa_tb);
   document.querySelector('[name="hasilperhitunganpenilaiantanahfaatb"]').value =
     combineValues(hasil_perhitungan_penilaian_tanah_faa_tb);
-  
+
   document.querySelector('[name="persentaseceftanahfaatb"]').value =
     combineValues(persentase_cef_tanah_faa_tb);
   document.querySelector('[name="ceftanahfaatb"]').value =
@@ -7807,22 +7771,128 @@ function post_lap_rl(method, data_input, button) {
 }
 
 function data_data_ceftb() {
-  nilaicheckboxceft();
-  hasilcheckboxceft();
-  hasiltotalceft();
-  nilaicheckboxcefb();
-  hasilcheckboxcefb();
-  hasiltotalcefb();
-  var data_ceftb1 = {
-    kd_data: $("#kd_data").val(),
-    nilaicheckboxceft: $("#nilaicheckboxceft").val(),
-    hasilcheckboxceft: $("#hasilcheckboxceft").val(),
-    hasiltotalCEFT: $("#hasiltotalceft").val(),
-    nilaicheckboxcefb: $("#nilaicheckboxcefb").val(),
-    hasilcheckboxcefb: $("#hasilcheckboxcefb").val(),
-    hasiltotalCEFB: $("#hasiltotalcefb").val(),
+  // Panggil generator lama kalau ada (biar kompatibel)
+  try {
+    if (typeof nilaicheckboxceft === "function") nilaicheckboxceft();
+  } catch (e) {}
+  try {
+    if (typeof hasilcheckboxceft === "function") hasilcheckboxceft();
+  } catch (e) {}
+  try {
+    if (typeof hasiltotalceft === "function") hasiltotalceft();
+  } catch (e) {}
+  try {
+    if (typeof nilaicheckboxcefb === "function") nilaicheckboxcefb();
+  } catch (e) {}
+  try {
+    if (typeof hasilcheckboxcefb === "function") hasilcheckboxcefb();
+  } catch (e) {}
+  try {
+    if (typeof hasiltotalcefb === "function") hasiltotalcefb();
+  } catch (e) {}
+
+  // =========================
+  // helper
+  // =========================
+  const getVal = (id) => {
+    const el = document.getElementById(id);
+    return el ? String(el.value ?? "").trim() : "";
   };
-  return data_ceftb1;
+
+  // Hitung jumlah loop dari elemen total yang ada
+  const countCEFT = document.querySelectorAll(
+    'input[id^="hasiltotalCEFT"]'
+  ).length;
+  const countCEFB = document.querySelectorAll(
+    'input[id^="hasiltotalCEFB"]'
+  ).length;
+  const loopCount = Math.max(countCEFT, countCEFB, 0);
+
+  // =========================
+  // kumpulkan TOTAL (dipisah ;)
+  // =========================
+  const totalsCEFT = [];
+  const totalsCEFB = [];
+
+  for (let i = 0; i < loopCount; i++) {
+    totalsCEFT.push(getVal(`hasiltotalCEFT${i}`)); // hasil total tanah per loop
+    totalsCEFB.push(getVal(`hasiltotalCEFB${i}`)); // hasil total bangunan per loop
+  }
+
+  // =========================
+  // kumpulkan NILAI dropdown
+  // format legacy: per-loop dipisah |, per-subpoint dipisah ;
+  // =========================
+  const nilaiCEFT_perLoop = []; // 9 subpoint
+  const nilaiCEFB_perLoop = []; // 7 subpoint
+
+  for (let i = 0; i < loopCount; i++) {
+    const ceftSp = [];
+    for (let sp = 1; sp <= 9; sp++) {
+      ceftSp.push(getVal(`ceft_${i}_sp${sp}`)); // nilai 0-100
+    }
+    nilaiCEFT_perLoop.push(ceftSp.join(";"));
+
+    const cefbSp = [];
+    for (let sp = 1; sp <= 7; sp++) {
+      cefbSp.push(getVal(`cefb_${i}_sp${sp}`));
+    }
+    nilaiCEFB_perLoop.push(cefbSp.join(";"));
+  }
+
+  // =========================
+  // kumpulkan HASIL subpoint (kalau masih dipakai)
+  // format legacy: per-loop dipisah |, per-subpoint dipisah ;
+  // =========================
+  const hasilCEFT_perLoop = [];
+  const hasilCEFB_perLoop = [];
+
+  for (let i = 0; i < loopCount; i++) {
+    const hT = [];
+    for (let sp = 1; sp <= 9; sp++) {
+      hT.push(getVal(`hasil${i}ceft${sp}`)); // hidden input
+    }
+    hasilCEFT_perLoop.push(hT.join(";"));
+
+    const hB = [];
+    for (let sp = 1; sp <= 7; sp++) {
+      hB.push(getVal(`hasil${i}cefb${sp}`));
+    }
+    hasilCEFB_perLoop.push(hB.join(";"));
+  }
+
+  // Final string sesuai pola lama
+  const nilaicheckboxceft_new = nilaiCEFT_perLoop.join("|");
+  const nilaicheckboxcefb_new = nilaiCEFB_perLoop.join("|");
+  const hasilcheckboxceft_new = hasilCEFT_perLoop.join("|");
+  const hasilcheckboxcefb_new = hasilCEFB_perLoop.join("|");
+
+  const hasiltotalCEFT_new = totalsCEFT.join(";");
+  const hasiltotalCEFB_new = totalsCEFB.join(";");
+
+  // Kalau kamu masih punya hidden field lama dan mau tetap diisi (opsional)
+  if ($("#nilaicheckboxceft").length)
+    $("#nilaicheckboxceft").val(nilaicheckboxceft_new);
+  if ($("#hasilcheckboxceft").length)
+    $("#hasilcheckboxceft").val(hasilcheckboxceft_new);
+  if ($("#hasiltotalceft").length) $("#hasiltotalceft").val(hasiltotalCEFT_new);
+
+  if ($("#nilaicheckboxcefb").length)
+    $("#nilaicheckboxcefb").val(nilaicheckboxcefb_new);
+  if ($("#hasilcheckboxcefb").length)
+    $("#hasilcheckboxcefb").val(hasilcheckboxcefb_new);
+  if ($("#hasiltotalcefb").length) $("#hasiltotalcefb").val(hasiltotalCEFB_new);
+
+  // Data yang dikirim
+  return {
+    kd_data: $("#kd_data").val(),
+    nilaicheckboxceft: nilaicheckboxceft_new,
+    hasilcheckboxceft: hasilcheckboxceft_new,
+    hasiltotalCEFT: hasiltotalCEFT_new,
+    nilaicheckboxcefb: nilaicheckboxcefb_new,
+    hasilcheckboxcefb: hasilcheckboxcefb_new,
+    hasiltotalCEFB: hasiltotalCEFB_new,
+  };
 }
 
 function post_ceftb(method, data_input, button) {
@@ -8369,6 +8439,7 @@ function checkRecap(tabel, kd_data, id_kolom) {
       kd_data: kd_data,
     },
     success: function (response) {
+      console.log(tabel);
       if (response.status === "Oke") {
         $("#" + id_kolom + "1").show(); // Tampilkan Oke
         $("#" + id_kolom + "2").hide(); // Sembunyikan Not Oke

@@ -82,10 +82,10 @@
                             <input id="cabang_tambah" name="cabang_tambah" type="hidden">
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-lg-12">
-                        <span id="informasi"></span>
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <span id="informasi"></span>
+                        </div>
                     </div>
                 </div>
 
@@ -94,6 +94,105 @@
                     <input id="btns_92" class="btn btn-sm btn-primary" type="submit" value="Simpan">
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div id="modal_penarikan_generate" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-hidden="true" style="z-index: -1;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header" style="padding:10px">
+                    <h1 class="modal-title">Generate Dokumen</h1>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="text-center text-danger">Cetak Dokumen Penarikan</h2>
+                        <input type="hidden" id="id_generate">
+                        <input type="hidden" id="termin_gen">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Proses</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Formulir Call Report (FCR)</td>
+                                    <td><button type="button" class="btn btn-link generate-dokumen"
+                                            data-id="fcr_gen">Generate</button></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="921_fb" class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Tutup</button>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- history return -->
+<div id="modal_return" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
+    style="z-index: -1;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header" style="padding:10px">
+                    <h1 class="modal-title">History Return</h1>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- <h2 class="text-center text-danger">History Return</h2> -->
+                        <table id="tabel_return" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Direturn Oleh</th>
+                                    <th scope="col">Level</th>
+                                    <th scope="col">Posisi Progress</th>
+                                    <th scope="col">Progress</th>
+                                    <th scope="col">Catatan</th>
+                                    <th scope="col">Unit Kerja</th>
+                                    <th scope="col">Waktu</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="921_fb" class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Tutup</button>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+
         </div>
     </div>
 </div>
@@ -137,7 +236,7 @@
                     if (type === 'display' || type === 'filter') {
                         if (!data) return 'Rp 0,00';
                         let number = parseFloat(data);
-                        return 'Rp ' + number.toLocaleString('id-ID', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                        return 'Rp ' + number.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                     }
                     return data;
                 }
@@ -214,8 +313,37 @@
             ]
 
         });
+        $(".generate-dokumen").on("click", function () {
+            var id_dok = $(this).data('id');
+            var termin = $(this).data('termin');
+            generateDok(id_dok,termin)
+            // Lakukan sesuatu dengan nilai data-id yang telah diambil
+            // console.log('Nilai data-id:', data_id);
+        });
 
     });
+    function generate_dok(kd_data,termin) {
+        $('#modal_penarikan_generate').modal('show');
+        $('#id_generate').val(CryptoJS.SHA1(kd_data));
+        $('#termin_gen').val(termin);
+        // alert(kd_data)
+
+    }
+    function generateDok(param,termin) {
+        // Ambil nilai kd_data dari $data_entry
+        var id_dok = CryptoJS.SHA1(param);
+        // alert(id_dok)
+        var kd_data = $('#id_generate').val()
+        var termin = $('#termin_gen').val()
+
+        console.log("okokokok:", kd_data);
+
+        // Bangun URL dengan base_url dan kd_data
+        var url = "<?php echo base_url() ?>penarikan/generate-dokumen/" + kd_data + "/" + id_dok + "/" + termin;
+
+        // Buka tautan dalam tab baru
+        window.open(url, '_blank');
+    }
 
 
     function tambah_penarikan() {
@@ -223,7 +351,7 @@
 
         $("#modal_penarikan_tambah").modal('show')
     }
-    
+
     $(document).ready(function () {
         // 1️⃣ Ambil data nasabah dari server
         $.ajax({

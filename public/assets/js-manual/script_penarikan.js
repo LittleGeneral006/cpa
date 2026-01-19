@@ -17,6 +17,8 @@ $.ajax({
     console.log("Dokumen Penarikan:", res.dok_penarikan);
     console.log("FCR Penarikan:", res.fcr_penarikan);
     console.log("MPDKK:", res.mpdkk);
+    console.log("Penarikan:", res.penarikan);
+    // console.log("status:", res.is_readonly);
 
     const de = res.data_entry || {};
     const di = res.data_induk || {};
@@ -79,10 +81,12 @@ $.ajax({
     // FCR
     $("#nomor").val(res.fcr_penarikan.nomor);
     $("#tanggal").val(res.fcr_penarikan.tanggal);
-    $("#kd_unit_kerja").val(res.data_entry.unit_kerja);
+    $("#kd_unit_kerja").val(res.data_entry.kd_unit_kerja);
     $("#tanggal_kunjungan").val(res.fcr_penarikan.tanggal_kunjungan);
     $("#lokasi_yang_dikunjungi").val(res.fcr_penarikan.lokasi_yang_dikunjungi);
     $("#tujuan_kunjungan").val(res.fcr_penarikan.tujuan_kunjungan);
+    $("#contact_person").val(res.fcr_penarikan.contact_person);
+    $("#kunjungan_oleh").val(res.fcr_penarikan.kunjungan_oleh);
     $("#hasil_kunjungan").val(res.fcr_penarikan.hasil_kunjungan);
     $("#tindak_lanjut").val(res.fcr_penarikan.tindak_lanjut);
     $("#nama_debitur").val(res.data_entry.nama_debitur);
@@ -113,7 +117,15 @@ $.ajax({
     $("#nama_direktur_mpdkk").val(res.data_entry.nama_direktur);
     $("#key_person_mpdkk").val(res.data_entry.key_person);
     $("#alamat_kantor_mpdkk").val(res.data_entry.alamat_kantor);
+    $("#telepon_fax_mpdkk").val(res.mpdkk.telepon_fax_mpdkk);
     $("#bidang_usaha_mpdkk").val(res.data_entry.bidang_usaha);
+    $("#nomor_pk_mpdkk").val(res.mpdkk.nomor_pk_mpdkk);
+    $("#tanggal_pk_mpdkk").val(res.mpdkk.tanggal_pk_mpdkk);
+    $("#jangka_waktu_kredit_mpdkk").val(res.mpdkk.jangka_waktu_kredit_mpdkk);
+    $("#kualitas_kredit_mpdkk").val(res.mpdkk.kualitas_kredit_mpdkk);
+    $("#no_surat_permohonan_mpdkk").val(res.mpdkk.no_surat_permohonan_mpdkk);
+    $("#tgl_permohonan_mpdkk").val(res.mpdkk.tgl_permohonan_mpdkk);
+  
     $("#penarikan_tahap_mpdkk").val(res.dok_penarikan.termin);
     $("#nama_proyek_mpdkk").val(res.data_entry.nama_proyek);
     $("#no_spk_mpdkk").val(res.data_entry.nomor_spk);
@@ -124,13 +136,45 @@ $.ajax({
     $("#plafond_kredit_mpdkk").val(res.fak_rl.kredit_bank_fak_rl);
     $("#jangka_waktu_proyek_mpdkk").val(res.fak_data.lama_pelaksanaan);
     $("#persentase_pemotongan_mpdkk").val(res.fak_rl.dibulatkan_fak_rl);
+    $("#jumlah_permohonan_mpdkk").val(res.mpdkk.jumlah_permohonan_mpdkk);
+    $("#persentase_penarikan_mpdkk").val(res.mpdkk.persentase_penarikan_mpdkk);
+    $("#jumlah_penarikan_disetujui_mpdkk").val(
+      res.mpdkk.jumlah_penarikan_disetujui_mpdkk
+    );
+    $("#sisa_termijn_mpdkk").val(res.mpdkk.sisa_termijn_mpdkk);
     initializeCKEditor("rencana_penggunaan_mpdkk", function (editor) {
       editor.setData(res.mpdkk.rencana_penggunaan_mpdkk);
     });
-    console.log(res.mpdkk.rencana_penggunaan_mpdkk);
     initializeCKEditor("lain_lain_mpdkk", function (editor) {
       editor.setData(res.mpdkk.lain_lain_mpdkk);
     });
+
+    //recap
+    $("#disposisi_pemasar").val(res.penarikan.disposisi_pemasar);
+    $("#disposisi_koor_pemasar").val(res.penarikan.disposisi_koor_pemasar);
+    $("#disposisi_kacab").val(res.penarikan.disposisi_kacab);
+    $("#disposisi_analis").val(res.penarikan.disposisi_analis);
+    $("#disposisi_kabag").val(res.penarikan.disposisi_kabag);
+    $("#disposisi_kadiv").val(res.penarikan.disposisi_kadiv);
+
+    if (res.is_readonly) {
+      // input/textarea
+      $(".class-readonly").prop("readonly", true);
+
+      // select/checkbox/radio (readonly tidak berlaku)
+      $(".class-disabled").prop("disabled", true);
+
+      // kalau ada Select2:
+      $(".select2, .select").prop("disabled", true).trigger("change");
+
+      // sembunyikan tombol simpan (opsional)
+      $('#btn-simpan, button[type="submit"]').hide();
+    } else {
+      $(".class-readonly").prop("readonly", false);
+      $(".class-disabled").prop("disabled", false);
+      $(".select2, .select").prop("disabled", false).trigger("change");
+      $('#btn-simpan, button[type="submit"]').show();
+    }
 
     function hitungSisaTermijn() {
       const plaf = parseFloat($("#plafond_kredit_mpdkk").val()) || 0;

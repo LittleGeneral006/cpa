@@ -287,7 +287,7 @@ $routes->get('/penarikan/generate_nomor_fcr', 'Penarikan::generate_nomor_fcr');
 // no pak
 $routes->get('/penarikan/generate_no_pak', 'Penarikan::generate_no_pak');
 // generate dokumen
-$routes->get('/generate-dokumen/(:any)/(:any)', 'Penarikan::cetak_dokumen/$1/$2');
+$routes->get('/penarikan/generate-dokumen/(:any)/(:any)/(:any)', 'Penarikan::cetak_dokumen/$1/$2/$3');
 $routes->get('/penarikan/generate_fcr/(:any)/(:any)', 'Penarikan::generate_fcr/$1/$2');
 $routes->post('/recap/(:any)', 'Penarikan::checkDataRecap/$1');
 

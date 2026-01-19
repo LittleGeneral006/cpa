@@ -203,7 +203,7 @@ class Penarikan extends BaseController
         $kdLevel = (string) session()->get('kd_level_user');
 
         // ini mapping level -> field-field disposisi LEVEL YANG LEBIH TINGGI
-// begitu ada salah satu yang terisi, level sekarang TIDAK BOLEH EDIT
+        // begitu ada salah satu yang terisi, level sekarang TIDAK BOLEH EDIT
         $levelNextDisposisiMap = [
             // Pemasar: tidak boleh edit jika Koor Pemasar / Kacab / Analis / Kabag / Kadiv sudah isi
             'LVL23072023135343' => [
@@ -221,7 +221,16 @@ class Penarikan extends BaseController
                 'disposisi_kadiv',
             ],
             // Admin / Analis Kredit (sesuaikan kalau kodenya untuk analis lain)
-            'LVL31052024093622' => [
+            'LVL23072023131340' => [
+                'disposisi_kacab',
+                'disposisi_analis',
+                'disposisi_kabag',
+            ],
+            'LVL18092023101055' => [
+                'disposisi_kabag',
+                'disposisi_kadiv',
+            ],
+            'LVL23072023134345' => [
                 'disposisi_kabag',
                 'disposisi_kadiv',
             ],
@@ -260,7 +269,7 @@ class Penarikan extends BaseController
 
             // tentukan progress berdasarkan disposisi yang terisi
             if (!empty($aRow->disposisi_kadiv)) {
-                $progressText = 'Selesai / Disetujui Kadiv';
+                $progressText = 'Selesai / Disetujui';
                 $labelClass = 'label-success';
             } elseif (!empty($aRow->disposisi_kabag)) {
                 $progressText = 'Di Kepala Bagian';
@@ -285,7 +294,7 @@ class Penarikan extends BaseController
 
                 if ($statusUpper === 'DISETUJUI') {
                     // override biar jelas
-                    $progressText = 'Selesai / Disetujui Kadiv';
+                    $progressText = 'Selesai / Disetujui';
                     $labelClass = 'label-success';
                 } elseif ($statusUpper === 'TIDAK AKTIF') {
                     $labelClass = 'label-danger';
@@ -306,7 +315,7 @@ class Penarikan extends BaseController
 
             // kalau status final sudah DISETUJUI, semua role tidak perlu proses lagi
             if (!empty($aRow->status) && strtoupper($aRow->status) === 'DISETUJUI') {
-                $canEditThisRow = false;
+                $canEditThisRow = true;
             } else {
                 // cek apakah level user punya daftar "next roles"
                 if (isset($levelNextDisposisiMap[$kdLevel])) {
@@ -329,7 +338,7 @@ class Penarikan extends BaseController
                     $canEditThisRow = false;
                 }
             }
-
+            $button_generate = '<li><button title="Generate" class="btn btn-sm dropdown-item" onclick="generate_dok(\'' . $aRow->kd_data . '\',\'' . $aRow->termin . '\')"><div class="text-left"><i class="fa fa-download" aria-hidden="true"></i> Generate Data</div></button></li>';
             // bangun HTML dropdown
             $actionMenu = '<a data-toggle="dropdown" class="" href="#">'
                 . '<span class="text-dark text-xs block"><b>. . .</b></span>'
@@ -357,6 +366,14 @@ class Penarikan extends BaseController
 
             // Tombol History Return tetap selalu ada
             $actionMenu .=
+                '<li>'.
+                '<button title="Generate" class="btn btn-sm dropdown-item" onclick="generate_dok(\'' . $aRow->kd_data . '\',\'' . $aRow->termin . '\')">'.
+                '<div class="text-left">'.
+                '<i class="fa fa-download" aria-hidden="true">'.
+                '</i> Generate Data'.
+                '</div>'.
+                '</button>'.
+                '</li>'.
                 '<li>' .
                 '<button title="History Return" class="btn btn-sm dropdown-item" onclick="modal_return(\'' . $aRow->kd_data . '\')">' .
                 '<div class="text-left">' .
@@ -376,6 +393,7 @@ class Penarikan extends BaseController
         echo json_encode($output);
 
     }
+
 
     public function get_nasabah_by_unit()
     {
@@ -986,31 +1004,107 @@ class Penarikan extends BaseController
         }
     }
 
-
-
     public function edit_penarikan($kd_data, $termin = null)
     {
         $this->hak_akses();
         $this->permission();
 
         $builder = $this->db->table('tb_penarikan');
-        $builder->select('kd_data, termin');
         $builder->where("SHA1(kd_data) = '{$kd_data}'");
         if ($termin !== null) {
             $builder->where("SHA1(termin) = '{$termin}'");
         }
-        $row = $builder->get()->getRow();
+
+        // ambil row lengkap (termasuk disposisi2)
+        $row = $builder->get()->getRowArray();
 
         $data['title'] = 'Edit Penarikan Kredit Transaksional';
-        $data['kd_data'] = $row ? $row->kd_data : null;
-        $data['termin'] = $row ? $row->termin : null;
-        $levelUser = (string) session()->get('kd_level_user');
-        $allowedLevels = ['LVL23072023135343', 'LVL23072023133934', 'LVL31052024093622', 'LEVEL20230510141317']; //hanya pemasar dan koordinator pemasar dan admin
-        // $levelUser = strtolower((string) session()->get('kd_level_user'));
-        $data['edit_data'] = in_array($levelUser, $allowedLevels, true);
+        $data['kd_data'] = $row['kd_data'] ?? null;
+        $data['termin'] = $row['termin'] ?? null;
+
+        $kdLevel = (string) session()->get('kd_level_user');
+
+        // mapping level -> field disposisi
+        $levelMap = [
+            'LVL23072023135343' => 'disposisi_pemasar',
+            'LVL23072023133934' => 'disposisi_koor_pemasar',
+            'LVL23072023131340' => 'disposisi_kacab',
+            'LVL18092023101055' => 'disposisi_analis',
+            'LVL23072023134345' => 'disposisi_kabag',
+            'LVL07112023100547' => 'disposisi_kadiv',
+        ];
+
+        $flowFields = [
+            'disposisi_pemasar',
+            'disposisi_koor_pemasar',
+            'disposisi_kacab',
+            'disposisi_analis',
+            'disposisi_kabag',
+            'disposisi_kadiv',
+        ];
+
+        // cari "field berikutnya yang masih kosong" = tahap aktif saat ini
+        $activeField = null;
+        foreach ($flowFields as $f) {
+            $val = $row[$f] ?? '';
+            if (trim((string) $val) === '') {
+                $activeField = $f; // inilah tahap yang sedang berhak input
+                break;
+            }
+        }
+
+        // kalau semua sudah terisi, berarti sudah selesai (kadiv sudah isi)
+        // tidak ada yang boleh edit lagi
+        $currentUserField = $levelMap[$kdLevel] ?? null;
+
+        $data['can_edit'] = false;
+        if ($currentUserField && $activeField && $currentUserField === $activeField) {
+            $data['can_edit'] = true;
+        }
+
+        // opsi: kalau status DISETUJUI, force readonly
+        if (!empty($row['status']) && strtoupper($row['status']) === 'DISETUJUI') {
+            $data['can_edit'] = false;
+        }
+
+        // kirim juga untuk debug / label
+        $data['active_field'] = $activeField;
+        $data['current_field'] = $currentUserField;
+        $role = session('role'); // contoh: pemasar, koor_pemasar, kacab, analis, kabag, kadiv
+        $status = strtoupper($row['status'] ?? '');
+
+        // mapping role → kolom disposisi
+        $roleDisposisiMap = [
+            'pemasar' => 'disposisi_pemasar',
+            'koor_pemasar' => 'disposisi_koor_pemasar',
+            'kacab' => 'disposisi_kacab',
+            'analis' => 'disposisi_analis',
+            'kabag' => 'disposisi_kabag',
+            'kadiv' => 'disposisi_kadiv',
+        ];
+
+        $isReadonly = false;
+
+        // 1. Kalau sudah DISETUJUI → semua readonly
+        if ($status === 'DISETUJUI') {
+            $isReadonly = true;
+        }
+        // 2. Kalau role ini SUDAH mengisi disposisinya → readonly
+        elseif (isset($roleDisposisiMap[$role])) {
+            $kolom = $roleDisposisiMap[$role];
+            if (!empty($row[$kolom])) {
+                $isReadonly = true;
+            }
+        }
+
+        $data['isReadonly'] = $isReadonly;
+        $data['status'] = $status;
+        $data['role'] = $role;
+
 
         return view('backend/kredit_transaksional/penarikan_kredit/v_edit_penarikan', $data);
     }
+
 
     public function generate_nomor_fcr()
     {
@@ -1105,21 +1199,30 @@ class Penarikan extends BaseController
         $termin = $this->request->getGet('termin');
 
         // Ambil data dari tb_data_entry (detail eform)
+        $penarikan = $this->db->table('tb_penarikan')
+            ->where('kd_data', $kd_data)
+            ->where('termin', $termin)
+            ->get()
+            ->getRowArray();
         $dataEntry = $this->db->table('tb_data_entry')
             ->where('kd_data', $kd_data)
+            
             ->get()
             ->getRowArray();
 
         $dataFCR = $this->db->table('tb_fcr')
             ->where('kd_data', $kd_data)
+            
             ->get()
             ->getRowArray();
         $dataFAKdata = $this->db->table('tb_fak_data')
             ->where('kd_data', $kd_data)
+            
             ->get()
             ->getRowArray();
         $dataFAKRL = $this->db->table('tb_fak_rl')
             ->where('kd_data', $kd_data)
+            
             ->get()
             ->getRowArray();
         $NomorFCR = $this->db->table('tb_nomor_fcr')
@@ -1175,9 +1278,35 @@ class Penarikan extends BaseController
         $canEditAnalis = in_array($levelUser, $allowedLevelsAnalis, true);
         $canEditKabag = in_array($levelUser, $allowedLevelsKabag, true);
         $canEditKadiv = in_array($levelUser, $allowedLevelsKadiv, true);
+        $status = strtoupper((string) ($penarikan['status'] ?? ''));
+
+        $roleToField = [
+            'LVL23072023135343' => 'disposisi_pemasar',
+            'LVL23072023133934' => 'disposisi_koor_pemasar',
+            'LVL23072023131340' => 'disposisi_kacab',
+            'LVL18092023101055' => 'disposisi_analis',
+            'LVL23072023134345' => 'disposisi_kabag',
+            'LVL07112023100547' => 'disposisi_kadiv',
+        ];
+
+        // level user kamu di session itu bentuknya apa? kamu sempat strtolower(), tapi ID level itu uppercase semua.
+// Jadi JANGAN strtolower untuk ID level.
+        $levelUser = (string) session()->get('kd_level_user');
+
+        $myField = $roleToField[$levelUser] ?? null;
+        $myAlreadyDispose = false;
+
+        if ($myField) {
+            $myAlreadyDispose = trim((string) ($penarikan[$myField] ?? '')) !== '';
+        }
+
+        $isReadonly = ($status === 'DISETUJUI') || $myAlreadyDispose;
+
+
         // Gabungkan hasil
         $result = [
             'data_entry' => $dataEntry,   // detail dari tb_data_entry
+            'penarikan' => $penarikan,   // detail dari tb_data_entry
             'fcr' => $dataFCR,   // detail dari tb_data_entry
             'fak_data' => $dataFAKdata,   // detail dari tb_data_entry
             'fak_rl' => $dataFAKRL,   // detail dari tb_data_entry
@@ -1199,6 +1328,10 @@ class Penarikan extends BaseController
             'edit_data_analis' => $canEditAnalis, // 👈 ini yang kamu butuhkan
             'edit_data_kabag' => $canEditKabag, // 👈 ini yang kamu butuhkan
             'edit_data_kadiv' => $canEditKadiv, // 👈 ini yang kamu butuhkan
+            'status' => $status,
+            'is_readonly' => $isReadonly,
+            'readonly_reason' => ($status === 'DISETUJUI') ? 'DISETUJUI' : ($myAlreadyDispose ? 'SUDAH_DISPOSISI' : ''),
+            'readonly_field' => $myField,
         ];
 
         return $this->response->setJSON($result);
@@ -1407,8 +1540,8 @@ class Penarikan extends BaseController
 
     public function simpan_permohonan()
     {
-        $kd_data = $this->request->getPost('kd_data');
-        $termin = $this->request->getPost('termin');
+        $kd_data = trim((string) $this->request->getPost('kd_data'));
+        $termin = trim((string) $this->request->getPost('termin'));
 
         $jumlah = $this->request->getPost('jumlah_penarikan');
         $tanggal = $this->request->getPost('tanggal');
@@ -1420,14 +1553,14 @@ class Penarikan extends BaseController
         $disposisi_kabag = $this->request->getPost('disposisi_kabag');
         $disposisi_kadiv = $this->request->getPost('disposisi_kadiv');
 
-        if (!$kd_data || !$termin) {
+        if ($kd_data === '' || $termin === '') {
             return $this->response->setJSON([
                 'status' => 'error',
                 'message' => 'Parameter kd_data / termin tidak lengkap.'
             ]);
         }
 
-        // kalau jumlah kosong, coba ambil dari tb_mpdkk sebagai fallback
+        // fallback jumlah dari tb_mpdkk jika kosong
         if ($jumlah === null || $jumlah === '') {
             $rowM = $this->db->table('tb_mpdkk')
                 ->select('jumlah_penarikan_disetujui_mpdkk')
@@ -1446,13 +1579,8 @@ class Penarikan extends BaseController
 
         $builder = $this->db->table('tb_penarikan');
 
-        // ambil row eksisting
-        $row = $builder
-            ->where('kd_data', $kd_data)
-            ->where('termin', $termin)
-            ->get()
-            ->getRowArray();
-
+        // ambil row penarikan eksisting
+        $row = $builder->where('kd_data', $kd_data)->where('termin', $termin)->get()->getRowArray();
         if (!$row) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -1460,47 +1588,108 @@ class Penarikan extends BaseController
             ]);
         }
 
-        // ====== LOGIKA STATUS ======
-        // default jika belum ada status: PENGAJUAN
-        $status = $row['status'] ?? 'PENGAJUAN';
+        // =========================
+        // AMBIL PLAFOND DARI tb_data_induk
+        // =========================
+        $rowInduk = $this->db->table('tb_data_induk')
+            ->select('plafond')
+            ->where('kd_data', $kd_data)
+            ->where('termin', $termin)   // kalau tb_data_induk pakai termin
+            ->get()
+            ->getRowArray();
 
-        // jika disposisi Kadiv terisi → set DISETUJUI
-        if (trim((string) $disposisi_kadiv) !== '') {
+        // jika ternyata tb_data_induk tidak per termin, pakai tanpa termin:
+        if (!$rowInduk) {
+            $rowInduk = $this->db->table('tb_data_induk')
+                ->select('plafond')
+                ->where('kd_data', $kd_data)
+                ->get()
+                ->getRowArray();
+        }
+
+        $plafondRaw = $rowInduk['plafond'] ?? 0;
+
+        // normalisasi plafon (hapus titik/koma/spasi)
+        // $plafond = (float) preg_replace('/[^\d]/', '', (string) $plafondRaw);
+        $plafond = (float) $plafondRaw;
+        $batasKadiv = 3000000000; // 3 miliar
+
+        // kalau plafond >= 3M -> final approver Kadiv
+        // kalau di bawah -> final approver Kacab
+        $finalApproverField = ($plafond >= $batasKadiv) ? 'disposisi_kadiv' : 'disposisi_kacab';
+
+        // =========================
+        // LOGIKA STATUS PROGRESS
+        // =========================
+        // default status bila kosong
+        $status = $row['status'] ?: 'DRAFT';
+
+        // Tentukan status berdasarkan "sejauh mana disposisi terisi"
+        // dan berdasarkan final approver
+        //
+        // Catatan: ini hanya contoh status yang rapi dan konsisten;
+        // kamu boleh ganti text statusnya sesuai standard internal.
+
+        $filled = [
+            'disposisi_pemasar' => trim((string) $disposisi_pemasar) !== '',
+            'disposisi_koor_pemasar' => trim((string) $disposisi_koor_pemasar) !== '',
+            'disposisi_kacab' => trim((string) $disposisi_kacab) !== '',
+            'disposisi_analis' => trim((string) $disposisi_analis) !== '',
+            'disposisi_kabag' => trim((string) $disposisi_kabag) !== '',
+            'disposisi_kadiv' => trim((string) $disposisi_kadiv) !== '',
+        ];
+
+        // status berjalan (progress)
+        // (urutan: pemasar -> koor -> kacab -> analis -> kabag -> kadiv)
+        if ($filled['disposisi_pemasar'])
+            $status = 'DIPROSES_KOOR_PEMASAR';
+        if ($filled['disposisi_koor_pemasar'])
+            $status = 'DIPROSES_KACAB';
+        if ($filled['disposisi_kacab']) {
+            // jika finalnya kacab (plafond < 3M), selesai di sini
+            $status = ($finalApproverField === 'disposisi_kacab') ? 'DISETUJUI' : 'DIPROSES_ANALIS';
+        }
+        if ($filled['disposisi_analis'])
+            $status = 'DIPROSES_KABAG';
+        if ($filled['disposisi_kabag'])
+            $status = 'DIPROSES_KADIV';
+
+        // FINAL: jika final approver sudah isi, set DISETUJUI
+        if ($finalApproverField === 'disposisi_kadiv' && $filled['disposisi_kadiv']) {
             $status = 'DISETUJUI';
         }
-        // kalau mau, bisa tambah else-if lain:
-        // - kalau hanya sampai Kabag → 'DIPROSES_KABAG', dll.
 
+        // kalau sudah disetujui, jangan turun lagi
+        if (!empty($row['status']) && strtoupper($row['status']) === 'DISETUJUI') {
+            $status = 'DISETUJUI';
+        }
 
         $now = date('Y-m-d H:i:s');
 
+        // Update data (tetap update kolom disposisi sesuai yang dikirim)
         $dataUpdate = [
             'jumlah_penarikan' => $jumlah,
             'tanggal' => $tanggal,
             'status' => $status,
+
             'disposisi_pemasar' => $disposisi_pemasar,
             'disposisi_koor_pemasar' => $disposisi_koor_pemasar,
             'disposisi_kacab' => $disposisi_kacab,
             'disposisi_analis' => $disposisi_analis,
             'disposisi_kabag' => $disposisi_kabag,
             'disposisi_kadiv' => $disposisi_kadiv,
+
             'updated_at' => $now,
         ];
 
-        // buang null supaya tidak nulis NULL ke kolom yang belum digunakan
-        $dataUpdate = array_filter(
-            $dataUpdate,
-            static function ($v) {
-                return $v !== null;
-            }
-        );
+        // jangan tulis NULL (tapi string kosong tetap akan keupdate kalau kamu kirim kosong)
+        $dataUpdate = array_filter($dataUpdate, static fn($v) => $v !== null);
+
+        // ===== DEBUG: cek final approver & status =====
+        // dd($finalApproverField);
 
         try {
-            $ok = $builder
-                ->where('kd_data', $kd_data)
-                ->where('termin', $termin)
-                ->update($dataUpdate);
-
+            $ok = $builder->where('kd_data', $kd_data)->where('termin', $termin)->update($dataUpdate);
             if (!$ok) {
                 $err = $this->db->error();
                 return $this->response->setJSON([
@@ -1514,8 +1703,10 @@ class Penarikan extends BaseController
                 'status' => 'ok',
                 'message' => 'Permohonan penarikan berhasil disimpan.',
                 'status_row' => $status,
+                'plafond' => $plafond,
+                'final_approver' => $finalApproverField,
+                'batas_kadiv' => $batasKadiv,
             ]);
-
         } catch (\Throwable $e) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -1562,6 +1753,147 @@ class Penarikan extends BaseController
         return true; // semua kolom terisi
     }
 
+    public function cetak_dokumen($kd_data, $id_dok,$termin)
+    {
+        // Cetak Dokumen Pengajuan
+        if ($id_dok == sha1('fcr_gen')) {
+            $this->generate_fcr($kd_data, $id_dok,$termin);
+        // } else if ($id_dok == sha1('fcr_usaha_gen')) {
+        //     $this->generate_fcr_usaha($kd_data, $id_dok);
+        // } else if ($id_dok == sha1('fcr_agunan_gen')) {
+        // } else if ($id_dok == sha1('fcr_dok_ceklist_gen')) {
+        //     $this->generate_dokumen_ceklis($kd_data, $id_dok);
+        // } else if ($id_dok == sha1('fak_gen')) {
+        // } else if ($id_dok == sha1('faa_gen')) {
+        // } else if ($id_dok == sha1('mauk_gen')) {
+        // } else if ($id_dok == sha1('dcc_gen')) {
+        // } else if ($id_dok == sha1('scoring_gen')) {
+        // } else if ($id_dok == sha1('fkk_gen')) {
+        //     $this->generate_fkk($kd_data, $id_dok);
+        // } else if ($id_dok == sha1('mkk_gen')) {
+        //     $this->generate_mkk($kd_data, $id_dok);
+        // } else if ($id_dok == sha1('sp2k_gen')) {
+        // } else if ($id_dok == sha1('pk_gen')) {
+        } else {
+            echo 'Dokumen tidak ditemukan. <a href="' . base_url('pengajuan-kredit-transaksional') . '">Klik untuk kembali</a>';
+        }
+    }
+
+    public function generate_fcr($kd_data, $id_dok,$termin)
+    {
+        $cek_ada = $this->db->query("SELECT * FROM tb_fcr_penarikan where SHA1(kd_data) = '" . $kd_data . "' AND termin= '".$termin."' ");
+        $ada_data_entry = $this->db->query("SELECT * FROM tb_data_entry where SHA1(kd_data) = '" . $kd_data . "' ");
+        $ada_data_master = $this->db->query("SELECT * FROM tb_data_induk where SHA1(kd_data) = '" . $kd_data . "' AND termin= '".$termin."' ");
+
+        // if ($cek_ada->getNumRows() > 0 && $ada_data_entry->getNumRows() > 0 && $ada_data_master->getNumRows() > 0) {
+        if ($cek_ada->getNumRows() > 0 && $ada_data_master->getNumRows() > 0) {
+        // if ($cek_ada->getNumRows() > 0 ) {
+            $data = $cek_ada->getRow();
+            $data_entry = $ada_data_entry->getRow();
+            // $this->debug($data->kondisi_fisik_kantor);
+            $data_master = $ada_data_master->getRow();
+
+            $ada_nama_unit = $this->db->query("SELECT nama_unit FROM tb_unit_kerja where kd_unit = '" . $data_master->unit_kerja . "' ");
+            if ($ada_nama_unit->getNumRows() > 0) {
+                $nama_unit = $ada_nama_unit->getRow()->nama_unit;
+            }
+
+            // $row = array();
+            // $nomor = $data->nomor; //
+            $tanggal = $this->atur_tanggal($data->tanggal); //
+
+            $kunjungan_oleh = $this->pisah_koma($data->kunjungan_oleh);
+            // $this->debug($kunjungan_oleh);
+            $kunjungan_oleh2 = '';
+            foreach ($kunjungan_oleh as $list) {
+                $kunjungan_oleh3 = "- {$list}\line";
+                $kunjungan_oleh2 .= $kunjungan_oleh3;
+            }
+            $kunjungan_oleh4 = $kunjungan_oleh2 ? $kunjungan_oleh2 : '?kunjungan_oleh';
+            // $this->debug($kunjungan_oleh4);
+
+            $tanggal_kunjungan = $this->atur_tanggal($data->tanggal_kunjungan); //
+            // $this->debug($tanggal_kunjungan);
+
+            $lokasi_yang_dikunjungi = $this->pisah_koma($data->lokasi_yang_dikunjungi);
+            // $this->debug($lokasi_yang_dikunjungi);
+            $lokasi_yang_dikunjungi2 = '';
+            foreach ($lokasi_yang_dikunjungi as $list) {
+                $lokasi_yang_dikunjungi3 = "- {$list}\line";
+                $lokasi_yang_dikunjungi2 .= $lokasi_yang_dikunjungi3;
+            }
+            $lokasi_yang_dikunjungi4 = $lokasi_yang_dikunjungi2 ? $lokasi_yang_dikunjungi2 : '?lokasi_yang_dikunjungi';
+
+            $contact_person = $this->pisah_koma($data->contact_person);
+            // $this->debug($contact_person);
+            $contact_person2 = '';
+            foreach ($contact_person as $list) {
+                $contact_person3 = "- {$list}\line";
+                $contact_person2 .= $contact_person3;
+            }
+            $contact_person4 = $contact_person2 ? $contact_person2 : '?contact_person';
+
+            $clientIP = $this->request->getIPAddress(); // Mendapatkan IP pengunjung
+
+            // Cek jika diakses dari localhost atau IP lokal (127.0.0.1)
+            // if ($clientIP == '172.20.102.142') {
+            //     // memanggil dan membaca template dokumen yang telah kita buat
+            //     $document = file_get_contents("http://172.20.102.142/public/assets/doc/fcr.rtf");
+            // }else{
+            //     $document = file_get_contents(ROOTPATH . "public/assets/doc/fcr.rtf");
+
+            // }
+            $document = file_get_contents(ROOTPATH . "public/assets/doc/fcr.rtf");
+
+            // isi dokumen dinyatakan dalam bentuk string
+            $document = str_replace("?nomor", $data->nomor, $document);
+            $document = str_replace("?tanggal", $tanggal, $document);
+            $document = str_replace("?nama_debitur", $data_entry->nama_debitur, $document);
+            $document = str_replace("?kunjungan_oleh", $kunjungan_oleh4, $document);
+            $document = str_replace("?alamat_kantor", $data->alamat_kantor, $document);
+            $document = str_replace("?nama_unit", $nama_unit ? $nama_unit : '?nama_unit', $document);
+            $document = str_replace("?alamat_gudang", $data->alamat_gudang, $document);
+            $document = str_replace("?tgl_kunjungan", $tanggal_kunjungan, $document);
+            $document = str_replace("?group_debitur", $data->group_debitur, $document);
+            $document = str_replace("?lokasi_yang_dikunjungi", $lokasi_yang_dikunjungi4, $document);
+            $document = str_replace("?contact_person", $contact_person4, $document);
+            $document = str_replace("?tujuan_kunjungan", $data->tujuan_kunjungan, $document);
+            $document = str_replace("?hasil_kunjungan", $data->hasil_kunjungan, $document);
+            $document = str_replace("?pemasar", $data_entry->pemasar, $document);
+            $document = str_replace("?koordinator_pemasar", $data_entry->koordinator_pemasar, $document);
+
+            $nama_file = 'FCR ' . $data_entry->nama_debitur . ' ' . gmdate("d-m-Y H:i:s", time() + 60 * 60 * 8);
+            header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            header("Content-disposition: attachment; filename=$nama_file.docx");
+            header("Content-length: " . strlen($document));
+
+            // Tampilkan isi dokumen untuk di-download
+            echo $document;
+        } else {
+            echo 'Dokumen tidak ditemukan. <a href="' . base_url('penarikan-kredit-transaksional') . '">Klik untuk kembali</a>';
+        }
+    }
+
+     public function atur_tanggal($input)
+    {
+        if (!empty($input)) {
+            $tanggal = date('d-m-Y', strtotime($input));
+            return $tanggal;
+        } else {
+            return $input;
+        }
+    }
+
+    public function pisah_koma($input)
+    {
+        if (!empty($input)) {
+            $array = explode(";", $input);
+            // var_dump($array); die;
+            return $array;
+        } else {
+            return $input;
+        }
+    }
 
 
     public function permission()

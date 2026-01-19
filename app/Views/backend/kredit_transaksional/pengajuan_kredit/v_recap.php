@@ -64,12 +64,23 @@
                         Document Pendukung
                     </td>
                     <td>
-                        <span id="dokumen1">Oke</span>
+                        <span id="dokumen_pendukung1">Oke</span><span id="dokumen_pendukung2">Not Oke</span>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         6
+                    </td>
+                    <td>
+                        Scoring Pemasar
+                    </td>
+                    <td>
+                        <span id="scoring1">Oke</span><span id="scoring2">Not Oke</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        7
                     </td>
                     <td>
                         FAK Data
@@ -80,7 +91,7 @@
                 </tr>
                 <tr>
                     <td>
-                        7
+                        8
                     </td>
                     <td>
                         FAK Modal
@@ -109,7 +120,7 @@
 
                 <tr>
                     <td>
-                        8
+                        9
                     </td>
                     <td>
                         FAK Proyeksi RL
@@ -120,7 +131,7 @@
                 </tr>
                 <tr>
                     <td>
-                        9
+                        10
                     </td>
                     <td>
                         Upload Laporan RL
@@ -131,7 +142,7 @@
                 </tr>
                 <tr>
                     <td>
-                        10
+                        11
                     </td>
                     <td>
                         CEF
@@ -142,7 +153,7 @@
                 </tr>
                 <tr>
                     <td>
-                        11
+                        12
                     </td>
                     <td>
                         FAA
@@ -153,7 +164,7 @@
                 </tr>
                 <tr>
                     <td>
-                        12
+                        13
                     </td>
                     <td>
                         MAUK
@@ -164,7 +175,7 @@
                 </tr>
                 <tr>
                     <td>
-                        13
+                        14
                     </td>
                     <td>
                         DCL Compliance
@@ -175,13 +186,13 @@
                 </tr>
                 <tr>
                     <td>
-                        14
+                        15
                     </td>
                     <td>
                         Scoring Koordinator
                     </td>
                     <td>
-                        <span id="scoring1">Oke</span><span id="scoring2">Not Oke</span>
+                        <span id="scoring_koordinator1">Oke</span><span id="scoring_koordinator2">Not Oke</span>
                     </td>
                 </tr>
                 <!-- <tr>
@@ -254,7 +265,7 @@
 </fieldset>
 <script>
     var posisi = '<?php echo $posisi ?>';
-console.log('hellooooo =',posisi);
+
     $(document).ready(function() {
         // disposisi tampil berjenjang
         $('#hilang_pemasar').hide();
@@ -264,7 +275,7 @@ console.log('hellooooo =',posisi);
         $('#hilang_kabag').hide();
         $('#hilang_kadiv').hide();
 
-        if(posisi == 'pemasar'){
+        if (posisi == 'pemasar') {
             $('#hilang_pemasar').show();
             $('#hilang_koordinator').hide();
             $('#hilang_kacab').hide();
@@ -272,7 +283,7 @@ console.log('hellooooo =',posisi);
             $('#hilang_kabag').hide();
             $('#hilang_kadiv').hide();
         }
-        if(posisi == 'koordinator pemasar'){
+        if (posisi == 'koordinator pemasar') {
             $('#hilang_pemasar').show();
             $('#hilang_koordinator').show();
             $('#hilang_kacab').hide();
@@ -280,7 +291,7 @@ console.log('hellooooo =',posisi);
             $('#hilang_kabag').hide();
             $('#hilang_kadiv').hide();
         }
-        if(posisi == 'kepala cabang'){
+        if (posisi == 'kepala cabang') {
             $('#hilang_pemasar').show();
             $('#hilang_koordinator').show();
             $('#hilang_kacab').show();
@@ -288,7 +299,7 @@ console.log('hellooooo =',posisi);
             $('#hilang_kabag').hide();
             $('#hilang_kadiv').hide();
         }
-        if(posisi == 'analis kredit'){
+        if (posisi == 'analis kredit') {
             $('#hilang_pemasar').show();
             $('#hilang_koordinator').show();
             $('#hilang_kacab').show();
@@ -296,7 +307,7 @@ console.log('hellooooo =',posisi);
             $('#hilang_kabag').hide();
             $('#hilang_kadiv').hide();
         }
-        if(posisi == 'kepala bagian'){
+        if (posisi == 'kepala bagian') {
             $('#hilang_pemasar').show();
             $('#hilang_koordinator').show();
             $('#hilang_kacab').show();
@@ -304,7 +315,7 @@ console.log('hellooooo =',posisi);
             $('#hilang_kabag').show();
             $('#hilang_kadiv').hide();
         }
-        if(posisi == 'kepala divisi'){
+        if (posisi == 'kepala divisi') {
             $('#hilang_pemasar').show();
             $('#hilang_koordinator').show();
             $('#hilang_kacab').show();
@@ -318,7 +329,7 @@ console.log('hellooooo =',posisi);
         isi_recap()
         // simpan data entry
         $('#save_recap').click(function(e) {
-            
+
             $('#mohon').show()
             e.preventDefault(); // Mencegah form untuk submit secara default
             // Mendefinisikan array untuk menyimpan nilai input
@@ -367,7 +378,7 @@ console.log('hellooooo =',posisi);
                 type: "get",
                 dataType: "JSON",
                 success: function(response) {
-                    
+
                     if (response.status == 'success') {
                         $('#kd_data_return').val(response.message.kd_data);
                         $('#nama_debitur_return').val(response.message.nama_debitur);
@@ -395,7 +406,7 @@ console.log('hellooooo =',posisi);
                 type: "get",
                 dataType: "JSON",
                 success: function(response) {
-                    
+
                     if (response.status == 'success') {
                         $('#kd_data_reject').val(response.message.kd_data);
                         $('#nama_debitur_reject').val(response.message.nama_debitur);
@@ -424,7 +435,7 @@ console.log('hellooooo =',posisi);
     // bikin function
     function isi_recap() {
         variabelGlobal(function(hasil) {
-            
+
             if (hasil.status == 'success') {
                 var data = hasil.message.kirim;
                 // alert(data.kd_data)
@@ -479,17 +490,17 @@ console.log('hellooooo =',posisi);
             disposisi_kepala_bagian_sc: $('#disposisi_kepala_bagian_sc').val(),
             disposisi_kepala_divisi_sc: $('#disposisi_kepala_divisi_sc').val(),
 
-            edit_data : '<?= $edit_data ?>',
-            edit_data_koordinator : '<?= $edit_data_koordinator ?>',
-            edit_data_kepala_cabang : '<?= $edit_data_kepala_cabang ?>',
-            edit_data_analis_kredit : '<?= $edit_data_analis_kredit ?>',
-            edit_data_kepala_bagian : '<?= $edit_data_kepala_bagian ?>',
-            edit_data_kepala_divisi : '<?= $edit_data_kepala_divisi ?>',
+            edit_data: '<?= $edit_data ?>',
+            edit_data_koordinator: '<?= $edit_data_koordinator ?>',
+            edit_data_kepala_cabang: '<?= $edit_data_kepala_cabang ?>',
+            edit_data_analis_kredit: '<?= $edit_data_analis_kredit ?>',
+            edit_data_kepala_bagian: '<?= $edit_data_kepala_bagian ?>',
+            edit_data_kepala_divisi: '<?= $edit_data_kepala_divisi ?>',
 
         };
-        
-        
-        
+
+
+
 
         return data_recap
     }
@@ -518,7 +529,7 @@ console.log('hellooooo =',posisi);
             },
             error: function(xhr, status, error) {
                 $('#mohon').hide()
-                
+
                 toastr.error('Edit recap gagal', 'Error')
             }
         });
@@ -530,7 +541,7 @@ console.log('hellooooo =',posisi);
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                
+
                 // $('a[href="#finish"]').text('New Title haha');
                 // $('a[href="#finish"]').hide();
                 $('#disposisi_sc').prop('readonly', true);
@@ -583,9 +594,9 @@ console.log('hellooooo =',posisi);
 
             },
             error: function(xhr, status, error) {
-                
-                
-                
+
+
+
                 // console.error('Error response text:', xhr.responseText);
                 // console.error('Error status:', status);
                 // console.error('Error:', error);
@@ -660,8 +671,6 @@ console.log('hellooooo =',posisi);
         // var hasil = '';
         if (angka != '' && angka != null) {
             var angka_olah = formatNumber(angka);
-            
-            
 
             $('#' + id_letak).text(angka_olah);
         } else {
@@ -670,9 +679,14 @@ console.log('hellooooo =',posisi);
     }
 
     function separator_input(pokok_field, pokok_separator) {
-        $('#' + pokok_field).on('input', function() {
-            var inputValue = $(this).val();
-            var formattedValue = formatNumber(inputValue);
+        const $field = $('#' + pokok_field);
+
+        // hapus handler sebelumnya (kalau fungsi kepanggil lebih dari sekali)
+        $field.off('input.separator');
+
+        $field.on('input.separator', function() {
+            const inputValue = $(this).val();
+            const formattedValue = formatNumberSafe(inputValue);
             $('#' + pokok_separator).text(formattedValue);
         });
     }

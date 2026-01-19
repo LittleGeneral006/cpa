@@ -385,14 +385,14 @@
     var edit_data_koordinator = <?php echo json_encode($edit_data_koordinator); ?>;
     var edit_data_kepala_cabang = <?php echo json_encode($edit_data_kepala_cabang); ?>;
     var kd_level = <?= json_encode(session()->get('kd_level_user')) ?>;
-    $(document).ready(function () {
-        $("#jumlah_agunan_tambah").on("change", function () {
+    $(document).ready(function() {
+        $("#jumlah_agunan_tambah").on("change", function() {
             tambahInput()
         });
-        $("#lihat_file").on("click", function () {
+        $("#lihat_file").on("click", function() {
             lihatFile()
         });
-        $("#edit_file").on("click", function () {
+        $("#edit_file").on("click", function() {
             editFile()
         });
 
@@ -400,7 +400,7 @@
         refresh('save_data_entry')
 
         // edit file
-        $('#form_dokumen_edit').on('submit', function (e) {
+        $('#form_dokumen_edit').on('submit', function(e) {
             e.preventDefault();
             $('#mohon').show()
             $.ajax({
@@ -410,7 +410,7 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                success: function (data) {
+                success: function(data) {
                     if (data == '1') {
                         $("#modal_dokumen_edit").modal('hide')
                         $('#mohon').hide()
@@ -421,7 +421,7 @@
                         toastr.warning(data, 'Gagal')
                     }
                 },
-                error: function (data) {
+                error: function(data) {
 
                 }
 
@@ -447,7 +447,7 @@
         //         toastr.warning('Jenis agunan harus diisi', 'Gagal')
         //     }
         // });
-        $('#save_data_entry').click(function (e) {
+        $('#save_data_entry').click(function(e) {
 
             $('#mohon').show();
             e.preventDefault(); // Mencegah form untuk submit secara default
@@ -474,7 +474,7 @@
     });
     // bikin function
     function pemroses() {
-        variabelGlobal(function (hasil) {
+        variabelGlobal(function(hasil) {
 
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
@@ -547,7 +547,7 @@
     }
 
     function unit_kerja() {
-        variabelGlobal(function (hasil) {
+        variabelGlobal(function(hasil) {
             if (hasil.status == 'success') {
                 var kd_unit = hasil.message.data_entry.kd_unit_kerja;
 
@@ -555,7 +555,7 @@
                     url: "<?php echo base_url('unit_kerja/get_unit_by_id'); ?>" + "/" + kd_unit,
                     type: "get",
                     dataType: "JSON",
-                    success: function (data) {
+                    success: function(data) {
                         var options = data.unit;
                         var select = $('#unit_kerja_tambah');
 
@@ -565,7 +565,7 @@
                         $(defaultOption).prop('disabled', true);
                         select.append(defaultOption);
 
-                        $.each(options, function (index, option) {
+                        $.each(options, function(index, option) {
                             var newOption = new Option(option.kd_unit + ' - ' + option.nama_unit, option.kd_unit, false, false);
                             if (option.kd_unit === kd_unit) {
                                 $(newOption).prop('selected', true);
@@ -578,7 +578,7 @@
                             dropdownParent: $('#unit_kerja_tambah').parent()
                         });
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
+                    error: function(jqXHR, textStatus, errorThrown) {
 
                     }
                 });
@@ -647,7 +647,7 @@
     //     })
     // }
     function tambahInput() {
-        variabelGlobal(function (hasil) {
+        variabelGlobal(function(hasil) {
             if (hasil.status == 'success') {
                 var jumlah = $("#jumlah_agunan_tambah").val(); // Ambil nilai dengan jQuery
                 if (jumlah == null || jumlah == '' || jumlah == undefined) {
@@ -679,7 +679,7 @@
                     ];
 
                     // Tambahkan opsi dari optionsPlaceholder ke dalam select
-                    $.each(optionsPlaceholder, function (index, value) {
+                    $.each(optionsPlaceholder, function(index, value) {
                         var option = $('<option></option>').attr("value", value).text(value);
                         select.append(option);
                     });
@@ -761,7 +761,7 @@
 
     function editFile() {
         document.getElementById("form_dokumen_edit").reset();
-        variabelGlobal(function (hasil) {
+        variabelGlobal(function(hasil) {
 
             if (hasil.status == 'success') {
                 var data = hasil.message.data_entry;
@@ -1207,14 +1207,14 @@
             type: "POST",
             data: kirim,
             dataType: "JSON",
-            success: function (response) {
+            success: function(response) {
                 var hasil = {
                     status: 'success',
                     message: response
                 };
                 callback(hasil); // Panggil callback dengan hasil yang diperoleh
             },
-            error: function (jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textStatus, errorThrown) {
                 var hasil = {
                     status: 'error',
                     message: 'gagal mendapatkan data'
@@ -1289,7 +1289,7 @@
             type: 'POST',
             dataType: 'json',
             data: data_input,
-            success: function (response) {
+            success: function(response) {
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     refresh('save_data_entry')
@@ -1300,6 +1300,10 @@
                         var finish_fcr = data_data_fcr();
                         post_fcr('finish_fcr', finish_fcr, 'finish_fcr')
                     }
+                    toastr.success(response.message, 'Pengajuan selesai diedit')
+                    setTimeout(function() {
+                        window.location.href = base_url + "pengajuan-kredit-transaksional";
+                    }, 2000);
 
                 } else {
                     $('#mohon').hide()
@@ -1307,7 +1311,7 @@
 
                 }
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 $('#mohon').hide()
 
                 toastr.error('Edit data entry gagal', 'Error')
@@ -1335,7 +1339,7 @@
             type: 'POST',
             dataType: 'json',
             data: data_input,
-            success: function (response) {
+            success: function(response) {
                 if (response.status == 'success') {
                     $('#mohon').hide()
                     // refresh('save_data_entry')
@@ -1353,7 +1357,7 @@
 
                 }
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 $('#mohon').hide()
 
                 toastr.error('Edit data entry gagal', 'Error')
@@ -1367,7 +1371,7 @@
             url: '<?php echo base_url(); ?>pengajuan/cek_agunan/' + kd_data,
             type: 'GET',
             dataType: 'json',
-            success: function (response) {
+            success: function(response) {
 
                 if (response.tanah != '') {
                     // Lakukan sesuatu jika status sukses
@@ -1399,7 +1403,7 @@
                     // $('#save_fcr_agunan_bergerak').hide();
                 }
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
 
 
 
@@ -1415,7 +1419,7 @@
             url: '<?php echo base_url(); ?>pengajuan/cek_agunan/' + kd_data,
             type: 'GET',
             dataType: 'json',
-            success: function (response) {
+            success: function(response) {
 
 
                 if (response.tanah != '') {
@@ -1434,7 +1438,7 @@
                     $('#save_fcr_agunan_bergerak').hide();
                 }
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
 
 
 
@@ -1450,7 +1454,7 @@
             url: '<?php echo base_url(); ?>pengajuan/tampil_btn_finish/' + kd_data,
             type: 'GET',
             dataType: 'json',
-            success: function (response) {
+            success: function(response) {
 
                 // $('a[href="#finish"]').text('New Title haha');
                 // $('a[href="#finish"]').hide();
@@ -1466,7 +1470,7 @@
                 }
 
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
 
 
 

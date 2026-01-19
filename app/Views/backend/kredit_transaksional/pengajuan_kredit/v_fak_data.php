@@ -222,7 +222,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="nilai_sebelum_ppn_pp_fak_data0" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(0,'nilai_sebelum_ppn_pp_fak_data0','nilai_sebelum_ppn_pp_fak_data0_separators','nilai_sesudah_ppn_pp_fak_data0_separators')"<?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     </div>
-                    <small><span id="nilai_sebelum_ppn_pp_fak_data0_separators" class="mask"></span></small>
+                    <p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data0_separators" class="mask"></span></p>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -231,52 +231,10 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="nilai_sesudah_ppn_pp_fak_data0" name="nilai_sesudah_ppn_pp_fak_data[]" onchange="copyvalue(this.id,'nilai_pp_fak_modal1')" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     </div>
-                    <small><span id="nilai_sesudah_ppn_pp_fak_data0_separators" class="mask"></span></small>
+                    <p>Nominal: <span id="nilai_sesudah_ppn_pp_fak_data0_separators" class="mask"></span></p>
                 </div>
             </div>
         </div>
-        <!-- <div class="form-group row">
-            <div class="col-lg-2">
-                <label class="col-lg-24 control-label">Item</label>
-                <div class="col-lg-24">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="item_pp_fak_data0" name="item_pp_fak_data[]"onkeyup="copyvalue(this.id,'item_pp_fak_modal1')"<?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-2">
-                <label class="col-lg-24 control-label">PPN (%)</label>
-                <div class="col-lg-24">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="ppn_pp_fak_data0" name="ppn_pp_fak_data[]" onkeyup="hitungPP(0)" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                        <div class="input-group-append">
-                            <span class="input-group-text">%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-2">
-                <label class="col-lg-24 control-label">Nilai Sebelum PPN</label>
-                <div class="col-lg-24">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="nilai_sebelum_ppn_pp_fak_data0" name="nilai_sebelum_ppn_pp_fak_data[]" onkeyup="hitungPP(0,'nilai_sebelum_ppn_pp_fak_data0','nilai_sebelum_ppn_pp_fak_data0_separators','nilai_sesudah_ppn_pp_fak_data0_separators')"<?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                    </div>
-                    <small><span id="nilai_sebelum_ppn_pp_fak_data0_separators" class="mask"></span></small>
-                </div>
-            </div>
-
-            <div class="col-lg-2">
-                <label class="col-lg-24 control-label">Nilai Sesudah PPN</label>
-                <div class="col-lg-24">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="nilai_sesudah_ppn_pp_fak_data0" name="nilai_sesudah_ppn_pp_fak_data[]" onchange="copyvalue(this.id,'nilai_pp_fak_modal1')" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                    </div>
-                    <small><span id="nilai_sesudah_ppn_pp_fak_data0_separators" class="mask"></span></small>
-                </div>
-            </div>
-        </div> -->
     </div>
     <div class="form-group row">
         <div class="col-lg-3">
@@ -285,12 +243,12 @@
         <label class="col-lg-3 control-label">Pembulatan</label>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" name="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" onkeyup="hitungPP()" aria-atomic="" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <input id="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" name="pembulatan_nilai_sebelum_ppn_total_pp_fak_data" onkeyup="hitungPP(0,'pembulatan_nilai_sebelum_ppn_total_pp_fak_data',null,null)" aria-atomic="" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" name="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" onkeyup="hitungPP()" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <input id="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" name="pembulatan_nilai_sesudah_ppn_total_pp_fak_data" onkeyup="hitungPP(0,'pembulatan_nilai_sesudah_ppn_total_pp_fak_data',null,null)" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
             </div>
         </div>
     </div>
@@ -301,13 +259,13 @@
         <label class="col-lg-3 control-label">Jumlah Total</label>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="jumlah_nilai_sebelum_ppn_total_pp_fak_data" name="jumlah_nilai_sebelum_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" onkeyup="hitungPP(null,'jumlah_nilai_sebelum_ppn_total_pp_fak_data')" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <input id="jumlah_nilai_sebelum_ppn_total_pp_fak_data" name="jumlah_nilai_sebelum_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 <p>Nominal: <span id="jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators" class="mask"></span></p>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="col-lg-12">
-                <input id="jumlah_nilai_sesudah_ppn_total_pp_fak_data" name="jumlah_nilai_sesudah_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" onkeyup="hitungPP(null,'jumlah_nilai_sesudah_ppn_total_pp_fak_data')" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                <input id="jumlah_nilai_sesudah_ppn_total_pp_fak_data" name="jumlah_nilai_sesudah_ppn_total_pp_fak_data" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 <p>Nominal: <span id="jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators" class="mask"></span></p>
             </div>
         </div>

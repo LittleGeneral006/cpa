@@ -13,102 +13,12 @@ use DateTime;
 use CodeIgniter\Validation\Rules;
 use App\Models\TransaksionalModel;
 
-
 class Pengajuan extends BaseController
 {
     private $now;
     public $db;
     public $session;
     public $email;
-    protected $recapRules = [
-        'tb_data_entry' => [
-            'operator' => 'AND',
-            'columns'  => [
-                'nama_debitur',
-                'plafond'
-            ]
-
-        ],
-        'tb_fcr' => [
-            'operator' => 'AND',
-            'columns'  => [
-                'nomor'
-            ]
-        ],
-        'tb_fcr_usaha' => [
-            'operator' => 'OR',
-            'columns'  => [
-                'kondisi_fisik_kantor'
-            ]
-        ],
-        'tb_fcr_agunan' => [
-            'operator' => 'OR',
-            'columns'  => [
-                'bukti_kepemilikan',
-                'imb',
-                'jenis'
-            ]
-        ],
-        'tb_dokumen' => [
-            'operator' => 'AND',
-            'columns'  => [
-                // contoh kolom wajib dokumen (sesuaikan punyamu)
-                'nama_nasabah'
-            ]
-        ],
-        'tb_dokumen_cv' => [
-            'operator' => 'AND',
-            'columns'  => [
-                // contoh kolom wajib dokumen (sesuaikan punyamu)
-                'nama_nasabah'
-            ]
-        ],
-        'tb_dokumen_pt' => [
-            'operator' => 'AND',
-            'columns'  => [
-                // contoh kolom wajib dokumen (sesuaikan punyamu)
-                'nama_nasabah'
-            ]
-        ],
-        'tb_dokumen_pendukung' => [
-            'operator' => 'AND',   // atau OR sesuai kebutuhan dokumen
-            'columns'  => [
-                'nama_nasabah'     // samakan dengan kolom yang memang ada di tb_dokumen/_pt/_cv
-            ]
-        ],
-        'tb_scoring' => [
-            'operator' => 'AND',   // atau OR sesuai kebutuhan dokumen
-            'columns'  => [
-                'pendirian_bu',
-                'legalitas',
-                'hubungan_funding',
-                'manajemen_usaha',
-                'jenis_agunan',
-                'bukti_kepemilikan_agunan',
-                'status_kepemilikan',
-                'marketable_agunan',
-                'hubungan_landing',
-                'pengalaman',
-                'sumber_dana',
-                'lokasi_proyek',
-                'jenis_proyek',
-                'bahan_baku',
-                'peralatan',
-                'pembayaran_termijn',
-                'dasar_penunjukan',
-                'persentase_plafond',
-                'jangka_waktu',
-                'persentase_agunan',
-                'penjaminan_maskapai',
-            ]
-        ],
-    ];
-    protected array $dokumenMap = [
-        'Perseroan Perseorangan'     => 'tb_dokumen',
-        'Commanditaire Vennootschap' => 'tb_dokumen_cv',
-        'Perseroan Terbatas'         => 'tb_dokumen_pt',
-    ];
-
     public function __construct()
     {
         helper('date');
@@ -148,7 +58,6 @@ class Pengajuan extends BaseController
             return redirect()->to('/login');
         }
     }
-
     public function hak_akses()
     {
         $param_kd_menu = '100';
@@ -233,10 +142,10 @@ class Pengajuan extends BaseController
             $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' and status = 'Aktif' and reject ='Tidak' ";
             // $where2 = " kd_unit_kerja = '" . session()->get('kd_unit_user') . "' ";
         }
-        if ($pengajuan_approved == 'yoyoyoyo') {
+        if ($pengajuan_approved == 0) {
             $where2 .= " and progress != 'Approved' ";
         }
-        if ($pengajuan_approved == 'yoyoyoyo') {
+        if ($pengajuan_approved == 1) {
             $where2 .= " and progress = 'Approved' ";
         }
 
@@ -463,152 +372,26 @@ class Pengajuan extends BaseController
         // batas baru
     }
 
-
     public function checkDataRecap($tabel)
     {
         $kd_data = $this->request->getPost('kd_data');
+        $transaksional = new TransaksionalModel();
 
-        if (!isset($this->recapRules[$tabel])) {
-            return $this->response->setJSON([
-                'status'  => 'Not Oke',
-                'message' => 'Aturan pengecekan tabel tidak ditemukan'
-            ]);
-        }
+        // Ambil data berdasarkan kd_data
+        $recap = $transaksional->getDataFromTable($tabel, $kd_data);
 
-        $db = db_connect();
-
-        // simpan rule berdasarkan parameter awal (alias)
-        $keyRule  = $tabel;
-        $rule     = $this->recapRules[$keyRule];
-        $operator = strtoupper($rule['operator']);
-        $columns  = $rule['columns'];
-
-        // CASE KHUSUS: dokumen_pendukung -> pilih tabel target (ambil dari input form)
-        if ($tabel === 'tb_dokumen_pendukung') {
-
-            // ambil dari form (POST), bukan dari tb_data_induk
-            $tabelDokumenList = ['tb_dokumen', 'tb_dokumen_pt', 'tb_dokumen_cv'];
-
-            $foundAnyRow = false;
-            $errors      = []; // simpan alasan gagal per tabel (optional)
-
-            foreach ($tabelDokumenList as $tDok) {
-
-                $data = $db->table($tDok)
-                    ->select(array_merge(['kd_data'], $columns))
-                    ->where('kd_data', $kd_data)
-                    ->get()
-                    ->getRowArray();
-
-                if (!$data) {
-                    $errors[$tDok] = 'Data tidak ditemukan';
-                    continue;
-                }
-
-                $foundAnyRow = true;
-
-                // --- validasi sesuai operator (AND / OR) ---
-                if ($operator === 'AND') {
-                    $ok = true;
-                    foreach ($columns as $col) {
-                        if (!array_key_exists($col, $data) || $data[$col] === null || trim((string)$data[$col]) === '') {
-                            $ok = false;
-                            $errors[$tDok] = "Kolom {$col} masih kosong";
-                            break;
-                        }
-                    }
-
-                    if ($ok) {
-                        return $this->response->setJSON([
-                            'status' => 'Oke',
-                            'tabel'  => $tDok
-                        ]);
-                    }
-                }
-
-                if ($operator === 'OR') {
-                    $ok = false;
-                    foreach ($columns as $col) {
-                        if (array_key_exists($col, $data) && $data[$col] !== null && trim((string)$data[$col]) !== '') {
-                            $ok = true;
-                            break;
-                        }
-                    }
-
-                    if ($ok) {
-                        return $this->response->setJSON([
-                            'status' => 'Oke',
-                            'tabel'  => $tDok
-                        ]);
-                    }
-
-                    $errors[$tDok] = 'Minimal salah satu kolom harus diisi';
-                }
-            }
-
-            // kalau tidak ada satupun tabel punya row kd_data
-            if (!$foundAnyRow) {
-                return $this->response->setJSON([
-                    'status'  => 'Not Oke',
-                    'message' => "Data dokumen tidak ditemukan di tb_dokumen / tb_dokumen_pt / tb_dokumen_cv"
-                ]);
-            }
-
-            // ada row, tapi semuanya gagal validasi
-            return $this->response->setJSON([
-                'status'  => 'Not Oke',
-                'message' => "Data dokumen ditemukan, tetapi belum lengkap",
-                'detail'  => $errors // kalau mau ditampilkan ke UI
-            ]);
-        }
-
-        // Ambil 1 baris data
-        $data = $db->table($tabel)
-            ->select(array_merge(['kd_data'], $columns))
-            ->where('kd_data', $kd_data)
-            ->get()
-            ->getRowArray();
-
-        if (!$data) {
-            return $this->response->setJSON([
-                'status'  => 'Not Oke',
-                'message' => "Data tidak ditemukan di tabel {$tabel}"
-            ]);
-        }
-
-        if ($operator === 'AND') {
-            foreach ($columns as $col) {
-                if (!array_key_exists($col, $data) || $data[$col] === null || trim((string)$data[$col]) === '') {
-                    return $this->response->setJSON([
-                        'status'  => 'Not Oke',
-                        'kolom'   => $col,
-                        'message' => "Kolom {$col} masih kosong (tabel {$tabel})"
-                    ]);
+        // Cek apakah ada data kosong di baris
+        if ($recap) {
+            foreach ($recap as $column) {
+                if (empty($column)) {
+                    return $this->response->setJSON(['status' => 'Not Oke']);
                 }
             }
             return $this->response->setJSON(['status' => 'Oke']);
+        } else {
+            return $this->response->setJSON(['status' => 'Not Oke']);
         }
-
-        if ($operator === 'OR') {
-            foreach ($columns as $col) {
-                if (array_key_exists($col, $data) && $data[$col] !== null && trim((string)$data[$col]) !== '') {
-                    return $this->response->setJSON(['status' => 'Oke']);
-                }
-            }
-            return $this->response->setJSON([
-                'status'  => 'Not Oke',
-                'message' => "Minimal salah satu kolom harus diisi (tabel {$tabel})"
-            ]);
-        }
-
-        return $this->response->setJSON([
-            'status'  => 'Not Oke',
-            'message' => 'Operator tidak dikenali'
-        ]);
     }
-
-
-
 
     public function cek_agunan_kd_tepakai($kd_data)
     {
@@ -2039,83 +1822,30 @@ class Pengajuan extends BaseController
                 'status' => $this->request->getPost('status_tambah'),
             ];
             if ($pemanggil == 'edit_finish') {
-                //pemasar => koord pemasar
-                if (session()->get('kd_level_user') == 'LVL23072023135343') {
-                    $data_master['posisi_progress'] = 'Koordinator Pemasar';
-                    $data_master['progress'] = 'Review';
-                }
-                // koord pemasar => kepala cabang
-                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] < 2000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Approval';
-                }
-                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Rekomendasi';
-                }
-                if (session()->get('kd_level_user') == 'LVL23072023133934' && $data['plafond'] >= 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Rekomendasi';
-                }
-                // kepala cabang => analis kredit
-                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] < 2000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Approved';
-                }
-                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
-                    $data_master['posisi_progress'] = 'Analis Kredit';
-                    $data_master['progress'] = 'Rekomendasi';
-                }
-                if (session()->get('kd_level_user') == 'LVL23072023131340' && $data['plafond'] >= 5000000001) {
-                    $data_master['posisi_progress'] = 'Analis Kredit';
-                    $data_master['progress'] = 'Rekomendasi';
-                }
-                // analis kredit => kepala bagian
-                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Approval/ Approved';
-                }
-                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Bagian';
-                    $data_master['progress'] = 'Approval';
-                }
-                if (session()->get('kd_level_user') == 'LVL18092023101055' && $data['plafond'] >= 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Bagian';
-                    $data_master['progress'] = 'Rekomendasi';
-                }
-                // kepala bagian => kepala divisi
-                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Approval/ Approved';
-                }
-                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Bagian';
-                    $data_master['progress'] = 'Approved';
-                }
-                if (session()->get('kd_level_user') == 'LVL23072023134345' && $data['plafond'] >= 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Divisi';
-                    $data_master['progress'] = 'Approval'; //baru ku ubah dari rekomendasi ke approval 11 8 24
-                }
+    $rowNow = $this->db->query("
+        SELECT posisi_progress, progress
+        FROM tb_data_master
+        WHERE kd_data = " . $this->db->escape($kd_data) . "
+        LIMIT 1
+    ")->getRow();
 
-                // kepala divisi
-                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
-                    $data_master['posisi_progress'] = 'Kepala Cabang';
-                    $data_master['progress'] = 'Approval/ Approved';
-                }
-                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] >= 2000000001 && $data['plafond'] < 5000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
-                    $data_master['posisi_progress'] = 'Kepala Bagian';
-                    $data_master['progress'] = 'Approval/ Approved';
-                }
-                if (session()->get('kd_level_user') == 'LVL07112023100547' && $data['plafond'] >= 5000000001) {
-                    $data_master['posisi_progress'] = 'Kepala Divisi';
-                    $data_master['progress'] = 'Approved';
-                }
-                // jika yang login selain role di atas, maka hilangkan button finish
-            }
+    if ($rowNow) {
+        $next = $this->resolveNextProgress(
+            $data['plafond'],
+            session()->get('kd_unit_user'),
+            session()->get('kd_level_user'),
+            $rowNow->posisi_progress,
+            $rowNow->progress
+        );
+
+        if ($next) {
+            $data_master['posisi_progress'] = $next['posisi_progress'];
+            $data_master['progress'] = $next['progress'];
+        }
+    }
+}
+
+
 
             //pengecekan kd info tidak boleh sama sebelum insert
             $kd_data = $this->request->getPost('kd_data_tambah');
@@ -3062,453 +2792,751 @@ class Pengajuan extends BaseController
     // }
 
 
+    // public function tampil_btn_finish($kd_data)
+    // {
+    //     // default response
+    //     $resp = [
+    //         'status' => 'success',
+    //         'tampil_button' => 'hide',
+    //         'judul_button' => 'Error',
+    //     ];
+
+    //     // ambil data master + entry
+    //     $q = $this->db->query("
+    //     SELECT m.posisi_progress, m.progress, d.plafond
+    //     FROM tb_data_master m
+    //     JOIN tb_data_entry d ON d.kd_data = m.kd_data
+    //     WHERE m.kd_data = ?
+    //     LIMIT 1
+    // ", [$kd_data]);
+
+    //     if ($q->num_rows() <= 0) {
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     $row = $q->row();
+    //     $plafond = (float) ($row->plafond ?? 0);
+    //     $posisi = (string) ($row->posisi_progress ?? '');
+    //     $prog = (string) ($row->progress ?? '');
+
+    //     // session
+    //     $level = (string) session()->get('kd_level_user'); // kd level user
+    //     $unit = (string) session()->get('kd_unit_user');  // contoh: '001' cabang utama
+
+    //     // mapping level -> nama role (biar enak dibaca)
+    //     $LVL_PEMASAR = 'LVL23072023135343';
+    //     $LVL_KOORD = 'LVL23072023133934';
+    //     $LVL_KACAB = 'LVL23072023131340';
+    //     $LVL_ANALIS = 'LVL18092023101055';
+    //     $LVL_KABAG = 'LVL23072023134345';
+    //     $LVL_KADIV = 'LVL07112023100547';
+
+    //     // helper set response
+    //     $show = function ($judul) use (&$resp) {
+    //         $resp['tampil_button'] = 'show';
+    //         $resp['judul_button'] = $judul;
+    //     };
+    //     $hide = function ($judul) use (&$resp) {
+    //         $resp['tampil_button'] = 'hide';
+    //         $resp['judul_button'] = $judul;
+    //     };
+
+    //     // =========================
+    //     // RULES LIMIT (sesuai request)
+    //     // =========================
+    //     $isCabangUtama = ($unit === '001');
+
+    //     // Siapa final approver?
+    //     // - Cabang Utama: <=1B Kabag, >1B Kadiv
+    //     // - Selain itu:   <=2B Kacab, >2B Kadiv
+    //     if ($isCabangUtama) {
+    //         $finalApprover = ($plafond <= 1000000000) ? 'KABAG' : 'KADIV';
+    //     } else {
+    //         $finalApprover = ($plafond <= 3000000000) ? 'KACAB' : 'KADIV';
+    //     }
+
+    //     // =========================
+    //     // FLOW BUTTON (berdasarkan posisi/progress + role login)
+    //     // =========================
+
+    //     // 1) Pemasar -> Koordinator Pemasar
+    //     if ($level === $LVL_PEMASAR && $posisi === 'Pemasar' && $prog === 'Input') {
+    //         $show('Kirim ke Koord Pemasar');
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     // 2) Koordinator Pemasar -> Kepala Cabang
+    //     if ($level === $LVL_KOORD && $posisi === 'Koordinator Pemasar' && $prog === 'Review') {
+    //         $show('Kirim ke Kacab');
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     // 3) Kepala Cabang
+    //     if ($level === $LVL_KACAB && $posisi === 'Kepala Cabang') {
+
+    //         // Jika final approver adalah KACAB => tombol approve saat progress=Approval
+    //         if ($finalApprover === 'KACAB') {
+    //             if ($prog === 'Approval') {
+    //                 $show('Setujui/ Approve');
+    //             } else {
+    //                 $hide('Menunggu tahap Approval Kacab');
+    //             }
+    //             echo json_encode($resp);
+    //             return;
+    //         }
+
+    //         // Jika final approver BUKAN KACAB => KACAB hanya meneruskan rekomendasi ke Analis
+    //         if ($prog === 'Rekomendasi') {
+    //             $show('Kirim ke Analis Kredit');
+    //         } else {
+    //             $hide('Menunggu tahap Rekomendasi Kacab');
+    //         }
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     // 4) Analis Kredit
+    //     if ($level === $LVL_ANALIS && $posisi === 'Analis Kredit') {
+
+    //         // Jalur ke Kabag (baik untuk Cabang Utama maupun non-utama) ketika Analis selesai rekomendasi
+    //         if ($prog === 'Rekomendasi') {
+    //             $show('Kirim ke Kabag');
+    //         } else {
+    //             $hide('Menunggu tahap Rekomendasi Analis');
+    //         }
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     // 5) Kepala Bagian
+    //     if ($level === $LVL_KABAG && $posisi === 'Kepala Bagian') {
+
+    //         // Jika Cabang Utama & plafond <=1B => final approver Kabag, approve saat Approval
+    //         if ($finalApprover === 'KABAG') {
+    //             if ($prog === 'Approval') {
+    //                 $show('Setujui/ Approve');
+    //             } else {
+    //                 $hide('Menunggu tahap Approval Kabag');
+    //             }
+    //             echo json_encode($resp);
+    //             return;
+    //         }
+
+    //         // Selain itu => Kabag meneruskan ke Kadiv saat rekomendasi
+    //         if ($prog === 'Rekomendasi') {
+    //             $show('Kirim ke Kadiv');
+    //         } else {
+    //             $hide('Menunggu tahap Rekomendasi Kabag');
+    //         }
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     // 6) Kepala Divisi
+    //     if ($level === $LVL_KADIV && $posisi === 'Kepala Divisi') {
+
+    //         // final approver Kadiv => approve saat Approval
+    //         if ($finalApprover === 'KADIV') {
+    //             if ($prog === 'Approval') {
+    //                 $show('Setujui/ Approve');
+    //             } else {
+    //                 $hide('Menunggu tahap Approval Kadiv');
+    //             }
+    //             echo json_encode($resp);
+    //             return;
+    //         }
+
+    //         // kalau bukan final approver (harusnya tidak terjadi dengan rules baru), hide saja
+    //         $hide('Bukan tahap approver');
+    //         echo json_encode($resp);
+    //         return;
+    //     }
+
+    //     // selain role di atas: hide
+    //     $hide('Tidak ada aksi untuk role ini');
+    //     echo json_encode($resp);
+    // }
     public function tampil_btn_finish($kd_data)
-    {
-        // default response
-        $resp = [
-            'status' => 'success',
-            'tampil_button' => 'hide',
-            'judul_button' => 'Error',
-        ];
+{
+    $data_kirim = [
+        'status' => 'success',
+        'tampil_button' => 'hide',
+        'judul_button' => 'Error',
+    ];
 
-        // ambil data master + entry
-        $q = $this->db->query("
-    SELECT m.posisi_progress, m.progress, d.plafond
-    FROM tb_data_master m
-    JOIN tb_data_entry d ON d.kd_data = m.kd_data
-    WHERE m.kd_data = ?
-    LIMIT 1
-", [$kd_data]);
+    $row = $this->db->query("
+        SELECT m.posisi_progress, m.progress, d.plafond
+        FROM tb_data_master m
+        JOIN tb_data_entry d ON d.kd_data = m.kd_data
+        WHERE m.kd_data = " . $this->db->escape($kd_data) . "
+        LIMIT 1
+    ")->getRow();
 
-        $row = $q->getRow();
-
-        if (!$row) {
-            echo json_encode($resp);
-            return;
-        }
-
-        // pakai data
-        $posisi_progress = $row->posisi_progress;
-        $progress = $row->progress;
-        $plafond = $row->plafond;
-
-
-        $row = $q->row();
-        $plafond = (float) ($row->plafond ?? 0);
-        $posisi = (string) ($row->posisi_progress ?? '');
-        $prog = (string) ($row->progress ?? '');
-
-        // session
-        $level = (string) session()->get('kd_level_user'); // kd level user
-        $unit = (string) session()->get('kd_unit_user');  // contoh: '001' cabang utama
-
-        // mapping level -> nama role (biar enak dibaca)
-        $LVL_PEMASAR = 'LVL23072023135343';
-        $LVL_KOORD = 'LVL23072023133934';
-        $LVL_KACAB = 'LVL23072023131340';
-        $LVL_ANALIS = 'LVL18092023101055';
-        $LVL_KABAG = 'LVL23072023134345';
-        $LVL_KADIV = 'LVL07112023100547';
-
-        // helper set response
-        $show = function ($judul) use (&$resp) {
-            $resp['tampil_button'] = 'show';
-            $resp['judul_button'] = $judul;
-        };
-        $hide = function ($judul) use (&$resp) {
-            $resp['tampil_button'] = 'hide';
-            $resp['judul_button'] = $judul;
-        };
-
-        // =========================
-        // RULES LIMIT (sesuai request)
-        // =========================
-        $isCabangUtama = ($unit === '001');
-
-        // Siapa final approver?
-        // - Cabang Utama: <=1B Kabag, >1B Kadiv
-        // - Selain itu:   <=2B Kacab, >2B Kadiv
-        if ($isCabangUtama) {
-            $finalApprover = ($plafond <= 1000000000) ? 'KABAG' : 'KADIV';
-        } else {
-            $finalApprover = ($plafond <= 2000000000) ? 'KACAB' : 'KADIV';
-        }
-
-        // =========================
-        // FLOW BUTTON (berdasarkan posisi/progress + role login)
-        // =========================
-
-        // 1) Pemasar -> Koordinator Pemasar
-        if ($level === $LVL_PEMASAR && $posisi === 'Pemasar' && $prog === 'Input') {
-            $show('Kirim ke Koord Pemasar');
-            echo json_encode($resp);
-            return;
-        }
-
-        // 2) Koordinator Pemasar -> Kepala Cabang
-        if ($level === $LVL_KOORD && $posisi === 'Koordinator Pemasar' && $prog === 'Review') {
-            $show('Kirim ke Kacab');
-            echo json_encode($resp);
-            return;
-        }
-
-        // 3) Kepala Cabang
-        if ($level === $LVL_KACAB && $posisi === 'Kepala Cabang') {
-
-            // Jika final approver adalah KACAB => tombol approve saat progress=Approval
-            if ($finalApprover === 'KACAB') {
-                if ($prog === 'Approval') {
-                    $show('Setujui/ Approve');
-                } else {
-                    $hide('Menunggu tahap Approval Kacab');
-                }
-                echo json_encode($resp);
-                return;
-            }
-
-            // Jika final approver BUKAN KACAB => KACAB hanya meneruskan rekomendasi ke Analis
-            if ($prog === 'Rekomendasi') {
-                $show('Kirim ke Analis Kredit');
-            } else {
-                $hide('Menunggu tahap Rekomendasi Kacab');
-            }
-            echo json_encode($resp);
-            return;
-        }
-
-        // 4) Analis Kredit
-        if ($level === $LVL_ANALIS && $posisi === 'Analis Kredit') {
-
-            // Jalur ke Kabag (baik untuk Cabang Utama maupun non-utama) ketika Analis selesai rekomendasi
-            if ($prog === 'Rekomendasi') {
-                $show('Kirim ke Kabag');
-            } else {
-                $hide('Menunggu tahap Rekomendasi Analis');
-            }
-            echo json_encode($resp);
-            return;
-        }
-
-        // 5) Kepala Bagian
-        if ($level === $LVL_KABAG && $posisi === 'Kepala Bagian') {
-
-            // Jika Cabang Utama & plafond <=1B => final approver Kabag, approve saat Approval
-            if ($finalApprover === 'KABAG') {
-                if ($prog === 'Approval') {
-                    $show('Setujui/ Approve');
-                } else {
-                    $hide('Menunggu tahap Approval Kabag');
-                }
-                echo json_encode($resp);
-                return;
-            }
-
-            // Selain itu => Kabag meneruskan ke Kadiv saat rekomendasi
-            if ($prog === 'Rekomendasi') {
-                $show('Kirim ke Kadiv');
-            } else {
-                $hide('Menunggu tahap Rekomendasi Kabag');
-            }
-            echo json_encode($resp);
-            return;
-        }
-
-        // 6) Kepala Divisi
-        if ($level === $LVL_KADIV && $posisi === 'Kepala Divisi') {
-
-            // final approver Kadiv => approve saat Approval
-            if ($finalApprover === 'KADIV') {
-                if ($prog === 'Approval') {
-                    $show('Setujui/ Approve');
-                } else {
-                    $hide('Menunggu tahap Approval Kadiv');
-                }
-                echo json_encode($resp);
-                return;
-            }
-
-            // kalau bukan final approver (harusnya tidak terjadi dengan rules baru), hide saja
-            $hide('Bukan tahap approver');
-            echo json_encode($resp);
-            return;
-        }
-
-        // selain role di atas: hide
-        $hide('Tidak ada aksi untuk role ini');
-        echo json_encode($resp);
+    if (!$row) {
+        echo json_encode($data_kirim);
+        return;
     }
 
-    public function tampil_disposisi($kd_data)
-    {
+    $plafond = (float) $row->plafond;
+    $posisi  = (string) $row->posisi_progress;
+    $progress = (string) $row->progress;
 
+    $kdLevel = session()->get('kd_level_user');
+    $kdUnit  = session()->get('kd_unit_user');
+
+    $isCabangUtama = ($kdUnit === '001');
+    $limitKoorToKacab = 2000000000;     // 2 M
+    $limitCabangUtamaKabag = 1000000000; // 1 M
+
+    // Helper: apakah tahap final approval harus oleh Kabag atau Kadiv?
+    $finalApprover = function() use ($plafond, $isCabangUtama, $limitCabangUtamaKabag, $limitKoorToKacab) {
+        // rule baru: >2M selalu Kadiv
+        if ($plafond > $limitKoorToKacab) return 'KADIV';
+
+        // rule baru cabang utama: <=1M Kabag, >1M Kadiv
+        if ($isCabangUtama) {
+            return ($plafond <= $limitCabangUtamaKabag) ? 'KABAG' : 'KADIV';
+        }
+
+        // selain cabang utama dan <=2M: jalur normal kamu (umumnya Kacab approve)
+        return 'KACAB';
+    };
+
+    // 1) PEMASAR -> KOORD
+    if ($kdLevel === 'LVL23072023135343' && $posisi === 'Pemasar' && $progress === 'Input') {
         $data_kirim = [
             'status' => 'success',
-            'pemasar' => '0',
-            'koor' => '0',
-            'kacab' => '0',
-            'analis' => '0',
-            'kabag' => '0',
-            'kadiv' => '0',
-            'tampil_btn_return' => '0',
+            'tampil_button' => 'show',
+            'judul_button' => 'Kirim ke Koord Pemasar',
         ];
-        $cek_ada = $this->db->query("SELECT m.posisi_progress, m.progress, d.plafond from tb_data_master as m, tb_data_entry as d where m.kd_data = '" . $kd_data . "' and d.kd_data = '" . $kd_data . "' ");
-        // $this->debug($cek_ada->getRow());
-        if ($cek_ada->getNumRows() > 0) {
-            $plafond_db = $cek_ada->getRow()->plafond;
-            $posisi_progress_db = $cek_ada->getRow()->posisi_progress;
-            $progress_db = $cek_ada->getRow()->progress;
-            // $this->debug($plafond_db);
-            //pemasar => koord pemasar
-            if (session()->get('kd_level_user') == 'LVL23072023135343') {
-                if ($posisi_progress_db == 'Pemasar' && $progress_db == 'Input') {
-                    // $data_master['posisi_progress'] = 'Koordinator Pemasar';
-                    // $data_master['progress'] = 'Review';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '1',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '0',
-                    ];
-                }
-            }
-            // koord pemasar => kepala cabang
-            if (session()->get('kd_level_user') == 'LVL23072023133934') {
-                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '1',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '1',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '1',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-            }
-            // kepala cabang => analis kredit
-            if (session()->get('kd_level_user') == 'LVL23072023131340') {
-                if ($plafond_db < 2000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '1',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Analis Kredit';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '1',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Analis Kredit';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '1',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-            }
-            // analis kredit => kepala bagian
-            if (session()->get('kd_level_user') == 'LVL18092023101055') {
-                if ($plafond_db < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '0',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Approval';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '1',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '1',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-            }
-            // kepala bagian => kepala divisi
-            if (session()->get('kd_level_user') == 'LVL23072023134345') {
-                if ($plafond_db < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '0',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '1',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
-                    // $data_master['posisi_progress'] = 'Kepala Divisi';
-                    // $data_master['progress'] = 'Rekomendasi';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '1',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
-            }
+        echo json_encode($data_kirim);
+        return;
+    }
 
-            // kepala divisi
-            if (session()->get('kd_level_user') == 'LVL07112023100547') {
-                if ($plafond_db < 2000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
-                    // $data_master['posisi_progress'] = 'Kepala Cabang';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '0',
-                    ];
-                }
-                if ($plafond_db >= 2000000001 && $plafond_db < 5000000001) {
-                    // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
-                    // $data_master['posisi_progress'] = 'Kepala Bagian';
-                    // $data_master['progress'] = 'Approval/ Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '0',
-                        'tampil_btn_return' => '0',
-                    ];
-                }
-                if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
-                    // $data_master['posisi_progress'] = 'Kepala Divisi';
-                    // $data_master['progress'] = 'Approved';
-                    $data_kirim = [
-                        'status' => 'success',
-                        'pemasar' => '0',
-                        'koor' => '0',
-                        'kacab' => '0',
-                        'analis' => '0',
-                        'kabag' => '0',
-                        'kadiv' => '1',
-                        'tampil_btn_return' => '1',
-                    ];
-                }
+    // 2) KOORD -> KACAB (tetap)
+    if ($kdLevel === 'LVL23072023133934' && $posisi === 'Koordinator Pemasar' && $progress === 'Review') {
+        $data_kirim = [
+            'status' => 'success',
+            'tampil_button' => 'show',
+            'judul_button' => 'Kirim ke Kacab',
+        ];
+        echo json_encode($data_kirim);
+        return;
+    }
+
+    // 3) KACAB action:
+    // - kalau final approver = KACAB dan posisi/progress sesuai => tombol Approve
+    // - kalau final approver bukan KACAB (misal ke Kabag/Kadiv) => tombol "Kirim ke ..."
+
+    if ($kdLevel === 'LVL23072023131340' && $posisi === 'Kepala Cabang') {
+
+        $who = $finalApprover();
+
+        // kasus jalur <=2M non cabang utama => Kacab approve di tahap Approval
+        if ($who === 'KACAB' && $progress === 'Approval') {
+            $data_kirim = [
+                'status' => 'success',
+                'tampil_button' => 'show',
+                'judul_button' => 'Setujui/ Approve',
+            ];
+            echo json_encode($data_kirim);
+            return;
+        }
+
+        // kalau bukan Kacab final approver, Kacab hanya "kirim ke" target berikutnya
+        if (in_array($progress, ['Rekomendasi', 'Approval'])) {
+            if ($who === 'KABAG') {
+                $data_kirim = [
+                    'status' => 'success',
+                    'tampil_button' => 'show',
+                    'judul_button' => 'Kirim ke Kabag',
+                ];
+                echo json_encode($data_kirim);
+                return;
+            }
+            if ($who === 'KADIV') {
+                // kamu bisa lewat Analis dulu atau langsung Kadiv (tergantung desainmu).
+                // Karena rule kamu bilang "di atas 2M Kadiv approve", aku arahkan ke Kadiv.
+                $data_kirim = [
+                    'status' => 'success',
+                    'tampil_button' => 'show',
+                    'judul_button' => 'Kirim ke Kadiv',
+                ];
+                echo json_encode($data_kirim);
+                return;
             }
         }
-        // jika yang login selain role di atas, maka hilangkan button finish
-        echo json_encode($data_kirim);
     }
+
+    // 4) ANALIS KREDIT (kalau masih kamu pakai di alur, kamu bisa biarkan/hide)
+    if ($kdLevel === 'LVL18092023101055') {
+        // sesuai pola lama kamu: analis tidak punya tombol finish untuk plafond <2M
+        // untuk rule baru, analis juga bukan final approver => umumnya "kirim ke ..."
+        // contoh: kalau posisi Analis Kredit & progress Rekomendasi => kirim ke target finalApprover
+        if ($posisi === 'Analis Kredit' && $progress === 'Rekomendasi') {
+            $who = $finalApprover();
+            $judul = ($who === 'KABAG') ? 'Kirim ke Kabag' : (($who === 'KADIV') ? 'Kirim ke Kadiv' : 'Kirim ke Kacab');
+            $data_kirim = [
+                'status' => 'success',
+                'tampil_button' => 'show',
+                'judul_button' => $judul,
+            ];
+            echo json_encode($data_kirim);
+            return;
+        }
+
+        // default hide
+        echo json_encode($data_kirim);
+        return;
+    }
+
+    // 5) KABAG approve (khusus cabang utama plafond <=1M)
+    if ($kdLevel === 'LVL23072023134345') {
+        $who = $finalApprover();
+        if ($who === 'KABAG' && $posisi === 'Kepala Bagian' && $progress === 'Approval') {
+            $data_kirim = [
+                'status' => 'success',
+                'tampil_button' => 'show',
+                'judul_button' => 'Setujui/ Approve',
+            ];
+            echo json_encode($data_kirim);
+            return;
+        }
+        // kalau kabag bukan final, kabag hanya kirim ke kadiv
+        if ($posisi === 'Kepala Bagian' && in_array($progress, ['Approval', 'Rekomendasi'])) {
+            $data_kirim = [
+                'status' => 'success',
+                'tampil_button' => 'show',
+                'judul_button' => 'Kirim ke Kadiv',
+            ];
+            echo json_encode($data_kirim);
+            return;
+        }
+    }
+
+    // 6) KADIV approve (plafond >2M atau cabang utama >1M)
+    if ($kdLevel === 'LVL07112023100547') {
+        $who = $finalApprover();
+        if ($who === 'KADIV' && $posisi === 'Kepala Divisi' && $progress === 'Approval') {
+            $data_kirim = [
+                'status' => 'success',
+                'tampil_button' => 'show',
+                'judul_button' => 'Setujui/ Approve',
+            ];
+            echo json_encode($data_kirim);
+            return;
+        }
+    }
+
+    echo json_encode($data_kirim);
+}
+private function resolveNextProgress($plafond, $kdUnit, $kdLevel, $posisiNow, $progressNow)
+{
+    $plafond = (float)$plafond;
+    $isCabangUtama = ($kdUnit === '001');
+
+    $limit2M = 2000000000;
+    $limitCabangUtama1M = 1000000000;
+
+    $finalApprover = function() use ($plafond, $isCabangUtama, $limit2M, $limitCabangUtama1M) {
+        if ($plafond > $limit2M) return 'KADIV';
+        if ($isCabangUtama) return ($plafond <= $limitCabangUtama1M) ? 'KABAG' : 'KADIV';
+        return 'KACAB';
+    };
+
+    // contoh mapping sederhana (kamu tinggal sesuaikan label progress yang kamu pakai)
+    // return: ['posisi_progress' => ..., 'progress' => ...]
+    if ($kdLevel === 'LVL23072023135343' && $posisiNow === 'Pemasar' && $progressNow === 'Input') {
+        return ['posisi_progress' => 'Koordinator Pemasar', 'progress' => 'Review'];
+    }
+
+    if ($kdLevel === 'LVL23072023133934' && $posisiNow === 'Koordinator Pemasar' && $progressNow === 'Review') {
+        return ['posisi_progress' => 'Kepala Cabang', 'progress' => 'Approval'];
+    }
+
+    if ($kdLevel === 'LVL23072023131340' && $posisiNow === 'Kepala Cabang') {
+        $who = $finalApprover();
+        if ($who === 'KACAB') return ['posisi_progress' => 'Kepala Cabang', 'progress' => 'Approved'];
+        if ($who === 'KABAG') return ['posisi_progress' => 'Kepala Bagian', 'progress' => 'Approval'];
+        if ($who === 'KADIV') return ['posisi_progress' => 'Kepala Divisi', 'progress' => 'Approval'];
+    }
+
+    if ($kdLevel === 'LVL23072023134345' && $posisiNow === 'Kepala Bagian') {
+        // kalau kabag final => approved, kalau tidak => ke kadiv
+        $who = $finalApprover();
+        if ($who === 'KABAG') return ['posisi_progress' => 'Kepala Bagian', 'progress' => 'Approved'];
+        return ['posisi_progress' => 'Kepala Divisi', 'progress' => 'Approval'];
+    }
+
+    if ($kdLevel === 'LVL07112023100547' && $posisiNow === 'Kepala Divisi' && $progressNow === 'Approval') {
+        return ['posisi_progress' => 'Kepala Divisi', 'progress' => 'Approved'];
+    }
+
+    return null;
+}
+
+
+    // public function tampil_disposisi($kd_data)
+    // {
+
+    //     $data_kirim = [
+    //         'status' => 'success',
+    //         'pemasar' => '0',
+    //         'koor' => '0',
+    //         'kacab' => '0',
+    //         'analis' => '0',
+    //         'kabag' => '0',
+    //         'kadiv' => '0',
+    //         'tampil_btn_return' => '0',
+    //     ];
+    //     $cek_ada = $this->db->query("SELECT m.posisi_progress, m.progress, d.plafond from tb_data_master as m, tb_data_entry as d where m.kd_data = '" . $kd_data . "' and d.kd_data = '" . $kd_data . "' ");
+    //     // $this->debug($cek_ada->getRow());
+    //     if ($cek_ada->getNumRows() > 0) {
+    //         $plafond_db = $cek_ada->getRow()->plafond;
+    //         $posisi_progress_db = $cek_ada->getRow()->posisi_progress;
+    //         $progress_db = $cek_ada->getRow()->progress;
+    //         // $this->debug($plafond_db);
+    //         //pemasar => koord pemasar
+    //         if (session()->get('kd_level_user') == 'LVL23072023135343') {
+    //             if ($posisi_progress_db == 'Pemasar' && $progress_db == 'Input') {
+    //                 // $data_master['posisi_progress'] = 'Koordinator Pemasar';
+    //                 // $data_master['progress'] = 'Review';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '1',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '0',
+    //                 ];
+    //             }
+    //         }
+    //         // koord pemasar => kepala cabang
+    //         if (session()->get('kd_level_user') == 'LVL23072023133934') {
+    //             if ($plafond_db < 2000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '1',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '1',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Koordinator Pemasar' && $progress_db == 'Review') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '1',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //         }
+    //         // kepala cabang => analis kredit
+    //         if (session()->get('kd_level_user') == 'LVL23072023131340') {
+    //             if ($plafond_db < 2000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Approval') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '1',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Analis Kredit';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '1',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Cabang' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Analis Kredit';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '1',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //         }
+    //         // analis kredit => kepala bagian
+    //         if (session()->get('kd_level_user') == 'LVL18092023101055') {
+    //             if ($plafond_db < 2000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah analis kredit
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '0',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Approval';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '1',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Analis Kredit' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '1',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //         }
+    //         // kepala bagian => kepala divisi
+    //         if (session()->get('kd_level_user') == 'LVL23072023134345') {
+    //             if ($plafond_db < 2000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah kepala bagian
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '0',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Approval') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '1',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Bagian' && $progress_db == 'Rekomendasi') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Divisi';
+    //                 // $data_master['progress'] = 'Rekomendasi';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '1',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //         }
+
+    //         // kepala divisi
+    //         if (session()->get('kd_level_user') == 'LVL07112023100547') {
+    //             if ($plafond_db < 2000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
+    //                 // $data_master['posisi_progress'] = 'Kepala Cabang';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '0',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 2000000001 && $plafond_db < 5000000001) {
+    //                 // harusnya button finishnya tidak muncul jika yang login adalah kepala divisi
+    //                 // $data_master['posisi_progress'] = 'Kepala Bagian';
+    //                 // $data_master['progress'] = 'Approval/ Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '0',
+    //                     'tampil_btn_return' => '0',
+    //                 ];
+    //             }
+    //             if ($plafond_db >= 5000000001 && $posisi_progress_db == 'Kepala Divisi' && $progress_db == 'Approval') {
+    //                 // $data_master['posisi_progress'] = 'Kepala Divisi';
+    //                 // $data_master['progress'] = 'Approved';
+    //                 $data_kirim = [
+    //                     'status' => 'success',
+    //                     'pemasar' => '0',
+    //                     'koor' => '0',
+    //                     'kacab' => '0',
+    //                     'analis' => '0',
+    //                     'kabag' => '0',
+    //                     'kadiv' => '1',
+    //                     'tampil_btn_return' => '1',
+    //                 ];
+    //             }
+    //         }
+    //     }
+    //     // jika yang login selain role di atas, maka hilangkan button finish
+    //     echo json_encode($data_kirim);
+    // }
+    public function tampil_disposisi($kd_data)
+{
+    $default = [
+        'status' => 'success',
+        'pemasar' => '0',
+        'koor' => '0',
+        'kacab' => '0',
+        'analis' => '0',
+        'kabag' => '0',
+        'kadiv' => '0',
+        'tampil_btn_return' => '0',
+    ];
+
+    $row = $this->db->query("
+        SELECT m.posisi_progress, m.progress, d.plafond
+        FROM tb_data_master m
+        JOIN tb_data_entry d ON d.kd_data = m.kd_data
+        WHERE m.kd_data = " . $this->db->escape($kd_data) . "
+        LIMIT 1
+    ")->getRow();
+
+    if (!$row) {
+        echo json_encode($default);
+        return;
+    }
+
+    $plafond = (float) $row->plafond;
+    $posisi  = (string) $row->posisi_progress;
+    $progress = (string) $row->progress;
+
+    $kdLevel = session()->get('kd_level_user');
+    $kdUnit  = session()->get('kd_unit_user');
+    $isCabangUtama = ($kdUnit === '001');
+
+    $limit2M = 2000000000;
+    $limitCabangUtama1M = 1000000000;
+
+    $finalApprover = function() use ($plafond, $isCabangUtama, $limit2M, $limitCabangUtama1M) {
+        if ($plafond > $limit2M) return 'KADIV';
+        if ($isCabangUtama) return ($plafond <= $limitCabangUtama1M) ? 'KABAG' : 'KADIV';
+        return 'KACAB';
+    };
+
+    // helper set flag cepat
+    $set = function($key) use ($default) {
+        $default[$key] = '1';
+        $default['tampil_btn_return'] = '1';
+        return $default;
+    };
+
+    // PEMASAR
+    if ($kdLevel === 'LVL23072023135343' && $posisi === 'Pemasar' && $progress === 'Input') {
+        $default['pemasar'] = '1';
+        echo json_encode($default);
+        return;
+    }
+
+    // KOORD
+    if ($kdLevel === 'LVL23072023133934' && $posisi === 'Koordinator Pemasar' && $progress === 'Review') {
+        echo json_encode($set('koor'));
+        return;
+    }
+
+    // KACAB
+    if ($kdLevel === 'LVL23072023131340' && $posisi === 'Kepala Cabang') {
+        // Kacab boleh action kalau:
+        // - final approver = KACAB (<=2M non cabang utama) dan progress Approval
+        // - atau Kacab hanya "kirim ke" (progress rekomendasi/approval) menuju Kabag/Kadiv
+        echo json_encode($set('kacab'));
+        return;
+    }
+
+    // KABAG (khusus cabang utama plafond <=1M atau jalur yang memang masuk ke kabag)
+    if ($kdLevel === 'LVL23072023134345' && $posisi === 'Kepala Bagian') {
+        echo json_encode($set('kabag'));
+        return;
+    }
+
+    // KADIV
+    if ($kdLevel === 'LVL07112023100547' && $posisi === 'Kepala Divisi') {
+        echo json_encode($set('kadiv'));
+        return;
+    }
+
+    echo json_encode($default);
+}
+
     public function edit_master($kd_data, $data_master)
     {
         $hasil = false;
@@ -8942,7 +8970,7 @@ class Pengajuan extends BaseController
             // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc'),
             // 'bahan_baku' => $this->request->getPost('bahan_baku_sc'),
             // 'peralatan' => $this->request->getPost('peralatan_sc'),
-            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc'),
+            // 'pembayaran_termin' => $this->request->getPost('pembayaran_sc'),
             // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc'),
             // 'persentase_plafond' => $this->request->getPost('prosentase_sc'),
             // 'jangka_waktu' => $this->request->getPost('jangka_sc'),
@@ -8964,7 +8992,7 @@ class Pengajuan extends BaseController
             'jenis_proyek' => $this->request->getPost('jenis_proyek_sc') ? $this->request->getPost('jenis_proyek_sc') : 0,
             'bahan_baku' => $this->request->getPost('bahan_baku_sc') ? $this->request->getPost('bahan_baku_sc') : 0,
             'peralatan' => $this->request->getPost('peralatan_sc') ? $this->request->getPost('peralatan_sc') : 0,
-            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc') ? $this->request->getPost('pembayaran_sc') : 0,
+            'pembayaran_termin' => $this->request->getPost('pembayaran_sc') ? $this->request->getPost('pembayaran_sc') : 0,
             'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc') ? $this->request->getPost('dasar_penunjukan_sc') : 0,
             'persentase_plafond' => $this->request->getPost('prosentase_sc') ? $this->request->getPost('prosentase_sc') : 0,
             'jangka_waktu' => $this->request->getPost('jangka_sc') ? $this->request->getPost('jangka_sc') : 0,
@@ -8981,7 +9009,7 @@ class Pengajuan extends BaseController
         $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
             + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
             + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
-            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termin']
             + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
             + $data['penjaminan_maskapai'];
         if ($jumlah >= 325) {
@@ -9034,7 +9062,7 @@ class Pengajuan extends BaseController
             // 'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor'),
             // 'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor'),
             // 'peralatan' => $this->request->getPost('peralatan_sc_koor'),
-            // 'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor'),
+            // 'pembayaran_termin' => $this->request->getPost('pembayaran_sc_koor'),
             // 'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor'),
             // 'persentase_plafond' => $this->request->getPost('prosentase_sc_koor'),
             // 'jangka_waktu' => $this->request->getPost('jangka_sc_koor'),
@@ -9056,7 +9084,7 @@ class Pengajuan extends BaseController
             'jenis_proyek' => $this->request->getPost('jenis_proyek_sc_koor') ? $this->request->getPost('jenis_proyek_sc_koor') : 0,
             'bahan_baku' => $this->request->getPost('bahan_baku_sc_koor') ? $this->request->getPost('bahan_baku_sc_koor') : 0,
             'peralatan' => $this->request->getPost('peralatan_sc_koor') ? $this->request->getPost('peralatan_sc_koor') : 0,
-            'pembayaran_termijn' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
+            'pembayaran_termin' => $this->request->getPost('pembayaran_sc_koor') ? $this->request->getPost('pembayaran_sc_koor') : 0,
             'dasar_penunjukan' => $this->request->getPost('dasar_penunjukan_sc_koor') ? $this->request->getPost('dasar_penunjukan_sc_koor') : 0,
             'persentase_plafond' => $this->request->getPost('prosentase_sc_koor') ? $this->request->getPost('prosentase_sc_koor') : 0,
             'jangka_waktu' => $this->request->getPost('jangka_sc_koor') ? $this->request->getPost('jangka_sc_koor') : 0,
@@ -9073,7 +9101,7 @@ class Pengajuan extends BaseController
         $jumlah = $data['pendirian_bu'] + $data['legalitas'] + $data['hubungan_funding'] + $data['manajemen_usaha']
             + $data['jenis_agunan'] + $data['bukti_kepemilikan_agunan'] + $data['status_kepemilikan'] + $data['marketable_agunan']
             + $data['hubungan_landing'] + $data['pengalaman'] + $data['sumber_dana'] + $data['lokasi_proyek']
-            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termijn']
+            + $data['jenis_proyek'] + $data['bahan_baku'] + $data['peralatan'] + $data['pembayaran_termin']
             + $data['dasar_penunjukan'] + $data['persentase_plafond'] + $data['jangka_waktu'] + $data['persentase_agunan']
             + $data['penjaminan_maskapai'];
         if ($jumlah >= 325) {

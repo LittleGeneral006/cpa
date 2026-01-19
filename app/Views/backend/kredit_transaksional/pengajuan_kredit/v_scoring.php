@@ -561,6 +561,7 @@
 
             // upload dokumen
         };
+        console.log(scoring_data);
         return scoring_data;
     }
 

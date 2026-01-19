@@ -127,6 +127,7 @@
             <div class="col-lg-12">
                 <div class="input-group">
                     <input id="jumlah_fak_modal" name="jumlah_fak_modal" onchange="copyvalue(this.id,'pekerjaan_persiapan_konstruksi_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                    <p>Nominal: <span id="jumlah_fak_modal_separators" class="mask"></span></p>
                 </div>
             </div>
         </div>

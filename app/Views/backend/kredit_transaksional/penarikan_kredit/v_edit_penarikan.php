@@ -88,7 +88,7 @@
         resizeJquerySteps();
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         var kd_data = $("#kd_data").val();
         console.log("KD DATA:", kd_data);
 
@@ -104,11 +104,11 @@
                 previous: "Sebelumnya",
                 loading: "Memuat..."
             },
-            onInit: function () {
+            onInit: function() {
                 resizeJquerySteps();
 
                 // Tambahkan tombol "Simpan Sementara" di antara tombol Previous dan Next
-                setTimeout(function () {
+                setTimeout(function() {
                     var actions = $(".actions ul");
                     if ($("#btn-save-step").length === 0) {
                         $('<li><a href="#" id="btn-save-step" role="menuitem" class="btn btn-primary">Simpan Sementara</a></li>')
@@ -117,12 +117,12 @@
                 }, 200);
 
                 // Event klik tombol simpan
-                $(document).on("click", "#btn-save-step", function (e) {
+                $(document).on("click", "#btn-save-step", function(e) {
                     e.preventDefault();
                     saveStepProgress();
                 });
             },
-            onStepChanging: function (event, currentIndex, newIndex) {
+            onStepChanging: function(event, currentIndex, newIndex) {
                 resizeJquerySteps();
                 if (currentIndex > newIndex) return true;
 
@@ -130,7 +130,7 @@
                 form.validate().settings.ignore = ":disabled,:hidden";
                 return form.valid();
             },
-            onStepChanged: function (event, currentIndex, priorIndex) {
+            onStepChanged: function(event, currentIndex, priorIndex) {
                 resizeJquerySteps();
 
                 // Hitung index step terakhir (Recap)
@@ -141,7 +141,7 @@
                     cek_rekap();
                 }
             },
-            onFinishing: function (event, currentIndex) {
+            onFinishing: function(event, currentIndex) {
                 // index step terakhir (Recap)
                 var lastIndex = $("#form").find("fieldset").length - 1;
 
@@ -230,63 +230,66 @@
                 return true;
             },
 
-           
-                onFinished: function (event, currentIndex) {
-                    // di sini kita kirim permohonan final
-                    const kd_data = $("#kd_data").val();
-                    const termin = $("#termin").val();
 
-                    // jumlah penarikan ambil dari tab MPDKK
-                    const jumlah_penarikan = $("#jumlah_penarikan_disetujui_mpdkk").val();
-
-                    // tanggal penarikan, silakan sesuaikan ID-nya, contoh:
-                    const tanggal = $("#tanggal_penarikan").val() || $("#tanggal").val();
-
-                    const payload = {
-                        kd_data: kd_data,
-                        termin: termin,
-                        jumlah_penarikan: jumlah_penarikan,
-                        tanggal: tanggal,
-
-                        // Disposisi summary
-                        disposisi_pemasar: $("#disposisi_sc").val(),
-                        disposisi_koor_pemasar: $("#disposisi_koordinator_pemasar_sc").val(),
-                        disposisi_kacab: $("#disposisi_kepala_cabang_sc").val(),
-                        disposisi_analis: $("#disposisi_analis_kredit_sc").val(),
-                        disposisi_kabag: $("#disposisi_kepala_bagian_sc").val(),
-                        disposisi_kadiv: $("#disposisi_kepala_divisi_sc").val(),
-                    };
-
-                    $.ajax({
-                        url: base_url + "ajax-penarikan-kredit-transaksional/simpan_permohonan",
-                        type: "POST",
-                        dataType: "json",
-                        data: payload,
-                        beforeSend: function () {
-                            $("#mohon").show();
-                        },
-                        success: function (res) {
-                            $("#mohon").hide();
-
-                            if (res && res.status === "ok") {
-                                toastr.success(res.message || "Permohonan penarikan berhasil disimpan.");
-
-                                // redirect ke list / detail, silakan sesuaikan
-                                window.location.href = base_url + "penarikan-kredit-transaksional";
-                            } else {
-                                toastr.warning((res && res.message) || "Gagal menyimpan permohonan.");
-                            }
-                        },
-                        error: function () {
-                            $("#mohon").hide();
-                            toastr.error("Koneksi gagal, coba lagi.");
-                        },
-                    });
-
-                    // jangan submit form biasa
-                    return false;
+            onFinished: function(event, currentIndex) {
+                if (!confirm("Apakah Anda yakin ingin menyimpan data ini?")) {
+                    return false; // CANCEL = stop, tidak kirim apa-apa
                 }
-            
+                // di sini kita kirim permohonan final
+                const kd_data = $("#kd_data").val();
+                const termin = $("#termin").val();
+
+                // jumlah penarikan ambil dari tab MPDKK
+                const jumlah_penarikan = $("#jumlah_penarikan_disetujui_mpdkk").val();
+
+                // tanggal penarikan, silakan sesuaikan ID-nya, contoh:
+                const tanggal = $("#tanggal_penarikan").val() || $("#tanggal").val();
+
+                const payload = {
+                    kd_data: kd_data,
+                    termin: termin,
+                    jumlah_penarikan: jumlah_penarikan,
+                    tanggal: tanggal,
+
+                    // Disposisi summary
+                    disposisi_pemasar: $("#disposisi_pemasar").val(),
+                    disposisi_koor_pemasar: $("#disposisi_koor_pemasar").val(),
+                    disposisi_kacab: $("#disposisi_kacab").val(),
+                    disposisi_analis: $("#disposisi_analis").val(),
+                    disposisi_kabag: $("#disposisi_kabag").val(),
+                    disposisi_kadiv: $("#disposisi_kadiv").val(),
+                };
+
+                $.ajax({
+                    url: base_url + "ajax-penarikan-kredit-transaksional/simpan_permohonan",
+                    type: "POST",
+                    dataType: "json",
+                    data: payload,
+                    beforeSend: function() {
+                        $("#mohon").show();
+                    },
+                    success: function(res) {
+                        $("#mohon").hide();
+
+                        if (res && res.status === "ok") {
+                            toastr.success(res.message || "Permohonan penarikan berhasil disimpan.");
+
+                            // redirect ke list / detail, silakan sesuaikan
+                            window.location.href = base_url + "penarikan-kredit-transaksional";
+                        } else {
+                            toastr.warning((res && res.message) || "Gagal menyimpan permohonan.");
+                        }
+                    },
+                    error: function() {
+                        $("#mohon").hide();
+                        toastr.error("Koneksi gagal, coba lagi.");
+                    },
+                });
+
+                // jangan submit form biasa
+                return false;
+            }
+
 
         });
 
@@ -305,7 +308,7 @@
                 3: "tb_mpdkk" // misal fieldset ke-3 berisi upload
             };
 
-            var targetTable = tableMap[currentIndex] || "tb_data_entry";
+            var targetTable = tableMap[currentIndex] || "tb_penarikan";
             console.log("Step ke:", currentIndex, "Tabel:", targetTable);
 
             $("#mohon").show();
@@ -337,11 +340,11 @@
                     processData: false,
                     contentType: false,
                     dataType: 'json',
-                    beforeSend: function () {
-                        $("#mohon").show();                // tampilkan spinner
+                    beforeSend: function() {
+                        $("#mohon").show(); // tampilkan spinner
                         $("#btns_92").prop("disabled", true).val("Mengunggah...");
                     },
-                    success: function (res) {
+                    success: function(res) {
                         if (res?.status === "ok") {
                             toastr.success(res.message || "Berhasil disimpan.");
                             refreshDokumenPenarikan();
@@ -351,12 +354,12 @@
                             toastr.warning(res?.message || "Gagal menyimpan dokumen.");
                         }
                     },
-                    error: function () {
+                    error: function() {
                         toastr.error("Koneksi gagal, coba lagi.");
                     },
-                    complete: function () {
+                    complete: function() {
                         // <-- SELALU JALAN, apapun hasilnya
-                        $("#mohon").hide();                // sembunyikan spinner
+                        $("#mohon").hide(); // sembunyikan spinner
                         $("#btns_92").prop("disabled", false).val("Simpan");
                     }
                 });
@@ -383,7 +386,7 @@
                     type: "POST",
                     dataType: "json",
                     data: inputs + "&kd_data=" + kd_data + "&target_table=" + targetTable + "&termin=" + termin,
-                    success: function (res) {
+                    success: function(res) {
                         $("#mohon").hide();
                         if (res && res.status === "ok") {
                             toastr.success(res.message || "Data langkah ini berhasil disimpan!");
@@ -395,7 +398,7 @@
                             }
                         }
                     },
-                    error: function () {
+                    error: function() {
                         $("#mohon").hide();
                         toastr.error("Koneksi gagal, coba lagi.");
 
@@ -405,10 +408,6 @@
             }
         }
     });
-
-
-
-
 </script>
 
 <?= $this->endSection(); ?>

@@ -32,7 +32,7 @@
         <div class="col-lg-6">
             <label class="col-lg-12 control-label">Jenis Badan Usaha</label>
             <div class="col-lg-12">
-                <select class="form-control class-disabled select" required id="jenis_badan_usaha_dp" name="jenis_badan_usaha_dp" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
+            <select class="form-control class-disabled select" required id="jenis_badan_usaha_dp" name="jenis_badan_usaha_dp" <?php echo !empty($edit_data) ? '' : 'disabled'; ?>>
                     <option value="" disabled="">pilih</option>
                     <option value="Perseroan Perseorangan">Perseroan Perseorangan</option>
                     <option value="Commanditaire Vennootschap">Commanditaire Vennootschap (CV)</option>
@@ -740,7 +740,6 @@
             var data_entry = hasil.message.data_entry;
             var data_paraf = hasil.message.paraf;
             if (hasil.status == 'success') {
-                console.log(data_entry);
                 var orang = hasil.message.dok;
                 var cv = hasil.message.dok_cv;
                 var pt = hasil.message.dok_pt;

@@ -227,7 +227,8 @@
         <input type="text" hidden name="persentaseceftanahfaatb" id="persentaseceftanahfaatb">
         <input type="text" hidden name="safetymargintanahfaatb" id="safetymargintanahfaatb">
         <input type="text" hidden name="persentasesafetymargintanahfaatb" id="persentasesafetymargintanahfaatb">
-        <input type="text" hidden name="nilaitanahsetelahcefsafetymargintanahfaatb" id="nilaitanahsetelahcefsafetymargintanahfaatb">
+        <input type="text" hidden name="nilaitanahsetelahcefsafetymargintanahfaatb"
+            id="nilaitanahsetelahcefsafetymargintanahfaatb">
 
 
         <input type="text" hidden name="namanasabahfaabb" id="namanasabahfaabb">
@@ -261,14 +262,16 @@
         <input type="text" hidden name="ceffaabb" id="ceffaabb">
         <input type="text" hidden name="nilaiagunansetelahceffaabb" id="nilaiagunansetelahceffaabb">
 
-        
+
         <div class="copy-pp invisible">
             <div class="row new" id="new">
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_pp_fak_data" class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_pp_fak_data"
+                                    class="btn btn-danger hapus_pp_fak_data delete-btn-pp-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -281,7 +284,10 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_termin_fak_data" class="btn btn-danger hapus_termin_fak_data delete-btn-termin-fak-data" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_termin_fak_data"
+                                    class="btn btn-danger hapus_termin_fak_data delete-btn-termin-fak-data"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -294,7 +300,7 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus" class="btn btn-danger hapus delete-btn-pp-fak-modal" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <div class="hapus delete-btn-pp-fak-modal"></div>
                             </div>
                         </div>
                     </div>
@@ -320,7 +326,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_mauk" class="btn btn-danger hapus_mauk delete-btn-mauk" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>Hapus</button>
+                                <button name="hapus_mauk" class="btn btn-danger hapus_mauk delete-btn-mauk"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -333,7 +341,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_mauk2" class="btn btn-danger hapus_mauk2 delete-btn-mauk2" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_mauk2" class="btn btn-danger hapus_mauk2 delete-btn-mauk2"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -346,7 +356,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_mauk3" class="btn btn-danger hapus_mauk3 delete-btn-mauk3" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_mauk3" class="btn btn-danger hapus_mauk3 delete-btn-mauk3"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -359,7 +371,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl" class="btn btn-danger hapus_dcl delete-btn-dcl" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl" class="btn btn-danger hapus_dcl delete-btn-dcl" type="button"
+                                    <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -373,7 +387,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl2" class="btn btn-danger hapus_dcl2 delete-btn-dcl2" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl2" class="btn btn-danger hapus_dcl2 delete-btn-dcl2"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -386,7 +402,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl3" class="btn btn-danger hapus_dcl3 delete-btn-dcl3" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl3" class="btn btn-danger hapus_dcl3 delete-btn-dcl3"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -399,7 +417,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl4" class="btn btn-danger hapus_dcl4 delete-btn-dcl4" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl4" class="btn btn-danger hapus_dcl4 delete-btn-dcl4"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -412,7 +432,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl5" class="btn btn-danger hapus_dcl5 delete-btn-dcl5" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl5" class="btn btn-danger hapus_dcl5 delete-btn-dcl5"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -425,7 +447,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl6" class="btn btn-danger hapus_dcl6 delete-btn-dcl6" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl6" class="btn btn-danger hapus_dcl6 delete-btn-dcl6"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -438,7 +462,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl7" class="btn btn-danger hapus_dcl7 delete-btn-dcl7" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl7" class="btn btn-danger hapus_dcl7 delete-btn-dcl7"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -451,7 +477,9 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <button name="hapus_dcl8" class="btn btn-danger hapus_dcl8 delete-btn-dcl8" type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i class="fa fa-trash-o"></i>&nbsp;Hapus</button>
+                                <button name="hapus_dcl8" class="btn btn-danger hapus_dcl8 delete-btn-dcl8"
+                                    type="button" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>><i
+                                        class="fa fa-trash-o"></i>&nbsp;Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -460,7 +488,8 @@
         </div>
     </div>
 </div>
-<div id="modal_dokumen_edit" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
+<div id="modal_dokumen_edit" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-hidden="true" style="z-index: -1;">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <form id="form_dokumen_edit" class="form-horizontal" enctype="multipart/form-data">
@@ -471,12 +500,14 @@
                     <br>
 
                     <div class="form-group row">
-                        <input id="kd_data_edit" name="kd_data_edit" type="hidden" placeholder="" class="form-control class-readonly">
+                        <input id="kd_data_edit" name="kd_data_edit" type="hidden" placeholder=""
+                            class="form-control class-readonly">
 
                         <div class="col-lg-12">
                             <label class="col-lg-12 control-label">Upload Dokumen Kontrak Proyek</label>
                             <div class="col-lg-12">
-                                <input type="file" class="form-control form-control-file" name="upload_dokumen_edit" id="upload_dokumen_edit" accept=".pdf">
+                                <input type="file" class="form-control form-control-file" name="upload_dokumen_edit"
+                                    id="upload_dokumen_edit" accept=".pdf">
                                 <small class="form-text text-muted">File PDF, maksimal 2 MB</small>
 
                             </div>
@@ -503,7 +534,8 @@
 
 </div>
 
-<div id="modal_return" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
+<div id="modal_return" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
+    style="z-index: -1;">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
 
@@ -516,15 +548,18 @@
                     <div class="form-group">
                         <label class="col-lg-12 control-label">Nama Debitur</label>
                         <div class="col-lg-12">
-                            <input id="nama_debitur_return" name="nama_debitur_return" type="text" placeholder="" class="form-control" readonly>
-                            <input id="kd_data_return" name="kd_data_return" type="hidden" placeholder="" class="form-control" required>
+                            <input id="nama_debitur_return" name="nama_debitur_return" type="text" placeholder=""
+                                class="form-control" readonly>
+                            <input id="kd_data_return" name="kd_data_return" type="hidden" placeholder=""
+                                class="form-control" required>
                         </div>
 
                     </div>
                     <div class="form-group">
                         <label class="col-lg-12 control-label">Alasan</label>
                         <div class="col-lg-12">
-                            <textarea class="form-control" id="catatan_return" name="catatan_return" rows="3" required></textarea>
+                            <textarea class="form-control" id="catatan_return" name="catatan_return" rows="3"
+                                required></textarea>
                         </div>
 
                     </div>
@@ -543,7 +578,8 @@
         </div>
     </div>
 </div>
-<div id="modal_reject" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: -1;">
+<div id="modal_reject" class="modal inmodal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true"
+    style="z-index: -1;">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
 
@@ -556,15 +592,18 @@
                     <div class="form-group">
                         <label class="col-lg-12 control-label">Nama Debitur</label>
                         <div class="col-lg-12">
-                            <input id="nama_debitur_reject" name="nama_debitur_reject" type="text" placeholder="" class="form-control" readonly>
-                            <input id="kd_data_reject" name="kd_data_reject" type="hidden" placeholder="" class="form-control" required>
+                            <input id="nama_debitur_reject" name="nama_debitur_reject" type="text" placeholder=""
+                                class="form-control" readonly>
+                            <input id="kd_data_reject" name="kd_data_reject" type="hidden" placeholder=""
+                                class="form-control" required>
                         </div>
 
                     </div>
                     <div class="form-group">
                         <label class="col-lg-12 control-label">Alasan</label>
                         <div class="col-lg-12">
-                            <textarea class="form-control" id="catatan_reject" name="catatan_reject" rows="3" required></textarea>
+                            <textarea class="form-control" id="catatan_reject" name="catatan_reject" rows="3"
+                                required></textarea>
                         </div>
 
                     </div>
@@ -659,7 +698,7 @@
                     tampil_button('save_dokumen')
                 } else if (currentIndex == 5) {
                     tampil_button('save_scoring')
-                    
+
                 } else
                 if (currentIndex === 6) {
                     // tampil_button("save_fak_data");
@@ -712,6 +751,7 @@
                     checkRecap('tb_fcr', '<?php echo $data_entry->kd_data ?>', 'fcr')
                     checkRecap('tb_fcr_agunan', '<?php echo $data_entry->kd_data ?>', 'fcr_agunan')
                     checkRecap('tb_fcr_usaha', '<?php echo $data_entry->kd_data ?>', 'fcr_usaha')
+                    checkRecap('tb_dokumen_pendukung', '<?php echo $data_entry->kd_data ?>', 'dokumen_pendukung')
                     checkRecap('tb_scoring', '<?php echo $data_entry->kd_data ?>', 'scoring')
                     checkRecap('tb_fak_data', '<?php echo $data_entry->kd_data ?>', 'fak_data')
                     checkRecap('tb_fak_modal', '<?php echo $data_entry->kd_data ?>', 'fak_modal')
@@ -722,20 +762,21 @@
                     checkRecap('tb_faa', '<?php echo $data_entry->kd_data ?>', 'faa')
                     checkRecap('tb_mauk', '<?php echo $data_entry->kd_data ?>', 'mauk')
                     checkRecap('tb_dcl', '<?php echo $data_entry->kd_data ?>', 'dcl')
+                    checkRecap('tb_scoring_koordinator', '<?php echo $data_entry->kd_data ?>', 'scoring_koordinator')
                     tampil_button('save_recap');
                     tampil_btn_finish('<?php echo $data_entry->kd_data ?>')
                     tampil_disposisi('<?php echo $data_entry->kd_data ?>')
 
                     resizeJquerySteps();
                     // } else if (currentIndex == 6) {
-                    
+
 
                     //     // isi_recap()
                     // } else if (currentIndex == 7) {} else if (currentIndex == 8) {} else if (currentIndex == 9) {} else if (currentIndex == 10) {} else if (currentIndex == 11) {} else if (currentIndex == 12) {} else if (currentIndex == 13) {
                     //     tampil_button('save_scoring')
                     // refresh_scoring()
                 } else {
-                    
+
                     // tampil_button('save_data_entry')
                 }
 
@@ -743,11 +784,9 @@
             onFinishing: function(event, currentIndex) {
                 var form = $(this);
 
-                // Disable validation on fields that are disabled.
-                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                // ignore field disabled
                 form.validate().settings.ignore = ":disabled";
 
-                // Start validation; Prevent form submission if false
                 return form.valid();
             },
             // onFinished: function(event, currentIndex) {
@@ -757,15 +796,45 @@
             //     form.submit();
             // }
             onFinished: function(event, currentIndex) {
-                var form = $(this);
+                const $form = $(this);
 
-                // Validate form input using jQuery Validation Plugin
-                if (!form.valid()) {
+                // 1) Validasi form (jquery validate)
+                if (!$form.valid()) return false;
+
+                // 2) Konfirmasi
+                if (!confirm("Apakah Anda yakin ingin menyimpan data ini?")) return false;
+
+                // 3) Tampilkan loading / proses
+                $("#mohon").show();
+
+                // 4) Ambil jenis agunan
+                const kumpulan_agunan = getJenisAgunan();
+
+                // Anggap getJenisAgunan() mengembalikan "cpa123" kalau kosong
+                const agunanKosong = (kumpulan_agunan === "cpa123" || !kumpulan_agunan);
+
+                if (agunanKosong) {
+                    $("#mohon").hide();
+                    toastr.warning("Jenis agunan harus diisi", "Gagal");
                     return false;
                 }
 
-                return true;
-            },
+                // 5) Siapkan payload
+                const payload = data_data_entry(kumpulan_agunan);
+
+                // 6) Kirim AJAX (redirect sebaiknya setelah sukses)
+                post_data_entry("edit_finish", payload, "finish")
+                    .done(function(res) {
+                        window.location.href = base_url + "pengajuan-kredit-transaksional";
+                    })
+                    .fail(function(xhr) {
+                        $("#mohon").hide();
+                        toastr.error("Gagal menyimpan data. Silakan coba lagi.", "Error");
+                        console.error(xhr);
+                    });
+
+                return false; // cegah submit default
+            }
 
         });
 
