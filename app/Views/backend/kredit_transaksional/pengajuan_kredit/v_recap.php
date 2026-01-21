@@ -686,7 +686,7 @@
 
         $field.on('input.separator', function() {
             const inputValue = $(this).val();
-            const formattedValue = formatNumberSafe(inputValue);
+            const formattedValue = formatNumber(inputValue);
             $('#' + pokok_separator).text(formattedValue);
         });
     }

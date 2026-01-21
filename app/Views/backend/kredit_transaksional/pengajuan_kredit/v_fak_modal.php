@@ -96,7 +96,7 @@
                 <label class="col-lg-12 control-label">Nilai</label>
                 <div class="col-lg-12">
                     <div class="input-group">
-                        <input id="nilai_pp_fak_modal0" name="nilai_pp_fak_modal[]" type="text" placeholder="" onkeyup="hitungPPFAKM()" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
+                        <input id="nilai_pp_fak_modal0" name="nilai_pp_fak_modal[]" type="text" placeholder="" onchange="hitungPPFAKM()" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                     </div>
                     <p>Nominal: <span id="nilai_pp_fak_modal0_separators" class="mask"></span></p>
                 </div>
@@ -126,9 +126,9 @@
         <div class="col-lg-6">
             <div class="col-lg-12">
                 <div class="input-group">
-                    <input id="jumlah_fak_modal" name="jumlah_fak_modal" onchange="copyvalue(this.id,'pekerjaan_persiapan_konstruksi_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                    <p>Nominal: <span id="jumlah_fak_modal_separators" class="mask"></span></p>
+                    <input id="jumlah_fak_modal" name="jumlah_fak_modal" onkeyup="copyvalue(this.id,'pekerjaan_persiapan_konstruksi_fak_rl')" type="text" placeholder="" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
                 </div>
+                <p>Nominal: <span id="jumlah_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
     </div>
@@ -204,7 +204,7 @@
             <label class="col-lg-6 control-label">Total</label>
             <div class="col-lg-12">
                 <input id="jumlah_kebutuhan_modal_kerja_fak_modal" name="jumlah_kebutuhan_modal_kerja_fak_modal" type="text" placeholder="" value="0" class="form-control" <?php echo !empty($edit_data_koordinator) ? '' : 'disabled'; ?>>
-                <p>Nominal: <span id="jumlah_kebutuhan_modal_kerja_fak_modal    _separators" class="mask"></span></p>
+                <p>Nominal: <span id="jumlah_kebutuhan_modal_kerja_fak_modal_separators" class="mask"></span></p>
             </div>
         </div>
     </div>

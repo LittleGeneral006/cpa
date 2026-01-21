@@ -16,7 +16,19 @@ var angkadcl8 = 2;
 // Ubah ke angka digit saja (untuk value input)
 function toDigits(val) {
   if (val === null || val === undefined) return "";
-  return String(val).replace(/[^\d]/g, "");
+
+  // ubah ke string, samakan pemisah desimal jadi titik
+  let clean = String(val)
+    .replace(/,/g, ".") // koma → titik
+    .replace(/[^\d.]/g, ""); // buang selain digit & titik
+
+  // pastikan hanya ada SATU titik desimal
+  const parts = clean.split(".");
+  if (parts.length > 2) {
+    clean = parts[0] + "." + parts.slice(1).join("");
+  }
+
+  return clean;
 }
 
 // Format ribuan untuk ditampilkan di span (Indonesia: pakai titik)
@@ -164,7 +176,7 @@ $(document).ready(function () {
         is_disabled +
         ">" +
         "</div>" +
-        '<p><span id="nilai_sebelum_ppn_pp_fak_data' +
+        '<p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data' +
         angka +
         '_separators" class="mask"></span></p>' +
         "</div>" +
@@ -182,7 +194,7 @@ $(document).ready(function () {
         is_disabled +
         ">" +
         "</div>" +
-        '<p><span id="nilai_sesudah_ppn_pp_fak_data' +
+        '<p>Nominal: <span id="nilai_sesudah_ppn_pp_fak_data' +
         angka +
         '_separators" class="mask"></span></p>' +
         "</div>" +
@@ -230,11 +242,11 @@ $(document).ready(function () {
       resizeJquerySteps();
       separator_input(
         "nilai_sebelum_ppn_pp_fak_data" + angka,
-        "nilai_sebelum_ppn_pp_fak_data" + angka + "_separators"
+        "nilai_sebelum_ppn_pp_fak_data" + angka + "_separators",
       );
       separator_input(
         "nilai_sesudah_ppn_pp_fak_data" + angka,
-        "nilai_sesudah_ppn_pp_fak_data" + angka + "_separators"
+        "nilai_sesudah_ppn_pp_fak_data" + angka + "_separators",
       );
     }
   });
@@ -332,7 +344,7 @@ $(document).ready(function () {
           $("#total_termin_fak_data").val(total_termin);
           $("#setelah_masa_pemeliharaan_fak_data").val(fix);
           $("#pemeliharaan_fak_modal").val(fix);
-        }
+        },
       );
 
       angkatermin++;
@@ -1110,10 +1122,10 @@ $(document).ready(function () {
       var jenisAgunanArray = jenis_agunan.split(";");
 
       var barangBergerakCount = jenisAgunanArray.filter(
-        (item) => item === "Barang Bergerak"
+        (item) => item === "Barang Bergerak",
       ).length;
       var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
-        (item) => item === "Tanah/ Tanah dan Bangunan"
+        (item) => item === "Tanah/ Tanah dan Bangunan",
       ).length;
 
       // Loop untuk Barang Bergerak, hanya sejumlah barangBergerakCount
@@ -1131,11 +1143,11 @@ $(document).ready(function () {
         ).split(";");
 
         const alamat_bb_faaArray = (data.alamat_bb ? data.alamat_bb : "").split(
-          ";"
+          ";",
         );
 
         const jenis_bb_faaArray = (data.jenis_bb ? data.jenis_bb : "").split(
-          ";"
+          ";",
         );
 
         const model_tipe_bb_faaArray = (
@@ -1159,7 +1171,7 @@ $(document).ready(function () {
         ).split(";");
 
         const warna_bb_faaArray = (data.warna_bb ? data.warna_bb : "").split(
-          ";"
+          ";",
         );
 
         const bahan_bakar_bb_faaArray = (
@@ -1213,7 +1225,7 @@ $(document).ready(function () {
         ).split(";");
 
         const route_bb_faaArray = (data.route_bb ? data.route_bb : "").split(
-          ";"
+          ";",
         );
 
         const jarak_rata_rata_tempuh_bb_faaArray = (
@@ -1445,12 +1457,12 @@ $(document).ready(function () {
         //   parseFloat(nilai_buku_sebesar_bbArray[counter_bb_faa_loop]) || 0;
         // let nilaiBukuSebesar20Percent = nilaiBukuSebesar * 0.2;
         // $("#safety_margin_bb" + counter_bb_faa_loop).val(
-        //   formatNumber(nilaiBukuSebesar20Percent)
+        //   formatIDR(nilaiBukuSebesar20Percent)
         // );
 
         // let nilaiAgunanSetelahSM = nilaiBukuSebesar - nilaiBukuSebesar20Percent;
         // $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop).val(
-        //   formatNumber(nilaiAgunanSetelahSM)
+        //   formatIDR(nilaiAgunanSetelahSM)
         // );
       }
       //   }
@@ -1527,7 +1539,7 @@ $(document).ready(function () {
         }
         console.log(
           "persentase_cef_tanah_faa_tbArray:",
-          persentase_cef_tanah_faa_tbArray
+          persentase_cef_tanah_faa_tbArray,
         );
         const cef_tanah_faa_tbArray = (
           data.cef_tanah_faa_tb ? data.cef_tanah_faa_tb : ""
@@ -1877,7 +1889,7 @@ function hitungPenilaianTanah(i) {
 }
 function hitungSafetyMarginTanah(i) {
   const persen = toNumber(
-    $("#persentase_safety_margin_tanah_faa_tb" + i).val() || 5
+    $("#persentase_safety_margin_tanah_faa_tb" + i).val() || 5,
   );
   const cef = toNumber($("#cef_tanah_faa_tb" + i).val() || 0);
 
@@ -1886,7 +1898,7 @@ function hitungSafetyMarginTanah(i) {
 
   $("#safety_margin_tanah_faa_tb" + i).val(sm ? sm : "");
   $("#nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb" + i).val(
-    nilai ? nilai : ""
+    nilai ? nilai : "",
   );
 }
 function hitungTanahLengkap(i) {
@@ -1897,7 +1909,7 @@ function hitungTanahLengkap(i) {
   // 1️⃣ Penilaian tanah
   const hasilPenilaian = harga * luas;
   $("#hasil_perhitungan_penilaian_tanah_faa_tb" + i).val(
-    hasilPenilaian ? hasilPenilaian : ""
+    hasilPenilaian ? hasilPenilaian : "",
   );
 
   // === CEF ===
@@ -1907,7 +1919,7 @@ function hitungTanahLengkap(i) {
 
   // === Safety Margin ===
   let persenSM = toNumber(
-    $("#persentase_safety_margin_tanah_faa_tb" + i).val()
+    $("#persentase_safety_margin_tanah_faa_tb" + i).val(),
   );
   if (!persenSM) {
     persenSM = 5;
@@ -1920,7 +1932,7 @@ function hitungTanahLengkap(i) {
   // === Nilai akhir ===
   const nilaiAkhir = cefTanah - safetyMargin;
   $("#nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb" + i).val(
-    nilaiAkhir ? nilaiAkhir : ""
+    nilaiAkhir ? nilaiAkhir : "",
   );
 }
 
@@ -1938,16 +1950,16 @@ function isi_fak_data() {
       $("#kontraktor_fak_data").val(data.kontraktor);
       $("#sumber_dana_fak_data").val(data.sumber_dana);
       $("#nilai_kontrak_setelah_ppn_fak_data").val(
-        data.nilai_kontrak_setelah_ppn
+        data.nilai_kontrak_setelah_ppn,
       );
       bindNominal(
         "nilai_kontrak_setelah_ppn_fak_data",
-        "nilai_kontrak_setelah_ppn_fak_data_separators"
+        "nilai_kontrak_setelah_ppn_fak_data_separators",
       );
       setNominalValue(
         "nilai_kontrak_setelah_ppn_fak_data",
         "nilai_kontrak_setelah_ppn_fak_data_separators",
-        data.nilai_kontrak_setelah_ppn
+        data.nilai_kontrak_setelah_ppn,
       );
 
       $("#ppn_fak_data").val(data.ppn);
@@ -1969,34 +1981,31 @@ function isi_fak_data() {
       $("#nilaisebelumppnppfakdata").val(data.nilai_sebelum_ppn_pp);
       $("#nilaisesudahppnppfakdata").val(data.nilai_sesudah_ppn_pp);
       $("#pembulatan_nilai_sebelum_ppn_total_pp_fak_data").val(
-        data.pembulatan_nilai_sebelum_ppn_total_pp
+        data.pembulatan_nilai_sebelum_ppn_total_pp,
       );
       $("#pembulatan_nilai_sesudah_ppn_total_pp_fak_data").val(
-        data.pembulatan_nilai_sesudah_ppn_total_pp
+        data.pembulatan_nilai_sesudah_ppn_total_pp,
       );
-      // $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(
-      //   data.jumlah_nilai_sebelum_ppn_total_pp
-      // );
       separator_input(
         "jumlah_nilai_sebelum_ppn_total_pp_fak_data",
-        "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators"
+        "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators",
       );
       setNominalValue(
         "jumlah_nilai_sebelum_ppn_total_pp_fak_data",
         "jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators",
-        data.jumlah_nilai_sebelum_ppn_total_pp
+        data.jumlah_nilai_sebelum_ppn_total_pp,
       );
       $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(
-        data.jumlah_nilai_sesudah_ppn_total_pp
+        data.jumlah_nilai_sesudah_ppn_total_pp,
       );
       separator_input(
         "jumlah_nilai_sesudah_ppn_total_pp_fak_data",
-        "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators"
+        "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators",
       );
       setNominalValue(
         "jumlah_nilai_sesudah_ppn_total_pp_fak_data",
         "jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators",
-        data.jumlah_nilai_sesudah_ppn_total_pp
+        data.jumlah_nilai_sesudah_ppn_total_pp,
       );
 
       let itempp = data.item_pp.split(";");
@@ -2011,23 +2020,54 @@ function isi_fak_data() {
           $("#nilai_sebelum_ppn_pp_fak_data" + i).val(nilaisebelumppnpp[0]);
           $("#nilai_sesudah_ppn_pp_fak_data" + i).val(nilaisesudahppnpp[0]);
           $("#item_pp_fak_modal" + i).val(itempp[0]);
+          // ==========================
+          // TAMBAHAN: hitung nilai_pp_fak_modal0
+          // ==========================
+          let profit_kontraktor_fak_data =
+            parseFloat($("#profit_kontraktor_fak_data").val()) || 0;
+          let biaya_pemeliharaan_fak_data =
+            parseFloat($("#biaya_pemeliharaan_fak_data").val()) || 0;
+
+          // "hasil" ambil dari nilai sesudah PPN item pertama
+          let hasil = parseFloat(toDigits(nilaisesudahppnpp[0])) || 0;
+
+          // prettier-ignore
+          let hassil = hasil - (hasil * ((profit_kontraktor_fak_data/100) + (biaya_pemeliharaan_fak_data/100)));
+
+          $("#nilai_pp_fak_modal" + i).val(hassil);
+
+          // tampilkan di span nominal (pakai sistem baru)
+          bindNominal(
+            "nilai_pp_fak_modal" + i,
+            "nilai_pp_fak_modal" + i + "_separators",
+          );
+          setNominalValue(
+            "nilai_pp_fak_modal" + i,
+            "nilai_pp_fak_modal" + i + "_separators",
+            hassil,
+          );
+
+          // ==========================
+          // Separator untuk field pp data
+          // ==========================
           separator_input(
             "nilai_sebelum_ppn_pp_fak_data" + i,
-            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators"
+            "nilai_sebelum_ppn_pp_fak_data" + i + "_separators",
           );
           separator_input(
             "nilai_sesudah_ppn_pp_fak_data" + i,
-            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators"
+            "nilai_sesudah_ppn_pp_fak_data" + i + "_separators",
           );
+
           setNominalValue(
             "nilai_sebelum_ppn_pp_fak_data" + i,
             "nilai_sebelum_ppn_pp_fak_data" + i + "_separators",
-            nilaisebelumppnpp[0]
+            nilaisebelumppnpp[0],
           );
           setNominalValue(
             "nilai_sesudah_ppn_pp_fak_data" + i,
             "nilai_sesudah_ppn_pp_fak_data" + i + "_separators",
-            nilaisesudahppnpp[0]
+            nilaisesudahppnpp[0],
           );
         } else {
           var index = lengthpp - 1 - i;
@@ -2039,9 +2079,9 @@ function isi_fak_data() {
             '<label class="col-lg-6 control-label">Item</label>' +
             '<div class="col-lg-12">' +
             '<input id="item_pp_fak_data' +
-            i +
+            index +
             '" name="item_pp_fak_data[]" onkeyup="copyvalue(this.id, \'item_pp_fak_modal' +
-            i +
+            index +
             '\')" type="text" value="' +
             itempp[index] +
             '" placeholder="" class="form-control" ' +
@@ -2054,11 +2094,11 @@ function isi_fak_data() {
             '<div class="col-lg-12">' +
             '<div class="input-group">' +
             '<input id="ppn_pp_fak_data' +
-            i +
+            index +
             '" name="ppn_pp_fak_data[]" value="' +
             ppnpp[index] +
             '" onkeyup="hitungPP(\'' +
-            i +
+            index +
             '\')" type="text" placeholder="" class="form-control" ' +
             is_disabled +
             ">" +
@@ -2071,23 +2111,23 @@ function isi_fak_data() {
             '<div class="col-lg-3">' +
             '<label class="col-lg-12 control-label">Nilai Sebelum PPN</label>' +
             '<div class="col-lg-12">' +
-            '<input id="nilai_sebelum_ppn_pp_fak_data ' +
-            i +
+            '<input id="nilai_sebelum_ppn_pp_fak_data' +
+            index +
             '" name="nilai_sebelum_ppn_pp_fak_data[]" value="' +
             nilaisebelumppnpp[index] +
             '" onkeyup="hitungPP(' +
-            i +
+            index +
             ",'nilai_sebelum_ppn_pp_fak_data" +
-            i +
+            index +
             "','nilai_sebelum_ppn_pp_fak_data" +
-            i +
+            index +
             "_separators','nilai_sesudah_ppn_pp_fak_data" +
-            i +
+            index +
             '_separators\')" type="text" placeholder="" class="form-control" ' +
             is_disabled +
             ">" +
             '<p>Nominal: <span id="nilai_sebelum_ppn_pp_fak_data' +
-            i +
+            index +
             '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>" +
@@ -2095,44 +2135,58 @@ function isi_fak_data() {
             '<label class="col-lg-12 control-label">Nilai Sesudah PPN</label>' +
             '<div class="col-lg-12">' +
             '<input id="nilai_sesudah_ppn_pp_fak_data' +
-            i +
+            index +
             '" name="nilai_sesudah_ppn_pp_fak_data[]" type="text" value="' +
             nilaisesudahppnpp[index] +
-            '" placeholder="" onchange="copyvalue(this.id, \'nilai_pp_fak_modal' +
-            i +
-            '\')" class="form-control" ' +
+            // '" placeholder="" onkeyup="copyvalue(this.id, \'nilai_pp_fak_modal' +
+            // index +
+            // '\')" class="form-control" ' +
+            '" placeholder="" onchange="hitungPPFAKM()" class="form-control" ' +
             is_disabled +
             ">" +
             '<p>Nominal: <span id="nilai_sesudah_ppn_pp_fak_data' +
-            i +
+            index +
             '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>";
-          // setNominalValue(
-          //   "nilai_sebelum_ppn_pp_fak_data" + index,
-          //   "nilai_sebelum_ppn_pp_fak_data" + index + "_separators",
-          //   nilaisebelumppnpp[index]
-          // );
-          separator_edit(nilaisebelumppnpp[index],"nilai_sebelum_ppn_pp_fak_data" + index + "_separators")
-          separator_edit(nilaisesudahppnpp[index],"nilai_sesudah_ppn_pp_fak_data" + index + "_separators")
-          // setNominalValue(
-          //   "nilai_sesudah_ppn_pp_fak_data" + index,
-          //   "nilai_sesudah_ppn_pp_fak_data" + index + "_separators",
-          //   nilaisesudahppnpp[index]
-          // );
+
           $(".delete-btn-pp-fak-data").first().after(html11);
+          bindNominal(
+            "nilai_sebelum_ppn_pp_fak_data" + index,
+            "nilai_sebelum_ppn_pp_fak_data" + index + "_separators",
+          );
+          bindNominal(
+            "nilai_sesudah_ppn_pp_fak_data" + index,
+            "nilai_sesudah_ppn_pp_fak_data" + index + "_separators",
+          );
+          setNominalValue(
+            "nilai_sebelum_ppn_pp_fak_data" + index,
+            "nilai_sebelum_ppn_pp_fak_data" + index + "_separators",
+            nilaisebelumppnpp[index],
+          );
+          setNominalValue(
+            "nilai_sesudah_ppn_pp_fak_data" + index,
+            "nilai_sesudah_ppn_pp_fak_data" + index + "_separators",
+            nilaisesudahppnpp[index],
+          );
           var html2 = $(".copy-pp-fak-modal").html();
           $(".add-form-pp-fak-modal").after(html2);
+
           var html12 =
             '<div class="col-lg-6">' +
             '<label class="col-lg-12 control-label">Item</label>' +
             '<div class="col-lg-12">' +
             '<div class="input-group">' +
             '<input id="item_pp_fak_modal' +
-            i +
-            '" name="item_pp_fak_modal[]" type="text" value="' +
-            itempp[index] +
-            '" placeholder="" class="form-control" ' +
+            index +
+            '" ' +
+            'name="item_pp_fak_modal[]" ' +
+            'type="text" ' +
+            'value="' +
+            (itempp[index] || "") +
+            '" ' +
+            'placeholder="" ' +
+            'class="form-control" ' +
             is_disabled +
             ">" +
             "</div>" +
@@ -2143,39 +2197,76 @@ function isi_fak_data() {
             '<div class="col-lg-12">' +
             '<div class="input-group">' +
             '<input id="nilai_pp_fak_modal' +
-            i +
-            '" name="nilai_pp_fak_modal[]" onkeyup="hitungPPFAKM()" type="text" placeholder="" class="form-control" ' +
+            index +
+            '" ' +
+            'name="nilai_pp_fak_modal[]" ' +
+            'onkeyup="hitungPPFAKM(' +
+            index +
+            ')" ' + // ✅ kirim index biar spesifik
+            'type="text" ' +
+            'value="' +
+            (nilaisesudahppnpp[index] || "") +
+            '" ' +
+            'placeholder="" ' +
+            'class="form-control" ' +
             is_disabled +
-            "value='" +
-            nilaisesudahppnpp[index] +
-            "'>" +
+            ">" +
             "</div>" +
+            '<p>Nominal: <span id="nilai_pp_fak_modal' +
+            index +
+            '_separators" class="mask"></span></p>' +
             "</div>" +
             "</div>";
+
+          // 1) append dulu ke DOM
+          $(".delete-btn-pp-fak-modal").first().after(html12);
+
+          // 2) bind nominal
+          bindNominal(
+            "nilai_pp_fak_modal" + index,
+            "nilai_pp_fak_modal" + index + "_separators",
+          );
+
+          // 3) hitung hassil lalu set ke input+span
+          let profit_kontraktor_fak_data =
+            parseFloat($("#profit_kontraktor_fak_data").val()) || 0;
+          let biaya_pemeliharaan_fak_data =
+            parseFloat($("#biaya_pemeliharaan_fak_data").val()) || 0;
+
+          // hasil ambil dari nilaisesudahppnpp[index]
+          let hasil = parseFloat(toDigits(nilaisesudahppnpp[index])) || 0;
+
+          // prettier-ignore
+          let hassil = hasil - (hasil * ((profit_kontraktor_fak_data/100) + (biaya_pemeliharaan_fak_data/100)));
+
+          setNominalValue(
+            "nilai_pp_fak_modal" + index,
+            "nilai_pp_fak_modal" + index + "_separators",
+            hassil,
+          );
         }
-        $(".delete-btn-pp-fak-modal").first().after(html12);
       }
 
       $("#gaji_direktur_fak_data").val(data.gaji_direktur);
       bindNominal(
         "gaji_direktur_fak_data",
-        "gaji_direktur_fak_data_separators"
+        "gaji_direktur_fak_data_separators",
       );
       setNominalValue(
         "gaji_direktur_fak_data",
         "gaji_direktur_fak_data_separators",
-        data.gaji_direktur
+        data.gaji_direktur,
       );
 
       $("#gaji_pengawas_fak_data").val(data.gaji_pengawas);
       bindNominal(
         "gaji_pengawas_fak_data",
-        "gaji_pengawas_fak_data_separators"
+        "gaji_pengawas_fak_data_separators",
       );
       setNominalValue(
         "gaji_pengawas_fak_data",
         "gaji_pengawas_fak_data_separators",
-        data.gaji_pengawas
+        data.gaji_pengawas,
       );
 
       $("#gaji_staf_fak_data").val(data.gaji_staf);
@@ -2183,7 +2274,7 @@ function isi_fak_data() {
       setNominalValue(
         "gaji_staf_fak_data",
         "gaji_staf_fak_data_separators",
-        data.gaji_staf
+        data.gaji_staf,
       );
 
       $("#biaya_umum_fak_data").val(data.biaya_umum);
@@ -2191,14 +2282,14 @@ function isi_fak_data() {
       setNominalValue(
         "biaya_umum_fak_data",
         "biaya_umum_fak_data_separators",
-        data.biaya_umum
+        data.biaya_umum,
       );
       $("#terminfakdata").val(data.termin);
       $("#progressterminfakdata").val(data.progress_termin);
       $("#persentaseterminfakdata").val(data.persentase_termin);
       $("#prakiraantglterminfakdata").val(data.prakiraan_tgl_termin);
       $("#setelah_masa_pemeliharaan_fak_data").val(
-        data.setelah_masa_pemeliharaan_termin
+        data.setelah_masa_pemeliharaan_termin,
       );
       $("#total_termin_fak_data").val(data.total_termin);
       $("#jumlah_termin_fak_data").val(data.jumlah_termin);
@@ -2295,7 +2386,9 @@ function isi_fak_data() {
 function isi_fak_modal() {
   variabelGlobal(function (hasil) {
     if (hasil.status == "success") {
+      hitungPP();
       var data = hasil.message.fak_modal;
+      var datafakdata = hasil.message.fak_data;
       $("#proyek_fak_modal").val(data.proyek_fak_modal);
       $("#profit_fak_modal").val(data.profit_fak_modal);
       $("#ppn_fak_modal").val(data.ppn_fak_modal);
@@ -2304,59 +2397,72 @@ function isi_fak_modal() {
       $("#nilai_proyek_fak_modal").val(data.nilai_proyek_fak_modal);
       separator_edit(
         data.nilai_proyek_fak_modal,
-        "nilai_proyek_fak_modal_separators"
+        "nilai_proyek_fak_modal_separators",
       );
       $("#itemppfakmodal").val(data.item_pp_fak_modal);
       $("#nilaippfakmodal").val(data.nilai_pp_fak_modal);
       $("#koreksi_biaya_fak_modal").val(data.koreksi_biaya_fak_modal);
       $("#jumlah_fak_modal").val(data.jumlah_fak_modal);
-      separator_input("jumlah_fak_modal", "jumlah_fak_modal_separators");
-      separator_edit(data.jumlah_fak_modal, "jumlah_fak_modal_separators");
-      $("#gaji_direktur_fak_modal").val(data.gaji_direktur_fak_modal);
-      $("#gaji_pengawas_fak_modal").val(data.gaji_pengawas_fak_modal);
-      $("#gaji_staf_fak_modal").val(data.gaji_staf_fak_modal);
-      $("#biaya_umum_fak_modal").val(data.biaya_umum_fak_modal);
+      bindNominal("jumlah_fak_modal", "jumlah_fak_modal_separators");
+      // setNominalValue(
+      //   "jumlah_fak_modal",
+      //   "jumlah_fak_modal_separators",
+      //   data.jumlah_fak_modal || 0,
+      // );
+
+      $("#gaji_direktur_fak_modal").val(
+        data.gaji_direktur_fak_modal || datafakdata.gaji_direktur,
+      );
+      $("#gaji_pengawas_fak_modal").val(
+        data.gaji_pengawas_fak_modal || datafakdata.gaji_pengawas,
+      );
+      $("#gaji_staf_fak_modal").val(
+        data.gaji_staf_fak_modal || datafakdata.gaji_staf,
+      );
+      $("#biaya_umum_fak_modal").val(
+        data.biaya_umum_fak_modal || datafakdata.biaya_umum,
+      );
       $("#total_biaya_umum_fak_modal").val(data.total_biaya_umum_fak_modal);
       $("#jumlah_total_biaya_umum_fak_modal").val(
-        data.jumlah_total_biaya_umum_fak_modal
+        data.jumlah_total_biaya_umum_fak_modal,
       );
       $("#persentase_pekerjaan_fak_modal").val(
-        data.persentase_pekerjaan_fak_modal
+        data.persentase_pekerjaan_fak_modal,
       );
       $("#persiapan_pekerjaan_fak_modal").val(
-        data.persiapan_pekerjaan_fak_modal
+        data.persiapan_pekerjaan_fak_modal,
       );
       $("#biaya_umum_adm_fak_modal").val(data.biaya_umum_adm_fak_modal);
       $("#jumlah_kebutuhan_modal_kerja_fak_modal").val(
-        data.jumlah_kebutuhan_modal_kerja_fak_modal
+        data.jumlah_kebutuhan_modal_kerja_fak_modal,
       );
       $("#penerimaan_uang_muka_fak_modal").val(
-        data.penerimaan_uang_muka_fak_modal
+        data.penerimaan_uang_muka_fak_modal,
       );
       $("#jumlah_penerimaan_uang_muka_fak_modal").val(
-        data.jumlah_penerimaan_uang_muka_fak_modal
+        data.jumlah_penerimaan_uang_muka_fak_modal,
       );
       $("#persentase_penerimaan_uang_muka_fak_modal").val(
-        data.persentase_penerimaan_uang_muka_fak_modal
+        data.persentase_penerimaan_uang_muka_fak_modal,
       );
       $("#pembiayaan_sendiri_fak_modal").val(data.pembiayaan_sendiri_fak_modal);
       $("#jumlah_pembiayaan_sendiri_fak_modal").val(
-        data.jumlah_pembiayaan_sendiri_fak_modal
+        data.jumlah_pembiayaan_sendiri_fak_modal,
       );
       $("#persentase_pembiayaan_sendiri_fak_modal").val(
-        data.persentase_pembiayaan_sendiri_fak_modal
+        data.persentase_pembiayaan_sendiri_fak_modal,
       );
       $("#kredit_bank_fak_modal").val(data.kredit_bank_fak_modal);
       $("#jumlah_kredit_bank_fak_modal").val(data.jumlah_kredit_bank_fak_modal);
       $("#persentase_kredit_bank_fak_modal").val(
-        data.persentase_kredit_bank_fak_modal
+        data.persentase_kredit_bank_fak_modal,
       );
       $("#sumber_pembiayaan_fak_modal").val(data.sumber_pembiayaan_fak_modal);
       $("#jumlah_bulat_sumber_pembiayaan_fak_modal").val(
-        data.jumlah_bulat_sumber_pembiayaan_fak_modal
+        data.jumlah_bulat_sumber_pembiayaan_fak_modal,
       );
       $("#persentase_jumlah_sumber_pembiayaan_fak_modal").val(
-        data.persentase_jumlah_sumber_pembiayaan_fak_modal
+        data.persentase_jumlah_sumber_pembiayaan_fak_modal,
       );
       // upload dokumen
 
@@ -2365,10 +2471,10 @@ function isi_fak_modal() {
       let lengthnilai_pp_fak_modal = nilai_pp_fak_modal.length + 1;
       for (var i = 0; i < nilai_pp_fak_modal.length; i++) {
         if (i == 0) {
-          $("#nilai_pp_fak_modal" + i).val(nilai_pp_fak_modal[0]);
+          $("#nilai_pp_fak_modal" + i).val(nilai_pp_fak_modal[0]) || 0;
         } else {
           var index = lengthnilai_pp_fak_modal - 1 - i;
-          $("#nilai_pp_fak_modal" + i).val(nilai_pp_fak_modal[index]);
+          $("#nilai_pp_fak_modal" + i).val(nilai_pp_fak_modal[index]) || 0;
         }
       }
     } else {
@@ -2380,10 +2486,11 @@ function isi_fak_rl() {
   variabelGlobal(function (hasil) {
     if (hasil.status == "success") {
       var data = hasil.message.fak_rl;
+hitungUangMukaFAK();
 
       $("#nilai_kontrak_fak_rl").val(data.nilai_kontrak_fak_rl);
       $("#pekerjaan_persiapan_konstruksi_fak_rl").val(
-        data.pekerjaan_persiapan_konstruksi_fak_rl
+        data.pekerjaan_persiapan_konstruksi_fak_rl,
       );
       $("#laba_kotor_fak_rl").val(data.laba_kotor_fak_rl);
       $("#biaya_umum_adm_fak_rl").val(data.biaya_umum_adm_fak_rl);
@@ -2394,34 +2501,34 @@ function isi_fak_rl() {
       $("#laba_bersih_fak_rl").val(data.laba_bersih_fak_rl);
       $("#gross_profit_margin_fak_rl").val(data.gross_profit_margin_fak_rl);
       $("#gross_operating_margin_fak_rl").val(
-        data.gross_operating_margin_fak_rl
+        data.gross_operating_margin_fak_rl,
       );
       $("#return_of_sale_fak_rl").val(data.return_of_sale_fak_rl);
       $("#return_of_equity_fak_rl").val(data.return_of_equity_fak_rl);
       $("#harga_borongan_fak_rl").val(data.harga_borongan_fak_rl);
       $("#persentase_penerimaan_uang_muka_fak_rl").val(
-        data.persentase_penerimaan_uang_muka_fak_rl
+        data.persentase_penerimaan_uang_muka_fak_rl,
       );
       $("#penerimaan_uang_muka_fak_rl").val(data.penerimaan_uang_muka_fak_rl);
       $("#persentase_penerimaan_termin_fak_rl").val(
-        data.persentase_penerimaan_termin_fak_rl
+        data.persentase_penerimaan_termin_fak_rl,
       );
       $("#penerimaan_termin_fak_rl").val(data.penerimaan_termin_fak_rl);
       $("#persentase_penerimaan_termin_pemeliharaan_fak_rl").val(
-        data.persentase_penerimaan_termin_pemeliharaan_fak_rl
+        data.persentase_penerimaan_termin_pemeliharaan_fak_rl,
       );
       $("#penerimaan_termin_pemeliharaan_fak_rl").val(
-        data.penerimaan_termin_pemeliharaan_fak_rl
+        data.penerimaan_termin_pemeliharaan_fak_rl,
       );
       $("#persentase_penerimaan_bersih_fak_rl").val(
-        data.persentase_penerimaan_bersih_fak_rl
+        data.persentase_penerimaan_bersih_fak_rl,
       );
       $("#penerimaan_bersih_fak_rl").val(data.penerimaan_bersih_fak_rl);
       $("#pajak_ppn_pph_fak_rl").val(data.pajak_ppn_pph_fak_rl);
       $("#kosong_bersih_fak_rl").val(data.kosong_bersih_fak_rl);
       $("#kredit_bank_fak_rl").val(data.kredit_bank_fak_rl);
       $("#persentase_pemotongan_kredit_bank_fak_rl").val(
-        data.persentase_pemotongan_kredit_bank_fak_rl
+        data.persentase_pemotongan_kredit_bank_fak_rl,
       );
       $("#dibulatkan_fak_rl").val(data.dibulatkan_fak_rl);
     } else {
@@ -2468,16 +2575,16 @@ function isi_upload_lap_rl() {
 
       setStatusDokumen(
         "laporan_rugi_laba_upload_lap_rl",
-        data.laporan_rugi_laba_upload_lap_rl || ""
+        data.laporan_rugi_laba_upload_lap_rl || "",
       );
       setStatusDokumen("neraca_upload_lap_rl", data.neraca_upload_lap_rl || "");
       setStatusDokumen(
         "depresiasi_upload_lap_rl",
-        data.depresiasi_upload_lap_rl || ""
+        data.depresiasi_upload_lap_rl || "",
       );
       setStatusDokumen(
         "rasio_lap_keuangan_upload_lap_rl",
-        data.rasio_lap_keuangan_upload_lap_rl || ""
+        data.rasio_lap_keuangan_upload_lap_rl || "",
       );
     } else {
       alert(hasil.message || "Gagal mengambil data upload_lap_rl");
@@ -2582,16 +2689,16 @@ function isi_faa() {
       $("hargapasartanahfaatb").val(data.harga_pasar_tanah_faa_tb);
       $("hargabukutanahfaatb").val(data.harga_buku_tanah_faa_tb);
       $("hargamenurutpejabatbanktanahfaatb").val(
-        data.harga_menurut_pejabat_bank_tanah_faa_tb
+        data.harga_menurut_pejabat_bank_tanah_faa_tb,
       );
       $("hargatanahtanahfaatb").val(data.harga_tanah_tanah_faa_tb);
       $("luaspersegitanahtanahfaatb").val(data.luas_persegi_tanah_tanah_faa_tb);
       $("hasilperhitunganpenilaiantanahfaatb").val(
-        data.hasil_perhitungan_penilaian_tanah_faa_tb
+        data.hasil_perhitungan_penilaian_tanah_faa_tb,
       );
       $("safetymargintanahfaatb").val(data.safety_margin_tanah_faa_tb);
       $("nilaitanahsetelahcefsafetymargintanahfaatb").val(
-        data.nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb
+        data.nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb,
       );
     } else {
       alert(hasil.message);
@@ -2607,25 +2714,25 @@ function isi_mauk() {
       var data_awal1 = hasil.message.data_entry;
       var data_awal2 = hasil.message.fak_modal;
       $("#nama_nasabah_mauk").val(
-        data.nama_nasabah_mauk || data_awal1.nama_nasabah
+        data.nama_nasabah_mauk || data_awal1.nama_nasabah,
       );
       $("#npwp_mauk").val(data.npwp_mauk || data_awal1.npwp);
       $("#direktur_mauk").val(data.direktur_mauk || data_awal1.direktur);
       $("#key_person_mauk").val(data.key_person_mauk || data_awal1.key_person);
       $("#alamat_kantor_mauk").val(
-        data.alamat_kantor_mauk || data_awal1.alamat_kantor
+        data.alamat_kantor_mauk || data_awal1.alamat_kantor,
       );
       $("#klasifikasi_mauk").val(data.klasifikasi_mauk);
       $("#bidang_usaha_mauk").val(
-        data.bidang_usaha_mauk || data_awal.bidang_usaha
+        data.bidang_usaha_mauk || data_awal.bidang_usaha,
       );
       $("#jenis_fasilitas_mauk").val(data.jenis_fasilitas_mauk);
       $("#bentuk_fasilitas_mauk").val(data.bentuk_fasilitas_mauk);
       $("#maksimum_fasilitas_mauk").val(
-        data.maksimum_fasilitas_mauk || data_awal2.kredit_bank_fak_modal
+        data.maksimum_fasilitas_mauk || data_awal2.kredit_bank_fak_modal,
       );
       $("#plafond_fasilitas_mauk").val(
-        data.plafond_fasilitas_mauk || data_awal2.jumlah_kredit_bank_fak_modal
+        data.plafond_fasilitas_mauk || data_awal2.jumlah_kredit_bank_fak_modal,
       );
       $("#jangka_waktu_mauk").val(data.jangka_waktu_mauk);
       $("#tujuan_penggunaan_mauk").val(data.tujuan_penggunaan_mauk);
@@ -2656,19 +2763,19 @@ function isi_mauk() {
         "legalitas_pelaksanaan_proyek_mauk",
         function (editor) {
           editor.setData(data.legalitas_pelaksanaan_proyek_mauk);
-        }
+        },
       );
       initializeCKEditor(
         "legalitas_personal_pemohon_pemilik_agunan_mauk",
         function (editor) {
           editor.setData(data.legalitas_personal_pemohon_pemilik_agunan_mauk);
-        }
+        },
       );
       initializeCKEditor(
         "kesimpulan_analisa_aspek_legalitas_mauk",
         function (editor) {
           editor.setData(data.kesimpulan_analisa_aspek_legalitas_mauk);
-        }
+        },
       );
       initializeCKEditor("analisa_aspek_manajemen_mauk", function (editor) {
         editor.setData(data.analisa_aspek_manajemen_mauk);
@@ -2686,7 +2793,7 @@ function isi_mauk() {
         "perhitungan_kebutuhan_kredit_mauk",
         function (editor) {
           editor.setData(data.perhitungan_kebutuhan_kredit_mauk);
-        }
+        },
       );
       initializeCKEditor("kesimpulan_jaminan_agunan_mauk", function (editor) {
         editor.setData(data.kesimpulan_jaminan_agunan_mauk);
@@ -2719,13 +2826,13 @@ function isi_mauk() {
         editor.setData(data.syarat_lain_mauk);
       });
       $("#jeniskreditfasilitasusulmauk").val(
-        data.jenis_kredit_fasilitas_usul_mauk
+        data.jenis_kredit_fasilitas_usul_mauk,
       );
       $("#maxkreditiniusulmauk").val(data.max_kredit_ini_usul_mauk);
       $("#perubahanusulmauk").val(data.perubahan_usul_mauk);
       $("#maxkreditusulmauk").val(data.max_kredit_usul_mauk);
       $("#jeniskreditfasilitaspalmauk").val(
-        data.jenis_kredit_fasilitas_pal_mauk
+        data.jenis_kredit_fasilitas_pal_mauk,
       );
       $("#maxkreditinipalmauk").val(data.max_kredit_ini_pal_mauk);
       $("#perubahanpalmauk").val(data.perubahan_pal_mauk);
@@ -2737,7 +2844,7 @@ function isi_mauk() {
       $("#pendanaan_sendiri_mauk").val(data.pendanaan_sendiri_mauk);
 
       $("#kesimpulan_tujuan_penggunaan_mauk").val(
-        data.kesimpulan_tujuan_penggunaan_mauk
+        data.kesimpulan_tujuan_penggunaan_mauk,
       );
       $("#kesimpulan_jangka_waktu_mauk").val(data.kesimpulan_jangka_waktu_mauk);
       $("#cara_penarikan_mauk").val(data.cara_penarikan_mauk);
@@ -2752,7 +2859,7 @@ function isi_mauk() {
       $("#bentukpengikatanmauk").val(data.bentuk_pengikatan_mauk);
       $("#syarat_ttd_pk_mauk").val(data.syarat_ttd_pk_mauk);
       $("#syarat_realisasi_penarikan_mauk").val(
-        data.syarat_realisasi_penarikan_mauk
+        data.syarat_realisasi_penarikan_mauk,
       );
 
       let jenis_kredit_fasilitas_usul_mauk =
@@ -2765,7 +2872,7 @@ function isi_mauk() {
       for (var i = 0; i < jenis_kredit_fasilitas_usul_mauk.length; i++) {
         if (i == 0) {
           $("#jenis_kredit_fasilitas_usul_mauk" + i).val(
-            jenis_kredit_fasilitas_usul_mauk[0]
+            jenis_kredit_fasilitas_usul_mauk[0],
           );
           $("#max_kredit_ini_usul_mauk" + i).val(max_kredit_ini_usul_mauk[0]);
           $("#perubahan_usul_mauk" + i).val(perubahan_usul_mauk[0]);
@@ -2833,7 +2940,7 @@ function isi_mauk() {
       for (var i = 0; i < jenis_kredit_fasilitas_pal_mauk.length; i++) {
         if (i == 0) {
           $("#jenis_kredit_fasilitas_pal_mauk" + i).val(
-            jenis_kredit_fasilitas_pal_mauk[0]
+            jenis_kredit_fasilitas_pal_mauk[0],
           );
           $("#max_kredit_ini_pal_mauk" + i).val(max_kredit_ini_pal_mauk[0]);
           $("#perubahan_pal_mauk" + i).val(perubahan_pal_mauk[0]);
@@ -2982,7 +3089,7 @@ function isi_dcl() {
         if (i == 1) {
           // Untuk baris pertama
           $("#nama_pemilik_perusahaan_dcl" + i).val(
-            nama_pemilik_perusahaan_dcl[i - 1]
+            nama_pemilik_perusahaan_dcl[i - 1],
           );
           $("#persentase_saham_dcl" + i).val(persentase_saham_dcl[i - 1]);
         } else {
@@ -3017,7 +3124,7 @@ function isi_dcl() {
       }
 
       $("#jabatanpengurusperusahaandcl").val(
-        data.jabatan_pengurus_perusahaan_dcl
+        data.jabatan_pengurus_perusahaan_dcl,
       );
       $("#namapengurusperusahaandcl").val(data.nama_pengurus_perusahaan_dcl);
       $("#ktpdcl").val(data.ktp_dcl);
@@ -3031,10 +3138,10 @@ function isi_dcl() {
         if (i == 1) {
           // Untuk baris pertama
           $("#jabatan_pengurus_perusahaan_dcl" + i).val(
-            jabatan_pengurus_perusahaan_dcl[i - 1]
+            jabatan_pengurus_perusahaan_dcl[i - 1],
           );
           $("#nama_pengurus_perusahaan_dcl" + i).val(
-            nama_pengurus_perusahaan_dcl[i - 1]
+            nama_pengurus_perusahaan_dcl[i - 1],
           );
           $("#ktp_dcl" + i).val(ktp_dcl[i - 1]);
         } else {
@@ -3335,11 +3442,11 @@ function isi_dcl() {
       $("#namadebiturkreditgrupdcl").val(data.nama_debitur_kredit_grup_dcl);
       $("#jatuhtempokreditgrupdcl").val(data.jatuh_tempo_kredit_grup_dcl);
       $("#plafondexistingkreditgrupdcl").val(
-        data.plafond_existing_kredit_grup_dcl
+        data.plafond_existing_kredit_grup_dcl,
       );
       $("#outstandingkreditgrupdcl").val(data.outstanding_kredit_grup_dcl);
       $("#kolektibilitaskreditgrupdcl").val(
-        data.kolektibilitas_kredit_grup_dcl
+        data.kolektibilitas_kredit_grup_dcl,
       );
       let fasilitas_kredit_grup_dcl = data.fasilitas_kredit_grup_dcl.split(";");
       let nama_debitur_kredit_grup_dcl =
@@ -3356,22 +3463,22 @@ function isi_dcl() {
         if (i == 1) {
           // Untuk baris pertama
           $("#fasilitas_kredit_grup_dcl" + i).val(
-            fasilitas_kredit_grup_dcl[i - 1]
+            fasilitas_kredit_grup_dcl[i - 1],
           );
           $("#nama_debitur_kredit_grup_dcl" + i).val(
-            nama_debitur_kredit_grup_dcl[i - 1]
+            nama_debitur_kredit_grup_dcl[i - 1],
           );
           $("#jatuh_tempo_kredit_grup_dcl" + i).val(
-            jatuh_tempo_kredit_grup_dcl[i - 1]
+            jatuh_tempo_kredit_grup_dcl[i - 1],
           );
           $("#plafond_existing_kredit_grup_dcl" + i).val(
-            plafond_existing_kredit_grup_dcl[i - 1]
+            plafond_existing_kredit_grup_dcl[i - 1],
           );
           $("#outstanding_kredit_grup_dcl" + i).val(
-            outstanding_kredit_grup_dcl[i - 1]
+            outstanding_kredit_grup_dcl[i - 1],
           );
           $("#kolektibilitas_kredit_grup_dcl" + i).val(
-            kolektibilitas_kredit_grup_dcl[i - 1]
+            kolektibilitas_kredit_grup_dcl[i - 1],
           );
         } else {
           // Untuk baris kedua dan seterusnya
@@ -3468,16 +3575,16 @@ function isi_dcl() {
           $("#fasilitas_bank_lain_dcl" + i).val(fasilitas_bank_lain_dcl[i - 1]);
           $("#bank_ljk_bank_lain_dcl" + i).val(bank_ljk_bank_lain_dcl[i - 1]);
           $("#jatuh_tempo_bank_lain_dcl" + i).val(
-            jatuh_tempo_bank_lain_dcl[i - 1]
+            jatuh_tempo_bank_lain_dcl[i - 1],
           );
           $("#plafond_existing_bank_lain_dcl" + i).val(
-            plafond_existing_bank_lain_dcl[i - 1]
+            plafond_existing_bank_lain_dcl[i - 1],
           );
           $("#outstanding_bank_lain_dcl" + i).val(
-            outstanding_bank_lain_dcl[i - 1]
+            outstanding_bank_lain_dcl[i - 1],
           );
           $("#kolektibilitas_bank_lain_dcl" + i).val(
-            kolektibilitas_bank_lain_dcl[i - 1]
+            kolektibilitas_bank_lain_dcl[i - 1],
           );
         } else {
           // Untuk baris kedua dan seterusnya
@@ -3564,53 +3671,53 @@ function isi_dcl() {
       $("#checklist_pengujian_ojk_dcl3").val(data.checklist_pengujian_ojk_dcl3);
       $("#pengujian_internal_dcl1").val(data.pengujian_internal_dcl1);
       $("#dasar_pengujian_internal_dcl1").val(
-        data.dasar_pengujian_internal_dcl1
+        data.dasar_pengujian_internal_dcl1,
       );
       $("#checklist_pengujian_internal_dcl1").val(
-        data.checklist_pengujian_internal_dcl1
+        data.checklist_pengujian_internal_dcl1,
       );
       $("#checklist_pengujian_internal_dcl1").val(
-        data.checklist_pengujian_internal_dcl1
+        data.checklist_pengujian_internal_dcl1,
       );
       $("#pengujian_internal_dcl2").val(data.pengujian_internal_dcl2);
       $("#dasar_pengujian_internal_dcl2").val(
-        data.dasar_pengujian_internal_dcl2
+        data.dasar_pengujian_internal_dcl2,
       );
       $("#checklist_pengujian_internal_dcl2").val(
-        data.checklist_pengujian_internal_dcl2
+        data.checklist_pengujian_internal_dcl2,
       );
       $("#pengujian_internal_dcl3").val(data.pengujian_internal_dcl3);
       $("#dasar_pengujian_internal_dcl3").val(
-        data.dasar_pengujian_internal_dcl3
+        data.dasar_pengujian_internal_dcl3,
       );
       $("#checklist_pengujian_internal_dcl3").val(
-        data.checklist_pengujian_internal_dcl3
+        data.checklist_pengujian_internal_dcl3,
       );
       $("#pengujian_internal_dcl4").val(data.pengujian_internal_dcl4);
       $("#dasar_pengujian_internal_dcl4").val(
-        data.dasar_pengujian_internal_dcl4
+        data.dasar_pengujian_internal_dcl4,
       );
       $("#checklist_pengujian_internal_dcl4").val(
-        data.checklist_pengujian_internal_dcl4
+        data.checklist_pengujian_internal_dcl4,
       );
       $("#pengujian_internal_dcl5").val(data.pengujian_internal_dcl5);
       $("#dasar_pengujian_internal_dcl5").val(
-        data.dasar_pengujian_internal_dcl5
+        data.dasar_pengujian_internal_dcl5,
       );
       $("#checklist_pengujian_internal_dcl5").val(
-        data.checklist_pengujian_internal_dcl5
+        data.checklist_pengujian_internal_dcl5,
       );
       $("#pengujian_internal_dcl6").val(data.pengujian_internal_dcl6);
       $("#dasar_pengujian_internal_dcl6").val(
-        data.dasar_pengujian_internal_dcl6
+        data.dasar_pengujian_internal_dcl6,
       );
       $("#checklist_pengujian_internal_dcl6").val(
-        data.checklist_pengujian_internal_dcl6
+        data.checklist_pengujian_internal_dcl6,
       );
       $("#pengujianlainnyadcl").val(data.pengujian_lainnya_dcl);
       $("#dasarpengujianlainnyadcl").val(data.dasar_pengujian_lainnya_dcl);
       $("#checklistpengujianlainnyadcl").val(
-        data.checklist_pengujian_lainnya_dcl
+        data.checklist_pengujian_lainnya_dcl,
       );
       let pengujian_lainnya_dcl = data.pengujian_lainnya_dcl.split(";");
       let dasar_pengujian_lainnya_dcl =
@@ -3622,10 +3729,10 @@ function isi_dcl() {
           // Untuk baris pertama
           $("#pengujian_lainnya_dcl" + i).val(pengujian_lainnya_dcl[i - 1]);
           $("#dasar_pengujian_lainnya_dcl" + i).val(
-            dasar_pengujian_lainnya_dcl[i - 1]
+            dasar_pengujian_lainnya_dcl[i - 1],
           );
           $("#checklist_pengujian_lainnya_dcl" + i).val(
-            checklist_pengujian_lainnya_dcl[i - 1]
+            checklist_pengujian_lainnya_dcl[i - 1],
           );
         } else {
           // Untuk baris kedua dan seterusnya
@@ -4513,7 +4620,7 @@ function ceftb() {
 
     var jenisAgunanArray = jenis_agunan.split(";");
     var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
-      (item) => item === "Tanah/ Tanah dan Bangunan"
+      (item) => item === "Tanah/ Tanah dan Bangunan",
     ).length;
 
     // bersihkan dulu biar tidak dobel render
@@ -5056,12 +5163,12 @@ function hitungNilaiFAABB(counter_bb_faa_loop) {
   let nilaiBukuSebesar =
     parseFloat($("#nilai_buku_sebesar_bb" + counter_bb_faa_loop).val()) || 0;
   $("#nilai_taksasi_sebesar_bb" + counter_bb_faa_loop).val(nilaiBukuSebesar);
-  var formattedValue = formatNumber(nilaiBukuSebesar);
+  var formattedValue = formatIDR(nilaiBukuSebesar);
   $("#nilai_buku_sebesar_bb" + counter_bb_faa_loop + "_separators").text(
-    formattedValue
+    formattedValue,
   );
   $("#nilai_taksasi_sebesar_bb" + counter_bb_faa_loop + "_separators").text(
-    formattedValue
+    formattedValue,
   );
   let persentaseSafetyMargin =
     parseFloat($("#persentase_safety_margin" + counter_bb_faa_loop).val()) || 0;
@@ -5070,29 +5177,29 @@ function hitungNilaiFAABB(counter_bb_faa_loop) {
     nilaiBukuSebesar * (persentaseSafetyMargin / 100);
 
   $("#safety_margin_bb" + counter_bb_faa_loop).val(nilaiBukuSebesar20Percent);
-  var formattedValue1 = formatNumber(nilaiBukuSebesar20Percent);
+  var formattedValue1 = formatIDR(nilaiBukuSebesar20Percent);
   $("#safety_margin_bb" + counter_bb_faa_loop + "_separators").text(
-    formattedValue1
+    formattedValue1,
   );
 
   let nilaiAgunanSetelahSM = nilaiBukuSebesar - nilaiBukuSebesar20Percent;
 
   $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop).val(
-    nilaiAgunanSetelahSM
+    nilaiAgunanSetelahSM,
   );
-  var formattedValue2 = formatNumber(nilaiAgunanSetelahSM);
+  var formattedValue2 = formatIDR(nilaiAgunanSetelahSM);
   $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop + "_separators").text(
-    formattedValue2
+    formattedValue2,
   );
 
   let persentaseCEF = parseFloat($("#cef_bb" + counter_bb_faa_loop).val()) || 0;
   let nilaiAgunanSetelahCEF = nilaiAgunanSetelahSM * (persentaseCEF / 100);
   $("#nilai_agunan_setelah_cef_bb" + counter_bb_faa_loop).val(
-    nilaiAgunanSetelahCEF
+    nilaiAgunanSetelahCEF,
   );
-  var formattedValue3 = formatNumber(nilaiAgunanSetelahCEF);
+  var formattedValue3 = formatIDR(nilaiAgunanSetelahCEF);
   $("#nilai_agunan_setelah_cef_bb" + counter_bb_faa_loop + "_separators").text(
-    formattedValue3
+    formattedValue3,
   );
 }
 
@@ -5105,10 +5212,10 @@ function faa_bb() {
       var jenisAgunanArray = jenis_agunan.split(";");
 
       var barangBergerakCount = jenisAgunanArray.filter(
-        (item) => item === "Barang Bergerak"
+        (item) => item === "Barang Bergerak",
       ).length;
       var tanahAtauTanahBangunanCount = jenisAgunanArray.filter(
-        (item) => item === "Tanah/ Tanah dan Bangunan"
+        (item) => item === "Tanah/ Tanah dan Bangunan",
       ).length;
 
       // Loop untuk Barang Bergerak, hanya sejumlah barangBergerakCount
@@ -5120,7 +5227,7 @@ function faa_bb() {
         // if (adaBarangBergerak) {
         //     if (jenisAgunanArray[counter_bb_faa_loop] === "Barang Bergerak") {
         const jenisBBArray = (data.jenis_bb_faa ? data.jenis_bb_faa : "").split(
-          ";"
+          ";",
         );
         const nama_nasabahArray = (
           data.nama_nasabah_bb_faa ? data.nama_nasabah_bb_faa : ""
@@ -5218,7 +5325,7 @@ function faa_bb() {
             : ""
         ).split(";");
         const cef_bb_faaArray = (data.cef_bb_faa ? data.cef_bb_faa : "").split(
-          ";"
+          ";",
         );
         const nilai_agunan_setelah_cef_bb_faaArray = (
           data.nilai_agunan_setelah_cef_bb_faa
@@ -5722,12 +5829,12 @@ function faa_bb() {
           parseFloat(nilai_buku_sebesar_bbArray[counter_bb_faa_loop]) || 0;
         let nilaiBukuSebesar20Percent = nilaiBukuSebesar * 0.2;
         $("#safety_margin_bb" + counter_bb_faa_loop).val(
-          formatNumber(nilaiBukuSebesar20Percent)
+          formatIDR(nilaiBukuSebesar20Percent),
         );
 
         let nilaiAgunanSetelahSM = nilaiBukuSebesar - nilaiBukuSebesar20Percent;
         $("#nilai_agunan_setelah_sm_bb" + counter_bb_faa_loop).val(
-          formatNumber(nilaiAgunanSetelahSM)
+          formatIDR(nilaiAgunanSetelahSM),
         );
       }
       //   }
@@ -6057,7 +6164,7 @@ function unit_kerja_dcl() {
               option.kd_unit + " - " + option.nama_unit,
               option.kd_unit,
               false,
-              false
+              false,
             );
             if (option.kd_unit === kd_unit) {
               $(newOption).prop("selected", true);
@@ -6081,15 +6188,43 @@ function unit_kerja_dcl() {
 //
 //FAK Data
 //
+function hitungUangMukaFAK() {
+  let persentase_uang_muka =
+    parseFloat($("#persen_uang_muka_fak_data").val()) || 0;
+
+  let pembulatan_sebelumPPN =
+    parseFloat($("#pembulatan_nilai_sebelum_ppn_total_pp_fak_data").val()) || 0;
+
+  // total nilai sebelum PPN dari semua item PP
+  const inputs = $("input[name='nilai_sebelum_ppn_pp_fak_data[]']");
+  let total = 0;
+  inputs.each(function () {
+    total += parseFloat($(this).val()) || 0;
+  });
+
+  let totalhasil = total + pembulatan_sebelumPPN;
+
+  // ✅ uang muka
+  let penerimaan_uang_muka_fak_modal = totalhasil * (persentase_uang_muka / 100);
+
+  $("#penerimaan_uang_muka_fak_modal").val(penerimaan_uang_muka_fak_modal);
+
+  // kalau kamu punya span/format juga, bisa tambahkan:
+  // bindNominal("penerimaan_uang_muka_fak_modal", "penerimaan_uang_muka_fak_modal_separators");
+  // setNominalValue("penerimaan_uang_muka_fak_modal", "penerimaan_uang_muka_fak_modal_separators", penerimaan_uang_muka_fak_modal);
+
+  return penerimaan_uang_muka_fak_modal;
+}
+
 function hitungPP(
   angka = null,
   pokok_field = null,
   pokok_separator1 = null,
-  pokok_separator2 = null
+  pokok_separator2 = null,
 ) {
   $("#" + pokok_field).on("keyup", function () {
     var inputValue = $(this).val();
-    var formattedValue = formatNumber(inputValue);
+    var formattedValue = formatIDR(inputValue);
     $("#" + pokok_separator1).text(formattedValue);
 
     let persentase_uang_muka =
@@ -6099,7 +6234,7 @@ function hitungPP(
     let ppn = parseFloat($("#ppn_pp_fak_data" + angka).val()) || 0;
     let hasil = nilai * (1 + ppn / 100);
     $("#nilai_sesudah_ppn_pp_fak_data" + angka).val(hasil);
-    var formattedValue2 = formatNumber(hasil);
+    var formattedValue2 = formatIDR(hasil);
     $("#" + pokok_separator2).text(formattedValue2);
 
     let profit_kontraktor_fak_data =
@@ -6109,7 +6244,7 @@ function hitungPP(
     // prettier-ignore
     let hassil = hasil - (hasil * ((profit_kontraktor_fak_data/100) + (biaya_pemeliharaan_fak_data/100)));
     $("#nilai_pp_fak_modal" + angka).val(hassil);
-    var formattedValue5 = formatNumber(hassil);
+    var formattedValue5 = formatIDR(hassil);
     $("#nilai_pp_fak_modal" + angka + "_separators").text(formattedValue5);
 
     let pembulatan_sebelumPPN =
@@ -6123,13 +6258,12 @@ function hitungPP(
       totalhasil = total + pembulatan_sebelumPPN;
     });
     $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data").val(totalhasil);
-    var formattedValue3 = formatNumber(totalhasil);
+    var formattedValue3 = formatIDR(totalhasil);
     $("#jumlah_nilai_sebelum_ppn_total_pp_fak_data_separators").text(
-      formattedValue3
+      formattedValue3,
     );
 
-    penerimaan_uang_muka_fak_modal = totalhasil * (persentase_uang_muka / 100);
-    $("#penerimaan_uang_muka_fak_modal").val(penerimaan_uang_muka_fak_modal);
+hitungUangMukaFAK();
 
     let pembulatan_sesudahPPN = pembulatan_sebelumPPN * (1 + 0);
 
@@ -6148,13 +6282,13 @@ function hitungPP(
         (profit_kontraktor_fak_data / 100 + biaya_pemeliharaan_fak_data / 100);
 
     $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data").val(totalhasil2);
-    var formattedValue4 = formatNumber(totalhasil2);
+    var formattedValue4 = formatIDR(totalhasil2);
     $("#jumlah_nilai_sesudah_ppn_total_pp_fak_data_separators").text(
-      formattedValue4
+      formattedValue4,
     );
     $("#koreksi_biaya_fak_modal").val(koreksi);
     $("#jumlah_fak_modal").val(jumlah);
-    var formattedValuejumlah_fak_modal = formatNumber(jumlah);
+    var formattedValuejumlah_fak_modal = formatIDR(jumlah);
     $("#jumlah_fak_modal_separators").text(formattedValuejumlah_fak_modal);
   });
 }
@@ -6200,9 +6334,10 @@ function hitungNilaiProyek() {
     parseFloat($("#biaya_pemeliharaan_fak_data").val()) || 0;
   //prettier-ignore
   let hasil = sesudah_ppn - (sesudah_ppn * ((profit_kontraktor/100) + (biaya_pemeliharaan/100)));
-  var formattedValue = formatNumber(hasil);
+  var formattedValue = formatIDR(hasil);
   $("#nilai_proyek_fak_modal_separators").text(formattedValue);
   $("#nilai_proyek_fak_modal").val(hasil);
+  hitungTotal();
 }
 
 function hitungPPFAKM() {
@@ -6220,7 +6355,7 @@ function hitungPPFAKM() {
   });
   //prettier-ignore
   koreksi=nilaipembulatan-(nilaipembulatan*((nilaiasumsiprofitkontraktor/100)+(nilaibiayapemeliharaan/100)))
-  const jumlah = total + koreksi;
+  const jumlah = total - koreksi;
   $("#koreksi_biaya_fak_modal").val(koreksi);
   $("#jumlah_fak_modal").val(jumlah);
 }
@@ -6229,34 +6364,34 @@ function hitungTotal() {
   let nilaiproyek = parseFloat($("#nilai_proyek_fak_modal").val()) || 0;
 
   let direktur = parseFloat($("#gaji_direktur_fak_modal").val()) || 0;
-  var formattedValue = formatNumber(direktur);
+  var formattedValue = formatIDR(direktur);
   $("#gaji_direktur_fak_modal_separators").text(formattedValue);
 
   let pengawas = parseFloat($("#gaji_pengawas_fak_modal").val()) || 0;
-  var formattedValue2 = formatNumber(pengawas);
+  var formattedValue2 = formatIDR(pengawas);
   $("#gaji_pengawas_fak_modal_separators").text(formattedValue2);
 
   let staf = parseFloat($("#gaji_staf_fak_modal").val()) || 0;
-  var formattedValue3 = formatNumber(staf);
+  var formattedValue3 = formatIDR(staf);
   $("#gaji_staf_fak_modal_separators").text(formattedValue3);
 
   let umum = parseFloat($("#biaya_umum_fak_modal").val()) || 0;
-  var formattedValue4 = formatNumber(umum);
+  var formattedValue4 = formatIDR(umum);
   $("#biaya_umum_fak_modal_separators").text(formattedValue4);
 
   let hasil = direktur + pengawas + staf + umum;
   let hasil2 = nilaiproyek + hasil;
 
   $("#jumlah_total_biaya_umum_fak_modal").val(hasil);
-  var formattedValue5 = formatNumber(hasil);
+  var formattedValue5 = formatIDR(hasil);
   $("#jumlah_total_biaya_umum_fak_modal_separators").text(formattedValue5);
 
   $("#total_biaya_umum_fak_modal").val(hasil2);
-  var formattedValue6 = formatNumber(hasil2);
+  var formattedValue6 = formatIDR(hasil2);
   $("#total_biaya_umum_fak_modal_separators").text(formattedValue6);
 
   $("#biaya_umum_adm_fak_rl").val(hasil);
-  var formattedValue7 = formatNumber(hasil);
+  var formattedValue7 = formatIDR(hasil);
   $("#biaya_umum_adm_fak_rl_separators").text(formattedValue7);
 }
 
@@ -6270,15 +6405,15 @@ function hitungJumlahKebutuhanModalKerja() {
   let hasil2 = (persentase / 100) * biaya_umum_adm_fak_modal;
   let total = hasil1 + hasil2;
   $("#persiapan_pekerjaan_fak_modal").val(hasil1);
-  var formattedValue = formatNumber(hasil1);
+  var formattedValue = formatIDR(hasil1);
   $("#persiapan_pekerjaan_fak_modal_separators").text(formattedValue);
 
   $("#biaya_umum_adm_fak_modal").val(hasil2);
-  var formattedValue2 = formatNumber(hasil2);
+  var formattedValue2 = formatIDR(hasil2);
   $("#biaya_umum_adm_fak_modal_separators").text(formattedValue2);
 
   $("#jumlah_kebutuhan_modal_kerja_fak_modal").val(total);
-  var formattedValue3 = formatNumber(total);
+  var formattedValue3 = formatIDR(total);
   $("#jumlah_kebutuhan_modal_kerja_fak_modal_separators").text(formattedValue3);
 
   $("#sumber_pembiayaan_fak_modal").val(total);
@@ -6304,14 +6439,14 @@ function hitungKreditBank() {
   $("#maksimum_fasilitas_mauk").val(hasil);
   $("#maksimum_kredit_mauk").val(hasil);
 
-  var formattedValue = formatNumber(hasil);
+  var formattedValue = formatIDR(hasil);
   $("#maksimum_fasilitas_mauk_separators").text(formattedValue);
   $("#maksimum_kredit_mauk_separators").text(formattedValue);
 
   copyvalue2(
     "penerimaan_uang_muka_fak_modal",
     "jumlah_penerimaan_uang_muka_fak_modal",
-    "penerimaan_uang_muka_fak_rl"
+    "penerimaan_uang_muka_fak_rl",
   );
 }
 
@@ -6326,7 +6461,7 @@ function hitungKreditBank2() {
   $("#plafond_fasilitas_mauk").val(jumlah_kredit_bank_fak_modal);
   $("#plafond_kredit_mauk").val(jumlah_kredit_bank_fak_modal);
 
-  var formattedValue1 = formatNumber(jumlah_kredit_bank_fak_modal);
+  var formattedValue1 = formatIDR(jumlah_kredit_bank_fak_modal);
   $("#plafond_fasilitas_mauk_separators").text(formattedValue1);
   $("#plafond_kredit_mauk_separators").text(formattedValue1);
   const hasil =
@@ -6351,7 +6486,7 @@ function hitungKreditBank2() {
   $("#jumlah_pembiayaan_sendiri_fak_modal").val(hasil);
 
   $("#pendanaan_sendiri_mauk").val(hasil);
-  var formattedValue2 = formatNumber(hasil);
+  var formattedValue2 = formatIDR(hasil);
   $("#pendanaan_sendiri_mauk_separators").text(formattedValue2);
 
   $("#persentase_pembiayaan_sendiri_fak_modal").val(hasil3);
@@ -6360,29 +6495,29 @@ function hitungKreditBank2() {
   $("#persentase_jumlah_sumber_pembiayaan_fak_modal").val(hasil5);
 
   $("#hitung_provisi_fee_mauk").val(hasil6);
-  var formattedValue3 = formatNumber(hasil6);
+  var formattedValue3 = formatIDR(hasil6);
   $("#hitung_provisi_fee_mauk_separators").text(formattedValue3);
 
   $("#kredit_bank_fak_rl").val(jumlah_kredit_bank_fak_modal);
-  var formattedValue = formatNumber(jumlah_kredit_bank_fak_modal);
+  var formattedValue = formatIDR(jumlah_kredit_bank_fak_modal);
   $("#kredit_bank_fak_rl_separators").text(formattedValue);
 }
 
 //FAK Proyeksi RL
 function hitungLabaKotor() {
   const nilaiKontrak = parseFloat($("#nilai_kontrak_fak_rl").val()) || 0;
-  var formattedValue = formatNumber(nilaiKontrak);
+  var formattedValue = formatIDR(nilaiKontrak);
   $("#nilai_kontrak_fak_rl_separators").text(formattedValue);
 
   const pekerjaanPersiapan =
     parseFloat($("#pekerjaan_persiapan_konstruksi_fak_rl").val()) || 0;
-  var formattedValue2 = formatNumber(pekerjaanPersiapan);
+  var formattedValue2 = formatIDR(pekerjaanPersiapan);
   $("#pekerjaan_persiapan_konstruksi_fak_rl_separators").text(formattedValue2);
   const fix = nilaiKontrak - pekerjaanPersiapan;
   const fix2 = fix / nilaiKontrak;
 
   $("#laba_kotor_fak_rl").val(fix);
-  var formattedValue3 = formatNumber(fix);
+  var formattedValue3 = formatIDR(fix);
   $("#laba_kotor_fak_rl_separators").text(formattedValue3);
 
   $("#gross_profit_margin_fak_rl").val(fix2);
@@ -6396,7 +6531,7 @@ function hitungLabaUsaha() {
   const fix2 = fix / nilaiKontrak;
 
   $("#laba_usaha_fak_rl").val(fix);
-  var formattedValue = formatNumber(fix);
+  var formattedValue = formatIDR(fix);
   $("#laba_usaha_fak_rl_separators").text(formattedValue);
 
   $("#gross_operating_margin_fak_rl").val(fix2);
@@ -6407,7 +6542,7 @@ function hitungLabaSebelumPajak() {
   // var angka = document.getElementById("jumlah_termin_fak_data").value;
   var tanggalElement = document.getElementById("tgl_pencairan_fak_data");
   var tanggal_terminElement = document.getElementById(
-    "prakiraan_tgl_termin_fak_data1"
+    "prakiraan_tgl_termin_fak_data1",
   );
   let jumlah_pembiayaan_sendiri_fak_modal =
     parseFloat($("#jumlah_pembiayaan_sendiri_fak_modal").val()) || 0;
@@ -6427,12 +6562,12 @@ function hitungLabaSebelumPajak() {
     var millisecondsPerDay = 24 * 60 * 60 * 1000; // milidetik per hari
 
     var nilaiTanggal = Math.ceil(
-      (tanggal.getTime() - excelEpochInMilliseconds) / millisecondsPerDay + 2
+      (tanggal.getTime() - excelEpochInMilliseconds) / millisecondsPerDay + 2,
     );
     var nilaiTanggaltermin = Math.ceil(
       (tanggal_termin.getTime() - excelEpochInMilliseconds) /
         millisecondsPerDay +
-        2
+        2,
     );
     /* prettier-ignore */
     const fix =(jumlah_kredit_bank_fak_modal * (bunga_kredit_fak_data/100) / 360 * (nilaiTanggaltermin - nilaiTanggal)) + ((biaya_provisi_fak_data/100) * jumlah_kredit_bank_fak_modal);
@@ -6447,16 +6582,16 @@ function hitungLabaSebelumPajak() {
     console.log("g" + jumlah_kredit_bank_fak_modal);
     // const fix3 = fix / jumlah_pembiayaan_sendiri_fak_modal;
     $("#bunga_provisi_bank_fak_rl").val(fix);
-    var formattedValue = formatNumber(fix);
+    var formattedValue = formatIDR(fix);
     $("#bunga_provisi_bank_fak_rl_separators").text(formattedValue);
 
     $("#laba_sebelum_pajak_fak_rl").val(fix1);
-    var formattedValue2 = formatNumber(fix1);
+    var formattedValue2 = formatIDR(fix1);
     $("#laba_sebelum_pajak_fak_rl_separators").text(formattedValue2);
     // $("#return_of_equity_fak_rl").val(fix3);
   } else {
     console.error(
-      "Elemen HTML tidak ditemukan atau tidak memiliki properti 'value'."
+      "Elemen HTML tidak ditemukan atau tidak memiliki properti 'value'.",
     );
   }
 }
@@ -6471,7 +6606,7 @@ function hitungPajakPPNPPh() {
   const fix = -((((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * nilai_kontrak_fak_data) + ((nilai_kontrak_fak_data - (((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * nilai_kontrak_fak_data)) * (pph_fak_data/100)));
 
   $("#pajak_pph_ppn_fak_rl").val(Math.round(fix));
-  var formattedValue = formatNumber(Math.round(fix));
+  var formattedValue = formatIDR(Math.round(fix));
   $("#pajak_pph_ppn_fak_rl_separators").text(formattedValue);
 }
 
@@ -6488,7 +6623,7 @@ function hitungLabaBersih() {
   const fix3 = 100 * (fix / jumlah_pembiayaan_sendiri_fak_modal);
 
   $("#laba_bersih_fak_rl").val(Math.round(fix));
-  var formattedValue = formatNumber(Math.round(fix));
+  var formattedValue = formatIDR(Math.round(fix));
   $("#laba_bersih_fak_rl_separators").text(formattedValue);
 
   $("#return_of_sale_fak_rl").val(fix2.toFixed(4));
@@ -6503,17 +6638,17 @@ function hitungPenerimaantermin() {
 
   const harga_borongan_fak_rl =
     parseFloat($("#harga_borongan_fak_rl").val()) || 0;
-  var formattedValue = formatNumber(harga_borongan_fak_rl);
+  var formattedValue = formatIDR(harga_borongan_fak_rl);
   $("#harga_borongan_fak_rl_separators").text(formattedValue);
 
   const fix = persentase_penerimaan_termin_fak_rl * harga_borongan_fak_rl;
 
   $("#penerimaan_termin_fak_rl").val(Math.round(fix));
-  var formattedValue1 = formatNumber(Math.round(fix));
+  var formattedValue1 = formatIDR(Math.round(fix));
   $("#penerimaan_termin_fak_rl_separators").text(formattedValue1);
 
   $("#persentase_penerimaan_termin_pemeliharaan_fak_rl").val(
-    termin_pemeliharaan
+    termin_pemeliharaan,
   );
 }
 
@@ -6525,7 +6660,7 @@ function hitungPenerimaanterminPemeliharaan() {
 
   const fix = (nilai_kontrak_fak_rl * setelah_masa_pemeliharaan_fak_data) / 100;
   $("#penerimaan_termin_pemeliharaan_fak_rl").val(Math.round(fix));
-  var formattedValue = formatNumber(Math.round(fix));
+  var formattedValue = formatIDR(Math.round(fix));
   $("#penerimaan_termin_pemeliharaan_fak_rl_separators").text(formattedValue);
 }
 
@@ -6542,7 +6677,7 @@ function hitungPenerimaanBersih() {
     0;
   const penerimaan_uang_muka_fak_rl =
     parseFloat($("#penerimaan_uang_muka_fak_rl").val()) || 0;
-  var formattedValue1 = formatNumber(penerimaan_uang_muka_fak_rl);
+  var formattedValue1 = formatIDR(penerimaan_uang_muka_fak_rl);
   $("#penerimaan_uang_muka_fak_rl_separators").text(formattedValue1);
 
   const penerimaan_termin_fak_rl =
@@ -6562,7 +6697,7 @@ function hitungPenerimaanBersih() {
   $("#persentase_penerimaan_bersih_fak_rl").val(fix);
 
   $("#penerimaan_bersih_fak_rl").val(Math.round(fix2));
-  var formattedValue1 = formatNumber(Math.round(fix2));
+  var formattedValue1 = formatIDR(Math.round(fix2));
   $("#penerimaan_bersih_fak_rl_separators").text(formattedValue1);
 }
 
@@ -6576,11 +6711,11 @@ function hitungPajakRL() {
     (((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * penerimaan_bersih_fak_rl) +((penerimaan_bersih_fak_rl - (((ppn_fak_data/100) / (1 + (ppn_fak_data/100))) * penerimaan_bersih_fak_rl)) * (pph_fak_data/100));
   const fix2 = penerimaan_bersih_fak_rl - fix;
   $("#pajak_ppn_pph_fak_rl").val(fix);
-  var formattedValue = formatNumber(fix);
+  var formattedValue = formatIDR(fix);
   $("#pajak_ppn_pph_fak_rl_separators").text(formattedValue);
 
   $("#kosong_bersih_fak_rl").val(fix2);
-  var formattedValue1 = formatNumber(Math.round(fix2));
+  var formattedValue1 = formatIDR(Math.round(fix2));
   $("#kosong_bersih_fak_rl_separators").text(formattedValue1);
 }
 
@@ -6593,7 +6728,7 @@ function hitungPersentasePemotonganKreditBank() {
   const fix2 = Math.ceil(fix);
   $("#persentase_pemotongan_kredit_bank_fak_rl").val(fix.toFixed(4));
   $("#dibulatkan_fak_rl").val(fix2);
-  var formattedValue = formatNumber(fix2);
+  var formattedValue = formatIDR(fix2);
   $("#dibulatkan_fak_rl_separators").text(formattedValue);
 }
 
@@ -6611,31 +6746,31 @@ function showValueCEFT(checkbox, angka, bobot, counter) {
   }
 
   var hasil1ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft1").value || 0
+    document.getElementById("hasil" + counter + "ceft1").value || 0,
   );
   var hasil2ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft2").value || 0
+    document.getElementById("hasil" + counter + "ceft2").value || 0,
   );
   var hasil3ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft3").value || 0
+    document.getElementById("hasil" + counter + "ceft3").value || 0,
   );
   var hasil4ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft4").value || 0
+    document.getElementById("hasil" + counter + "ceft4").value || 0,
   );
   var hasil5ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft5").value || 0
+    document.getElementById("hasil" + counter + "ceft5").value || 0,
   );
   var hasil6ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft6").value || 0
+    document.getElementById("hasil" + counter + "ceft6").value || 0,
   );
   var hasil7ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft7").value || 0
+    document.getElementById("hasil" + counter + "ceft7").value || 0,
   );
   var hasil8ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft8").value || 0
+    document.getElementById("hasil" + counter + "ceft8").value || 0,
   );
   var hasil9ceft = parseFloat(
-    document.getElementById("hasil" + counter + "ceft9").value || 0
+    document.getElementById("hasil" + counter + "ceft9").value || 0,
   );
 
   total =
@@ -6662,25 +6797,25 @@ function showValueCEFB(checkbox, angka, bobot, counter) {
     $("#hasil" + counter + "cefb" + angka).val(hitungbobot);
   }
   var hasil1cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb1").value || 0
+    document.getElementById("hasil" + counter + "cefb1").value || 0,
   );
   var hasil2cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb2").value || 0
+    document.getElementById("hasil" + counter + "cefb2").value || 0,
   );
   var hasil3cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb3").value || 0
+    document.getElementById("hasil" + counter + "cefb3").value || 0,
   );
   var hasil4cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb4").value || 0
+    document.getElementById("hasil" + counter + "cefb4").value || 0,
   );
   var hasil5cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb5").value || 0
+    document.getElementById("hasil" + counter + "cefb5").value || 0,
   );
   var hasil6cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb6").value || 0
+    document.getElementById("hasil" + counter + "cefb6").value || 0,
   );
   var hasil7cefb = parseFloat(
-    document.getElementById("hasil" + counter + "cefb7").value || 0
+    document.getElementById("hasil" + counter + "cefb7").value || 0,
   );
 
   total =
@@ -6872,14 +7007,14 @@ function combineTextareaValues(textareas) {
 
 function add_pp() {
   var inpItemForm = document.querySelectorAll(
-    "input[name='item_pp_fak_data[]']"
+    "input[name='item_pp_fak_data[]']",
   );
   var inpPPNForm = document.querySelectorAll("input[name='ppn_pp_fak_data[]']");
   var inpSebelumPPNForm = document.querySelectorAll(
-    "input[name='nilai_sebelum_ppn_pp_fak_data[]']"
+    "input[name='nilai_sebelum_ppn_pp_fak_data[]']",
   );
   var inpSesudahPPNForm = document.querySelectorAll(
-    "input[name='nilai_sesudah_ppn_pp_fak_data[]']"
+    "input[name='nilai_sesudah_ppn_pp_fak_data[]']",
   );
 
   document.querySelector('[name="itemppfakdata"]').value =
@@ -6894,16 +7029,16 @@ function add_pp() {
 
 function add_termin() {
   var inpterminForm = document.querySelectorAll(
-    "input[name='termin_fak_data[]']"
+    "input[name='termin_fak_data[]']",
   );
   var inpProgressForm = document.querySelectorAll(
-    "input[name='progress_termin_fak_data[]']"
+    "input[name='progress_termin_fak_data[]']",
   );
   var inpPersentaseForm = document.querySelectorAll(
-    "input[name='persentase_termin_fak_data[]']"
+    "input[name='persentase_termin_fak_data[]']",
   );
   var inpPrakiraanTanggalForm = document.querySelectorAll(
-    "input[name='prakiraan_tgl_termin_fak_data[]']"
+    "input[name='prakiraan_tgl_termin_fak_data[]']",
   );
 
   document.querySelector('[name="terminfakdata"]').value =
@@ -6918,10 +7053,10 @@ function add_termin() {
 
 function add_pp_fak_modal() {
   var inpItemForm = document.querySelectorAll(
-    "input[name='item_pp_fak_modal[]']"
+    "input[name='item_pp_fak_modal[]']",
   );
   var inpNilaiPPForm = document.querySelectorAll(
-    "input[name='nilai_pp_fak_modal[]']"
+    "input[name='nilai_pp_fak_modal[]']",
   );
 
   document.querySelector('[name="itemppfakmodal"]').value =
@@ -6932,7 +7067,7 @@ function add_pp_fak_modal() {
 
 function nilaicheckboxceft() {
   var nilaicheckboxceft = document.querySelectorAll(
-    "input[name='checkboxceft[]']"
+    "input[name='checkboxceft[]']",
   );
 
   document.querySelector('[name="nilaicheckboxceft"]').value =
@@ -6941,14 +7076,14 @@ function nilaicheckboxceft() {
 
 function hasilcheckboxceft() {
   var hasilcheckboxceft = document.querySelectorAll(
-    "input[name='hasil_checkbox_ceft[]']"
+    "input[name='hasil_checkbox_ceft[]']",
   );
   document.querySelector('[name="hasilcheckboxceft"]').value =
     combineHasilCheckboxTValues(hasilcheckboxceft);
 }
 function hasiltotalceft() {
   var hasiltotalceft = document.querySelectorAll(
-    "input[name='hasiltotalceft[]']"
+    "input[name='hasiltotalceft[]']",
   );
 
   document.querySelector('[name="hasiltotalceft"]').value =
@@ -6957,7 +7092,7 @@ function hasiltotalceft() {
 
 function nilaicheckboxcefb() {
   var nilaicheckboxcefb = document.querySelectorAll(
-    "input[name='checkboxcefb[]']"
+    "input[name='checkboxcefb[]']",
   );
 
   document.querySelector('[name="nilaicheckboxcefb"]').value =
@@ -6966,7 +7101,7 @@ function nilaicheckboxcefb() {
 
 function hasilcheckboxcefb() {
   var hasilcheckboxcefb = document.querySelectorAll(
-    "input[name='hasil_checkbox_cefb[]']"
+    "input[name='hasil_checkbox_cefb[]']",
   );
 
   document.querySelector('[name="hasilcheckboxcefb"]').value =
@@ -6974,7 +7109,7 @@ function hasilcheckboxcefb() {
 }
 function hasiltotalcefb() {
   var hasiltotalcefb = document.querySelectorAll(
-    "input[name='hasiltotalcefb[]']"
+    "input[name='hasiltotalcefb[]']",
   );
   document.querySelector('[name="hasiltotalcefb"]').value =
     combineValues(hasiltotalcefb);
@@ -6982,22 +7117,22 @@ function hasiltotalcefb() {
 
 function add_kesimpulan_mauk() {
   var jenis_kredit_fasilitas_usul_mauk = document.querySelectorAll(
-    "input[name='jenis_kredit_fasilitas_usul_mauk[]']"
+    "input[name='jenis_kredit_fasilitas_usul_mauk[]']",
   );
   var max_kredit_ini_usul_mauk = document.querySelectorAll(
-    "input[name='max_kredit_ini_usul_mauk[]']"
+    "input[name='max_kredit_ini_usul_mauk[]']",
   );
   var perubahan_usul_mauk = document.querySelectorAll(
-    "input[name='perubahan_usul_mauk[]']"
+    "input[name='perubahan_usul_mauk[]']",
   );
   var max_kredit_usul_mauk = document.querySelectorAll(
-    "input[name='max_kredit_usul_mauk[]']"
+    "input[name='max_kredit_usul_mauk[]']",
   );
 
   document.querySelector('[name="jeniskreditfasilitasusulmauk"]').value =
     combineValues(jenis_kredit_fasilitas_usul_mauk);
   document.querySelector('[name="maxkreditiniusulmauk"]').value = combineValues(
-    max_kredit_ini_usul_mauk
+    max_kredit_ini_usul_mauk,
   );
   document.querySelector('[name="perubahanusulmauk"]').value =
     combineValues(perubahan_usul_mauk);
@@ -7007,22 +7142,22 @@ function add_kesimpulan_mauk() {
 
 function add_kesimpulan_pal_mauk() {
   var jenis_kredit_fasilitas_pal_mauk = document.querySelectorAll(
-    "input[name='jenis_kredit_fasilitas_pal_mauk[]']"
+    "input[name='jenis_kredit_fasilitas_pal_mauk[]']",
   );
   var max_kredit_ini_pal_mauk = document.querySelectorAll(
-    "input[name='max_kredit_ini_pal_mauk[]']"
+    "input[name='max_kredit_ini_pal_mauk[]']",
   );
   var perubahan_pal_mauk = document.querySelectorAll(
-    "input[name='perubahan_pal_mauk[]']"
+    "input[name='perubahan_pal_mauk[]']",
   );
   var max_kredit_pal_mauk = document.querySelectorAll(
-    "input[name='max_kredit_pal_mauk[]']"
+    "input[name='max_kredit_pal_mauk[]']",
   );
 
   document.querySelector('[name="jeniskreditfasilitaspalmauk"]').value =
     combineValues(jenis_kredit_fasilitas_pal_mauk);
   document.querySelector('[name="maxkreditinipalmauk"]').value = combineValues(
-    max_kredit_ini_pal_mauk
+    max_kredit_ini_pal_mauk,
   );
   document.querySelector('[name="perubahanpalmauk"]').value =
     combineValues(perubahan_pal_mauk);
@@ -7033,13 +7168,13 @@ function add_kesimpulan_pal_mauk() {
 function add_agunan_mauk() {
   var agunan_mauk = document.querySelectorAll("input[name='agunan_mauk[]']");
   var macam_jenis_mauk = document.querySelectorAll(
-    "input[name='macam_jenis_mauk[]']"
+    "input[name='macam_jenis_mauk[]']",
   );
   var nilai_agunan_mauk = document.querySelectorAll(
-    "input[name='nilai_agunan_mauk[]']"
+    "input[name='nilai_agunan_mauk[]']",
   );
   var bentuk_pengikatan_mauk = document.querySelectorAll(
-    "input[name='bentuk_pengikatan_mauk[]']"
+    "input[name='bentuk_pengikatan_mauk[]']",
   );
 
   document.querySelector('[name="agunanmauk"]').value =
@@ -7049,62 +7184,62 @@ function add_agunan_mauk() {
   document.querySelector('[name="nilaiagunanmauk"]').value =
     combineValues(nilai_agunan_mauk);
   document.querySelector('[name="bentukpengikatanmauk"]').value = combineValues(
-    bentuk_pengikatan_mauk
+    bentuk_pengikatan_mauk,
   );
 }
 
 function add_faa_tb() {
   var nama_nasabah_faa_tb = document.querySelectorAll(
-    "input[name='nama_nasabah_faa_tb[]']"
+    "input[name='nama_nasabah_faa_tb[]']",
   );
   var nomor_shm_faa_tb = document.querySelectorAll(
-    "input[name='nomor_shm_faa_tb[]']"
+    "input[name='nomor_shm_faa_tb[]']",
   );
   var tanggal_shm_faa_tb = document.querySelectorAll(
-    "input[name='tanggal_shm_faa_tb[]']"
+    "input[name='tanggal_shm_faa_tb[]']",
   );
   var nama_pemilik_shm_faa_tb = document.querySelectorAll(
-    "input[name='nama_pemilik_shm_faa_tb[]']"
+    "input[name='nama_pemilik_shm_faa_tb[]']",
   );
   var alamat_agunan_faa_tb = document.querySelectorAll(
-    "input[name='alamat_agunan_faa_tb[]']"
+    "input[name='alamat_agunan_faa_tb[]']",
   );
   var harga_pasar_tanah_faa_tb = document.querySelectorAll(
-    "input[name='harga_pasar_tanah_faa_tb[]']"
+    "input[name='harga_pasar_tanah_faa_tb[]']",
   );
   var harga_buku_tanah_faa_tb = document.querySelectorAll(
-    "input[name='harga_buku_tanah_faa_tb[]']"
+    "input[name='harga_buku_tanah_faa_tb[]']",
   );
   var harga_menurut_pejabat_bank_tanah_faa_tb = document.querySelectorAll(
-    "input[name='harga_menurut_pejabat_bank_tanah_faa_tb[]']"
+    "input[name='harga_menurut_pejabat_bank_tanah_faa_tb[]']",
   );
   var harga_tanah_tanah_faa_tb = document.querySelectorAll(
-    "input[name='harga_tanah_tanah_faa_tb[]']"
+    "input[name='harga_tanah_tanah_faa_tb[]']",
   );
   var luas_persegi_tanah_tanah_faa_tb = document.querySelectorAll(
-    "input[name='luas_persegi_tanah_tanah_faa_tb[]']"
+    "input[name='luas_persegi_tanah_tanah_faa_tb[]']",
   );
   var hasil_perhitungan_penilaian_tanah_faa_tb = document.querySelectorAll(
-    "input[name='hasil_perhitungan_penilaian_tanah_faa_tb[]']"
+    "input[name='hasil_perhitungan_penilaian_tanah_faa_tb[]']",
   );
   var safety_margin_tanah_faa_tb = document.querySelectorAll(
-    "input[name='safety_margin_tanah_faa_tb[]']"
+    "input[name='safety_margin_tanah_faa_tb[]']",
   );
   var nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb =
     document.querySelectorAll(
-      "input[name='nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb[]']"
+      "input[name='nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb[]']",
     );
   var persentase_nilai_tanah_faa_tb = document.querySelectorAll(
-    "input[name='persentase_nilai_tanah_faa_tb[]']"
+    "input[name='persentase_nilai_tanah_faa_tb[]']",
   );
   var persentase_cef_tanah_faa_tb = document.querySelectorAll(
-    "input[name='persentase_cef_tanah_faa_tb[]']"
+    "input[name='persentase_cef_tanah_faa_tb[]']",
   );
   var cef_tanah_faa_tb = document.querySelectorAll(
-    "input[name='cef_tanah_faa_tb[]']"
+    "input[name='cef_tanah_faa_tb[]']",
   );
   var persentase_safety_margin_tanah_faa_tb = document.querySelectorAll(
-    "input[name='persentase_safety_margin_tanah_faa_tb[]']"
+    "input[name='persentase_safety_margin_tanah_faa_tb[]']",
   );
 
   document.querySelector('[name="namanasabahfaatb"]').value =
@@ -7114,20 +7249,20 @@ function add_faa_tb() {
   document.querySelector('[name="tanggalshmfaatb"]').value =
     combineValues(tanggal_shm_faa_tb);
   document.querySelector('[name="namapemilikshmfaatb"]').value = combineValues(
-    nama_pemilik_shm_faa_tb
+    nama_pemilik_shm_faa_tb,
   );
   document.querySelector('[name="alamatagunanfaatb"]').value =
     combineValues(alamat_agunan_faa_tb);
   document.querySelector('[name="hargapasartanahfaatb"]').value = combineValues(
-    harga_pasar_tanah_faa_tb
+    harga_pasar_tanah_faa_tb,
   );
   document.querySelector('[name="hargabukutanahfaatb"]').value = combineValues(
-    harga_buku_tanah_faa_tb
+    harga_buku_tanah_faa_tb,
   );
   document.querySelector('[name="hargamenurutpejabatbanktanahfaatb"]').value =
     combineValues(harga_menurut_pejabat_bank_tanah_faa_tb);
   document.querySelector('[name="hargatanahtanahfaatb"]').value = combineValues(
-    harga_tanah_tanah_faa_tb
+    harga_tanah_tanah_faa_tb,
   );
   document.querySelector('[name="luaspersegitanahtanahfaatb"]').value =
     combineValues(luas_persegi_tanah_tanah_faa_tb);
@@ -7143,76 +7278,76 @@ function add_faa_tb() {
   document.querySelector('[name="safetymargintanahfaatb"]').value =
     combineValues(safety_margin_tanah_faa_tb);
   document.querySelector(
-    '[name="nilaitanahsetelahcefsafetymargintanahfaatb"]'
+    '[name="nilaitanahsetelahcefsafetymargintanahfaatb"]',
   ).value = combineValues(nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb);
 }
 
 function add_faa_bb() {
   var nama_nasabah_bb_faa = document.querySelectorAll(
-    "input[name='nama_nasabah_bb_faa[]']"
+    "input[name='nama_nasabah_bb_faa[]']",
   );
   var jenis_dokumen_bb_faa = document.querySelectorAll(
-    "input[name='jenis_dokumen_bb_faa[]']"
+    "input[name='jenis_dokumen_bb_faa[]']",
   );
   var alamat_bb_faa = document.querySelectorAll(
-    "textarea[name='alamat_bb_faa[]']"
+    "textarea[name='alamat_bb_faa[]']",
   );
   var jenis_bb_faa = document.querySelectorAll("input[name='jenis_bb_faa[]']");
   var model_tipe_bb_faa = document.querySelectorAll(
-    "input[name='model_tipe_bb_faa[]']"
+    "input[name='model_tipe_bb_faa[]']",
   );
   var merek_cc_bb_faa = document.querySelectorAll(
-    "input[name='merek_cc_bb_faa[]']"
+    "input[name='merek_cc_bb_faa[]']",
   );
   var tahun_pembuatan_bb_faa = document.querySelectorAll(
-    "input[name='tahun_pembuatan_bb_faa[]']"
+    "input[name='tahun_pembuatan_bb_faa[]']",
   );
   var serial_number_bb_faa = document.querySelectorAll(
-    "input[name='serial_number_bb_faa[]']"
+    "input[name='serial_number_bb_faa[]']",
   );
   var nomor_mesin_bb_faa = document.querySelectorAll(
-    "input[name='nomor_mesin_bb_faa[]']"
+    "input[name='nomor_mesin_bb_faa[]']",
   );
   var warna_bb_faa = document.querySelectorAll("input[name='warna_bb_faa[]']");
   var bahan_bakar_bb_faa = document.querySelectorAll(
-    "input[name='bahan_bakar_bb_faa[]']"
+    "input[name='bahan_bakar_bb_faa[]']",
   );
   var kondisi_keadaan_bb_faa = document.querySelectorAll(
-    "input[name='kondisi_keadaan_bb_faa[]']"
+    "input[name='kondisi_keadaan_bb_faa[]']",
   );
   var nomor_polisi_bb_faa = document.querySelectorAll(
-    "input[name='nomor_polisi_bb_faa[]']"
+    "input[name='nomor_polisi_bb_faa[]']",
   );
   var bukti_kepemilikan_agb_bb_faa = document.querySelectorAll(
-    "input[name='bukti_kepemilikan_agb_bb_faa[]']"
+    "input[name='bukti_kepemilikan_agb_bb_faa[]']",
   );
   var invoice_no_bb_faa = document.querySelectorAll(
-    "input[name='invoice_no_bb_faa[]']"
+    "input[name='invoice_no_bb_faa[]']",
   );
   var invoice_tanggal_bb_faa = document.querySelectorAll(
-    "input[name='invoice_tanggal_bb_faa[]']"
+    "input[name='invoice_tanggal_bb_faa[]']",
   );
   var perubahan_hak_terakhir_bb_faa = document.querySelectorAll(
-    "input[name='perubahan_hak_terakhir_bb_faa[]']"
+    "input[name='perubahan_hak_terakhir_bb_faa[]']",
   );
   var tercatat_atas_nama_bb_faa = document.querySelectorAll(
-    "input[name='tercatat_atas_nama_bb_faa[]']"
+    "input[name='tercatat_atas_nama_bb_faa[]']",
   );
   var alamat_pemilik_saat_ini_bb_faa = document.querySelectorAll(
-    "textarea[name='alamat_pemilik_saat_ini_bb_faa[]']"
+    "textarea[name='alamat_pemilik_saat_ini_bb_faa[]']",
   );
   var umur_teknis_bb_faa = document.querySelectorAll(
-    "input[name='umur_teknis_bb_faa[]']"
+    "input[name='umur_teknis_bb_faa[]']",
   );
   var perkiraan_umur_ekonomis_bb_faa = document.querySelectorAll(
-    "input[name='perkiraan_umur_ekonomis_bb_faa[]']"
+    "input[name='perkiraan_umur_ekonomis_bb_faa[]']",
   );
   var tempat_penyimpanan_bb_faa = document.querySelectorAll(
-    "input[name='tempat_penyimpanan_bb_faa[]']"
+    "input[name='tempat_penyimpanan_bb_faa[]']",
   );
   var route_bb_faa = document.querySelectorAll("input[name='route_bb_faa[]']");
   var jarak_rata_rata_tempuh_bb_faa = document.querySelectorAll(
-    "input[name='jarak_rata_rata_tempuh_bb_faa[]']"
+    "input[name='jarak_rata_rata_tempuh_bb_faa[]']",
   );
 
   document.querySelector('[name="namanasabahfaabb"]').value =
@@ -7229,7 +7364,7 @@ function add_faa_bb() {
   document.querySelector('[name="merekccfaabb"]').value =
     combineValues(merek_cc_bb_faa);
   document.querySelector('[name="tahunpembuatanfaabb"]').value = combineValues(
-    tahun_pembuatan_bb_faa
+    tahun_pembuatan_bb_faa,
   );
   document.querySelector('[name="serialnumberfaabb"]').value =
     combineValues(serial_number_bb_faa);
@@ -7240,7 +7375,7 @@ function add_faa_bb() {
   document.querySelector('[name="bahanbakarfaabb"]').value =
     combineValues(bahan_bakar_bb_faa);
   document.querySelector('[name="kondisikeadaanfaabb"]').value = combineValues(
-    kondisi_keadaan_bb_faa
+    kondisi_keadaan_bb_faa,
   );
   document.querySelector('[name="nomorpolisifaabb"]').value =
     combineValues(nomor_polisi_bb_faa);
@@ -7249,7 +7384,7 @@ function add_faa_bb() {
   document.querySelector('[name="invoicenofaabb"]').value =
     combineValues(invoice_no_bb_faa);
   document.querySelector('[name="invoicetanggalfaabb"]').value = combineValues(
-    invoice_tanggal_bb_faa
+    invoice_tanggal_bb_faa,
   );
   document.querySelector('[name="perubahanhakterakhirfaabb"]').value =
     combineValues(perubahan_hak_terakhir_bb_faa);
@@ -7271,10 +7406,10 @@ function add_faa_bb() {
 
 function add_dcl1() {
   var nama_pemilik_perusahaan_dcl = document.querySelectorAll(
-    "input[name='nama_pemilik_perusahaan_dcl[]']"
+    "input[name='nama_pemilik_perusahaan_dcl[]']",
   );
   var persentase_saham_dcl = document.querySelectorAll(
-    "input[name='persentase_saham_dcl[]']"
+    "input[name='persentase_saham_dcl[]']",
   );
 
   document.querySelector('[name="namapemilikperusahaandcl"]').value =
@@ -7285,10 +7420,10 @@ function add_dcl1() {
 
 function add_dcl2() {
   var jabatan_pengurus_perusahaan_dcl = document.querySelectorAll(
-    "input[name='jabatan_pengurus_perusahaan_dcl[]']"
+    "input[name='jabatan_pengurus_perusahaan_dcl[]']",
   );
   var nama_pengurus_perusahaan_dcl = document.querySelectorAll(
-    "input[name='nama_pengurus_perusahaan_dcl[]']"
+    "input[name='nama_pengurus_perusahaan_dcl[]']",
   );
   var ktp_dcl = document.querySelectorAll("input[name='ktp_dcl[]']");
 
@@ -7301,18 +7436,18 @@ function add_dcl2() {
 
 function add_dcl3() {
   var fasilitas_kredit_dcl = document.querySelectorAll(
-    "textarea[name='fasilitas_kredit_dcl[]']"
+    "textarea[name='fasilitas_kredit_dcl[]']",
   );
 
   var plafond_dcl = document.querySelectorAll("input[name='plafond_dcl[]']");
   var jangka_waktu_dcl = document.querySelectorAll(
-    "textarea[name='jangka_waktu_dcl[]']"
+    "textarea[name='jangka_waktu_dcl[]']",
   );
   var tujuan_penggunaan_dcl = document.querySelectorAll(
-    "textarea[name='tujuan_penggunaan_dcl[]']"
+    "textarea[name='tujuan_penggunaan_dcl[]']",
   );
   var permohonan_diterima_dcl = document.querySelectorAll(
-    "input[name='permohonan_diterima_dcl[]']"
+    "input[name='permohonan_diterima_dcl[]']",
   );
   // let combinedValues = combineTextareaValues(fasilitas_kredit_dcl);
 
@@ -7329,19 +7464,19 @@ function add_dcl3() {
 }
 function add_dcl4() {
   var bukti_kepemilikan_dcl = document.querySelectorAll(
-    "input[name='bukti_kepemilikan_dcl[]']"
+    "input[name='bukti_kepemilikan_dcl[]']",
   );
   var jenis_agunan_dcl = document.querySelectorAll(
-    "input[name='jenis_agunan_dcl[]']"
+    "input[name='jenis_agunan_dcl[]']",
   );
   var tanggal_agunan_dcl = document.querySelectorAll(
-    "input[name='tanggal_agunan_dcl[]']"
+    "input[name='tanggal_agunan_dcl[]']",
   );
   var avalist_dcl = document.querySelectorAll("input[name='avalist_dcl[]']");
   var nominal_dcl = document.querySelectorAll("input[name='nominal_dcl[]']");
 
   document.querySelector('[name="buktikepemilikandcl"]').value = combineValues(
-    bukti_kepemilikan_dcl
+    bukti_kepemilikan_dcl,
   );
   document.querySelector('[name="jenisagunandcl"]').value =
     combineValues(jenis_agunan_dcl);
@@ -7354,19 +7489,19 @@ function add_dcl4() {
 }
 function add_dcl5() {
   var fasilitas_dcl = document.querySelectorAll(
-    "input[name='fasilitas_dcl[]']"
+    "input[name='fasilitas_dcl[]']",
   );
   var jatuh_tempo_dcl = document.querySelectorAll(
-    "input[name='jatuh_tempo_dcl[]']"
+    "input[name='jatuh_tempo_dcl[]']",
   );
   var plafond_existing_dcl = document.querySelectorAll(
-    "input[name='plafond_existing_dcl[]']"
+    "input[name='plafond_existing_dcl[]']",
   );
   var outstanding_dcl = document.querySelectorAll(
-    "input[name='outstanding_dcl[]']"
+    "input[name='outstanding_dcl[]']",
   );
   var kolektibilitas_dcl = document.querySelectorAll(
-    "input[name='kolektibilitas_dcl[]']"
+    "input[name='kolektibilitas_dcl[]']",
   );
   document.querySelector('[name="fasilitasdcl"]').value =
     combineValues(fasilitas_dcl);
@@ -7382,22 +7517,22 @@ function add_dcl5() {
 
 function add_dcl6() {
   var fasilitas_kredit_grup_dcl = document.querySelectorAll(
-    "input[name='fasilitas_kredit_grup_dcl[]']"
+    "input[name='fasilitas_kredit_grup_dcl[]']",
   );
   var nama_debitur_kredit_grup_dcl = document.querySelectorAll(
-    "input[name='nama_debitur_kredit_grup_dcl[]']"
+    "input[name='nama_debitur_kredit_grup_dcl[]']",
   );
   var jatuh_tempo_kredit_grup_dcl = document.querySelectorAll(
-    "input[name='jatuh_tempo_kredit_grup_dcl[]']"
+    "input[name='jatuh_tempo_kredit_grup_dcl[]']",
   );
   var plafond_existing_kredit_grup_dcl = document.querySelectorAll(
-    "input[name='plafond_existing_kredit_grup_dcl[]']"
+    "input[name='plafond_existing_kredit_grup_dcl[]']",
   );
   var outstanding_kredit_grup_dcl = document.querySelectorAll(
-    "input[name='outstanding_kredit_grup_dcl[]']"
+    "input[name='outstanding_kredit_grup_dcl[]']",
   );
   var kolektibilitas_kredit_grup_dcl = document.querySelectorAll(
-    "input[name='kolektibilitas_kredit_grup_dcl[]']"
+    "input[name='kolektibilitas_kredit_grup_dcl[]']",
   );
 
   document.querySelector('[name="fasilitaskreditgrupdcl"]').value =
@@ -7415,29 +7550,29 @@ function add_dcl6() {
 }
 function add_dcl7() {
   var fasilitas_bank_lain_dcl = document.querySelectorAll(
-    "input[name='fasilitas_bank_lain_dcl[]']"
+    "input[name='fasilitas_bank_lain_dcl[]']",
   );
   var bank_ljk_bank_lain_dcl = document.querySelectorAll(
-    "input[name='bank_ljk_bank_lain_dcl[]']"
+    "input[name='bank_ljk_bank_lain_dcl[]']",
   );
   var jatuh_tempo_bank_lain_dcl = document.querySelectorAll(
-    "input[name='jatuh_tempo_bank_lain_dcl[]']"
+    "input[name='jatuh_tempo_bank_lain_dcl[]']",
   );
   var plafond_existing_bank_lain_dcl = document.querySelectorAll(
-    "input[name='plafond_existing_bank_lain_dcl[]']"
+    "input[name='plafond_existing_bank_lain_dcl[]']",
   );
   var outstanding_bank_lain_dcl = document.querySelectorAll(
-    "input[name='outstanding_bank_lain_dcl[]']"
+    "input[name='outstanding_bank_lain_dcl[]']",
   );
   var kolektibilitas_bank_lain_dcl = document.querySelectorAll(
-    "input[name='kolektibilitas_bank_lain_dcl[]']"
+    "input[name='kolektibilitas_bank_lain_dcl[]']",
   );
 
   document.querySelector('[name="fasilitasbanklaindcl"]').value = combineValues(
-    fasilitas_bank_lain_dcl
+    fasilitas_bank_lain_dcl,
   );
   document.querySelector('[name="bankljkbanklaindcl"]').value = combineValues(
-    bank_ljk_bank_lain_dcl
+    bank_ljk_bank_lain_dcl,
   );
   document.querySelector('[name="jatuhtempobanklaindcl"]').value =
     combineValues(jatuh_tempo_bank_lain_dcl);
@@ -7451,13 +7586,13 @@ function add_dcl7() {
 
 function add_dcl8() {
   var pengujian_lainnya_dcl = document.querySelectorAll(
-    "input[name='pengujian_lainnya_dcl[]']"
+    "input[name='pengujian_lainnya_dcl[]']",
   );
   var dasar_pengujian_lainnya_dcl = document.querySelectorAll(
-    "input[name='dasar_pengujian_lainnya_dcl[]']"
+    "input[name='dasar_pengujian_lainnya_dcl[]']",
   );
   var checklist_pengujian_lainnya_dcl = document.querySelectorAll(
-    "select[name='checklist_pengujian_lainnya_dcl[]']"
+    "select[name='checklist_pengujian_lainnya_dcl[]']",
   );
   // let selectElements = document.querySelectorAll(
   //   "select[name='checklist_pengujian_lainnya_dcl[]']"
@@ -7465,7 +7600,7 @@ function add_dcl8() {
   // let combinedSelectValues = combineSelectValues(selectElements);
 
   document.querySelector('[name="pengujianlainnyadcl"]').value = combineValues(
-    pengujian_lainnya_dcl
+    pengujian_lainnya_dcl,
   );
   document.querySelector('[name="dasarpengujianlainnyadcl"]').value =
     combineValues(dasar_pengujian_lainnya_dcl);
@@ -7485,7 +7620,7 @@ function data_data_fak_data() {
     kontraktor_fak_data: $("#kontraktor_fak_data").val(),
     sumber_dana_fak_data: $("#sumber_dana_fak_data").val(),
     nilai_kontrak_setelah_ppn_fak_data: $(
-      "#nilai_kontrak_setelah_ppn_fak_data"
+      "#nilai_kontrak_setelah_ppn_fak_data",
     ).val(),
     ppn_fak_data: $("#ppn_fak_data").val(),
     pph_fak_data: $("#pph_fak_data").val(),
@@ -7505,16 +7640,16 @@ function data_data_fak_data() {
     nilai_sebelum_ppn_pp_fak_data: $("#nilaisebelumppnppfakdata").val(),
     nilai_sesudah_ppn_pp_fak_data: $("#nilaisesudahppnppfakdata").val(),
     pembulatan_nilai_sebelum_ppn_total_pp_fak_data: $(
-      "#pembulatan_nilai_sebelum_ppn_total_pp_fak_data"
+      "#pembulatan_nilai_sebelum_ppn_total_pp_fak_data",
     ).val(),
     pembulatan_nilai_sesudah_ppn_total_pp_fak_data: $(
-      "#pembulatan_nilai_sesudah_ppn_total_pp_fak_data"
+      "#pembulatan_nilai_sesudah_ppn_total_pp_fak_data",
     ).val(),
     jumlah_nilai_sebelum_ppn_total_pp_fak_data: $(
-      "#jumlah_nilai_sebelum_ppn_total_pp_fak_data"
+      "#jumlah_nilai_sebelum_ppn_total_pp_fak_data",
     ).val(),
     jumlah_nilai_sesudah_ppn_total_pp_fak_data: $(
-      "#jumlah_nilai_sesudah_ppn_total_pp_fak_data"
+      "#jumlah_nilai_sesudah_ppn_total_pp_fak_data",
     ).val(),
     gaji_direktur_fak_data: $("#gaji_direktur_fak_data").val(),
     gaji_pengawas_fak_data: $("#gaji_pengawas_fak_data").val(),
@@ -7525,7 +7660,7 @@ function data_data_fak_data() {
     persentase_termin_fak_data: $("#persentaseterminfakdata").val(),
     prakiraan_tgl_termin_fak_data: $("#prakiraantglterminfakdata").val(),
     setelah_masa_pemeliharaan_fak_data: $(
-      "#setelah_masa_pemeliharaan_fak_data"
+      "#setelah_masa_pemeliharaan_fak_data",
     ).val(),
     total_termin_fak_data: $("#total_termin_fak_data").val(),
     jumlah_termin_fak_data: $("#jumlah_termin_fak_data").val(),
@@ -7580,39 +7715,39 @@ function data_data_fak_modal() {
     biaya_umum_fak_modal: $("#biaya_umum_fak_modal").val(),
     total_biaya_umum_fak_modal: $("#total_biaya_umum_fak_modal").val(),
     jumlah_total_biaya_umum_fak_modal: $(
-      "#jumlah_total_biaya_umum_fak_modal"
+      "#jumlah_total_biaya_umum_fak_modal",
     ).val(),
     persentase_pekerjaan_fak_modal: $("#persentase_pekerjaan_fak_modal").val(),
     persiapan_pekerjaan_fak_modal: $("#persiapan_pekerjaan_fak_modal").val(),
     biaya_umum_adm_fak_modal: $("#biaya_umum_adm_fak_modal").val(),
     jumlah_kebutuhan_modal_kerja_fak_modal: $(
-      "#jumlah_kebutuhan_modal_kerja_fak_modal"
+      "#jumlah_kebutuhan_modal_kerja_fak_modal",
     ).val(),
     penerimaan_uang_muka_fak_modal: $("#penerimaan_uang_muka_fak_modal").val(),
     jumlah_penerimaan_uang_muka_fak_modal: $(
-      "#jumlah_penerimaan_uang_muka_fak_modal"
+      "#jumlah_penerimaan_uang_muka_fak_modal",
     ).val(),
     persentase_penerimaan_uang_muka_fak_modal: $(
-      "#persentase_penerimaan_uang_muka_fak_modal"
+      "#persentase_penerimaan_uang_muka_fak_modal",
     ).val(),
     pembiayaan_sendiri_fak_modal: $("#pembiayaan_sendiri_fak_modal").val(),
     jumlah_pembiayaan_sendiri_fak_modal: $(
-      "#jumlah_pembiayaan_sendiri_fak_modal"
+      "#jumlah_pembiayaan_sendiri_fak_modal",
     ).val(),
     persentase_pembiayaan_sendiri_fak_modal: $(
-      "#persentase_pembiayaan_sendiri_fak_modal"
+      "#persentase_pembiayaan_sendiri_fak_modal",
     ).val(),
     kredit_bank_fak_modal: $("#kredit_bank_fak_modal").val(),
     jumlah_kredit_bank_fak_modal: $("#jumlah_kredit_bank_fak_modal").val(),
     persentase_kredit_bank_fak_modal: $(
-      "#persentase_kredit_bank_fak_modal"
+      "#persentase_kredit_bank_fak_modal",
     ).val(),
     sumber_pembiayaan_fak_modal: $("#sumber_pembiayaan_fak_modal").val(),
     jumlah_bulat_sumber_pembiayaan_fak_modal: $(
-      "#jumlah_bulat_sumber_pembiayaan_fak_modal"
+      "#jumlah_bulat_sumber_pembiayaan_fak_modal",
     ).val(),
     persentase_jumlah_sumber_pembiayaan_fak_modal: $(
-      "#persentase_jumlah_sumber_pembiayaan_fak_modal"
+      "#persentase_jumlah_sumber_pembiayaan_fak_modal",
     ).val(),
     // upload dokumen
   };
@@ -7650,7 +7785,7 @@ function data_data_fak_rl() {
     kd_data: $("#kd_data").val(),
     nilai_kontrak_fak_rl: $("#nilai_kontrak_fak_rl").val(),
     pekerjaan_persiapan_konstruksi_fak_rl: $(
-      "#pekerjaan_persiapan_konstruksi_fak_rl"
+      "#pekerjaan_persiapan_konstruksi_fak_rl",
     ).val(),
     laba_kotor_fak_rl: $("#laba_kotor_fak_rl").val(),
     biaya_umum_adm_fak_rl: $("#biaya_umum_adm_fak_rl").val(),
@@ -7665,28 +7800,28 @@ function data_data_fak_rl() {
     return_of_equity_fak_rl: $("#return_of_equity_fak_rl").val(),
     harga_borongan_fak_rl: $("#harga_borongan_fak_rl").val(),
     persentase_penerimaan_uang_muka_fak_rl: $(
-      "#persentase_penerimaan_uang_muka_fak_rl"
+      "#persentase_penerimaan_uang_muka_fak_rl",
     ).val(),
     penerimaan_uang_muka_fak_rl: $("#penerimaan_uang_muka_fak_rl").val(),
     persentase_penerimaan_termin_fak_rl: $(
-      "#persentase_penerimaan_termin_fak_rl"
+      "#persentase_penerimaan_termin_fak_rl",
     ).val(),
     penerimaan_termin_fak_rl: $("#penerimaan_termin_fak_rl").val(),
     persentase_penerimaan_termin_pemeliharaan_fak_rl: $(
-      "#persentase_penerimaan_termin_pemeliharaan_fak_rl"
+      "#persentase_penerimaan_termin_pemeliharaan_fak_rl",
     ).val(),
     penerimaan_termin_pemeliharaan_fak_rl: $(
-      "#penerimaan_termin_pemeliharaan_fak_rl"
+      "#penerimaan_termin_pemeliharaan_fak_rl",
     ).val(),
     persentase_penerimaan_bersih_fak_rl: $(
-      "#persentase_penerimaan_bersih_fak_rl"
+      "#persentase_penerimaan_bersih_fak_rl",
     ).val(),
     penerimaan_bersih_fak_rl: $("#penerimaan_bersih_fak_rl").val(),
     pajak_ppn_pph_fak_rl: $("#pajak_ppn_pph_fak_rl").val(),
     kosong_bersih_fak_rl: $("#kosong_bersih_fak_rl").val(),
     kredit_bank_fak_rl: $("#kredit_bank_fak_rl").val(),
     persentase_pemotongan_kredit_bank_fak_rl: $(
-      "#persentase_pemotongan_kredit_bank_fak_rl"
+      "#persentase_pemotongan_kredit_bank_fak_rl",
     ).val(),
     dibulatkan_fak_rl: $("#dibulatkan_fak_rl").val(),
     // upload dokumen
@@ -7725,19 +7860,19 @@ function data_data_lap_rl() {
   formData.append("kd_data", $("#kd_data").val());
   formData.append(
     "laporan_rugi_laba_upload_lap_rl",
-    $("#laporan_rugi_laba_upload_lap_rl")[0].files[0]
+    $("#laporan_rugi_laba_upload_lap_rl")[0].files[0],
   );
   formData.append(
     "neraca_upload_lap_rl",
-    $("#neraca_upload_lap_rl")[0].files[0]
+    $("#neraca_upload_lap_rl")[0].files[0],
   );
   formData.append(
     "depresiasi_upload_lap_rl",
-    $("#depresiasi_upload_lap_rl")[0].files[0]
+    $("#depresiasi_upload_lap_rl")[0].files[0],
   );
   formData.append(
     "rasio_lap_keuangan_upload_lap_rl",
-    $("#rasio_lap_keuangan_upload_lap_rl")[0].files[0]
+    $("#rasio_lap_keuangan_upload_lap_rl")[0].files[0],
   );
   return formData;
 }
@@ -7801,10 +7936,10 @@ function data_data_ceftb() {
 
   // Hitung jumlah loop dari elemen total yang ada
   const countCEFT = document.querySelectorAll(
-    'input[id^="hasiltotalCEFT"]'
+    'input[id^="hasiltotalCEFT"]',
   ).length;
   const countCEFB = document.querySelectorAll(
-    'input[id^="hasiltotalCEFB"]'
+    'input[id^="hasiltotalCEFB"]',
   ).length;
   const loopCount = Math.max(countCEFT, countCEFB, 0);
 
@@ -7931,7 +8066,7 @@ function data_data_faa() {
 
         var adaBarangBergerak = jenisAgunanArray.includes("Barang Bergerak");
         var adaTanahOrTanahBangunan = jenisAgunanArray.includes(
-          "Tanah/ Tanah dan Bangunan"
+          "Tanah/ Tanah dan Bangunan",
         );
 
         if (adaBarangBergerak) {
@@ -7966,7 +8101,7 @@ function data_data_faa() {
           alamat_pemilik_saat_ini_faa_bb: $("#alamatpemiliksaatinifaabb").val(),
           umur_teknis_faa_bb: $("#umurteknisfaabb").val(),
           perkiraan_umur_ekonomis_faa_bb: $(
-            "#perkiraanumurekonomisfaabb"
+            "#perkiraanumurekonomisfaabb",
           ).val(),
           tempat_penyimpanan_faa_bb: $("#tempatpenyimpananfaabb").val(),
           route_faa_bb: $("#routefaabb").val(),
@@ -7981,18 +8116,18 @@ function data_data_faa() {
           cef_tanah_faa_tb: $("#ceftanahfaatb").val(),
           persentase_cef_tanah_faa_tb: $("#persentaseceftanahfaatb").val(),
           harga_menurut_pejabat_bank_tanah_faa_tb: $(
-            "#hargamenurutpejabatbanktanahfaatb"
+            "#hargamenurutpejabatbanktanahfaatb",
           ).val(),
           harga_tanah_tanah_faa_tb: $("#hargatanahtanahfaatb").val(),
           luas_persegi_tanah_tanah_faa_tb: $(
-            "#luaspersegitanahtanahfaatb"
+            "#luaspersegitanahtanahfaatb",
           ).val(),
           hasil_perhitungan_penilaian_tanah_faa_tb: $(
-            "#hasilperhitunganpenilaiantanahfaatb"
+            "#hasilperhitunganpenilaiantanahfaatb",
           ).val(),
           safety_margin_tanah_faa_tb: $("#safetymargintanahfaatb").val(),
           nilai_tanah_setelah_cef_safety_margin_tanah_faa_tb: $(
-            "#nilaitanahsetelahcefsafetymargintanahfaatb"
+            "#nilaitanahsetelahcefsafetymargintanahfaatb",
           ).val(),
         };
 
@@ -8092,7 +8227,7 @@ function data_data_mauk() {
     kriteria_usaha_mauk: $("#kriteria_usaha_mauk").val(),
     pendanaan_sendiri_mauk: $("#pendanaan_sendiri_mauk").val(),
     kesimpulan_tujuan_penggunaan_mauk: $(
-      "#kesimpulan_tujuan_penggunaan_mauk"
+      "#kesimpulan_tujuan_penggunaan_mauk",
     ).val(),
     kesimpulan_jangka_waktu_mauk: $("#kesimpulan_jangka_waktu_mauk").val(),
     cara_penarikan_mauk: $("#cara_penarikan_mauk").val(),
@@ -8212,32 +8347,32 @@ function data_data_dcl() {
     pengujian_internal_dcl1: $("#pengujian_internal_dcl1").val(),
     dasar_pengujian_internal_dcl1: $("#dasar_pengujian_internal_dcl1").val(),
     checklist_pengujian_internal_dcl1: $(
-      "#checklist_pengujian_internal_dcl1"
+      "#checklist_pengujian_internal_dcl1",
     ).val(),
     pengujian_internal_dcl2: $("#pengujian_internal_dcl2").val(),
     dasar_pengujian_internal_dcl2: $("#dasar_pengujian_internal_dcl2").val(),
     checklist_pengujian_internal_dcl2: $(
-      "#checklist_pengujian_internal_dcl2"
+      "#checklist_pengujian_internal_dcl2",
     ).val(),
     pengujian_internal_dcl3: $("#pengujian_internal_dcl3").val(),
     dasar_pengujian_internal_dcl3: $("#dasar_pengujian_internal_dcl3").val(),
     checklist_pengujian_internal_dcl3: $(
-      "#checklist_pengujian_internal_dcl3"
+      "#checklist_pengujian_internal_dcl3",
     ).val(),
     pengujian_internal_dcl4: $("#pengujian_internal_dcl4").val(),
     dasar_pengujian_internal_dcl4: $("#dasar_pengujian_internal_dcl4").val(),
     checklist_pengujian_internal_dcl4: $(
-      "#checklist_pengujian_internal_dcl4"
+      "#checklist_pengujian_internal_dcl4",
     ).val(),
     pengujian_internal_dcl5: $("#pengujian_internal_dcl5").val(),
     dasar_pengujian_internal_dcl5: $("#dasar_pengujian_internal_dcl5").val(),
     checklist_pengujian_internal_dcl5: $(
-      "#checklist_pengujian_internal_dcl5"
+      "#checklist_pengujian_internal_dcl5",
     ).val(),
     pengujian_internal_dcl6: $("#pengujian_internal_dcl6").val(),
     dasar_pengujian_internal_dcl6: $("#dasar_pengujian_internal_dcl6").val(),
     checklist_pengujian_internal_dcl6: $(
-      "#checklist_pengujian_internal_dcl6"
+      "#checklist_pengujian_internal_dcl6",
     ).val(),
     pengujian_lainnya_dcl: $("#pengujianlainnyadcl").val(),
     dasar_pengujian_lainnya_dcl: $("#dasarpengujianlainnyadcl").val(),
@@ -8406,7 +8541,7 @@ function click_save_data_scoring_koor() {
   post_scoring_koor(
     "edit_scoring_koor",
     data_scoring_koor2,
-    "save_scoring_koor"
+    "save_scoring_koor",
   );
 }
 
